@@ -1,0 +1,483 @@
+@startsalt
+{{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 18-05-17 06:22:41}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 18-05-17 06:30:13}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 18-05-17 06:32:52}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 18-05-17 06:33:03}
+}
+{ add bulky}
+}
+{T
++add bulky
+++Create-> class Bulky
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 18-05-17 06:33:06}
+}
+{ Packages can be bulky, heavy 
+or fragile. }
+}
+{T
++packages can be bulky , heavy or fragile .
+++Create-> class HeavyPackage
+++Create-> class Package
+++Update-> Old: class HeavyPackage / New: class HeavyPackage, superTypes: [Package]
+++Create-> class FragilePackage
+++Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]
+++Create-> class BulkyPackage
+++Update-> Old: class BulkyPackage / New: class BulkyPackage, superTypes: [Package]
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:37:40}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:38:01}
+}
+{ delete "bulky"}
+}
+{T
++delete `` bulky ''
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:38:39}
+}
+{ bulky packages has an id}
+}
+{T
++bulky packages has an id
+++Create-> attribute id
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:45:00}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:48:32}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:48:44}
+}
+{ Packages has heavy packages}
+}
+{T
++packages has heavy packages
+++Create-> reference heavyPackage
+++Update-> Old: reference heavyPackage [0..-1], type: null, from Package / New: reference heavyPackage [0..-1], type: HeavyPackage, from Package
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:56:58}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 10:59:14}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:07:58}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:12:59}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:17:32}
+}
+{ remove bulky}
+}
+{T
++remove bulky
+++Remove-> class Bulky
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:17:46}
+}
+{ remove bulky package}
+}
+{T
++remove bulky package
+++Remove-> class BulkyPackage, superTypes: [Package]
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:18:14}
+}
+{ add bulky packages}
+}
+{T
++add bulky packages
+++Create-> class BulkyPackage
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:18:32}
+}
+{ packages contain bulky 
+packages }
+}
+{T
++packages contain bulky packages
+++Create-> reference bulkyPackage
+++Update-> Old: reference bulkyPackage [0..-1], type: null, from Package / New: reference bulkyPackage [0..-1], type: BulkyPackage, from Package
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 11:29:14}
+}
+{ add bulky}
+}
+{T
++add bulky
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:00:59}
+}
+{ Person lives in a house}
+}
+{T
++person lives in a house
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:12:08}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:13:29}
+}
+{ add redhead person}
+}
+{T
++add redhead person
+++Create-> class RedheadPerson
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:14:43}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:20:05}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:26:40}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 12:28:12}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:35:07}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:35:18}
+}
+{ /show}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:37:51}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:38:02}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:38:09}
+}
+{ /show}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 19-05-17 02:48:38}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 11:11:11}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 11:11:28}
+}
+{ add text name in packages}
+}
+{T
++add text name in packages
+++Create-> attribute name
+++Update-> Old: attribute name [0..1], type: null, from Package / New: attribute name [0..1], type: null, from Package
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 11:13:10}
+}
+{ test}
+}
+{T
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 11:34:42}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 07:22:39}
+}
+{ test}
+}
+{T
+}
+}|
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 07:23:12}
+}
+{ remove bulky}
+}
+{T
++remove bulky
+++Remove-> class Bulky
+}
+}
+{#
+{#{+{[<&person> Sara]
+Saruki}|
+
+{<&clock> 22-05-17 07:23:48}
+}
+{ /talk add name in redhead 
+person }
+}
+{T
++add name in redhead person
+++Create-> attribute name
+}
+}|
+
+}
+@endsalt

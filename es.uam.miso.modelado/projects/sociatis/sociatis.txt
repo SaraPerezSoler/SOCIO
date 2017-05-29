@@ -1,0 +1,28 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class SociatisSocialNetwork {
+}
+SociatisSocialNetwork *--"0..1"Sponsor : sponsor
+SociatisSocialNetwork *--"0..*"ConsumerProfile : consumerProfile
+class ConsumerProfile {
+}
+class GroupProfile {
+}
+ConsumerProfile <|-- GroupProfile
+GroupProfile -->"0..*"SimilarConsumerProfile : gather
+class IndividualMember {
+}
+ConsumerProfile <|-- IndividualMember
+class SimilarConsumerProfile {
+}
+class Sponsor {
+}
+Sponsor -->"0..*"ConsumerProfile : beAssociateTo
+
+@enduml

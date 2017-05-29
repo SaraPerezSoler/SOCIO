@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.0" text="@ModellingBot #transportCompany A goods transport company handles Deliveries." date="2017-05-10T16:22:33.000+0200" id="862311903590318081" undoable="true">
+    <sentences sentence="A goods transport company handles Deliveries .">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//GoodsTransportCompany"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Delivery"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//GoodsTransportCompany/handle"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//GoodsTransportCompany/handle"/>
+        <old xsi:type="ecore:EReference" name="handle" upperBound="-1">
+          <eAnnotations source="@CointainerVARGoodsTransportCompany"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="handle" upperBound="-1">
+          <eAnnotations source="@CointainerVARGoodsTransportCompany"/>
+          <eAnnotations source="@TypeVARDelivery"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="@ModellingBot #transportCompany A delivery has a numeric identifier." date="2017-05-10T16:24:43.000+0200" id="862312451043463168" undoable="true">
+    <sentences sentence="A delivery has a numeric identifier .">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Delivery/identifier"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Delivery/identifier"/>
+        <old xsi:type="ecore:EAttribute" name="identifier">
+          <eAnnotations source="@CointainerVARDelivery"/>
+        </old>
+        <new xsi:type="ecore:EAttribute" name="identifier">
+          <eAnnotations source="@CointainerVARDelivery"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="@ModellingBot #transportCompany A delivery is made of packages." date="2017-05-10T16:27:49.000+0200" id="862313230668115968" undoable="true">
+    <sentences sentence="A delivery is made of packages .">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Package"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Delivery/package"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Delivery/package"/>
+        <old xsi:type="ecore:EReference" name="package" upperBound="-1" containment="true">
+          <eAnnotations source="@CointainerVARDelivery"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="package" upperBound="-1" containment="true">
+          <eAnnotations source="@CointainerVARDelivery"/>
+          <eAnnotations source="@TypeVARPackage"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="@ModellingBot #transportCompany Packages can be bulky, heavy or fragile." date="2017-05-10T16:28:24.000+0200" id="862313375602233345" undoable="true">
+    <sentences sentence="Packages can be bulky , heavy or fragile .">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Heavy"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Heavy"/>
+        <old xsi:type="ecore:EClass" name="Heavy">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Heavy">
+          <eAnnotations source="@SuperTypeVARPackageVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Fragile"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Fragile"/>
+        <old xsi:type="ecore:EClass" name="Fragile">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Fragile">
+          <eAnnotations source="@SuperTypeVARPackageVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Bulky"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Bulky"/>
+        <old xsi:type="ecore:EClass" name="Bulky">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Bulky">
+          <eAnnotations source="@SuperTypeVARPackageVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="@ModellingBot #transportCompany Bulky packages are characterized by their width, length and height." date="2017-05-10T16:29:03.000+0200" id="862313539100430336" undoable="true">
+    <sentences sentence="Bulky packages are characterized by their width , length and height .">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Bulky/width"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Bulky/length"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/transportcompany/transportcompany.ecore#//Bulky/height"/>
+      </commands>
+    </sentences>
+  </msg>
+  <users name="Test" nick="testModelling" id="775612937662763008" channel="Twitter"/>
+  <createMsg user="//@users.0" text="@ModellingBot #newProject transportCompany" sentence="transportCompany" date="2017-05-10T16:19:36.000+0200" id="862311160682565636"/>
+</DslHistory:History>

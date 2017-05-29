@@ -1,0 +1,29 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<null>> #FFFFFF
+BorderColor<<null>> #BDBDBD
+}
+class Complex {
+}
+MedicalTreatment <|-- Complex
+class MedicalTreatment {
+}
+class Basic {
+}
+MedicalTreatment <|-- Basic
+Basic -[#458A03]->"0..*"MedicineFinalDateDoseNumber : beMakeOf
+Basic -[#458A03]->"0..*"ApplicationDailyDoseNumber : beMakeOf1
+class MedicineFinalDateDoseNumber<<New>> {
+}
+class ApplicationDailyDoseNumber<<New>> {
+}
+note as Update #F7BE81
+This elements have been updated:
+Update-> Old: reference beMakeOf [0..-1], type: null, from Basic / New: reference beMakeOf [0..-1], type: MedicineFinalDateDoseNumber, from Basic
+Update-> Old: reference beMakeOf1 [0..-1], type: null, from Basic / New: reference beMakeOf1 [0..-1], type: ApplicationDailyDoseNumber, from Basic
+end note
+
+@enduml

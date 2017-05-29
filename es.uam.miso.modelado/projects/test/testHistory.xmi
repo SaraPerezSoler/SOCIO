@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.0" text="/show" date="2017-05-29T11:55:55.000+0200" id="7442;14419070"/>
+  <msg user="//@users.0" text="/show" date="2017-05-29T11:56:54.000+0200" id="7451;14419070"/>
+  <msg user="//@users.0" text="/show" date="2017-05-29T11:57:13.000+0200" id="7460;14419070"/>
+  <msg user="//@users.0" text="add person" date="2017-05-29T12:01:25.000+0200" id="7514;14419070" undoable="true">
+    <sentences sentence="add person">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.16"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="add work in person" date="2017-05-29T12:01:31.000+0200" id="7517;14419070" undoable="true">
+    <sentences sentence="add work in person">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.15"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="add numeric age in person" date="2017-05-29T12:01:38.000+0200" id="7520;14419070" undoable="true">
+    <sentences sentence="add numeric age in person">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.14"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.14"/>
+        <old xsi:type="ecore:EAttribute" name="age">
+          <eAnnotations source="@CointainerVARPerson"/>
+        </old>
+        <new xsi:type="ecore:EAttribute" name="age">
+          <eAnnotations source="@CointainerVARPerson"/>
+          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Erase age from person." date="2017-05-29T12:02:13.000+0200" id="7523;14419070" undoable="true">
+    <sentences sentence="erase age from person .">
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.14"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Delete &quot;work&quot; from person." date="2017-05-29T12:02:44.000+0200" id="7532;14419070">
+    <sentences sentence="delete `` work '' from person ."/>
+  </msg>
+  <msg user="//@users.0" text="remove work from person" date="2017-05-29T12:02:58.000+0200" id="7535;14419070" undoable="true">
+    <sentences sentence="remove work from person">
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.15"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="delete the person" date="2017-05-29T12:03:05.000+0200" id="7538;14419070" undoable="true">
+    <sentences sentence="delete the person">
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test/testRemoveLog.xmi#//@ElementsDeletes.16"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="/show" date="2017-05-29T12:39:14.000+0200" id="7556;14419070"/>
+  <msg user="//@users.0" text="/show" date="2017-05-29T12:39:47.000+0200" id="7562;14419070"/>
+  <msg user="//@users.0" text="(undo" date="2017-05-29T12:40:07.000+0200" id="7565;14419070">
+    <sentences sentence="undo"/>
+  </msg>
+  <msg user="//@users.0" text="add work" date="2017-05-29T12:40:23.000+0200" id="7576;14419070" undoable="true">
+    <sentences sentence="add work">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/test.ecore#//Work"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="/show" date="2017-05-29T12:40:32.000+0200" id="7579;14419070"/>
+  <msg user="//@users.0" text="person has work" date="2017-05-29T12:40:39.000+0200" id="7582;14419070" undoable="true">
+    <sentences sentence="person has work">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/test.ecore#//Person"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test/test.ecore#//Person/work"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test/test.ecore#//Person/work"/>
+        <old xsi:type="ecore:EReference" name="work">
+          <eAnnotations source="@CointainerVARPerson"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="work">
+          <eAnnotations source="@CointainerVARPerson"/>
+          <eAnnotations source="@TypeVARWork"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="person has a work" date="2017-05-29T12:41:27.000+0200" id="7585;14419070" undoable="true">
+    <sentences sentence="person has a work">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test/test.ecore#//Person/work"/>
+        <old xsi:type="ecore:EReference" name="work">
+          <eAnnotations source="@CointainerVARPerson"/>
+          <eAnnotations source="@TypeVARWork"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="work">
+          <eAnnotations source="@CointainerVARPerson"/>
+          <eAnnotations source="@TypeVARWork"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="/show" date="2017-05-29T12:43:58.000+0200" id="7588;14419070"/>
+  <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
+  <createMsg user="//@users.0" text="test" sentence="test" date="2017-05-29T11:55:41.000+0200" id="7437;14419070"/>
+</DslHistory:History>

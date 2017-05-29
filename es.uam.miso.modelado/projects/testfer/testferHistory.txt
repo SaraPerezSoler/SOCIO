@@ -1,0 +1,123 @@
+@startsalt
+{{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:02:28}
+}
+{ Device is phone, tablet, pc or 
+web }
+}
+{T
++device is phone , tablet , pc or web
+++Create-> class Device
+++Create-> class Tablet
+++Update-> Old: class Device / New: class Device, superTypes: [Tablet]
+++Create-> class Pc
+++Update-> Old: class Device, superTypes: [Tablet] / New: class Device, superTypes: [Tablet, Pc]
+++Create-> class Web
+++Update-> Old: class Device, superTypes: [Tablet, Pc] / New: class Device, superTypes: [Tablet, Pc, Web]
+++Create-> class Phone
+++Update-> Old: class Device, superTypes: [Tablet, Pc, Web] / New: class Device, superTypes: [Tablet, Pc, Web, Phone]
+}
+}|
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:02:58}
+}
+{ Device runs program}
+}
+{T
++device runs program
+++Create-> class Program
+++Create-> reference run
+++Update-> Old: reference run [0..1], type: null, from Device / New: reference run [0..1], type: Program, from Device
+}
+}|
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:03:19}
+}
+{ Program has one string name}
+}
+{T
++program has one string name
+++Create-> attribute name
+++Update-> Old: attribute name [0..1], type: null, from Program / New: attribute name [0..1], type: null, from Program
+}
+}
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:03:59}
+}
+{ Bot is program}
+}
+{T
++bot is program
+++Create-> class Bot
+++Update-> Old: class Bot / New: class Bot, superTypes: [Program]
+}
+}|
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:04:21}
+}
+{ Telegrambot is bot}
+}
+{T
++telegrambot is bot
+++Create-> class Telegrambot
+++Update-> Old: class Telegrambot / New: class Telegrambot, superTypes: [Bot]
+}
+}|
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:04:38}
+}
+{ Device has int memory}
+}
+{T
++device has int memory
+++Create-> attribute memory
+++Update-> Old: attribute memory [0..1], type: null, from Device / New: attribute memory [0..1], type: null, from Device
+}
+}
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:05:46}
+}
+{ Bot has commands}
+}
+{T
++bot has commands
+++Create-> attribute command
+}
+}|
+{#
+{#{+{[<&person> Fernando]
+Glognark}|
+
+{<&clock> 10-05-17 03:06:01}
+}
+{ Command is string}
+}
+{T
++command is string
+++Update-> Old: attribute command [0..-1], type: null, from Bot / New: attribute command [0..-1], type: null, from Bot
+}
+}|
+
+}
+@endsalt

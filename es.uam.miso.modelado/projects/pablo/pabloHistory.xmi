@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.0" text="/setproject pablo" date="2017-05-10T15:07:06.000+0200" id="5162;384706439"/>
+  <msg user="//@users.0" text="create Studies" date="2017-05-10T15:07:29.000+0200" id="5171;384706439" undoable="true">
+    <sentences sentence="create studies">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Study"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="create Degree" date="2017-05-10T15:07:37.000+0200" id="5174;384706439" undoable="true">
+    <sentences sentence="create degree">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Degree"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Degree can be Study" date="2017-05-10T15:07:49.000+0200" id="5186;384706439" undoable="true">
+    <sentences sentence="degree can be study">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Study"/>
+        <old xsi:type="ecore:EClass" name="Study">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Study">
+          <eAnnotations source="@SuperTypeVARDegreeVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="create Job" date="2017-05-10T15:08:08.000+0200" id="5189;384706439" undoable="true">
+    <sentences sentence="create job">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Job"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="create cv" date="2017-05-10T15:08:22.000+0200" id="5192;384706439" undoable="true">
+    <sentences sentence="create cv">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Cv"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Degree and Job can be Cv" date="2017-05-10T15:08:37.000+0200" id="5195;384706439">
+    <sentences sentence="degree and job can be cv"/>
+  </msg>
+  <msg user="//@users.0" text="Degree can be Cv" date="2017-05-10T15:08:49.000+0200" id="5203;384706439">
+    <sentences sentence="degree can be cv"/>
+  </msg>
+  <msg user="//@users.0" text="Degree is Cv" date="2017-05-10T15:08:57.000+0200" id="5206;384706439" undoable="true">
+    <sentences sentence="degree is cv">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Degree"/>
+        <old xsi:type="ecore:EClass" name="Degree">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Degree">
+          <eAnnotations source="@SuperTypeVARCvVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Degree is not Cv" date="2017-05-10T15:09:12.000+0200" id="5209;384706439" undoable="true">
+    <sentences sentence="degree is not cv">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Degree"/>
+        <old xsi:type="ecore:EClass" name="Degree">
+          <eAnnotations source="@SuperTypeVARCvVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Degree">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Cv contains Job" date="2017-05-10T15:09:24.000+0200" id="5215;384706439" undoable="true">
+    <sentences sentence="cv contains job">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Cv/job"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Cv/job"/>
+        <old xsi:type="ecore:EReference" name="job" containment="true">
+          <eAnnotations source="@CointainerVARCv"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="job" containment="true">
+          <eAnnotations source="@CointainerVARCv"/>
+          <eAnnotations source="@TypeVARJob"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Degree contains Job" date="2017-05-10T15:09:31.000+0200" id="5218;384706439" undoable="true">
+    <sentences sentence="degree contains job">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Degree/job"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Degree/job"/>
+        <old xsi:type="ecore:EReference" name="job" containment="true">
+          <eAnnotations source="@CointainerVARDegree"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="job" containment="true">
+          <eAnnotations source="@CointainerVARDegree"/>
+          <eAnnotations source="@TypeVARJob"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Degree not contains Job" date="2017-05-10T15:09:44.000+0200" id="5228;384706439">
+    <sentences sentence="degree not contains job"/>
+  </msg>
+  <msg user="//@users.0" text="Degree not contains Job" date="2017-05-10T15:09:54.000+0200" id="5234;384706439">
+    <sentences sentence="degree not contains job"/>
+  </msg>
+  <msg user="//@users.0" text="Delete relation between Degree and Job" date="2017-05-10T15:10:05.000+0200" id="5245;384706439">
+    <sentences sentence="delete relation between degree and job"/>
+  </msg>
+  <msg user="//@users.0" text="Job is not contained in Degree" date="2017-05-10T15:10:13.000+0200" id="5248;384706439" undoable="true">
+    <sentences sentence="job is not contained in degree">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Job/be"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Job/be"/>
+        <old xsi:type="ecore:EReference" name="be">
+          <eAnnotations source="@CointainerVARJob"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="be">
+          <eAnnotations source="@CointainerVARJob"/>
+          <eAnnotations source="@TypeVARDegree"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Mark is in Degree" date="2017-05-10T15:10:52.000+0200" id="5265;384706439" undoable="true">
+    <sentences sentence="mark is in degree">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/pablo/pablo.ecore#//Mark"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/pablo/pablo.ecore#//Mark"/>
+        <old xsi:type="ecore:EClass" name="Mark">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Mark">
+          <eAnnotations source="@SuperTypeVARDegreeVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <users name="Pablo" nick="gomezabajo" id="384706439" channel="Telegram"/>
+  <createMsg user="//@users.0" text="/newproject pablo" sentence="pablo" date="2017-05-10T15:06:59.000+0200" id="5158;384706439"/>
+</DslHistory:History>

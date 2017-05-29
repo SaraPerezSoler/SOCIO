@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.0" text="The Sociatis social network contains sponsor" date="2017-04-25T16:50:38.000+0200" id="3274;14419070" undoable="true">
+    <sentences sentence="the sociatis social network contains sponsor">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//SociatisSocialNetwork"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//Sponsor"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//SociatisSocialNetwork/sponsor"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//SociatisSocialNetwork/sponsor"/>
+        <old xsi:type="ecore:EReference" name="sponsor" containment="true">
+          <eAnnotations source="@CointainerVARSociatisSocialNetwork"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="sponsor" containment="true">
+          <eAnnotations source="@CointainerVARSociatisSocialNetwork"/>
+          <eAnnotations source="@TypeVARSponsor"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="The Sociatis social network contains consumer profiles" date="2017-04-25T16:52:27.000+0200" id="3289;14419070" undoable="true">
+    <sentences sentence="the sociatis social network contains consumer profiles">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//ConsumerProfile"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//SociatisSocialNetwork/consumerProfile"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//SociatisSocialNetwork/consumerProfile"/>
+        <old xsi:type="ecore:EReference" name="consumerProfile" upperBound="-1" containment="true">
+          <eAnnotations source="@CointainerVARSociatisSocialNetwork"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="consumerProfile" upperBound="-1" containment="true">
+          <eAnnotations source="@CointainerVARSociatisSocialNetwork"/>
+          <eAnnotations source="@TypeVARConsumerProfile"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Consumer profiles can be an individual member or a group profile." date="2017-04-25T16:52:43.000+0200" id="3292;14419070" undoable="true">
+    <sentences sentence="consumer profiles can be an individual member or a group profile">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//GroupProfile"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//GroupProfile"/>
+        <old xsi:type="ecore:EClass" name="GroupProfile">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="GroupProfile">
+          <eAnnotations source="@SuperTypeVARConsumerProfileVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//IndividualMember"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//IndividualMember"/>
+        <old xsi:type="ecore:EClass" name="IndividualMember">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="IndividualMember">
+          <eAnnotations source="@SuperTypeVARConsumerProfileVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Group profiles are created and deleted automatically by the application." date="2017-04-25T16:53:33.000+0200" id="3295;14419070">
+    <sentences sentence="group profiles are created and deleted automatically by the application"/>
+  </msg>
+  <msg user="//@users.0" text="Group profiles are created automatically by the application." date="2017-04-25T16:53:51.000+0200" id="3298;14419070">
+    <sentences sentence="group profiles are created automatically by the application"/>
+  </msg>
+  <msg user="//@users.0" text="Group profiles are created automatically" date="2017-04-25T16:54:09.000+0200" id="3301;14419070">
+    <sentences sentence="group profiles are created automatically"/>
+  </msg>
+  <msg user="//@users.0" text="Group profiles gather similar consumer profiles." date="2017-04-25T16:54:25.000+0200" id="3304;14419070" undoable="true">
+    <sentences sentence="group profiles gather similar consumer profiles">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/sociatis/sociatis.ecore#//SimilarConsumerProfile"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//GroupProfile/gather"/>
+        <old xsi:type="ecore:EReference" name="gather" upperBound="-1">
+          <eAnnotations source="@CointainerVARGroupProfile"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="gather" upperBound="-1">
+          <eAnnotations source="@CointainerVARGroupProfile"/>
+          <eAnnotations source="@TypeVARSimilarConsumerProfile"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="Sponsor profiles can be associated to consumer profiles" date="2017-04-25T16:55:15.000+0200" id="3307;14419070" undoable="true">
+    <sentences sentence="sponsor profiles can be associated to consumer profiles">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/sociatis/sociatis.ecore#//Sponsor/beAssociateTo"/>
+        <old xsi:type="ecore:EReference" name="beAssociateTo" upperBound="-1">
+          <eAnnotations source="@CointainerVARSponsor"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="beAssociateTo" upperBound="-1">
+          <eAnnotations source="@CointainerVARSponsor"/>
+          <eAnnotations source="@TypeVARConsumerProfile"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="sociatis" date="2017-05-09T11:27:30.000+0200" id="4436;14419070"/>
+  <msg user="//@users.0" text="make class person" date="2017-05-09T11:28:22.000+0200" id="4448;14419070">
+    <sentences sentence="make class person"/>
+  </msg>
+  <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
+  <createMsg user="//@users.0" text="Sociatis" sentence="sociatis" date="2017-04-25T16:49:42.000+0200" id="3266;14419070"/>
+</DslHistory:History>

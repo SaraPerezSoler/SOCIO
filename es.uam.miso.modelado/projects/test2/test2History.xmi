@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.1" text="/talk I am a god" date="2017-05-10T15:16:09.000+0200" id="5391;-195586834">
+    <sentences sentence="i am a god"/>
+  </msg>
+  <msg user="//@users.1" text="/talk add I" date="2017-05-10T15:16:32.000+0200" id="5399;-195586834">
+    <sentences sentence="add i"/>
+  </msg>
+  <msg user="//@users.1" text="/talk add Me" date="2017-05-10T15:16:49.000+0200" id="5407;-195586834">
+    <sentences sentence="add me"/>
+  </msg>
+  <msg user="//@users.1" text="/talk Me is a god" date="2017-05-10T15:17:05.000+0200" id="5418;-195586834">
+    <sentences sentence="me is a god"/>
+  </msg>
+  <msg user="//@users.0" text="I am where i am" date="2017-05-10T15:18:02.000+0200" id="5432;-195586834">
+    <sentences sentence="i am where i am"/>
+  </msg>
+  <msg user="//@users.0" text="human is rational and animal" date="2017-05-10T15:16:40.000+0200" id="5404;-195586834" undoable="true">
+    <sentences sentence="human is rational and animal">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Human"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Animal"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//Human"/>
+        <old xsi:type="ecore:EClass" name="Human">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Human">
+          <eAnnotations source="@SuperTypeVARAnimalVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Rational"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//Human"/>
+        <old xsi:type="ecore:EClass" name="Human">
+          <eAnnotations source="@SuperTypeVARAnimalVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Human">
+          <eAnnotations source="@SuperTypeVARAnimalVARRationalVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk an animus is a machine" date="2017-05-10T15:18:20.000+0200" id="5441;-195586834" undoable="true">
+    <sentences sentence="an animus is a machine">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Animus"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Machine"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//Animus"/>
+        <old xsi:type="ecore:EClass" name="Animus">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Animus">
+          <eAnnotations source="@SuperTypeVARMachineVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk a Carlos is a god" date="2017-05-10T15:18:34.000+0200" id="5444;-195586834" undoable="true">
+    <sentences sentence="a carlos is a god">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.0"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//God"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.0"/>
+        <old xsi:type="ecore:EClass" name="Carlo">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Carlo">
+          <eAnnotations source="@SuperTypeVARGodVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk animi are fictional" date="2017-05-10T15:20:17.000+0200" id="5457;-195586834" undoable="true">
+    <sentences sentence="animi are fictional">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Fictional"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//Animus"/>
+        <old xsi:type="ecore:EClass" name="Animus">
+          <eAnnotations source="@SuperTypeVARMachineVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Animus">
+          <eAnnotations source="@SuperTypeVARMachineVARFictionalVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk remove Carlo" date="2017-05-10T15:23:09.000+0200" id="5522;-195586834" undoable="true">
+    <sentences sentence="remove carlo">
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.0"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk Carlos is a god" date="2017-05-10T15:23:18.000+0200" id="5525;-195586834" undoable="true">
+    <sentences sentence="carlos is a god">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.1"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.1"/>
+        <old xsi:type="ecore:EClass" name="Carlo">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Carlo">
+          <eAnnotations source="@SuperTypeVARGodVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk remove Carlo" date="2017-05-10T15:23:45.000+0200" id="5528;-195586834" undoable="true">
+    <sentences sentence="remove carlo">
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.1"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk a God is a Carlos" date="2017-05-10T15:24:12.000+0200" id="5537;-195586834" undoable="true">
+    <sentences sentence="a god is a carlos">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.2"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//God"/>
+        <old xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVARCarloVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk remove carlo" date="2017-05-10T15:24:22.000+0200" id="5540;-195586834" undoable="true">
+    <sentences sentence="remove carlo">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//God"/>
+        <old xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVARCarloVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Delete">
+        <element href="./projects/test2/test2RemoveLog.xmi#//@ElementsDeletes.2"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk gods are carlos" date="2017-05-10T15:24:40.000+0200" id="5543;-195586834" undoable="true">
+    <sentences sentence="gods are carlos">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Carlos"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//God"/>
+        <old xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVARCarlosVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk Gods are Artemis" date="2017-05-10T15:26:57.000+0200" id="5564;-195586834" undoable="true">
+    <sentences sentence="gods are artemis">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Artemis"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//God"/>
+        <old xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVARCarlosVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="God">
+          <eAnnotations source="@SuperTypeVARCarlosVARArtemisVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.1" text="/talk artemis is a god" date="2017-05-10T15:27:16.000+0200" id="5567;-195586834" undoable="true">
+    <sentences sentence="artemis is a god">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/test2/test2.ecore#//Artemi"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/test2/test2.ecore#//Artemi"/>
+        <old xsi:type="ecore:EClass" name="Artemi">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Artemi">
+          <eAnnotations source="@SuperTypeVARGodVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="/setproject test2" date="2017-05-22T19:34:49.000+0200" id="7223;-179533479"/>
+  <msg user="//@users.0" text="test2" date="2017-05-23T11:38:14.000+0200" id="3043;14419070"/>
+  <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
+  <users name="Mabus" nick="VNMabus" id="12768348" channel="Telegram"/>
+  <createMsg user="//@users.0" text="test2" sentence="test2" date="2017-05-10T15:14:38.000+0200" id="5341;-195586834"/>
+</DslHistory:History>

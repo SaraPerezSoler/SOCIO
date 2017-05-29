@@ -1,0 +1,31 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class GoodsTransportCompany {
+}
+GoodsTransportCompany -->"0..*"Delivery : handle
+class Delivery {
+int [0,1] identifier
+}
+Delivery *--"0..*"Package : package
+class Package {
+}
+class Heavy {
+}
+Package <|-- Heavy
+class Fragile {
+}
+Package <|-- Fragile
+class Bulky {
+<b><color:#458A03>?? [0,1] width</color></b>
+<b><color:#458A03>?? [0,1] length</color></b>
+<b><color:#458A03>?? [0,1] height</color></b>
+}
+Package <|-- Bulky
+
+@enduml

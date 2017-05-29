@@ -1,0 +1,49 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class Device {
+int [0,1] memory
+}
+Tablet <|-- Device
+Pc <|-- Device
+Web <|-- Device
+Phone <|-- Device
+Device -->"0..1"Program : run
+class Tablet {
+}
+Tablet *--"0..1"Os : os
+class Pc {
+}
+Pc *--"0..1"Os : os
+class Web {
+}
+Web -->"0..1"Server : connectTo
+class Phone {
+}
+Phone *--"0..1"Os : os
+class Program {
+java.lang.String [0,1] name
+}
+Program -->"0..1"Program : invoke
+class Bot {
+java.lang.String [0,* ] command
+}
+Program <|-- Bot
+class Telegrambot {
+}
+Bot <|-- Telegrambot
+class Server {
+java.lang.String [0,1] ip
+}
+Pc <|-- Server
+Server -->"0..1"Program : run
+class Os {
+<b><color:#458A03>?? [0,1] kernel</color></b>
+}
+
+@enduml

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<RemoveLog:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RemoveLog="RemoveLog" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <ElementsDeletes xsi:type="ecore:EClass" name="Carrier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="handle" upperBound="-1">
+      <eType xsi:type="ecore:EClass" href="./projects/test/test.ecore#//Delivery"/>
+    </eStructuralFeatures>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Value"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Person"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Name"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Childrem"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="ClassDelivery"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Carriage"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Shipment"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Transport"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Consignment"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Bulky"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="BulkyPackage">
+    <eSuperTypes href="./projects/test/test.ecore#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id"/>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Bulky"/>
+  <ElementsDeletes xsi:type="ecore:EAttribute" name="name">
+    <eAnnotations source="@CointainerVARPackage"/>
+    <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EAttribute" name="age">
+    <eAnnotations source="@CointainerVARPerson"/>
+    <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EAttribute" name="work">
+    <eAnnotations source="@CointainerVARPerson"/>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Person"/>
+</RemoveLog:Root>

@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed May 24 10:35:20 CEST 2017
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=es.uam.miso.modelado.jar
+manifest.mergeall=false
+manifest.mainclass=es.uam.app.run.Main21
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

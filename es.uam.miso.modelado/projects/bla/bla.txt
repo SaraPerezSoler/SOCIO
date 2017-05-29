@@ -1,0 +1,30 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class BrownPerson {
+}
+Person <|-- BrownPerson
+class Person {
+[0,1] name: String 
+[0,1] lastname: String 
+}
+Person *-[#458A03]-"0..1"Azucar : azucar
+class RedPerson {
+}
+Person <|-- RedPerson
+class BoldePerson {
+}
+Person <|-- BoldePerson
+class Azucar<<New>> {
+}
+note as Update #F7BE81
+This elements have been updated:
+Update-> Old: reference azucar [0..1], type: null, from Person / New: reference azucar [0..1], type: Azucar, from Person
+end note
+
+@enduml

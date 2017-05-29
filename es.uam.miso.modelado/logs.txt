@@ -1,0 +1,186 @@
+0 23/05/2017 14:13:14: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1076 23/05/2017 14:13:15: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+4954 23/05/2017 14:13:19: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Tue May 23 14:13:20 CEST 2017, id=3092;14419070] 
+8619 23/05/2017 14:13:22: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Tue May 23 14:13:24 CEST 2017, id=3095;14419070] 
+13225 23/05/2017 14:13:27: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/validate, command=validate, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Tue May 23 14:13:28 CEST 2017, id=3098;14419070] 
+0 24/05/2017 12:54:18: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1018 24/05/2017 12:54:19: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 13:00:52: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1051 24/05/2017 13:00:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 13:05:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1061 24/05/2017 13:05:54: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 15:11:39: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1004 24/05/2017 15:11:40: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 15:22:06: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+992 24/05/2017 15:22:07: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 15:24:25: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+944 24/05/2017 15:24:26: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 15:24:50: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+984 24/05/2017 15:24:50: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 24/05/2017 15:27:19: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1039 24/05/2017 15:27:20: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+15660 24/05/2017 15:27:34: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:27:37 CEST 2017, id=7267;14419070] 
+19560 24/05/2017 15:27:38: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:27:41 CEST 2017, id=7270;14419070] 
+32792 24/05/2017 15:27:51: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=remove name to package, command=test, sentence=remove name to package, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:27:54 CEST 2017, id=7273;14419070] 
+47730 24/05/2017 15:28:06: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=package has weight, command=test, sentence=package has weight, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:28:09 CEST 2017, id=7276;14419070] 
+48270 24/05/2017 15:28:07: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@5bcb04cb 
+60866 24/05/2017 15:28:19: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=weight is a double, command=test, sentence=weight is a double, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:28:22 CEST 2017, id=7279;14419070] 
+66593 24/05/2017 15:28:25: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/validate, command=validate, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:28:28 CEST 2017, id=7282;14419070] 
+70916 24/05/2017 15:28:29: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/get, command=get, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:28:32 CEST 2017, id=7284;14419070] 
+0 24/05/2017 15:36:02: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1041 24/05/2017 15:36:03: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+22624 24/05/2017 15:36:25: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:36:28 CEST 2017, id=7291;14419070] 
+25632 24/05/2017 15:36:28: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:36:31 CEST 2017, id=7294;14419070] 
+51621 24/05/2017 15:36:54: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=redHead persons are person, command=test, sentence=redhead persons are person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:36:57 CEST 2017, id=7299;14419070] 
+63470 24/05/2017 15:37:06: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has name and lastname, command=test, sentence=person has name and lastname, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:37:09 CEST 2017, id=7302;14419070] 
+63549 24/05/2017 15:37:06: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@23202c31 
+76850 24/05/2017 15:37:19: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=name and lastname are text, command=test, sentence=name and lastname are text, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:37:22 CEST 2017, id=7305;14419070] 
+81927 24/05/2017 15:37:24: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/validate, command=validate, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Wed May 24 15:37:27 CEST 2017, id=7308;14419070] 
+0 25/05/2017 11:53:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1174 25/05/2017 11:53:55: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+18114 25/05/2017 11:54:12: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 11:54:16 CEST 2017, id=7310;14419070] 
+22542 25/05/2017 11:54:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 11:54:20 CEST 2017, id=7313;14419070] 
+30102 25/05/2017 11:54:24: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add rol, command=test, sentence=add rol, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 11:54:28 CEST 2017, id=7316;14419070] 
+36348 25/05/2017 11:54:30: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has a rol, command=test, sentence=person has a rol, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 11:54:34 CEST 2017, id=7319;14419070] 
+36807 25/05/2017 11:54:30: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@422b8438 
+53067 25/05/2017 11:54:46: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 11:54:51 CEST 2017, id=7322;14419070] 
+0 25/05/2017 12:31:38: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+973 25/05/2017 12:31:39: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+9819 25/05/2017 12:31:48: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:31:52 CEST 2017, id=7325;14419070] 
+15876 25/05/2017 12:31:54: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:31:58 CEST 2017, id=7328;14419070] 
+43741 25/05/2017 12:32:22: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=rol has an id, command=test, sentence=rol has an id, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:32:26 CEST 2017, id=7331;14419070] 
+44506 25/05/2017 12:32:22: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@1ffcf674 
+51091 25/05/2017 12:32:29: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/validate, command=validate, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:32:33 CEST 2017, id=7334;14419070] 
+216458 25/05/2017 12:35:14: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/get, command=get, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:35:19 CEST 2017, id=7336;14419070] 
+798104 25/05/2017 12:44:56: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:45:00 CEST 2017, id=7339;14419070] 
+1168198 25/05/2017 12:51:06: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add numeric id in rol, command=test, sentence=add numeric id in rol, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:51:10 CEST 2017, id=7342;14419070] 
+1345552 25/05/2017 12:54:03: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add make in rol, command=test, sentence=add make in rol, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:54:08 CEST 2017, id=7345;14419070] 
+1365266 25/05/2017 12:54:23: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add "make" in rol, command=test, sentence=add "make" in rol, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Thu May 25 12:54:28 CEST 2017, id=7348;14419070] 
+0 26/05/2017 11:57:30: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+17317 26/05/2017 11:57:47: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 11:57:55: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+10078 26/05/2017 11:58:05: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+21419 26/05/2017 11:58:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:58:22 CEST 2017, id=7355;14419070] 
+24955 26/05/2017 11:58:20: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:58:26 CEST 2017, id=7358;14419070] 
+34299 26/05/2017 11:58:29: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=rol make an action, command=test, sentence=rol make an action, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:58:35 CEST 2017, id=7361;14419070] 
+45603 26/05/2017 11:58:40: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add action, command=test, sentence=add action, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:58:46 CEST 2017, id=7364;14419070] 
+58564 26/05/2017 11:58:53: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=rol makes an action, command=test, sentence=rol makes an action, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:58:59 CEST 2017, id=7367;14419070] 
+89235 26/05/2017 11:59:24: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:59:30 CEST 2017, id=7370;14419070] 
+89794 26/05/2017 11:59:24: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@7a2b1eb4 
+89833 26/05/2017 11:59:24: [main] FATAL Modelado  The object 'org.eclipse.emf.ecore.impl.EReferenceImpl@3874b815 (name: make) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)' is not contained in a resource. 
+91541 26/05/2017 11:59:26: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:59:32 CEST 2017, id=7373;14419070] 
+91557 26/05/2017 11:59:26: [main] FATAL Modelado  The object 'org.eclipse.emf.ecore.impl.EReferenceImpl@3874b815 (name: make) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)' is not contained in a resource. 
+99079 26/05/2017 11:59:34: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=rol makes an action, command=test, sentence=rol makes an action, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 11:59:40 CEST 2017, id=7376;14419070] 
+99238 26/05/2017 11:59:34: [main] FATAL Modelado  The object 'org.eclipse.emf.ecore.impl.EReferenceImpl@3874b815 (name: make) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)' is not contained in a resource. 
+141779 26/05/2017 12:00:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=action package is an action, command=test, sentence=action package is an action, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 12:00:22 CEST 2017, id=7379;14419070] 
+141824 26/05/2017 12:00:16: [main] FATAL Modelado  The object 'org.eclipse.emf.ecore.impl.EReferenceImpl@3874b815 (name: make) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)' is not contained in a resource. 
+166289 26/05/2017 12:00:41: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=action package sends packages, command=test, sentence=action package sends packages, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 12:00:47 CEST 2017, id=7382;14419070] 
+166363 26/05/2017 12:00:41: [main] FATAL Modelado  The object 'org.eclipse.emf.ecore.impl.EReferenceImpl@3874b815 (name: make) (ordered: true, unique: true, lowerBound: 0, upperBound: 1) (changeable: true, volatile: false, transient: false, defaultValueLiteral: null, unsettable: false, derived: false) (containment: false, resolveProxies: true)' is not contained in a resource. 
+0 26/05/2017 14:01:28: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+957 26/05/2017 14:01:29: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+15390 26/05/2017 14:01:43: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:01:49 CEST 2017, id=7385;14419070] 
+0 26/05/2017 14:03:37: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+992 26/05/2017 14:03:38: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+8577 26/05/2017 14:03:45: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:03:51 CEST 2017, id=7387;14419070] 
+0 26/05/2017 14:11:33: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+983 26/05/2017 14:11:34: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+4469 26/05/2017 14:11:37: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:11:43 CEST 2017, id=7389;14419070] 
+0 26/05/2017 14:12:29: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+973 26/05/2017 14:12:30: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+5952 26/05/2017 14:12:35: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:12:41 CEST 2017, id=7391;14419070] 
+0 26/05/2017 14:12:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+937 26/05/2017 14:12:54: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+5446 26/05/2017 14:12:58: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:13:04 CEST 2017, id=7393;14419070] 
+0 26/05/2017 14:15:24: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+900 26/05/2017 14:15:24: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+4086 26/05/2017 14:15:28: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/help, command=help, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri May 26 14:15:33 CEST 2017, id=7395;14419070] 
+0 26/05/2017 14:38:47: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1311 26/05/2017 14:38:49: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:40:04: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1003 26/05/2017 14:40:05: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:40:08: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1057 26/05/2017 14:40:09: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:42:09: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1085 26/05/2017 14:42:10: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:42:20: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1037 26/05/2017 14:42:21: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:44:12: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1221 26/05/2017 14:44:13: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:47:08: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1133 26/05/2017 14:47:09: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:48:01: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1072 26/05/2017 14:48:02: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 26/05/2017 14:48:12: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1277 26/05/2017 14:48:13: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 10:53:55: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1049 29/05/2017 10:53:56: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 10:56:29: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+976 29/05/2017 10:56:30: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 10:56:52: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1170 29/05/2017 10:56:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 10:57:33: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1031 29/05/2017 10:57:34: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 11:08:08: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1425 29/05/2017 11:08:09: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 11:09:11: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1143 29/05/2017 11:09:12: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 11:12:36: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1032 29/05/2017 11:12:37: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 29/05/2017 11:50:34: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1223 29/05/2017 11:50:35: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+86207 29/05/2017 11:52:00: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Choose how you get the help:: /help_Text, command=helptext, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:50:54 CEST 2017, id=7424;14419070] 
+101512 29/05/2017 11:52:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Choose how you get the help:: /help_Picture, command=helppicture, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:50:54 CEST 2017, id=7424;14419070] 
+291673 29/05/2017 11:55:26: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:55:26 CEST 2017, id=7429;14419070] 
+294743 29/05/2017 11:55:29: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:55:29 CEST 2017, id=7432;14419070] 
+306976 29/05/2017 11:55:41: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=newproject, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:55:41 CEST 2017, id=7437;14419070] 
+310934 29/05/2017 11:55:45: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Carriers can handle deliveries, command=test, sentence=carriers can handle deliveries, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:55:45 CEST 2017, id=7439;14419070] 
+312307 29/05/2017 11:55:47: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@1ac6dd3d 
+320451 29/05/2017 11:55:55: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:55:55 CEST 2017, id=7442;14419070] 
+347618 29/05/2017 11:56:22: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:56:22 CEST 2017, id=7445;14419070] 
+376067 29/05/2017 11:56:50: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=The student passed the exams., command=test, sentence=the student passed the exams., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:56:50 CEST 2017, id=7448;14419070] 
+379470 29/05/2017 11:56:54: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:56:54 CEST 2017, id=7451;14419070] 
+395208 29/05/2017 11:57:09: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:09 CEST 2017, id=7454;14419070] 
+397240 29/05/2017 11:57:12: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=The cheque is sent to the bank., command=test, sentence=the cheque is sent to the bank., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:11 CEST 2017, id=7457;14419070] 
+399116 29/05/2017 11:57:13: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:13 CEST 2017, id=7460;14419070] 
+413363 29/05/2017 11:57:28: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:28 CEST 2017, id=7463;14419070] 
+427407 29/05/2017 11:57:42: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add work, command=test, sentence=add work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:42 CEST 2017, id=7466;14419070] 
+444431 29/05/2017 11:57:59: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has a numeric age, command=test, sentence=person has a numeric age, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:57:59 CEST 2017, id=7469;14419070] 
+452453 29/05/2017 11:58:07: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has a work, command=test, sentence=person has a work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:58:07 CEST 2017, id=7472;14419070] 
+494058 29/05/2017 11:58:48: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:58:48 CEST 2017, id=7475;14419070] 
+496570 29/05/2017 11:58:51: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:58:51 CEST 2017, id=7478;14419070] 
+499099 29/05/2017 11:58:53: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:58:53 CEST 2017, id=7481;14419070] 
+517823 29/05/2017 11:59:12: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add house, command=test, sentence=add house, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:59:12 CEST 2017, id=7484;14419070] 
+553141 29/05/2017 11:59:47: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 11:59:47 CEST 2017, id=7487;14419070] 
+606098 29/05/2017 12:00:40: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add city, command=test, sentence=add city, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:00:40 CEST 2017, id=7490;14419070] 
+613462 29/05/2017 12:00:48: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=city contains houses, command=test, sentence=city contains houses, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:00:48 CEST 2017, id=7493;14419070] 
+621657 29/05/2017 12:00:56: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add person, command=test, sentence=add person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:00:56 CEST 2017, id=7496;14419070] 
+631117 29/05/2017 12:01:05: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add work, command=test, sentence=add work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:05 CEST 2017, id=7499;14419070] 
+635264 29/05/2017 12:01:10: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:09 CEST 2017, id=7502;14419070] 
+637625 29/05/2017 12:01:12: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:12 CEST 2017, id=7505;14419070] 
+640648 29/05/2017 12:01:15: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:15 CEST 2017, id=7508;14419070] 
+643280 29/05/2017 12:01:18: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:17 CEST 2017, id=7511;14419070] 
+650837 29/05/2017 12:01:25: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add person, command=test, sentence=add person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:25 CEST 2017, id=7514;14419070] 
+656338 29/05/2017 12:01:31: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add work in person, command=test, sentence=add work in person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:31 CEST 2017, id=7517;14419070] 
+664194 29/05/2017 12:01:38: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add numeric age in person, command=test, sentence=add numeric age in person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:01:38 CEST 2017, id=7520;14419070] 
+699025 29/05/2017 12:02:13: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Erase age from person., command=test, sentence=erase age from person., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:02:13 CEST 2017, id=7523;14419070] 
+709282 29/05/2017 12:02:24: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Delete work from person., command=test, sentence=delete work from person., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:02:23 CEST 2017, id=7526;14419070] 
+722746 29/05/2017 12:02:37: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:02:37 CEST 2017, id=7529;14419070] 
+730191 29/05/2017 12:02:44: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Delete "work" from person., command=test, sentence=delete "work" from person., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:02:44 CEST 2017, id=7532;14419070] 
+744308 29/05/2017 12:02:59: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=remove work from person, command=test, sentence=remove work from person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:02:58 CEST 2017, id=7535;14419070] 
+751277 29/05/2017 12:03:06: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=delete the person, command=test, sentence=delete the person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:03:05 CEST 2017, id=7538;14419070] 
+1032257 29/05/2017 12:07:47: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=create person, command=test, sentence=create person, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:07:46 CEST 2017, id=7541;14419070] 
+2906077 29/05/2017 12:39:00: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Bulky packages are characterized by their width, length and height., command=test, sentence=bulky packages are characterized by their width, length and height., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:00 CEST 2017, id=7544;14419070] 
+2911146 29/05/2017 12:39:05: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:05 CEST 2017, id=7547;14419070] 
+2913609 29/05/2017 12:39:08: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:08 CEST 2017, id=7550;14419070] 
+2915436 29/05/2017 12:39:10: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Bulky packages are characterized by their width, length and height., command=test, sentence=bulky packages are characterized by their width, length and height., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:10 CEST 2017, id=7553;14419070] 
+2920084 29/05/2017 12:39:14: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:14 CEST 2017, id=7556;14419070] 
+2948020 29/05/2017 12:39:42: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Students have a numeric identifier., command=test, sentence=students have a numeric identifier., user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:42 CEST 2017, id=7559;14419070] 
+2953219 29/05/2017 12:39:47: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:39:47 CEST 2017, id=7562;14419070] 
+2972981 29/05/2017 12:40:07: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=(undo, command=test, sentence= undo, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:07 CEST 2017, id=7565;14419070] 
+2978750 29/05/2017 12:40:13: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:13 CEST 2017, id=7570;14419070] 
+2982069 29/05/2017 12:40:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/undo, command=undo, sentence=test, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:16 CEST 2017, id=7573;14419070] 
+2988640 29/05/2017 12:40:23: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=add work, command=test, sentence=add work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:23 CEST 2017, id=7576;14419070] 
+2997925 29/05/2017 12:40:32: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:32 CEST 2017, id=7579;14419070] 
+3004815 29/05/2017 12:40:39: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has work, command=test, sentence=person has work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:40:39 CEST 2017, id=7582;14419070] 
+3052908 29/05/2017 12:41:27: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=person has a work, command=test, sentence=person has a work, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:41:27 CEST 2017, id=7585;14419070] 
+3203842 29/05/2017 12:43:58: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=test, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon May 29 12:43:58 CEST 2017, id=7588;14419070] 

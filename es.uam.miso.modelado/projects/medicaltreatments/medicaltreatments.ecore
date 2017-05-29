@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="medicaltreatments" nsURI="medicaltreatments" nsPrefix="medicaltreatments">
+  <eClassifiers xsi:type="ecore:EClass" name="Complex" eSuperTypes="//MedicalTreatment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MedicalTreatment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Basic" eSuperTypes="//MedicalTreatment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beMakeOf" upperBound="-1" eType="//MedicineFinalDateDoseNumber"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beMakeOf1" upperBound="-1" eType="//ApplicationDailyDoseNumber"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MedicineFinalDateDoseNumber"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplicationDailyDoseNumber"/>
+</ecore:EPackage>

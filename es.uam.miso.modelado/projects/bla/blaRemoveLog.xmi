@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<RemoveLog:Root xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RemoveLog="RemoveLog" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <ElementsDeletes xsi:type="ecore:EAttribute" name="name">
+    <eAnnotations source="@CointainerVARPerson"/>
+    <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </ElementsDeletes>
+</RemoveLog:Root>

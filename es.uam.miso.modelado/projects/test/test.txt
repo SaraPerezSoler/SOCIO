@@ -1,0 +1,15 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class Work {
+}
+class Person {
+}
+Person -->"0..1"Work : work
+
+@enduml

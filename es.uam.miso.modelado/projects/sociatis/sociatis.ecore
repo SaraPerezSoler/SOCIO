@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sociatis" nsURI="sociatis" nsPrefix="sociatis">
+  <eClassifiers xsi:type="ecore:EClass" name="SociatisSocialNetwork">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sponsor" eType="//Sponsor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consumerProfile" upperBound="-1" eType="//ConsumerProfile" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsumerProfile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupProfile" eSuperTypes="//ConsumerProfile">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gather" upperBound="-1" eType="//SimilarConsumerProfile"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndividualMember" eSuperTypes="//ConsumerProfile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimilarConsumerProfile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sponsor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beAssociateTo" upperBound="-1" eType="//ConsumerProfile"/>
+  </eClassifiers>
+</ecore:EPackage>

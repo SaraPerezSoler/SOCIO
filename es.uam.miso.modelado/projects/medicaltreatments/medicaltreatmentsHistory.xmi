@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DslHistory:History xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DslHistory="DslHistory" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <msg user="//@users.0" text="Medical treatments can be basic or complex." date="2017-04-25T17:20:53.000+0200" id="3482;14419070" undoable="true">
+    <sentences sentence="medical treatments can be basic or complex">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Complex"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//MedicalTreatment"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Complex"/>
+        <old xsi:type="ecore:EClass" name="Complex">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Complex">
+          <eAnnotations source="@SuperTypeVARMedicalTreatmentVAR"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic"/>
+        <old xsi:type="ecore:EClass" name="Basic">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Basic">
+          <eAnnotations source="@SuperTypeVARMedicalTreatmentVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="medicaltreatments" date="2017-04-25T17:25:25.000+0200" id="3496;14419070"/>
+  <msg user="//@users.0" text="medicalTreatments" date="2017-04-25T17:36:06.000+0200" id="3528;14419070"/>
+  <msg user="//@users.0" text="medicaltreatments" date="2017-04-25T17:37:27.000+0200" id="3543;14419070"/>
+  <msg user="//@users.0" text="medicalTreatments" date="2017-04-25T17:39:14.000+0200" id="3552;14419070"/>
+  <msg user="//@users.0" text="medicalTreatments" date="2017-04-25T17:52:17.000+0200" id="3561;14419070"/>
+  <msg user="//@users.0" text="Basic treatments are made of the medicine,  final date, doses number by application and daily doses number." date="2017-04-25T17:55:20.000+0200" id="3579;14419070" undoable="true">
+    <sentences sentence="basic treatments are made of the medicine final date doses number by application and daily doses number">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//MedicineFinalDateDoseNumber"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic/beMakeOf"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic/beMakeOf"/>
+        <old xsi:type="ecore:EReference" name="beMakeOf" upperBound="-1">
+          <eAnnotations source="@CointainerVARBasic"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="beMakeOf" upperBound="-1">
+          <eAnnotations source="@CointainerVARBasic"/>
+          <eAnnotations source="@TypeVARMedicineFinalDateDoseNumber"/>
+        </new>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//ApplicationDailyDoseNumber"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic/beMakeOf1"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/medicaltreatments/medicaltreatments.ecore#//Basic/beMakeOf1"/>
+        <old xsi:type="ecore:EReference" name="beMakeOf1" upperBound="-1">
+          <eAnnotations source="@CointainerVARBasic"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="beMakeOf1" upperBound="-1">
+          <eAnnotations source="@CointainerVARBasic"/>
+          <eAnnotations source="@TypeVARApplicationDailyDoseNumber"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
+  <createMsg user="//@users.0" text="medicaltreatments" sentence="medicaltreatments" date="2017-04-25T17:20:35.000+0200" id="3477;14419070"/>
+</DslHistory:History>
