@@ -18,21 +18,17 @@ Now let's look the sentences you can use and how.
 ### 1. Add / Create / Make \<Object>
 
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms. 
-Some exaples for this sentence.
-1. [Create person.](img/photo_2017-05-30_12-56-40.jpg)
-2. [Add work in person.](img/photo_2017-05-30_12-57-08.jpg)
-3. [Add work in person.](img/photo_2017-05-30_12-57-28.jpg)
 
 <table style="width:100%;text-align:center">
-<tr>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
-</tr>
 <tr>
 <th><p style="text-align:center">Create person.</p></th>
 <th><p style="text-align:center">Add work in person.</p></th>
 <th><p style="text-align:center">Add numeric age in person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
 </tr>
 </table>
 
@@ -101,7 +97,7 @@ Some exaples for this sentence.
 <th><p style="text-align:center"> Students contains a numeric identifier.</p></th>
 </tr>
 <tr>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-54-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_15-14-51.jpg" /></div></th>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
 </tr>
 </table>
