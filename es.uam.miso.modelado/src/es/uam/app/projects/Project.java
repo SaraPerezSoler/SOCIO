@@ -3,8 +3,6 @@ package es.uam.app.projects;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -298,88 +296,6 @@ public class Project {
 		return png;
 	}
 
-	private static final String startHelp = "Hello. My name is Socio and I am here to help you. I give you some tips to work with me: ";
-	private static final String[] tips = { "Write correctly: I can't read you well if you make mistakes.",
-			"If a can't understand some noun you can put it with \"\" or with determinants.",
-			"Usually I search synonyms to the words, if you want tu add two concepts that are synonyms you can use the add rule.",
-			"If I didn't understand well some sentece, you can undo the actions and try to say me with other sentence or divided." };
-	private static final String continuos = "Now I see you what sentences you can use and how: \n";
-
-	public static String getHelp() throws Exception {
-		String cad = startHelp + "\n";
-
-		for (int i = 0; i < tips.length; i++) {
-			cad += "\t" + (i + 1) + ". " + tips[i] + "\n";
-		}
-		cad += "\n";
-		cad += continuos;
-		Map<Class<? extends ExtractionRule>, Constructor<? extends ExtractionRule>> rules = Sentence
-				.getExtractionRules();
-		Set<Class<? extends ExtractionRule>> keys = rules.keySet();
-		int i = 1;
-		for (Class<? extends ExtractionRule> k : keys) {
-			cad += "· Exaple " + i + ": ";
-			Method met = k.getMethod("getStructure", new Class[] {});
-			String structure = "";
-
-			if (met != null) {
-				structure = (String) met.invoke(null);
-			}
-			cad += structure + "\n";
-			Method met2 = k.getMethod("getExamples", new Class[] {});
-			String[] examples = {};
-			if (met2 != null) {
-				examples = (String[]) met2.invoke(null);
-			}
-			for (String e : examples) {
-				cad += "\t\t" + e + "\n";
-			}
-		}
-		return cad;
-
-	}
-
-	public static File getHelpFile() throws Exception {
-		String textFile="@startsalt\n{+";
-		String cad = startHelp + "\n";
-
-		for (int i = 0; i < tips.length; i++) {
-			cad += "\t" + (i + 1) + ". " + tips[i] + "\n";
-		}
-		cad += "\n";
-		textFile+=cad+"--\n";
-		textFile += continuos;
-		textFile+="{T\n";
-		
-		Map<Class<? extends ExtractionRule>, Constructor<? extends ExtractionRule>> rules = Sentence
-				.getExtractionRules();
-		Set<Class<? extends ExtractionRule>> keys = rules.keySet();
-		int i = 1;
-		for (Class<? extends ExtractionRule> k : keys) {
-			textFile += "+ Exaple " + i + ": ";
-			Method met = k.getMethod("getStructure", new Class[] {});
-			String structure = "";
-
-			if (met != null) {
-				structure = (String) met.invoke(null);
-			}
-			textFile += structure + "\n";
-			Method met2 = k.getMethod("getExamples", new Class[] {});
-			String[] examples = {};
-			if (met2 != null) {
-				examples = (String[]) met2.invoke(null);
-			}
-			for (String e : examples) {
-				textFile += "++" + e + "\n";
-			}
-			i++;
-		}
-		textFile+="}\n}\n@endsalt";
-		File txt = UML.write(URI + "/Help.txt", textFile);
-		File png = UML.getUML(txt);
-		return png;
-
-	}
 
 	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
 

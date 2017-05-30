@@ -1,35 +1,23 @@
 package es.uam.app.main.commands;
 
-import java.io.File;
-
-import es.uam.app.main.exceptions.MessageException;
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.projects.Project;
+import es.uam.app.message.SendMessageExc;
 
-public class Help extends MainCommand{
-	
-	public static final int TEXT=0;
-	public static final int PICTURE=1;
-	
-	private int option;
-	
-	public Help(int option) {
-		this.option=option;
+public class Help extends MainCommand {
+
+	public static final String HELP = "https://saraperezsoler.github.io/ModellingBot/";
+	private static final String HELP_MSG="You can get help to modelling bot here:\n";
+
+
+	public Help() {
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws MessageException, Exception {
-		if (option==TEXT){
-			String help=Project.getHelp();
-			throw new MessageException(help);
-		}else{
-			File help=Project.getHelpFile();
-			throw new MessageException(help);
-		}
-		
-		
-	}
+	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
+		SendMessageExc send= new SendMessageExc(HELP_MSG);
+		send.setUrl(HELP);
+		throw send;
 
-	
+	}
 
 }

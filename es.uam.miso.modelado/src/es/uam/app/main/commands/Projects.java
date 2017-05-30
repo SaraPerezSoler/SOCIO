@@ -2,8 +2,8 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 
-import es.uam.app.main.exceptions.MessageException;
 import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.projects.Project;
 
 public class Projects extends MainCommand {
@@ -15,9 +15,9 @@ public class Projects extends MainCommand {
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws MessageException {
+	public void execute(ReceivedMessage rm) throws SendMessageExc {
 		File list = Project.getProjectList();
-		throw new MessageException(PROJECTS, list);
+		throw new SendMessageExc(PROJECTS, list);
 	}
 
 }

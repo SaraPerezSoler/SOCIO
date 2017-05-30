@@ -3,7 +3,7 @@ package es.uam.app.channels;
 import java.io.File;
 
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.message.User;
 import es.uam.app.twitter.TwitterControl;
 import es.uam.app.twitter.TwitterStreamControl;
@@ -71,7 +71,7 @@ public class TwitterChannel extends Channel{
 	}
 
 	@Override
-	public void answerMessage(ReceivedMessage rMessage, SentMessage sMessage) {
+	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
 		long id=Long.parseLong(rMessage.getId());
 		
 		if (!sMessage.hasText()){
@@ -88,7 +88,7 @@ public class TwitterChannel extends Channel{
 	}
 
 	@Override
-	public void updateProject(SentMessage sMessage) {
+	public void updateProject(SendMessageExc sMessage) {
 		// TODO Auto-generated method stub
 		
 	}

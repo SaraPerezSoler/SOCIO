@@ -1,8 +1,8 @@
 package es.uam.app.main.commands;
 
 
-import es.uam.app.main.exceptions.MessageException;
 import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.projects.Project;
 
 public class NewProject extends MainCommand{
@@ -11,7 +11,7 @@ public class NewProject extends MainCommand{
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws MessageException {
+	public void execute(ReceivedMessage rm) throws SendMessageExc {
 		if (rm.getText() == null) {
 			return;
 		}
@@ -20,7 +20,7 @@ public class NewProject extends MainCommand{
 		}
 		String nameProject = validProjectName(rm.getText());
 		Project.createProject(nameProject, rm);
-		throw new MessageException("Excellent! Now there is a new project with the name " + nameProject);
+		throw new SendMessageExc("Excellent! Now there is a new project with the name " + nameProject);
 		
 	}
 

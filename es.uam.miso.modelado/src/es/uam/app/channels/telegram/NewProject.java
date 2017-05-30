@@ -3,7 +3,7 @@ package es.uam.app.channels.telegram;
 import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.main.Main;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public class NewProject extends TelegramCommand {
 	
@@ -36,8 +36,7 @@ public class NewProject extends TelegramCommand {
 		// Si el comando no tiene argumentos
 		if (split.length == 1) {
 			this.setState(update.getMessage().getChatId());
-			SentMessage sent = new SentMessage();
-			sent.setText(NEW_PROJECT_MSG);
+			SendMessageExc sent = new SendMessageExc(NEW_PROJECT_MSG);
 			tChannel.sendMessageAndWait(update.getMessage().getMessageId(), update.getMessage().getChatId(),
 					sent);
 

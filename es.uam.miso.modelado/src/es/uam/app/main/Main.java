@@ -25,9 +25,8 @@ import es.uam.app.main.commands.Redo;
 import es.uam.app.main.commands.Undo;
 import es.uam.app.main.commands.Validate;
 import es.uam.app.main.exceptions.FatalException;
-import es.uam.app.main.exceptions.MessageException;
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.rules.ExtractionRule;
 import es.uam.app.projects.Project;
@@ -39,7 +38,7 @@ public class Main {
 
 		NEW_PROJECT("newproject", new NewProject()), HISTORY(new History()), PROJECTS(new Projects()), 
 		UNDO(new Undo()), REDO(new Redo()), GET(new Get()), VALIDATE(new Validate()),
-		HELP_TEXT("helptext", new Help(Help.TEXT)),HELP_PICTURE("helppicture", new Help(Help.PICTURE)), 
+		HELP(new Help()), 
 		BASE_CASE(new BaseCase());
 
 		private String name;
@@ -55,7 +54,7 @@ public class Main {
 			this.command = command;
 		}
 
-		public void execute(ReceivedMessage rm) throws MessageException, Exception {
+		public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
 			command.execute(rm);
 		}
 
@@ -170,13 +169,9 @@ public class Main {
 
 		} catch (FatalException e) {
 			log.fatal("Error al leer los comandos: " + e.getMessage());
-		} catch (MessageException e) {
-			SentMessage send = new SentMessage();
-			send.setText(e.getMessage());
-			send.setPng(e.getPng());
-			send.setDocument(e.getDocument());
+		} catch (SendMessageExc e) {
 			Channel c = channels.get(m.getChannel());
-			c.answerMessage(m, send);
+			c.answerMessage(m, e);
 		} catch (Exception e) {
 			log.error("Error al leer los comandos: " + e.getMessage());
 		} catch (Throwable e) {

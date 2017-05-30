@@ -2,9 +2,9 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 
-import es.uam.app.main.exceptions.MessageException;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
 import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.projects.Project;
 
 public class History extends MainCommand{
@@ -13,7 +13,7 @@ public class History extends MainCommand{
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws MessageException {
+	public void execute(ReceivedMessage rm) throws SendMessageExc {
 		if (rm.getText() == null) {
 			return;
 		}
@@ -21,7 +21,7 @@ public class History extends MainCommand{
 		Project actual = Project.getProject(nameProject);
 		if (actual != null) {
 			File history = actual.getHistory();
-			throw new MessageException(rm.getText(), history);
+			throw new SendMessageExc(rm.getText(), history);
 		} else {
 			throw new ProjectNotFoundException(nameProject);
 		}

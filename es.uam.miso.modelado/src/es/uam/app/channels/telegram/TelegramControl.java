@@ -18,7 +18,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import es.uam.app.channels.TelegramChannel;
 import es.uam.app.main.Main;
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.message.User;
 
 public class TelegramControl extends TelegramLongPollingBot {
@@ -132,7 +132,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		return update.getMessage().getMessageId() + ID_SEPARATOR + update.getMessage().getChatId();
 	}
 
-	public void answerMessage(ReceivedMessage rMessage, SentMessage sMessage) {
+	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
 		String id = rMessage.getId();
 		String[] split = id.split(ID_SEPARATOR);
 		int msgId = Integer.parseInt(split[0]);
@@ -144,7 +144,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		}
 	}
 
-	public void sendMessage(int msgId, long chatId, SentMessage sMessage) {
+	public void sendMessage(int msgId, long chatId, SendMessageExc sMessage) {
 
 		ReplyKeyboardRemove replyremove = new ReplyKeyboardRemove();
 		if (sMessage.hasText()) {
@@ -188,16 +188,16 @@ public class TelegramControl extends TelegramLongPollingBot {
 		}
 	}
 	
-	public void sendMessageWithChoose(long chatId, SentMessage sMessage, String[][] options, String commandName) {
+	public void sendMessageWithURL(long chatId, SendMessageExc sMessage, String[][] options, String[][] urls) {
 
 		InlineKeyboardMarkup inlineKeyBoar = new InlineKeyboardMarkup();
 		List<List<InlineKeyboardButton>> buttons= new ArrayList<List<InlineKeyboardButton>>();
-		for (String[] optionRows: options){
+		for (int i=0; i< options.length;i++){
 			List<InlineKeyboardButton> row= new ArrayList<InlineKeyboardButton>();
-			for (String option: optionRows){
+			for (int j=0; j<options[i].length; j++){
 				InlineKeyboardButton button=new InlineKeyboardButton();
-				button.setText(option);
-				button.setCallbackData("/"+commandName+CALL_BACK_SEPARATOR+option);
+				button.setText(options[i][j]);
+				button.setUrl(urls[i][j]);
 				row.add(button);
 			}
 			buttons.add(row);
@@ -231,7 +231,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		channel.write(standardMensaje(update, command, text));
 	}
 
-	public void sendMessageAndWait(int msgId, long chatId, SentMessage sMessage) {
+	public void sendMessageAndWait(int msgId, long chatId, SendMessageExc sMessage) {
 
 		if (sMessage.hasPng()) {
 			// ReplyKeyboard replyremove=new ReplyKeyboardRemove();

@@ -2,7 +2,7 @@ package es.uam.app.channels.telegram;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public class Start extends TelegramCommand {
 
@@ -32,9 +32,7 @@ public class Start extends TelegramCommand {
 		this.setProject(update.getMessage().getChatId(), "");
 		this.removerAllUserTalk(update.getMessage().getChatId());
 
-		SentMessage sent = new SentMessage();
-		sent.setText(getStartMsg());
-
+		SendMessageExc sent = new SendMessageExc(getStartMsg());
 		tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 
 	}

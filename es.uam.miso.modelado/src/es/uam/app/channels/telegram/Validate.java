@@ -3,7 +3,7 @@ package es.uam.app.channels.telegram;
 import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.main.Main;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public class Validate extends TelegramCommand {
 
@@ -28,8 +28,7 @@ public class Validate extends TelegramCommand {
 		
 		String project = this.getProject(update.getMessage().getChatId());
 		if (project == null || project.equals("")) {
-			SentMessage sent = new SentMessage();
-			sent.setText(STANDARD_ERROR_MSG);
+			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 		} else {
 			tChannel.write(update, Main.MainCommandEnum.VALIDATE.getName(), project);

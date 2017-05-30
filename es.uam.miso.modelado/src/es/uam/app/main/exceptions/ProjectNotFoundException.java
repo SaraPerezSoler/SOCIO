@@ -1,6 +1,8 @@
 package es.uam.app.main.exceptions;
 
-public class ProjectNotFoundException extends MessageException {
+import es.uam.app.message.SendMessageExc;
+
+public class ProjectNotFoundException extends SendMessageExc {
 
 	/**
 	 * 

@@ -6,10 +6,10 @@ BorderColor<<New>> #458A03
 BackgroundColor<<???>> #FFFFFF
 BorderColor<<???>> #BDBDBD
 }
-class Work {
+class Cheque {
 }
-class Person {
+Cheque -->"0..1"Bank : beSentTo
+class Bank {
 }
-Person -->"0..1"Work : work
 
 @enduml

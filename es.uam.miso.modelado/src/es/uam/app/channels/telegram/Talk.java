@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public class Talk extends TelegramCommand {
 	private static final String TALK_MSG = "Talk, the bot listens.";
@@ -29,8 +29,7 @@ public class Talk extends TelegramCommand {
 
 		String project = this.getProject(update.getMessage().getChatId());
 		if (project == null || project.equals("")) {
-			SentMessage sent = new SentMessage();
-			sent.setText(STANDARD_ERROR_MSG);
+			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 		} else {
 			
@@ -41,8 +40,7 @@ public class Talk extends TelegramCommand {
 				this.addUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
 				
 				String usersName=this.sendTalk(update.getMessage().getChatId());
-				SentMessage sent = new SentMessage();
-				sent.setText(usersName + TALK_MSG);
+				SendMessageExc sent = new SendMessageExc(usersName + TALK_MSG);
 				tChannel.sendMessageAndWait(update.getMessage().getMessageId(), update.getMessage().getChatId(), sent);
 				
 				this.setStandardState(update.getMessage().getChatId());

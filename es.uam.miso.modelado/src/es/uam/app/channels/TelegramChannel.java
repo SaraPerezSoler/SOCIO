@@ -10,7 +10,7 @@ import es.uam.app.channels.telegram.TelegramControl;
 import es.uam.app.main.ClassMatchProcessorSuperClass;
 import es.uam.app.main.Main;
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 
 public class TelegramChannel extends Channel {
@@ -50,12 +50,12 @@ public class TelegramChannel extends Channel {
 	}
 
 	@Override
-	public void answerMessage(ReceivedMessage rMessage, SentMessage sMessage) {
+	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
 		telegramControl.answerMessage(rMessage, sMessage);
 	}
 
 	@Override
-	public void updateProject(SentMessage sMessage) {
+	public void updateProject(SendMessageExc sMessage) {
 		// TODO Auto-generated method stub
 
 	}

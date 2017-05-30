@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.main.Main;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public class Get extends TelegramCommand {
 
@@ -54,7 +54,7 @@ public class Get extends TelegramCommand {
 	}
 
 	@Override
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SentMessage sMessage) {
+	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
 
 		if (sMessage.getText() != null && sMessage.getText().startsWith(ProjectNotFoundException.PROJECT_NOT_FOUND)) {
 			this.setStandardState(chatId);

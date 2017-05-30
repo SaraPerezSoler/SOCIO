@@ -1,7 +1,7 @@
 package es.uam.app.channels;
 
 import es.uam.app.message.ReceivedMessage;
-import es.uam.app.message.SentMessage;
+import es.uam.app.message.SendMessageExc;
 
 public abstract class Channel extends Thread {
 
@@ -26,7 +26,7 @@ public abstract class Channel extends Thread {
 		pipe.write(msg);
 	}
 
-	public abstract void answerMessage(ReceivedMessage rMessage, SentMessage sMessage);
-	public abstract void updateProject(SentMessage sMessage);
+	public abstract void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage);
+	public abstract void updateProject(SendMessageExc sMessage);
 	public abstract void run();
 }

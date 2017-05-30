@@ -27,7 +27,7 @@ public class D1ToHave extends ExtractionRule {
 	private final static String examples[]={"Bulky packages are characterized by their width, length and height.", "Students have a numeric identifier.", "Medicines have an active ingredient."};
 
 	private static final String[] HAVE_WORDS = { "have", "be characterized by", "be identified by",
-			"be recognozed by" };
+			"be recognized by" };
 
 	public D1ToHave(Sentence sentence, Verb v) {
 		super(sentence, v);

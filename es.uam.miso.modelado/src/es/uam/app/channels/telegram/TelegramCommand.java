@@ -8,7 +8,9 @@ import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
-import es.uam.app.message.SentMessage;
+
+import es.uam.app.message.SendMessageExc;
+
 
 public abstract class TelegramCommand {
 
@@ -135,8 +137,7 @@ public abstract class TelegramCommand {
 
 		String project = chatProject.get(update.getMessage().getChatId());
 		if (project == null || project.equals("")) {
-			SentMessage sent = new SentMessage();
-			sent.setText(STANDARD_ERROR_MSG);
+			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(update.getMessage().getMessageId(), update.getMessage().getChatId(), sent);
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
@@ -145,7 +146,7 @@ public abstract class TelegramCommand {
 		}
 	}
 
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SentMessage sMessage) {
+	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
 		
 		this.setStandardState(chatId);
 		tChannel.sendMessage(msgId, chatId, sMessage);
