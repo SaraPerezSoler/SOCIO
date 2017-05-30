@@ -15,7 +15,7 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 
 Now let's look the sentences you can use and how.
 
-### 1. Add/create/make \<Object>
+### 1. Add / Create / Make \<Object>
 
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
 
@@ -32,7 +32,7 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 </tr>
 </table>
 
-### 2. Remove/erase \<Object>
+### 2. Remove / Erase \<Object>
 
 <table style="width:100%;text-align:center">
 <tr>
@@ -68,7 +68,7 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 </tr>
 </table>
 
-### 4. \<Object> have/be characterized by/be identified by/be recognozed by \<Object>
+### 4. \<Object> have / be characterized by / be identified by / be recognozed by \<Object>
  
 <table style="width:100%;text-align:center">
 <tr>
