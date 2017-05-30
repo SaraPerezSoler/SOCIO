@@ -85,7 +85,7 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 </tr>
 <tr>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-30.jpg" /></div></th>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-57.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-56-28.jpg" /></div></th>
 </tr>
 </table>
  
