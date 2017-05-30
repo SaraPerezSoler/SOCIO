@@ -32,7 +32,7 @@ Now let's look the sentences you can use and how.
 
 ### 1. Add / Create / Make \<Object>
 
-This sentences add new objects to the models. In this case, Socio doesn't search synonyms. 
+These sentences add new objects to the models. In this case, Socio doesn't search synonyms. 
 <table style="width:100%;text-align:center">
 <tr>
 <th><p style="text-align:center">Create person.</p></th>
