@@ -59,7 +59,7 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-39-04.jpg" /></div></th>
 </tr>
 <tr>
-<th><p style="text-align:center"> Name of person is a text.</p></th>
+<th><p style="text-align:center"> Name of person is a text.<br>Person's name is a text.</p></th>
 <th><p style="text-align:center"> The wife of a man is a woman.</p></th>
 </tr>
 <tr>
