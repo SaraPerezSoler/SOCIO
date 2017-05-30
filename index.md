@@ -21,14 +21,14 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 
 <table style="width:100%;text-align:center">
 <tr>
-<th><p style="text-align:center">Create person.</p></th>
-<th><p style="text-align:center">Add work in person.</p></th>
-<th><p style="text-align:center">Add numeric age in person.</p></th>
-</tr>
-<tr>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
+</tr>
+<tr>
+<th><p style="text-align:center">Create person.</p></th>
+<th><p style="text-align:center">Add work in person.</p></th>
+<th><p style="text-align:center">Add numeric age in person.</p></th>
 </tr>
 </table>
 
@@ -86,6 +86,19 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <tr>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-30.jpg" /></div></th>
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-56-28.jpg" /></div></th>
+</tr>
+</table>
+ 
+### 5. \<Object> contain / be made of / be made up of / be made from / be composed / include \<Object> 
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> The house is made of rooms.</p></th>
+<th><p style="text-align:center"> Students contains a numeric identifier.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-54-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
 </tr>
 </table>
  
