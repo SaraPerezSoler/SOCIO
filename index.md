@@ -55,16 +55,16 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <th><p style="text-align:center"> Students and teachers are persons.</p></th>
 </tr>
 <tr>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-37-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-39-04.jpg" /></div></th>
 </tr>
 <tr>
 <th><p style="text-align:center"> Name of person is a text.</p></th>
 <th><p style="text-align:center"> The wife of a man is a woman.</p></th>
 </tr>
 <tr>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
-<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-39-23.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-40-04.jpg" /></div></th>
 </tr>
 </table>
   
