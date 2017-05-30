@@ -83,7 +83,7 @@ These sentences add new objects to the models. In this case, Socio doesn't searc
 </tr>
 </table>
 
-### 4. \<Object> have / be characterized by / be identified by / be recognozed by \<Object>
+### 4. \<Object> have / be characterized by / be identified by / be recognized by \<Object>
  
 <table style="width:100%;text-align:center">
 <tr>
