@@ -16,12 +16,21 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 
 Now let's look the sentences you can use and how.
 
-### [1. Add / Create / Make \<Object>](addExamples.md)
+### 1. Add / Create / Make \<Object>
 
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms. 
- 1. create person.
- 2. Add work in person.
- 3. Add numeric age in person.
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center">Create person.</p></th>
+<th><p style="text-align:center">Add work in person.</p></th>
+<th><p style="text-align:center">Add numeric age in person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
+</tr>
+</table>
 
 
 ### 2. Remove / Erase \<Object>
