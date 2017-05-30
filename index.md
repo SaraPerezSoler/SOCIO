@@ -1,4 +1,5 @@
 ## Welcome
+[help](help.md)
 
 Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it in [Telegram](https://t.me/ModellingBot) and [Twitter](https://twitter.com/ModellingBot). First some tips to work with Socio:
 
