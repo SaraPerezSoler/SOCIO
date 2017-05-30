@@ -1,3 +1,29 @@
+## Welcome
+
+Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it in [Telegram](https://t.me/ModellingBot) and [Twitter](https://twitter.com/ModellingBot). First some tips to work with Socio:
+
+1. Write correctly: Socio may not undestand you well if you make mistakes.
+2. If Socio can't understand some noun you can put it with "" or with determinants.
+3. Usually Socio searchs synonyms to the nouns and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. In most cases, Socio doesn't do that you want to do becouse this reason. In these cases, you can use the add command, that it doesn't search synonyms.
+4. If Socio didn't understand well some sentece, you can undo the actions and try to say it with other sentence or divided.
+## How it works on Telegram
+
+## How it works on Twitter
+
+## Examples of Senteces
+
+Now let's look the sentences you can use and how.
+
+### 1. Add/create/make \<Object>
+
+This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
+ ```
+                              create person.
+                              add work in person.
+                              Add numeric age in person.
+ 
+ ```
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/SaraPerezSoler/ModellingBot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
