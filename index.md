@@ -18,9 +18,17 @@ Now let's look the sentences you can use and how.
 
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
  
- create person.               add work in person.          Add numeric age in person.
+- create person.                       
 
 ![Image](img/photo_2017-05-30_12-56-40.jpg)
+
+- add work in person. 
+
+![Image](img/photo_2017-05-30_12-57-08.jpg)
+
+- Add numeric age in person.
+
+![Image](img/photo_2017-05-30_12-57-28.jpg)
 
 ## Welcome to GitHub Pages
 
