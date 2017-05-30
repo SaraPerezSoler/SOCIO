@@ -19,6 +19,7 @@ Now let's look the sentences you can use and how.
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
  
 - create person.                       
+<div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div>
 
 ![Image](img/photo_2017-05-30_12-56-40.jpg)
 
