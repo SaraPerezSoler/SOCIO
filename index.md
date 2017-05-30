@@ -14,6 +14,16 @@ Now let's see how you must work with socio. Telegram's bots work with command. A
 
 First you must to selecte a Project (_/setproject_) to a chat or make a new project (_/newproject_). Then you can write your sentences to create the model. In case you are in a group, the bot only can read mesages with a command, so you have the talk command (_/talk_) to talk with Socio. 
 
+You also have:
+
+- _/projects_: send you a photo with a list of all projects.  
+- _/get_: send you a file with the model in ecore format.
+- _/history_: show you a picture with the project history
+- _/undo_: undo the last message
+- _/redo_: redo the last undo
+- _/show_: show you the project state in that moment. 
+- _/validate_: validate the model, and send you a return messages.
+
 ## How it works on Twitter
 
 ## Examples of Senteces
