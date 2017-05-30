@@ -9,6 +9,11 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 
 ## How it works on Telegram
 
+In [Telegram](https://t.me/ModellingBot) you can add the bot in a gruop and talk all people in the group with it or talk in a single chat. 
+Now let's see how you must work with socio. Telegram's bots work with command. A command starts with /. You can send only the command and the bot answer you for the arguments if is necesary, or send the command and arguments together. 
+
+First you must to selecte a Project (/setProject) to a chat or make a new project (/newProject). Then you can write your sentences to create the model. In case you are in a group, the bot only can read mesages with a command, so you have the talk command (/talk) to talk with Socio. 
+
 ## How it works on Twitter
 
 ## Examples of Senteces
@@ -117,41 +122,4 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 </tr>
 </table>
 
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/SaraPerezSoler/ModellingBot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SaraPerezSoler/ModellingBotHelp/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
