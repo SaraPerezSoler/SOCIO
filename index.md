@@ -12,7 +12,7 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 In [Telegram](https://t.me/ModellingBot) you can add the bot in a group or talk with it in a single chat. 
 Now let's see how you must work with Socio. Telegram's bots work with commands. A command starts with /. You can send only the command and the bot will ask you for the arguments if it is necesary, or you can send the command and arguments together. 
 
-First you must select a Project (_/setproject_) to a chat or make a new project (_/newproject_). Then you can write your sentences to create the model. In case you are in a group, the bot only can read mesages with a command, so you have the talk command (_/talk_) to talk with Socio. 
+First you must select a Project (_/setproject_) for a chat or make a new project (_/newproject_). Then you can write your sentences to create the model. In case you are in a group, the bot only can read mesages with a command, so you have the talk command (_/talk_) to talk with Socio. 
 
 You also have:
 
