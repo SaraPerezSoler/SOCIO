@@ -101,7 +101,22 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
 </tr>
 </table>
- 
+
+### 6. \<Object> \<verb> \<Object>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Carriers can handle deliveries.</p></th>
+<th><p style="text-align:center"> The student passed the exams.</p></th>
+<th><p style="text-align:center"> The cheque is sent to the bank.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_15-22-01.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_15-22-29.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_15-22-51.jpg" /></div></th>
+</tr>
+</table>
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/SaraPerezSoler/ModellingBot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
