@@ -6,6 +6,7 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 2. If Socio can't understand some noun you can put it with "" or with determinants.
 3. Usually Socio searchs synonyms to the nouns and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. In most cases, Socio doesn't do that you want to do becouse this reason. In these cases, you can use the add command, that it doesn't search synonyms.
 4. If Socio didn't understand well some sentece, you can undo the actions and try to say it with other sentence or divided.
+
 ## How it works on Telegram
 
 ## How it works on Twitter
@@ -30,6 +31,23 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
 </tr>
 </table>
+
+### 2. Remove/erase \<Object>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Erase numeric age from person.</p></th>
+<th><p style="text-align:center"> Remove work from person.</p></th>
+<th><p style="text-align:center"> Remove person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
+</tr>
+</table>
+
+
  
 ## Welcome to GitHub Pages
 
