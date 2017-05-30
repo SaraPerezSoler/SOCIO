@@ -47,7 +47,27 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 </tr>
 </table>
 
+### 3. \<Object>  to be \<Object>
 
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Packages can be bulky, heavy or fragile.</p></th>
+<th><p style="text-align:center"> Students and teachers are persons.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+</tr>
+<tr>
+<th><p style="text-align:center"> Name of person is a text.</p></th>
+<th><p style="text-align:center"> The wife of a man is a woman.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+</tr>
+</table>
+  
  
 ## Welcome to GitHub Pages
 
