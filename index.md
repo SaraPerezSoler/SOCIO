@@ -19,23 +19,18 @@ Now let's look the sentences you can use and how.
 This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
 
 <table style="width:100%;text-align:center">
-<tr><th>Create person.</th><th>Add work in person.</th><th>Add numeric age in person.</th></tr>
-<tr><th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th><th></th><th></th></tr>
+<tr>
+<th><p style="text-align:center">Create person.</p></th>
+<th><p style="text-align:center">Add work in person.</p></th>
+<th><p style="text-align:center">Add numeric age in person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
+</tr>
 </table>
  
-<p style="text-align:center">- create person.</p>                       
-<div style="text-align:center"><img src ="img/photo_2017-05-30_12-56-40.jpg" /></div>
-
-![Image](img/photo_2017-05-30_12-56-40.jpg)
-
-- add work in person. 
-
-![Image](img/photo_2017-05-30_12-57-08.jpg)
-
-- Add numeric age in person.
-
-![Image](img/photo_2017-05-30_12-57-28.jpg)
-
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/SaraPerezSoler/ModellingBot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
