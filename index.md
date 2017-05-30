@@ -22,7 +22,7 @@ You also have:
 - _/undo_: undo the last message
 - _/redo_: redo the last undo
 - _/show_: show you the project state in that moment. 
-- _/validate_: validate the model, and send you a return messages.
+- _/validate_: validate the model.
 
 ## How it works on Twitter
 
