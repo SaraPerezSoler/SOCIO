@@ -67,7 +67,27 @@ This sentences add new objects to the models. In this case, Socio doesn't search
 <th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-40-04.jpg" /></div></th>
 </tr>
 </table>
-  
+
+### 4. \<Object> have/be characterized by/be identified by/be recognozed by \<Object>
+ 
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Bulky packages are characterized by their width, length and height.</p></th>
+<th><p style="text-align:center"> Students have a numeric identifier.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-54-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
+</tr>
+<tr>
+<th><p style="text-align:center"> Medicines have an active ingredient.</p></th>
+<th><p style="text-align:center"> Person may has a work</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-30.jpg" /></div></th>
+<th><div style="text-align:center"><img src ="img/photo_2017-05-30_13-55-57.jpg" /></div></th>
+</tr>
+</table>
  
 ## Welcome to GitHub Pages
 
