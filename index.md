@@ -26,7 +26,7 @@ You also have:
 
 ## How it works on Twitter
 
-## Examples of Senteces
+## Examples
 
 Now let's look the sentences you can use and how.
 
