@@ -17,7 +17,11 @@ Now let's look the sentences you can use and how.
 
 ### 1. Add / Create / Make \<Object>
 
-This sentences add new objects to the models. In this case, Socio doesn't search synonyms.
+This sentences add new objects to the models. In this case, Socio doesn't search synonyms. 
+Some exaples for this sentence.
+1. [Create person.](img/photo_2017-05-30_12-56-40.jpg)
+2. [Add work in person.](img/photo_2017-05-30_12-57-08.jpg)
+3. [Add work in person.](img/photo_2017-05-30_12-57-28.jpg)
 
 <table style="width:100%;text-align:center">
 <tr>
