@@ -11,7 +11,7 @@ import es.uam.app.message.SendMessageExc;
 public class HistoryStatistics extends HistoryOption{
 
 	private static HistoryStatistics historyStatistics=null;
-	
+	protected final String KIND = "Which kind?";
 	public static HistoryStatistics getHistoryStatistics(History history){
 		if (historyStatistics==null){
 			historyStatistics= new HistoryStatistics(history);

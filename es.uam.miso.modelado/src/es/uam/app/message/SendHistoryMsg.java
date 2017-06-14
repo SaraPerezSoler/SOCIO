@@ -1,5 +1,6 @@
 package es.uam.app.message;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,9 +51,11 @@ public class SendHistoryMsg extends SendMessageExc {
 
 		@Override
 		public String toString() {
-			String cad= userName + "(" + date + "):" + msg+"\n";
+			SimpleDateFormat fomartter= new SimpleDateFormat("dd/MM/yy hh:mm:ss");
+			String cad= "User: "+userName + " at " + fomartter.format(date) + " send: " + msg+"\n\n";
+			cad+="The message cause this actions:\n";
 			for (String s: actions){
-				cad+="\t"+s+"\n";
+				cad+="\t* "+s+"\n";
 			}
 			return cad;
 		}

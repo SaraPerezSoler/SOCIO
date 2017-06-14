@@ -1,64 +1,54 @@
-testModelling(Wed May 31 14:14:47 CEST 2017):@ModellingBot #test Package is an element. Packages contains types. Type is abstract. Element is abstract.
-	Create-> class Package
-	Create-> class Element
-	Update-> Old: class Package / New: class Package, superTypes: [Element]
-	Update-> Old: class Type / New: abstract class Type
-	Create-> class Type
-	Create-> reference type
-	Update-> Old: reference type [0..-1], type: null, from Package / New: reference type [0..-1], type: Type, from Package
-	Update-> Old: class Element / New: abstract class Element
+UserNick: Saruki at 07/06/17 04:12:02send: 
+remove text
+The message cause this actions:
+	* Update-> Old: reference name [0..1], type: Text, from Name / New: reference name [0..1], type: null, from Name
+	* Remove-> class Text
 
 ----------------------------
-testModelling(Wed May 31 14:15:46 CEST 2017):@ModellingBot #test class, interface and enumeration are types.
-	Create-> class Interface
-	Update-> Old: class Interface / New: class Interface, superTypes: [Type]
-	Create-> class Enumeration
-	Update-> Old: class Enumeration / New: class Enumeration, superTypes: [Type]
-	Create-> class Class
-	Update-> Old: class Class / New: class Class, superTypes: [Type]
+UserNick: Saruki at 07/06/17 04:30:26send: 
+hotel has a person
+The message cause this actions:
+	* Create-> class Hotel
+	* Create-> attribute person
 
 ----------------------------
-testModelling(Wed May 31 14:23:34 CEST 2017):@ModellingBot #test all elements contains a name.
-	Create-> class Name
-	Create-> reference name
-	Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
+UserNick: Saruki at 07/06/17 04:30:31send: 
+add person
+The message cause this actions:
+	* Create-> class Person
 
 ----------------------------
-testModelling(Wed May 31 14:32:45 CEST 2017):@ModellingBot #test add type name. name contains a type name
-	Create-> reference typeName
-	Update-> Old: reference typeName [0..1], type: null, from Name / New: reference typeName [0..1], type: TypeName, from Name
-	Create-> class TypeName
+UserNick: Saruki at 07/06/17 04:50:24send: 
+Remove name from name
+The message cause this actions:
+	* Remove-> reference name [0..1], type: Name, from Element
 
 ----------------------------
-testModelling(Wed May 31 14:40:38 CEST 2017):@ModellingBot #test Type and Name are elements
-	Update-> Old: class Name / New: class Name, superTypes: [Element]
-	Update-> Old: abstract class Type / New: abstract class Type, superTypes: [Element]
+UserNick: Saruki at 07/06/17 04:50:37send: 
+Remove name from name
+The message cause this actions:
+	* Remove-> reference name [0..1], type: null, from Name
 
 ----------------------------
-Saruki(Wed Jun 07 16:12:02 CEST 2017):remove text
-	Update-> Old: reference name [0..1], type: Text, from Name / New: reference name [0..1], type: null, from Name
-	Remove-> class Text
+UserNick: Saruki at 07/06/17 04:50:51send: 
+Element contains a name
+The message cause this actions:
+	* Create-> reference name
+	* Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
 
 ----------------------------
-Saruki(Wed Jun 07 16:30:26 CEST 2017):hotel has a person
-	Create-> class Hotel
-	Create-> attribute person
+UserNick: Saruki at 08/06/17 11:41:12send: 
+add house
+The message cause this actions:
+	* Create-> class House
 
 ----------------------------
-Saruki(Wed Jun 07 16:30:31 CEST 2017):add person
-	Create-> class Person
-
-----------------------------
-Saruki(Wed Jun 07 16:50:24 CEST 2017):Remove name from name
-	Remove-> reference name [0..1], type: Name, from Element
-
-----------------------------
-Saruki(Wed Jun 07 16:50:37 CEST 2017):Remove name from name
-	Remove-> reference name [0..1], type: null, from Name
-
-----------------------------
-Saruki(Wed Jun 07 16:50:51 CEST 2017):Element contains a name
-	Create-> reference name
-	Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
+UserNick: Saruki at 08/06/17 11:49:07send: 
+Packages can be bulky or fragile
+The message cause this actions:
+	* Create-> class FragilePackage
+	* Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]
+	* Create-> class BulkyPackage
+	* Update-> Old: class BulkyPackage / New: class BulkyPackage, superTypes: [Package]
 
 ----------------------------

@@ -153,7 +153,7 @@ public class HistoryMsg extends HistoryOption {
 	}
 
 	public void start(Update update) {
-		SendMessageExc sMessage = new SendMessageExc(KIND);
+		SendMessageExc sMessage = new SendMessageExc("Filter by:");
 		String[][] options = new String[][] { { OPTIONS[0], OPTIONS[1] }, { OPTIONS[2], OPTIONS[3] },
 				{ OPTIONS[4], BACK }, };
 		history.setState(update.getMessage().getChatId());

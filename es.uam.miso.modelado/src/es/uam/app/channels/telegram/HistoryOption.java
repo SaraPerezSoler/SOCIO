@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 
 public abstract class HistoryOption {
-	protected final String KIND = "Which kind?";
+
 	protected final String BACK = "\u2b05\ufe0f" + " Back";
 	protected final String WHO="Who?";
 	
