@@ -9,6 +9,7 @@ import java.util.Map;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
 
+import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 
 
@@ -131,7 +132,7 @@ public abstract class TelegramCommand {
 
 	public abstract void commandAction(Update update);
 
-	public void userAnswer(Update update) {
+	public void userAnswerText(Update update) {
 
 		removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
 
@@ -142,14 +143,22 @@ public abstract class TelegramCommand {
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text = update.getMessage().getText().toLowerCase();
-			tChannel.write(update, project, text);
+			tChannel.write(update,"", project, text);
 		}
 	}
+	public void userAnswer(Update update) {
+		
+	}
 
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
+	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
 		
 		this.setStandardState(chatId);
 		tChannel.sendMessage(msgId, chatId, sMessage);
 	}
+
+	public TelegramControl gettChannel() {
+		return tChannel;
+	}
+
 
 }

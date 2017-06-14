@@ -32,4 +32,14 @@
     <eAnnotations source="@CointainerVARPerson"/>
   </ElementsDeletes>
   <ElementsDeletes xsi:type="ecore:EClass" name="Person"/>
+  <ElementsDeletes xsi:type="ecore:EClass" name="Text"/>
+  <ElementsDeletes xsi:type="ecore:EReference" name="name" containment="true">
+    <eAnnotations source="@CointainerVARElement"/>
+    <eAnnotations source="@TypeVARName"/>
+    <eType xsi:type="ecore:EClass" href="./projects/test/test.ecore#//Name"/>
+  </ElementsDeletes>
+  <ElementsDeletes xsi:type="ecore:EReference" name="name">
+    <eAnnotations source="@CointainerVARName"/>
+    <eAnnotations source="@TypeVARnull"/>
+  </ElementsDeletes>
 </RemoveLog:Root>

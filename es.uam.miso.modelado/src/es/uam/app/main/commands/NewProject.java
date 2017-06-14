@@ -12,13 +12,13 @@ public class NewProject extends MainCommand{
 
 	@Override
 	public void execute(ReceivedMessage rm) throws SendMessageExc {
-		if (rm.getText() == null) {
+		if (rm.getProjectName() == null) {
 			return;
 		}
-		if (rm.getText().equals("") || rm.getText().equals(" ")) {
+		if (rm.getProjectName().equals("") || rm.getProjectName().equals(" ")) {
 			return;
 		}
-		String nameProject = validProjectName(rm.getText());
+		String nameProject = validProjectName(rm.getProjectName());
 		Project.createProject(nameProject, rm);
 		throw new SendMessageExc("Excellent! Now there is a new project with the name " + nameProject);
 		

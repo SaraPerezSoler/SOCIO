@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test" nsURI="test" nsPrefix="test">
-  <eClassifiers xsi:type="ecore:EClass" name="Cheque">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="beSentTo" eType="//Bank"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" upperBound="-1" eType="//Type" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Bank"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="//Name" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="//Element"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeName" eType="//TypeName" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeName"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Hotel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="person"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Person"/>
+  <eClassifiers xsi:type="ecore:EClass" name="House"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FragilePackage" eSuperTypes="//Package"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BulkyPackage" eSuperTypes="//Package"/>
 </ecore:EPackage>

@@ -30,7 +30,7 @@ public class Redo extends TelegramCommand {
 			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 		} else {
-			tChannel.write(update, Main.MainCommandEnum.REDO.getName(), project);
+			tChannel.write(update, Main.MainCommandEnum.REDO.getName(), project, "");
 		}
 
 	}

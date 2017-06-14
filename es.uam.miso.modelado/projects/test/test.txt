@@ -6,10 +6,43 @@ BorderColor<<New>> #458A03
 BackgroundColor<<???>> #FFFFFF
 BorderColor<<???>> #BDBDBD
 }
-class Cheque {
+class Package {
 }
-Cheque -->"0..1"Bank : beSentTo
-class Bank {
+Element <|-- Package
+Package *--"0..*"Type : type
+abstract class Element {
 }
+Element *--"0..1"Name : name
+abstract class Type {
+}
+Element <|-- Type
+class Interface {
+}
+Type <|-- Interface
+class Enumeration {
+}
+Type <|-- Enumeration
+class "Class" {
+}
+Type <|-- "Class"
+class Name {
+}
+Element <|-- Name
+Name *--"0..1"TypeName : typeName
+class TypeName {
+}
+class Hotel {
+[0,1] person: ?? 
+}
+class Person {
+}
+class House {
+}
+class FragilePackage {
+}
+Package <|-- FragilePackage
+class BulkyPackage {
+}
+Package <|-- BulkyPackage
 
 @enduml

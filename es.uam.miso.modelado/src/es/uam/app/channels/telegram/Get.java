@@ -4,6 +4,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.main.Main;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
+import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 
 public class Get extends TelegramCommand {
@@ -39,22 +40,22 @@ public class Get extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "");
+				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(),"", "");
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.GET.getName(), project);
+				tChannel.write(update, Main.MainCommandEnum.GET.getName(), project, "");
 			}
 
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update, Main.MainCommandEnum.GET.getName(), text2);
+			tChannel.write(update, Main.MainCommandEnum.GET.getName(), text2, "");
 		}
 	}
 
 	@Override
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
+	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
 
 		if (sMessage.getText() != null && sMessage.getText().startsWith(ProjectNotFoundException.PROJECT_NOT_FOUND)) {
 			this.setStandardState(chatId);
@@ -67,9 +68,9 @@ public class Get extends TelegramCommand {
 	}
 
 	@Override
-	public void userAnswer(Update update) {
+	public void userAnswerText(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update, Main.MainCommandEnum.GET.getName(), update.getMessage().getText());
+		tChannel.write(update, Main.MainCommandEnum.GET.getName(), update.getMessage().getText(), "");
 	}
 
 }

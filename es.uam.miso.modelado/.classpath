@@ -38,5 +38,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/libStanford/slf4j-api.jar"/>
 	<classpathentry kind="lib" path="libs/libClassPathScan/fast-classpath-scanner-2.0.21.jar"/>
+	<classpathentry kind="lib" path="libs/JFreeChart/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="libs/JFreeChart/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -32,7 +32,7 @@ public class Undo extends TelegramCommand {
 			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 		} else {
-			tChannel.write(update, Main.MainCommandEnum.UNDO.getName(), project);
+			tChannel.write(update, Main.MainCommandEnum.UNDO.getName(), project, "");
 		}
 	}
 

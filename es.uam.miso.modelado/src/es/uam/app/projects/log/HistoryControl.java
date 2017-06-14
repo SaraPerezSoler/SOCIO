@@ -90,54 +90,55 @@ public class HistoryControl {
 		Date date = createMsg.getDate();
 		String id = createMsg.getId();
 
-		ReceivedMessage retMsg = new ReceivedMessage(msg, user, date, "NewProject", id);
+		ReceivedMessage retMsg = new ReceivedMessage(msg, user, date, "NewProject","",  id);
 		retMsg.setText(sentence);
 		return retMsg;
 	}
 
 	public void writeHistoryMsg(ReceivedMessage status) {
-		
-			// buscamos el usario entre los creados o lo creamos.
-			DslHistory.User user = getUser(status.getUser());
 
-			// Creamos un nuevo mensaje
-			Msg msg = DslHistoryFactoryImpl.eINSTANCE.createMsg();
+		// buscamos el usario entre los creados o lo creamos.
+		DslHistory.User user = getUser(status.getUser());
 
-			// Guardamos los diferentes atributos
-			// user
-			msg.setUser(user);
-			// text
-			msg.setText(status.getMsg());
-			// sentence
-			Map<String, List<ActionModel>> sentences = status.getSentences();
+		// Creamos un nuevo mensaje
+		Msg msg = DslHistoryFactoryImpl.eINSTANCE.createMsg();
 
-			Set<String> keys = sentences.keySet();
-			for (String k : keys) {
-				List<ActionModel> actions = sentences.get(k);
-				Sentence s = DslHistoryFactoryImpl.eINSTANCE.createSentence();
-				s.setSentence(k);
-				for (ActionModel a : actions) {
-					s.getCommands().add(writeComand(a));
-				}
-				msg.getSentences().add(s);
+		// Guardamos los diferentes atributos
+		// user
+		msg.setUser(user);
+		// text
+		msg.setText(status.getMsg());
+		// sentence
+		Map<String, List<ActionModel>> sentences = status.getSentences();
+
+		Set<String> keys = sentences.keySet();
+		for (String k : keys) {
+			List<ActionModel> actions = sentences.get(k);
+			Sentence s = DslHistoryFactoryImpl.eINSTANCE.createSentence();
+			s.setSentence(k);
+			for (ActionModel a : actions) {
+				s.getCommands().add(writeComand(a));
 			}
-			msg.setUndoable(status.isUndoable());
+			msg.getSentences().add(s);
+		}
+		msg.setUndoable(status.isUndoable());
 
-			// date
-			msg.setDate(status.getDate());
-			// Id
-			msg.setId(status.getId());
+		// date
+		msg.setDate(status.getDate());
+		// Id
+		msg.setId(status.getId());
 
-			history.getMsg().add(msg);
+		history.getMsg().add(msg);
 	}
+
 	public void undoMsg(ReceivedMessage status) {
-		Msg msg=findMsg(status);
-		if (msg!=null){
+		Msg msg = findMsg(status);
+		if (msg != null) {
 			history.getMsg().remove(msg);
 		}
-		
+
 	}
-	
+
 	private DslHistory.User getUser(User user) {
 
 		DslHistory.User eUser = null;
@@ -236,6 +237,22 @@ public class HistoryControl {
 		List<User> usersList = readUsers(users);
 		return readMsgLog(msgs, usersList);
 	}
+	
+	public Date getFirstDate() {
+
+		return this.getCreateMsg().getDate();
+	}
+	
+	public Date getLastDate() {
+		List<ReceivedMessage> msgs=readHistoryMsgs();
+		Collections.reverse(msgs);
+		return msgs.get(0).getDate();
+	}
+	public List<User> readAllUsers(){
+		List<DslHistory.User> users = history.getUsers();
+		return readUsers(users);
+	}
+	
 
 	private List<User> readUsers(List<DslHistory.User> users) {
 		List<User> ret = new ArrayList<User>();
@@ -260,21 +277,22 @@ public class HistoryControl {
 		List<ReceivedMessage> ret = new ArrayList<ReceivedMessage>();
 
 		for (Msg m : msgs) {
+			if (m.isUndoable()) {
+				DslHistory.User user = m.getUser();
+				long userId = user.getId();
+				User u = User.find(usersList, userId);
 
-			DslHistory.User user = m.getUser();
-			long userId = user.getId();
-			User u = User.find(usersList, userId);
+				String text = m.getText();
+				Date fecha = m.getDate();
+				String msgId = m.getId();
+				boolean undoable = m.isUndoable();
 
-			String text = m.getText();
-			Date fecha = m.getDate();
-			String msgId = m.getId();
-			boolean undoable=m.isUndoable();
-			
-			ReceivedMessage msg = new ReceivedMessage(text, u, fecha, name, msgId);
-			// msg.setText(text.substring(text.indexOf(name)));
-			msg.setSentences(readSentences(m.getSentences()));
-			msg.setUndoable(undoable);
-			ret.add(msg);
+				ReceivedMessage msg = new ReceivedMessage(text, u, fecha,"", name, msgId);
+				// msg.setText(text.substring(text.indexOf(name)));
+				msg.setSentences(readSentences(m.getSentences()));
+				msg.setUndoable(undoable);
+				ret.add(msg);
+			}
 
 		}
 		Collections.sort(ret);

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +13,18 @@ import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeTableXYDataset;
 
 import es.uam.app.actions.ActionModel;
+import es.uam.app.main.commands.History.Order;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.User;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.SentencesSplitter;
@@ -258,25 +267,317 @@ public class Project {
 
 	}
 
-	public File getHistory() {
+	public List<ReceivedMessage> getHistoryUser(String userNick) {
+		List<ReceivedMessage> ret = new ArrayList<>();
 		List<ReceivedMessage> list = log.readHistoryMsgs();
-		String cad = "@startsalt\n{";
-		int i = 1;
-		for (ReceivedMessage msg : list) {
-			if (i % 3 == 0) {
-				cad += msg.getUML() + "\n";
-			} else {
-				cad += msg.getUML() + "|\n";
+		for (ReceivedMessage rm : list) {
+			if (rm.getUser().getNick().equalsIgnoreCase(userNick)) {
+				ret.add(rm);
 			}
-			i++;
+		}
+		return ret;
+	}
+	
+	public List<ReceivedMessage> getHistoryElement(String element) throws Exception {
+		List<ReceivedMessage> ret = new ArrayList<>();
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		Sentence sentenceParse = new Sentence(element);
+		sentenceParse.parser();
+		List<NP> concepts = sentenceParse.getConcepts();
+		if (concepts.isEmpty()) {
+			return ret;
+		}
+		for (ReceivedMessage rm : list) {
+			if (concepts.get(0).getOf() == null) {
+				if (rm.hasElement(concepts.get(0).upperCammelCase(), null)) {
+					ret.add(rm);
+				}
+			} else {
+				if (rm.hasElement(concepts.get(0).lowerCammelCase(), concepts.get(0).getOf().upperCammelCase())) {
+					ret.add(rm);
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<ReceivedMessage> getHistoryAction(String action) {
+		List<ReceivedMessage> ret = new ArrayList<>();
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		for (ReceivedMessage rm : list) {
+			if (rm.hasAction(action)) {
+				ret.add(rm);
+			}
+		}
+		return ret;
+	}
+
+	public List<ReceivedMessage> getHistory() {
+		return log.readHistoryMsgs();
+	}
+	
+	public List<ReceivedMessage> getHistory(Date date, Order order) {
+		List<ReceivedMessage> history=getHistory();
+		List<ReceivedMessage> ret= new ArrayList<>();
+		if (order==Order.DESCENDING){
+			Collections.reverse(history);
+			for (ReceivedMessage rm: history){
+				if (!rm.getDate().before(date)){
+					ret.add(rm);
+				}
+			}
+		}else{
+			for (ReceivedMessage rm: history){
+				if (!rm.getDate().after(date)){
+					ret.add(rm);
+				}
+			}
+		}
+		return ret;
+	}
+
+	public List<ReceivedMessage> getHistory(Date start, Date end, Order order) {
+		if (end.before(start)){
+			Date aux=start;
+			start=end;
+			end=aux;
+		}
+		List<ReceivedMessage> history=getHistory();
+		List<ReceivedMessage> ret= new ArrayList<>();
+		for (ReceivedMessage rm: history){
+			if (!rm.getDate().before(start) && !rm.getDate().after(end)){
+				ret.add(rm);
+			}
+		}
+		
+		if (order==Order.DESCENDING){
+			Collections.reverse(ret);
+		}
+		return ret;
+	}
+	
+
+	public File getStatisticsUserMsg() throws IOException {
+
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+
+		Map<User, List<ReceivedMessage>> msg_user = new HashMap<>();
+
+		for (ReceivedMessage rm : list) {
+			List<ReceivedMessage> userList = msg_user.get(rm.getUser());
+			if (userList == null) {
+				userList = new ArrayList<>();
+			}
+			userList.add(rm);
+			msg_user.put(rm.getUser(), userList);
+		}
+
+		Map<String, Map<Day, List<Object>>> user_day_msg = new HashMap<>();
+		Set<User> keys = msg_user.keySet();
+		for (User key : keys) {
+			Map<Day, List<Object>> day_msg = new HashMap<>();
+
+			List<ReceivedMessage> userList = msg_user.get(key);
+			for (ReceivedMessage rm : userList) {
+				Day day = new Day(rm.getDate());
+				List<Object> dayList = day_msg.get(day);
+				if (dayList == null) {
+					dayList = new ArrayList<>();
+				}
+				dayList.add(rm);
+				day_msg.put(day, dayList);
+			}
+			user_day_msg.put(key.getNick(), day_msg);
 
 		}
-		cad += "\n}\n@endsalt\n";
 
-		File txt = UML.write(URI + "/" + name + "/" + name + "History.txt", cad);
-		File png = UML.getUML(txt);
-		return png;
+		return getChart(user_day_msg, "User messages", "Number of messages");
 	}
+
+	public File getStatisticsUserAction() throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		// List<User>users=log.readAllUsers();
+
+		Map<User, List<ReceivedMessage>> msg_user = new HashMap<>();
+
+		for (ReceivedMessage rm : list) {
+			List<ReceivedMessage> userList = msg_user.get(rm.getUser());
+			if (userList == null) {
+				userList = new ArrayList<>();
+			}
+			userList.add(rm);
+			msg_user.put(rm.getUser(), userList);
+		}
+
+		Map<String, Map<Day, List<Object>>> user_day_actions = new HashMap<>();
+		Set<User> keys = msg_user.keySet();
+		for (User key : keys) {
+			Map<Day, List<Object>> day_msg = new HashMap<>();
+
+			List<ReceivedMessage> userList = msg_user.get(key);
+			for (ReceivedMessage rm : userList) {
+				Day day = new Day(rm.getDate());
+				List<Object> dayList = day_msg.get(day);
+				if (dayList == null) {
+					dayList = new ArrayList<>();
+				}
+				dayList.addAll(rm.getAllActions());
+				day_msg.put(day, dayList);
+			}
+			user_day_actions.put(key.getNick(), day_msg);
+
+		}
+
+		return getChart(user_day_actions, "Users Actions", "Number of actions");
+	}
+
+	public File getStatisticsActions() throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		// List<User>users=log.readAllUsers();
+
+		Map<Day, List<ActionModel>> day_actions = new HashMap<>();
+
+		for (ReceivedMessage rm : list) {
+			List<ActionModel> actions = rm.getAllActions();
+			Day day = new Day(rm.getDate());
+			List<ActionModel> actionsList = day_actions.get(day);
+			if (actionsList == null) {
+				actionsList = new ArrayList<>();
+			}
+			actionsList.addAll(actions);
+			day_actions.put(day, actionsList);
+		}
+
+		Map<String, Map<Day, List<Object>>> actionName_day_actions = new HashMap<>();
+		Set<Day> keys = day_actions.keySet();
+		for (Day key : keys) {
+			List<ActionModel> actions = day_actions.get(key);
+			for (ActionModel am : actions) {
+				Map<Day, List<Object>> day_actionsAux = actionName_day_actions.get(am.getActionName());
+				if (day_actionsAux == null) {
+					day_actionsAux = new HashMap<>();
+				}
+				List<Object> actionsAux = day_actionsAux.get(key);
+				if (actionsAux == null) {
+					actionsAux = new ArrayList<>();
+				}
+				actionsAux.add(am);
+				day_actionsAux.put(key, actionsAux);
+				actionName_day_actions.put(am.getActionName(), day_actionsAux);
+			}
+		}
+		return getChart(actionName_day_actions, "Actions",  "Number of actions");
+
+	}
+	
+	public File getStatisticsUserMsg(String userNick) throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+				
+		Map<Day, List<Object>> day_msg = new HashMap<>();
+		for (ReceivedMessage rm: list){
+			if (rm.getUser().getNick().equalsIgnoreCase(userNick)){
+				Day day = new Day(rm.getDate());
+				List<Object> msgList = day_msg.get(day);
+				if (msgList == null) {
+					msgList = new ArrayList<>();
+				}
+				msgList.add(rm);
+				day_msg.put(day, msgList);
+			}
+		}
+		
+		Map<String,Map<Day, List<Object>>> user_day_msg = new HashMap<>();
+		user_day_msg.put(userNick, day_msg);
+		
+		return getChart(user_day_msg, userNick+" messages", "Number of messages");
+	}
+
+	public File getStatisticsUserAction(String userNick) throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		
+		Map<Day, List<ActionModel>> day_actions = new HashMap<>();
+		for (ReceivedMessage rm: list){
+			if (rm.getUser().getNick().equalsIgnoreCase(userNick)){
+				Day day = new Day(rm.getDate());
+				List<ActionModel> actionsList = day_actions.get(day);
+				if (actionsList == null) {
+					actionsList = new ArrayList<>();
+				}
+				actionsList.addAll(rm.getAllActions());
+				day_actions.put(day, actionsList);
+			}
+		}
+		Map<String, Map<Day, List<Object>>> actionName_day_actions = new HashMap<>();
+		String allActions="All actions";
+		actionName_day_actions.put(allActions, new HashMap<>());
+		Set<Day> keys = day_actions.keySet();
+		for (Day key : keys) {
+			List<ActionModel> actions = day_actions.get(key);
+			for (ActionModel am : actions) {
+				Map<Day, List<Object>> day_actionsAux = actionName_day_actions.get(am.getActionName());
+				if (day_actionsAux == null) {
+					day_actionsAux = new HashMap<>();
+				}
+				List<Object> actionsAux = day_actionsAux.get(key);
+				if (actionsAux == null) {
+					actionsAux = new ArrayList<>();
+				}
+				actionsAux.add(am);
+				day_actionsAux.put(key, actionsAux);
+				actionName_day_actions.put(am.getActionName(), day_actionsAux);
+				
+				
+				Map<Day, List<Object>> day_allActions = actionName_day_actions.get(allActions);
+				List<Object> allActionsAux = day_allActions.get(key);
+				if (allActionsAux == null) {
+					allActionsAux = new ArrayList<>();
+				}
+				allActionsAux.add(am);
+				day_allActions.put(key, allActionsAux);
+				actionName_day_actions.put(allActions, day_allActions);
+				
+			}
+		}
+
+
+		
+		return getChart(actionName_day_actions, userNick+" Actions", "Number of actions");
+	}
+
+
+	private File getChart(Map<String, Map<Day, List<Object>>> data, String chartName,String yName) throws IOException {
+		
+		Day last = new Day(new Date());
+		
+		TimeTableXYDataset dataset = new TimeTableXYDataset();
+		Set<String> keySet = data.keySet();
+		for (String k : keySet) {
+			Map<Day, List<Object>> day_object = data.get(k);
+			Day current = new Day(log.getFirstDate());
+
+			while (current.compareTo(last) <= 0) {
+				List<?> objs = day_object.get(current);
+				if (objs == null) {
+					dataset.add(current, 0, k);
+				} else {
+					dataset.add(current, objs.size(), k);
+				}
+				current = (Day) current.next();
+			}
+		}
+
+		JFreeChart chart = ChartFactory.createTimeSeriesChart(chartName, "Date", yName, dataset, true, false, false);
+		chart.getXYPlot().setRenderer(new XYSplineRenderer());
+
+		// Mostrar Grafico
+		File jpg = new File(URI + "/" + name + "/" + name + chartName+".jpg");
+		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
+
+		return jpg;
+	}
+	
+
+
 
 	public static File getProjectList() {
 		String cad = "@startuml\n";
@@ -295,7 +596,6 @@ public class Project {
 		File png = UML.getUML(txt);
 		return png;
 	}
-
 
 	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
 
@@ -561,5 +861,9 @@ public class Project {
 			return "Validation completed successfully";
 		}
 	}
+
+
+
+
 
 }

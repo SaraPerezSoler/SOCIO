@@ -14,7 +14,7 @@ public class Redo extends MainCommand {
 
 	@Override
 	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
-		String nameProject = validProjectName(rm.getText());
+		String nameProject = validProjectName(rm.getProjectName());
 		Project actual = Project.getProject(nameProject);
 		if (actual != null) {
 			File png = actual.redo();

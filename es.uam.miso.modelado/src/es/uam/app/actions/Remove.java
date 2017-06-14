@@ -33,4 +33,8 @@ public abstract class Remove extends ActionModel{
 		return "Remove-> "+getObject();
 	}
 	
+	public String getActionName(){
+		return ActionModel.ACTION.REMOVE.name();
+	}
+	
 }

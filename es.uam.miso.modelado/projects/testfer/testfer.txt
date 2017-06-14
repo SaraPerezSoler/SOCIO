@@ -7,7 +7,7 @@ BackgroundColor<<???>> #FFFFFF
 BorderColor<<???>> #BDBDBD
 }
 class Device {
-int [0,1] memory
+[0,1] memory: int 
 }
 Tablet <|-- Device
 Pc <|-- Device
@@ -27,23 +27,23 @@ class Phone {
 }
 Phone *--"0..1"Os : os
 class Program {
-java.lang.String [0,1] name
+[0,1] name: String 
 }
 Program -->"0..1"Program : invoke
 class Bot {
-java.lang.String [0,* ] command
+[0,* ] command: String 
 }
 Program <|-- Bot
 class Telegrambot {
 }
 Bot <|-- Telegrambot
 class Server {
-java.lang.String [0,1] ip
+[0,1] ip: String 
 }
 Pc <|-- Server
 Server -->"0..1"Program : run
 class Os {
-<b><color:#458A03>?? [0,1] kernel</color></b>
+[0,1] kernel: ?? 
 }
 
 @enduml

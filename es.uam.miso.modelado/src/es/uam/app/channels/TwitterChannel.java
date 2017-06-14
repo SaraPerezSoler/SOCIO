@@ -63,7 +63,7 @@ public class TwitterChannel extends Channel{
 
 			User us=new User(s.getUser().getName(), s.getUser().getId(), s.getUser().getScreenName(), getChannelName());
 			String msgId=Long.toString(s.getId());
-			ReceivedMessage m=new ReceivedMessage(s.getText(), us, s.getCreatedAt(), projectName, msgId);
+			ReceivedMessage m=new ReceivedMessage(s.getText(), us, s.getCreatedAt(),"", projectName, msgId);
 			m.setText(sentence);
 			return m;
 
@@ -81,7 +81,13 @@ public class TwitterChannel extends Channel{
 		File png=null;
 		if (sMessage.hasPng()){
 			png=sMessage.getPng();
+		}else{
+			if (sMessage.hasDocument()){
+				png=sMessage.getDocument();
+			}
 		}
+		
+		
 		
 		tc.sendAnswerMsg(id, msg, png);
 		

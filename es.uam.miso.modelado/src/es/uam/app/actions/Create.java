@@ -28,6 +28,10 @@ public abstract class Create extends ActionModel {
 		super(proj);
 	}
 	
+	public String getActionName(){
+		return ActionModel.ACTION.CREATE.name();
+	}
+	
 	public String toString() {
 		return "Create-> "+getObject().elementType()+" "+ getObject().getName();
 	}

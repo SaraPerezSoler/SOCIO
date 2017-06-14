@@ -10,8 +10,11 @@ import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.ForceReplyKeyboard;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardRemove;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
@@ -22,27 +25,27 @@ import es.uam.app.message.SendMessageExc;
 import es.uam.app.message.User;
 
 public class TelegramControl extends TelegramLongPollingBot {
-	
-	public static final String ID_SEPARATOR = ";";	
-	public static final String CALL_BACK_SEPARATOR = "_";	
 
-	private static boolean debug=false;
-	
+	public static final String ID_SEPARATOR = ";";
+	public static final String CALL_BACK_SEPARATOR = "_";
+
+	private static boolean debug = false;
+
 	public static final String NAME_BOT_PRUEBA = "pruebaSarabot";
 	private static final String ID_BOT_PRUEBA = "286872489:AAG83znaRy6MdSu0_yKlnwNVVORvI1-5ku0";
 
-	 public static final String NAME_BOT_MODELLING="ModellingBot";
-	 private static final String ID_BOT_MODELLING="307974624:AAFfE4qi_OcfFXj0PlyE8RlGJ2ITAPaWpcs";
-	 
-	 public static String NAME_BOT;
-	 private static String ID_BOT;
+	public static final String NAME_BOT_MODELLING = "ModellingBot";
+	private static final String ID_BOT_MODELLING = "307974624:AAFfE4qi_OcfFXj0PlyE8RlGJ2ITAPaWpcs";
 
+	public static String NAME_BOT;
+	private static String ID_BOT;
 
 	private TelegramChannel channel;
 
 	public TelegramControl(TelegramChannel channel) {
-		this.channel=channel;
+		this.channel = channel;
 	}
+
 	@Override
 	public String getBotUsername() {
 		return NAME_BOT;
@@ -55,92 +58,92 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
-		if (update.hasCallbackQuery()){
-			String data=update.getCallbackQuery().getData();
-			String[] split= data.split(CALL_BACK_SEPARATOR);
-			TelegramCommand tc= TelegramCommand.getCommand(split[0]);
-			if (tc!=null){
-				tc.userAnswer(update);
-			}
-		}else if (update.hasMessage() && update.getMessage().hasText()) {
+
+		if (update.hasMessage() && update.getMessage().hasText()) {
 			String text = update.getMessage().getText().toLowerCase();
 			if (text.startsWith("/")) {
-				TelegramCommand tc= TelegramCommand.getCommand(text);
-				if (tc!=null){
+				TelegramCommand tc = TelegramCommand.getCommand(text);
+				if (tc != null) {
 					tc.commandAction(update);
-				}else{
+				} else {
 					TelegramCommand.helpState.commandAction(update);
 				}
 
-			}else{
-				TelegramCommand tc= TelegramCommand.getState(update.getMessage().getChatId());
-				if (tc!=null){
-					tc.userAnswer(update);
+			} else {
+				TelegramCommand tc = TelegramCommand.getState(update.getMessage().getChatId());
+				if (tc != null) {
+					tc.userAnswerText(update);
 				}
+			}
+		} else {
+			TelegramCommand tc = TelegramCommand.getState(update.getMessage().getChatId());
+			if (tc != null) {
+				tc.userAnswer(update);
 			}
 		}
 
 	}
-	
-	private ReceivedMessage standardMensaje(Update update, String command, String text) {
+
+	private ReceivedMessage standardMensaje(Update update, String command, String projectName, String text) {
 		User us = getUser(update);
 		Date date = getDate(update);
 		String msgId = getId(update);
 		String msgText;
-		if (update.hasCallbackQuery()){
-			msgText=update.getCallbackQuery().getMessage().getText()+" "+update.getCallbackQuery().getData();
-		}else{
-			msgText= update.getMessage().getText();
+		if (update.hasCallbackQuery()) {
+			msgText = update.getCallbackQuery().getMessage().getText() + " " + update.getCallbackQuery().getData();
+		} else {
+			msgText = update.getMessage().getText();
 		}
-		ReceivedMessage msg = new ReceivedMessage(msgText, us, date, command, msgId);
+		ReceivedMessage msg = new ReceivedMessage(msgText, us, date, command,projectName, msgId);
 		msg.setText(text);
 		return msg;
 	}
 
 	private User getUser(Update update) {
-		if (update.hasCallbackQuery()){
-		String username = update.getCallbackQuery().getFrom().getFirstName();
-		long id = (long) update.getCallbackQuery().getFrom().getId();
-		String nick = update.getCallbackQuery().getFrom().getUserName();
-		
-		return new User(username, id, nick, channel.getChannelName());
-	
-		}else{
+		if (update.hasCallbackQuery()) {
+			String username = update.getCallbackQuery().getFrom().getFirstName();
+			long id = (long) update.getCallbackQuery().getFrom().getId();
+			String nick = update.getCallbackQuery().getFrom().getUserName();
+
+			return new User(username, id, nick, channel.getChannelName());
+
+		} else {
 			String username = update.getMessage().getFrom().getFirstName();
 			long id = (long) update.getMessage().getFrom().getId();
 			String nick = update.getMessage().getFrom().getUserName();
-			
+
 			return new User(username, id, nick, channel.getChannelName());
-		
+
 		}
 	}
 
 	private Date getDate(Update update) {
-		int value=0;
-		if (update.hasCallbackQuery()){
-			value= update.getCallbackQuery().getMessage().getDate();
-		}else{
+		int value = 0;
+		if (update.hasCallbackQuery()) {
+			value = update.getCallbackQuery().getMessage().getDate();
+		} else {
 			value = update.getMessage().getDate();
 		}
 		return new java.util.Date((long) value * 1000);
 	}
 
 	private String getId(Update update) {
-		if (update.hasCallbackQuery()){
-			return update.getCallbackQuery().getMessage().getMessageId()+ ID_SEPARATOR +update.getCallbackQuery().getMessage().getChatId();
+		if (update.hasCallbackQuery()) {
+			return update.getCallbackQuery().getMessage().getMessageId() + ID_SEPARATOR
+					+ update.getCallbackQuery().getMessage().getChatId();
 		}
 		return update.getMessage().getMessageId() + ID_SEPARATOR + update.getMessage().getChatId();
 	}
 
-	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
+	public void sendAnswerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
 		String id = rMessage.getId();
 		String[] split = id.split(ID_SEPARATOR);
 		int msgId = Integer.parseInt(split[0]);
 		long chatId = Long.parseLong(split[1]);
 
-		TelegramCommand tc= TelegramCommand.getState(chatId);
-		if (tc!=null){
-			tc.modellingAnswer(chatId, msgId, rMessage.getCommand(), sMessage);
+		TelegramCommand tc = TelegramCommand.getState(chatId);
+		if (tc != null) {
+			tc.modellingAnswer(chatId, msgId, rMessage, sMessage);
 		}
 	}
 
@@ -187,15 +190,15 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 		}
 	}
-	
+
 	public void sendMessageWithURL(long chatId, SendMessageExc sMessage, String[][] options, String[][] urls) {
 
 		InlineKeyboardMarkup inlineKeyBoar = new InlineKeyboardMarkup();
-		List<List<InlineKeyboardButton>> buttons= new ArrayList<List<InlineKeyboardButton>>();
-		for (int i=0; i< options.length;i++){
-			List<InlineKeyboardButton> row= new ArrayList<InlineKeyboardButton>();
-			for (int j=0; j<options[i].length; j++){
-				InlineKeyboardButton button=new InlineKeyboardButton();
+		List<List<InlineKeyboardButton>> buttons = new ArrayList<List<InlineKeyboardButton>>();
+		for (int i = 0; i < options.length; i++) {
+			List<InlineKeyboardButton> row = new ArrayList<InlineKeyboardButton>();
+			for (int j = 0; j < options[i].length; j++) {
+				InlineKeyboardButton button = new InlineKeyboardButton();
 				button.setText(options[i][j]);
 				button.setUrl(urls[i][j]);
 				row.add(button);
@@ -203,10 +206,10 @@ public class TelegramControl extends TelegramLongPollingBot {
 			buttons.add(row);
 		}
 		inlineKeyBoar.setKeyboard(buttons);
-		
+
 		if (sMessage.hasText()) {
 			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
-			
+
 			send.setReplyMarkup(inlineKeyBoar);
 			try {
 				sendMessage(send);
@@ -215,7 +218,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 				Main.log.error(e);
 				;
 			}
-		}else if (sMessage.hasPng()) {
+		} else if (sMessage.hasPng()) {
 			SendPhoto photo = new SendPhoto().setChatId(chatId).setNewPhoto(sMessage.getPng());
 			if (!sMessage.hasText()) {
 				photo.setReplyMarkup(inlineKeyBoar);
@@ -227,8 +230,55 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 		}
 	}
-	public void write(Update update,String command, String text){
-		channel.write(standardMensaje(update, command, text));
+
+	public void sendMessageWithKeyBoar(int msgId, long chatId, SendMessageExc sMessage, String[][] options) {
+
+		ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
+		keyboardMarkup.setOneTimeKeyboad(true);
+		
+
+		List<KeyboardRow> buttons = new ArrayList<KeyboardRow>();
+		for (int i = 0; i < options.length; i++) {
+			KeyboardRow row = new KeyboardRow();
+			for (int j = 0; j < options[i].length; j++) {
+				KeyboardButton button = new KeyboardButton();
+				button.setText(options[i][j]);
+				row.add(button);
+			}
+			buttons.add(row);
+		}
+		keyboardMarkup.setKeyboard(buttons);
+
+		if (sMessage.hasText()) {
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			if (msgId != -1) {
+				keyboardMarkup.setSelective(true);
+				send.setReplyToMessageId(msgId);
+			}
+			send.setReplyMarkup(keyboardMarkup);
+			try {
+				sendMessage(send);
+
+			} catch (TelegramApiException e) {
+				Main.log.error(e);
+				;
+			}
+		} 
+		if (sMessage.hasPng()) {
+			SendPhoto photo = new SendPhoto().setChatId(chatId).setNewPhoto(sMessage.getPng());
+			if (!sMessage.hasText()) {
+				photo.setReplyMarkup(keyboardMarkup);
+				if (msgId != -1) {
+					keyboardMarkup.setSelective(true);
+					photo.setReplyToMessageId(msgId);
+				}
+			}
+			try {
+				sendPhoto(photo);
+			} catch (TelegramApiException e) {
+				Main.log.error(e);
+			}
+		}
 	}
 
 	public void sendMessageAndWait(int msgId, long chatId, SendMessageExc sMessage) {
@@ -259,17 +309,23 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 		}
 	}
+
+	public void write(Update update, String command, String projectName, String text) {
+		channel.write(standardMensaje(update, command, projectName, text));
+	}
+
 	public static boolean isDebug() {
 		return debug;
 	}
+
 	public static void setDebug(boolean debug) {
 		TelegramControl.debug = debug;
-		if (debug){
-			NAME_BOT=NAME_BOT_PRUEBA;
-			ID_BOT=ID_BOT_PRUEBA;
-		}else{
-			NAME_BOT=NAME_BOT_MODELLING;
-			ID_BOT=ID_BOT_MODELLING;
+		if (debug) {
+			NAME_BOT = NAME_BOT_PRUEBA;
+			ID_BOT = ID_BOT_PRUEBA;
+		} else {
+			NAME_BOT = NAME_BOT_MODELLING;
+			ID_BOT = ID_BOT_MODELLING;
 		}
 	}
 

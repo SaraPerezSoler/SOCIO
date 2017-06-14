@@ -60,5 +60,9 @@ public abstract class Update extends ActionModel {
 	public String toString() {
 		return "Update-> Old: "+getOld()+" / New: "+getNew();
 	}
+	
+	public String getActionName(){
+		return ActionModel.ACTION.UPDATE.name();
+	}
 
 }

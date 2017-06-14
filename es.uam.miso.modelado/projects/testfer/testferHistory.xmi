@@ -321,6 +321,9 @@
       </commands>
     </sentences>
   </msg>
+  <msg user="//@users.1" text="testfer" date="2017-06-09T12:07:28.000+0200" id="9033;14419070"/>
+  <msg user="//@users.1" text="testfer" date="2017-06-09T12:09:49.000+0200" id="9059;14419070"/>
   <users name="Fernando" nick="Glognark" id="9137484" channel="Telegram"/>
+  <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="TestFer" sentence="testfer" date="2017-05-10T15:01:33.000+0200" id="5024;9137484"/>
 </DslHistory:History>

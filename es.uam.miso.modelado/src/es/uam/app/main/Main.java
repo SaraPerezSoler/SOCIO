@@ -22,6 +22,7 @@ import es.uam.app.main.commands.MainCommand;
 import es.uam.app.main.commands.NewProject;
 import es.uam.app.main.commands.Projects;
 import es.uam.app.main.commands.Redo;
+import es.uam.app.main.commands.Statistics;
 import es.uam.app.main.commands.Undo;
 import es.uam.app.main.commands.Validate;
 import es.uam.app.main.exceptions.FatalException;
@@ -36,7 +37,15 @@ public class Main {
 
 	public enum MainCommandEnum {
 
-		NEW_PROJECT("newproject", new NewProject()), HISTORY(new History()), PROJECTS(new Projects()), 
+		NEW_PROJECT("newproject", new NewProject()), 
+		HISTORY_ALL(new History(History.ALL)), 
+		HISTORY_USER(new History(History.USER)),
+		HISTORY_ELEMENT(new History(History.ELEMENT)),
+		HISTORY_ACTION(new History(History.ACTION)), 
+		USER_MSG_STATISTICS(new Statistics(Statistics.USER_MSG)), 
+		USER_ACTIONS_STATISTICS(new Statistics(Statistics.USER_ACTION)), 
+		ACTIONS_STATISTICS(new Statistics(Statistics.ACTION)), 
+		PROJECTS(new Projects()), 
 		UNDO(new Undo()), REDO(new Redo()), GET(new Get()), VALIDATE(new Validate()),
 		HELP(new Help()), 
 		BASE_CASE(new BaseCase());
@@ -152,19 +161,14 @@ public class Main {
 
 	public static void readMessage(ReceivedMessage m) {
 		try {
-			if (m.getCommand() == null) {
-				return;
+			if (m.getCommand() == null || m.getCommand().equals("") || m.getCommand().equals(" ")) {
+				MainCommandEnum.BASE_CASE.execute(m);
 			}
-			boolean commandfound = false;
 
 			for (MainCommandEnum mce : MainCommandEnum.values()) {
 				if (m.getCommand().equalsIgnoreCase(mce.getName())) {
 					mce.execute(m);
-					commandfound = true;
 				}
-			}
-			if (!commandfound) {
-				MainCommandEnum.BASE_CASE.execute(m);
 			}
 
 		} catch (FatalException e) {

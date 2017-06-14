@@ -1,6 +1,7 @@
 package es.uam.app.message;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +10,13 @@ import java.util.Set;
 
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.ValidText;
+import es.uam.app.projects.ecore.Feature;
 
 public class ReceivedMessage implements Comparable<ReceivedMessage> {
 
 	private String msg; // mensaje completo
 	private String command; // comando
+	private String projectName; // comando
 	private String text; // texto sobre el que se aplica el comando
 	private User user;
 	private Date date;
@@ -21,14 +24,15 @@ public class ReceivedMessage implements Comparable<ReceivedMessage> {
 	private Map<String, List<ActionModel>> sentences;
 	private boolean undoable = true;
 	
-	private static final char [] validCharacter={' ', '_', '.', ',', ';', '\'', '"'};
+	private static final char [] validCharacter={' ', '_', '.', ',', ';', '\'', '"', '-', '/'};
 
-	public ReceivedMessage(String msg, User user, Date fecha, String command, String id) {
+	public ReceivedMessage(String msg, User user, Date fecha, String command,String projectName, String id) {
 		super();
 		this.msg = msg;
 		this.user = user;
 		this.date = fecha;
-		this.command = ValidText.validText(command, validCharacter);;
+		this.command = ValidText.validText(command, validCharacter);
+		this.projectName=ValidText.validText(projectName, validCharacter);
 		this.id = id;
 	}
 
@@ -155,6 +159,62 @@ public class ReceivedMessage implements Comparable<ReceivedMessage> {
 	@Override
 	public int compareTo(ReceivedMessage o) {
 		return date.compareTo(o.getDate());
+	}
+
+	public boolean hasAction(String action) {
+		Set<String> sentencesKeySet= sentences.keySet();
+		for (String k: sentencesKeySet){
+			List<ActionModel> ams= sentences.get(k);
+			for (ActionModel am: ams){
+				if (am.getActionName().equalsIgnoreCase(action)){
+					return true;
+				}
+			}
+		}
+		return false;
+		
+	}
+
+	public boolean hasElement(String name, String of) {
+		Set<String> sentencesKeySet= sentences.keySet();
+		for (String k: sentencesKeySet){
+			List<ActionModel> ams= sentences.get(k);
+			for (ActionModel am: ams){
+				if (of!=null){
+					if (am.getObject() instanceof Feature){
+						Feature f= (Feature)am.getObject();
+						if (f.getName().equalsIgnoreCase(name) && f.getParentName().equalsIgnoreCase(of)){
+							return true;
+						}
+					}
+				}else{
+					if (am.getObject().getName().equalsIgnoreCase(name)){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+	
+	public List<ActionModel> getAllActions(){
+		Set<String> sentence= sentences.keySet();
+		List<ActionModel> actions= new ArrayList<ActionModel>();
+		for (String s: sentence){
+			actions.addAll(sentences.get(s));
+		}
+		return actions;
+	}
+
+	public boolean hasText() {
+		if (text!= null && !text.equals(" ") && !text.isEmpty()){
+			return true;
+		}
+		return false;
 	}
 
 	

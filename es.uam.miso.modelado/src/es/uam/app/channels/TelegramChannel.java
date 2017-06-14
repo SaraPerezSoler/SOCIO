@@ -51,7 +51,7 @@ public class TelegramChannel extends Channel {
 
 	@Override
 	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
-		telegramControl.answerMessage(rMessage, sMessage);
+		telegramControl.sendAnswerMessage(rMessage, sMessage);
 	}
 
 	@Override

@@ -1,14 +1,33 @@
 package es.uam.app.channels.telegram;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
-import es.uam.app.main.exceptions.ProjectNotFoundException;
+import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.SendHistoryMsg;
 import es.uam.app.message.SendMessageExc;
 
 public class History extends TelegramCommand {
 
-	private static final String HISTORY_MSG = "Choose the project to see the history.";
+	private final String EXIT = "Exit from " + this.getCommand();
+	public final String BACK = "\u2b05\ufe0f" + " Back";
+
+	private final String OPTIONS_MSG = "Do you want see Statistics or get the messages from the project?";
+	private final String[] OPTIONS = new String[] { "\ud83d\udcb9 Statistics", "\ud83d\udcac Get messages" };
+
+	private Map<Long, Boolean> start_state = new HashMap<Long, Boolean>();
+
+	private HistoryOption option;
+
+	// private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+	//
+	// private Date fist;
+	// private Date second;
+	// private boolean newerFirst = true;
 
 	public History(TelegramControl tChannel) {
 		super(tChannel);
@@ -26,49 +45,78 @@ public class History extends TelegramCommand {
 
 	@Override
 	public void commandAction(Update update) {
-
-		this.removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
-		String text = update.getMessage().getText();
-		String[] split = text.split(" ");
-		// Si el comando no tiene argumentos
-		if (split.length == 1) {
-			String project = this.getProject(update.getMessage().getChatId());
-			// Comprobamos si el chat tiene un proyecto asignado
-			if (project == null || project.equals("")) {
-				// si el chat no tiene un proyecto asignado,
-				// enviamos la imagen con todos los proyectos y
-				// esperamos respuesta.
-				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "");
-
-			} else {
-				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.HISTORY.getName(), project);
-			}
-
-		} else {
+		String project = this.getProject(update.getMessage().getChatId());
+		option=null;
+		if (project == null || project.equals("")) {
 			this.setStandardState(update.getMessage().getChatId());
-			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update, Main.MainCommandEnum.HISTORY.getName(), text2);
-		}
-	}
+			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
+			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 
-	@Override
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
-		
-		if (sMessage.getText() != null && sMessage.getText().startsWith(ProjectNotFoundException.PROJECT_NOT_FOUND)) {
-			this.setStandardState(chatId);
-			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
-			sMessage.setText(HISTORY_MSG);
-			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
+			this.setState(update.getMessage().getChatId());
+			start_state.put(update.getMessage().getChatId(), true);
+			SendMessageExc sMessage = new SendMessageExc(OPTIONS_MSG);
+			String[][] optionsKeydoard = new String[][] { { OPTIONS[0] }, { OPTIONS[1] }, { BACK } };
+			tChannel.sendMessageWithKeyBoar(update.getMessage().getMessageId(), update.getMessage().getChatId(),
+					sMessage, optionsKeydoard);
 		}
+
 	}
 
 	@Override
-	public void userAnswer(Update update) {
+	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
+		if (sMessage instanceof SendHistoryMsg && sMessage.getMessage().equals("")) {
+			String split[] = ((SendHistoryMsg) sMessage).toString().split("\n");
+			if (split.length >= 30) {
+				FileWriter fileWrite = null;
+				try {
+					File file = new File("history.txt");
+					fileWrite = new FileWriter(file);
+					fileWrite.write(((SendHistoryMsg) sMessage).toString());
+					fileWrite.close();
+					sMessage.setText("Your log: ");
+					sMessage.setDocument(file);
+					tChannel.sendMessage(msgId, chatId, sMessage);
+				} catch (Exception ex) {
+				}
+			} else {
+				sMessage.setText(((SendHistoryMsg) sMessage).toString());
+				tChannel.sendMessage(msgId, chatId, sMessage);
+			}
+			this.setStandardState(chatId);
+		} else {
+			super.modellingAnswer(chatId, msgId, rMessageCommand, sMessage);
+		}
+
+	}
+
+	@Override
+	public void userAnswerText(Update update) {
+		String text = update.getMessage().getText();
+		if (start_state.get(update.getMessage().getChatId())) {
+			start_state.put(update.getMessage().getChatId(), false);
+			if (text.equals(OPTIONS[0])) {
+				option = HistoryStatistics.getHistoryStatistics(this);
+			} else if (text.equals(OPTIONS[1])) {
+				option = HistoryMsg.getHistoryMsg(this);
+			} else {
+				exit(update);
+				return;
+			}
+			option.start(update);
+		} else {
+			if (option != null) {
+				option.userAnswerText(update);
+			}else{
+				exit(update);
+			}
+		}
+	}
+
+	public void exit(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update, Main.MainCommandEnum.HISTORY.getName(), update.getMessage().getText());
+		SendMessageExc sent = new SendMessageExc(EXIT);
+		tChannel.sendMessage(update.getMessage().getMessageId(), update.getMessage().getChatId(), sent);
 	}
 
 }

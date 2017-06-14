@@ -106,7 +106,7 @@ public class Sentence {
 		return null;
 	}
 
-	public List<NP> getCandidateConcepts() {
+	private List<NP> getCandidateConcepts() {
 
 		List<Tree> nps = getNP(tree);
 		List<NP> ret = new ArrayList<NP>();
@@ -469,6 +469,10 @@ public class Sentence {
 			}
 		}
 		return null;
+	}
+
+	public List<NP> getConcepts() {
+		return concepts;
 	}
 
 

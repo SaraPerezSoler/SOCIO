@@ -47,7 +47,7 @@ public class Talk extends TelegramCommand {
 			} else {
 				String text2 = text.replace(split[0], "");
 				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update, project, text2);
+				tChannel.write(update,"", project, text2);
 
 			}
 		}

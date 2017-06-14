@@ -4,6 +4,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.main.Main;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
+import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 
 public class SetProject extends TelegramCommand {
@@ -35,18 +36,18 @@ public class SetProject extends TelegramCommand {
 		String[] split = text.split(" ");
 		// Si el comando no tiene argumentos
 		if (split.length == 1) {
-			tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "");
+			tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "", "");
 		} else {
 			String text2 = text.replace(split[0], "");
 			text2 = text2.replace(" ", "");
-			tChannel.write(update, text2, "");
+			tChannel.write(update,"", text2, "");
 		}
 
 	}
 	
 	@Override
-	public void modellingAnswer(long chatId, int msgId, String rMessageCommand, SendMessageExc sMessage) {
-		if (rMessageCommand.equals(Main.MainCommandEnum.PROJECTS.getName())) {
+	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
+		if (rMessageCommand.getCommand().equals(Main.MainCommandEnum.PROJECTS.getName())) {
 			sMessage.setText(SET_PROJECT_MSG1);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
@@ -56,16 +57,16 @@ public class SetProject extends TelegramCommand {
 				tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 			} else {
 				sMessage.setText(SET_PROJECT_MSG2);
-				this.setProject(chatId, rMessageCommand);
+				this.setProject(chatId, rMessageCommand.getProjectName());
 				this.setStandardState(chatId);
 				tChannel.sendMessage(msgId, chatId, sMessage);
 			}
 		}
 	}
 	@Override
-	public void userAnswer(Update update) {
+	public void userAnswerText(Update update) {
 		this.setState(update.getMessage().getChatId());
-		tChannel.write(update, update.getMessage().getText(), "");
+		tChannel.write(update, "", update.getMessage().getText(), "");
 	};
 
 }

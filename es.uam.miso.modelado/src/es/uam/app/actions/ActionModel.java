@@ -4,6 +4,10 @@ import es.uam.app.projects.Project;
 import es.uam.app.projects.ecore.Controlador;
 
 public abstract class ActionModel {
+	
+	public enum ACTION{
+		CREATE, UPDATE, REMOVE
+	};
 
 	private boolean execute = false;
 	private boolean undo = false;
@@ -21,6 +25,7 @@ public abstract class ActionModel {
 	public abstract void doIt() throws Exception;
 	public abstract void undoIt(Project proj) throws Exception;
 	public abstract void redoIt(Project proj) throws Exception;
+	public abstract String getActionName();
 	
 	protected void execute() {
 		execute = true;

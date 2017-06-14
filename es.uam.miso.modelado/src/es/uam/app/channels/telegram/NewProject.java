@@ -43,16 +43,16 @@ public class NewProject extends TelegramCommand {
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), text2);
+			tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), text2, "");
 			this.setProject(update.getMessage().getChatId(), text2);
 		}
 
 	}
 	
 	@Override
-	public void userAnswer(Update update) {
+	public void userAnswerText(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), update.getMessage().getText());
+		tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), update.getMessage().getText(), "");
 		this.setProject(update.getMessage().getChatId(), update.getMessage().getText());
 	}
 
