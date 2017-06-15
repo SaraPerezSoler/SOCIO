@@ -7,8 +7,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 
 import es.uam.app.actions.ActionModel;
-import es.uam.app.actions.UpdateAttrType;
-import es.uam.app.actions.UpdateRefType;
+import es.uam.app.actions.metamodels.UpdateAttrType;
+import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;

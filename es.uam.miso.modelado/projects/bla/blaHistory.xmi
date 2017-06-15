@@ -118,6 +118,25 @@
   </msg>
   <msg user="//@users.0" text="/show@pruebaSarabot" date="2017-06-09T14:56:40.000+0200" id="9209;-179533479"/>
   <msg user="//@users.0" text="bla" date="2017-06-09T14:59:09.000+0200" id="9226;-179533479"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:06:53.000+0200" id="9955;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:26:26.000+0200" id="9962;14419070"/>
+  <msg user="//@users.0" text="remove null from person" date="2017-06-15T11:29:42.000+0200" id="9967;14419070">
+    <sentences sentence="remove null from person"/>
+  </msg>
+  <msg user="//@users.0" text="/show" date="2017-06-15T11:30:19.000+0200" id="9970;14419070"/>
+  <msg user="//@users.0" text="/show" date="2017-06-15T11:32:06.000+0200" id="9972;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:33:19.000+0200" id="9979;14419070"/>
+  <msg user="//@users.0" text="/show" date="2017-06-15T11:33:23.000+0200" id="9982;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:35:04.000+0200" id="9987;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:37:35.000+0200" id="9994;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:38:09.000+0200" id="9999;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:40:40.000+0200" id="10043;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:41:28.000+0200" id="10055;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:42:50.000+0200" id="10068;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:44:02.000+0200" id="10081;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:44:35.000+0200" id="10095;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:47:01.000+0200" id="10115;14419070"/>
+  <msg user="//@users.0" text="bla" date="2017-06-15T11:50:55.000+0200" id="10128;14419070"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="bla" sentence="bla" date="2017-05-22T12:50:33.000+0200" id="7065;14419070"/>
 </DslHistory:History>

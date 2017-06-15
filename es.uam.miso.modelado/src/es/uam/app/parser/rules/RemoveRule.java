@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uam.app.actions.ActionModel;
-import es.uam.app.actions.RemoveAttribute;
-import es.uam.app.actions.RemoveClass;
-import es.uam.app.actions.RemoveReference;
-import es.uam.app.actions.UpdateClassRemoveSuperType;
-import es.uam.app.actions.UpdateRefType;
+import es.uam.app.actions.metamodels.RemoveAttribute;
+import es.uam.app.actions.metamodels.RemoveClass;
+import es.uam.app.actions.metamodels.RemoveReference;
+import es.uam.app.actions.metamodels.UpdateClassRemoveSuperType;
+import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;

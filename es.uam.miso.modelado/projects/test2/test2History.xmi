@@ -213,6 +213,10 @@
   <msg user="//@users.0" text="/setproject test2" date="2017-05-22T19:34:49.000+0200" id="7223;-179533479"/>
   <msg user="//@users.0" text="test2" date="2017-05-23T11:38:14.000+0200" id="3043;14419070"/>
   <msg user="//@users.0" text="test2" date="2017-06-09T12:10:35.000+0200" id="9071;14419070"/>
+  <msg user="//@users.0" text="test2" date="2017-06-15T12:51:36.000+0200" id="10321;14419070"/>
+  <msg user="//@users.0" text="test" date="2017-06-15T12:51:52.000+0200" id="10329;14419070">
+    <sentences sentence="test"/>
+  </msg>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <users name="Mabus" nick="VNMabus" id="12768348" channel="Telegram"/>
   <createMsg user="//@users.0" text="test2" sentence="test2" date="2017-05-10T15:14:38.000+0200" id="5341;-195586834"/>

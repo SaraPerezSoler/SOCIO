@@ -1,22 +1,23 @@
-package es.uam.app.actions;
+package es.uam.app.actions.metamodels;
 
+import es.uam.app.actions.Remove;
 import es.uam.app.projects.Project;
+import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.ReferenceControl;
 
-public class RemoveReference extends Remove {
+public class RemoveClass extends Remove{
 
-	private ReferenceControl ref;
-
+	private ClassControl class_;
 	
-	public RemoveReference( Project proj, ReferenceControl ref) {
+	
+	public RemoveClass(Project proj, ClassControl class_) {
 		super(proj);
-		this.ref = ref;
+		this.class_ = class_;
 	}
 
-	public RemoveReference(ReferenceControl referenceControl) {
+	public RemoveClass(ClassControl classControl) {
 		super(null);
-		this.ref = referenceControl;
+		this.class_ = classControl;
 	}
 
 	@Override
@@ -24,16 +25,14 @@ public class RemoveReference extends Remove {
 		if (isExecute()){
 			return;
 		}
-		
-		proj.removeReference(ref, ref.getParent());
+		proj.removeClass(class_);
 		super.execute();
-
 	}
 
 	@Override
 	public Controlador getObject() {
 		doIt();
-		return ref;
+		return class_;
 	}
 
 	@Override
@@ -42,7 +41,7 @@ public class RemoveReference extends Remove {
 			return;
 		}
 		
-		proj.unRemoveReference(ref);
+		proj.unRemoveClass(class_);
 		super.undoIt();
 	}
 
@@ -51,7 +50,8 @@ public class RemoveReference extends Remove {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}
-		proj.removeReference(ref, ref.getParent());
+		proj.removeClass(class_);
 		super.redoIt();
 	}
+
 }

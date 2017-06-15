@@ -17,13 +17,15 @@ public class SendHistoryMsg extends SendMessageExc {
 
 	public class Log {
 		private String userName;
+		private String channel;
 		private Date date;
 		private String msg;
 		private List<String> actions;
 
-		private Log(String userName, Date date, String msg, List<String> actions) {
+		private Log(String userName,String channel, Date date, String msg, List<String> actions) {
 			super();
 			this.userName = userName;
+			this.channel=channel;
 			this.date = date;
 			this.msg = msg;
 			this.actions = actions;
@@ -52,7 +54,7 @@ public class SendHistoryMsg extends SendMessageExc {
 		@Override
 		public String toString() {
 			SimpleDateFormat fomartter= new SimpleDateFormat("dd/MM/yy hh:mm:ss");
-			String cad= "User: "+userName + " at " + fomartter.format(date) + " send: " + msg+"\n\n";
+			String cad= "User: "+userName + " at " + fomartter.format(date) +" in "+channel+ "\n send: " + msg+"\n\n";
 			cad+="The message cause this actions:\n";
 			for (String s: actions){
 				cad+="\t* "+s+"\n";
@@ -72,13 +74,13 @@ public class SendHistoryMsg extends SendMessageExc {
 		return logs;
 	}
 	
-	public void addLog(String userName, Date date, String msg, List<ActionModel> actions){
+	public void addLog(String userName,String channel,  Date date, String msg, List<ActionModel> actions){
 		List<String> actionsString= new ArrayList<>();
 		for (ActionModel a: actions){
 			actionsString.add(a.toString());
 		}
 		
-		logs.add(new Log(userName, date, msg, actionsString));
+		logs.add(new Log(userName,channel, date, msg, actionsString));
 	}
 	@Override
 	public String toString() {

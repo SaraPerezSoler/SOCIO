@@ -5,6 +5,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import es.uam.app.actions.metamodels.RemoveAttribute;
+import es.uam.app.actions.metamodels.RemoveClass;
+import es.uam.app.actions.metamodels.RemoveReference;
 import es.uam.app.projects.Project;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;

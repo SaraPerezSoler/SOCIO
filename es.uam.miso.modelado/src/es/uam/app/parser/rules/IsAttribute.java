@@ -2,8 +2,8 @@ package es.uam.app.parser.rules;
 
 import java.io.FileNotFoundException;
 
-import es.uam.app.actions.ChangeRefForAttr;
-import es.uam.app.actions.CreateAttribute;
+import es.uam.app.actions.metamodels.ChangeRefForAttr;
+import es.uam.app.actions.metamodels.CreateAttribute;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.WordConfigure;
 import es.uam.app.projects.Project;

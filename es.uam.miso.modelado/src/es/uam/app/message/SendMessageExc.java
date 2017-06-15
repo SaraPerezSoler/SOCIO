@@ -52,7 +52,7 @@ public class SendMessageExc extends Exception {
 	}
 	
 	public boolean hasText(){
-		return text!=null;
+		return text!=null && !text.isEmpty();
 	}
 	
 	public boolean hasPng(){

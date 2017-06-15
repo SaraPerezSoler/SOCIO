@@ -1,5 +1,6 @@
-package es.uam.app.actions;
+package es.uam.app.actions.metamodels;
 
+import es.uam.app.actions.Update;
 import es.uam.app.parser.rules.IsClass;
 import es.uam.app.projects.Project;
 import es.uam.app.projects.ecore.ClassControl;

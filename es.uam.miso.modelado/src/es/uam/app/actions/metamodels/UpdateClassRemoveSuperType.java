@@ -1,4 +1,4 @@
-package es.uam.app.actions;
+package es.uam.app.actions.metamodels;
 
 import java.util.List;
 

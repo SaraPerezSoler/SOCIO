@@ -1,50 +1,110 @@
-UserNick: Saruki at 07/06/17 04:12:02send: 
-remove text
+User: testModelling at 31/05/17 02:14:47 in Twitter
+ send: @ModellingBot #test Package is an element. Packages contains types. Type is abstract. Element is abstract.
+
+The message cause this actions:
+	* Create-> class Package
+	* Create-> class Element
+	* Update-> Old: class Package / New: class Package, superTypes: [Element]
+	* Update-> Old: class Type / New: abstract class Type
+	* Create-> class Type
+	* Create-> reference type
+	* Update-> Old: reference type [0..-1], type: null, from Package / New: reference type [0..-1], type: Type, from Package
+	* Update-> Old: class Element / New: abstract class Element
+
+----------------------------
+User: testModelling at 31/05/17 02:15:46 in Twitter
+ send: @ModellingBot #test class, interface and enumeration are types.
+
+The message cause this actions:
+	* Create-> class Interface
+	* Update-> Old: class Interface / New: class Interface, superTypes: [Type]
+	* Create-> class Enumeration
+	* Update-> Old: class Enumeration / New: class Enumeration, superTypes: [Type]
+	* Create-> class Class
+	* Update-> Old: class Class / New: class Class, superTypes: [Type]
+
+----------------------------
+User: testModelling at 31/05/17 02:23:34 in Twitter
+ send: @ModellingBot #test all elements contains a name.
+
+The message cause this actions:
+	* Create-> class Name
+	* Create-> reference name
+	* Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
+
+----------------------------
+User: testModelling at 31/05/17 02:32:45 in Twitter
+ send: @ModellingBot #test add type name. name contains a type name
+
+The message cause this actions:
+	* Create-> reference typeName
+	* Update-> Old: reference typeName [0..1], type: null, from Name / New: reference typeName [0..1], type: TypeName, from Name
+	* Create-> class TypeName
+
+----------------------------
+User: testModelling at 31/05/17 02:40:38 in Twitter
+ send: @ModellingBot #test Type and Name are elements
+
+The message cause this actions:
+	* Update-> Old: class Name / New: class Name, superTypes: [Element]
+	* Update-> Old: abstract class Type / New: abstract class Type, superTypes: [Element]
+
+----------------------------
+User: Saruki at 07/06/17 04:12:02 in Telegram
+ send: remove text
+
 The message cause this actions:
 	* Update-> Old: reference name [0..1], type: Text, from Name / New: reference name [0..1], type: null, from Name
 	* Remove-> class Text
 
 ----------------------------
-UserNick: Saruki at 07/06/17 04:30:26send: 
-hotel has a person
+User: Saruki at 07/06/17 04:30:26 in Telegram
+ send: hotel has a person
+
 The message cause this actions:
 	* Create-> class Hotel
 	* Create-> attribute person
 
 ----------------------------
-UserNick: Saruki at 07/06/17 04:30:31send: 
-add person
+User: Saruki at 07/06/17 04:30:31 in Telegram
+ send: add person
+
 The message cause this actions:
 	* Create-> class Person
 
 ----------------------------
-UserNick: Saruki at 07/06/17 04:50:24send: 
-Remove name from name
+User: Saruki at 07/06/17 04:50:24 in Telegram
+ send: Remove name from name
+
 The message cause this actions:
 	* Remove-> reference name [0..1], type: Name, from Element
 
 ----------------------------
-UserNick: Saruki at 07/06/17 04:50:37send: 
-Remove name from name
+User: Saruki at 07/06/17 04:50:37 in Telegram
+ send: Remove name from name
+
 The message cause this actions:
 	* Remove-> reference name [0..1], type: null, from Name
 
 ----------------------------
-UserNick: Saruki at 07/06/17 04:50:51send: 
-Element contains a name
+User: Saruki at 07/06/17 04:50:51 in Telegram
+ send: Element contains a name
+
 The message cause this actions:
 	* Create-> reference name
 	* Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
 
 ----------------------------
-UserNick: Saruki at 08/06/17 11:41:12send: 
-add house
+User: Saruki at 08/06/17 11:41:12 in Telegram
+ send: add house
+
 The message cause this actions:
 	* Create-> class House
 
 ----------------------------
-UserNick: Saruki at 08/06/17 11:49:07send: 
-Packages can be bulky or fragile
+User: Saruki at 08/06/17 11:49:07 in Telegram
+ send: Packages can be bulky or fragile
+
 The message cause this actions:
 	* Create-> class FragilePackage
 	* Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]

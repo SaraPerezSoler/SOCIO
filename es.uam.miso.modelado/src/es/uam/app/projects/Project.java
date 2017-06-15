@@ -18,6 +18,7 @@ import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.time.Day;
+import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
 
 import es.uam.app.actions.ActionModel;
@@ -277,7 +278,7 @@ public class Project {
 		}
 		return ret;
 	}
-	
+
 	public List<ReceivedMessage> getHistoryElement(String element) throws Exception {
 		List<ReceivedMessage> ret = new ArrayList<>();
 		List<ReceivedMessage> list = log.readHistoryMsgs();
@@ -315,20 +316,22 @@ public class Project {
 	public List<ReceivedMessage> getHistory() {
 		return log.readHistoryMsgs();
 	}
-	
+
 	public List<ReceivedMessage> getHistory(Date date, Order order) {
-		List<ReceivedMessage> history=getHistory();
-		List<ReceivedMessage> ret= new ArrayList<>();
-		if (order==Order.DESCENDING){
+		List<ReceivedMessage> history = getHistory();
+		List<ReceivedMessage> ret = new ArrayList<>();
+		if (order == Order.DESCENDING) {
+			Day aux=new Day(date);
+			date= aux.getEnd();
 			Collections.reverse(history);
-			for (ReceivedMessage rm: history){
-				if (!rm.getDate().before(date)){
+			for (ReceivedMessage rm : history) {
+				if (!rm.getDate().after(date)) {
 					ret.add(rm);
 				}
 			}
-		}else{
-			for (ReceivedMessage rm: history){
-				if (!rm.getDate().after(date)){
+		} else {
+			for (ReceivedMessage rm : history) {
+				if (!rm.getDate().before(date)) {
 					ret.add(rm);
 				}
 			}
@@ -337,25 +340,29 @@ public class Project {
 	}
 
 	public List<ReceivedMessage> getHistory(Date start, Date end, Order order) {
-		if (end.before(start)){
-			Date aux=start;
-			start=end;
-			end=aux;
+		
+		if (end.before(start)) {
+			Date aux = start;
+			start = end;
+			end = aux;
 		}
-		List<ReceivedMessage> history=getHistory();
-		List<ReceivedMessage> ret= new ArrayList<>();
-		for (ReceivedMessage rm: history){
-			if (!rm.getDate().before(start) && !rm.getDate().after(end)){
+		
+		Day auxDay=new Day(end);
+		end=auxDay.getEnd();
+		
+		List<ReceivedMessage> history = getHistory();
+		List<ReceivedMessage> ret = new ArrayList<>();
+		for (ReceivedMessage rm : history) {
+			if (!rm.getDate().before(start) && !rm.getDate().after(end)) {
 				ret.add(rm);
 			}
 		}
-		
-		if (order==Order.DESCENDING){
+
+		if (order == Order.DESCENDING) {
 			Collections.reverse(ret);
 		}
 		return ret;
 	}
-	
 
 	public File getStatisticsUserMsg() throws IOException {
 
@@ -372,26 +379,25 @@ public class Project {
 			msg_user.put(rm.getUser(), userList);
 		}
 
-		Map<String, Map<Day, List<Object>>> user_day_msg = new HashMap<>();
+		Map<String, Map<Date, List<Object>>> user_date_msg = new HashMap<>();
 		Set<User> keys = msg_user.keySet();
 		for (User key : keys) {
-			Map<Day, List<Object>> day_msg = new HashMap<>();
+			Map<Date, List<Object>> date_msg = new HashMap<>();
 
 			List<ReceivedMessage> userList = msg_user.get(key);
 			for (ReceivedMessage rm : userList) {
-				Day day = new Day(rm.getDate());
-				List<Object> dayList = day_msg.get(day);
-				if (dayList == null) {
-					dayList = new ArrayList<>();
+				List<Object> msgList = date_msg.get(rm.getDate());
+				if (msgList == null) {
+					msgList = new ArrayList<>();
 				}
-				dayList.add(rm);
-				day_msg.put(day, dayList);
+				msgList.add(rm.getDate());
+				date_msg.put(rm.getDate(), msgList);
 			}
-			user_day_msg.put(key.getNick(), day_msg);
+			user_date_msg.put(key.getNick(), date_msg);
 
 		}
 
-		return getChart(user_day_msg, "User messages", "Number of messages");
+		return getChart(user_date_msg, "User messages", "Number of messages");
 	}
 
 	public File getStatisticsUserAction() throws IOException {
@@ -409,175 +415,244 @@ public class Project {
 			msg_user.put(rm.getUser(), userList);
 		}
 
-		Map<String, Map<Day, List<Object>>> user_day_actions = new HashMap<>();
+		Map<String, Map<Date, List<Object>>> user_date_actions = new HashMap<>();
 		Set<User> keys = msg_user.keySet();
 		for (User key : keys) {
-			Map<Day, List<Object>> day_msg = new HashMap<>();
+			Map<Date, List<Object>> date_msg = new HashMap<>();
 
 			List<ReceivedMessage> userList = msg_user.get(key);
 			for (ReceivedMessage rm : userList) {
-				Day day = new Day(rm.getDate());
-				List<Object> dayList = day_msg.get(day);
-				if (dayList == null) {
-					dayList = new ArrayList<>();
+				List<Object> msgList = date_msg.get(rm.getDate());
+				if (msgList == null) {
+					msgList = new ArrayList<>();
 				}
-				dayList.addAll(rm.getAllActions());
-				day_msg.put(day, dayList);
+				msgList.addAll(rm.getAllActions());
+				date_msg.put(rm.getDate(), msgList);
 			}
-			user_day_actions.put(key.getNick(), day_msg);
+			user_date_actions.put(key.getNick(), date_msg);
 
 		}
 
-		return getChart(user_day_actions, "Users Actions", "Number of actions");
+		return getChart(user_date_actions, "Users Actions", "Number of actions");
 	}
 
 	public File getStatisticsActions() throws IOException {
 		List<ReceivedMessage> list = log.readHistoryMsgs();
 		// List<User>users=log.readAllUsers();
 
-		Map<Day, List<ActionModel>> day_actions = new HashMap<>();
+		Map<Date, List<ActionModel>> date_actions = new HashMap<>();
 
 		for (ReceivedMessage rm : list) {
 			List<ActionModel> actions = rm.getAllActions();
-			Day day = new Day(rm.getDate());
-			List<ActionModel> actionsList = day_actions.get(day);
+			List<ActionModel> actionsList = date_actions.get(rm.getDate());
 			if (actionsList == null) {
 				actionsList = new ArrayList<>();
 			}
 			actionsList.addAll(actions);
-			day_actions.put(day, actionsList);
+			date_actions.put(rm.getDate(), actionsList);
 		}
 
-		Map<String, Map<Day, List<Object>>> actionName_day_actions = new HashMap<>();
-		Set<Day> keys = day_actions.keySet();
-		for (Day key : keys) {
-			List<ActionModel> actions = day_actions.get(key);
+		Map<String, Map<Date, List<Object>>> actionName_date_actions = new HashMap<>();
+		Set<Date> keys = date_actions.keySet();
+		for (Date key : keys) {
+			List<ActionModel> actions = date_actions.get(key);
 			for (ActionModel am : actions) {
-				Map<Day, List<Object>> day_actionsAux = actionName_day_actions.get(am.getActionName());
-				if (day_actionsAux == null) {
-					day_actionsAux = new HashMap<>();
+				Map<Date, List<Object>> date_actionsAux = actionName_date_actions.get(am.getActionName());
+				if (date_actionsAux == null) {
+					date_actionsAux = new HashMap<>();
 				}
-				List<Object> actionsAux = day_actionsAux.get(key);
+				List<Object> actionsAux = date_actionsAux.get(key);
 				if (actionsAux == null) {
 					actionsAux = new ArrayList<>();
 				}
 				actionsAux.add(am);
-				day_actionsAux.put(key, actionsAux);
-				actionName_day_actions.put(am.getActionName(), day_actionsAux);
+				date_actionsAux.put(key, actionsAux);
+				actionName_date_actions.put(am.getActionName(), date_actionsAux);
 			}
 		}
-		return getChart(actionName_day_actions, "Actions",  "Number of actions");
+		return getChart(actionName_date_actions, "Actions", "Number of actions");
 
 	}
-	
+
 	public File getStatisticsUserMsg(String userNick) throws IOException {
 		List<ReceivedMessage> list = log.readHistoryMsgs();
-				
-		Map<Day, List<Object>> day_msg = new HashMap<>();
-		for (ReceivedMessage rm: list){
-			if (rm.getUser().getNick().equalsIgnoreCase(userNick)){
-				Day day = new Day(rm.getDate());
-				List<Object> msgList = day_msg.get(day);
+
+		Map<Date, List<Object>> date_msg = new HashMap<>();
+		for (ReceivedMessage rm : list) {
+			if (rm.getUser().getNick().equalsIgnoreCase(userNick)) {
+				List<Object> msgList = date_msg.get(rm.getDate());
 				if (msgList == null) {
 					msgList = new ArrayList<>();
 				}
 				msgList.add(rm);
-				day_msg.put(day, msgList);
+				date_msg.put(rm.getDate(), msgList);
 			}
 		}
-		
-		Map<String,Map<Day, List<Object>>> user_day_msg = new HashMap<>();
-		user_day_msg.put(userNick, day_msg);
-		
-		return getChart(user_day_msg, userNick+" messages", "Number of messages");
+
+		Map<String, Map<Date, List<Object>>> user_date_msg = new HashMap<>();
+		user_date_msg.put(userNick, date_msg);
+
+		return getChart(user_date_msg, userNick + " messages", "Number of messages");
 	}
 
 	public File getStatisticsUserAction(String userNick) throws IOException {
 		List<ReceivedMessage> list = log.readHistoryMsgs();
-		
-		Map<Day, List<ActionModel>> day_actions = new HashMap<>();
-		for (ReceivedMessage rm: list){
-			if (rm.getUser().getNick().equalsIgnoreCase(userNick)){
-				Day day = new Day(rm.getDate());
-				List<ActionModel> actionsList = day_actions.get(day);
+
+		Map<Date, List<ActionModel>> date_actions = new HashMap<>();
+		for (ReceivedMessage rm : list) {
+			if (rm.getUser().getNick().equalsIgnoreCase(userNick)) {
+				List<ActionModel> actionsList = date_actions.get(rm.getDate());
 				if (actionsList == null) {
 					actionsList = new ArrayList<>();
 				}
 				actionsList.addAll(rm.getAllActions());
-				day_actions.put(day, actionsList);
+				date_actions.put(rm.getDate(), actionsList);
 			}
 		}
-		Map<String, Map<Day, List<Object>>> actionName_day_actions = new HashMap<>();
-		String allActions="All actions";
-		actionName_day_actions.put(allActions, new HashMap<>());
-		Set<Day> keys = day_actions.keySet();
-		for (Day key : keys) {
-			List<ActionModel> actions = day_actions.get(key);
+		Map<String, Map<Date, List<Object>>> actionName_date_actions = new HashMap<>();
+		String allActions = "All actions";
+		actionName_date_actions.put(allActions, new HashMap<>());
+		Set<Date> keys = date_actions.keySet();
+		for (Date key : keys) {
+			List<ActionModel> actions = date_actions.get(key);
 			for (ActionModel am : actions) {
-				Map<Day, List<Object>> day_actionsAux = actionName_day_actions.get(am.getActionName());
-				if (day_actionsAux == null) {
-					day_actionsAux = new HashMap<>();
+				Map<Date, List<Object>> date_actionsAux = actionName_date_actions.get(am.getActionName());
+				if (date_actionsAux == null) {
+					date_actionsAux = new HashMap<>();
 				}
-				List<Object> actionsAux = day_actionsAux.get(key);
+				List<Object> actionsAux = date_actionsAux.get(key);
 				if (actionsAux == null) {
 					actionsAux = new ArrayList<>();
 				}
 				actionsAux.add(am);
-				day_actionsAux.put(key, actionsAux);
-				actionName_day_actions.put(am.getActionName(), day_actionsAux);
-				
-				
-				Map<Day, List<Object>> day_allActions = actionName_day_actions.get(allActions);
-				List<Object> allActionsAux = day_allActions.get(key);
+				date_actionsAux.put(key, actionsAux);
+				actionName_date_actions.put(am.getActionName(), date_actionsAux);
+
+				Map<Date, List<Object>> date_allActions = actionName_date_actions.get(allActions);
+				List<Object> allActionsAux = date_allActions.get(key);
 				if (allActionsAux == null) {
 					allActionsAux = new ArrayList<>();
 				}
 				allActionsAux.add(am);
-				day_allActions.put(key, allActionsAux);
-				actionName_day_actions.put(allActions, day_allActions);
-				
+				date_allActions.put(key, allActionsAux);
+				actionName_date_actions.put(allActions, date_allActions);
+
 			}
 		}
 
-
-		
-		return getChart(actionName_day_actions, userNick+" Actions", "Number of actions");
+		return getChart(actionName_date_actions, userNick + " Actions", "Number of actions");
 	}
 
+	private File getChart(Map<String, Map<Date, List<Object>>> data, String chartName, String yName)
+			throws IOException {
 
-	private File getChart(Map<String, Map<Day, List<Object>>> data, String chartName,String yName) throws IOException {
-		
 		Day last = new Day(new Date());
-		
-		TimeTableXYDataset dataset = new TimeTableXYDataset();
-		Set<String> keySet = data.keySet();
-		for (String k : keySet) {
-			Map<Day, List<Object>> day_object = data.get(k);
-			Day current = new Day(log.getFirstDate());
+		Day first = new Day(log.getFirstDate());
 
-			while (current.compareTo(last) <= 0) {
-				List<?> objs = day_object.get(current);
-				if (objs == null) {
-					dataset.add(current, 0, k);
-				} else {
-					dataset.add(current, objs.size(), k);
-				}
-				current = (Day) current.next();
-			}
+		TimeTableXYDataset dataset;
+		if (first.equals(last) || first.equals(last.previous()) || first.equals(last.previous().previous())
+				|| first.equals(last.previous().previous().previous())) {
+			
+			dataset=dateInHours(data, new Hour(last.next().getStart()), new Hour(first.getStart()));
+		} else {
+			dataset=dateInDays(data, last, first);
 		}
 
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(chartName, "Date", yName, dataset, true, false, false);
 		chart.getXYPlot().setRenderer(new XYSplineRenderer());
 
 		// Mostrar Grafico
-		File jpg = new File(URI + "/" + name + "/" + name + chartName+".jpg");
+		File jpg = new File(URI + "/" + name + "/" + name + chartName + ".jpg");
 		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
 
 		return jpg;
 	}
-	
 
+	private TimeTableXYDataset dateInDays(Map<String, Map<Date, List<Object>>> data, Day last, Day first) {
 
+		TimeTableXYDataset dataset = new TimeTableXYDataset();
+
+		Set<String> stringKeys = data.keySet();
+		for (String sk : stringKeys) {
+
+			// Convertir dates a days
+			Map<Date, List<Object>> date_objects = data.get(sk);
+			Map<Day, List<Object>> day_objects = new HashMap<>();
+
+			Set<Date> dateKeys = date_objects.keySet();
+			for (Date dk : dateKeys) {
+				Day day = new Day(dk);
+				List<Object> dateObjList = date_objects.get(dk);
+				List<Object> objList = day_objects.get(day);
+				if (objList != null) {
+					objList.addAll(dateObjList);
+					day_objects.put(day, objList);
+				}else{
+					day_objects.put(day, dateObjList);
+				}
+				
+			}
+
+			// guardar los datos en dataSet
+
+			Day current = first;
+			while (current.compareTo(last) <= 0) {
+				List<Object> objs = day_objects.get(current);
+				if (objs == null) {
+					dataset.add(current, 0, sk);
+				} else {
+					dataset.add(current, objs.size(), sk);
+				}
+				current = (Day) current.next();
+			}
+
+		}
+
+		return dataset;
+
+	}
+
+	private TimeTableXYDataset dateInHours(Map<String, Map<Date, List<Object>>> data, Hour last, Hour first) {
+
+		TimeTableXYDataset dataset = new TimeTableXYDataset();
+
+		Set<String> stringKeys = data.keySet();
+		for (String sk : stringKeys) {
+
+			// Convertir dates a hours
+			Map<Date, List<Object>> date_objects = data.get(sk);
+			Map<Hour, List<Object>> hour_objects = new HashMap<>();
+
+			Set<Date> dateKeys = date_objects.keySet();
+			for (Date dk : dateKeys) {
+				Hour hour = new Hour(dk);
+				List<Object> dateObjList = date_objects.get(dk);
+				List<Object> objList = hour_objects.get(hour);
+				if (objList != null) {
+					objList.addAll(dateObjList);
+					hour_objects.put(hour, objList);
+				}else{
+					hour_objects.put(hour, dateObjList);
+				}
+			}
+
+			// guardar los datos en dataSet
+
+			Hour current = first;
+			while (current.compareTo(last) <= 0) {
+				List<Object> objs = hour_objects.get(current);
+				if (objs == null) {
+					dataset.add(current, 0, sk);
+				} else {
+					dataset.add(current, objs.size(), sk);
+				}
+				current = (Hour) current.next();
+			}
+
+		}
+
+		return dataset;
+	}
 
 	public static File getProjectList() {
 		String cad = "@startuml\n";
@@ -861,9 +936,5 @@ public class Project {
 			return "Validation completed successfully";
 		}
 	}
-
-
-
-
 
 }

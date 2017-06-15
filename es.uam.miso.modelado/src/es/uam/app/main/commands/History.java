@@ -55,9 +55,7 @@ public class History extends MainCommand {
 
 	@Override
 	public void execute(ReceivedMessage rm) throws Exception {
-		if (rm.getText() == null) {
-			return;
-		}
+		
 		String nameProject = validProjectName(rm.getProjectName());
 
 		Project actual = Project.getProject(nameProject);
@@ -66,7 +64,7 @@ public class History extends MainCommand {
 		}
 
 		String values;
-		if (rm.getText() == null) {
+		if (!rm.hasText()) {
 			option = ALL;
 			values = null;
 		} else {
@@ -136,7 +134,7 @@ public class History extends MainCommand {
 				for (String k : keys) {
 					ams.addAll(sentences.get(k));
 				}
-				msg.addLog(rmLog.getUser().getNick(), rmLog.getDate(), rmLog.getMsg(), ams);
+				msg.addLog(rmLog.getUser().getNick(),rmLog.getUser().getChannel(), rmLog.getDate(), rmLog.getMsg(), ams);
 			}
 		}
 

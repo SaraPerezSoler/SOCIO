@@ -1,22 +1,24 @@
-package es.uam.app.actions;
+package es.uam.app.actions.metamodels;
 
+import es.uam.app.actions.Remove;
 import es.uam.app.projects.Project;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class RemoveClass extends Remove{
+public class RemoveAttribute extends Remove {
 
-	private ClassControl class_;
+	private AttributeControl atr;
 	
 	
-	public RemoveClass(Project proj, ClassControl class_) {
+	
+	public RemoveAttribute(Project proj, AttributeControl atr) {
 		super(proj);
-		this.class_ = class_;
+		this.atr = atr;
 	}
 
-	public RemoveClass(ClassControl classControl) {
+	public RemoveAttribute(AttributeControl attributeControl) {
 		super(null);
-		this.class_ = classControl;
+		this.atr = attributeControl;
 	}
 
 	@Override
@@ -24,14 +26,16 @@ public class RemoveClass extends Remove{
 		if (isExecute()){
 			return;
 		}
-		proj.removeClass(class_);
+		
+		proj.removeAttribute(atr, atr.getParent());
 		super.execute();
+
 	}
 
 	@Override
 	public Controlador getObject() {
 		doIt();
-		return class_;
+		return atr;
 	}
 
 	@Override
@@ -40,7 +44,7 @@ public class RemoveClass extends Remove{
 			return;
 		}
 		
-		proj.unRemoveClass(class_);
+		proj.unRemoveAttribute(atr);
 		super.undoIt();
 	}
 
@@ -49,7 +53,7 @@ public class RemoveClass extends Remove{
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}
-		proj.removeClass(class_);
+		proj.removeAttribute(atr, atr.getParent());
 		super.redoIt();
 	}
 

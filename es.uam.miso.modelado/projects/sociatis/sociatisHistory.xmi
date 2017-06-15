@@ -120,6 +120,7 @@
     <sentences sentence="make class person"/>
   </msg>
   <msg user="//@users.0" text="sociatis" date="2017-06-09T12:23:28.000+0200" id="9117;-179533479"/>
+  <msg user="//@users.0" text="sociatis" date="2017-06-14T17:36:53.000+0200" id="9896;-179533479"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="Sociatis" sentence="sociatis" date="2017-04-25T16:49:42.000+0200" id="3266;14419070"/>
 </DslHistory:History>

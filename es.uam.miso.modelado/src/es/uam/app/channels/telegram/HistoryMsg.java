@@ -134,7 +134,7 @@ public class HistoryMsg extends HistoryOption {
 
 		} else if (text.equals(OPTIONS[4])) {// "All"
 			String project = history.getProject(update.getMessage().getChatId());
-			history.tChannel.write(update, MainCommandEnum.HISTORY_ELEMENT.getName(), "", project);
+			history.tChannel.write(update, MainCommandEnum.HISTORY_ALL.getName(), project, "" );
 		} else {
 			history.commandAction(update);
 		}

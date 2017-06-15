@@ -372,6 +372,19 @@
   <msg user="//@users.1" text="test" date="2017-06-14T17:09:02.000+0200" id="9802;-179533479"/>
   <msg user="//@users.1" text="test" date="2017-06-14T17:24:58.000+0200" id="9863;-179533479"/>
   <msg user="//@users.1" text="test" date="2017-06-14T17:27:13.000+0200" id="9880;-179533479"/>
+  <msg user="//@users.1" text="test" date="2017-06-14T17:42:04.000+0200" id="9941;-179533479"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T10:58:24.000+0200" id="9948;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T12:19:14.000+0200" id="10217;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T12:40:20.000+0200" id="10229;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T12:40:49.000+0200" id="10241;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T12:47:52.000+0200" id="10296;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T12:52:03.000+0200" id="10334;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:05:47.000+0200" id="10347;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:10:17.000+0200" id="10381;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:20:54.000+0200" id="10421;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:22:44.000+0200" id="10439;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:26:06.000+0200" id="10456;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-15T13:34:59.000+0200" id="10497;14419070"/>
   <users name="Test" nick="testModelling" id="775612937662763008" channel="Twitter"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="@ModellingBot #newproject test" sentence="test" date="2017-05-31T14:12:34.000+0200" id="869889338129215489"/>

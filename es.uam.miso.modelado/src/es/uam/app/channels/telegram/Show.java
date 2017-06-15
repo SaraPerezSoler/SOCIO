@@ -40,7 +40,7 @@ public class Show extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(),"", "");
+				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(),null, null);
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());

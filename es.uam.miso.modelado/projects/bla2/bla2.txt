@@ -8,11 +8,25 @@ BorderColor<<???>> #BDBDBD
 }
 class BrownPerson {
 }
+Person <|-- BrownPerson
+class Person {
+[0,1] name: String 
+[0,1] lastname: String 
+}
+Animal <|-- Person
+Rational <|-- Person
+Person *--"0..1"Azucar : azucar
 class RedPerson {
 }
+Person <|-- RedPerson
 class BoldePerson {
 }
+Person <|-- BoldePerson
 class Azucar {
+}
+class Animal {
+}
+class Rational {
 }
 
 @enduml

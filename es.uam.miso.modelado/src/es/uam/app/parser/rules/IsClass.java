@@ -2,7 +2,7 @@ package es.uam.app.parser.rules;
 
 import java.io.FileNotFoundException;
 
-import es.uam.app.actions.CreateClass;
+import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.WordConfigure;
 import es.uam.app.projects.Project;

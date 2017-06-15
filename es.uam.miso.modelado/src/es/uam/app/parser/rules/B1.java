@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.uam.app.actions.ActionModel;
-import es.uam.app.actions.UpdateRefType;
+import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;

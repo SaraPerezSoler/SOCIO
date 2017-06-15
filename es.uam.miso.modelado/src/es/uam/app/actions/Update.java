@@ -5,6 +5,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import es.uam.app.actions.metamodels.ChangeAttrForRef;
+import es.uam.app.actions.metamodels.ChangeRefForAttr;
+import es.uam.app.actions.metamodels.UpdateAttrType;
+import es.uam.app.actions.metamodels.UpdateClassAbstract;
+import es.uam.app.actions.metamodels.UpdateClassSuperType;
+import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.projects.Project;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
