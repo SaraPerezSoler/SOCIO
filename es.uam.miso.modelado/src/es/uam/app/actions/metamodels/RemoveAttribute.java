@@ -1,17 +1,17 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Remove;
-import es.uam.app.projects.Project;
+import es.uam.app.actions.RemoveMetamodel;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class RemoveAttribute extends Remove {
+public class RemoveAttribute extends RemoveMetamodel {
 
 	private AttributeControl atr;
 	
 	
 	
-	public RemoveAttribute(Project proj, AttributeControl atr) {
+	public RemoveAttribute(MetaModelProject proj, AttributeControl atr) {
 		super(proj);
 		this.atr = atr;
 	}
@@ -27,7 +27,7 @@ public class RemoveAttribute extends Remove {
 			return;
 		}
 		
-		proj.removeAttribute(atr, atr.getParent());
+		getProject().removeAttribute(atr, atr.getParent());
 		super.execute();
 
 	}
@@ -39,7 +39,7 @@ public class RemoveAttribute extends Remove {
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -49,7 +49,7 @@ public class RemoveAttribute extends Remove {
 	}
 
 	@Override
-	public void redoIt(Project proj) {
+	public void redoIt(MetaModelProject proj) {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

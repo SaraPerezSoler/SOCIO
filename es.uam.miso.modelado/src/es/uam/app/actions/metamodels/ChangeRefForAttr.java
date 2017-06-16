@@ -1,26 +1,26 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsAttribute;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class ChangeRefForAttr extends Update implements IsAttribute{
+public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 
 	private RemoveReference remove;
 	private CreateAttribute createAttribute;
 	
 	private AttributeControl new_=null;
 	
-	public ChangeRefForAttr(Project proj,ReferenceControl ref) {
+	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref) {
 		super(proj);
 		this.remove = new RemoveReference (proj,ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), ref.getLowerBound(), ref.getUpperBound());
 	}
 
-	public ChangeRefForAttr(Project proj,ReferenceControl ref, int min, int max) {
+	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref, int min, int max) {
 		super(proj);
 		this.remove = new RemoveReference (proj, ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), min, max);
@@ -69,7 +69,7 @@ public class ChangeRefForAttr extends Update implements IsAttribute{
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -81,7 +81,7 @@ public class ChangeRefForAttr extends Update implements IsAttribute{
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

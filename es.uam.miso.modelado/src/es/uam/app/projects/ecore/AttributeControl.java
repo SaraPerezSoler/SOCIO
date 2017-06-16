@@ -44,7 +44,7 @@ public class AttributeControl implements Feature, IsAttribute {
 	}
 
 	public void setType(String type) {
-		eAttr.setEType(Controlador.getType(type));
+		eAttr.setEType(MetamodelControl.getType(type));
 	}
 
 	public EClassifier getType() {

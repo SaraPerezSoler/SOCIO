@@ -9,17 +9,17 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import net.didion.jwnl.JWNLException;;
 
-public class B1 extends ExtractionRule {
+public class B1 extends MetemodelRule {
 
 	// <A> <verb> <B>
 
 	private List<NP[]> A_B;
 	private final static String examples[]={"Carriers can handle deliveries.", "The student passed the exams.", "The cheque is sent to the bank."};
 
-	public B1(Sentence sentence, Verb v) {
+	public B1(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -36,7 +36,7 @@ public class B1 extends ExtractionRule {
 
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 		List<ActionModel> ret = new ArrayList<ActionModel>();
 			NP A = A_B.get(i)[0];
 			NP B = A_B.get(i)[1];

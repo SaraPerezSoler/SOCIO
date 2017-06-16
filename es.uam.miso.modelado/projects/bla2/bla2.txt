@@ -26,7 +26,22 @@ class Azucar {
 }
 class Animal {
 }
+Food <|-- Animal
+Animal -->"0..1"Water : drink
+Animal -->"0..1"Food : eat
 class Rational {
 }
+class Dog {
+[0,* ] leg: ?? 
+}
+Animal <|-- Dog
+Dog -->"0..1"Water : drink
+class Water {
+}
+class Food {
+}
+class Plant {
+}
+Food <|-- Plant
 
 @enduml

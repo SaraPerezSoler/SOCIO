@@ -1,5 +1,6 @@
 package es.uam.app.channels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -7,7 +8,6 @@ import org.telegram.telegrambots.TelegramBotsApi;
 
 import es.uam.app.channels.telegram.TelegramCommand;
 import es.uam.app.channels.telegram.TelegramControl;
-import es.uam.app.main.ClassMatchProcessorSuperClass;
 import es.uam.app.main.Main;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
@@ -23,10 +23,10 @@ public class TelegramChannel extends Channel {
 	}
 	
 	private void init() throws Exception{
-		ClassMatchProcessorSuperClass<TelegramCommand> superCommand= new ClassMatchProcessorSuperClass<>(TelegramCommand.class);
+		List<Class<? extends TelegramCommand>> commands=new ArrayList<Class<? extends TelegramCommand>>();
 		new FastClasspathScanner(TelegramCommand.class.getPackage().getName())
-		.matchAllClasses(superCommand).scan();
-		List<Class<? extends TelegramCommand>> commands=superCommand.getClasses();
+		.matchSubclassesOf(TelegramCommand.class, commands::add).scan();
+		
 		for (Class<? extends TelegramCommand> tc: commands){
 			TelegramCommand.regiterTelegramCommand(tc, telegramControl);
 		}

@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 
-public class ParameterControl implements Controlador {
+public class ParameterControl implements MetamodelControl {
 	EParameter eParam;
 
 	public ParameterControl() {

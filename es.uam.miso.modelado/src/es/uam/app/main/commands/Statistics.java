@@ -29,7 +29,8 @@ public class Statistics extends MainCommand {
 		}
 		if (option == USER_MSG) {
 			if (!rm.hasText()) {
-				File jpg = actual.getStatisticsUserMsg();
+				//File jpg = actual.getStatisticsUserMsg();
+				File jpg = actual.getStatisticsUserMsgAbs();
 				throw new SendMessageExc(jpg);
 			}else{
 				File jpg =actual.getStatisticsUserMsg(rm.getText());
@@ -37,7 +38,8 @@ public class Statistics extends MainCommand {
 			}
 		}else if (option== USER_ACTION){
 			if (!rm.hasText()) {
-				File jpg = actual.getStatisticsUserAction();
+				//File jpg = actual.getStatisticsUserAction();
+				File jpg = actual.getStatisticsUserActionAbs();
 				throw new SendMessageExc(jpg);
 			}else{
 				File jpg =actual.getStatisticsUserAction(rm.getText());

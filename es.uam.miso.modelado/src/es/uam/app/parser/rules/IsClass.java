@@ -5,14 +5,14 @@ import java.io.FileNotFoundException;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.WordConfigure;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import net.didion.jwnl.JWNLException;
 
 public interface IsClass {
 
 	
-	public static IsClass getClass(NP clas, Project proj) throws FileNotFoundException, JWNLException {
+	public static IsClass getClass(NP clas, MetaModelProject proj) throws FileNotFoundException, JWNLException {
 		ClassControl cc= proj.getClass(clas);
 		if (cc!=null){
 			return cc;
@@ -25,7 +25,7 @@ public interface IsClass {
 		}
 	}
 	
-	public static IsClass getClass(String clas, Project proj) throws FileNotFoundException, JWNLException {
+	public static IsClass getClass(String clas, MetaModelProject proj) throws FileNotFoundException, JWNLException {
 		ClassControl cc= proj.getClass(clas);
 		if (cc!=null){
 			return cc;
@@ -34,7 +34,7 @@ public interface IsClass {
 		return new CreateClass(proj,clas, false);
 	}
 	
-	public static IsClass getExactlyClass(NP clas, Project proj) throws FileNotFoundException, JWNLException {
+	public static IsClass getExactlyClass(NP clas, MetaModelProject proj) throws FileNotFoundException, JWNLException {
 		ClassControl cc= proj.getExactlyClass(clas);
 		if (cc!=null){
 			return cc;
@@ -47,7 +47,7 @@ public interface IsClass {
 		}
 	}
 	
-	public static IsClass getExactlyClass(String clas, Project proj) throws FileNotFoundException, JWNLException {
+	public static IsClass getExactlyClass(String clas, MetaModelProject proj) throws FileNotFoundException, JWNLException {
 		ClassControl cc= proj.getExactlyClass(clas);
 		if (cc!=null){
 			return cc;

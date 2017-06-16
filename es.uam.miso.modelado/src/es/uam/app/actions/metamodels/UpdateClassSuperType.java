@@ -3,13 +3,13 @@ package es.uam.app.actions.metamodels;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsClass;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class UpdateClassSuperType extends Update {
+public class UpdateClassSuperType extends UpdateMetamodel{
 
 	protected IsClass class_ = null;
 	protected IsClass superType = null;
@@ -20,7 +20,7 @@ public class UpdateClassSuperType extends Update {
 	protected ClassControl object=null;
 	
 
-	public UpdateClassSuperType(Project proj, IsClass class_, IsClass superType) {
+	public UpdateClassSuperType(MetaModelProject proj, IsClass class_, IsClass superType) {
 		super(proj);
 
 		this.class_ =  class_;
@@ -77,7 +77,7 @@ public class UpdateClassSuperType extends Update {
 	}
 	
 	@Override
-	public void undoIt(Project proj) throws Exception {
+	public void undoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -95,7 +95,7 @@ public class UpdateClassSuperType extends Update {
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

@@ -18,8 +18,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import DslHistory.impl.DslHistoryPackageImpl;
 import RemoveLog.impl.RemoveLogPackageImpl;
+import es.uam.app.actions.ActionModel;
 import es.uam.app.main.exceptions.FatalException;
-import es.uam.app.uml.CreateUML;
+import es.uam.app.projects.FileProject;
+import es.uam.app.uml.CreateMetamodelUML;
 
 /**
  * 
@@ -27,7 +29,7 @@ import es.uam.app.uml.CreateUML;
  * @version 0.1
  *
  */
-public class EcoreControl extends CreateUML implements Controlador {
+public class EcoreControl implements Controlador, FileProject {
 
 	private Resource resource;
 	private static ResourceSet resourceSet = null;
@@ -272,6 +274,11 @@ public class EcoreControl extends CreateUML implements Controlador {
 	public Diagnostic validate() {
 	return Diagnostician.INSTANCE.validate(getObject());
 		 
+	}
+
+	@Override
+	public String createUML(List<ActionModel> actions) {
+		return new CreateMetamodelUML(getPackage()).createUML(actions);
 	}
 	
 }

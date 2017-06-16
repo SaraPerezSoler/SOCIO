@@ -2,33 +2,33 @@ package es.uam.app.actions.metamodels;
 
 
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsReference;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class ChangeAttrForRef extends Update implements IsReference{
+public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 
 	private RemoveAttribute remove;
 	private CreateReference createReference;
 	
 	private ReferenceControl new_;
 	
-	public ChangeAttrForRef(Project proj, AttributeControl attr) {
+	public ChangeAttrForRef(MetaModelProject proj, AttributeControl attr) {
 		super(proj);
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(), attr.getLowerBound(), attr.getUpperBound());
 	}
 
-	public ChangeAttrForRef(Project proj,AttributeControl attr, int min, int max) {
+	public ChangeAttrForRef(MetaModelProject proj,AttributeControl attr, int min, int max) {
 		super(proj);
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max);
 	}
 	
-	public ChangeAttrForRef(Project proj, AttributeControl attr, int min, int max, boolean containment) {
+	public ChangeAttrForRef(MetaModelProject proj, AttributeControl attr, int min, int max, boolean containment) {
 		super(proj);
 		this.remove = new RemoveAttribute(proj,attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max, containment);
@@ -78,7 +78,7 @@ public class ChangeAttrForRef extends Update implements IsReference{
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (isUndo()|| !isExecute()){
 			return;
 		}
@@ -90,7 +90,7 @@ public class ChangeAttrForRef extends Update implements IsReference{
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

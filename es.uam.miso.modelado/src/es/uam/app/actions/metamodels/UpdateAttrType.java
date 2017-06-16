@@ -1,12 +1,12 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsAttribute;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class UpdateAttrType extends Update{
+public class UpdateAttrType extends UpdateMetamodel{
 
 	private IsAttribute attr=null;
 
@@ -16,7 +16,7 @@ public class UpdateAttrType extends Update{
 	private AttributeControl new_=null;
 	private AttributeControl object=null;
 	
-	public UpdateAttrType(Project proj, IsAttribute attr, String type) {
+	public UpdateAttrType(MetaModelProject proj, IsAttribute attr, String type) {
 		super(proj);
 	
 		this.attr=attr;
@@ -64,7 +64,7 @@ public class UpdateAttrType extends Update{
 	}
 	
 	@Override
-	public void undoIt(Project proj) throws Exception {
+	public void undoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -74,7 +74,7 @@ public class UpdateAttrType extends Update{
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

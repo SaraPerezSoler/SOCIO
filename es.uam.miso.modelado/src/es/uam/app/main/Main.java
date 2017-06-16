@@ -3,6 +3,7 @@ package es.uam.app.main;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+
 
 import es.uam.app.channels.Channel;
 import es.uam.app.channels.Pipe;
@@ -28,8 +30,9 @@ import es.uam.app.main.commands.Validate;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.parser.Sentence;
 import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.parser.rules.MetemodelRule;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.Project;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 
@@ -134,23 +137,22 @@ public class Main {
 
 	public static void ini() {
 		
-		ClassMatchProcessorSuperClass<Channel> superChannel= new ClassMatchProcessorSuperClass<>(Channel.class);
+		List<Class<? extends Channel>> channels=new ArrayList<>();
 		new FastClasspathScanner(Channel.class.getPackage().getName())
-				.matchAllClasses(superChannel).scan();
-		List<Class<? extends Channel>> channels=superChannel.getClasses();
+				.matchSubclassesOf(Channel.class, channels::add).scan();
 
 		for (Class<? extends Channel> c : channels) {
 			registerChannel(c);
 		}	
-		ClassMatchProcessorSuperClass<ExtractionRule> superERules= new ClassMatchProcessorSuperClass<>(ExtractionRule.class);
-		new FastClasspathScanner(ExtractionRule.class.getPackage().getName())
-				.matchAllClasses(superERules).scan();
-		List<Class<? extends ExtractionRule>> rules= superERules.getClasses();
+	
 		
+		
+		List<Class<? extends ExtractionRule<MetaModelProject>>> rules= new ArrayList<>();
+		new FastClasspathScanner(ExtractionRule.class.getPackage().getName()).matchSubclassesOf(MetemodelRule.class, rules::add).scan();		
 		try {
 			
-			for (Class<? extends ExtractionRule> r : rules) {
-				Sentence.registerRule(r);
+			for (Class<? extends ExtractionRule<MetaModelProject>> r : rules) {
+				MetaModelProject.registerRule(r);
 			}
 
 		} catch (NoSuchMethodException | SecurityException e) {
@@ -179,8 +181,8 @@ public class Main {
 		} catch (Exception e) {
 			log.error("Error al leer los comandos: " + e.getMessage());
 		} catch (Throwable e) {
-			// e.printStackTrace();
-			log.fatal("Error al leer los comandos: " + e);
+			 e.printStackTrace();
+			//log.fatal("Error al leer los comandos: " + e);
 		}
 
 	}

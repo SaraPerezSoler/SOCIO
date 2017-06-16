@@ -14,12 +14,12 @@ import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.WordConfigure;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.ecore.MetamodelControl;
 import net.didion.jwnl.JWNLException;
 
-public class D1ToHave extends ExtractionRule {
+public class D1ToHave extends MetemodelRule {
 
 	// <A> has <B>
 
@@ -29,7 +29,7 @@ public class D1ToHave extends ExtractionRule {
 	private static final String[] HAVE_WORDS = { "have", "be characterized by", "be identified by",
 			"be recognized by" };
 
-	public D1ToHave(Sentence sentence, Verb v) {
+	public D1ToHave(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -45,7 +45,7 @@ public class D1ToHave extends ExtractionRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 
 		List<ActionModel> ret = new ArrayList<ActionModel>();
 		NP A = A_B.get(i)[0];
@@ -65,7 +65,7 @@ public class D1ToHave extends ExtractionRule {
 		EClassifier type = null;
 		
 		if (bAdjLemmaUpper != null) {
-			type = Controlador.getType(bAdjLemmaUpper);
+			type = MetamodelControl.getType(bAdjLemmaUpper);
 		}
 		// Si B.adjetivo es un tipo definido de ecore.
 		if (type != null) {

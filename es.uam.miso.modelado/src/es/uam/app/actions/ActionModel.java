@@ -12,7 +12,7 @@ public abstract class ActionModel {
 	private boolean execute = false;
 	private boolean undo = false;
 	private boolean redo = false;
-	protected Project proj = null;
+	private Project proj = null;
 
 	public ActionModel(Project proj) {
 		if (proj == null) {
@@ -62,6 +62,10 @@ public abstract class ActionModel {
 
 	public boolean isRedo() {
 		return redo;
+	}
+
+	public Project getProject() {
+		return proj;
 	}
 
 }

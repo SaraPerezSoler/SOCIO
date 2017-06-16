@@ -385,6 +385,7 @@
   <msg user="//@users.1" text="test" date="2017-06-15T13:22:44.000+0200" id="10439;14419070"/>
   <msg user="//@users.1" text="test" date="2017-06-15T13:26:06.000+0200" id="10456;14419070"/>
   <msg user="//@users.1" text="test" date="2017-06-15T13:34:59.000+0200" id="10497;14419070"/>
+  <msg user="//@users.1" text="test" date="2017-06-16T14:18:34.000+0200" id="10644;14419070"/>
   <users name="Test" nick="testModelling" id="775612937662763008" channel="Twitter"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="@ModellingBot #newproject test" sentence="test" date="2017-05-31T14:12:34.000+0200" id="869889338129215489"/>

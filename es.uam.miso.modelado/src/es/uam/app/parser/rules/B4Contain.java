@@ -14,12 +14,12 @@ import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.WordConfigure;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.ecore.MetamodelControl;
 import net.didion.jwnl.JWNLException;
 
-public class B4Contain extends ExtractionRule {
+public class B4Contain extends MetemodelRule {
 
 	// <A> contain <B>
 	private List<NP[]> A_B;
@@ -30,7 +30,7 @@ public class B4Contain extends ExtractionRule {
 	private static final String[] REVERSE_IF_PASSIVE={ "contain", "include"};
 	
 
-	public B4Contain(Sentence sentence, Verb v) {
+	public B4Contain(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -46,7 +46,7 @@ public class B4Contain extends ExtractionRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 		
 		List<ActionModel> ret = new ArrayList<ActionModel>();
 			NP A=A_B.get(i)[0];
@@ -58,7 +58,7 @@ public class B4Contain extends ExtractionRule {
 
 			if (B.getAdj() != null) {
 				String bAdjLemmaUpper= WordConfigure.startUpperCase(B.getAdj().getLemma());
-				EClassifier type = Controlador.getType(bAdjLemmaUpper);
+				EClassifier type = MetamodelControl.getType(bAdjLemmaUpper);
 				// Si B.adjetivo es un tipo definido de ecore.
 				if (type != null) {
 					// B.noun es un atributo...

@@ -1,7 +1,6 @@
 package es.uam.app.projects;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +11,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
@@ -26,82 +26,80 @@ import es.uam.app.main.commands.History.Order;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.User;
-import es.uam.app.parser.NP;
-import es.uam.app.parser.Sentence;
 import es.uam.app.parser.SentencesSplitter;
-import es.uam.app.parser.WordConfigure;
 import es.uam.app.parser.rules.ExtractionRule;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.EcoreControl;
-import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.ReferenceControl;
 import es.uam.app.projects.log.HistoryControl;
 import es.uam.app.projects.log.RemoveLogControl;
 import es.uam.app.uml.UML;
-import es.uam.app.words.WordNet;
-import net.didion.jwnl.JWNLException;
+import javafx.scene.chart.Chart;
 
-public class Project {
+public abstract class Project {
 
-	private final static String URI = "./projects";
+	protected final static String URI = "./projects";
 	private static List<Project> proj = new ArrayList<Project>();
 
 	private Stack<ReceivedMessage> undoMsg = new Stack<>();
 
-	private EcoreControl ec;
-	private RemoveLogControl rlc;
-	private HistoryControl log;
+	public enum ProjectType {
+		METAMODEL, MODEL
+	}
+
+	protected RemoveLogControl rlc;
+	protected HistoryControl log;
 	private String name;
 
-	private Project(EcoreControl ec, RemoveLogControl rlc, HistoryControl log, String name) {
+	protected Project(RemoveLogControl rlc, HistoryControl log, String name) {
 		super();
-		this.ec = ec;
 		this.rlc = rlc;
 		this.log = log;
 		this.name = name;
 	}
 
-	public static void createProject(String name, ReceivedMessage msg) {
+	public static void createProject(String name, ReceivedMessage msg, ProjectType type) {
 
 		File dir = new File(URI + "/" + name);
 		dir.mkdirs();
 
-		EcoreControl nuevoEc = new EcoreControl(URI + "/" + name + "/" + name + ".ecore", name, name, name);
 		HistoryControl nuevoLg = new HistoryControl(URI + "/" + name + "/" + name + "History" + ".xmi", true);
 		RemoveLogControl nuevoRm = new RemoveLogControl(URI + "/" + name + "/" + name + "RemoveLog.xmi", true);
 		nuevoLg.setCreateMsg(msg);
 		Project p = getProject(name);
 
-		if (p != null) {
-			p.ec = nuevoEc;
-			p.log = nuevoLg;
-		} else {
-			p = new Project(nuevoEc, nuevoRm, nuevoLg, name);
-			proj.add(p);
+		if (type == ProjectType.METAMODEL) {
+			if (p != null) {
+				p.setFileProject(MetaModelProject.createFileProject(name, msg));
+				p.log = nuevoLg;
+			} else {
+				p = new MetaModelProject(MetaModelProject.createFileProject(name, msg), nuevoRm, nuevoLg, name);
+				proj.add(p);
+			}
 		}
 		p.save();
 	}
 
-	public String ecorePath() {
-		return this.ec.getPath();
-	}
+	public abstract String FilePath();
 
-	private static void cargaProject(String name) throws FatalException {
+	public abstract FileProject getFileProject();
 
-		EcoreControl nuevoEc = new EcoreControl(URI + "/" + name + "/" + name + ".ecore");
+	public abstract void setFileProject(FileProject fileProj);
+
+	private static void cargaProject(String name, ProjectType type) throws FatalException {
+
 		HistoryControl nuevoLg = new HistoryControl(URI + "/" + name + "/" + name + "History" + ".xmi", false);
 		RemoveLogControl nuevoRm = new RemoveLogControl(URI + "/" + name + "/" + name + "RemoveLog.xmi", false);
 
 		Project p = getProject(name);
 
-		if (p != null) {
-			p.ec = nuevoEc;
-			p.log = nuevoLg;
-		} else {
-			p = new Project(nuevoEc, nuevoRm, nuevoLg, name);
-			proj.add(p);
+		if (type == ProjectType.METAMODEL) {
+			if (p != null) {
+				p.setFileProject(MetaModelProject.cargaFileProject(name));
+				p.log = nuevoLg;
+			} else {
+				p = new MetaModelProject(MetaModelProject.cargaFileProject(name), nuevoRm, nuevoLg, name);
+				proj.add(p);
+			}
 		}
+		p.save();
 
 	}
 
@@ -123,16 +121,18 @@ public class Project {
 		for (String nameaux : modelDirectory.list()) {
 			File faux = new File(modelDirectory.getAbsolutePath() + "/" + nameaux);
 			if (faux.isDirectory()) {
-				if (haveEcoreXML(faux)) {
+				if (isMetaModel(faux)) {
 
-					cargaProject(nameaux);
+					cargaProject(nameaux, ProjectType.METAMODEL);
 
+				} else if (isModel(faux)) {
+					cargaProject(nameaux, ProjectType.MODEL);
 				}
 			}
 		}
 	}
 
-	private static boolean haveEcoreXML(File dir) {
+	private static boolean isMetaModel(File dir) {
 		boolean ecore = false;
 		boolean xml = false;
 		for (File f : dir.listFiles()) {
@@ -145,15 +145,21 @@ public class Project {
 		return ecore && xml;
 	}
 
+	private static boolean isModel(File dir) {
+		return false;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public File getPng(List<ActionModel> actions) {
-		File txt = UML.write(URI + "/" + name + "/" + name + ".txt", ec.createUML(actions));
+		File txt = UML.write(URI + "/" + name + "/" + name + ".txt", getFileProject().createUML(actions));
 		File png = UML.getUML(txt);
 		return png;
 	}
+
+	public abstract List<ActionModel> parseSentence(String sentece) throws Exception;
 
 	public File execute(ReceivedMessage msg) throws Exception {
 		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getText());
@@ -163,23 +169,8 @@ public class Project {
 
 		for (String s : sentences) {
 
-			Sentence sentenceParse = new Sentence(s);
-			List<List<ExtractionRule>> allRules = sentenceParse.parser();
-			List<ExtractionRule> rules = decide(allRules);
+			List<ActionModel> act = parseSentence(s);
 
-			List<ActionModel> act = new ArrayList<ActionModel>();
-
-			for (ExtractionRule rule : rules) {
-				for (int i = 0; i < rule.numEvaluete(); i++) {
-					List<ActionModel> actual = rule.evaluete(this, i);
-					for (ActionModel a : actual) {
-						a.doIt();
-					}
-
-					act.addAll(actual);
-				}
-
-			}
 			actions.put(s, act);
 			allActions.addAll(act);
 		}
@@ -194,16 +185,16 @@ public class Project {
 		return getPng(allActions);
 	}
 
-	private List<ExtractionRule> decide(List<List<ExtractionRule>> allRules) {
+	protected <T extends Project> List<ExtractionRule<T>> decide(List<List<ExtractionRule<T>>> allRules) {
 
-		List<ExtractionRule> ret = new ArrayList<>();
+		List<ExtractionRule<T>> ret = new ArrayList<>();
 		if (allRules.isEmpty()) {
 			return ret;
 		}
 
-		for (List<ExtractionRule> rulesOptions : allRules) {
-			ExtractionRule actual = rulesOptions.get(0);
-			for (ExtractionRule er : rulesOptions) {
+		for (List<ExtractionRule<T>> rulesOptions : allRules) {
+			ExtractionRule<T> actual = rulesOptions.get(0);
+			for (ExtractionRule<T> er : rulesOptions) {
 				if (er.getPriority() > actual.getPriority()) {
 					actual = er;
 				}
@@ -262,7 +253,7 @@ public class Project {
 	}
 
 	private void save() {
-		ec.save();
+		getFileProject().save();
 		log.save();
 		rlc.save();
 
@@ -282,21 +273,10 @@ public class Project {
 	public List<ReceivedMessage> getHistoryElement(String element) throws Exception {
 		List<ReceivedMessage> ret = new ArrayList<>();
 		List<ReceivedMessage> list = log.readHistoryMsgs();
-		Sentence sentenceParse = new Sentence(element);
-		sentenceParse.parser();
-		List<NP> concepts = sentenceParse.getConcepts();
-		if (concepts.isEmpty()) {
-			return ret;
-		}
+
 		for (ReceivedMessage rm : list) {
-			if (concepts.get(0).getOf() == null) {
-				if (rm.hasElement(concepts.get(0).upperCammelCase(), null)) {
-					ret.add(rm);
-				}
-			} else {
-				if (rm.hasElement(concepts.get(0).lowerCammelCase(), concepts.get(0).getOf().upperCammelCase())) {
-					ret.add(rm);
-				}
+			if (rm.hasElement(element)) {
+				ret.add(rm);
 			}
 		}
 		return ret;
@@ -321,8 +301,8 @@ public class Project {
 		List<ReceivedMessage> history = getHistory();
 		List<ReceivedMessage> ret = new ArrayList<>();
 		if (order == Order.DESCENDING) {
-			Day aux=new Day(date);
-			date= aux.getEnd();
+			Day aux = new Day(date);
+			date = aux.getEnd();
 			Collections.reverse(history);
 			for (ReceivedMessage rm : history) {
 				if (!rm.getDate().after(date)) {
@@ -340,16 +320,16 @@ public class Project {
 	}
 
 	public List<ReceivedMessage> getHistory(Date start, Date end, Order order) {
-		
+
 		if (end.before(start)) {
 			Date aux = start;
 			start = end;
 			end = aux;
 		}
-		
-		Day auxDay=new Day(end);
-		end=auxDay.getEnd();
-		
+
+		Day auxDay = new Day(end);
+		end = auxDay.getEnd();
+
 		List<ReceivedMessage> history = getHistory();
 		List<ReceivedMessage> ret = new ArrayList<>();
 		for (ReceivedMessage rm : history) {
@@ -434,6 +414,63 @@ public class Project {
 		}
 
 		return getChart(user_date_actions, "Users Actions", "Number of actions");
+	}
+
+	public File getStatisticsUserMsgAbs() throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		// List<User>users=log.readAllUsers();
+
+		Map<User, List<ReceivedMessage>> msg_user = new HashMap<>();
+
+		for (ReceivedMessage rm : list) {
+			List<ReceivedMessage> userList = msg_user.get(rm.getUser());
+			if (userList == null) {
+				userList = new ArrayList<>();
+			}
+			userList.add(rm);
+			msg_user.put(rm.getUser(), userList);
+		}
+
+		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+		Set<User> users = msg_user.keySet();
+		for (User u : users) {
+			List<ReceivedMessage> msgs = msg_user.get(u);
+			dataSet.addValue(msgs.size(), "Messages", u.getNick());
+		}
+
+		JFreeChart chart = ChartFactory.createBarChart("User messages", "users", "Messages", dataSet,PlotOrientation.VERTICAL, false, false, false);
+		File jpg = new File(URI + "/" + name + "/" + name + "User messages" + ".jpg");
+		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
+		
+		return jpg;
+	}
+
+	public File getStatisticsUserActionAbs() throws IOException {
+		List<ReceivedMessage> list = log.readHistoryMsgs();
+		// List<User>users=log.readAllUsers();
+
+		Map<User, List<ActionModel>> msg_action = new HashMap<>();
+
+		for (ReceivedMessage rm : list) {
+			List<ActionModel> userList = msg_action.get(rm.getUser());
+			if (userList == null) {
+				userList = new ArrayList<>();
+			}
+			userList.addAll(rm.getAllActions());
+			msg_action.put(rm.getUser(), userList);
+		}
+
+		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+		Set<User> users = msg_action.keySet();
+		for (User u : users) {
+			List<ActionModel> msgs = msg_action.get(u);
+			dataSet.addValue(msgs.size(), "Actions", u.getNick());
+		}
+
+		JFreeChart chart = ChartFactory.createBarChart("User actions", "users", "Messages", dataSet,PlotOrientation.VERTICAL, false, false, false);
+		File jpg = new File(URI + "/" + name + "/" + name + "User messages" + ".jpg");
+		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
+		return jpg;
 	}
 
 	public File getStatisticsActions() throws IOException {
@@ -552,10 +589,10 @@ public class Project {
 		TimeTableXYDataset dataset;
 		if (first.equals(last) || first.equals(last.previous()) || first.equals(last.previous().previous())
 				|| first.equals(last.previous().previous().previous())) {
-			
-			dataset=dateInHours(data, new Hour(last.next().getStart()), new Hour(first.getStart()));
+
+			dataset = dateInHours(data, new Hour(last.next().getStart()), new Hour(first.getStart()));
 		} else {
-			dataset=dateInDays(data, last, first);
+			dataset = dateInDays(data, last, first);
 		}
 
 		JFreeChart chart = ChartFactory.createTimeSeriesChart(chartName, "Date", yName, dataset, true, false, false);
@@ -587,10 +624,10 @@ public class Project {
 				if (objList != null) {
 					objList.addAll(dateObjList);
 					day_objects.put(day, objList);
-				}else{
+				} else {
 					day_objects.put(day, dateObjList);
 				}
-				
+
 			}
 
 			// guardar los datos en dataSet
@@ -631,7 +668,7 @@ public class Project {
 				if (objList != null) {
 					objList.addAll(dateObjList);
 					hour_objects.put(hour, objList);
-				}else{
+				} else {
 					hour_objects.put(hour, dateObjList);
 				}
 			}
@@ -672,269 +709,6 @@ public class Project {
 		return png;
 	}
 
-	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
-
-		String feature = WordConfigure.startLowerCase(verb);
-
-		if (cc == null) {
-			return getFeature(feature);
-		}
-		Feature ret = cc.getAttr(feature);
-		if (ret == null) {
-			ret = cc.getRef(feature);
-		}
-
-		if (ret == null) {
-			List<String> synonyms;
-
-			synonyms = WordNet.getWordNet().getSynonyms(feature);
-
-			for (String s : synonyms) {
-				ret = cc.getAttr(WordConfigure.startLowerCase(s));
-				if (ret == null) {
-					ret = cc.getRef(WordConfigure.startLowerCase(s));
-				}
-				if (ret != null) {
-					return ret;
-				}
-			}
-		}
-		return ret;
-	}
-
-	public Feature getFeature(String verb) throws FileNotFoundException, JWNLException {
-		String feature = WordConfigure.startLowerCase(verb);
-		List<ClassControl> classes = ec.getClasses();
-		Feature ret = null;
-		for (ClassControl cc : classes) {
-			ret = cc.getAttr(feature);
-			if (ret == null) {
-				ret = cc.getRef(feature);
-			}
-			if (ret != null) {
-				return ret;
-			}
-		}
-
-		List<String> synonyms;
-		synonyms = WordNet.getWordNet().getSynonyms(feature);
-
-		for (String s : synonyms) {
-			for (ClassControl cc : classes) {
-				ret = cc.getAttr(WordConfigure.startLowerCase(s));
-				if (ret == null) {
-					ret = cc.getRef(WordConfigure.startLowerCase(s));
-				}
-				if (ret != null) {
-					return ret;
-				}
-			}
-		}
-
-		return null;
-	}
-
-	public Feature getExactlyFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
-
-		String feature = WordConfigure.startLowerCase(verb);
-
-		if (cc == null) {
-			return null;
-		}
-		Feature ret = cc.getAttr(feature);
-		if (ret == null) {
-			ret = cc.getRef(feature);
-		}
-		return ret;
-	}
-
-	public ClassControl getClass(NP element) throws FileNotFoundException, JWNLException {
-		if (element.getAdj() != null && element.getAdj().lemmaEquals("abstract")) {
-			return this.getClass(WordConfigure.startUpperCase(element.getNoun().getLemma()));
-
-		} else {
-
-			ClassControl ret = this.getClass(element.upperCammelCase());
-			if (ret == null) {
-				List<String> nouns;
-				if (element.getNoun() != null) {
-					nouns = WordNet.getWordNet().getSynonyms(element.getNoun().getLemma());
-				} else {
-					nouns = new ArrayList<>();
-				}
-				List<String> adjs;
-				if (element.getAdj() != null) {
-					adjs = WordNet.getWordNet().getSynonyms(element.getAdj().getLemma());
-				} else {
-					adjs = new ArrayList<>();
-				}
-				for (String n : nouns) {
-					for (String a : adjs) {
-						ret = ec.getClass(WordConfigure.startUpperCase(a) + WordConfigure.startUpperCase(n));
-						if (ret != null) {
-							return ret;
-						}
-					}
-				}
-
-				for (String n : nouns) {
-					ret = ec.getClass(WordConfigure.startUpperCase(n));
-					if (ret != null) {
-						return ret;
-					}
-				}
-
-			}
-			return ret;
-		}
-	}
-
-	public ClassControl getClass(String clas) throws FileNotFoundException, JWNLException {
-		ClassControl ret = ec.getClass(clas);
-
-		if (ret == null) {
-			List<String> synonyms;
-			synonyms = WordNet.getWordNet().getSynonyms(clas);
-
-			for (String s : synonyms) {
-				ret = ec.getClass(s);
-				if (ret != null) {
-					return ret;
-				}
-			}
-		}
-
-		return ret;
-	}
-
-	public ClassControl getExactlyClass(String clas) throws FileNotFoundException, JWNLException {
-		ClassControl ret = ec.getExactlyClass(clas);
-		return ret;
-	}
-
-	public ClassControl getExactlyClass(NP element) throws FileNotFoundException, JWNLException {
-		if (element.getAdj() != null && element.getAdj().lemmaEquals("abstract")) {
-			return this.getExactlyClass(WordConfigure.startUpperCase(element.getNoun().getLemma()));
-
-		} else {
-			ClassControl ret = this.getExactlyClass(element.upperCammelCase());
-			return ret;
-		}
-	}
-
-	public void addAttribute(AttributeControl attr, ClassControl of) {
-		of.addAttrRef(attr.getEAtribute());
-
-	}
-
-	public void addClass(ClassControl clase) {
-		ec.addClass(clase);
-	}
-
-	public void addReference(ReferenceControl ref, ClassControl of) {
-		of.addAttrRef(ref.getEReference());
-
-	}
-
-	public void removeAttribute(AttributeControl atr, ClassControl parent) {
-
-		rlc.addRemove(atr);
-		parent.removeAttrRef(atr.getEAtribute());
-
-	}
-
-	public void removeClass(ClassControl class_) {
-		rlc.addRemove(class_);
-		ec.remove(class_);
-
-	}
-
-	public void removeReference(ReferenceControl ref, ClassControl parent) {
-		rlc.addRemove(ref);
-		parent.removeAttrRef(ref.getEReference());
-
-	}
-
-	public void unAddAttribute(AttributeControl attr, ClassControl of) {
-		of.removeAttrRef(attr.getEAtribute());
-
-	}
-
-	public void unAddClass(ClassControl clase) {
-		ec.remove(clase);
-	}
-
-	public void unAddReference(ReferenceControl ref, ClassControl of) {
-		of.removeAttrRef(ref.getEReference());
-	}
-
-	public void unRemoveAttribute(AttributeControl atr) {
-		ClassControl parent = ec.getClass(atr.getParentName());
-		rlc.deleteRemove(atr);
-		parent.addAttrRef(atr.getEAtribute());
-
-	}
-
-	public void unRemoveClass(ClassControl class_) {
-		rlc.deleteRemove(class_);
-		ec.addClass(class_);
-
-	}
-
-	public void unRemoveReference(ReferenceControl ref) {
-
-		ClassControl type = ec.getClass(ref.getTypeName());
-		ClassControl parent = ec.getClass(ref.getParentName());
-		if (type != null) {
-			ref.setType(type);
-		}
-		rlc.deleteRemove(ref);
-		parent.addAttrRef(ref.getEReference());
-
-	}
-
-	public List<ReferenceControl> getRefTo(ClassControl cc) {
-		return ec.getReferencesTo(cc);
-
-	}
-
-	public List<ClassControl> getSubTypesOf(ClassControl c) {
-		return ec.getSubTypesOf(c);
-	}
-
-	String validateRet;
-
-	public String validate() {
-
-		Diagnostic diagnostic = null;
-
-		diagnostic = ec.validate();
-
-		List<Diagnostic> diagnosticChild = diagnostic.getChildren();
-		if (diagnosticChild.isEmpty()) {
-			validateRet = getStringDiagnostic(diagnostic);
-		} else {
-			validateRet = "";
-			for (Diagnostic d : diagnosticChild) {
-				validateRet += getStringDiagnostic(d) + "\n";
-			}
-		}
-		return validateRet;
-
-	}
-
-	public String getValidateString() {
-		return validateRet;
-	}
-
-	public String getStringDiagnostic(Diagnostic d) {
-		if (d.getSeverity() == Diagnostic.ERROR) {
-			return "ERROR: " + d.getMessage();
-		} else if (d.getSeverity() == Diagnostic.WARNING) {
-			return "WARNING: " + d.getMessage();
-		} else {
-			return "Validation completed successfully";
-		}
-	}
+	public abstract String validate();
 
 }

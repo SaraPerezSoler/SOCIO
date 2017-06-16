@@ -16,15 +16,15 @@ import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.Word;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.Feature;
+import es.uam.app.projects.ecore.MetamodelControl;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 
-public class B3B5ToBe extends ExtractionRule {
+public class B3B5ToBe extends MetemodelRule {
 
 	// <A> is a <B>
 
@@ -34,7 +34,7 @@ public class B3B5ToBe extends ExtractionRule {
 	private final static String structure="<Object> + to be + <Object>";
 	private final static String examples[]={"Packages can be bulky, heavy or fragile.", "Students and teachers are persons.", "Name of person is a text.", "The wife of a man is a woman."};
 
-	public B3B5ToBe(Sentence sentence, Verb v) {
+	public B3B5ToBe(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -49,7 +49,7 @@ public class B3B5ToBe extends ExtractionRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 		List<ActionModel> ret = new ArrayList<>();
 		NP A = A_B.get(i)[0];
 		NP B = A_B.get(i)[1];
@@ -67,9 +67,9 @@ public class B3B5ToBe extends ExtractionRule {
 		return ret;
 	}
 
-	private List<ActionModel> withOf(Project proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
+	private List<ActionModel> withOf(MetaModelProject proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
 		List<ActionModel> ret = new ArrayList<ActionModel>();
-		EClassifier type = Controlador.getType(B.upperCammelCase());
+		EClassifier type = MetamodelControl.getType(B.upperCammelCase());
 
 		if (type == null) {
 			IsReference ref = IsReference.getReference(A, of, proj, false);
@@ -114,7 +114,7 @@ public class B3B5ToBe extends ExtractionRule {
 		return ret;
 	}
 
-	private List<ActionModel> withoutOf(Project proj, NP A, NP B) throws FileNotFoundException, JWNLException {
+	private List<ActionModel> withoutOf(MetaModelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
 
 		IsClass aClass = IsClass.getClass(A.upperCammelCase(), proj);
 		if (aClass instanceof ActionModel) {

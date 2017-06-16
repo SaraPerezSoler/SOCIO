@@ -3,7 +3,6 @@ package es.uam.app.parser;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,8 +11,9 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
 import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.projects.Project;
 
-public class Sentence {
+public class Sentence <T extends Project>{
 
 	private List<Word> sentence;
 	private ParserControl parser = ParserControl.getParser();
@@ -22,22 +22,7 @@ public class Sentence {
 	private List<NP> concepts = new ArrayList<NP>();
 	private List<Verb> verbs = new ArrayList<Verb>();
 
-	private static Map<Class<? extends ExtractionRule>, Constructor<? extends ExtractionRule>> extractionRules = new HashMap<>();
 	
-	
-
-	public static void registerRule(Class<? extends ExtractionRule> er)
-			throws NoSuchMethodException, SecurityException {
-		Constructor<? extends ExtractionRule> ruleConstructor = er
-				.getConstructor(new Class[] { Sentence.class, Verb.class });
-		if (ruleConstructor != null) {
-			extractionRules.put(er, ruleConstructor);
-		}
-	}
-	
-	public static Map<Class<? extends ExtractionRule>, Constructor<? extends ExtractionRule>> getExtractionRules() {
-		return extractionRules;
-	}
 
 	public Sentence(String stringSentence) {
 
@@ -250,7 +235,7 @@ public class Sentence {
 		return ret;
 	}
 
-	public List<List<ExtractionRule>> parser()
+	public List<List<ExtractionRule<T>>> parser(Map<Class<? extends ExtractionRule<T>>, Constructor<? extends ExtractionRule<T>>> extractionRules)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Buscar NPs
@@ -292,14 +277,14 @@ public class Sentence {
 		// Buscar VPs
 		verbs = getVerbs();
 
-		Set<Class<? extends ExtractionRule>> keys = extractionRules.keySet();
+		Set<Class<? extends ExtractionRule<T>>> keys = extractionRules.keySet();
 		// Comprobar verbos concretos
-		List<List<ExtractionRule>> ret = new ArrayList<List<ExtractionRule>>();
+		List<List<ExtractionRule<T>>> ret = new ArrayList<List<ExtractionRule<T>>>();
 		for (Verb v : verbs) {
-			List<ExtractionRule> ret2 = new ArrayList<>();
-			for (Class<? extends ExtractionRule> k : keys) {
-				Constructor<? extends ExtractionRule> ruleConstructor = extractionRules.get(k);
-				ExtractionRule er = ruleConstructor.newInstance(this, v);
+			List<ExtractionRule<T>> ret2 = new ArrayList<>();
+			for (Class<? extends ExtractionRule<T>> k : keys) {
+				Constructor<? extends ExtractionRule<T>> ruleConstructor = extractionRules.get(k);
+				ExtractionRule<T> er = ruleConstructor.newInstance(this, v);
 				if (er.validate()) {
 					ret2.add(er);
 				}

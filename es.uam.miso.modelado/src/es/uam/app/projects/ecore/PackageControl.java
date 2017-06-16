@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-public class PackageControl implements Controlador{
+public class PackageControl implements MetamodelControl{
 	private EPackage ePack;
 
 	public PackageControl() {

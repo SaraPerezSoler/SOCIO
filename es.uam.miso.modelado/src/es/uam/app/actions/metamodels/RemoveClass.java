@@ -1,16 +1,16 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Remove;
-import es.uam.app.projects.Project;
+import es.uam.app.actions.RemoveMetamodel;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class RemoveClass extends Remove{
+public class RemoveClass extends RemoveMetamodel{
 
 	private ClassControl class_;
 	
 	
-	public RemoveClass(Project proj, ClassControl class_) {
+	public RemoveClass(MetaModelProject proj, ClassControl class_) {
 		super(proj);
 		this.class_ = class_;
 	}
@@ -25,7 +25,7 @@ public class RemoveClass extends Remove{
 		if (isExecute()){
 			return;
 		}
-		proj.removeClass(class_);
+		getProject().removeClass(class_);
 		super.execute();
 	}
 
@@ -36,7 +36,7 @@ public class RemoveClass extends Remove{
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -46,7 +46,7 @@ public class RemoveClass extends Remove{
 	}
 
 	@Override
-	public void redoIt(Project proj) {
+	public void redoIt(MetaModelProject proj) {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

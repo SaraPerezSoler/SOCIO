@@ -6,7 +6,7 @@ import es.uam.app.actions.metamodels.ChangeRefForAttr;
 import es.uam.app.actions.metamodels.CreateAttribute;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.WordConfigure;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
@@ -17,7 +17,7 @@ public interface IsAttribute {
 
 	
 	
-	public static IsAttribute getAttribute(NP att, IsClass of, Project proj) throws FileNotFoundException, JWNLException{
+	public static IsAttribute getAttribute(NP att, IsClass of, MetaModelProject proj) throws FileNotFoundException, JWNLException{
 		int min=0;
 		int max=1;
 		if (att.isPlural()){
@@ -27,7 +27,7 @@ public interface IsAttribute {
 	}
 	
 	
-	public static IsAttribute getAttribute(String att, IsClass of, int min, int max, Project proj) throws FileNotFoundException, JWNLException{
+	public static IsAttribute getAttribute(String att, IsClass of, int min, int max, MetaModelProject proj) throws FileNotFoundException, JWNLException{
 		String att2=WordConfigure.startLowerCase(att);
 		if (of instanceof ClassControl){
 			Feature f= proj.getFeature(att2, (ClassControl)of);
@@ -44,7 +44,7 @@ public interface IsAttribute {
 		}
 	}
 	
-	public static IsAttribute getExactlyAttribute(NP att, IsClass of, Project proj) throws FileNotFoundException, JWNLException{
+	public static IsAttribute getExactlyAttribute(NP att, IsClass of, MetaModelProject proj) throws FileNotFoundException, JWNLException{
 		int min=0;
 		int max=1;
 		if (att.isPlural()){
@@ -54,7 +54,7 @@ public interface IsAttribute {
 	}
 	
 	
-	public static IsAttribute getExactlyAttribute(String att, IsClass of, int min, int max, Project proj) throws FileNotFoundException, JWNLException{
+	public static IsAttribute getExactlyAttribute(String att, IsClass of, int min, int max, MetaModelProject proj) throws FileNotFoundException, JWNLException{
 		String att2=WordConfigure.startLowerCase(att);
 		if (of instanceof ClassControl){
 			Feature f= proj.getExactlyFeature(att2, (ClassControl)of);

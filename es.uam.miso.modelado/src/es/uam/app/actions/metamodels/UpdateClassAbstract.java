@@ -1,12 +1,12 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsClass;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class UpdateClassAbstract extends Update {
+public class UpdateClassAbstract extends UpdateMetamodel {
 
 	private IsClass class_ = null;
 	private boolean abstract_=false;
@@ -16,7 +16,7 @@ public class UpdateClassAbstract extends Update {
 	private ClassControl new_=null;
 	private ClassControl object=null;
 	
-	public UpdateClassAbstract(Project proj, IsClass class_, boolean abstract_) {
+	public UpdateClassAbstract(MetaModelProject proj, IsClass class_, boolean abstract_) {
 		super(proj);
 		this.class_ =  class_;
 		
@@ -68,7 +68,7 @@ public class UpdateClassAbstract extends Update {
 	}
 	
 	@Override
-	public void undoIt(Project proj) throws Exception {
+	public void undoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -78,7 +78,7 @@ public class UpdateClassAbstract extends Update {
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

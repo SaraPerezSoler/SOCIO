@@ -1,16 +1,16 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Remove;
-import es.uam.app.projects.Project;
+import es.uam.app.actions.RemoveMetamodel;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class RemoveReference extends Remove {
+public class RemoveReference extends RemoveMetamodel {
 
 	private ReferenceControl ref;
 
 	
-	public RemoveReference( Project proj, ReferenceControl ref) {
+	public RemoveReference(MetaModelProject  proj, ReferenceControl ref) {
 		super(proj);
 		this.ref = ref;
 	}
@@ -26,7 +26,7 @@ public class RemoveReference extends Remove {
 			return;
 		}
 		
-		proj.removeReference(ref, ref.getParent());
+		getProject().removeReference(ref, ref.getParent());
 		super.execute();
 
 	}
@@ -38,7 +38,7 @@ public class RemoveReference extends Remove {
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -48,7 +48,7 @@ public class RemoveReference extends Remove {
 	}
 
 	@Override
-	public void redoIt(Project proj) {
+	public void redoIt(MetaModelProject proj) {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 import es.uam.app.parser.rules.IsClass;
 
-public class ClassControl implements Controlador, IsClass, ControlCopier {
+public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 
 	private EClass eClass;
 	public static final String ANNOTATION_SUPERTYPE = "@SuperType";

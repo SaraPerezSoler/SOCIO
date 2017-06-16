@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 
-public class OperationControl implements Controlador {
+public class OperationControl implements MetamodelControl {
 
 	private EOperation eOp;
 
@@ -30,7 +30,7 @@ public class OperationControl implements Controlador {
 		eOp.getEExceptions().add(e);
 	}
 	public void setEType (String type){
-		eOp.setEType(Controlador.getType(type));
+		eOp.setEType(MetamodelControl.getType(type));
 	}
 	public void setEType (EClassifier type){
 		eOp.setEType(type);

@@ -1,12 +1,12 @@
 package es.uam.app.actions.metamodels;
 
 
-import es.uam.app.actions.Create;
+import es.uam.app.actions.CreateMetamodel;
 import es.uam.app.parser.rules.IsClass;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 
-public class CreateClass extends Create implements IsClass{
+public class CreateClass extends CreateMetamodel implements IsClass{
 
 	private String class_;
 	private ClassControl object=null;
@@ -17,7 +17,7 @@ public class CreateClass extends Create implements IsClass{
 		this.object=object;
 	}
 	
-	public CreateClass(Project proj, String class_, boolean abs) {
+	public CreateClass(MetaModelProject proj, String class_, boolean abs) {
 		super(proj);
 		this.class_ = class_;
 		this.abstract_=abs;
@@ -28,10 +28,10 @@ public class CreateClass extends Create implements IsClass{
 		if (isExecute()){
 			return;
 		}
-		if (proj.getExactlyClass(class_)==null){
+		if (getProject().getExactlyClass(class_)==null){
 			ClassControl clase=new ClassControl(class_);
 			clase.setAbstract(abstract_);
-			proj.addClass(clase);
+			getProject().addClass(clase);
 			object=clase;
 		}else{
 			throw new Exception("Problem ocurred in CreateClass: the class "+class_ +"  already exists");
@@ -52,7 +52,7 @@ public class CreateClass extends Create implements IsClass{
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -62,7 +62,7 @@ public class CreateClass extends Create implements IsClass{
 	}
 
 	@Override
-	public void redoIt(Project proj) {
+	public void redoIt(MetaModelProject proj) {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

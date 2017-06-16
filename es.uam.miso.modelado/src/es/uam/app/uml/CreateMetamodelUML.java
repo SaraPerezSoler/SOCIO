@@ -15,7 +15,7 @@ import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.PackageControl;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public abstract class CreateUML {
+public class CreateMetamodelUML {
 
 	public static final String GREEN_BACKGROUND = "#D7F7BA";
 	public static final String GREEN_LINES = "#458A03";
@@ -65,6 +65,11 @@ public abstract class CreateUML {
 	private static Map<String, List<Controlador>> updateControl;
 	private boolean nullReference=false;
 	
+	private PackageControl pc;
+	
+	public CreateMetamodelUML(PackageControl pck) {
+		this.pc=pck;
+	}
 	
 	public String createUML(List<ActionModel> act) {
 		String cad = START_CLASS_DIAGRAM;
@@ -76,7 +81,6 @@ public abstract class CreateUML {
 		deleteControl = getControlador(deletes);
 		updateControl = getUpdateControlador(updates);
 
-		PackageControl pc = this.getPackage();
 		for (ClassControl cc : pc.getClasses()) {
 			cad += getClassText(cc);
 		}
@@ -86,22 +90,7 @@ public abstract class CreateUML {
 		return cad;
 	}
 
-	/*
-	 * private Map<String, List<Controlador[]>>
-	 * getUpdateControlador(List<Update> updates2) { List<Controlador[]>
-	 * clas=new ArrayList<Controlador[]>(); List<Controlador[]> attr= new
-	 * ArrayList<Controlador[]>(); List<Controlador[]> ref=new
-	 * ArrayList<Controlador[]>(); Map<String, List<Controlador[]>>ret= new
-	 * HashMap<String, List<Controlador[]>>();
-	 * 
-	 * for (Update a : updates2){ Controlador[] c= new Controlador[2]; c[0]=
-	 * a.getObject(); c[1]=a.getOld(); if (c[0] instanceof ClassControl){
-	 * clas.add(c); }else if (c[0] instanceof AttributeControl){ attr.add(c);
-	 * }else if (c[0] instanceof ReferenceControl){ ref.add(c); } }
-	 * 
-	 * ret.put(CLASS, clas); ret.put(ATTR, attr); ret.put(REF, ref); return ret;
-	 * }
-	 */
+	
 
 	private Map<String, List<Controlador>> getUpdateControlador(List<Update> updates2) {
 		List<Controlador> clas = new ArrayList<Controlador>();
@@ -126,7 +115,6 @@ public abstract class CreateUML {
 		return ret;
 	}
 
-	public abstract PackageControl getPackage();
 
 	private String deletedElements() {
 		List<Controlador> clas = deleteControl.get(CLASS);

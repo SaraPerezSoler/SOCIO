@@ -16,7 +16,7 @@ public class Get extends MainCommand {
 		String nameProject = validProjectName(rm.getProjectName());
 		Project actual = Project.getProject(nameProject);
 		if (actual != null) {
-			File file = new File(actual.ecorePath());
+			File file = new File(actual.FilePath());
 			if (file.exists()) {
 				SendMessageExc e=new SendMessageExc(rm.getText());
 				e.setDocument(file);

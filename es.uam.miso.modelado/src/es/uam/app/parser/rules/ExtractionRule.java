@@ -9,12 +9,12 @@ import es.uam.app.parser.Verb;
 import es.uam.app.projects.Project;
 import net.didion.jwnl.JWNLException;
 
-public abstract class ExtractionRule {
+public abstract class ExtractionRule<T extends Project>{
 
-	protected Sentence sentence;
+	protected Sentence<T> sentence;
 	protected Verb verb;
 	
-	public ExtractionRule(Sentence sentence, Verb v) {
+	public ExtractionRule(Sentence<T> sentence, Verb v) {
 		this.sentence=sentence;
 		this.verb=v;
 	}
@@ -24,7 +24,7 @@ public abstract class ExtractionRule {
 	
 	public  abstract boolean validate();
 	
-	public abstract List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException;
+	public abstract List<ActionModel> evaluete(T proj, int i) throws FileNotFoundException, JWNLException;
 	
 	public abstract int numEvaluete();
 	

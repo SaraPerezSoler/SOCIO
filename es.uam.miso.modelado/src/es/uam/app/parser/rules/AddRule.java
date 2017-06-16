@@ -13,24 +13,24 @@ import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.WordConfigure;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.ecore.MetamodelControl;
 import net.didion.jwnl.JWNLException;
 
-public class AddRule extends ExtractionRule {
+public class AddRule extends MetemodelRule {
 
 	private List<NP[]> dobj_in;
 	private static final String[] ADD_WORDS = { "add", "create", "make" };
 	private final static String examples[]={"Add person.", "Add work in person.", "Add numeric age in person."};
 
 
-	public AddRule(Sentence sentence, Verb v) {
+	public AddRule(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 		List<ActionModel> ret = new ArrayList<ActionModel>();
 		NP dobj = dobj_in.get(i)[0];
 		NP in = dobj_in.get(i)[1];
@@ -49,7 +49,7 @@ public class AddRule extends ExtractionRule {
 			if (dobj.getAdj() != null) {
 				String lemmaAdjUpper = WordConfigure.startUpperCase(dobj.getAdj().getLemma());
 
-				EClassifier type = Controlador.getType(lemmaAdjUpper);
+				EClassifier type = MetamodelControl.getType(lemmaAdjUpper);
 				if (type != null) {
 					int min = 0;
 					int max = 1;

@@ -13,25 +13,25 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 
-public class RemoveRule extends ExtractionRule {
+public class RemoveRule extends MetemodelRule {
 
 	private static final String[] DELETE_WORDS = { "remove", "delete", "erase" };
 	private List<NP[]> dobj_to;
 	private final static String examples[]={"Remove person.", "Delete work from person.", "Erase numeric age from person."};
 	
-	public RemoveRule(Sentence sentence, Verb v) {
+	public RemoveRule(Sentence<MetaModelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
 	@Override
-	public List<ActionModel> evaluete(Project proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 		List<ActionModel> ret = new ArrayList<ActionModel>();
 		NP dobj = dobj_to.get(i)[0];
 		NP to = dobj_to.get(i)[1];

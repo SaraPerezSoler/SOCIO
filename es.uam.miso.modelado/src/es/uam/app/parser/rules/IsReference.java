@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import es.uam.app.actions.metamodels.ChangeAttrForRef;
 import es.uam.app.actions.metamodels.CreateReference;
 import es.uam.app.parser.NP;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
@@ -41,7 +41,7 @@ public interface IsReference {
 //		}
 //	}
 
-	public static IsReference getReference(NP ref, IsClass of, Project proj, boolean containment)
+	public static IsReference getReference(NP ref, IsClass of, MetaModelProject proj, boolean containment)
 			throws FileNotFoundException, JWNLException {
 		int min = 0;
 		int max = 1;
@@ -51,7 +51,7 @@ public interface IsReference {
 		return getReference(ref.lowerCammelCase(), of, min, max, proj, containment);
 	}
 
-	public static IsReference getReference(String ref, IsClass of, int min, int max, Project proj, boolean containment)
+	public static IsReference getReference(String ref, IsClass of, int min, int max, MetaModelProject proj, boolean containment)
 			throws FileNotFoundException, JWNLException {
 		if (of instanceof ClassControl) {
 			Feature f = proj.getFeature(ref, (ClassControl) of);
@@ -68,7 +68,7 @@ public interface IsReference {
 		}
 	}
 
-	public static IsReference getExactlyReference(NP ref, IsClass of, Project proj, boolean containment)
+	public static IsReference getExactlyReference(NP ref, IsClass of, MetaModelProject proj, boolean containment)
 			throws FileNotFoundException, JWNLException {
 		int min = 0;
 		int max = 1;
@@ -78,7 +78,7 @@ public interface IsReference {
 		return getExactlyReference(ref.lowerCammelCase(), of, min, max, proj, containment);
 	}
 
-	public static IsReference getExactlyReference(String ref, IsClass of, int min, int max, Project proj,
+	public static IsReference getExactlyReference(String ref, IsClass of, int min, int max, MetaModelProject proj,
 			boolean containment) throws FileNotFoundException, JWNLException {
 		if (of instanceof ClassControl) {
 			Feature f = proj.getExactlyFeature(ref, (ClassControl) of);

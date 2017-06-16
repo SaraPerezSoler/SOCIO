@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-public interface Feature extends Controlador, ControlCopier {
+public interface Feature extends MetamodelControl, ControlCopier {
 
 	public static final String ANNOTATION_INI="@CointainerVAR";
 	public ClassControl getParent();

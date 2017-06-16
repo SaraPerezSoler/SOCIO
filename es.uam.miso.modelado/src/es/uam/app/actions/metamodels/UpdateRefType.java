@@ -1,14 +1,14 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.parser.rules.IsClass;
 import es.uam.app.parser.rules.IsReference;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class UpdateRefType extends Update {
+public class UpdateRefType extends UpdateMetamodel {
 
 	private IsReference ref = null;
 
@@ -18,7 +18,7 @@ public class UpdateRefType extends Update {
 	private ReferenceControl new_ = null;
 	private ReferenceControl object= null;
 
-	public UpdateRefType(Project proj, IsReference ref, IsClass type) {
+	public UpdateRefType(MetaModelProject proj, IsReference ref, IsClass type) {
 		super(proj);
 		
 		this.ref = ref;
@@ -74,7 +74,7 @@ public class UpdateRefType extends Update {
 	}
 	
 	@Override
-	public void undoIt(Project proj) throws Exception {
+	public void undoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -85,7 +85,7 @@ public class UpdateRefType extends Update {
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

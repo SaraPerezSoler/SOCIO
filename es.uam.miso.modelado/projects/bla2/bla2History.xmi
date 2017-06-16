@@ -145,6 +145,134 @@
     </sentences>
   </msg>
   <msg user="//@users.0" text="bla2" date="2017-06-15T13:30:35.000+0200" id="10484;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-16T13:44:52.000+0200" id="10565;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-16T13:47:20.000+0200" id="10580;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-16T13:51:53.000+0200" id="10587;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-16T13:53:20.000+0200" id="10594;14419070"/>
+  <msg user="//@users.0" text="add dog" date="2017-06-16T13:53:25.000+0200" id="10597;14419070" undoable="true">
+    <sentences sentence="add dog">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Dog"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="dog is an animal" date="2017-06-16T13:53:36.000+0200" id="10599;14419070" undoable="true">
+    <sentences sentence="dog is an animal">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Dog"/>
+        <old xsi:type="ecore:EClass" name="Dog">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Dog">
+          <eAnnotations source="@SuperTypeVARAnimalVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="dog has four legs" date="2017-06-16T13:53:56.000+0200" id="10601;14419070" undoable="true">
+    <sentences sentence="dog has four legs">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Dog/leg"/>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="dog drinks water" date="2017-06-16T13:54:33.000+0200" id="10603;14419070">
+    <sentences sentence="dog drinks water"/>
+  </msg>
+  <msg user="//@users.0" text="the dog can drink water" date="2017-06-16T13:54:53.000+0200" id="10605;14419070" undoable="true">
+    <sentences sentence="the dog can drink water">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Water"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Dog/drink"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Dog/drink"/>
+        <old xsi:type="ecore:EReference" name="drink">
+          <eAnnotations source="@CointainerVARDog"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="drink">
+          <eAnnotations source="@CointainerVARDog"/>
+          <eAnnotations source="@TypeVARWater"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="all animals drink water" date="2017-06-16T13:55:12.000+0200" id="10607;14419070" undoable="true">
+    <sentences sentence="all animals drink water">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Animal/drink"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Animal/drink"/>
+        <old xsi:type="ecore:EReference" name="drink">
+          <eAnnotations source="@CointainerVARAnimal"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="drink">
+          <eAnnotations source="@CointainerVARAnimal"/>
+          <eAnnotations source="@TypeVARWater"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="all animals eat food" date="2017-06-16T13:55:24.000+0200" id="10609;14419070" undoable="true">
+    <sentences sentence="all animals eat food">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Food"/>
+      </commands>
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Animal/eat"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Animal/eat"/>
+        <old xsi:type="ecore:EReference" name="eat">
+          <eAnnotations source="@CointainerVARAnimal"/>
+          <eAnnotations source="@TypeVARnull"/>
+        </old>
+        <new xsi:type="ecore:EReference" name="eat">
+          <eAnnotations source="@CointainerVARAnimal"/>
+          <eAnnotations source="@TypeVARFood"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="animals are food" date="2017-06-16T13:56:19.000+0200" id="10615;14419070" undoable="true">
+    <sentences sentence="animals are food">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Animal"/>
+        <old xsi:type="ecore:EClass" name="Animal">
+          <eAnnotations source="@SuperTypeVAR"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="drink"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="eat"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Animal">
+          <eAnnotations source="@SuperTypeVARFoodVAR"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="drink"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="eat"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="plants are food" date="2017-06-16T13:56:31.000+0200" id="10617;14419070" undoable="true">
+    <sentences sentence="plants are food">
+      <commands xsi:type="DslHistory:Add">
+        <element href="./projects/bla2/bla2.ecore#//Plant"/>
+      </commands>
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/bla2/bla2.ecore#//Plant"/>
+        <old xsi:type="ecore:EClass" name="Plant">
+          <eAnnotations source="@SuperTypeVAR"/>
+        </old>
+        <new xsi:type="ecore:EClass" name="Plant">
+          <eAnnotations source="@SuperTypeVARFoodVAR"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
+  <msg user="//@users.0" text="bla2" date="2017-06-16T13:58:19.000+0200" id="10630;14419070"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="bla2" sentence="" date="2017-06-15T11:51:41.000+0200" id="10145;14419070"/>
 </DslHistory:History>

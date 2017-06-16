@@ -1,13 +1,13 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.Create;
+import es.uam.app.actions.CreateMetamodel;
 import es.uam.app.parser.rules.IsAttribute;
 import es.uam.app.parser.rules.IsClass;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 
-public class CreateAttribute extends Create implements IsAttribute {
+public class CreateAttribute extends CreateMetamodel implements IsAttribute {
 
 	private String name;
 	private IsClass of = null;
@@ -17,7 +17,7 @@ public class CreateAttribute extends Create implements IsAttribute {
 
 	
 
-	public CreateAttribute(Project proj, String name, IsClass of, int min, int max) {
+	public CreateAttribute(MetaModelProject proj, String name, IsClass of, int min, int max) {
 		super(proj);
 		this.name = name;
 		
@@ -27,7 +27,7 @@ public class CreateAttribute extends Create implements IsAttribute {
 		this.max = max;
 	}
 
-	public CreateAttribute(Project proj, String name, IsClass of) {
+	public CreateAttribute(MetaModelProject proj, String name, IsClass of) {
 		super(proj);
 		this.name = name;
 		
@@ -55,7 +55,7 @@ public class CreateAttribute extends Create implements IsAttribute {
 			AttributeControl attr = new AttributeControl(name);
 			attr.setLowerBound(min);
 			attr.setUpperBound(max);
-			proj.addAttribute(attr, ofClass);
+			getProject().addAttribute(attr, ofClass);
 			object = attr;
 		}else{
 			throw new Exception("Problem ocurred in CreateAttribute: the attribute "+name+" in "+ofClass.getName()+" already exists");
@@ -77,7 +77,7 @@ public class CreateAttribute extends Create implements IsAttribute {
 	}
 
 	@Override
-	public void undoIt(Project proj) {
+	public void undoIt(MetaModelProject proj) {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -88,7 +88,7 @@ public class CreateAttribute extends Create implements IsAttribute {
 	}
 
 	@Override
-	public void redoIt(Project proj) throws Exception {
+	public void redoIt(MetaModelProject proj) throws Exception {
 		if (!isExecute() || !isUndo() || isRedo()){
 			return;
 		}

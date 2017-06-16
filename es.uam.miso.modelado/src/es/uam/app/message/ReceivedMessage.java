@@ -10,8 +10,6 @@ import java.util.Set;
 
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.ValidText;
-import es.uam.app.projects.ecore.Feature;
-
 public class ReceivedMessage implements Comparable<ReceivedMessage> {
 
 	private String msg; // mensaje completo
@@ -175,25 +173,17 @@ public class ReceivedMessage implements Comparable<ReceivedMessage> {
 		
 	}
 
-	public boolean hasElement(String name, String of) {
+	public boolean hasElement(String name) {
 		Set<String> sentencesKeySet= sentences.keySet();
 		for (String k: sentencesKeySet){
 			List<ActionModel> ams= sentences.get(k);
 			for (ActionModel am: ams){
-				if (of!=null){
-					if (am.getObject() instanceof Feature){
-						Feature f= (Feature)am.getObject();
-						if (f.getName().equalsIgnoreCase(name) && f.getParentName().equalsIgnoreCase(of)){
-							return true;
-						}
-					}
-				}else{
-					if (am.getObject().getName().equalsIgnoreCase(name)){
-						return true;
-					}
+				if (am.getObject().getName().equalsIgnoreCase(name)){
+					return true;
 				}
 			}
 		}
+		
 		return false;
 	}
 
