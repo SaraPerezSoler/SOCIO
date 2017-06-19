@@ -1178,3 +1178,62 @@
 26931 16/06/2017 14:18:49: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Actions from all user, command=user_actions_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri Jun 16 14:18:52 CEST 2017, id=10657;14419070] 
 98751 16/06/2017 14:20:01: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Messages from all users, command=user_msg_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri Jun 16 14:20:04 CEST 2017, id=10663;14419070] 
 112079 16/06/2017 14:20:14: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=All actions, command=actions_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Fri Jun 16 14:20:17 CEST 2017, id=10669;14419070] 
+0 19/06/2017 11:07:36: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1101 19/06/2017 11:07:37: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+18040 19/06/2017 11:07:54: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:07:54 CEST 2017, id=10678;14419070] 
+25352 19/06/2017 11:08:01: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:08:01 CEST 2017, id=10681;14419070] 
+37593 19/06/2017 11:08:13: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Yes, command=user_msg_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:08:13 CEST 2017, id=10690;14419070] 
+49239 19/06/2017 11:08:25: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=No, command=abs_user_actions_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:08:25 CEST 2017, id=10698;14419070] 
+83604 19/06/2017 11:08:59: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=No, command=abs_user_msg_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:08:59 CEST 2017, id=10722;14419070] 
+0 19/06/2017 11:15:53: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1241 19/06/2017 11:15:54: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+0 19/06/2017 11:15:58: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+902 19/06/2017 11:15:59: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+8793 19/06/2017 11:16:07: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:16:07 CEST 2017, id=10726;14419070] 
+12371 19/06/2017 11:16:10: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:16:10 CEST 2017, id=10729;14419070] 
+20729 19/06/2017 11:16:19: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:16:19 CEST 2017, id=10736;14419070] 
+28843 19/06/2017 11:16:27: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=All actions, command=actions_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 11:16:27 CEST 2017, id=10742;14419070] 
+0 19/06/2017 12:14:22: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1173 19/06/2017 12:14:23: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+5806 19/06/2017 12:14:27: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:14:27 CEST 2017, id=10744;14419070] 
+9036 19/06/2017 12:14:31: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:14:31 CEST 2017, id=10747;14419070] 
+15307 19/06/2017 12:14:37: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:14:37 CEST 2017, id=10754;14419070] 
+15318 19/06/2017 12:14:37: [main] ERROR Modelado  Error al leer los comandos: [Ljava.lang.Object; cannot be cast to [Les.uam.app.actions.ActionModel; 
+0 19/06/2017 12:16:43: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+892 19/06/2017 12:16:44: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+7329 19/06/2017 12:16:50: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:16:50 CEST 2017, id=10757;14419070] 
+9833 19/06/2017 12:16:53: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:16:53 CEST 2017, id=10760;14419070] 
+15938 19/06/2017 12:16:59: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:16:59 CEST 2017, id=10767;14419070] 
+0 19/06/2017 12:17:20: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+997 19/06/2017 12:17:21: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+7239 19/06/2017 12:17:27: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=projects, sentence=null, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:17:27 CEST 2017, id=10769;14419070] 
+14772 19/06/2017 12:17:35: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:17:35 CEST 2017, id=10772;14419070] 
+17180 19/06/2017 12:17:37: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:17:37 CEST 2017, id=10775;14419070] 
+23468 19/06/2017 12:17:44: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:17:43 CEST 2017, id=10782;14419070] 
+0 19/06/2017 12:17:59: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1006 19/06/2017 12:18:00: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+19528 19/06/2017 12:18:19: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setProject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:18:18 CEST 2017, id=10786;14419070] 
+22349 19/06/2017 12:18:21: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:18:21 CEST 2017, id=10789;14419070] 
+31283 19/06/2017 12:18:30: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:18:30 CEST 2017, id=10796;14419070] 
+0 19/06/2017 12:18:49: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+921 19/06/2017 12:18:49: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+19161 19/06/2017 12:19:08: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:19:08 CEST 2017, id=10798;14419070] 
+22355 19/06/2017 12:19:11: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:19:11 CEST 2017, id=10801;14419070] 
+27618 19/06/2017 12:19:16: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:19:16 CEST 2017, id=10808;14419070] 
+171745 19/06/2017 12:21:40: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=All, command=history_all, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:21:40 CEST 2017, id=10814;14419070] 
+190661 19/06/2017 12:21:59: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/show, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:21:59 CEST 2017, id=10817;14419070] 
+0 19/06/2017 12:23:58: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1046 19/06/2017 12:23:59: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+11523 19/06/2017 12:24:09: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:24:09 CEST 2017, id=10819;14419070] 
+13724 19/06/2017 12:24:11: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:24:11 CEST 2017, id=10822;14419070] 
+20260 19/06/2017 12:24:18: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:24:18 CEST 2017, id=10829;14419070] 
+0 19/06/2017 12:26:38: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+1057 19/06/2017 12:26:39: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+10813 19/06/2017 12:26:49: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:26:49 CEST 2017, id=10831;14419070] 
+14193 19/06/2017 12:26:52: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:26:52 CEST 2017, id=10834;14419070] 
+20239 19/06/2017 12:26:58: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:26:58 CEST 2017, id=10841;14419070] 
+0 19/06/2017 12:27:35: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TelegramChannel 
+923 19/06/2017 12:27:36: [main] INFO  Modelado  Registrando canal: es.uam.app.channels.TwitterChannel 
+9175 19/06/2017 12:27:44: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=/setproject, command=projects, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:27:44 CEST 2017, id=10843;14419070] 
+13324 19/06/2017 12:27:48: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=test, command=, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:27:48 CEST 2017, id=10846;14419070] 
+18887 19/06/2017 12:27:54: [main] INFO  Modelado  Mensaje recibido: ReceivedMessage [msg=Contribution rate, command=rate_statistics, sentence=, user=User [name=Sara, id=14419070, nick=Saruki, channel=Telegram], date=Mon Jun 19 12:27:54 CEST 2017, id=10853;14419070] 

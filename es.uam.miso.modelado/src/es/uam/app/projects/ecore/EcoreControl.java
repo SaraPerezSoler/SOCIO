@@ -280,5 +280,16 @@ public class EcoreControl implements Controlador, FileProject {
 	public String createUML(List<ActionModel> actions) {
 		return new CreateMetamodelUML(getPackage()).createUML(actions);
 	}
+
+	public List<Controlador> getAllObjects() {
+		List<Controlador> ret= new ArrayList<>();
+		List<ClassControl> clases=getClasses();
+		ret.addAll(clases);
+		for (ClassControl c: clases){
+			ret.addAll(c.getAttributes());
+			ret.addAll(c.getReferences());
+		}
+		return ret;
+	}
 	
 }

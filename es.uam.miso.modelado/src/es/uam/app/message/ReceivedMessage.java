@@ -10,6 +10,7 @@ import java.util.Set;
 
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.ValidText;
+import es.uam.app.projects.ecore.Controlador;
 public class ReceivedMessage implements Comparable<ReceivedMessage> {
 
 	private String msg; // mensaje completo
@@ -205,6 +206,17 @@ public class ReceivedMessage implements Comparable<ReceivedMessage> {
 			return true;
 		}
 		return false;
+	}
+
+	public List<ActionModel> getActionsFromObject(Controlador obj) {
+		List<ActionModel> ret= new ArrayList<>();
+		List<ActionModel> actions=getAllActions();
+		for(ActionModel act: actions){
+			if (act.getObject().equals(obj)){
+				ret.add(act);
+			}
+		}
+		return ret;
 	}
 
 	

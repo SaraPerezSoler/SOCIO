@@ -19,6 +19,7 @@ import es.uam.app.parser.WordConfigure;
 import es.uam.app.parser.rules.ExtractionRule;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.EcoreControl;
 import es.uam.app.projects.ecore.Feature;
 import es.uam.app.projects.ecore.ReferenceControl;
@@ -370,6 +371,11 @@ public class MetaModelProject extends Project{
 
 		}
 		return act;
+	}
+
+	@Override
+	public List<Controlador> getAllObjects() {
+		return ec.getAllObjects();
 	}
 
 

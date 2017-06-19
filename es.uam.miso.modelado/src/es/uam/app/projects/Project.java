@@ -17,21 +17,24 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
 
 import es.uam.app.actions.ActionModel;
+import es.uam.app.actions.Create;
+import es.uam.app.actions.Update;
 import es.uam.app.main.commands.History.Order;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.User;
 import es.uam.app.parser.SentencesSplitter;
 import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.log.HistoryControl;
 import es.uam.app.projects.log.RemoveLogControl;
 import es.uam.app.uml.UML;
-import javafx.scene.chart.Chart;
 
 public abstract class Project {
 
@@ -82,6 +85,8 @@ public abstract class Project {
 	public abstract FileProject getFileProject();
 
 	public abstract void setFileProject(FileProject fileProj);
+	
+	public abstract List<Controlador> getAllObjects();
 
 	private static void cargaProject(String name, ProjectType type) throws FatalException {
 
@@ -690,6 +695,110 @@ public abstract class Project {
 
 		return dataset;
 	}
+	
+
+	public File contributionRate() throws IOException{
+		List<Controlador> objects= getAllObjects();
+		Map<User, Double> user_rate= new HashMap<User, Double>();
+		for (Controlador obj: objects){
+			Map<User, Double> user_rate_object= userRateFromObject(obj);
+			Set<User> keys= user_rate_object.keySet();
+			for (User u: keys){
+				Double rate=user_rate.get(u);
+				if (rate==null){
+					rate=user_rate_object.get(u)/objects.size();
+				}else{
+					rate+=user_rate_object.get(u)/objects.size();
+				}
+				user_rate.put(u, rate);
+			}
+			
+		}
+		
+		
+		  DefaultPieDataset data = new DefaultPieDataset();
+	      Set<User> keys=user_rate.keySet();
+	      for (User k: keys){
+	    	  Double rate=user_rate.get(k);
+	    	  Double rate_short= Math.rint(rate*10000)/100;
+	    	  data.setValue(k.getNick()+"= "+rate_short+"%", rate);
+	      }
+	 
+	        // Creando el Grafico
+	        JFreeChart chart = ChartFactory.createPieChart(
+	         "Contribution Rate",data, false, false,false);
+	     // Mostrar Grafico
+			File jpg = new File(URI + "/" + name + "/" + name + "Contribution Rate.jpg");
+			ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
+
+			return jpg;	 
+	}
+	
+	private Map<ActionModel, User> actionsFromObject(Controlador obj) {
+		Map<ActionModel, User> ret= new HashMap<>();
+		List<ReceivedMessage> logMsg= log.readHistoryMsgs();
+		for (ReceivedMessage msg: logMsg){
+			List<ActionModel> actions=msg.getActionsFromObject(obj);
+			for (ActionModel act: actions){
+				ret.put(act, msg.getUser());
+			}
+		}
+		return ret;
+	}
+	
+	private Map<User, Double> userRateFromObject(Controlador obj){
+		Map<ActionModel, User> action_user=actionsFromObject(obj);
+		Map<User, Double> user_rate=new HashMap<User, Double>();
+		Set<ActionModel> actionSet=action_user.keySet();
+		ActionModel[] actionList= new ActionModel[actionSet.size()];
+		actionList= actionSet.toArray(actionList);
+		List<ActionModel> create=new ArrayList<>();
+		List<ActionModel> update=new ArrayList<>();
+		for (ActionModel act: actionList){
+			if (act instanceof Create){
+				create.add(act);
+			}else if (act instanceof Update){
+				update.add(act);
+			}
+		}
+		if (update.isEmpty()){
+			for (ActionModel act: create){
+				User u=action_user.get(act);
+				Double rate=user_rate.get(u);
+				if (rate==null){
+					rate=((double)1/create.size());
+				}else{
+					rate+=((double)1/create.size());
+				}
+				user_rate.put(u, rate);
+			}
+		}else{
+			for (ActionModel act: create){
+				User u=action_user.get(act);
+				Double rate=user_rate.get(u);
+				if (rate==null){
+					rate=((double)1/create.size())*0.5;
+				}else{
+					rate+=((double)1/create.size())*0.5;
+				}
+				user_rate.put(u, rate);
+			}
+			
+			for (ActionModel act: update){
+				User u=action_user.get(act);
+				Double rate=user_rate.get(u);
+				if (rate==null){
+					rate=((double)1/update.size())*0.5;
+				}else{
+					rate+=((double)1/update.size())*0.5;
+				}
+				user_rate.put(u, rate);
+			}
+		}
+		return user_rate;
+	}
+	
+	
 
 	public static File getProjectList() {
 		String cad = "@startuml\n";
