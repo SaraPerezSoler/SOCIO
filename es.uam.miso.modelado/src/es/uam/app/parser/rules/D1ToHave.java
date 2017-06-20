@@ -26,7 +26,7 @@ public class D1ToHave extends MetemodelRule {
 	private List<NP[]> A_B;
 	private final static String examples[]={"Bulky packages are characterized by their width, length and height.", "Students have a numeric identifier.", "Medicines have an active ingredient."};
 
-	private static final String[] HAVE_WORDS = { "have", "characterized by", "identified by",
+	private static final String[] HAVE_WORDS = { "have", "be characterized by", "be identified by",
 			"be recognized by" };
 
 	public D1ToHave(Sentence<MetaModelProject> sentence, Verb v) {
@@ -147,7 +147,7 @@ public class D1ToHave extends MetemodelRule {
 	}
 
 	private boolean isHave() {
-		String verbString = verb.getWordsString();
+		String verbString = verb.getWordsStringWithAux();
 		for (String s : HAVE_WORDS) {
 			if (s.equalsIgnoreCase(verbString)) {
 				return true;

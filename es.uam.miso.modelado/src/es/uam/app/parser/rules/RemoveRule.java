@@ -137,7 +137,7 @@ public class RemoveRule extends MetemodelRule {
 	}
 
 	private boolean isDelete() {
-		String v = verb.getWordsString();
+		String v = verb.getWordsStringWithAux();
 
 		for (String s : DELETE_WORDS) {
 			if (s.equalsIgnoreCase(v)) {

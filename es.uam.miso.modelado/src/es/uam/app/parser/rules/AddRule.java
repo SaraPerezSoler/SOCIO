@@ -152,7 +152,7 @@ public class AddRule extends MetemodelRule {
 	}
 
 	private boolean isAdd() {
-		String v = verb.getWordsString();
+		String v = verb.getWordsStringWithAux();
 
 		for (String s : ADD_WORDS) {
 			if (s.equalsIgnoreCase(v)) {
