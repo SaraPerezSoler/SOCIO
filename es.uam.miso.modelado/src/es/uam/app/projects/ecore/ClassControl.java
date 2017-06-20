@@ -31,7 +31,7 @@ public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 
 	public ClassControl(String name) {
 		eClass = factory.createEClass();
-		eClass.setName(name);
+		eClass.setName(validElementName(name));
 	}
 
 	public EClass getEClass() {
@@ -116,7 +116,7 @@ public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 	}
 
 	public void setName(String name) {
-		eClass.setName(name);
+		eClass.setName(validElementName(name));
 	}
 
 	public void addAttrRef(EStructuralFeature attr) {

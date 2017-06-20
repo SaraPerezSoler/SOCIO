@@ -1,5 +1,8 @@
 package es.uam.app.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface ValidText {
 
 	
@@ -9,14 +12,19 @@ public interface ValidText {
 			return null;
 		}
 		char[] textChar = text.toCharArray();
-		String ret=text;
-		for (char c : textChar) {
-			if (!isValidChar(c, validChars)) {
-				ret = ret.replace(c, ' ');
+		List<Character> ret=new ArrayList<Character>();
+		for (char c: textChar) {
+			if (isValidChar(c, validChars)) {
+				ret.add(c);
 			}
 		}
+		char[] retChar= new char[ret.size()];
+		for (int i=0; i<ret.size(); i++){
+			retChar[i]= ret.get(i);
+		}
 		
-		return ret;
+		
+		return new String(retChar);
 	}
 	
 	public static boolean isValidChar(char c, char [] validChars){

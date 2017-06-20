@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.exceptions.FatalException;
@@ -330,7 +332,10 @@ public class MetaModelProject extends Project{
 		} else {
 			validateRet = "";
 			for (Diagnostic d : diagnosticChild) {
-				validateRet += getStringDiagnostic(d) + "\n";
+				String diadnostic=getStringDiagnostic(d);
+				if (diadnostic!=null && diadnostic!="" && diadnostic!=" "){
+					validateRet += diadnostic + "\n";
+				}
 			}
 		}
 		return validateRet;
@@ -343,7 +348,18 @@ public class MetaModelProject extends Project{
 
 	public String getStringDiagnostic(Diagnostic d) {
 		if (d.getSeverity() == Diagnostic.ERROR) {
-			return "ERROR: " + d.getMessage();
+			if (d.getCode()==1){
+				return "";
+			}else if (d.getCode()==40){
+				Object o=d.getData().get(0);
+				if (o instanceof EReference){
+					return "ERROR: The type of "+((EReference)o).getName()+" in "+((EReference)o).getEContainingClass().getName()+" must be set."; 
+				}else if (o instanceof EAttribute){
+					return "ERROR: The type of "+((EAttribute)o).getName()+" in "+((EAttribute)o).getEContainingClass().getName()+" must be set."; 
+				}
+				
+			}
+				return "ERROR: " + d.getMessage();
 		} else if (d.getSeverity() == Diagnostic.WARNING) {
 			return "WARNING: " + d.getMessage();
 		} else {

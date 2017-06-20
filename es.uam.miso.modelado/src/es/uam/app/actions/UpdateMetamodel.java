@@ -81,7 +81,7 @@ public abstract class UpdateMetamodel extends Update {
 	
 	
 	public MetaModelProject getProject() {
-		return (MetaModelProject) getProject();
+		return (MetaModelProject) super.getProject();
 	}
 
 }

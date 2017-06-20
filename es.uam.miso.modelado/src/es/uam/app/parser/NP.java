@@ -141,17 +141,25 @@ public class NP {
 	}
 
 	public String upperCammelCase() {
-		String cad="";
-		for (int i=0; i<words.size(); i++){
-			cad+=WordConfigure.startUpperCase(words.get(i).getLemma());
+		String cad = "";
+		for (int i = 0; i < words.size(); i++) {
+			if (noun != null && noun.equals(words.get(i))) {
+				cad += WordConfigure.startUpperCase(words.get(i).getLemma());
+			} else {
+				cad += WordConfigure.startUpperCase(words.get(i).getWord());
+			}
 		}
 		return cad;
 	}
 
 	public String lowerCammelCase() {
-		String cad="";
-		for (int i=0; i<words.size(); i++){
-			cad+=WordConfigure.startUpperCase(words.get(i).getLemma());
+		String cad = "";
+		for (int i = 0; i < words.size(); i++) {
+			if (noun != null && noun.equals(words.get(i))) {
+				cad += WordConfigure.startUpperCase(words.get(i).getLemma());
+			} else {
+				cad += WordConfigure.startUpperCase(words.get(i).getWord());
+			}
 		}
 		return WordConfigure.startLowerCase(cad);
 	}
@@ -169,11 +177,9 @@ public class NP {
 	}
 
 	public void setNoun(Word noun2) {
-		this.noun=noun2;
+		this.noun = noun2;
 		this.words.add(noun2);
-		
+
 	}
-
-
 
 }

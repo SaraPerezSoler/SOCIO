@@ -22,12 +22,12 @@ public class ReferenceControl implements Feature, IsReference {
 
 	public ReferenceControl(String name) {
 		eRef = factory.createEReference();
-		eRef.setName(name);
+		eRef.setName(validElementName(name));
 	}
 
 	public ReferenceControl(String name, EClass type) {
 		eRef = factory.createEReference();
-		eRef.setName(name);
+		eRef.setName(validElementName(name));
 		eRef.setEType(type);
 	}
 
@@ -107,7 +107,7 @@ public class ReferenceControl implements Feature, IsReference {
 	}
 
 	public void setName(String name) {
-		eRef.setName(name);
+		eRef.setName(validElementName(name));
 	}
 
 	public String getName() {

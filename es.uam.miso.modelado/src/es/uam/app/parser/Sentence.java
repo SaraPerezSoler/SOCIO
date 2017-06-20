@@ -100,7 +100,7 @@ public class Sentence <T extends Project>{
 			List<Word> words = getListWords(np);
 			List<Word> wordsSave = new ArrayList<Word>();
 			for (Word w : words) {
-				if (w.getTag().startsWith("NN") || w.getTag().startsWith("JJ")) {
+				if (w.getTag().startsWith("NN") || w.getTag().startsWith("JJ")|| w.getTag().startsWith("VB")) {
 					wordsSave.add(w);
 				}
 			}

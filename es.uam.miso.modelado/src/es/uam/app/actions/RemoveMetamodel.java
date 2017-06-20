@@ -55,7 +55,7 @@ public abstract class RemoveMetamodel extends Remove{
 	
 	
 	public MetaModelProject getProject() {
-		return (MetaModelProject) getProject();
+		return (MetaModelProject) super.getProject();
 	}
 	
 }

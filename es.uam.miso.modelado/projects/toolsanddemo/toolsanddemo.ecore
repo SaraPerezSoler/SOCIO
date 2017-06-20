@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="toolsanddemo" nsURI="toolsanddemo" nsPrefix="toolsanddemo">
+  <eClassifiers xsi:type="ecore:EClass" name="ElearningPlatform">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="course" upperBound="-1" eType="//Course" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Course"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PaidCourse" eSuperTypes="//Course">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FreeCourse" eSuperTypes="//Course"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Subject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="practicalExercise" upperBound="-1" eType="//PracticalExercise" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="evaluatedWith" eType="//Test"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PracticalExercise"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Test"/>
+</ecore:EPackage>

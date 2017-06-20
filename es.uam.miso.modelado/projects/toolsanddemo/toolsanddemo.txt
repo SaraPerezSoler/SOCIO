@@ -1,0 +1,31 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+}
+class ElearningPlatform {
+}
+ElearningPlatform *--"0..*"Course : course
+class Course {
+}
+class PaidCourse {
+[0,1] price: ?? 
+<b><color:#458A03>[0,1] name: ?? </color></b>
+}
+Course <|-- PaidCourse
+class FreeCourse {
+}
+Course <|-- FreeCourse
+class Subject {
+}
+Subject *--"0..*"PracticalExercise : practicalExercise
+Subject -->"0..1"Test : evaluatedWith
+class PracticalExercise {
+}
+class Test {
+}
+
+@enduml

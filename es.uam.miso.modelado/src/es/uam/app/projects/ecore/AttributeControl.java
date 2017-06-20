@@ -22,12 +22,12 @@ public class AttributeControl implements Feature, IsAttribute {
 
 	public AttributeControl(String name) {
 		eAttr = factory.createEAttribute();
-		eAttr.setName(name);
+		eAttr.setName(validElementName(name));
 	}
 
 	public AttributeControl(String name, EClassifier type) {
 		eAttr = factory.createEAttribute();
-		eAttr.setName(name);
+		eAttr.setName(validElementName(name));
 		eAttr.setEType(type);
 	}
 
@@ -67,7 +67,7 @@ public class AttributeControl implements Feature, IsAttribute {
 	}
 
 	public void setName(String name) {
-		eAttr.setName(name);
+		eAttr.setName(validElementName(name));
 	}
 
 	public String getName() {

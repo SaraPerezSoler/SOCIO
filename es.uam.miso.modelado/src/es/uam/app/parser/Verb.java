@@ -118,7 +118,6 @@ public class Verb {
 		boolean haveAux=false;
 		for (int i = 0; i < words.size(); i++) {
 			if (words.get(i).getDependecyTag().startsWith("aux")){
-				cad += words.get(i).getLemma();
 				haveAux=true;
 			}else{
 				if (haveAux){
@@ -127,7 +126,7 @@ public class Verb {
 					cad += words.get(i).getLemma();
 				}
 			}
-			if (i!=words.size()-1){
+			if (i!=words.size()-1 && cad!=""){
 				cad+=" ";
 			}
 		}
