@@ -26,7 +26,7 @@ public class B4Contain extends MetemodelRule {
 	private final static String examples[]={"The house is made of rooms.", "Students contains a numeric identifier.",};
 
 
-	private static final String[] CONTAINS_WORDS = { "contain", "be made of","be made up of", "be made from", " be composed", "include" };
+	private static final String[] CONTAINS_WORDS = { "contain", "made of","made up of", "made from", " composed", "include" };
 	private static final String[] REVERSE_IF_PASSIVE={ "contain", "include"};
 	
 
