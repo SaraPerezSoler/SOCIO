@@ -29,8 +29,6 @@ You also have:
 - _/show_: show you the project state in that moment. 
 - _/validate_: validate the model.
 
-## How it works on Twitter
-
 ## Examples
 
 Now let's look the sentences you can use and how.
