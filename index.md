@@ -7,7 +7,7 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
   3. Usually Socio searchs synonyms and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. In most cases, Socio doesn't do that you want to do for this reason. In these cases, you can use the add command, that doesn't search synonyms.
   4. If Socio didn't understand well some sentences, you can undo the actions and try to say it with other sentence or divided.
 
-## nana
+## Tool demo
 <p>
  <iframe width="560" height="315" src="https://www.youtube.com/embed/nTNBQm362KA?ecver=1" frameborder="0" allowfullscreen></iframe>
 </p>
