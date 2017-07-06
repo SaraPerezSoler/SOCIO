@@ -9,8 +9,7 @@ Welcome to Modelling Bot Help, the bot's name is Socio and you can work with it 
 
 ## Tool demo
 <p>
- <a name="Videos" class="anchor" href="#videos"><span class="octicon octicon-link"></span></a>Videos</h3> 
- <iframe width="560" height="315" src="https://youtu.be/nTNBQm362KA" frameborder="0" allowfullscreen></iframe>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/nTNBQm362KA?ecver=1" frameborder="0" allowfullscreen></iframe>
 </p>
 
 ## How it works on Telegram
