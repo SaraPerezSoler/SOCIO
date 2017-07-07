@@ -217,7 +217,12 @@
   <msg user="//@users.0" text="test" date="2017-06-15T12:51:52.000+0200" id="10329;14419070">
     <sentences sentence="test"/>
   </msg>
+  <msg user="//@users.2" text="test2" date="2017-06-22T12:11:38.000+0200" id="4611;14419070"/>
+  <msg user="//@users.2" text="subject contains a practical exercises" date="2017-06-22T12:11:58.000+0200" id="4614;14419070">
+    <sentences sentence="subject contains a practical exercises"/>
+  </msg>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <users name="Mabus" nick="VNMabus" id="12768348" channel="Telegram"/>
+  <users name="Sara" nick="SaraMiso" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="test2" sentence="test2" date="2017-05-10T15:14:38.000+0200" id="5341;-195586834"/>
 </DslHistory:History>

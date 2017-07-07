@@ -17,7 +17,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Hotel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="person"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Person"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Person">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="//Name"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="House"/>
   <eClassifiers xsi:type="ecore:EClass" name="FragilePackage" eSuperTypes="//Package"/>
   <eClassifiers xsi:type="ecore:EClass" name="BulkyPackage" eSuperTypes="//Package"/>

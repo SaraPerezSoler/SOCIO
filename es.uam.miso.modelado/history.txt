@@ -1,114 +1,46 @@
-User: testModelling at 31/05/17 02:14:47 in Twitter
- send: @ModellingBot #test Package is an element. Packages contains types. Type is abstract. Element is abstract.
+User: SaraMiso at 28/06/17 10:09:01 in Telegram
+ send: an e-learning platform is made of courses
 
 The message cause this actions:
-	* Create-> class Package
-	* Create-> class Element
-	* Update-> Old: class Package / New: class Package, superTypes: [Element]
-	* Update-> Old: class Type / New: abstract class Type
-	* Create-> class Type
-	* Create-> reference type
-	* Update-> Old: reference type [0..-1], type: null, from Package / New: reference type [0..-1], type: Type, from Package
-	* Update-> Old: class Element / New: abstract class Element
+	* Create-> class ElearningPlatform
+	* Create-> class Course
+	* Create-> reference course
+	* Update-> Old: reference course [0..-1], type: null, from ElearningPlatform / New: reference course [0..-1], type: Course, from ElearningPlatform
 
 ----------------------------
-User: testModelling at 31/05/17 02:15:46 in Twitter
- send: @ModellingBot #test class, interface and enumeration are types.
+User: SaraMiso at 28/06/17 10:12:39 in Telegram
+ send: a course can be free or paid course
 
 The message cause this actions:
-	* Create-> class Interface
-	* Update-> Old: class Interface / New: class Interface, superTypes: [Type]
-	* Create-> class Enumeration
-	* Update-> Old: class Enumeration / New: class Enumeration, superTypes: [Type]
-	* Create-> class Class
-	* Update-> Old: class Class / New: class Class, superTypes: [Type]
+	* Create-> class PaidCourse
+	* Update-> Old: class PaidCourse / New: class PaidCourse, superTypes: [Course]
+	* Create-> class FreeCourse
+	* Update-> Old: class FreeCourse / New: class FreeCourse, superTypes: [Course]
 
 ----------------------------
-User: testModelling at 31/05/17 02:23:34 in Twitter
- send: @ModellingBot #test all elements contains a name.
+User: SaraMiso at 28/06/17 10:13:40 in Telegram
+ send: /talk The course is evaluated with a test
 
 The message cause this actions:
-	* Create-> class Name
-	* Create-> reference name
-	* Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
+	* Create-> class Test
+	* Create-> reference evaluatedWith
+	* Update-> Old: reference evaluatedWith [0..1], type: null, from Course / New: reference evaluatedWith [0..1], type: Test, from Course
 
 ----------------------------
-User: testModelling at 31/05/17 02:32:45 in Twitter
- send: @ModellingBot #test add type name. name contains a type name
+User: SaraMiso at 28/06/17 10:14:56 in Telegram
+ send: users can be students or instructors
 
 The message cause this actions:
-	* Create-> reference typeName
-	* Update-> Old: reference typeName [0..1], type: null, from Name / New: reference typeName [0..1], type: TypeName, from Name
-	* Create-> class TypeName
+	* Create-> class Instructor
+	* Update-> Old: class Instructor / New: class Instructor, superTypes: [User]
+	* Create-> class Student
+	* Update-> Old: class Student / New: class Student, superTypes: [User]
 
 ----------------------------
-User: testModelling at 31/05/17 02:40:38 in Twitter
- send: @ModellingBot #test Type and Name are elements
+User: SaraMiso at 28/06/17 10:16:01 in Telegram
+ send: /talk price is double
 
 The message cause this actions:
-	* Update-> Old: class Name / New: class Name, superTypes: [Element]
-	* Update-> Old: abstract class Type / New: abstract class Type, superTypes: [Element]
-
-----------------------------
-User: Saruki at 07/06/17 04:12:02 in Telegram
- send: remove text
-
-The message cause this actions:
-	* Update-> Old: reference name [0..1], type: Text, from Name / New: reference name [0..1], type: null, from Name
-	* Remove-> class Text
-
-----------------------------
-User: Saruki at 07/06/17 04:30:26 in Telegram
- send: hotel has a person
-
-The message cause this actions:
-	* Create-> class Hotel
-	* Create-> attribute person
-
-----------------------------
-User: Saruki at 07/06/17 04:30:31 in Telegram
- send: add person
-
-The message cause this actions:
-	* Create-> class Person
-
-----------------------------
-User: Saruki at 07/06/17 04:50:24 in Telegram
- send: Remove name from name
-
-The message cause this actions:
-	* Remove-> reference name [0..1], type: Name, from Element
-
-----------------------------
-User: Saruki at 07/06/17 04:50:37 in Telegram
- send: Remove name from name
-
-The message cause this actions:
-	* Remove-> reference name [0..1], type: null, from Name
-
-----------------------------
-User: Saruki at 07/06/17 04:50:51 in Telegram
- send: Element contains a name
-
-The message cause this actions:
-	* Create-> reference name
-	* Update-> Old: reference name [0..1], type: null, from Element / New: reference name [0..1], type: Name, from Element
-
-----------------------------
-User: Saruki at 08/06/17 11:41:12 in Telegram
- send: add house
-
-The message cause this actions:
-	* Create-> class House
-
-----------------------------
-User: Saruki at 08/06/17 11:49:07 in Telegram
- send: Packages can be bulky or fragile
-
-The message cause this actions:
-	* Create-> class FragilePackage
-	* Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]
-	* Create-> class BulkyPackage
-	* Update-> Old: class BulkyPackage / New: class BulkyPackage, superTypes: [Package]
+	* Update-> Old: attribute price [0..1], type: null, from PaidCourse / New: attribute price [0..1], type: EDouble, from PaidCourse
 
 ----------------------------

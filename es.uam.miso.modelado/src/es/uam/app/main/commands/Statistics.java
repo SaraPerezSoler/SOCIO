@@ -56,7 +56,7 @@ public class Statistics extends MainCommand {
 			File jpg = actual.getStatisticsActions();
 			throw new SendMessageExc(jpg);
 		} else {
-			File jpg= actual.contributionRate();
+			File jpg= actual.percentOfAuthorship();
 			throw new SendMessageExc(jpg);
 		}
 

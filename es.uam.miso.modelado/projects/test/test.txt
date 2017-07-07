@@ -36,6 +36,7 @@ class Hotel {
 }
 class Person {
 }
+Person -[#458A03]->"0..1"Name : name
 class House {
 }
 class FragilePackage {

@@ -5,7 +5,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Course"/>
   <eClassifiers xsi:type="ecore:EClass" name="PaidCourse" eSuperTypes="//Course">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FreeCourse" eSuperTypes="//Course"/>

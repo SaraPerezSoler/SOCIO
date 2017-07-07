@@ -21,7 +21,7 @@ public class HistoryStatistics extends HistoryOption {
 	}
 
 	private final String[] KIND_OPTIONS = { "Messages from one user", "Messages from all users",
-			"Actions from one user", "Actions from all user", "All actions", "Contribution rate" };
+			"Actions from one user", "Actions from all user", "All actions", "Percent of authorship" };
 	private final String YES_OPTION = "Yes";
 	private final String NO_OPTION = "No";
 

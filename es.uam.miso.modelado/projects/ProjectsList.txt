@@ -13,6 +13,13 @@ creation by: Sara
 ----
 in: Telegram
 ]
+folder learningplatform[
+creation date: Tue Jul 04 12:45:48 CEST 2017
+----
+creation by: Sara
+----
+in: Telegram
+]
 folder medicaltreatments[
 creation date: Tue Apr 25 17:20:35 CEST 2017
 ----

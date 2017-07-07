@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.exceptions.FatalException;
@@ -30,11 +30,10 @@ import es.uam.app.projects.log.RemoveLogControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 
-public class MetaModelProject extends Project{
-
+public class MetaModelProject extends Project {
 
 	private EcoreControl ec;
-	
+
 	private static Map<Class<? extends ExtractionRule<MetaModelProject>>, Constructor<? extends ExtractionRule<MetaModelProject>>> extractionRules = new HashMap<>();
 
 	public static void registerRule(Class<? extends ExtractionRule<MetaModelProject>> er)
@@ -45,47 +44,43 @@ public class MetaModelProject extends Project{
 			extractionRules.put(er, ruleConstructor);
 		}
 	}
-	
+
 	public static Map<Class<? extends ExtractionRule<MetaModelProject>>, Constructor<? extends ExtractionRule<MetaModelProject>>> getExtractionRules() {
 		return extractionRules;
 	}
-	
-	
 
 	public static EcoreControl createFileProject(String name, ReceivedMessage msg) {
 		return new EcoreControl(URI + "/" + name + "/" + name + ".ecore", name, name, name);
 	}
-	
+
 	public static EcoreControl cargaFileProject(String name) throws FatalException {
 
 		return new EcoreControl(URI + "/" + name + "/" + name + ".ecore");
 
 	}
 
-	
-	
 	MetaModelProject(EcoreControl ec, RemoveLogControl rlc, HistoryControl log, String name) {
 		super(rlc, log, name);
 		this.ec = ec;
-	} 
-	 
+	}
+
 	@Override
 	public String FilePath() {
 		return this.ec.getPath();
 	}
-	
+
 	@Override
 	public FileProject getFileProject() {
-		
+
 		return ec;
 	}
 
 	@Override
 	public void setFileProject(FileProject fileProj) {
-		if (fileProj instanceof EcoreControl){
-			ec=(EcoreControl)fileProj;
+		if (fileProj instanceof EcoreControl) {
+			ec = (EcoreControl) fileProj;
 		}
-		
+
 	}
 
 	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
@@ -332,8 +327,8 @@ public class MetaModelProject extends Project{
 		} else {
 			validateRet = "";
 			for (Diagnostic d : diagnosticChild) {
-				String diadnostic=getStringDiagnostic(d);
-				if (diadnostic!=null && diadnostic!="" && diadnostic!=" "){
+				String diadnostic = getStringDiagnostic(d);
+				if (diadnostic != null && diadnostic != "" && diadnostic != " ") {
 					validateRet += diadnostic + "\n";
 				}
 			}
@@ -348,18 +343,35 @@ public class MetaModelProject extends Project{
 
 	public String getStringDiagnostic(Diagnostic d) {
 		if (d.getSeverity() == Diagnostic.ERROR) {
-			if (d.getCode()==1){
+			if (d.getCode() == 1) {
 				return "";
-			}else if (d.getCode()==40){
-				Object o=d.getData().get(0);
-				if (o instanceof EReference){
-					return "ERROR: The type of "+((EReference)o).getName()+" in "+((EReference)o).getEContainingClass().getName()+" must be set."; 
-				}else if (o instanceof EAttribute){
-					return "ERROR: The type of "+((EAttribute)o).getName()+" in "+((EAttribute)o).getEContainingClass().getName()+" must be set."; 
+			} else if (d.getCode() == 40) {
+				if (d.getData().size() >= 1) {
+					Object o = d.getData().get(0);
+					if (o instanceof EStructuralFeature) {
+						return "ERROR: The type of " + ((EStructuralFeature) o).getName() + " in "
+								+ ((EStructuralFeature) o).getEContainingClass().getName() + " must be set.";
+					} 
 				}
-				
+
+			} else if (d.getCode() == 26) {
+				if (d.getData().size() >= 1) {
+					Object o = d.getData().get(0);
+					if (o instanceof EClass) {
+						return "ERROR: The class " + ((EClass) o).getName() + " cannot be a super type of itself.";
+					}
+				}
+			} else if (d.getCode() == 32) {
+				if (d.getData().size() >= 2) {
+					Object o = d.getData().get(0);
+					Object feature = d.getData().get(1);
+					if (o instanceof EClass && feature instanceof EStructuralFeature) {
+						return "ERROR: There cannot be two features named " + ((EStructuralFeature) feature).getName()
+								+ " in the class " + ((EClass) o).getName() + ".";
+					}
+				}
 			}
-				return "ERROR: " + d.getMessage();
+			return "ERROR: " + d.getMessage();
 		} else if (d.getSeverity() == Diagnostic.WARNING) {
 			return "WARNING: " + d.getMessage();
 		} else {
@@ -393,9 +405,5 @@ public class MetaModelProject extends Project{
 	public List<Controlador> getAllObjects() {
 		return ec.getAllObjects();
 	}
-
-
-
-
 
 }

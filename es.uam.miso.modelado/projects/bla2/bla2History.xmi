@@ -256,23 +256,18 @@
       </commands>
     </sentences>
   </msg>
-  <msg user="//@users.0" text="plants are food" date="2017-06-16T13:56:31.000+0200" id="10617;14419070" undoable="true">
-    <sentences sentence="plants are food">
-      <commands xsi:type="DslHistory:Add">
-        <element href="./projects/bla2/bla2.ecore#//Plant"/>
-      </commands>
-      <commands xsi:type="DslHistory:Update">
-        <element href="./projects/bla2/bla2.ecore#//Plant"/>
-        <old xsi:type="ecore:EClass" name="Plant">
-          <eAnnotations source="@SuperTypeVAR"/>
-        </old>
-        <new xsi:type="ecore:EClass" name="Plant">
-          <eAnnotations source="@SuperTypeVARFoodVAR"/>
-        </new>
-      </commands>
-    </sentences>
-  </msg>
   <msg user="//@users.0" text="bla2" date="2017-06-16T13:58:19.000+0200" id="10630;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-21T16:08:14.000+0200" id="4343;14419070"/>
+  <msg user="//@users.0" text="rational is a person" date="2017-06-21T16:08:58.000+0200" id="4348;14419070">
+    <sentences sentence="rational is a person"/>
+  </msg>
+  <msg user="//@users.0" text="bla2" date="2017-06-21T16:12:34.000+0200" id="4357;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-22T09:59:20.000+0200" id="4367;14419070"/>
+  <msg user="//@users.0" text="bla2" date="2017-06-22T10:03:43.000+0200" id="4374;14419070"/>
+  <msg user="//@users.1" text="bla2" date="2017-06-27T15:35:35.000+0200" id="5396;14419070"/>
+  <msg user="//@users.1" text="/show" date="2017-06-27T15:56:25.000+0200" id="5402;14419070"/>
+  <msg user="//@users.1" text="/show" date="2017-06-27T15:58:41.000+0200" id="5414;14419070"/>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
+  <users name="Sara" nick="SaraMiso" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="bla2" sentence="" date="2017-06-15T11:51:41.000+0200" id="10145;14419070"/>
 </DslHistory:History>

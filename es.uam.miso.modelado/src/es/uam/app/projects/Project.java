@@ -592,10 +592,10 @@ public abstract class Project {
 		Day first = new Day(log.getFirstDate());
 
 		TimeTableXYDataset dataset;
-		if (first.equals(last) || first.equals(last.previous()) || first.equals(last.previous().previous())
-				|| first.equals(last.previous().previous().previous())) {
+		if (first.equals(last) || first.equals(last.previous()) || first.equals(last.previous().previous())) {
 
-			dataset = dateInHours(data, new Hour(last.next().getStart()), new Hour(first.getStart()));
+			
+			dataset = dateInHours(data, new Hour(new Date()), new Hour(first.getStart()));
 		} else {
 			dataset = dateInDays(data, last, first);
 		}
@@ -697,7 +697,7 @@ public abstract class Project {
 	}
 	
 
-	public File contributionRate() throws IOException{
+	public File percentOfAuthorship() throws IOException{
 		List<Controlador> objects= getAllObjects();
 		Map<User, Double> user_rate= new HashMap<User, Double>();
 		for (Controlador obj: objects){
@@ -726,9 +726,9 @@ public abstract class Project {
 	 
 	        // Creando el Grafico
 	        JFreeChart chart = ChartFactory.createPieChart(
-	         "Contribution Rate",data, false, false,false);
+	         "Percent of authorship",data, false, false,false);
 	     // Mostrar Grafico
-			File jpg = new File(URI + "/" + name + "/" + name + "Contribution Rate.jpg");
+			File jpg = new File(URI + "/" + name + "/" + name + "Percent of authorship.jpg");
 			ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
 
 			return jpg;	 

@@ -143,6 +143,21 @@
       </commands>
     </sentences>
   </msg>
+  <msg user="//@users.0" text="toolsanddemo" date="2017-06-22T11:00:37.000+0200" id="4385;14419070"/>
+  <msg user="//@users.0" text="price is double" date="2017-06-22T11:00:51.000+0200" id="4388;14419070" undoable="true">
+    <sentences sentence="price is double">
+      <commands xsi:type="DslHistory:Update">
+        <element href="./projects/toolsanddemo/toolsanddemo.ecore#//PaidCourse/price"/>
+        <old xsi:type="ecore:EAttribute" name="price">
+          <eAnnotations source="@CointainerVARPaidCourse"/>
+        </old>
+        <new xsi:type="ecore:EAttribute" name="price">
+          <eAnnotations source="@CointainerVARPaidCourse"/>
+          <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        </new>
+      </commands>
+    </sentences>
+  </msg>
   <users name="Sara" nick="Saruki" id="14419070" channel="Telegram"/>
   <createMsg user="//@users.0" text="tools and demo" sentence="" date="2017-06-19T14:21:23.000+0200" id="10870;14419070"/>
 </DslHistory:History>

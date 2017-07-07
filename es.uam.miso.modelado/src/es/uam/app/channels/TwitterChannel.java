@@ -74,10 +74,13 @@ public class TwitterChannel extends Channel{
 	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
 		long id=Long.parseLong(rMessage.getId());
 		
+		String text;
 		if (!sMessage.hasText()){
-			return;
+			text=rMessage.getProjectName();
+		}else{
+			text=sMessage.getText();
 		}
-		String msg="@"+rMessage.getUser().getNick()+" "+sMessage.getText();
+		String msg="@"+rMessage.getUser().getNick()+" "+text;
 		File png=null;
 		if (sMessage.hasPng()){
 			png=sMessage.getPng();

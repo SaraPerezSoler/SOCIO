@@ -14,15 +14,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="BoldePerson" eSuperTypes="//Person"/>
   <eClassifiers xsi:type="ecore:EClass" name="Azucar"/>
   <eClassifiers xsi:type="ecore:EClass" name="Animal" eSuperTypes="//Food">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="drink" eType="//Water"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eat" eType="//Food"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="drink" eType="//Water"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rational"/>
   <eClassifiers xsi:type="ecore:EClass" name="Dog" eSuperTypes="//Animal">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leg" upperBound="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="drink" eType="//Water"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leg" upperBound="-1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Water"/>
   <eClassifiers xsi:type="ecore:EClass" name="Food"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Plant" eSuperTypes="//Food"/>
 </ecore:EPackage>

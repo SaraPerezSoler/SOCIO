@@ -27,8 +27,8 @@ class Azucar {
 class Animal {
 }
 Food <|-- Animal
-Animal -->"0..1"Water : drink
 Animal -->"0..1"Food : eat
+Animal -->"0..1"Water : drink
 class Rational {
 }
 class Dog {
@@ -40,8 +40,5 @@ class Water {
 }
 class Food {
 }
-class Plant {
-}
-Food <|-- Plant
 
 @enduml

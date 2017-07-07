@@ -84,7 +84,7 @@ public class CreateMetamodelUML {
 		for (ClassControl cc : pc.getClasses()) {
 			cad += getClassText(cc);
 		}
-		cad += updates();
+		//cad += updates();
 		cad += deletedElements();
 		cad += END;
 		return cad;
@@ -142,7 +142,7 @@ public class CreateMetamodelUML {
 		return cad;
 	}
 
-	private String updates() {
+/*	private String updates() {
 		if (updates.isEmpty()) {
 			return "";
 		}
@@ -153,7 +153,7 @@ public class CreateMetamodelUML {
 
 		cad += NOTE_FIN;
 		return cad;
-	}
+	}*/
 
 	private void getAdds(List<ActionModel> act) {
 		adds = new ArrayList<ActionModel>();
