@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/es.uam.miso.modelado/src" modelPluginID="es.uam.miso.modelado"
+    modelName="SocioDatabase" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SocioDatabase.ecore</foreignModel>
+  <genPackages prefix="SocioProjects" disposableProviderFactory="true" ecorePackage="SocioDatabase.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocioDatabase.ecore#//Access">
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Access/EDIT"/>
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Access/READ"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocioDatabase.ecore#//Visibility">
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Visibility/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Visibility/PROTECTED"/>
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Visibility/PRIVATE"/>
+    </genEnums>
+    <genClasses ecoreClass="SocioDatabase.ecore#//SocioApp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//SocioApp/projects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//SocioApp/users"/>
+    </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//Project">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/history"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/remove"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/model"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/visibility"/>
+    </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/nick"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/channel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//User/ownProjects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//User/contributions"/>
+    </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//Contribution">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Contribution/access"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Contribution/project"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="DslHistory" disposableProviderFactory="true" ecorePackage="history.ecore#/">
+    <genClasses ecoreClass="history.ecore#//History">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//History/msg"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//History/canRead"/>
+    </genClasses>
+    <genClasses ecoreClass="history.ecore#//CreateMsg">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//CreateMsg/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/sentence"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/id"/>
+    </genClasses>
+    <genClasses ecoreClass="history.ecore#//Msg">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//Msg/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/text"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Msg/sentences"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/undoable"/>
+    </genClasses>
+    <genClasses ecoreClass="history.ecore#//Sentence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Sentence/sentence"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Sentence/commands"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="history.ecore#//Action">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//Action/element"/>
+    </genClasses>
+    <genClasses ecoreClass="history.ecore#//Add"/>
+    <genClasses ecoreClass="history.ecore#//Delete"/>
+    <genClasses ecoreClass="history.ecore#//Update">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Update/old"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Update/new"/>
+    </genClasses>
+    <genClasses ecoreClass="history.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/nick"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/channel"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="RemoveLog" disposableProviderFactory="true" ecorePackage="RemoveLog.ecore#/">
+    <genClasses ecoreClass="RemoveLog.ecore#//Root">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RemoveLog.ecore#//Root/ElementsDeletes"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="socioProjects" nsURI="socioProjects" nsPrefix="socioProjects">
+  <eClassifiers xsi:type="ecore:EClass" name="SocioApp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="projects" upperBound="-1"
+        eType="#//Project" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" upperBound="-1"
+        eType="#//User" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project" abstract="true">
+    <eOperations name="getPath" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="parseSentence" upperBound="-1" eType="ecore:EClass history.ecore#//Action">
+      <eParameters name="sentence" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="execute" lowerBound="1">
+      <eParameters name="msg" lowerBound="1" eType="ecore:EClass history.ecore#//Msg"/>
+    </eOperations>
+    <eOperations name="undo" lowerBound="1"/>
+    <eOperations name="redo" lowerBound="1"/>
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg"/>
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+      <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eParameters name="order" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+      <eParameters name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eParameters name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eParameters name="order" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="getHistoryForUser" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+      <eParameters name="user" lowerBound="1" eType="#//User"/>
+    </eOperations>
+    <eOperations name="getHistoryForElement" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+      <eParameters name="element" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getHistoryForAction" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+      <eParameters name="action" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getStatisticsUserMsg" lowerBound="1"/>
+    <eOperations name="getStatisticsUserMsg" lowerBound="1">
+      <eParameters name="user" lowerBound="1" eType="#//User"/>
+    </eOperations>
+    <eOperations name="getStatisticsUserAction" lowerBound="1"/>
+    <eOperations name="getStatisticsUserAction" lowerBound="1">
+      <eParameters name="user" lowerBound="1" eType="#//User"/>
+    </eOperations>
+    <eOperations name="getStatisticsUserMsgAbs" lowerBound="1"/>
+    <eOperations name="getStatisticsUserActionAbs" lowerBound="1"/>
+    <eOperations name="getStatisticsActions" lowerBound="1"/>
+    <eOperations name="percentOfAuthorship" lowerBound="1"/>
+    <eOperations name="validate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="history" lowerBound="1"
+        eType="ecore:EClass history.ecore#//History" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remove" lowerBound="1"
+        eType="ecore:EClass RemoveLog.ecore#//Root" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="admin" lowerBound="1" eType="#//User"
+        eOpposite="#//User/ownProjects"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelProjec" eSuperTypes="#//Project">
+    <eOperations name="parseSentence" upperBound="-1" eType="ecore:EClass history.ecore#//Action">
+      <eParameters name="sentence" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetamodelProject" eSuperTypes="#//Project">
+    <eOperations name="parseSentence" upperBound="-1" eType="ecore:EClass history.ecore#//Action">
+      <eParameters name="sentence" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="User">
+    <eOperations name="canEdit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="canRead" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="isAdmin" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="removeContribution" lowerBound="1">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="addContribution">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+      <eParameters name="access" lowerBound="1" eType="#//Access"/>
+    </eOperations>
+    <eOperations name="addProject" lowerBound="1">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="getContribution" lowerBound="1" eType="#//Contribution">
+      <eParameters name="project" lowerBound="1" eType="#//Project"/>
+    </eOperations>
+    <eOperations name="isRoot" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nick" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="channel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownProjects" upperBound="-1"
+        eType="#//Project" eOpposite="#//Project/admin"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributions" upperBound="-1"
+        eType="#//Contribution"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contribution">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="access" lowerBound="1"
+        eType="#//Access"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" lowerBound="1"
+        eType="#//Project"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Access">
+    <eLiterals name="EDIT" value="1"/>
+    <eLiterals name="READ"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PUBLIC"/>
+    <eLiterals name="PROTECTED" value="1"/>
+    <eLiterals name="PRIVATE" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>

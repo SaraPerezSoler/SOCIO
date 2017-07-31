@@ -7,19 +7,27 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated history -->
+      <!-- @generated SocioDatabase -->
       <package
-            uri="DslHistory"
-            class="DslHistory.DslHistoryPackage"
-            genModel="model/history.genmodel"/>
+            uri="socioProjects"
+            class="socioProjects.SocioProjectsPackage"
+            genModel="model/SocioDatabase.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RemoveLog -->
+      <!-- @generated SocioDatabase -->
       <package
-            uri="RemoveLog"
-            class="RemoveLog.RemoveLogPackage"
-            genModel="model/RemoveLog.genmodel"/>
+            uri="projectHistory"
+            class="projectHistory.DslHistoryPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="removeLog"
+            class="removeLog.RemoveLogPackage"
+            genModel="model/SocioDatabase.genmodel"/>
    </extension>
 
 </plugin>
