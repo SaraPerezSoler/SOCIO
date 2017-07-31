@@ -268,13 +268,22 @@ public interface DslHistoryPackage extends EPackage {
 	int MSG_FEATURE_COUNT = 8;
 
 	/**
+	 * The operation id for the '<em>Get Channel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG___GET_CHANNEL = 0;
+
+	/**
 	 * The number of operations of the '<em>Msg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSG_OPERATION_COUNT = 0;
+	int MSG_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link projectHistory.impl.SentenceImpl <em>Sentence</em>}' class.
@@ -937,6 +946,16 @@ public interface DslHistoryPackage extends EPackage {
 	EAttribute getMsg_Undoable();
 
 	/**
+	 * Returns the meta object for the '{@link projectHistory.Msg#getChannel() <em>Get Channel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Channel</em>' operation.
+	 * @see projectHistory.Msg#getChannel()
+	 * @generated
+	 */
+	EOperation getMsg__GetChannel();
+
+	/**
 	 * Returns the meta object for class '{@link projectHistory.Sentence <em>Sentence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1283,6 +1302,14 @@ public interface DslHistoryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MSG__UNDOABLE = eINSTANCE.getMsg_Undoable();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Channel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MSG___GET_CHANNEL = eINSTANCE.getMsg__GetChannel();
 
 		/**
 		 * The meta object literal for the '{@link projectHistory.impl.SentenceImpl <em>Sentence</em>}' class.

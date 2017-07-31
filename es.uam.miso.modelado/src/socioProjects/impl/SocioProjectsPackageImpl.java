@@ -329,7 +329,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getProject__GetHistoryForUser__String() {
+	public EOperation getProject__GetHistoryForUser__User() {
 		return projectEClass.getEOperations().get(8);
 	}
 
@@ -365,7 +365,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getProject__GetStatisticsUserMsg__String() {
+	public EOperation getProject__GetStatisticsUserMsg__User() {
 		return projectEClass.getEOperations().get(12);
 	}
 
@@ -383,7 +383,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getProject__GetStatisticsUserAction__String() {
+	public EOperation getProject__GetStatisticsUserAction__User() {
 		return projectEClass.getEOperations().get(14);
 	}
 
@@ -695,13 +695,13 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		createEOperation(projectEClass, PROJECT___GET_HISTORY_MSG);
 		createEOperation(projectEClass, PROJECT___GET_HISTORY_MSG__DATE_INT);
 		createEOperation(projectEClass, PROJECT___GET_HISTORY_MSG__DATE_DATE_INT);
-		createEOperation(projectEClass, PROJECT___GET_HISTORY_FOR_USER__STRING);
+		createEOperation(projectEClass, PROJECT___GET_HISTORY_FOR_USER__USER);
 		createEOperation(projectEClass, PROJECT___GET_HISTORY_FOR_ELEMENT__STRING);
 		createEOperation(projectEClass, PROJECT___GET_HISTORY_FOR_ACTION__STRING);
 		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_MSG);
-		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_MSG__STRING);
+		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_MSG__USER);
 		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_ACTION);
-		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_ACTION__STRING);
+		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_ACTION__USER);
 		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_MSG_ABS);
 		createEOperation(projectEClass, PROJECT___GET_STATISTICS_USER_ACTION_ABS);
 		createEOperation(projectEClass, PROJECT___GET_STATISTICS_ACTIONS);
@@ -810,7 +810,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		addEParameter(op, ecorePackage.getEDate(), "end", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "order", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForUser__String(), theDslHistoryPackage.getMsg(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForUser__User(), theDslHistoryPackage.getMsg(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUser(), "user", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getProject__GetHistoryForElement__String(), theDslHistoryPackage.getMsg(), "getHistoryForElement", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -821,12 +821,12 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEOperation(getProject__GetStatisticsUserMsg(), null, "getStatisticsUserMsg", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetStatisticsUserMsg__String(), null, "getStatisticsUserMsg", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetStatisticsUserMsg__User(), null, "getStatisticsUserMsg", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUser(), "user", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__GetStatisticsUserAction(), null, "getStatisticsUserAction", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetStatisticsUserAction__String(), null, "getStatisticsUserAction", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetStatisticsUserAction__User(), null, "getStatisticsUserAction", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUser(), "user", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__GetStatisticsUserMsgAbs(), null, "getStatisticsUserMsgAbs", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -11,6 +11,7 @@ import org.telegram.telegrambots.api.objects.User;
 import es.uam.app.channels.telegramCommands.secrect.SecretCommand;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public abstract class TCommand {
 
@@ -139,7 +140,7 @@ public abstract class TCommand {
 		
 	}
 
-	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
+	public void modellingAnswer(long chatId, int msgId, Msg rMessage, SendMessageExc sMessage) {
 		
 		this.setStandardState(chatId);
 		tChannel.sendMessage(msgId, chatId, sMessage);

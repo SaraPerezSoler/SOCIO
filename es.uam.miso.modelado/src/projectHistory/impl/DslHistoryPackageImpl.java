@@ -328,6 +328,15 @@ public class DslHistoryPackageImpl extends EPackageImpl implements DslHistoryPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMsg__GetChannel() {
+		return msgEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSentence() {
 		return sentenceEClass;
 	}
@@ -524,6 +533,7 @@ public class DslHistoryPackageImpl extends EPackageImpl implements DslHistoryPac
 		createEAttribute(msgEClass, MSG__ID);
 		createEReference(msgEClass, MSG__SENTENCES);
 		createEAttribute(msgEClass, MSG__UNDOABLE);
+		createEOperation(msgEClass, MSG___GET_CHANNEL);
 
 		sentenceEClass = createEClass(SENTENCE);
 		createEAttribute(sentenceEClass, SENTENCE__SENTENCE);
@@ -604,6 +614,8 @@ public class DslHistoryPackageImpl extends EPackageImpl implements DslHistoryPac
 		initEAttribute(getMsg_Id(), ecorePackage.getEString(), "id", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMsg_Sentences(), this.getSentence(), null, "sentences", null, 1, -1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMsg_Undoable(), ecorePackage.getEBoolean(), "undoable", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getMsg__GetChannel(), ecorePackage.getEString(), "getChannel", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sentenceEClass, Sentence.class, "Sentence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSentence_Sentence(), ecorePackage.getEString(), "sentence", null, 1, 1, Sentence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

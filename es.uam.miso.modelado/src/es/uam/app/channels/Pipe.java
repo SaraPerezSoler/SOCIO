@@ -3,32 +3,31 @@ package es.uam.app.channels;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import es.uam.app.message.ReceivedMessage;
+import projectHistory.Msg;
 
 public class Pipe {
 
-	private Queue<ReceivedMessage> messages;
+	private Queue<Msg> messages;
 	
 	public Pipe() {
-		messages=new  ArrayDeque<ReceivedMessage>();
+		messages=new  ArrayDeque<Msg>();
 	}
 	
-	public synchronized void write(ReceivedMessage m) {
+	public synchronized void write(Msg m) {
 		messages.offer(m);
 		notify();
 	}
 	
-	public synchronized ReceivedMessage read(){
+	public synchronized Msg read(){
 		while (messages.isEmpty()){
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		ReceivedMessage m=messages.poll();
+		Msg m=messages.poll();
 		return m;
 	}
 }

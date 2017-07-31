@@ -20,9 +20,11 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import es.uam.app.channels.TelegramChannel;
 import es.uam.app.main.Main;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.message.User;
+import projectHistory.Msg;
+import projectHistory.impl.DslHistoryFactoryImpl;
+import socioProjects.User;
+import socioProjects.impl.SocioProjectsFactoryImpl;
 
 public class TelegramControl extends TelegramLongPollingBot {
 
@@ -84,7 +86,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 	}
 
-	private ReceivedMessage standardMensaje(Update update, String command, String projectName, String text) {
+	private Msg standardMensaje(Update update, String command, String projectName, String text) {
 		User us = getUser(update);
 		Date date = getDate(update);
 		String msgId = getId(update);
@@ -94,7 +96,13 @@ public class TelegramControl extends TelegramLongPollingBot {
 		} else {
 			msgText = update.getMessage().getText();
 		}
-		ReceivedMessage msg = new ReceivedMessage(msgText, us, date, command,projectName, msgId);
+		Msg msg = DslHistoryFactoryImpl.eINSTANCE.createMsg();
+		msg.setMsg(msgText);
+		msg.setUser(us);
+		msg.setDate(date);
+		msg.setCommand(command);
+		msg.setProjectName(projectName);
+		msg.setId(msgId);
 		msg.setText(text);
 		return msg;
 	}
@@ -105,14 +113,25 @@ public class TelegramControl extends TelegramLongPollingBot {
 			long id = (long) update.getCallbackQuery().getFrom().getId();
 			String nick = update.getCallbackQuery().getFrom().getUserName();
 
-			return new User(username, id, nick, channel.getChannelName());
+			User ret=SocioProjectsFactoryImpl.eINSTANCE.createUser();
+			ret.setName(username);
+			ret.setId(id);
+			ret.setNick(nick);
+			ret.setChannel(channel.getChannelName());
+			return ret;
 
 		} else {
 			String username = update.getMessage().getFrom().getFirstName();
 			long id = (long) update.getMessage().getFrom().getId();
 			String nick = update.getMessage().getFrom().getUserName();
 
-			return new User(username, id, nick, channel.getChannelName());
+
+			User ret=SocioProjectsFactoryImpl.eINSTANCE.createUser();
+			ret.setName(username);
+			ret.setId(id);
+			ret.setNick(nick);
+			ret.setChannel(channel.getChannelName());
+			return ret;
 
 		}
 	}
@@ -135,7 +154,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		return update.getMessage().getMessageId() + ID_SEPARATOR + update.getMessage().getChatId();
 	}
 
-	public void sendAnswerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
+	public void sendAnswerMessage(Msg rMessage, SendMessageExc sMessage) {
 		String id = rMessage.getId();
 		String[] split = id.split(ID_SEPARATOR);
 		int msgId = Integer.parseInt(split[0]);

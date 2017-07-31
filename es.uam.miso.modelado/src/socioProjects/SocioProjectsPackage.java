@@ -256,7 +256,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT___GET_HISTORY_FOR_USER__STRING = 8;
+	int PROJECT___GET_HISTORY_FOR_USER__USER = 8;
 
 	/**
 	 * The operation id for the '<em>Get History For Element</em>' operation.
@@ -292,7 +292,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT___GET_STATISTICS_USER_MSG__STRING = 12;
+	int PROJECT___GET_STATISTICS_USER_MSG__USER = 12;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action</em>' operation.
@@ -310,7 +310,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT___GET_STATISTICS_USER_ACTION__STRING = 14;
+	int PROJECT___GET_STATISTICS_USER_ACTION__USER = 14;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg Abs</em>' operation.
@@ -509,7 +509,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_FOR_USER__STRING = PROJECT___GET_HISTORY_FOR_USER__STRING;
+	int MODEL_PROJEC___GET_HISTORY_FOR_USER__USER = PROJECT___GET_HISTORY_FOR_USER__USER;
 
 	/**
 	 * The operation id for the '<em>Get History For Element</em>' operation.
@@ -545,7 +545,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_MSG__STRING = PROJECT___GET_STATISTICS_USER_MSG__STRING;
+	int MODEL_PROJEC___GET_STATISTICS_USER_MSG__USER = PROJECT___GET_STATISTICS_USER_MSG__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action</em>' operation.
@@ -563,7 +563,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_ACTION__STRING = PROJECT___GET_STATISTICS_USER_ACTION__STRING;
+	int MODEL_PROJEC___GET_STATISTICS_USER_ACTION__USER = PROJECT___GET_STATISTICS_USER_ACTION__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg Abs</em>' operation.
@@ -771,7 +771,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_PROJECT___GET_HISTORY_FOR_USER__STRING = PROJECT___GET_HISTORY_FOR_USER__STRING;
+	int METAMODEL_PROJECT___GET_HISTORY_FOR_USER__USER = PROJECT___GET_HISTORY_FOR_USER__USER;
 
 	/**
 	 * The operation id for the '<em>Get History For Element</em>' operation.
@@ -807,7 +807,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_PROJECT___GET_STATISTICS_USER_MSG__STRING = PROJECT___GET_STATISTICS_USER_MSG__STRING;
+	int METAMODEL_PROJECT___GET_STATISTICS_USER_MSG__USER = PROJECT___GET_STATISTICS_USER_MSG__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action</em>' operation.
@@ -825,7 +825,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_PROJECT___GET_STATISTICS_USER_ACTION__STRING = PROJECT___GET_STATISTICS_USER_ACTION__STRING;
+	int METAMODEL_PROJECT___GET_STATISTICS_USER_ACTION__USER = PROJECT___GET_STATISTICS_USER_ACTION__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg Abs</em>' operation.
@@ -1307,7 +1307,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @see socioProjects.Project#getHistoryForUser(socioProjects.User)
 	 * @generated
 	 */
-	EOperation getProject__GetHistoryForUser__String();
+	EOperation getProject__GetHistoryForUser__User();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.Project#getHistoryForElement(java.lang.String) <em>Get History For Element</em>}' operation.
@@ -1347,7 +1347,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @see socioProjects.Project#getStatisticsUserMsg(socioProjects.User)
 	 * @generated
 	 */
-	EOperation getProject__GetStatisticsUserMsg__String();
+	EOperation getProject__GetStatisticsUserMsg__User();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.Project#getStatisticsUserAction() <em>Get Statistics User Action</em>}' operation.
@@ -1367,7 +1367,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @see socioProjects.Project#getStatisticsUserAction(socioProjects.User)
 	 * @generated
 	 */
-	EOperation getProject__GetStatisticsUserAction__String();
+	EOperation getProject__GetStatisticsUserAction__User();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.Project#getStatisticsUserMsgAbs() <em>Get Statistics User Msg Abs</em>}' operation.
@@ -1844,7 +1844,7 @@ public interface SocioProjectsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PROJECT___GET_HISTORY_FOR_USER__STRING = eINSTANCE.getProject__GetHistoryForUser__String();
+		EOperation PROJECT___GET_HISTORY_FOR_USER__USER = eINSTANCE.getProject__GetHistoryForUser__User();
 
 		/**
 		 * The meta object literal for the '<em><b>Get History For Element</b></em>' operation.
@@ -1876,7 +1876,7 @@ public interface SocioProjectsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PROJECT___GET_STATISTICS_USER_MSG__STRING = eINSTANCE.getProject__GetStatisticsUserMsg__String();
+		EOperation PROJECT___GET_STATISTICS_USER_MSG__USER = eINSTANCE.getProject__GetStatisticsUserMsg__User();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Statistics User Action</b></em>' operation.
@@ -1892,7 +1892,7 @@ public interface SocioProjectsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PROJECT___GET_STATISTICS_USER_ACTION__STRING = eINSTANCE.getProject__GetStatisticsUserAction__String();
+		EOperation PROJECT___GET_STATISTICS_USER_ACTION__USER = eINSTANCE.getProject__GetStatisticsUserAction__User();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Statistics User Msg Abs</b></em>' operation.

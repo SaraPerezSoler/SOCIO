@@ -25,11 +25,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import es.uam.app.projects.ecore.Controlador;
+import java.lang.reflect.InvocationTargetException;
 import projectHistory.Action;
 import projectHistory.DslHistoryPackage;
 import projectHistory.Msg;
 import projectHistory.Sentence;
-
+import socioProjects.Project;
 import socioProjects.User;
 
 /**
@@ -164,6 +165,8 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	protected EList<Sentence> sentences;
 
+	private String projectName;
+	
 	/**
 	 * The default value of the '{@link #isUndoable() <em>Undoable</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -360,6 +363,15 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getChannel() {
+		return user.getChannel();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -500,6 +512,20 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case DslHistoryPackage.MSG___GET_CHANNEL:
+				return getChannel();
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -595,6 +621,28 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 			}
 		}
 		return ret;
+	}
+
+	@Override
+	public void setProjectName(String projectName) {
+		this.projectName=projectName;
+		
+	}
+	
+	@Override
+	public String getProjectName() {
+		if (projectName==null){
+			if (this.eContainer()!=null){
+				if (this.eContainer().eContainer()!=null){
+					if (this.eContainer().eContainer() instanceof Project){
+						projectName=((Project)this.eContainer().eContainer()).getName();
+					}
+				}
+			}
+				
+		}
+		return projectName;
+		
 	}
 
 } // MsgImpl

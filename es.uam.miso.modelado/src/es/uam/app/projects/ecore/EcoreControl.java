@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
+import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.projects.FileProject;
-import es.uam.app.projects.SocioData;
 import es.uam.app.uml.CreateMetamodelUML;
 import projectHistory.Action;
 

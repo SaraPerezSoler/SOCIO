@@ -2,6 +2,7 @@ package es.uam.app.main;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ import es.uam.app.parser.rules.MetemodelRule;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.LocalProjects;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import projectHistory.Msg;
 
 public class Main {
 
@@ -63,25 +65,62 @@ public class Main {
 		HELP(new Help()), 
 		BASE_CASE(new BaseCase()), RELOAD(new Reload());
 
-		private String name;
-		private MainCommand command;
+		private String name=null;
+		private String methodName;
+		private Object[] parameters;
 
-		private MainCommandEnum(String name, MainCommand command) {
-			this.name = name;
-			this.command = command;
+		private MainCommandEnum(String name, String methodName, Object[] parameters) {
+			this.name=name;
+			this.methodName = methodName;
+			this.parameters = parameters;
+		}
+		
+		private MainCommandEnum(String methodName, Object[] parameters) {
+			this.methodName = methodName;
+			this.parameters = parameters;
 		}
 
-		private MainCommandEnum(MainCommand command) {
-			this.name = this.name().toLowerCase();
-			this.command = command;
+		private MainCommandEnum(String methodName) {
+			this.methodName = methodName;
+			this.parameters = new Object[0];
+		}
+		
+		private MainCommandEnum() {
+			this.methodName = name();
+			this.parameters = new Object[0];
 		}
 
-		public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
-			command.execute(rm);
+		public String getMethodName() {
+			return methodName;
 		}
-
-		public String getName() {
-			return name;
+		
+		public Class<?>[] getParametersType(){
+			Class<?>[] ret= new Class[parameters.length+1];
+			ret[0]=Msg.class;
+			int i=1;
+			for (Object o: parameters){
+				ret[i]=o.getClass();
+				i++;
+			}
+			return ret;
+		}
+		
+		public Object[] getParameters(Msg msg){
+			Object[] ret= new Object[parameters.length+1];
+			ret[0]=msg;
+			int i=1;
+			for (Object o: parameters){
+				ret[i]=o;
+				i++;
+			}
+			return ret;
+		}
+		
+		public String getName(){
+			if (this.name==null){
+				return super.name();
+			}
+			return this.name;
 		}
 	}
 
@@ -172,17 +211,21 @@ public class Main {
 
 	}
 
-	public static void readMessage(ReceivedMessage m) {
+	public static void readMessage(Msg m) {
 		try {
+			MainCommandEnum command=MainCommandEnum.BASE_CASE;
 			if (m.getCommand() == null || m.getCommand().equals("") || m.getCommand().equals(" ")) {
-				MainCommandEnum.BASE_CASE.execute(m);
+				command=MainCommandEnum.BASE_CASE;
 			}
 
 			for (MainCommandEnum mce : MainCommandEnum.values()) {
 				if (m.getCommand().equalsIgnoreCase(mce.getName())) {
-					mce.execute(m);
+					command=mce;
 				}
 			}
+			
+			Method method=SocioData.class.getMethod(command.getMethodName(), command.getParametersType());
+			method.invoke(SocioData.getSocioData(), command.getParameters(m));
 
 		} catch (FatalException e) {
 			log.fatal("Error al leer los comandos: " + e.getMessage());

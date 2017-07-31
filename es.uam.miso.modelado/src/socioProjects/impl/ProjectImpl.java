@@ -33,9 +33,9 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
 
+import es.uam.app.main.SocioData;
 import es.uam.app.parser.SentencesSplitter;
 import es.uam.app.parser.rules.ExtractionRule;
-import es.uam.app.projects.SocioData;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.uml.UML;
 import projectHistory.Action;
@@ -1259,31 +1259,15 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			case SocioProjectsPackage.PROJECT___GET_PATH:
 				return getPath();
 			case SocioProjectsPackage.PROJECT___PARSE_SENTENCE__STRING:
-			try {
 				return parseSentence((String)arguments.get(0));
-			} catch (Exception e) {
-				throw new InvocationTargetException(e);
-			}
 			case SocioProjectsPackage.PROJECT___EXECUTE__MSG:
-			try {
 				execute((Msg)arguments.get(0));
-			} catch (Exception e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___UNDO:
-			try {
 				undo();
-			} catch (Exception e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___REDO:
-			try {
 				redo();
-			} catch (Exception e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG:
 				return getHistoryMsg();
@@ -1291,67 +1275,35 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				return getHistoryMsg((Date)arguments.get(0), (Integer)arguments.get(1));
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG__DATE_DATE_INT:
 				return getHistoryMsg((Date)arguments.get(0), (Date)arguments.get(1), (Integer)arguments.get(2));
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_USER__STRING:
+			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_USER__USER:
 				return getHistoryForUser((User)arguments.get(0));
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ELEMENT__STRING:
 				return getHistoryForElement((String)arguments.get(0));
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ACTION__STRING:
 				return getHistoryForAction((String)arguments.get(0));
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG:
-			try {
 				getStatisticsUserMsg();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG__STRING:
-			try {
+			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG__USER:
 				getStatisticsUserMsg((User)arguments.get(0));
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION:
-			try {
 				getStatisticsUserAction();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION__STRING:
-			try {
+			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION__USER:
 				getStatisticsUserAction((User)arguments.get(0));
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG_ABS:
-			try {
 				getStatisticsUserMsgAbs();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION_ABS:
-			try {
 				getStatisticsUserActionAbs();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_ACTIONS:
-			try {
 				getStatisticsActions();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___PERCENT_OF_AUTHORSHIP:
-			try {
 				percentOfAuthorship();
-			} catch (IOException e) {
-				throw new InvocationTargetException(e);
-			}
 				return null;
 			case SocioProjectsPackage.PROJECT___VALIDATE:
 				return validate();

@@ -1,4 +1,4 @@
-package es.uam.app.projects;
+package es.uam.app.main;
 
 import java.io.File;
 import java.io.IOException;

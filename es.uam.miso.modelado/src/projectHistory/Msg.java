@@ -234,6 +234,14 @@ public interface Msg extends EObject {
 	 */
 	void setUndoable(boolean value);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	String getChannel();
+
 	void setSentences(Map<String, List<Action>> actions);
 
 	Map<String, List<Action>> getSentencesMap();
@@ -245,5 +253,9 @@ public interface Msg extends EObject {
 	List<Action> getAllActions();
 
 	List<Action> getActionsFromObject(Controlador obj);
+
+	void setProjectName(String projectName);
+
+	String getProjectName();
 
 } // Msg
