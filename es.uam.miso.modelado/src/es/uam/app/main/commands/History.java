@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import es.uam.app.actions.ActionModel;
+import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendHistoryMsg;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.LocalProjects;
+import projectHistory.impl.ActionImpl;
 
 public class History extends MainCommand {
 
@@ -58,9 +59,13 @@ public class History extends MainCommand {
 		
 		String nameProject = validProjectName(rm.getProjectName());
 
-		Project actual = Project.getProject(nameProject);
+		LocalProjects actual = LocalProjects.getProject(nameProject);
 		if (actual == null) {
 			throw new ProjectNotFoundException(nameProject);
+		}
+		
+		if (!(rm.getUser().canRead(actual))){
+			throw new NotAccessException("");
 		}
 
 		String values;
@@ -128,8 +133,8 @@ public class History extends MainCommand {
 		} else {
 			msg = new SendHistoryMsg();
 			for (ReceivedMessage rmLog : rmList) {
-				List<ActionModel> ams = new ArrayList<ActionModel>();
-				Map<String, List<ActionModel>> sentences = rmLog.getSentences();
+				List<ActionImpl> ams = new ArrayList<ActionImpl>();
+				Map<String, List<ActionImpl>> sentences = rmLog.getSentencesActions();
 				Set<String> keys = sentences.keySet();
 				for (String k : keys) {
 					ams.addAll(sentences.get(k));

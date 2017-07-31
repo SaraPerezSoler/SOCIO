@@ -1,10 +1,11 @@
 package es.uam.app.actions.metamodels;
 
+import org.eclipse.emf.ecore.EObject;
+
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.parser.rules.IsAttribute;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.ecore.IsAttribute;
 import es.uam.app.projects.ecore.ReferenceControl;
 
 public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
@@ -14,24 +15,27 @@ public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 	
 	private AttributeControl new_=null;
 	
+	private boolean isUndo=false;
+	private boolean isExecute=false;
+	
 	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref) {
-		super(proj);
+		super();
 		this.remove = new RemoveReference (proj,ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), ref.getLowerBound(), ref.getUpperBound());
 	}
 
 	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref, int min, int max) {
-		super(proj);
+		super();
 		this.remove = new RemoveReference (proj, ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), min, max);
 	}
 
-	public ChangeRefForAttr(AttributeControl element, ReferenceControl old, AttributeControl new_) {
-		super(null);
+	/*public ChangeRefForAttr(AttributeControl element, ReferenceControl old, AttributeControl new_) {
+		super();
 		this.createAttribute = new CreateAttribute(element);
 		this.remove = new RemoveReference(old);
 		this.new_=new_;
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -44,23 +48,22 @@ public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 	
 		new_= createAttribute.getObject().copyObject();
 	
-		super.execute();
+		setExecute(true);
 		
 	}
 
-	@Override
 	public AttributeControl getObject() {
 		return createAttribute.getObject();
 	}
 
 	@Override
-	public Controlador getOld() {
-		return remove.getObject();
+	public EObject getOld() {
+		return remove.getObject().getObject();
 	}
 
 	@Override
-	public Controlador getNew() {
-		return new_;
+	public EObject getNew() {
+		return new_.getObject();
 	}
 
 	@Override
@@ -69,27 +72,58 @@ public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
-		createAttribute.undoIt(proj);
-		remove.undoIt(proj);
-		this.undoIt();
+		createAttribute.undoIt();
+		remove.undoIt();
+		this.setUndo(true);
 		
 		
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) throws Exception {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() throws Exception {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
 		
-		remove.redoIt(proj);
-		createAttribute.redoIt(proj);
-		this.redoIt();
+		remove.redoIt();
+		createAttribute.redoIt();
+		setUndo(false);
 		
+	}
+
+	@Override
+	public void setProject(MetaModelProject proj) {
+		this.createAttribute.setProject(proj);
+		this.remove.setProject(proj);
+		
+	}
+
+	@Override
+	public MetaModelProject getProject() {
+		return remove.getProject();
+	}
+
+	@Override
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	@Override
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 
 }

@@ -2,7 +2,7 @@ package es.uam.app.actions.metamodels;
 
 import java.util.List;
 
-import es.uam.app.parser.rules.IsClass;
+import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 
@@ -13,9 +13,9 @@ public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 		super(proj, class_, superType);
 	}
 
-	public UpdateClassRemoveSuperType(ClassControl object, ClassControl old, ClassControl new_) {
+	/*public UpdateClassRemoveSuperType(ClassControl object, ClassControl old, ClassControl new_) {
 		super(object,old, new_);
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -40,7 +40,7 @@ public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 
 		new_ = classClassCont.copyObject();
 
-		super.execute();
+		setExecute(true);
 
 	}
 

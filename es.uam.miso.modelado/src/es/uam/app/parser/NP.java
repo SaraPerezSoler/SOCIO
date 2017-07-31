@@ -3,37 +3,64 @@ package es.uam.app.parser;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
+
 import edu.stanford.nlp.trees.Tree;
+import es.uam.app.projects.ecore.MetamodelControl;
 
 public class NP {
 
+	private final String[] adjToDelete = { "several", "some", "any", "various", "many", "much", "more" };
+	private static Text2NumEng text2Num= new Text2NumEng();
 	private Tree t;
 	private List<Word> words;
-	private Word adj;
+	private List<Word> adj = new ArrayList<>();
 	private Word noun;
 	private NP of = null;
-	private boolean isObject;
-	private boolean isSubject;
-	private boolean isPlural;
+
+	private boolean isAbstract = false;
+	private int min = 1, max = 1;
 
 	public NP(Tree t, List<Word> words) {
 		super();
 		this.t = t;
 		this.words = words;
-		this.isObject = false;
-		this.isSubject = false;
-		this.isPlural = false;
+
+		checkWords();
+
+	}
+
+	private void checkWords() {
+		adj.clear();
+
 		List<Word> delete = new ArrayList<Word>();
+		boolean numAsig = false;
 		for (Word w : this.words) {
 			if (w.hasDependecy()) {
 				if (w.getTag().equals("NNS") || w.getTag().equals("NNPS")) {
-					this.isPlural = true;
+					if (numAsig == false) {
+						this.max = -1;
+					}
 				}
 
-				if (w.getDependecyTag().equals("compound") || w.getDependecyTag().equals("amod")) {
-					adj = w;
+				if ((w.getDependecyTag().equals("compound") || w.getDependecyTag().equals("amod") || w.getTag().startsWith("JJ")) && !w.getTag().equals("CD")) {
+					if (w.lemmaEquals(adjToDelete)) {
+						delete.add(w);
+					} else if (w.lemmaEquals("abstract")) {
+						delete.add(w);
+						isAbstract = true;
+					} else {
+						adj.add(w);
+					}
 				} else if (w.getTag().startsWith("NN")) {
 					noun = w;
+				} else {
+					if (w.getTag().equals("CD")) {
+						numAsig = true;
+						min=text2Num.parserInt(w.getWord());
+						max=min;
+					}
+					delete.add(w);
 				}
 			} else {
 				delete.add(w);
@@ -45,26 +72,13 @@ public class NP {
 
 	public NP(Tree t, Word word) {
 		super();
-		this.t = t;
 		this.words = new ArrayList<Word>();
 		if (word.hasDependecy()) {
 			words.add(word);
 		}
-		this.isObject = false;
-		this.isSubject = false;
-		this.isPlural = false;
 
-		for (Word w : this.words) {
-			if (w.getTag().equals("NNS") || w.getTag().equals("NNPS")) {
-				this.isPlural = true;
-			}
-
-			if (w.getTag().startsWith("JJ")) {
-				adj = w;
-			} else if (w.getTag().startsWith("NN")) {
-				noun = w;
-			}
-		}
+		this.t = t;
+		checkWords();
 
 	}
 
@@ -78,15 +92,7 @@ public class NP {
 
 	@Override
 	public String toString() {
-		return "NP [words=" + words + ", of=" + of + ", isPlural=" + isPlural + "]";
-	}
-
-	public boolean isObject() {
-		return isObject;
-	}
-
-	public boolean isSubject() {
-		return isSubject;
+		return "NP [words=" + words + ", of=" + of + ", min=" + min + ", max=" + max + "]";
 	}
 
 	public Word getNmodOf() {
@@ -121,23 +127,13 @@ public class NP {
 		return noun;
 	}
 
-	public Word getAdj() {
+	public List<Word> getAdj() {
 		return adj;
 	}
 
 	public void delete(Word w2) {
 		words.remove(w2);
-		for (Word w : this.words) {
-			if (w.getTag().equals("NNS") || w.getTag().equals("NNPS")) {
-				this.isPlural = true;
-			}
-
-			if (w.getDependecyTag().equals("compound") || w.getDependecyTag().equals("amod")) {
-				adj = w;
-			} else if (w.getTag().startsWith("NN")) {
-				noun = w;
-			}
-		}
+		checkWords();
 	}
 
 	public String upperCammelCase() {
@@ -164,10 +160,6 @@ public class NP {
 		return WordConfigure.startLowerCase(cad);
 	}
 
-	public boolean isPlural() {
-		return isPlural;
-	}
-
 	public NP getOf() {
 		return of;
 	}
@@ -180,6 +172,48 @@ public class NP {
 		this.noun = noun2;
 		this.words.add(noun2);
 
+	}
+
+	public int getMin() {
+		return min;
+	}
+
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	public EClassifier adjType() {
+		for (Word w : adj) {
+			String bAdjLemmaUpper = WordConfigure.startUpperCase(w.getLemma());
+			EClassifier type = MetamodelControl.getType(bAdjLemmaUpper);
+			if (type != null) {
+				return type;
+			}
+		}
+		return null;
+	}
+
+	public String getAdjCammelCase() {
+		String cad = "";
+		for (Word w : adj) {
+			cad += WordConfigure.startUpperCase(w.getLemma().toLowerCase());
+		}
+		if (cad.equals("")){
+			return null;
+		}
+		return cad;
+	}
+
+	public boolean isAbstract() {
+		return isAbstract;
 	}
 
 }

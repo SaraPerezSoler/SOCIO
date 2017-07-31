@@ -132,6 +132,18 @@ public class Verb {
 		}
 		return cad;
 	}
+	
+	public boolean hasMayCanAux() {
+		List<Word> words = verb;
+		for (int i = 0; i < words.size(); i++) {
+			if (words.get(i).getDependecyTag().startsWith("aux")){
+				if (words.get(i).lemmaEquals("may") || words.get(i).lemmaEquals("can")){
+					return true;
+				}
+			}	
+		}
+		return false;
+	}
 
 	public String getWordsStringWithAux() {
 		List<Word> words = getVerbWords();

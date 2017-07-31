@@ -56,6 +56,10 @@ public class WordNet {
 	public List<String> getSynonyms(String arg) throws JWNLException {
 
 		List<String> ret = new ArrayList<String>();
+
+		if (arg==null){
+			return ret;
+		}
 		Dictionary dictionary = Dictionary.getInstance();
 		IndexWordSet words = dictionary.lookupAllIndexWords(arg);
 		if (words.size() > 0) {

@@ -1,13 +1,13 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.CreateMetamodel;
-import es.uam.app.parser.rules.IsClass;
-import es.uam.app.parser.rules.IsReference;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.projects.ecore.IsClass;
+import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class CreateReference extends CreateMetamodel implements IsReference {
+public class CreateReference extends AddMetamodel implements IsReference {
 
 	private String name;
 	private IsClass of = null;
@@ -18,8 +18,12 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 
 	private boolean containment = false;
 
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
+	
 	public CreateReference(MetaModelProject proj, String name, IsClass of) {
-		super(proj);
+		setProject(proj);
 		this.name = name;
 
 		this.of = of;
@@ -27,7 +31,7 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 	}
 
 	public CreateReference(MetaModelProject proj, String name, IsClass of, int min, int max) {
-		super(proj);
+		setProject(proj);
 		this.name = name;
 
 		this.of = of;
@@ -37,7 +41,7 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 	}
 
 	public CreateReference(MetaModelProject proj, String name, IsClass of, boolean containment) {
-		super(proj);
+		setProject(proj);
 		this.name = name;
 
 		this.of = of;
@@ -46,7 +50,7 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 	}
 
 	public CreateReference(MetaModelProject proj, String name, IsClass of, int min, int max, boolean containment) {
-		super(proj);
+		setProject(proj);
 		this.name = name;
 
 		this.of = of;
@@ -56,11 +60,11 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 		this.containment = containment;
 	}
 
-	public CreateReference(ReferenceControl referenceControl) {
+	/*public CreateReference(ReferenceControl referenceControl) {
 		super(null);
 		this.object = referenceControl;
 		this.of=referenceControl.getParent();
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -83,7 +87,7 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 			throw new Exception("Problem ocurred in CreateReference: the reference "+name+" in "+ofClass.getName()+" already exists");
 		}
 
-		super.execute();
+		setExecute(true);
 
 	}
 
@@ -101,23 +105,47 @@ public class CreateReference extends CreateMetamodel implements IsReference {
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		proj.unAddReference(object, object.getParent());
-		super.undoIt();
+		project.unAddReference(object, object.getParent());
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) throws Exception {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() throws Exception {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
 		
-		proj.addReference(object, of.getClassControl());
-		super.redoIt();
+		project.addReference(object, of.getClassControl());
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 
 }

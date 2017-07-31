@@ -11,9 +11,9 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
 import es.uam.app.parser.rules.ExtractionRule;
-import es.uam.app.projects.Project;
+import socioProjects.Project;
 
-public class Sentence <T extends Project>{
+public class Sentence<T extends Project> {
 
 	private List<Word> sentence;
 	private ParserControl parser = ParserControl.getParser();
@@ -21,8 +21,6 @@ public class Sentence <T extends Project>{
 	private List<TypedDependency> dependecies;
 	private List<NP> concepts = new ArrayList<NP>();
 	private List<Verb> verbs = new ArrayList<Verb>();
-
-	
 
 	public Sentence(String stringSentence) {
 
@@ -49,7 +47,7 @@ public class Sentence <T extends Project>{
 			tree = parser.parser(stringSentence);
 		}
 		dependecies = parser.getDependecies(tree);
-		//System.out.println(dependecies);
+		// System.out.println(dependecies);
 		List<Tree> leaves = tree.getLeaves();
 		int j = 1;
 		for (Tree leaf : leaves) {
@@ -98,14 +96,8 @@ public class Sentence <T extends Project>{
 
 		for (Tree np : nps) {
 			List<Word> words = getListWords(np);
-			List<Word> wordsSave = new ArrayList<Word>();
-			for (Word w : words) {
-				if (w.getTag().startsWith("NN") || w.getTag().startsWith("JJ")|| w.getTag().startsWith("VB")) {
-					wordsSave.add(w);
-				}
-			}
 
-			ret.add(new NP(np, wordsSave));
+			ret.add(new NP(np, words));
 		}
 
 		return ret;
@@ -235,7 +227,8 @@ public class Sentence <T extends Project>{
 		return ret;
 	}
 
-	public List<List<ExtractionRule<T>>> parser(Map<Class<? extends ExtractionRule<T>>, Constructor<? extends ExtractionRule<T>>> extractionRules)
+	public List<List<ExtractionRule<T>>> parser(
+			Map<Class<? extends ExtractionRule<T>>, Constructor<? extends ExtractionRule<T>>> extractionRules)
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Buscar NPs
@@ -295,7 +288,6 @@ public class Sentence <T extends Project>{
 		}
 		return ret;
 	}
-
 
 	public List<NP> getSubj(Verb v) {
 		return getNps(v, "nsubj");
@@ -446,6 +438,14 @@ public class Sentence <T extends Project>{
 		}
 		return ret;
 	}
+	public List<Word> getAssociates(List<Word> words) {
+		List<Word> ret = new ArrayList<Word>();
+	
+		for (Word w : words) {
+			ret.addAll(getAssociates(w));
+		}
+		return ret;
+	}
 
 	private Word getAssociatesReverse(Word word) {
 		for (Word w : sentence) {
@@ -459,7 +459,5 @@ public class Sentence <T extends Project>{
 	public List<NP> getConcepts() {
 		return concepts;
 	}
-
-
 
 }

@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
-import es.uam.app.parser.rules.IsReference;
 
 public class ReferenceControl implements Feature, IsReference {
 

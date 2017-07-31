@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.main.ValidText;
 
+
 public interface Controlador {
 	
 	static final char [] validCharacter={'_'};
@@ -17,6 +18,7 @@ public interface Controlador {
 	default String validElementName (String text){
 		return ValidText.validText(text, validCharacter);
 	}
+
 	
 
 }

@@ -11,9 +11,11 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import DslHistory.Constraint;
 import es.uam.app.actions.ActionModel;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
+import es.uam.app.message.User;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
@@ -30,7 +32,7 @@ import es.uam.app.projects.log.RemoveLogControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 
-public class MetaModelProject extends Project {
+public class MetaModelProject extends LocalProjects {
 
 	private EcoreControl ec;
 
@@ -59,8 +61,8 @@ public class MetaModelProject extends Project {
 
 	}
 
-	MetaModelProject(EcoreControl ec, RemoveLogControl rlc, HistoryControl log, String name) {
-		super(rlc, log, name);
+	MetaModelProject(EcoreControl ec, RemoveLogControl rlc, HistoryControl log, String name,Constraint constraint, User admin) {
+		super(rlc, log, name, constraint, admin);
 		this.ec = ec;
 	}
 
@@ -160,44 +162,40 @@ public class MetaModelProject extends Project {
 	}
 
 	public ClassControl getClass(NP element) throws FileNotFoundException, JWNLException {
-		if (element.getAdj() != null && element.getAdj().lemmaEquals("abstract")) {
-			return this.getClass(WordConfigure.startUpperCase(element.getNoun().getLemma()));
 
-		} else {
-
-			ClassControl ret = this.getClass(element.upperCammelCase());
-			if (ret == null) {
-				List<String> nouns;
-				if (element.getNoun() != null) {
-					nouns = WordNet.getWordNet().getSynonyms(element.getNoun().getLemma());
-				} else {
-					nouns = new ArrayList<>();
-				}
-				List<String> adjs;
-				if (element.getAdj() != null) {
-					adjs = WordNet.getWordNet().getSynonyms(element.getAdj().getLemma());
-				} else {
-					adjs = new ArrayList<>();
-				}
-				for (String n : nouns) {
-					for (String a : adjs) {
-						ret = ec.getClass(WordConfigure.startUpperCase(a) + WordConfigure.startUpperCase(n));
-						if (ret != null) {
-							return ret;
-						}
-					}
-				}
-
-				for (String n : nouns) {
-					ret = ec.getClass(WordConfigure.startUpperCase(n));
+		ClassControl ret = this.getClass(element.upperCammelCase());
+		if (ret == null) {
+			List<String> nouns;
+			if (element.getNoun() != null) {
+				nouns = WordNet.getWordNet().getSynonyms(element.getNoun().getLemma());
+			} else {
+				nouns = new ArrayList<>();
+			}
+			List<String> adjs;
+			if (!element.getAdj().isEmpty()) {
+				adjs = WordNet.getWordNet().getSynonyms(element.getAdjCammelCase());
+			} else {
+				adjs = new ArrayList<>();
+			}
+			for (String n : nouns) {
+				for (String a : adjs) {
+					ret = ec.getClass(WordConfigure.startUpperCase(a) + WordConfigure.startUpperCase(n));
 					if (ret != null) {
 						return ret;
 					}
 				}
-
 			}
-			return ret;
+
+			for (String n : nouns) {
+				ret = ec.getClass(WordConfigure.startUpperCase(n));
+				if (ret != null) {
+					return ret;
+				}
+			}
+
 		}
+		return ret;
+
 	}
 
 	public ClassControl getClass(String clas) throws FileNotFoundException, JWNLException {
@@ -224,13 +222,10 @@ public class MetaModelProject extends Project {
 	}
 
 	public ClassControl getExactlyClass(NP element) throws FileNotFoundException, JWNLException {
-		if (element.getAdj() != null && element.getAdj().lemmaEquals("abstract")) {
-			return this.getExactlyClass(WordConfigure.startUpperCase(element.getNoun().getLemma()));
 
-		} else {
-			ClassControl ret = this.getExactlyClass(element.upperCammelCase());
-			return ret;
-		}
+		ClassControl ret = this.getExactlyClass(element.upperCammelCase());
+		return ret;
+
 	}
 
 	public void addAttribute(AttributeControl attr, ClassControl of) {
@@ -297,7 +292,7 @@ public class MetaModelProject extends Project {
 		ClassControl type = ec.getClass(ref.getTypeName());
 		ClassControl parent = ec.getClass(ref.getParentName());
 		if (type != null) {
-			ref.setType(type);
+			ref.setEType(type);
 		}
 		rlc.deleteRemove(ref);
 		parent.addAttrRef(ref.getEReference());
@@ -351,7 +346,7 @@ public class MetaModelProject extends Project {
 					if (o instanceof EStructuralFeature) {
 						return "ERROR: The type of " + ((EStructuralFeature) o).getName() + " in "
 								+ ((EStructuralFeature) o).getEContainingClass().getName() + " must be set.";
-					} 
+					}
 				}
 
 			} else if (d.getCode() == 26) {

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
-import es.uam.app.parser.rules.IsClass;
 
 public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 

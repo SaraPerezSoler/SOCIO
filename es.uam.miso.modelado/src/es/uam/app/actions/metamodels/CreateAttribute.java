@@ -1,13 +1,13 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.CreateMetamodel;
-import es.uam.app.parser.rules.IsAttribute;
-import es.uam.app.parser.rules.IsClass;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.projects.ecore.IsAttribute;
+import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 
-public class CreateAttribute extends CreateMetamodel implements IsAttribute {
+public class CreateAttribute extends AddMetamodel implements IsAttribute {
 
 	private String name;
 	private IsClass of = null;
@@ -15,10 +15,13 @@ public class CreateAttribute extends CreateMetamodel implements IsAttribute {
 
 	private AttributeControl object = null;
 
-	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
 
 	public CreateAttribute(MetaModelProject proj, String name, IsClass of, int min, int max) {
-		super(proj);
+		super();
+		this.project=proj;
 		this.name = name;
 		
 		this.of =of;
@@ -28,18 +31,20 @@ public class CreateAttribute extends CreateMetamodel implements IsAttribute {
 	}
 
 	public CreateAttribute(MetaModelProject proj, String name, IsClass of) {
-		super(proj);
+		super();
+		
+		this.project=proj;
 		this.name = name;
 		
 		this.of = of;
 		
 	}
 
-	public CreateAttribute(AttributeControl attributeControl) {
+	/*public CreateAttribute(AttributeControl attributeControl) {
 		super(null);
 		this.object=attributeControl;
 		of= attributeControl.getParent();
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -60,7 +65,7 @@ public class CreateAttribute extends CreateMetamodel implements IsAttribute {
 		}else{
 			throw new Exception("Problem ocurred in CreateAttribute: the attribute "+name+" in "+ofClass.getName()+" already exists");
 		}
-		super.execute();
+		setExecute(true);
 	}
 
 
@@ -77,24 +82,50 @@ public class CreateAttribute extends CreateMetamodel implements IsAttribute {
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		proj.unAddAttribute(object, object.getParent());
-		super.undoIt();
+		project.unAddAttribute(object, object.getParent());
+		setUndo(true);
 		
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) throws Exception {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() throws Exception {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
-		proj.addAttribute(object, of.getClassControl());
+		project.addAttribute(object, of.getClassControl());
 		
-		super.redoIt();
+		setUndo(false);
 	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
+	}
+
+
 
 }

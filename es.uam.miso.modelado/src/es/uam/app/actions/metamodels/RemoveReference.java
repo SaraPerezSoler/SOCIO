@@ -1,24 +1,26 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.RemoveMetamodel;
+import es.uam.app.actions.DeleteMetamodel;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
 
-public class RemoveReference extends RemoveMetamodel {
+public class RemoveReference extends DeleteMetamodel {
 
 	private ReferenceControl ref;
 
-	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
 	public RemoveReference(MetaModelProject  proj, ReferenceControl ref) {
-		super(proj);
+		setProject(proj);
 		this.ref = ref;
 	}
 
-	public RemoveReference(ReferenceControl referenceControl) {
+	/*public RemoveReference(ReferenceControl referenceControl) {
 		super(null);
 		this.ref = referenceControl;
-	}
+	}*/
 
 	@Override
 	public void doIt() {
@@ -27,7 +29,7 @@ public class RemoveReference extends RemoveMetamodel {
 		}
 		
 		getProject().removeReference(ref, ref.getParent());
-		super.execute();
+		setExecute(true);
 
 	}
 
@@ -38,21 +40,45 @@ public class RemoveReference extends RemoveMetamodel {
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		proj.unRemoveReference(ref);
-		super.undoIt();
+		project.unRemoveReference(ref);
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
-		proj.removeReference(ref, ref.getParent());
-		super.redoIt();
+		project.removeReference(ref, ref.getParent());
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 }

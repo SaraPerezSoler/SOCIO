@@ -1,24 +1,26 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.RemoveMetamodel;
+import es.uam.app.actions.DeleteMetamodel;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 
-public class RemoveClass extends RemoveMetamodel{
+public class RemoveClass extends DeleteMetamodel{
 
 	private ClassControl class_;
 	
-	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
 	public RemoveClass(MetaModelProject proj, ClassControl class_) {
-		super(proj);
+		setProject(proj);
 		this.class_ = class_;
 	}
 
-	public RemoveClass(ClassControl classControl) {
+	/*public RemoveClass(ClassControl classControl) {
 		super(null);
 		this.class_ = classControl;
-	}
+	}*/
 
 	@Override
 	public void doIt() {
@@ -26,7 +28,7 @@ public class RemoveClass extends RemoveMetamodel{
 			return;
 		}
 		getProject().removeClass(class_);
-		super.execute();
+		setExecute(true);
 	}
 
 	@Override
@@ -36,22 +38,46 @@ public class RemoveClass extends RemoveMetamodel{
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		proj.unRemoveClass(class_);
-		super.undoIt();
+		project.unRemoveClass(class_);
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
-		proj.removeClass(class_);
-		super.redoIt();
+		project.removeClass(class_);
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 
 }

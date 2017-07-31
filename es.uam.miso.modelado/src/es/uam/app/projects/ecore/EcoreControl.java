@@ -11,17 +11,13 @@ import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import DslHistory.impl.DslHistoryPackageImpl;
-import RemoveLog.impl.RemoveLogPackageImpl;
-import es.uam.app.actions.ActionModel;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.projects.FileProject;
+import es.uam.app.projects.SocioData;
 import es.uam.app.uml.CreateMetamodelUML;
+import projectHistory.Action;
 
 /**
  * 
@@ -32,7 +28,7 @@ import es.uam.app.uml.CreateMetamodelUML;
 public class EcoreControl implements Controlador, FileProject {
 
 	private Resource resource;
-	private static ResourceSet resourceSet = null;
+	
 
 	/**
 	 * Constructor para cargar un fichero ecore.
@@ -47,7 +43,7 @@ public class EcoreControl implements Controlador, FileProject {
 		 * paquete por defecto.
 		 */
 		try {
-			resource = getResourceSet().getResource(URI.createURI(uri), true);
+			resource = SocioData.getResourceSet().getResource(URI.createURI(uri), true);
 		} catch (Exception e) {
 			throw new FatalException("In class "+this.getClass().getName()+": the file "+ uri+" can be opened");
 		}
@@ -83,6 +79,10 @@ public class EcoreControl implements Controlador, FileProject {
 		crearEcore(uri, packageName, nsPrefix, nsURI);
 	}
 
+	public EcoreControl(Resource eResource) {
+		this.resource=eResource;
+	}
+
 	/**
 	 * Crea el fichero ecore a partir del path y el nombre del paquete, el campo
 	 * nsPrefix y el campo nsURI.
@@ -98,7 +98,7 @@ public class EcoreControl implements Controlador, FileProject {
 	 */
 	private void crearEcore(String uri, String name, String nsPrefix, String nsURI) {
 		// Creamos el fichero ecore
-		this.resource = getResourceSet().createResource(URI.createURI(uri));
+		this.resource = SocioData.getResourceSet().createResource(URI.createURI(uri));
 		// Creamos y añadimos el paquete con el nombre y el nsPrefix y nsURI
 		this.resource.getContents().add(new PackageControl(name, nsPrefix, nsURI).getEPackage());
 		save();
@@ -109,23 +109,7 @@ public class EcoreControl implements Controlador, FileProject {
 		return this.getPackage().getEPackage().getEFactoryInstance();
 	}
 
-	/**
-	 * Genera el resourceSet para despues obtener el resource del ecore.
-	 * 
-	 * @return
-	 */
-	public static ResourceSet getResourceSet() {
-		if (resourceSet == null) {
-			resourceSet = new ResourceSetImpl();
-			// Especificamos la extension del fichero (.ecore), y indicamos que
-			// es un XML.
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*",
-					new XMIResourceFactoryImpl());
-			resourceSet.getPackageRegistry().put("DslHistory", DslHistoryPackageImpl.eINSTANCE);
-			resourceSet.getPackageRegistry().put("RemoveLog", RemoveLogPackageImpl.eINSTANCE);
-		}
-		return resourceSet;
-	}
+
 
 	public PackageControl getPackage() {
 		return new PackageControl((EPackage) resource.getContents().get(0));
@@ -169,6 +153,9 @@ public class EcoreControl implements Controlador, FileProject {
 	}
 	
 	public ClassControl getClass(String name){
+		if (name==null){
+			return null;
+		}
 		ClassControl c=this.getExactlyClass(name);
 		
 		if (c==null){
@@ -182,6 +169,10 @@ public class EcoreControl implements Controlador, FileProject {
 		return c;
 	}
 	public ClassControl getExactlyClass(String name){
+		if (name==null){
+			return null;
+		}
+		
 		EClass c=(EClass)this.getPackage().find(name);
 		if (c!=null){
 			return new ClassControl(c);
@@ -277,7 +268,7 @@ public class EcoreControl implements Controlador, FileProject {
 	}
 
 	@Override
-	public String createUML(List<ActionModel> actions) {
+	public String createUML(List<Action> actions) {
 		return new CreateMetamodelUML(getPackage()).createUML(actions);
 	}
 
@@ -291,5 +282,6 @@ public class EcoreControl implements Controlador, FileProject {
 		}
 		return ret;
 	}
+
 	
 }

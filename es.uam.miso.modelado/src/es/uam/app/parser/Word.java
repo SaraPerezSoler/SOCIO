@@ -149,4 +149,13 @@ public class Word{
 		return word.toLowerCase();
 	}
 
+	public boolean lemmaEquals(String[] words) {
+		for (String w: words){
+			if (lemmaEquals(w)){
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

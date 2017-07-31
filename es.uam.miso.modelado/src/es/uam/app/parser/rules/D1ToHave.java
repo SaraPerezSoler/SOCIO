@@ -6,18 +6,19 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ActionModel;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.parser.WordConfigure;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.MetamodelControl;
+import es.uam.app.projects.ecore.IsAttribute;
+import es.uam.app.projects.ecore.IsClass;
+import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
+import projectHistory.impl.ActionImpl;
 
 public class D1ToHave extends MetemodelRule {
 
@@ -45,56 +46,44 @@ public class D1ToHave extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
+	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
 
-		List<ActionModel> ret = new ArrayList<ActionModel>();
+		List<ActionImpl> ret = new ArrayList<ActionImpl>();
 		NP A = A_B.get(i)[0];
 		NP B = A_B.get(i)[1];
 		// A has B// A es una clase del metamodelo
 		IsClass aClass = IsClass.getClass(A, proj);
-		if (aClass instanceof ActionModel) {
-			ret.add((ActionModel) aClass);
+		if (aClass instanceof ActionImpl) {
+			ret.add((ActionImpl) aClass);
 		}
-		String bAdjLemmaUpper;
 		// Si B tiene adjetivo
-		if (B.getAdj() != null) {
-			bAdjLemmaUpper = WordConfigure.startUpperCase(B.getAdj().getLemma());
-		} else {
-			bAdjLemmaUpper = null;
-		}
-		EClassifier type = null;
 		
-		if (bAdjLemmaUpper != null) {
-			type = MetamodelControl.getType(bAdjLemmaUpper);
-		}
+		EClassifier type = B.adjType();
+		
 		// Si B.adjetivo es un tipo definido de ecore.
 		if (type != null) {
 			// B.noun es un atributo...
-			int min = 0;
-			int max = 1;
-			if (B.isPlural()) {
-				max = -1;
-			}
-			IsAttribute att = IsAttribute.getAttribute(B.getNoun().getLemma(), aClass, min, max, proj);
-			if (att instanceof ActionModel) {
-				ret.add((ActionModel) att);
+
+			IsAttribute att = IsAttribute.getAttribute(B.getNoun().getLemma(), aClass, B.getMin(), B.getMax(), proj);
+			if (att instanceof ActionImpl) {
+				ret.add((ActionImpl) att);
 			}
 			// ...con tipo B.adjetivo.
-			UpdateAttrType uat = new UpdateAttrType(proj, att, bAdjLemmaUpper);
+			UpdateAttrType uat = new UpdateAttrType(proj, att, type.getName());
 			ret.add(uat);
 			// Si B.adjetivo no es un tipo definido de ecore
 		} else {
 
 			IsClass bClass = IsClass.getClass(B, proj);
-			if (bClass instanceof CreateClass && bAdjLemmaUpper!=null) {
-				bClass = IsClass.getClass(bAdjLemmaUpper, proj);
+			if (bClass instanceof CreateClass &&  B.getAdjCammelCase()!=null && !B.getAdjCammelCase().equals("")) {
+				bClass = IsClass.getClass(B.getAdjCammelCase(), proj);
 			}
 			// Si es una clase del metamodelo
 			if (bClass instanceof ClassControl) {
 				// B.noun es una referencia...
 				IsReference ref = IsReference.getReference(B, aClass, proj, false);
-				if (ref instanceof ActionModel) {
-					ret.add((ActionModel) ref);
+				if (ref instanceof ActionImpl) {
+					ret.add((ActionImpl) ref);
 				}
 				// ...con tipo B.adjetive
 				UpdateRefType urt = new UpdateRefType(proj, ref, bClass);
@@ -105,8 +94,8 @@ public class D1ToHave extends MetemodelRule {
 				// B es un elemento sin definir que primero que pondrá
 				// como adjetivo sin tipo
 				IsAttribute att = IsAttribute.getAttribute(B, aClass, proj);
-				if (att instanceof ActionModel) {
-					ret.add((ActionModel) att);
+				if (att instanceof ActionImpl) {
+					ret.add((ActionImpl) att);
 				}
 			}
 		}
@@ -132,9 +121,14 @@ public class D1ToHave extends MetemodelRule {
 			if (dobj.isEmpty()) {
 				return false;
 			}
+			
 			A_B = new ArrayList<>();
 			for (NP s : subj) {
 				for (NP d : dobj) {
+					if (verb.hasMayCanAux()){
+						d.setMin(0);
+					}
+					
 					NP[] a_b = new NP[2];
 					a_b[0] = s;
 					a_b[1] = d;

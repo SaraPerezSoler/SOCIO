@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uam.app.actions.ActionModel;
+
 import es.uam.app.actions.metamodels.RemoveAttribute;
 import es.uam.app.actions.metamodels.RemoveClass;
 import es.uam.app.actions.metamodels.RemoveReference;
@@ -17,8 +17,10 @@ import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
+import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
+import projectHistory.impl.ActionImpl;
 
 public class RemoveRule extends MetemodelRule {
 
@@ -31,8 +33,8 @@ public class RemoveRule extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionModel> ret = new ArrayList<ActionModel>();
+	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<ActionImpl> ret = new ArrayList<ActionImpl>();
 		NP dobj = dobj_to.get(i)[0];
 		NP to = dobj_to.get(i)[1];
 		if (to != null) {

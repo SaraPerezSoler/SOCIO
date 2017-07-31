@@ -6,17 +6,19 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ActionModel;
+
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.parser.WordConfigure;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.MetamodelControl;
+import es.uam.app.projects.ecore.IsAttribute;
+import es.uam.app.projects.ecore.IsClass;
+import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
+import projectHistory.impl.ActionImpl;
 
 public class AddRule extends MetemodelRule {
 
@@ -30,66 +32,57 @@ public class AddRule extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionModel> ret = new ArrayList<ActionModel>();
+	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<ActionImpl> ret = new ArrayList<ActionImpl>();
 		NP dobj = dobj_in.get(i)[0];
 		NP in = dobj_in.get(i)[1];
 
 		if (in == null) {
 			IsClass dobjClass = IsClass.getExactlyClass(dobj, proj);
-			if (dobjClass instanceof ActionModel) {
-				ret.add((ActionModel) dobjClass);
+			if (dobjClass instanceof ActionImpl) {
+				ret.add((ActionImpl) dobjClass);
 			}
 		} else {
 			IsClass inClass = IsClass.getExactlyClass(in, proj);
-			if (inClass instanceof ActionModel) {
-				ret.add((ActionModel) inClass);
+			if (inClass instanceof ActionImpl) {
+				ret.add((ActionImpl) inClass);
 			}
 
-			if (dobj.getAdj() != null) {
-				String lemmaAdjUpper = WordConfigure.startUpperCase(dobj.getAdj().getLemma());
-
-				EClassifier type = MetamodelControl.getType(lemmaAdjUpper);
+			if (!dobj.getAdj().isEmpty()) {
+		
+				EClassifier type = dobj.adjType();
 				if (type != null) {
-					int min = 0;
-					int max = 1;
-					if (dobj.isPlural()) {
-						max = -1;
+					
+					IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj);
+					if (inAtt instanceof ActionImpl) {
+						ret.add((ActionImpl) inAtt);
 					}
-					IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj.getNoun().getLemma(), inClass, min, max, proj);
-					if (inAtt instanceof ActionModel) {
-						ret.add((ActionModel) inAtt);
-					}
-					UpdateAttrType uat = new UpdateAttrType(proj, inAtt, lemmaAdjUpper);
+					UpdateAttrType uat = new UpdateAttrType(proj, inAtt, type.getName());
 					ret.add(uat);
 
 				} else {
-					IsClass adjClass = IsClass.getExactlyClass(lemmaAdjUpper, proj);
+					IsClass adjClass = IsClass.getExactlyClass(dobj.getAdjCammelCase(), proj);
 					if (adjClass instanceof ClassControl) {
-						int min = 0;
-						int max = 1;
-						if (dobj.isPlural()) {
-							max = -1;
-						}
-						IsReference ref = IsReference.getExactlyReference(dobj.getNoun().getLemma(), inClass, min, max, proj, false);
-						if (ref instanceof ActionModel) {
-							ret.add((ActionModel) ref);
+						
+						IsReference ref = IsReference.getExactlyReference(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj, false);
+						if (ref instanceof ActionImpl) {
+							ret.add((ActionImpl) ref);
 						}
 
 						UpdateRefType urt = new UpdateRefType(proj, ref, adjClass);
 						ret.add(urt);
 					} else {
 						IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-						if (inAtt instanceof ActionModel) {
-							ret.add((ActionModel) inAtt);
+						if (inAtt instanceof ActionImpl) {
+							ret.add((ActionImpl) inAtt);
 						}
 					}
 				}
 
 			} else {
 				IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-				if (inAtt instanceof ActionModel) {
-					ret.add((ActionModel) inAtt);
+				if (inAtt instanceof ActionImpl) {
+					ret.add((ActionImpl) inAtt);
 				}
 			}
 		}

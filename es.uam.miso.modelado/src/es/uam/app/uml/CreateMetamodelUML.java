@@ -5,15 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import es.uam.app.actions.ActionModel;
-import es.uam.app.actions.Create;
-import es.uam.app.actions.Remove;
-import es.uam.app.actions.Update;
+
+
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.PackageControl;
 import es.uam.app.projects.ecore.ReferenceControl;
+import projectHistory.Action;
+import projectHistory.Add;
+import projectHistory.Delete;
+import projectHistory.Update;
+
 
 public class CreateMetamodelUML {
 
@@ -57,8 +60,8 @@ public class CreateMetamodelUML {
 	private static final String ATTR = "Attr";
 	private static final String REF = "Ref";
 
-	private static List<ActionModel> adds;
-	private static List<ActionModel> deletes;
+	private static List<Action> adds;
+	private static List<Action> deletes;
 	private static List<Update> updates;
 	private static Map<String, List<Controlador>> addControl;
 	private static Map<String, List<Controlador>> deleteControl;
@@ -71,12 +74,12 @@ public class CreateMetamodelUML {
 		this.pc=pck;
 	}
 	
-	public String createUML(List<ActionModel> act) {
+	public String createUML(List<Action> actions) {
 		String cad = START_CLASS_DIAGRAM;
 
-		getAdds(act);
-		getDeletes(act);
-		getUpdates(act);
+		getAdds(actions);
+		getDeletes(actions);
+		getUpdates(actions);
 		addControl = getControlador(adds);
 		deleteControl = getControlador(deletes);
 		updateControl = getUpdateControlador(updates);
@@ -98,8 +101,8 @@ public class CreateMetamodelUML {
 		List<Controlador> ref = new ArrayList<Controlador>();
 		Map<String, List<Controlador>> ret = new HashMap<String, List<Controlador>>();
 
-		for (ActionModel a : updates2) {
-			Controlador c = a.getObject();
+		for (Action a : updates2) {
+			Controlador c = (Controlador) a.getObject();
 			if (c instanceof ClassControl) {
 				clas.add(c);
 			} else if (c instanceof AttributeControl) {
@@ -155,42 +158,42 @@ public class CreateMetamodelUML {
 		return cad;
 	}*/
 
-	private void getAdds(List<ActionModel> act) {
-		adds = new ArrayList<ActionModel>();
-		for (ActionModel a : act) {
-			if (a instanceof Create) {
+	private void getAdds(List<Action> actions) {
+		adds = new ArrayList<Action>();
+		for (Action a : actions) {
+			if (a instanceof Add) {
 				adds.add(a);
 			}
 		}
 
 	}
 
-	private void getDeletes(List<ActionModel> act) {
-		deletes = new ArrayList<ActionModel>();
-		for (ActionModel a : act) {
-			if (a instanceof Remove) {
+	private void getDeletes(List<Action> actions) {
+		deletes = new ArrayList<Action>();
+		for (Action a : actions) {
+			if (a instanceof Delete) {
 				deletes.add(a);
 			}
 		}
 	}
 
-	private void getUpdates(List<ActionModel> act) {
+	private void getUpdates(List<Action> actions) {
 		updates = new ArrayList<Update>();
-		for (ActionModel a : act) {
+		for (Action a : actions) {
 			if (a instanceof Update) {
 				updates.add((Update) a);
 			}
 		}
 	}
 
-	private Map<String, List<Controlador>> getControlador(List<ActionModel> act) {
+	private Map<String, List<Controlador>> getControlador(List<Action> act) {
 		List<Controlador> clas = new ArrayList<Controlador>();
 		List<Controlador> attr = new ArrayList<Controlador>();
 		List<Controlador> ref = new ArrayList<Controlador>();
 		Map<String, List<Controlador>> ret = new HashMap<String, List<Controlador>>();
 
-		for (ActionModel a : act) {
-			Controlador c = a.getObject();
+		for (Action a : act) {
+			Controlador c = (Controlador) a.getObject();
 			if (c instanceof ClassControl) {
 				clas.add(c);
 			} else if (c instanceof AttributeControl) {

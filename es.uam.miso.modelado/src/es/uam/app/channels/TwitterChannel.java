@@ -4,9 +4,9 @@ import java.io.File;
 
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.message.User;
 import es.uam.app.twitter.TwitterControl;
 import es.uam.app.twitter.TwitterStreamControl;
+import socioProjects.User;
 import twitter4j.Status;
 import twitter4j.UserStreamAdapter;
 

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import es.uam.app.actions.ActionModel;
+import projectHistory.impl.ActionImpl;
 
 public class SendHistoryMsg extends SendMessageExc {
 
@@ -74,9 +74,9 @@ public class SendHistoryMsg extends SendMessageExc {
 		return logs;
 	}
 	
-	public void addLog(String userName,String channel,  Date date, String msg, List<ActionModel> actions){
+	public void addLog(String userName,String channel,  Date date, String msg, List<ActionImpl> actions){
 		List<String> actionsString= new ArrayList<>();
-		for (ActionModel a: actions){
+		for (ActionImpl a: actions){
 			actionsString.add(a.toString());
 		}
 		

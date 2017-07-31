@@ -6,8 +6,9 @@ import java.util.List;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 
-import es.uam.app.channels.telegram.TelegramCommand;
-import es.uam.app.channels.telegram.TelegramControl;
+import es.uam.app.channels.telegramCommands.TelegramCommand;
+import es.uam.app.channels.telegramCommands.TelegramControl;
+import es.uam.app.channels.telegramCommands.secrect.SecretCommand;
 import es.uam.app.main.Main;
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
@@ -29,6 +30,14 @@ public class TelegramChannel extends Channel {
 		
 		for (Class<? extends TelegramCommand> tc: commands){
 			TelegramCommand.regiterTelegramCommand(tc, telegramControl);
+		}
+		
+		List<Class<? extends SecretCommand>> secretCommands=new ArrayList<Class<? extends SecretCommand>>();
+		new FastClasspathScanner(SecretCommand.class.getPackage().getName())
+		.matchSubclassesOf(SecretCommand.class, secretCommands::add).scan();
+		
+		for (Class<? extends SecretCommand> tc: secretCommands){
+			SecretCommand.regiterTelegramSecretCommand(tc, telegramControl);
 		}
 	}
 	@Override

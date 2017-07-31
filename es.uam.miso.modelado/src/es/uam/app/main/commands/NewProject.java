@@ -1,10 +1,13 @@
 package es.uam.app.main.commands;
 
 
+
 import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.Project;
-import es.uam.app.projects.Project.ProjectType;
+import es.uam.app.projects.LocalProjects;
+
+import es.uam.app.projects.LocalProjects.ProjectType;
+import socioProjects.Visibility;
 
 public class NewProject extends MainCommand{
 
@@ -12,7 +15,7 @@ public class NewProject extends MainCommand{
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc {
+	public void execute(ReceivedMessage rm) throws Exception {
 		if (rm.getProjectName() == null) {
 			return;
 		}
@@ -20,12 +23,18 @@ public class NewProject extends MainCommand{
 			return;
 		}
 		String nameProject = validProjectName(rm.getProjectName());
-		Project p=Project.getProject(nameProject);
+		LocalProjects p=LocalProjects.getProject(nameProject);
 		if (p!=null){
 			throw new SendMessageExc("A project with the name "+nameProject+" already exists");
 		}
-		Project.createProject(nameProject, rm, ProjectType.METAMODEL);
-		throw new SendMessageExc("Excellent! Now there is a new project with the name " + nameProject);
+		Visibility c;
+		if (rm.hasText()){
+			c=Visibility.valueOf(rm.getText());
+		}else{
+			c=Visibility.PUBLIC;
+		}
+		LocalProjects.createProject(nameProject, rm, ProjectType.METAMODEL, c, rm.getUser());
+		throw new SendMessageExc("Excellent! Now there is a new "+ c.name().toLowerCase()+" project with the name " + nameProject);
 		
 	}
 

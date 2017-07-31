@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ActionModel;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateClassAbstract;
 import es.uam.app.actions.metamodels.UpdateClassRemoveSuperType;
@@ -20,9 +19,13 @@ import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
+import es.uam.app.projects.ecore.IsAttribute;
+import es.uam.app.projects.ecore.IsClass;
+import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.ecore.MetamodelControl;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
+import projectHistory.impl.ActionImpl;
 
 public class B3B5ToBe extends MetemodelRule {
 
@@ -49,16 +52,16 @@ public class B3B5ToBe extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionModel> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionModel> ret = new ArrayList<>();
+	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<ActionImpl> ret = new ArrayList<>();
 		NP A = A_B.get(i)[0];
 		NP B = A_B.get(i)[1];
 
 		if (A.getOf() != null) {
 			IsClass of = IsClass.getClass(A.getOf(), proj);
 			ret.addAll(withOf(proj, of, A, B));
-			if (of instanceof ActionModel) {
-				ret.add((ActionModel) of);
+			if (of instanceof ActionImpl) {
+				ret.add((ActionImpl) of);
 			}
 
 		} else {
@@ -67,18 +70,18 @@ public class B3B5ToBe extends MetemodelRule {
 		return ret;
 	}
 
-	private List<ActionModel> withOf(MetaModelProject proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
-		List<ActionModel> ret = new ArrayList<ActionModel>();
+	private List<ActionImpl> withOf(MetaModelProject proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
+		List<ActionImpl> ret = new ArrayList<ActionImpl>();
 		EClassifier type = MetamodelControl.getType(B.upperCammelCase());
 
 		if (type == null) {
 			IsReference ref = IsReference.getReference(A, of, proj, false);
-			if (ref instanceof ActionModel) {
-				ret.add((ActionModel) ref);
+			if (ref instanceof ActionImpl) {
+				ret.add((ActionImpl) ref);
 			}
 			IsClass bClass = IsClass.getClass(B, proj);
-			if (bClass instanceof ActionModel) {
-				ret.add((ActionModel) bClass);
+			if (bClass instanceof ActionImpl) {
+				ret.add((ActionImpl) bClass);
 			}
 			if (no) {
 				if (ref instanceof ReferenceControl && bClass instanceof ClassControl) {
@@ -93,8 +96,8 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		} else {
 			IsAttribute att = IsAttribute.getAttribute(A, of, proj);
-			if (att instanceof ActionModel) {
-				ret.add((ActionModel) att);
+			if (att instanceof ActionImpl) {
+				ret.add((ActionImpl) att);
 			}
 
 			if (no) {
@@ -114,10 +117,10 @@ public class B3B5ToBe extends MetemodelRule {
 		return ret;
 	}
 
-	private List<ActionModel> withoutOf(MetaModelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
+	private List<ActionImpl> withoutOf(MetaModelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
 
 		IsClass aClass = IsClass.getClass(A.upperCammelCase(), proj);
-		if (aClass instanceof ActionModel) {
+		if (aClass instanceof ActionImpl) {
 			Feature f = proj.getFeature(A.lowerCammelCase());
 			if (f != null) {
 				ClassControl of = f.getParent();
@@ -125,13 +128,13 @@ public class B3B5ToBe extends MetemodelRule {
 
 			}
 		}
-		List<ActionModel> ret = new ArrayList<ActionModel>();
-		if (aClass instanceof ActionModel) {
-			ret.add((ActionModel) aClass);
+		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+		if (aClass instanceof ActionImpl) {
+			ret.add((ActionImpl) aClass);
 		}
 
-		if (B.getAdj() != null) {
-			if (B.getAdj().lemmaEquals("abstract") && (B.getNoun() == null || B.getNoun().lemmaEquals("class"))) {
+		if (!B.getAdj().isEmpty()) {
+			if (B.isAbstract() && (B.getNoun() == null || B.getNoun().lemmaEquals("class"))) {
 				if (no) {
 					UpdateClassAbstract uca = new UpdateClassAbstract(proj, aClass, false);
 					ret.add(uca);
@@ -151,8 +154,8 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		}
 
-		if (bClass instanceof ActionModel) {
-			ret.add((ActionModel) bClass);
+		if (bClass instanceof ActionImpl) {
+			ret.add((ActionImpl) bClass);
 		}
 		if (no) {
 			if (bClass instanceof ClassControl) {

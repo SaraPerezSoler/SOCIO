@@ -3,8 +3,10 @@ package es.uam.app.actions.metamodels;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.parser.rules.IsClass;
+import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
@@ -19,9 +21,13 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 	protected ClassControl new_ = null;
 	protected ClassControl object=null;
 	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
+	
 
 	public UpdateClassSuperType(MetaModelProject proj, IsClass class_, IsClass superType) {
-		super(proj);
+		setProject(proj);
 
 		this.class_ =  class_;
 
@@ -29,12 +35,12 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 
 	}
 
-	public UpdateClassSuperType(ClassControl object, ClassControl old, ClassControl new_) {
+	/*public UpdateClassSuperType(ClassControl object, ClassControl old, ClassControl new_) {
 		super(null);
 		this.object = object;
 		this.old = old;
 		this.new_ = new_;
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -57,7 +63,7 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 
 		new_ = classClassCont.copyObject();
 		this.object=classClassCont;
-		super.execute();
+		setExecute(true);
 
 	}
 
@@ -67,17 +73,17 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 	}
 
 	@Override
-	public Controlador getOld() {
-		return old;
+	public EObject getOld() {
+		return old.getObject();
 	}
 
 	@Override
-	public Controlador getNew() {
-		return new_;
+	public EObject getNew() {
+		return new_.getObject();
 	}
 	
 	@Override
-	public void undoIt(MetaModelProject proj) throws Exception {
+	public void undoIt() throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
@@ -85,30 +91,54 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 		List<String> supertypes=old.getSuperTypesNames();
 		List<ClassControl> superTypeClass= new ArrayList<ClassControl>();
 		for (String s: supertypes){
-			ClassControl c=proj.getClass(s);
+			ClassControl c=project.getClass(s);
 			if (c!=null){
 				superTypeClass.add(c);
 			}
 		}
 		object.addAllSuperType(superTypeClass);
-		super.undoIt();
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) throws Exception {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() throws Exception {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
 		List<String> supertypes=new_.getSuperTypesNames();
 		List<ClassControl> superTypeClass= new ArrayList<ClassControl>();
 		for (String s: supertypes){
-			ClassControl c=proj.getClass(s);
+			ClassControl c=project.getClass(s);
 			if (c!=null){
 				superTypeClass.add(c);
 			}
 		}
 		this.object.addAllSuperType(superTypeClass);
-		super.redoIt();
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 
 }

@@ -15,7 +15,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import es.uam.app.channels.Channel;
 import es.uam.app.channels.Pipe;
-import es.uam.app.channels.telegram.TelegramControl;
+import es.uam.app.channels.telegramCommands.TelegramControl;
 import es.uam.app.main.commands.BaseCase;
 import es.uam.app.main.commands.Get;
 import es.uam.app.main.commands.Help;
@@ -24,8 +24,10 @@ import es.uam.app.main.commands.MainCommand;
 import es.uam.app.main.commands.NewProject;
 import es.uam.app.main.commands.Projects;
 import es.uam.app.main.commands.Redo;
+import es.uam.app.main.commands.Reload;
 import es.uam.app.main.commands.Statistics;
 import es.uam.app.main.commands.Undo;
+import es.uam.app.main.commands.UserProperties;
 import es.uam.app.main.commands.Validate;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.ReceivedMessage;
@@ -33,11 +35,13 @@ import es.uam.app.message.SendMessageExc;
 import es.uam.app.parser.rules.ExtractionRule;
 import es.uam.app.parser.rules.MetemodelRule;
 import es.uam.app.projects.MetaModelProject;
-import es.uam.app.projects.Project;
+import es.uam.app.projects.LocalProjects;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 
 public class Main {
 
+	
+	
 	public enum MainCommandEnum {
 
 		NEW_PROJECT("newproject", new NewProject()), 
@@ -46,7 +50,10 @@ public class Main {
 		HISTORY_ELEMENT(new History(History.ELEMENT)),
 		HISTORY_ACTION(new History(History.ACTION)), 
 		USER_MSG_STATISTICS(new Statistics(Statistics.USER_MSG)), 
-		USER_ACTIONS_STATISTICS(new Statistics(Statistics.USER_ACTION)), 
+		USER_ACTIONS_STATISTICS(new Statistics(Statistics.USER_ACTION)),
+		USERS_ACCESS(new UserProperties(UserProperties.CREATE_LIST)),
+		ADD_USERS_ACCESS(new UserProperties(UserProperties.ADD_USERS)),
+		REMOVE_USERS_ACCESS(new UserProperties(UserProperties.REMOVE_USERS)),
 		ABS_USER_MSG_STATISTICS(new Statistics(Statistics.ABS_USER_MSG)), 
 		ABS_USER_ACTIONS_STATISTICS(new Statistics(Statistics.ABS_USER_ACTION)),
 		ACTIONS_STATISTICS(new Statistics(Statistics.ACTION)), 
@@ -54,7 +61,7 @@ public class Main {
 		PROJECTS(new Projects()), 
 		UNDO(new Undo()), REDO(new Redo()), GET(new Get()), VALIDATE(new Validate()),
 		HELP(new Help()), 
-		BASE_CASE(new BaseCase());
+		BASE_CASE(new BaseCase()), RELOAD(new Reload());
 
 		private String name;
 		private MainCommand command;
@@ -81,7 +88,6 @@ public class Main {
 	private static Map<String, Channel> channels = new HashMap<String, Channel>();
 	private static final Pipe PIPE = new Pipe();
 	public static Logger log = Logger.getLogger("Modelado");
-
 	public static void main(String[] args) throws IOException {
 
 		boolean basicConfiguration = true;
@@ -104,8 +110,10 @@ public class Main {
 		ini();
 
 		try {
-			Project.loadProjects();
+			LocalProjects.loadProjects();
 		} catch (FatalException e) {
+			log.fatal(e);
+		} catch (Exception e) {
 			log.fatal(e);
 		}
 

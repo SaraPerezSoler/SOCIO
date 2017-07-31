@@ -1,24 +1,28 @@
 package es.uam.app.actions.metamodels;
 
 
-import es.uam.app.actions.CreateMetamodel;
-import es.uam.app.parser.rules.IsClass;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 
-public class CreateClass extends CreateMetamodel implements IsClass{
+public class CreateClass extends AddMetamodel implements IsClass{
 
 	private String class_;
 	private ClassControl object=null;
 	private boolean abstract_=false;	
 	
-	public CreateClass(ClassControl object) {
+	/*public CreateClass(ClassControl object) {
 		super(null);
 		this.object=object;
-	}
+	}*/
+	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
 	
 	public CreateClass(MetaModelProject proj, String class_, boolean abs) {
-		super(proj);
+		setProject(proj);
 		this.class_ = class_;
 		this.abstract_=abs;
 	}
@@ -36,7 +40,7 @@ public class CreateClass extends CreateMetamodel implements IsClass{
 		}else{
 			throw new Exception("Problem ocurred in CreateClass: the class "+class_ +"  already exists");
 		}
-		super.execute();
+		setExecute(true);
 	}
 
 	@Override
@@ -52,22 +56,46 @@ public class CreateClass extends CreateMetamodel implements IsClass{
 	}
 
 	@Override
-	public void undoIt(MetaModelProject proj) {
+	public void undoIt() {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		proj.unAddClass(object);
-		super.undoIt();
+		project.unAddClass(object);
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
-		proj.addClass(getObject());
-		super.redoIt();
+		project.addClass(getObject());
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 	
 	

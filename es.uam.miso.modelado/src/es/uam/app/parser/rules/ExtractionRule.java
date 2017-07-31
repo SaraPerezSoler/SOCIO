@@ -3,11 +3,11 @@ package es.uam.app.parser.rules;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import es.uam.app.actions.ActionModel;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.Project;
 import net.didion.jwnl.JWNLException;
+import projectHistory.Action;
+import socioProjects.Project;
 
 public abstract class ExtractionRule<T extends Project>{
 
@@ -24,7 +24,7 @@ public abstract class ExtractionRule<T extends Project>{
 	
 	public  abstract boolean validate();
 	
-	public abstract List<ActionModel> evaluete(T proj, int i) throws FileNotFoundException, JWNLException;
+	public abstract List<Action> evaluete(T proj, int i) throws FileNotFoundException, JWNLException;
 	
 	public abstract int numEvaluete();
 	

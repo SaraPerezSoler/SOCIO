@@ -1,8 +1,10 @@
 package es.uam.app.actions.metamodels;
 
+import org.eclipse.emf.ecore.EObject;
+
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.parser.rules.IsClass;
-import es.uam.app.parser.rules.IsReference;
+import es.uam.app.projects.ecore.IsClass;
+import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
@@ -17,21 +19,25 @@ public class UpdateRefType extends UpdateMetamodel {
 	private ReferenceControl old = null;
 	private ReferenceControl new_ = null;
 	private ReferenceControl object= null;
+	
+	private MetaModelProject project;
+	private boolean isUndo=false;
+	private boolean isExecute=false;
 
 	public UpdateRefType(MetaModelProject proj, IsReference ref, IsClass type) {
-		super(proj);
+		setProject(proj);
 		
 		this.ref = ref;
 		this.type= type;
 
 	}
 
-	public UpdateRefType(ReferenceControl object, ReferenceControl old, ReferenceControl new_) {
+	/*public UpdateRefType(ReferenceControl object, ReferenceControl old, ReferenceControl new_) {
 		super(null);
 		this.object = object;
 		this.old = old;
 		this.new_ = new_;
-	}
+	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -54,7 +60,7 @@ public class UpdateRefType extends UpdateMetamodel {
 		refControl.setType(typeCC);
 		new_ = refControl.copyObject();
 		object= refControl;
-		super.execute();
+		setExecute(true);
 	}
 
 
@@ -64,34 +70,58 @@ public class UpdateRefType extends UpdateMetamodel {
 	}
 
 	@Override
-	public Controlador getOld() {
-		return old;
+	public EObject getOld() {
+		return old.getObject();
 	}
 
 	@Override
-	public Controlador getNew() {
-		return new_;
+	public EObject getNew() {
+		return new_.getObject();
 	}
 	
 	@Override
-	public void undoIt(MetaModelProject proj) throws Exception {
+	public void undoIt() throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		ClassControl type=proj.getClass(old.getTypeName());
+		ClassControl type=project.getClass(old.getTypeName());
 		object.setType(type);
-		super.undoIt();
+		setUndo(true);
 	}
 
 	@Override
-	public void redoIt(MetaModelProject proj) throws Exception {
-		if (!isExecute() || !isUndo() || isRedo()){
+	public void redoIt() throws Exception {
+		if (!isExecute() || !isUndo()){
 			return;
 		}
-		ClassControl type=proj.getClass(new_.getTypeName());
+		ClassControl type=project.getClass(new_.getTypeName());
 		this.object.setType(type);
-		super.redoIt();
+		setUndo(false);
+	}
+
+	public MetaModelProject getProject() {
+		return project;
+	}
+
+	public void setProject(MetaModelProject project) {
+		this.project = project;
+	}
+
+	public boolean isUndo() {
+		return isUndo;
+	}
+
+	public void setUndo(boolean isUndo) {
+		this.isUndo = isUndo;
+	}
+
+	public boolean isExecute() {
+		return isExecute;
+	}
+
+	public void setExecute(boolean isExecute) {
+		this.isExecute = isExecute;
 	}
 
 }
