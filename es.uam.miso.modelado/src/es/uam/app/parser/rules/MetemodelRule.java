@@ -2,11 +2,11 @@ package es.uam.app.parser.rules;
 
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.MetaModelProject;
+import socioProjects.MetamodelProject;
 
-public abstract class MetemodelRule extends ExtractionRule<MetaModelProject>{
+public abstract class MetemodelRule extends ExtractionRule<MetamodelProject>{
 
-	public MetemodelRule(Sentence<MetaModelProject> sentence, Verb v) {
+	public MetemodelRule(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 

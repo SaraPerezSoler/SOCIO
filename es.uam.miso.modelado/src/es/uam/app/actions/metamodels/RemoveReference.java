@@ -1,18 +1,18 @@
 package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.DeleteMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
+import socioProjects.MetamodelProject;
 
 public class RemoveReference extends DeleteMetamodel {
 
 	private ReferenceControl ref;
 
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
-	public RemoveReference(MetaModelProject  proj, ReferenceControl ref) {
+	public RemoveReference(MetamodelProject  proj, ReferenceControl ref) {
 		setProject(proj);
 		this.ref = ref;
 	}
@@ -58,11 +58,11 @@ public class RemoveReference extends DeleteMetamodel {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

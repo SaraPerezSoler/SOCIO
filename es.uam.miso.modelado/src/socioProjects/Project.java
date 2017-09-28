@@ -30,6 +30,7 @@ import removeLog.Root;
  *   <li>{@link socioProjects.Project#getModel <em>Model</em>}</li>
  *   <li>{@link socioProjects.Project#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link socioProjects.Project#getAdmin <em>Admin</em>}</li>
+ *   <li>{@link socioProjects.Project#getId <em>Id</em>}</li>
  * </ul>
  *
  * @see socioProjects.SocioProjectsPackage#getProject()
@@ -37,6 +38,8 @@ import removeLog.Root;
  * @generated
  */
 public interface Project extends EObject {
+	
+		
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -199,12 +202,42 @@ public interface Project extends EObject {
 	void setAdmin(User value);
 
 	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(long)
+	 * @see socioProjects.SocioProjectsPackage#getProject_Id()
+	 * @model required="true"
+	 * @generated
+	 */
+	long getId();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.Project#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(long value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
 	String getPath();
+	
+	String getFilePath();
+	
+	String getFileExtension();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -375,5 +408,11 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	String validate();
+	
+	Date getCreateDate();
+	
+	String getProjectData();
+
+	void remove();
 
 } // Project

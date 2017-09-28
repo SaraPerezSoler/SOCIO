@@ -12,13 +12,14 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.IsAttribute;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
-import projectHistory.impl.ActionImpl;
+import projectHistory.Action;
+import socioProjects.MetamodelProject;
+
 
 public class B4Contain extends MetemodelRule {
 
@@ -31,7 +32,7 @@ public class B4Contain extends MetemodelRule {
 	private static final String[] REVERSE_IF_PASSIVE={ "contain", "include"};
 	
 
-	public B4Contain(Sentence<MetaModelProject> sentence, Verb v) {
+	public B4Contain(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -47,14 +48,14 @@ public class B4Contain extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
+	public List<Action> evaluete(MetamodelProject proj, int i) throws FileNotFoundException, JWNLException {
 		
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+		List<Action> ret = new ArrayList<Action>();
 			NP A=A_B.get(i)[0];
 			NP B=A_B.get(i)[1];
 			IsClass aClass = IsClass.getClass(A, proj);
-			if (aClass instanceof ActionImpl) {
-				ret.add((ActionImpl) aClass);
+			if (aClass instanceof Action) {
+				ret.add((Action) aClass);
 			}
 
 			if (!B.getAdj().isEmpty()) {
@@ -64,8 +65,8 @@ public class B4Contain extends MetemodelRule {
 					// B.noun es un atributo...
 					
 					IsAttribute att = IsAttribute.getAttribute(B.getNoun().getWord(), aClass, B.getMin(), B.getMax(), proj);
-					if (att instanceof ActionImpl) {
-						ret.add((ActionImpl) att);
+					if (att instanceof Action) {
+						ret.add((Action) att);
 					}
 					// ...con tipo B.adjetivo.
 					UpdateAttrType uat = new UpdateAttrType(proj, att, type.getName());
@@ -82,8 +83,8 @@ public class B4Contain extends MetemodelRule {
 					if (bClass instanceof ClassControl) {
 						// B.noun es una referencia...
 						IsReference ref = IsReference.getReference(B, aClass, proj, true);
-						if (ref instanceof ActionImpl) {
-							ret.add((ActionImpl) ref);
+						if (ref instanceof Action) {
+							ret.add((Action) ref);
 						}
 						// ...con tipo B.adjetive
 						UpdateRefType urt = new UpdateRefType(proj, ref, bClass);
@@ -93,13 +94,13 @@ public class B4Contain extends MetemodelRule {
 						// clase creada previamente
 					} else {
 						bClass = bClassAux;
-						if (bClass instanceof ActionImpl) {
-							ret.add((ActionImpl) bClass);
+						if (bClass instanceof Action) {
+							ret.add((Action) bClass);
 						}
 
 						IsReference bRef = IsReference.getReference(B, aClass, proj, true);
-						if (bRef instanceof ActionImpl) {
-							ret.add((ActionImpl) bRef);
+						if (bRef instanceof Action) {
+							ret.add((Action) bRef);
 						}
 						UpdateRefType urt = new UpdateRefType(proj, bRef, bClass);
 						ret.add(urt);
@@ -107,13 +108,13 @@ public class B4Contain extends MetemodelRule {
 				}
 			} else {
 				IsClass bClass = IsClass.getClass(B, proj);
-				if (bClass instanceof ActionImpl) {
-					ret.add((ActionImpl) bClass);
+				if (bClass instanceof Action) {
+					ret.add((Action) bClass);
 				}
 
 				IsReference bRef = IsReference.getReference(B, aClass, proj, true);
-				if (bRef instanceof ActionImpl) {
-					ret.add((ActionImpl) bRef);
+				if (bRef instanceof Action) {
+					ret.add((Action) bRef);
 				}
 				UpdateRefType urt = new UpdateRefType(proj, bRef, bClass);
 				ret.add(urt);

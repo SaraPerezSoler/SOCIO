@@ -3,10 +3,10 @@ package es.uam.app.actions.metamodels;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.IsAttribute;
 import es.uam.app.projects.ecore.ReferenceControl;
+import socioProjects.MetamodelProject;
 
 public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 
@@ -18,13 +18,13 @@ public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref) {
+	public ChangeRefForAttr(MetamodelProject proj,ReferenceControl ref) {
 		super();
 		this.remove = new RemoveReference (proj,ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), ref.getLowerBound(), ref.getUpperBound());
 	}
 
-	public ChangeRefForAttr(MetaModelProject proj,ReferenceControl ref, int min, int max) {
+	public ChangeRefForAttr(MetamodelProject proj,ReferenceControl ref, int min, int max) {
 		super();
 		this.remove = new RemoveReference (proj, ref);
 		this.createAttribute = new CreateAttribute(proj,ref.getName(), ref.getParent(), min, max);
@@ -96,14 +96,14 @@ public class ChangeRefForAttr extends UpdateMetamodel implements IsAttribute{
 	}
 
 	@Override
-	public void setProject(MetaModelProject proj) {
+	public void setProject(MetamodelProject proj) {
 		this.createAttribute.setProject(proj);
 		this.remove.setProject(proj);
 		
 	}
 
 	@Override
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return remove.getProject();
 	}
 

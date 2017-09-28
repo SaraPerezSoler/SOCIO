@@ -9,7 +9,7 @@ package projectHistory;
  * <!-- end-user-doc -->
  *
  *
- * @see projectHistory.DslHistoryPackage#getDelete()
+ * @see projectHistory.projectHistoryPackage#getDelete()
  * @model abstract="true"
  * @generated
  */

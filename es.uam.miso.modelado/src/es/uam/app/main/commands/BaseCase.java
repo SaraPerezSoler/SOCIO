@@ -3,10 +3,9 @@ package es.uam.app.main.commands;
 import java.io.File;
 
 import es.uam.app.main.exceptions.NotAccessException;
-import es.uam.app.main.exceptions.ProjectNotFoundException;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.LocalProjects;
+import projectHistory.Msg;
+import socioProjects.Project;
 
 public class BaseCase extends MainCommand {
 
@@ -14,29 +13,43 @@ public class BaseCase extends MainCommand {
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
-		String nameProject = validProjectName(rm.getProjectName());
-		LocalProjects actual = LocalProjects.getProject(nameProject);
+	public void execute(Msg rm) throws SendMessageExc, Exception {
 
-		if (actual != null) {
-			if (rm.hasText()) {
-				if (rm.getUser().canEdit(actual)) {
-					File png = actual.execute(rm);
-					throw new SendMessageExc(rm.getCommand(), png);
-				} else {
-					throw new NotAccessException("You don't have editing permissions in this project.");
-				}
+		Project actual = searchProject(rm);
+
+		if (rm.hasText()) {
+			if (rm.getUser().canEdit(actual)) {
+				File png = actual.execute(rm);
+				throw new SendMessageExc(rm.getCommand(), png);
 			} else {
-				if (rm.getUser().canRead(actual)) {
-					File png = actual.execute(rm);
-					throw new SendMessageExc(rm.getCommand(), png);
-				} else {
-					throw new NotAccessException("You don't have reading permissions in this project.");
-				}
+				throw new NotAccessException("You don't have editing permissions in this project.");
 			}
 		} else {
-			throw new ProjectNotFoundException(nameProject);
+			if (rm.getUser().canRead(actual)) {
+				File png = actual.execute(rm);
+				throw new SendMessageExc(rm.getCommand(), png);
+			} else {
+				throw new NotAccessException("You don't have reading permissions in this project.");
+			}
 		}
+
+	}
+
+	@Override
+	public String getName() {
+		return "BASE_CASE";
+	}
+
+	@Override
+	public String getDesc() {
+		return "Base case of the bot, analyzes a message in natural language(NL) to modify the model\n"
+				+ "if the msg doesnt have a text, the bot displays the current state of the model.\n"
+				+ "the user need permission to write to modify the model and permission to read to see the state";
+	}
+
+	@Override
+	public String getNeeds() {
+		return project()+", a sentence in NL";
 	}
 
 }

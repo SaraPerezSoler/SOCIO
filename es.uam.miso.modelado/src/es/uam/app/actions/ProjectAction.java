@@ -1,10 +1,10 @@
 package es.uam.app.actions;
 
-import es.uam.app.projects.LocalProjects;
 import es.uam.app.projects.ecore.Controlador;
+import socioProjects.Project;
 
 
-public interface ProjectAction<T extends LocalProjects> {
+public interface ProjectAction<T extends Project> {
 	
 
 	

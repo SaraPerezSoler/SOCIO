@@ -12,13 +12,13 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.IsAttribute;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
-import projectHistory.impl.ActionImpl;
+import projectHistory.Action;
+import socioProjects.MetamodelProject;
 
 public class AddRule extends MetemodelRule {
 
@@ -27,25 +27,25 @@ public class AddRule extends MetemodelRule {
 	private final static String examples[]={"Add person.", "Add work in person.", "Add numeric age in person."};
 
 
-	public AddRule(Sentence<MetaModelProject> sentence, Verb v) {
+	public AddRule(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
 	@Override
-	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+	public List<Action> evaluete(MetamodelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<Action>();
 		NP dobj = dobj_in.get(i)[0];
 		NP in = dobj_in.get(i)[1];
 
 		if (in == null) {
 			IsClass dobjClass = IsClass.getExactlyClass(dobj, proj);
-			if (dobjClass instanceof ActionImpl) {
-				ret.add((ActionImpl) dobjClass);
+			if (dobjClass instanceof Action) {
+				ret.add((Action) dobjClass);
 			}
 		} else {
 			IsClass inClass = IsClass.getExactlyClass(in, proj);
-			if (inClass instanceof ActionImpl) {
-				ret.add((ActionImpl) inClass);
+			if (inClass instanceof Action) {
+				ret.add((Action) inClass);
 			}
 
 			if (!dobj.getAdj().isEmpty()) {
@@ -54,8 +54,8 @@ public class AddRule extends MetemodelRule {
 				if (type != null) {
 					
 					IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj);
-					if (inAtt instanceof ActionImpl) {
-						ret.add((ActionImpl) inAtt);
+					if (inAtt instanceof Action) {
+						ret.add((Action) inAtt);
 					}
 					UpdateAttrType uat = new UpdateAttrType(proj, inAtt, type.getName());
 					ret.add(uat);
@@ -65,24 +65,24 @@ public class AddRule extends MetemodelRule {
 					if (adjClass instanceof ClassControl) {
 						
 						IsReference ref = IsReference.getExactlyReference(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj, false);
-						if (ref instanceof ActionImpl) {
-							ret.add((ActionImpl) ref);
+						if (ref instanceof Action) {
+							ret.add((Action) ref);
 						}
 
 						UpdateRefType urt = new UpdateRefType(proj, ref, adjClass);
 						ret.add(urt);
 					} else {
 						IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-						if (inAtt instanceof ActionImpl) {
-							ret.add((ActionImpl) inAtt);
+						if (inAtt instanceof Action) {
+							ret.add((Action) inAtt);
 						}
 					}
 				}
 
 			} else {
 				IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-				if (inAtt instanceof ActionImpl) {
-					ret.add((ActionImpl) inAtt);
+				if (inAtt instanceof Action) {
+					ret.add((Action) inAtt);
 				}
 			}
 		}

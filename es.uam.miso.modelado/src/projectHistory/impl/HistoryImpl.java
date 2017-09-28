@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import projectHistory.CreateMsg;
-import projectHistory.DslHistoryPackage;
 import projectHistory.History;
 import projectHistory.Msg;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.HISTORY;
+		return projectHistoryPackage.Literals.HISTORY;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 */
 	public EList<Msg> getMsg() {
 		if (msg == null) {
-			msg = new EObjectContainmentEList<Msg>(Msg.class, this, DslHistoryPackage.HISTORY__MSG);
+			msg = new EObjectContainmentEList<Msg>(Msg.class, this, projectHistoryPackage.HISTORY__MSG);
 		}
 		return msg;
 	}
@@ -100,7 +100,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 			createMsg = (CreateMsg)eResolveProxy(oldCreateMsg);
 			if (createMsg != oldCreateMsg) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, projectHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
 			}
 		}
 		return createMsg;
@@ -124,7 +124,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 		CreateMsg oldCreateMsg = createMsg;
 		createMsg = newCreateMsg;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DslHistoryPackage.HISTORY__MSG:
+			case projectHistoryPackage.HISTORY__MSG:
 				return ((InternalEList<?>)getMsg()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -149,9 +149,9 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.HISTORY__MSG:
+			case projectHistoryPackage.HISTORY__MSG:
 				return getMsg();
-			case DslHistoryPackage.HISTORY__CREATE_MSG:
+			case projectHistoryPackage.HISTORY__CREATE_MSG:
 				if (resolve) return getCreateMsg();
 				return basicGetCreateMsg();
 		}
@@ -167,11 +167,11 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.HISTORY__MSG:
+			case projectHistoryPackage.HISTORY__MSG:
 				getMsg().clear();
 				getMsg().addAll((Collection<? extends Msg>)newValue);
 				return;
-			case DslHistoryPackage.HISTORY__CREATE_MSG:
+			case projectHistoryPackage.HISTORY__CREATE_MSG:
 				setCreateMsg((CreateMsg)newValue);
 				return;
 		}
@@ -186,10 +186,10 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.HISTORY__MSG:
+			case projectHistoryPackage.HISTORY__MSG:
 				getMsg().clear();
 				return;
-			case DslHistoryPackage.HISTORY__CREATE_MSG:
+			case projectHistoryPackage.HISTORY__CREATE_MSG:
 				setCreateMsg((CreateMsg)null);
 				return;
 		}
@@ -204,9 +204,9 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.HISTORY__MSG:
+			case projectHistoryPackage.HISTORY__MSG:
 				return msg != null && !msg.isEmpty();
-			case DslHistoryPackage.HISTORY__CREATE_MSG:
+			case projectHistoryPackage.HISTORY__CREATE_MSG:
 				return createMsg != null;
 		}
 		return super.eIsSet(featureID);

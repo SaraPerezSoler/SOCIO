@@ -13,14 +13,15 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
-import projectHistory.impl.ActionImpl;
+import projectHistory.Action;
+import socioProjects.MetamodelProject;
+
 
 public class RemoveRule extends MetemodelRule {
 
@@ -28,13 +29,13 @@ public class RemoveRule extends MetemodelRule {
 	private List<NP[]> dobj_to;
 	private final static String examples[]={"Remove person.", "Delete work from person.", "Erase numeric age from person."};
 	
-	public RemoveRule(Sentence<MetaModelProject> sentence, Verb v) {
+	public RemoveRule(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
 	@Override
-	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+	public List<Action> evaluete(MetamodelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<Action>();
 		NP dobj = dobj_to.get(i)[0];
 		NP to = dobj_to.get(i)[1];
 		if (to != null) {
@@ -55,7 +56,7 @@ public class RemoveRule extends MetemodelRule {
 
 			ClassControl c = proj.getClass(dobj);
 			if (c != null) {
-				List<ReferenceControl> references = proj.getRefTo(c);
+				List<ReferenceControl> references = proj.getRefereceTo(c);
 				for (ReferenceControl r : references) {
 					UpdateRefType upr = new UpdateRefType(proj, r, null);
 					ret.add(upr);

@@ -1,9 +1,10 @@
 package es.uam.app.actions;
 
-import es.uam.app.projects.MetaModelProject;
-import projectHistory.impl.AddImpl;
 
-public abstract class AddMetamodel extends AddImpl implements ProjectAction<MetaModelProject> {
+import projectHistory.impl.AddImpl;
+import socioProjects.MetamodelProject;
+
+public abstract class AddMetamodel extends AddImpl implements ProjectAction<MetamodelProject> {
 	
 	public AddMetamodel(){
 

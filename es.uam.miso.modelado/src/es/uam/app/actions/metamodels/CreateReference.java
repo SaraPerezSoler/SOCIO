@@ -3,9 +3,9 @@ package es.uam.app.actions.metamodels;
 import es.uam.app.actions.AddMetamodel;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.IsReference;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.ReferenceControl;
+import socioProjects.MetamodelProject;
 
 public class CreateReference extends AddMetamodel implements IsReference {
 
@@ -18,11 +18,11 @@ public class CreateReference extends AddMetamodel implements IsReference {
 
 	private boolean containment = false;
 
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public CreateReference(MetaModelProject proj, String name, IsClass of) {
+	public CreateReference(MetamodelProject proj, String name, IsClass of) {
 		setProject(proj);
 		this.name = name;
 
@@ -30,7 +30,7 @@ public class CreateReference extends AddMetamodel implements IsReference {
 
 	}
 
-	public CreateReference(MetaModelProject proj, String name, IsClass of, int min, int max) {
+	public CreateReference(MetamodelProject proj, String name, IsClass of, int min, int max) {
 		setProject(proj);
 		this.name = name;
 
@@ -40,7 +40,7 @@ public class CreateReference extends AddMetamodel implements IsReference {
 		this.max = max;
 	}
 
-	public CreateReference(MetaModelProject proj, String name, IsClass of, boolean containment) {
+	public CreateReference(MetamodelProject proj, String name, IsClass of, boolean containment) {
 		setProject(proj);
 		this.name = name;
 
@@ -49,7 +49,7 @@ public class CreateReference extends AddMetamodel implements IsReference {
 		this.containment = containment;
 	}
 
-	public CreateReference(MetaModelProject proj, String name, IsClass of, int min, int max, boolean containment) {
+	public CreateReference(MetamodelProject proj, String name, IsClass of, int min, int max, boolean containment) {
 		setProject(proj);
 		this.name = name;
 
@@ -124,11 +124,11 @@ public class CreateReference extends AddMetamodel implements IsReference {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

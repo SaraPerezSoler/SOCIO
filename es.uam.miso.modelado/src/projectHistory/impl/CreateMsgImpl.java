@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import projectHistory.CreateMsg;
-import projectHistory.DslHistoryPackage;
-
+import projectHistory.projectHistoryPackage;
 import socioProjects.User;
 
 /**
@@ -141,7 +140,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.CREATE_MSG;
+		return projectHistoryPackage.Literals.CREATE_MSG;
 	}
 
 	/**
@@ -155,7 +154,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslHistoryPackage.CREATE_MSG__USER, oldUser, user));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, projectHistoryPackage.CREATE_MSG__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -179,7 +178,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 		User oldUser = user;
 		user = newUser;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.CREATE_MSG__USER, oldUser, user));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.CREATE_MSG__USER, oldUser, user));
 	}
 
 	/**
@@ -200,7 +199,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.CREATE_MSG__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.CREATE_MSG__TEXT, oldText, text));
 	}
 
 	/**
@@ -221,7 +220,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 		String oldSentence = sentence;
 		sentence = newSentence;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.CREATE_MSG__SENTENCE, oldSentence, sentence));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.CREATE_MSG__SENTENCE, oldSentence, sentence));
 	}
 
 	/**
@@ -242,7 +241,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.CREATE_MSG__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.CREATE_MSG__DATE, oldDate, date));
 	}
 
 	/**
@@ -263,7 +262,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.CREATE_MSG__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.CREATE_MSG__ID, oldId, id));
 	}
 
 	/**
@@ -274,16 +273,16 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.CREATE_MSG__USER:
+			case projectHistoryPackage.CREATE_MSG__USER:
 				if (resolve) return getUser();
 				return basicGetUser();
-			case DslHistoryPackage.CREATE_MSG__TEXT:
+			case projectHistoryPackage.CREATE_MSG__TEXT:
 				return getText();
-			case DslHistoryPackage.CREATE_MSG__SENTENCE:
+			case projectHistoryPackage.CREATE_MSG__SENTENCE:
 				return getSentence();
-			case DslHistoryPackage.CREATE_MSG__DATE:
+			case projectHistoryPackage.CREATE_MSG__DATE:
 				return getDate();
-			case DslHistoryPackage.CREATE_MSG__ID:
+			case projectHistoryPackage.CREATE_MSG__ID:
 				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -297,19 +296,19 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.CREATE_MSG__USER:
+			case projectHistoryPackage.CREATE_MSG__USER:
 				setUser((User)newValue);
 				return;
-			case DslHistoryPackage.CREATE_MSG__TEXT:
+			case projectHistoryPackage.CREATE_MSG__TEXT:
 				setText((String)newValue);
 				return;
-			case DslHistoryPackage.CREATE_MSG__SENTENCE:
+			case projectHistoryPackage.CREATE_MSG__SENTENCE:
 				setSentence((String)newValue);
 				return;
-			case DslHistoryPackage.CREATE_MSG__DATE:
+			case projectHistoryPackage.CREATE_MSG__DATE:
 				setDate((Date)newValue);
 				return;
-			case DslHistoryPackage.CREATE_MSG__ID:
+			case projectHistoryPackage.CREATE_MSG__ID:
 				setId((String)newValue);
 				return;
 		}
@@ -324,19 +323,19 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.CREATE_MSG__USER:
+			case projectHistoryPackage.CREATE_MSG__USER:
 				setUser((User)null);
 				return;
-			case DslHistoryPackage.CREATE_MSG__TEXT:
+			case projectHistoryPackage.CREATE_MSG__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case DslHistoryPackage.CREATE_MSG__SENTENCE:
+			case projectHistoryPackage.CREATE_MSG__SENTENCE:
 				setSentence(SENTENCE_EDEFAULT);
 				return;
-			case DslHistoryPackage.CREATE_MSG__DATE:
+			case projectHistoryPackage.CREATE_MSG__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
-			case DslHistoryPackage.CREATE_MSG__ID:
+			case projectHistoryPackage.CREATE_MSG__ID:
 				setId(ID_EDEFAULT);
 				return;
 		}
@@ -351,15 +350,15 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.CREATE_MSG__USER:
+			case projectHistoryPackage.CREATE_MSG__USER:
 				return user != null;
-			case DslHistoryPackage.CREATE_MSG__TEXT:
+			case projectHistoryPackage.CREATE_MSG__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case DslHistoryPackage.CREATE_MSG__SENTENCE:
+			case projectHistoryPackage.CREATE_MSG__SENTENCE:
 				return SENTENCE_EDEFAULT == null ? sentence != null : !SENTENCE_EDEFAULT.equals(sentence);
-			case DslHistoryPackage.CREATE_MSG__DATE:
+			case projectHistoryPackage.CREATE_MSG__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-			case DslHistoryPackage.CREATE_MSG__ID:
+			case projectHistoryPackage.CREATE_MSG__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);

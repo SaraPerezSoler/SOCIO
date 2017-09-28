@@ -10,9 +10,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import projectHistory.DslHistoryPackage;
 import projectHistory.Update;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +64,7 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.UPDATE;
+		return projectHistoryPackage.Literals.UPDATE;
 	}
 
 	/**
@@ -86,7 +85,7 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 		EObject oldOld = old;
 		old = newOld;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslHistoryPackage.UPDATE__OLD, oldOld, newOld);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, projectHistoryPackage.UPDATE__OLD, oldOld, newOld);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -101,14 +100,14 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 		if (newOld != old) {
 			NotificationChain msgs = null;
 			if (old != null)
-				msgs = ((InternalEObject)old).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslHistoryPackage.UPDATE__OLD, null, msgs);
+				msgs = ((InternalEObject)old).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.UPDATE__OLD, null, msgs);
 			if (newOld != null)
-				msgs = ((InternalEObject)newOld).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslHistoryPackage.UPDATE__OLD, null, msgs);
+				msgs = ((InternalEObject)newOld).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.UPDATE__OLD, null, msgs);
 			msgs = basicSetOld(newOld, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.UPDATE__OLD, newOld, newOld));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.UPDATE__OLD, newOld, newOld));
 	}
 
 	/**
@@ -129,7 +128,7 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 		EObject oldNew = new_;
 		new_ = newNew;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DslHistoryPackage.UPDATE__NEW, oldNew, newNew);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, projectHistoryPackage.UPDATE__NEW, oldNew, newNew);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -144,14 +143,14 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 		if (newNew != new_) {
 			NotificationChain msgs = null;
 			if (new_ != null)
-				msgs = ((InternalEObject)new_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DslHistoryPackage.UPDATE__NEW, null, msgs);
+				msgs = ((InternalEObject)new_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.UPDATE__NEW, null, msgs);
 			if (newNew != null)
-				msgs = ((InternalEObject)newNew).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DslHistoryPackage.UPDATE__NEW, null, msgs);
+				msgs = ((InternalEObject)newNew).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.UPDATE__NEW, null, msgs);
 			msgs = basicSetNew(newNew, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.UPDATE__NEW, newNew, newNew));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.UPDATE__NEW, newNew, newNew));
 	}
 
 	/**
@@ -162,9 +161,9 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DslHistoryPackage.UPDATE__OLD:
+			case projectHistoryPackage.UPDATE__OLD:
 				return basicSetOld(null, msgs);
-			case DslHistoryPackage.UPDATE__NEW:
+			case projectHistoryPackage.UPDATE__NEW:
 				return basicSetNew(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -178,9 +177,9 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.UPDATE__OLD:
+			case projectHistoryPackage.UPDATE__OLD:
 				return getOld();
-			case DslHistoryPackage.UPDATE__NEW:
+			case projectHistoryPackage.UPDATE__NEW:
 				return getNew();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -194,10 +193,10 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.UPDATE__OLD:
+			case projectHistoryPackage.UPDATE__OLD:
 				setOld((EObject)newValue);
 				return;
-			case DslHistoryPackage.UPDATE__NEW:
+			case projectHistoryPackage.UPDATE__NEW:
 				setNew((EObject)newValue);
 				return;
 		}
@@ -212,10 +211,10 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.UPDATE__OLD:
+			case projectHistoryPackage.UPDATE__OLD:
 				setOld((EObject)null);
 				return;
-			case DslHistoryPackage.UPDATE__NEW:
+			case projectHistoryPackage.UPDATE__NEW:
 				setNew((EObject)null);
 				return;
 		}
@@ -230,9 +229,9 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.UPDATE__OLD:
+			case projectHistoryPackage.UPDATE__OLD:
 				return old != null;
-			case DslHistoryPackage.UPDATE__NEW:
+			case projectHistoryPackage.UPDATE__NEW:
 				return new_ != null;
 		}
 		return super.eIsSet(featureID);

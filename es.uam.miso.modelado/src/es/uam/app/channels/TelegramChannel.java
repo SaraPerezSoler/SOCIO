@@ -10,9 +10,9 @@ import es.uam.app.channels.telegramCommands.TelegramCommand;
 import es.uam.app.channels.telegramCommands.TelegramControl;
 import es.uam.app.channels.telegramCommands.secrect.SecretCommand;
 import es.uam.app.main.Main;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import projectHistory.Msg;
 
 public class TelegramChannel extends Channel {
 
@@ -59,7 +59,7 @@ public class TelegramChannel extends Channel {
 	}
 
 	@Override
-	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
+	public void answerMessage(Msg rMessage, SendMessageExc sMessage) {
 		telegramControl.sendAnswerMessage(rMessage, sMessage);
 	}
 
@@ -71,5 +71,6 @@ public class TelegramChannel extends Channel {
 	public TelegramControl getTelegramControl() {
 		return telegramControl;
 	}
+
 
 }

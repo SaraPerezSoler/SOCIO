@@ -1,18 +1,18 @@
 package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.DeleteMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
+import socioProjects.MetamodelProject;
 
 public class RemoveClass extends DeleteMetamodel{
 
 	private ClassControl class_;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
-	public RemoveClass(MetaModelProject proj, ClassControl class_) {
+	public RemoveClass(MetamodelProject proj, ClassControl class_) {
 		setProject(proj);
 		this.class_ = class_;
 	}
@@ -56,11 +56,11 @@ public class RemoveClass extends DeleteMetamodel{
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

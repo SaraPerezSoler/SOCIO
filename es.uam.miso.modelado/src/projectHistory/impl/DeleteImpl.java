@@ -5,7 +5,7 @@ package projectHistory.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import projectHistory.Delete;
-import projectHistory.DslHistoryPackage;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ public abstract class DeleteImpl extends ActionImpl implements Delete {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.DELETE;
+		return projectHistoryPackage.Literals.DELETE;
 	}
 
 } //DeleteImpl

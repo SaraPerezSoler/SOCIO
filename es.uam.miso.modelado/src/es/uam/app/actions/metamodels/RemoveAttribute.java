@@ -1,19 +1,19 @@
 package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.DeleteMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.Controlador;
+import socioProjects.MetamodelProject;
 
 public class RemoveAttribute extends DeleteMetamodel {
 
 	private AttributeControl atr;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public RemoveAttribute(MetaModelProject proj, AttributeControl atr) {
+	public RemoveAttribute(MetamodelProject proj, AttributeControl atr) {
 		setProject(proj);
 		this.atr = atr;
 	}
@@ -59,11 +59,11 @@ public class RemoveAttribute extends DeleteMetamodel {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

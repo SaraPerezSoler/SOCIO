@@ -15,7 +15,6 @@ import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.Word;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
@@ -25,7 +24,8 @@ import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.ecore.MetamodelControl;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
-import projectHistory.impl.ActionImpl;
+import projectHistory.Action;
+import socioProjects.MetamodelProject;
 
 public class B3B5ToBe extends MetemodelRule {
 
@@ -37,7 +37,7 @@ public class B3B5ToBe extends MetemodelRule {
 	private final static String structure="<Object> + to be + <Object>";
 	private final static String examples[]={"Packages can be bulky, heavy or fragile.", "Students and teachers are persons.", "Name of person is a text.", "The wife of a man is a woman."};
 
-	public B3B5ToBe(Sentence<MetaModelProject> sentence, Verb v) {
+	public B3B5ToBe(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -52,16 +52,16 @@ public class B3B5ToBe extends MetemodelRule {
 	}
 
 	@Override
-	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionImpl> ret = new ArrayList<>();
+	public List<Action> evaluete(MetamodelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<>();
 		NP A = A_B.get(i)[0];
 		NP B = A_B.get(i)[1];
 
 		if (A.getOf() != null) {
 			IsClass of = IsClass.getClass(A.getOf(), proj);
 			ret.addAll(withOf(proj, of, A, B));
-			if (of instanceof ActionImpl) {
-				ret.add((ActionImpl) of);
+			if (of instanceof Action) {
+				ret.add((Action) of);
 			}
 
 		} else {
@@ -70,18 +70,18 @@ public class B3B5ToBe extends MetemodelRule {
 		return ret;
 	}
 
-	private List<ActionImpl> withOf(MetaModelProject proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+	private List<Action> withOf(MetamodelProject proj, IsClass of, NP A, NP B) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<Action>();
 		EClassifier type = MetamodelControl.getType(B.upperCammelCase());
 
 		if (type == null) {
 			IsReference ref = IsReference.getReference(A, of, proj, false);
-			if (ref instanceof ActionImpl) {
-				ret.add((ActionImpl) ref);
+			if (ref instanceof Action) {
+				ret.add((Action) ref);
 			}
 			IsClass bClass = IsClass.getClass(B, proj);
-			if (bClass instanceof ActionImpl) {
-				ret.add((ActionImpl) bClass);
+			if (bClass instanceof Action) {
+				ret.add((Action) bClass);
 			}
 			if (no) {
 				if (ref instanceof ReferenceControl && bClass instanceof ClassControl) {
@@ -96,8 +96,8 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		} else {
 			IsAttribute att = IsAttribute.getAttribute(A, of, proj);
-			if (att instanceof ActionImpl) {
-				ret.add((ActionImpl) att);
+			if (att instanceof Action) {
+				ret.add((Action) att);
 			}
 
 			if (no) {
@@ -117,10 +117,10 @@ public class B3B5ToBe extends MetemodelRule {
 		return ret;
 	}
 
-	private List<ActionImpl> withoutOf(MetaModelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
+	private List<Action> withoutOf(MetamodelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
 
 		IsClass aClass = IsClass.getClass(A.upperCammelCase(), proj);
-		if (aClass instanceof ActionImpl) {
+		if (aClass instanceof Action) {
 			Feature f = proj.getFeature(A.lowerCammelCase());
 			if (f != null) {
 				ClassControl of = f.getParent();
@@ -128,9 +128,9 @@ public class B3B5ToBe extends MetemodelRule {
 
 			}
 		}
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
-		if (aClass instanceof ActionImpl) {
-			ret.add((ActionImpl) aClass);
+		List<Action> ret = new ArrayList<Action>();
+		if (aClass instanceof Action) {
+			ret.add((Action) aClass);
 		}
 
 		if (!B.getAdj().isEmpty()) {
@@ -154,8 +154,8 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		}
 
-		if (bClass instanceof ActionImpl) {
-			ret.add((ActionImpl) bClass);
+		if (bClass instanceof Action) {
+			ret.add((Action) bClass);
 		}
 		if (no) {
 			if (bClass instanceof ClassControl) {

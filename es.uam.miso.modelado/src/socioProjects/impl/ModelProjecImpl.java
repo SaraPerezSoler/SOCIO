@@ -62,5 +62,23 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 		return null;
 	}
 
+	@Override
+	public String getFileExtension() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	String getType() {
+		// TODO Auto-generated method stub
+		return "model";
+	}
+
+	@Override
+	protected void removeFiles() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 } //ModelProjecImpl

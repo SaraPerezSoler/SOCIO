@@ -31,7 +31,7 @@ import socioProjects.User;
  *   <li>{@link projectHistory.Msg#isUndoable <em>Undoable</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getMsg()
+ * @see projectHistory.projectHistoryPackage#getMsg()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>User</em>' reference.
 	 * @see #setUser(User)
-	 * @see projectHistory.DslHistoryPackage#getMsg_User()
+	 * @see projectHistory.projectHistoryPackage#getMsg_User()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -72,7 +72,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Msg</em>' attribute.
 	 * @see #setMsg(String)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Msg()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Msg()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -98,7 +98,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Command</em>' attribute.
 	 * @see #setCommand(String)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Command()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Command()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -124,7 +124,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Text()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Text()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -150,7 +150,7 @@ public interface Msg extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sentences</em>' containment reference list.
-	 * @see projectHistory.DslHistoryPackage#getMsg_Sentences()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Sentences()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -166,7 +166,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Date()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Date()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -192,7 +192,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Id()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Id()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -218,7 +218,7 @@ public interface Msg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Undoable</em>' attribute.
 	 * @see #setUndoable(boolean)
-	 * @see projectHistory.DslHistoryPackage#getMsg_Undoable()
+	 * @see projectHistory.projectHistoryPackage#getMsg_Undoable()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -254,8 +254,24 @@ public interface Msg extends EObject {
 
 	List<Action> getActionsFromObject(Controlador obj);
 
-	void setProjectName(String projectName);
+	void setProjectId(long id);
+
+	long getProjectId();
+	
+	void setProjectName(String id);
 
 	String getProjectName();
+	
+	boolean hasProjectId();
+	
+	boolean hasProjectName();
+
+	boolean hasText();
+	
+	String getUserToSearch();
+	
+	void setUserToSearch(String userToSearch);
+
+	boolean hasUserToSearch();
 
 } // Msg

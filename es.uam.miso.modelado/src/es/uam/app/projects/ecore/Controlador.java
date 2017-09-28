@@ -16,7 +16,7 @@ public interface Controlador {
 	public String elementType();
 	
 	default String validElementName (String text){
-		return ValidText.validText(text, validCharacter);
+		return ValidText.validText(text, validCharacter, 30);
 	}
 
 	

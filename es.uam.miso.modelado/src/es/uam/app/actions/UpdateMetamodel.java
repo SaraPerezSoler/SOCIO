@@ -1,9 +1,9 @@
 package es.uam.app.actions;
 
-import es.uam.app.projects.MetaModelProject;
 import projectHistory.impl.UpdateImpl;
+import socioProjects.MetamodelProject;
 
-public abstract class UpdateMetamodel extends UpdateImpl implements ProjectAction<MetaModelProject> {
+public abstract class UpdateMetamodel extends UpdateImpl implements ProjectAction<MetamodelProject> {
 	@Override
 	public String getActionName() {
 		return "Update";

@@ -3,7 +3,7 @@ package es.uam.app.actions.metamodels;
 import es.uam.app.actions.AddMetamodel;
 import es.uam.app.projects.ecore.IsAttribute;
 import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.MetaModelProject;
+import socioProjects.MetamodelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 
@@ -15,11 +15,11 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 
 	private AttributeControl object = null;
 
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 
-	public CreateAttribute(MetaModelProject proj, String name, IsClass of, int min, int max) {
+	public CreateAttribute(MetamodelProject proj, String name, IsClass of, int min, int max) {
 		super();
 		this.project=proj;
 		this.name = name;
@@ -30,7 +30,7 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 		this.max = max;
 	}
 
-	public CreateAttribute(MetaModelProject proj, String name, IsClass of) {
+	public CreateAttribute(MetamodelProject proj, String name, IsClass of) {
 		super();
 		
 		this.project=proj;
@@ -102,11 +102,11 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

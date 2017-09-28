@@ -3,10 +3,10 @@ package es.uam.app.actions.metamodels;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.IsClass;
+import socioProjects.MetamodelProject;
 
 public class UpdateClassAbstract extends UpdateMetamodel {
 
@@ -18,11 +18,11 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 	private ClassControl new_=null;
 	private ClassControl object=null;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public UpdateClassAbstract(MetaModelProject proj, IsClass class_, boolean abstract_) {
+	public UpdateClassAbstract(MetamodelProject proj, IsClass class_, boolean abstract_) {
 		setProject(proj);
 		this.class_ =  class_;
 		
@@ -92,11 +92,11 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

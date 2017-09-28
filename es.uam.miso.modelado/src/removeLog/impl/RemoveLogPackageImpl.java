@@ -7,11 +7,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import projectHistory.DslHistoryPackage;
-
-import projectHistory.impl.DslHistoryPackageImpl;
-
+import projectHistory.impl.projectHistoryPackageImpl;
+import projectHistory.projectHistoryPackage;
 import removeLog.RemoveLogFactory;
 import removeLog.RemoveLogPackage;
 import removeLog.Root;
@@ -82,17 +79,17 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 
 		// Obtain or create and register interdependencies
 		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) : SocioProjectsPackage.eINSTANCE);
-		DslHistoryPackageImpl theDslHistoryPackage = (DslHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DslHistoryPackage.eNS_URI) instanceof DslHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DslHistoryPackage.eNS_URI) : DslHistoryPackage.eINSTANCE);
+		projectHistoryPackageImpl theprojectHistoryPackage = (projectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) instanceof projectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) : projectHistoryPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRemoveLogPackage.createPackageContents();
 		theSocioProjectsPackage.createPackageContents();
-		theDslHistoryPackage.createPackageContents();
+		theprojectHistoryPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRemoveLogPackage.initializePackageContents();
 		theSocioProjectsPackage.initializePackageContents();
-		theDslHistoryPackage.initializePackageContents();
+		theprojectHistoryPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRemoveLogPackage.freeze();

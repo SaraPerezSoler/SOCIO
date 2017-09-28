@@ -5,7 +5,7 @@ package projectHistory.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import projectHistory.Add;
-import projectHistory.DslHistoryPackage;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ public abstract class AddImpl extends ActionImpl implements Add {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.ADD;
+		return projectHistoryPackage.Literals.ADD;
 	}
 
 } //AddImpl

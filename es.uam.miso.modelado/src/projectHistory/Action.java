@@ -19,7 +19,7 @@ import es.uam.app.projects.ecore.Controlador;
  *   <li>{@link projectHistory.Action#getElement <em>Element</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getAction()
+ * @see projectHistory.projectHistoryPackage#getAction()
  * @model abstract="true"
  * @generated
  */
@@ -34,7 +34,7 @@ public interface Action extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EObject)
-	 * @see projectHistory.DslHistoryPackage#getAction_Element()
+	 * @see projectHistory.projectHistoryPackage#getAction_Element()
 	 * @model required="true"
 	 * @generated
 	 */

@@ -18,7 +18,7 @@
       <!-- @generated SocioDatabase -->
       <package
             uri="projectHistory"
-            class="projectHistory.DslHistoryPackage"
+            class="projectHistory.projectHistoryPackage"
             genModel="model/SocioDatabase.genmodel"/>
    </extension>
 

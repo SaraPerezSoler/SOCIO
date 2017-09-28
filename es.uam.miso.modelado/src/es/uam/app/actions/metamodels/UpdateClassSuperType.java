@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.MetaModelProject;
+import socioProjects.MetamodelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 
@@ -21,12 +21,12 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 	protected ClassControl new_ = null;
 	protected ClassControl object=null;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
 
-	public UpdateClassSuperType(MetaModelProject proj, IsClass class_, IsClass superType) {
+	public UpdateClassSuperType(MetamodelProject proj, IsClass class_, IsClass superType) {
 		setProject(proj);
 
 		this.class_ =  class_;
@@ -117,11 +117,11 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

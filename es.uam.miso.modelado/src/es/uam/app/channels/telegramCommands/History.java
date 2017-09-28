@@ -7,9 +7,9 @@ import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendHistoryMsg;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public class History extends TelegramCommand {
 
@@ -64,7 +64,7 @@ public class History extends TelegramCommand {
 	}
 
 	@Override
-	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
+	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
 		if (sMessage instanceof SendHistoryMsg && sMessage.getMessage().equals("")) {
 			String split[] = ((SendHistoryMsg) sMessage).toString().split("\n");
 			if (split.length >= 30) {

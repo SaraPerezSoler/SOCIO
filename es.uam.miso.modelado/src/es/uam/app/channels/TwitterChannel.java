@@ -2,11 +2,13 @@ package es.uam.app.channels;
 
 import java.io.File;
 
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 import es.uam.app.twitter.TwitterControl;
 import es.uam.app.twitter.TwitterStreamControl;
+import projectHistory.Msg;
+import projectHistory.impl.DslHistoryFactoryImpl;
 import socioProjects.User;
+import socioProjects.impl.SocioProjectsFactoryImpl;
 import twitter4j.Status;
 import twitter4j.UserStreamAdapter;
 
@@ -29,11 +31,11 @@ public class TwitterChannel extends Channel{
 	private class Adapter extends UserStreamAdapter{
 		
 		public void onStatus(Status status) {
-			ReceivedMessage m = parseTweet(status);
+			Msg m = parseTweet(status);
 			write(m);
 		}
 		
-		private ReceivedMessage parseTweet(Status s) {
+		private Msg parseTweet(Status s) {
 			
 			if (s.getUser().getId()==tc.getId()){
 				return null;
@@ -61,22 +63,35 @@ public class TwitterChannel extends Channel{
 				}
 			}
 
-			User us=new User(s.getUser().getName(), s.getUser().getId(), s.getUser().getScreenName(), getChannelName());
+			User us= SocioProjectsFactoryImpl.eINSTANCE.createUser();
+			us.setName(s.getUser().getName());
+			us.setId(s.getUser().getId());
+			us.setNick(s.getUser().getScreenName());
+			us.setChannel(getChannelName());
+					
 			String msgId=Long.toString(s.getId());
-			ReceivedMessage m=new ReceivedMessage(s.getText(), us, s.getCreatedAt(),"", projectName, msgId);
-			m.setText(sentence);
-			return m;
+			
+			Msg msg = DslHistoryFactoryImpl.eINSTANCE.createMsg();
+			msg.setMsg(s.getText());
+			msg.setUser(us);
+			msg.setDate( s.getCreatedAt());
+			msg.setCommand("");
+			msg.setProjectId(projectName);
+			msg.setId(msgId);
+			msg.setText(sentence);
+			
+			return msg;
 
 		}
 	}
 
 	@Override
-	public void answerMessage(ReceivedMessage rMessage, SendMessageExc sMessage) {
+	public void answerMessage(Msg rMessage, SendMessageExc sMessage) {
 		long id=Long.parseLong(rMessage.getId());
 		
 		String text;
 		if (!sMessage.hasText()){
-			text=rMessage.getProjectName();
+			text=rMessage.getProjectId();
 		}else{
 			text=sMessage.getText();
 		}

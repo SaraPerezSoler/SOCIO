@@ -24,7 +24,7 @@ import socioProjects.User;
  *   <li>{@link projectHistory.CreateMsg#getId <em>Id</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getCreateMsg()
+ * @see projectHistory.projectHistoryPackage#getCreateMsg()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface CreateMsg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>User</em>' reference.
 	 * @see #setUser(User)
-	 * @see projectHistory.DslHistoryPackage#getCreateMsg_User()
+	 * @see projectHistory.projectHistoryPackage#getCreateMsg_User()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -65,7 +65,7 @@ public interface CreateMsg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
-	 * @see projectHistory.DslHistoryPackage#getCreateMsg_Text()
+	 * @see projectHistory.projectHistoryPackage#getCreateMsg_Text()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -91,7 +91,7 @@ public interface CreateMsg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sentence</em>' attribute.
 	 * @see #setSentence(String)
-	 * @see projectHistory.DslHistoryPackage#getCreateMsg_Sentence()
+	 * @see projectHistory.projectHistoryPackage#getCreateMsg_Sentence()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -117,7 +117,7 @@ public interface CreateMsg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Date</em>' attribute.
 	 * @see #setDate(Date)
-	 * @see projectHistory.DslHistoryPackage#getCreateMsg_Date()
+	 * @see projectHistory.projectHistoryPackage#getCreateMsg_Date()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -143,7 +143,7 @@ public interface CreateMsg extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
-	 * @see projectHistory.DslHistoryPackage#getCreateMsg_Id()
+	 * @see projectHistory.projectHistoryPackage#getCreateMsg_Id()
 	 * @model required="true"
 	 * @generated
 	 */

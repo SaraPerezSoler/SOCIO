@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link projectHistory.History#getCreateMsg <em>Create Msg</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getHistory()
+ * @see projectHistory.projectHistoryPackage#getHistory()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface History extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Msg</em>' containment reference list.
-	 * @see projectHistory.DslHistoryPackage#getHistory_Msg()
+	 * @see projectHistory.projectHistoryPackage#getHistory_Msg()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -50,7 +50,7 @@ public interface History extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Create Msg</em>' reference.
 	 * @see #setCreateMsg(CreateMsg)
-	 * @see projectHistory.DslHistoryPackage#getHistory_CreateMsg()
+	 * @see projectHistory.projectHistoryPackage#getHistory_CreateMsg()
 	 * @model required="true"
 	 * @generated
 	 */

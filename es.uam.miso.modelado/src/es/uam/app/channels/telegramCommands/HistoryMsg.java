@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main.MainCommandEnum;
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
 public class HistoryMsg extends HistoryOption {
@@ -50,15 +50,15 @@ public class HistoryMsg extends HistoryOption {
 				history.commandAction(update);
 				return;
 			}
-			history.tChannel.write(update, MainCommandEnum.HISTORY_ACTION.getName(), project, text);
+			history.tChannel.write(update, CommandList.HISTORY_ACTIONS, project, text);
 
 		} else if (historyState.get(update.getMessage().getChatId()) == HistoryState.USER) {
 			String text = update.getMessage().getText();
-			history.tChannel.write(update, MainCommandEnum.HISTORY_USER.getName(), project, text);
+			history.tChannel.write(update, CommandList.HISTORY_USER, project, text);
 
 		} else if (historyState.get(update.getMessage().getChatId()) == HistoryState.ELEMENT) {
 			String text = update.getMessage().getText();
-			history.tChannel.write(update, MainCommandEnum.HISTORY_ELEMENT.getName(), project, text);
+			history.tChannel.write(update, CommandList.HISTORY_ELEMENT, project, text);
 
 		} else if (historyState.get(update.getMessage().getChatId()) == HistoryState.DATE) {
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -87,7 +87,7 @@ public class HistoryMsg extends HistoryOption {
 					}else{
 						msg=formatter.format(start)+"-"+formatter.format(end)+"-ascending";
 					}
-					history.tChannel.write(update, MainCommandEnum.HISTORY_ALL.getName(), project, msg);
+					history.tChannel.write(update, CommandList.HISTORY_ALL, project, msg);
 					
 				} else if (text.equals(ORDER_OPTION[1])) {
 					String msg;
@@ -96,7 +96,7 @@ public class HistoryMsg extends HistoryOption {
 					}else{
 						msg=formatter.format(start)+"-"+formatter.format(end)+"-descending";
 					}
-					history.tChannel.write(update, MainCommandEnum.HISTORY_ALL.getName(), project, msg);
+					history.tChannel.write(update, CommandList.HISTORY_ALL, project, msg);
 				} else {
 					this.start(update);
 				}
@@ -134,7 +134,7 @@ public class HistoryMsg extends HistoryOption {
 
 		} else if (text.equals(OPTIONS[4])) {// "All"
 			String project = history.getProject(update.getMessage().getChatId());
-			history.tChannel.write(update, MainCommandEnum.HISTORY_ALL.getName(), project, "" );
+			history.tChannel.write(update, CommandList.HISTORY_ALL, project, "" );
 		} else {
 			history.commandAction(update);
 		}

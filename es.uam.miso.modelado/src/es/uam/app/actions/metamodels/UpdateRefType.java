@@ -5,10 +5,10 @@ import org.eclipse.emf.ecore.EObject;
 import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.IsReference;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.ReferenceControl;
+import socioProjects.MetamodelProject;
 
 public class UpdateRefType extends UpdateMetamodel {
 
@@ -20,11 +20,11 @@ public class UpdateRefType extends UpdateMetamodel {
 	private ReferenceControl new_ = null;
 	private ReferenceControl object= null;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 
-	public UpdateRefType(MetaModelProject proj, IsReference ref, IsClass type) {
+	public UpdateRefType(MetamodelProject proj, IsReference ref, IsClass type) {
 		setProject(proj);
 		
 		this.ref = ref;
@@ -100,11 +100,11 @@ public class UpdateRefType extends UpdateMetamodel {
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

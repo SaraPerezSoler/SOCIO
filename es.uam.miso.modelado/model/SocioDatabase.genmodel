@@ -25,6 +25,59 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/remove"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/model"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/visibility"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/admin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/id"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getPath"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/parseSentence">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/parseSentence/sentence"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/execute">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/execute/msg"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/undo"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/redo"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryMsg"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryMsg.1">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryMsg.1/date"/>
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryMsg.1/order"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryMsg.2">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryMsg.2/start"/>
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryMsg.2/end"/>
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryMsg.2/order"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryForUser">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryForUser/user"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryForElement">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryForElement/element"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getHistoryForAction">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getHistoryForAction/action"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserMsg"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserMsg.1">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getStatisticsUserMsg.1/user"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserAction"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserAction.1">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//Project/getStatisticsUserAction.1/user"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserMsgAbs"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsUserActionAbs"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getStatisticsActions"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/percentOfAuthorship"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//Project/validate"/>
+    </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//ModelProjec">
+      <genOperations ecoreOperation="SocioDatabase.ecore#//ModelProjec/parseSentence">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//ModelProjec/parseSentence/sentence"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//MetamodelProject">
+      <genOperations ecoreOperation="SocioDatabase.ecore#//MetamodelProject/parseSentence">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//MetamodelProject/parseSentence/sentence"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="SocioDatabase.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/name"/>
@@ -33,16 +86,39 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//User/channel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//User/ownProjects"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//User/contributions"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/canEdit">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/canEdit/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/canRead">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/canRead/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/isAdmin">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/isAdmin/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/removeContribution">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/removeContribution/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/addContribution">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/addContribution/project"/>
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/addContribution/access"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/addProject">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/addProject/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/getContribution">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//User/getContribution/project"/>
+      </genOperations>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//User/isRoot"/>
     </genClasses>
     <genClasses ecoreClass="SocioDatabase.ecore#//Contribution">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Contribution/access"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Contribution/project"/>
     </genClasses>
   </genPackages>
-  <genPackages prefix="DslHistory" disposableProviderFactory="true" ecorePackage="history.ecore#/">
+  <genPackages prefix="projectHistory" disposableProviderFactory="true" ecorePackage="history.ecore#/">
     <genClasses ecoreClass="history.ecore#//History">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//History/msg"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//History/canRead"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//History/createMsg"/>
     </genClasses>
     <genClasses ecoreClass="history.ecore#//CreateMsg">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//CreateMsg/user"/>
@@ -53,11 +129,14 @@
     </genClasses>
     <genClasses ecoreClass="history.ecore#//Msg">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//Msg/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/msg"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/command"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/text"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Msg/sentences"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Msg/sentences"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/undoable"/>
+      <genOperations ecoreOperation="history.ecore#//Msg/getChannel"/>
     </genClasses>
     <genClasses ecoreClass="history.ecore#//Sentence">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Sentence/sentence"/>
@@ -65,18 +144,19 @@
     </genClasses>
     <genClasses image="false" ecoreClass="history.ecore#//Action">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//Action/element"/>
+      <genOperations ecoreOperation="history.ecore#//Action/doIt"/>
+      <genOperations ecoreOperation="history.ecore#//Action/undoIt"/>
+      <genOperations ecoreOperation="history.ecore#//Action/redoIt"/>
+      <genOperations ecoreOperation="history.ecore#//Action/isUndo"/>
+      <genOperations ecoreOperation="history.ecore#//Action/isExecute"/>
+      <genOperations ecoreOperation="history.ecore#//Action/getActionName"/>
+      <genOperations ecoreOperation="history.ecore#//Action/getObject"/>
     </genClasses>
     <genClasses ecoreClass="history.ecore#//Add"/>
     <genClasses ecoreClass="history.ecore#//Delete"/>
     <genClasses ecoreClass="history.ecore#//Update">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Update/old"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Update/new"/>
-    </genClasses>
-    <genClasses ecoreClass="history.ecore#//User">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/nick"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//User/channel"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="RemoveLog" disposableProviderFactory="true" ecorePackage="RemoveLog.ecore#/">

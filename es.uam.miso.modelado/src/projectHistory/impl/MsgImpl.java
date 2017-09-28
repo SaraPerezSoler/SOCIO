@@ -27,9 +27,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import es.uam.app.projects.ecore.Controlador;
 import java.lang.reflect.InvocationTargetException;
 import projectHistory.Action;
-import projectHistory.DslHistoryPackage;
 import projectHistory.Msg;
 import projectHistory.Sentence;
+import projectHistory.projectHistoryPackage;
 import socioProjects.Project;
 import socioProjects.User;
 
@@ -165,7 +165,9 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	protected EList<Sentence> sentences;
 
-	private String projectName;
+	private long projectId=-1;
+	private String projectName=null;
+	private String userToSearch=null;
 	
 	/**
 	 * The default value of the '{@link #isUndoable() <em>Undoable</em>}' attribute.
@@ -185,6 +187,8 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	protected boolean undoable = UNDOABLE_EDEFAULT;
 
+	
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -199,7 +203,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.MSG;
+		return projectHistoryPackage.Literals.MSG;
 	}
 
 	/**
@@ -212,7 +216,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 			user = (User)eResolveProxy(oldUser);
 			if (user != oldUser) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslHistoryPackage.MSG__USER, oldUser, user));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, projectHistoryPackage.MSG__USER, oldUser, user));
 			}
 		}
 		return user;
@@ -234,7 +238,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		User oldUser = user;
 		user = newUser;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__USER, oldUser, user));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__USER, oldUser, user));
 	}
 
 	/**
@@ -253,7 +257,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		String oldMsg = msg;
 		msg = newMsg;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__MSG, oldMsg, msg));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__MSG, oldMsg, msg));
 	}
 
 	/**
@@ -272,7 +276,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		String oldCommand = command;
 		command = newCommand;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__COMMAND, oldCommand, command));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__COMMAND, oldCommand, command));
 	}
 
 	/**
@@ -291,7 +295,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		String oldText = text;
 		text = newText;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__TEXT, oldText, text));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__TEXT, oldText, text));
 	}
 
 	/**
@@ -300,7 +304,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	public EList<Sentence> getSentences() {
 		if (sentences == null) {
-			sentences = new EObjectContainmentEList<Sentence>(Sentence.class, this, DslHistoryPackage.MSG__SENTENCES);
+			sentences = new EObjectContainmentEList<Sentence>(Sentence.class, this, projectHistoryPackage.MSG__SENTENCES);
 		}
 		return sentences;
 	}
@@ -321,7 +325,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__DATE, oldDate, date));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__DATE, oldDate, date));
 	}
 
 	/**
@@ -340,7 +344,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__ID, oldId, id));
 	}
 
 	/**
@@ -359,7 +363,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		boolean oldUndoable = undoable;
 		undoable = newUndoable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.MSG__UNDOABLE, oldUndoable, undoable));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.MSG__UNDOABLE, oldUndoable, undoable));
 	}
 
 	/**
@@ -378,7 +382,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DslHistoryPackage.MSG__SENTENCES:
+			case projectHistoryPackage.MSG__SENTENCES:
 				return ((InternalEList<?>)getSentences()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -391,22 +395,22 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.MSG__USER:
+			case projectHistoryPackage.MSG__USER:
 				if (resolve) return getUser();
 				return basicGetUser();
-			case DslHistoryPackage.MSG__MSG:
+			case projectHistoryPackage.MSG__MSG:
 				return getMsg();
-			case DslHistoryPackage.MSG__COMMAND:
+			case projectHistoryPackage.MSG__COMMAND:
 				return getCommand();
-			case DslHistoryPackage.MSG__TEXT:
+			case projectHistoryPackage.MSG__TEXT:
 				return getText();
-			case DslHistoryPackage.MSG__DATE:
+			case projectHistoryPackage.MSG__DATE:
 				return getDate();
-			case DslHistoryPackage.MSG__ID:
+			case projectHistoryPackage.MSG__ID:
 				return getId();
-			case DslHistoryPackage.MSG__SENTENCES:
+			case projectHistoryPackage.MSG__SENTENCES:
 				return getSentences();
-			case DslHistoryPackage.MSG__UNDOABLE:
+			case projectHistoryPackage.MSG__UNDOABLE:
 				return isUndoable();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -420,29 +424,29 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.MSG__USER:
+			case projectHistoryPackage.MSG__USER:
 				setUser((User)newValue);
 				return;
-			case DslHistoryPackage.MSG__MSG:
+			case projectHistoryPackage.MSG__MSG:
 				setMsg((String)newValue);
 				return;
-			case DslHistoryPackage.MSG__COMMAND:
+			case projectHistoryPackage.MSG__COMMAND:
 				setCommand((String)newValue);
 				return;
-			case DslHistoryPackage.MSG__TEXT:
+			case projectHistoryPackage.MSG__TEXT:
 				setText((String)newValue);
 				return;
-			case DslHistoryPackage.MSG__DATE:
+			case projectHistoryPackage.MSG__DATE:
 				setDate((Date)newValue);
 				return;
-			case DslHistoryPackage.MSG__ID:
+			case projectHistoryPackage.MSG__ID:
 				setId((String)newValue);
 				return;
-			case DslHistoryPackage.MSG__SENTENCES:
+			case projectHistoryPackage.MSG__SENTENCES:
 				getSentences().clear();
 				getSentences().addAll((Collection<? extends Sentence>)newValue);
 				return;
-			case DslHistoryPackage.MSG__UNDOABLE:
+			case projectHistoryPackage.MSG__UNDOABLE:
 				setUndoable((Boolean)newValue);
 				return;
 		}
@@ -456,28 +460,28 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.MSG__USER:
+			case projectHistoryPackage.MSG__USER:
 				setUser((User)null);
 				return;
-			case DslHistoryPackage.MSG__MSG:
+			case projectHistoryPackage.MSG__MSG:
 				setMsg(MSG_EDEFAULT);
 				return;
-			case DslHistoryPackage.MSG__COMMAND:
+			case projectHistoryPackage.MSG__COMMAND:
 				setCommand(COMMAND_EDEFAULT);
 				return;
-			case DslHistoryPackage.MSG__TEXT:
+			case projectHistoryPackage.MSG__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case DslHistoryPackage.MSG__DATE:
+			case projectHistoryPackage.MSG__DATE:
 				setDate(DATE_EDEFAULT);
 				return;
-			case DslHistoryPackage.MSG__ID:
+			case projectHistoryPackage.MSG__ID:
 				setId(ID_EDEFAULT);
 				return;
-			case DslHistoryPackage.MSG__SENTENCES:
+			case projectHistoryPackage.MSG__SENTENCES:
 				getSentences().clear();
 				return;
-			case DslHistoryPackage.MSG__UNDOABLE:
+			case projectHistoryPackage.MSG__UNDOABLE:
 				setUndoable(UNDOABLE_EDEFAULT);
 				return;
 		}
@@ -491,21 +495,21 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.MSG__USER:
+			case projectHistoryPackage.MSG__USER:
 				return user != null;
-			case DslHistoryPackage.MSG__MSG:
+			case projectHistoryPackage.MSG__MSG:
 				return MSG_EDEFAULT == null ? msg != null : !MSG_EDEFAULT.equals(msg);
-			case DslHistoryPackage.MSG__COMMAND:
+			case projectHistoryPackage.MSG__COMMAND:
 				return COMMAND_EDEFAULT == null ? command != null : !COMMAND_EDEFAULT.equals(command);
-			case DslHistoryPackage.MSG__TEXT:
+			case projectHistoryPackage.MSG__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case DslHistoryPackage.MSG__DATE:
+			case projectHistoryPackage.MSG__DATE:
 				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
-			case DslHistoryPackage.MSG__ID:
+			case projectHistoryPackage.MSG__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case DslHistoryPackage.MSG__SENTENCES:
+			case projectHistoryPackage.MSG__SENTENCES:
 				return sentences != null && !sentences.isEmpty();
-			case DslHistoryPackage.MSG__UNDOABLE:
+			case projectHistoryPackage.MSG__UNDOABLE:
 				return undoable != UNDOABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -519,7 +523,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case DslHistoryPackage.MSG___GET_CHANNEL:
+			case projectHistoryPackage.MSG___GET_CHANNEL:
 				return getChannel();
 		}
 		return super.eInvoke(operationID, arguments);
@@ -554,7 +558,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	public void setSentences(Map<String, List<Action>> actions) {
 		Set<String> keys = actions.keySet();
 		for (String s : keys) {
-			Sentence sentence = DslHistoryFactoryImpl.eINSTANCE.createSentence();
+			Sentence sentence = projectHistoryFactoryImpl.eINSTANCE.createSentence();
 			sentence.setSentence(s);
 			sentence.getCommands().addAll(actions.get(s));
 			this.sentences.add(sentence);
@@ -624,25 +628,96 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	@Override
-	public void setProjectName(String projectName) {
-		this.projectName=projectName;
+	public void setProjectId(long id) {
+		this.projectId=id;
 		
 	}
 	
 	@Override
-	public String getProjectName() {
-		if (projectName==null){
+	public long getProjectId() {
+		if (projectId==-1){
 			if (this.eContainer()!=null){
 				if (this.eContainer().eContainer()!=null){
 					if (this.eContainer().eContainer() instanceof Project){
-						projectName=((Project)this.eContainer().eContainer()).getName();
+						projectId=((Project)this.eContainer().eContainer()).getId();
 					}
 				}
 			}
 				
 		}
-		return projectName;
+		return projectId;
 		
+	}
+
+
+	@Override
+	public boolean hasText() {
+		if (this.getText()!=null && !this.getText().isEmpty() && !this.getText().equals(" ")){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void setProjectName(String name) {
+		this.projectName=name;
+		
+	}
+
+	@Override
+	public String getProjectName() {
+		
+		return projectName;
+	}
+
+	@Override
+	public boolean hasProjectId() {
+		if (projectId==-1){
+			if (this.eContainer()!=null){
+				if (this.eContainer().eContainer()!=null){
+					if (this.eContainer().eContainer() instanceof Project){
+						return true;
+					}
+				}
+			}
+			return false;
+				
+		}else{
+			return true;
+		}
+	}
+
+	@Override
+	public boolean hasProjectName() {
+		if (projectName==null || projectName.isEmpty()){
+			if (this.eContainer()!=null){
+				if (this.eContainer().eContainer()!=null){
+					if (this.eContainer().eContainer() instanceof Project){
+						return true;
+					}
+				}
+			}
+			return false;
+				
+		}else{
+			return true;
+		}
+	}
+
+	public String getUserToSearch() {
+		return userToSearch;
+	}
+
+	public void setUserToSearch(String userToSearch) {
+		this.userToSearch = userToSearch;
+	}
+
+	@Override
+	public boolean hasUserToSearch() {
+		if (this.getUserToSearch()!=null && !this.getUserToSearch().isEmpty() && !this.getUserToSearch().equals(" ")){
+			return true;
+		}
+		return false;
 	}
 
 } // MsgImpl

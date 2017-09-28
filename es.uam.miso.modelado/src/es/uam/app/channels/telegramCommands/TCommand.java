@@ -9,7 +9,6 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
 
 import es.uam.app.channels.telegramCommands.secrect.SecretCommand;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
 

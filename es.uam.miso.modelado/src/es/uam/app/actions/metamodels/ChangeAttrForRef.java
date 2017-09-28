@@ -5,10 +5,10 @@ package es.uam.app.actions.metamodels;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.ecore.ReferenceControl;
+import socioProjects.MetamodelProject;
 
 public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 
@@ -20,19 +20,19 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 	
 	private ReferenceControl new_;
 	
-	public ChangeAttrForRef(MetaModelProject proj, AttributeControl attr) {
+	public ChangeAttrForRef(MetamodelProject proj, AttributeControl attr) {
 		super();
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(), attr.getLowerBound(), attr.getUpperBound());
 	}
 
-	public ChangeAttrForRef(MetaModelProject proj,AttributeControl attr, int min, int max) {
+	public ChangeAttrForRef(MetamodelProject proj,AttributeControl attr, int min, int max) {
 		super();
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max);
 	}
 	
-	public ChangeAttrForRef(MetaModelProject proj, AttributeControl attr, int min, int max, boolean containment) {
+	public ChangeAttrForRef(MetamodelProject proj, AttributeControl attr, int min, int max, boolean containment) {
 		super();
 		this.remove = new RemoveAttribute(proj,attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max, containment);
@@ -106,7 +106,7 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 	
 
 	@Override
-	public void setProject(MetaModelProject proj) {
+	public void setProject(MetamodelProject proj) {
 		remove.setProject(proj);
 		createReference.setProject(proj);
 	}
@@ -114,7 +114,7 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 	
 
 	@Override
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return remove.getProject();
 		
 	}

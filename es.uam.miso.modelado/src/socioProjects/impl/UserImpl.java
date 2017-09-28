@@ -116,7 +116,27 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	protected static final String CHANNEL_EDEFAULT = null;
 	
-	protected static final long[] ROOT_ID ={14419070};
+	private static class userInfo{
+		long id;
+		String channel;
+		
+		public userInfo(long id, String channel) {
+			super();
+			this.id = id;
+			this.channel = channel;
+		}
+
+		public long getId() {
+			return id;
+		}
+
+		public String getChannel() {
+			return channel;
+		}
+		
+	}
+	
+	protected static final userInfo[] ROOT_ID ={new userInfo(14419070, "Telegram"), new userInfo(0, "Consola")};
 	
 	/**
 	 * The cached value of the '{@link #getChannel() <em>Channel</em>}' attribute.
@@ -389,8 +409,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated NOT
 	 */
 	public boolean isRoot() {
-		for (long id:ROOT_ID){
-			if (getId()==id){
+		for (userInfo id: ROOT_ID){
+			if (getId()==id.getId() && getChannel().equals(id.getChannel())){
 				return true;
 			}
 		}

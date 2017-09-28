@@ -1,8 +1,8 @@
 package es.uam.app.main.commands;
 
-import es.uam.app.message.ReceivedMessage;
+import es.uam.app.main.SocioData;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.LocalProjects;
+import projectHistory.Msg;
 
 public class Reload extends RootCommands {
 
@@ -10,9 +10,24 @@ public class Reload extends RootCommands {
 	}
 
 	@Override
-	public void exe(ReceivedMessage rm) throws SendMessageExc, Exception {
+	public void exe(Msg rm) throws SendMessageExc, Exception {
 	
-			LocalProjects.reloadProjects();
+			SocioData.getSocioData().save();
+	}
+
+	@Override
+	public String getName() {
+		return "RELOAD";
+	}
+
+	@Override
+	public String getDesc() {
+		return "reload all the app, only the user root can do this";
+	}
+
+	@Override
+	public String getNeeds() {
+		return "";
 	}
 
 }

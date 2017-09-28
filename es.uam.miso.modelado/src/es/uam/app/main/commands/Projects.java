@@ -1,23 +1,35 @@
 package es.uam.app.main.commands;
 
-import java.io.File;
-
-import es.uam.app.message.ReceivedMessage;
+import es.uam.app.main.SocioData;
+import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.LocalProjects;
+import projectHistory.Msg;
 
 public class Projects extends MainCommand {
 
-	private static final String PROJECTS = "Projects";
 
 	public Projects() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc {
-		File list = LocalProjects.getProjectList();
-		throw new SendMessageExc(PROJECTS, list);
+	public void execute(Msg rm) throws SendMessageExc, FatalException {
+		String list = SocioData.getSocioData().getAllProjects();
+		throw new SendMessageExc(list);
+	}
+
+	@Override
+	public String getName() {
+		return "PROJECTS";
+	}
+
+	@Override
+	public String getDesc() {
+		return "sends a list with all the projects";
+	}
+
+	@Override
+	public String getNeeds() {
+		return "";
 	}
 
 }

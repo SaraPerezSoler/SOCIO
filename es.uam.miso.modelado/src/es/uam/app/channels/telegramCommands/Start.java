@@ -2,6 +2,7 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
 public class Start extends TelegramCommand {
@@ -31,6 +32,8 @@ public class Start extends TelegramCommand {
 		this.setState(update.getMessage().getChatId());
 		this.setProject(update.getMessage().getChatId(), "");
 		this.removerAllUserTalk(update.getMessage().getChatId());
+		
+		this.tChannel.write(update, CommandList.NO_COMMAND, "", "");
 
 		SendMessageExc sent = new SendMessageExc(getStartMsg());
 		tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);

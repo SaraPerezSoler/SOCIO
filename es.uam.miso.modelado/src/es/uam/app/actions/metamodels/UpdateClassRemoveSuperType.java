@@ -3,13 +3,13 @@ package es.uam.app.actions.metamodels;
 import java.util.List;
 
 import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.MetaModelProject;
+import socioProjects.MetamodelProject;
 import es.uam.app.projects.ecore.ClassControl;
 
 public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 
 
-	public UpdateClassRemoveSuperType(MetaModelProject proj, IsClass class_, ClassControl superType) {
+	public UpdateClassRemoveSuperType(MetamodelProject proj, IsClass class_, ClassControl superType) {
 		super(proj, class_, superType);
 	}
 

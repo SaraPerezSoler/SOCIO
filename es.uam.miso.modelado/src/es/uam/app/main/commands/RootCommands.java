@@ -1,9 +1,9 @@
 package es.uam.app.main.commands;
 
 import es.uam.app.main.exceptions.NotAccessException;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.message.User;
+import projectHistory.Msg;
+import socioProjects.User;
 
 public abstract class RootCommands extends MainCommand {
 	
@@ -12,7 +12,7 @@ public abstract class RootCommands extends MainCommand {
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
+	public void execute(Msg rm) throws SendMessageExc, Exception {
 		User user=rm.getUser();
 		if (user.isRoot()){
 			exe(rm);
@@ -22,7 +22,7 @@ public abstract class RootCommands extends MainCommand {
 
 	}
 	
-	public abstract void exe(ReceivedMessage rm)throws SendMessageExc, Exception;
+	public abstract void exe(Msg rm)throws SendMessageExc, Exception;
 	
 	
 

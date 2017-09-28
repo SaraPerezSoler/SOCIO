@@ -7,16 +7,22 @@ public interface ValidText {
 
 	
 	
-	public static String validText(String text, char [] validChars) {
-		if (text==null){
+	public static String validText(String text, char [] validChars, int maxLenth) {
+		if (text==null || maxLenth==0){
 			return null;
 		}
 		char[] textChar = text.toCharArray();
 		List<Character> ret=new ArrayList<Character>();
+		int lenth=0;
 		for (char c: textChar) {
 			if (isValidChar(c, validChars)) {
 				ret.add(c);
+				lenth++;
 			}
+			if (lenth>=maxLenth){
+				break;
+			}
+			
 		}
 		char[] retChar= new char[ret.size()];
 		for (int i=0; i<ret.size(); i++){

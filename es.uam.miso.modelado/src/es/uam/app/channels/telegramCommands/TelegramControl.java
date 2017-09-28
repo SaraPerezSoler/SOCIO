@@ -22,7 +22,7 @@ import es.uam.app.channels.TelegramChannel;
 import es.uam.app.main.Main;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
-import projectHistory.impl.DslHistoryFactoryImpl;
+import projectHistory.impl.projectHistoryFactoryImpl;
 import socioProjects.User;
 import socioProjects.impl.SocioProjectsFactoryImpl;
 
@@ -96,7 +96,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		} else {
 			msgText = update.getMessage().getText();
 		}
-		Msg msg = DslHistoryFactoryImpl.eINSTANCE.createMsg();
+		Msg msg = projectHistoryFactoryImpl.eINSTANCE.createMsg();
 		msg.setMsg(msgText);
 		msg.setUser(us);
 		msg.setDate(date);

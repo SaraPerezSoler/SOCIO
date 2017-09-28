@@ -2,9 +2,9 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main.MainCommandEnum;
-import es.uam.app.message.ReceivedMessage;
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public class Help extends TelegramCommand {
 
@@ -29,11 +29,11 @@ public class Help extends TelegramCommand {
 
 		this.removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
 		this.setState(update.getMessage().getChatId());
-		tChannel.write(update, MainCommandEnum.HELP.getName(), "", "");
+		tChannel.write(update, CommandList.HELP, "", "");
 	}
 	
 	@Override
-	public void modellingAnswer(long chatId, int msgId, ReceivedMessage rMessageCommand, SendMessageExc sMessage) {
+	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
 		String url=sMessage.getUrl();
 		
 		tChannel.sendMessageWithURL(chatId, sMessage, new String[][]{{"Modelling Bot help"}}, new String[][]{{url}});

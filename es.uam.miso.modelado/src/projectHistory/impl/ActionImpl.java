@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import es.uam.app.projects.ecore.Controlador;
 import projectHistory.Action;
-import projectHistory.DslHistoryPackage;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +57,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.ACTION;
+		return projectHistoryPackage.Literals.ACTION;
 	}
 
 	/**
@@ -71,7 +71,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 			element = eResolveProxy(oldElement);
 			if (element != oldElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DslHistoryPackage.ACTION__ELEMENT, oldElement, element));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, projectHistoryPackage.ACTION__ELEMENT, oldElement, element));
 			}
 		}
 		return element;
@@ -95,7 +95,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 		EObject oldElement = element;
 		element = newElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.ACTION__ELEMENT, oldElement, element));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.ACTION__ELEMENT, oldElement, element));
 	}
 
 	/**
@@ -155,7 +155,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.ACTION__ELEMENT:
+			case projectHistoryPackage.ACTION__ELEMENT:
 				if (resolve) return getElement();
 				return basicGetElement();
 		}
@@ -170,7 +170,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.ACTION__ELEMENT:
+			case projectHistoryPackage.ACTION__ELEMENT:
 				setElement((EObject)newValue);
 				return;
 		}
@@ -185,7 +185,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.ACTION__ELEMENT:
+			case projectHistoryPackage.ACTION__ELEMENT:
 				setElement((EObject)null);
 				return;
 		}
@@ -200,7 +200,7 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.ACTION__ELEMENT:
+			case projectHistoryPackage.ACTION__ELEMENT:
 				return element != null;
 		}
 		return super.eIsSet(featureID);
@@ -214,32 +214,32 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case DslHistoryPackage.ACTION___DO_IT:
+			case projectHistoryPackage.ACTION___DO_IT:
 			try {
 				doIt();
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
 				return null;
-			case DslHistoryPackage.ACTION___UNDO_IT:
+			case projectHistoryPackage.ACTION___UNDO_IT:
 			try {
 				undoIt();
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
 				return null;
-			case DslHistoryPackage.ACTION___REDO_IT:
+			case projectHistoryPackage.ACTION___REDO_IT:
 			try {
 				redoIt();
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
 				return null;
-			case DslHistoryPackage.ACTION___IS_UNDO:
+			case projectHistoryPackage.ACTION___IS_UNDO:
 				return isUndo();
-			case DslHistoryPackage.ACTION___IS_EXECUTE:
+			case projectHistoryPackage.ACTION___IS_EXECUTE:
 				return isExecute();
-			case DslHistoryPackage.ACTION___GET_ACTION_NAME:
+			case projectHistoryPackage.ACTION___GET_ACTION_NAME:
 				return getActionName();
 		}
 		return super.eInvoke(operationID, arguments);

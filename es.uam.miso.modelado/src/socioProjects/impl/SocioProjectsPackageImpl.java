@@ -10,11 +10,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import projectHistory.DslHistoryPackage;
-
-import projectHistory.impl.DslHistoryPackageImpl;
-
+import projectHistory.impl.projectHistoryPackageImpl;
+import projectHistory.projectHistoryPackage;
 import removeLog.RemoveLogPackage;
 
 import removeLog.impl.RemoveLogPackageImpl;
@@ -140,17 +137,17 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		DslHistoryPackageImpl theDslHistoryPackage = (DslHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DslHistoryPackage.eNS_URI) instanceof DslHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DslHistoryPackage.eNS_URI) : DslHistoryPackage.eINSTANCE);
+		projectHistoryPackageImpl theprojectHistoryPackage = (projectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) instanceof projectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) : projectHistoryPackage.eINSTANCE);
 		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) : RemoveLogPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSocioProjectsPackage.createPackageContents();
-		theDslHistoryPackage.createPackageContents();
+		theprojectHistoryPackage.createPackageContents();
 		theRemoveLogPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theSocioProjectsPackage.initializePackageContents();
-		theDslHistoryPackage.initializePackageContents();
+		theprojectHistoryPackage.initializePackageContents();
 		theRemoveLogPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -250,6 +247,15 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 */
 	public EReference getProject_Admin() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProject_Id() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -687,6 +693,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		createEReference(projectEClass, PROJECT__MODEL);
 		createEAttribute(projectEClass, PROJECT__VISIBILITY);
 		createEReference(projectEClass, PROJECT__ADMIN);
+		createEAttribute(projectEClass, PROJECT__ID);
 		createEOperation(projectEClass, PROJECT___GET_PATH);
 		createEOperation(projectEClass, PROJECT___PARSE_SENTENCE__STRING);
 		createEOperation(projectEClass, PROJECT___EXECUTE__MSG);
@@ -763,7 +770,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		DslHistoryPackage theDslHistoryPackage = (DslHistoryPackage)EPackage.Registry.INSTANCE.getEPackage(DslHistoryPackage.eNS_URI);
+		projectHistoryPackage theprojectHistoryPackage = (projectHistoryPackage)EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI);
 		RemoveLogPackage theRemoveLogPackage = (RemoveLogPackage)EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
 
 		// Create type parameters
@@ -781,42 +788,43 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEClass(projectEClass, Project.class, "Project", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProject_Name(), ecorePackage.getEString(), "name", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_History(), theDslHistoryPackage.getHistory(), null, "history", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_History(), theprojectHistoryPackage.getHistory(), null, "history", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Remove(), theRemoveLogPackage.getRoot(), null, "remove", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Model(), ecorePackage.getEObject(), null, "model", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Visibility(), this.getVisibility(), "visibility", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Admin(), this.getUser(), this.getUser_OwnProjects(), "admin", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_Id(), ecorePackage.getELong(), "id", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getProject__GetPath(), ecorePackage.getEString(), "getPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		EOperation op = initEOperation(getProject__ParseSentence__String(), theDslHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getProject__ParseSentence__String(), theprojectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "sentence", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getProject__Execute__Msg(), null, "execute", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theDslHistoryPackage.getMsg(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theprojectHistoryPackage.getMsg(), "msg", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__Undo(), null, "undo", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__Redo(), null, "redo", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getProject__GetHistoryMsg(), theDslHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getProject__GetHistoryMsg(), theprojectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryMsg__Date_int(), theDslHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryMsg__Date_int(), theprojectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "date", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "order", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryMsg__Date_Date_int(), theDslHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryMsg__Date_Date_int(), theprojectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "end", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "order", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForUser__User(), theDslHistoryPackage.getMsg(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForUser__User(), theprojectHistoryPackage.getMsg(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUser(), "user", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForElement__String(), theDslHistoryPackage.getMsg(), "getHistoryForElement", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForElement__String(), theprojectHistoryPackage.getMsg(), "getHistoryForElement", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "element", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForAction__String(), theDslHistoryPackage.getMsg(), "getHistoryForAction", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForAction__String(), theprojectHistoryPackage.getMsg(), "getHistoryForAction", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "action", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__GetStatisticsUserMsg(), null, "getStatisticsUserMsg", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -841,12 +849,12 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEClass(modelProjecEClass, ModelProjec.class, "ModelProjec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getModelProjec__ParseSentence__String(), theDslHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelProjec__ParseSentence__String(), theprojectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "sentence", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(metamodelProjectEClass, MetamodelProject.class, "MetamodelProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getMetamodelProject__ParseSentence__String(), theDslHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getMetamodelProject__ParseSentence__String(), theprojectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "sentence", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(userEClass, User.class, "User", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -1,7 +1,7 @@
 package es.uam.app.main.commands;
 
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public class Help extends MainCommand {
 
@@ -13,11 +13,26 @@ public class Help extends MainCommand {
 	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
+	public void execute(Msg rm) throws SendMessageExc, Exception {
 		SendMessageExc send= new SendMessageExc(HELP_MSG);
 		send.setUrl(HELP);
 		throw send;
 
+	}
+
+	@Override
+	public String getName() {
+		return "HELP";
+	}
+
+	@Override
+	public String getDesc() {
+		return "redirects to a web page with tips and examples to work with SOCIO";
+	}
+
+	@Override
+	public String getNeeds() {
+		return "";
 	}
 
 }

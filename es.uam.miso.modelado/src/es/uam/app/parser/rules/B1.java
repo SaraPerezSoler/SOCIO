@@ -9,11 +9,11 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
-import projectHistory.impl.ActionImpl;;
+import projectHistory.Action;
+import socioProjects.MetamodelProject;
 
 public class B1 extends MetemodelRule {
 
@@ -22,7 +22,7 @@ public class B1 extends MetemodelRule {
 	private List<NP[]> A_B;
 	private final static String examples[]={"Carriers can handle deliveries.", "The student passed the exams.", "The cheque is sent to the bank."};
 
-	public B1(Sentence<MetaModelProject> sentence, Verb v) {
+	public B1(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 
@@ -39,23 +39,23 @@ public class B1 extends MetemodelRule {
 
 
 	@Override
-	public List<ActionImpl> evaluete(MetaModelProject proj, int i) throws FileNotFoundException, JWNLException {
-		List<ActionImpl> ret = new ArrayList<ActionImpl>();
+	public List<Action> evaluete(MetamodelProject proj, int i) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<Action>();
 			NP A = A_B.get(i)[0];
 			NP B = A_B.get(i)[1];
 
 			// Comprobamos si exite la clase A, sino ponemos una accion para
 			// crearla.
 			IsClass classA = IsClass.getClass(A, proj);
-			if (classA instanceof ActionImpl) {
-				ret.add((ActionImpl) classA);
+			if (classA instanceof Action) {
+				ret.add((Action) classA);
 			}
 
 			// Comprobamos si exite la clase B, sino ponemos una accion para
 			// crearla.
 			IsClass classB = IsClass.getClass(B, proj);
-			if (classB instanceof ActionImpl) {
-				ret.add((ActionImpl) classB);
+			if (classB instanceof Action) {
+				ret.add((Action) classB);
 			}
 
 			IsReference ref = null;
@@ -65,8 +65,8 @@ public class B1 extends MetemodelRule {
 				ref = IsReference.getReference(verb.lowerCammelCase(), classA, B.getMin(), B.getMax(), proj, false);
 			}
 
-			if (ref instanceof ActionImpl) {
-				ret.add((ActionImpl) ref);
+			if (ref instanceof Action) {
+				ret.add((Action) ref);
 			}
 			// Se crea la accion para dale Typo a la referencia.
 			UpdateRefType urt = new UpdateRefType(proj, ref, classB);

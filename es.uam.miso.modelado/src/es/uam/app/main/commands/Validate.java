@@ -1,31 +1,40 @@
 package es.uam.app.main.commands;
 
 import es.uam.app.main.exceptions.NotAccessException;
-import es.uam.app.main.exceptions.ProjectNotFoundException;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.LocalProjects;
+import projectHistory.Msg;
+import socioProjects.Project;
 
 public class Validate extends MainCommand {
 
 	public Validate() {
 	}
+	
+	@Override
+	public void execute(Msg rm) throws SendMessageExc, Exception {
+		Project actual=searchProject(rm);
+		
+		if (!(rm.getUser().canRead(actual))){
+			throw new NotAccessException("");
+		}
+		String text = actual.validate();
+		throw new SendMessageExc("Validate " + actual.getName() + ":\n\n" + text);
+		
+	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
-		String nameProject = validProjectName(rm.getProjectName());
-		LocalProjects actual = LocalProjects.getProject(nameProject);
-		if (actual != null) {
-			if (!(rm.getUser().canRead(actual))){
-				throw new NotAccessException("");
-			}
-			String text = actual.validate();
-			throw new SendMessageExc("Validate " + nameProject + ":\n\n" + text);
+	public String getName() {
+		return "VALIDATE";
+	}
 
-		} else {
-			throw new ProjectNotFoundException(nameProject);
-		}
+	@Override
+	public String getDesc() {
+		return "verifies that the meta-model is correct, reporting all errors.";
+	}
 
+	@Override
+	public String getNeeds() {
+		return project();
 	}
 
 }

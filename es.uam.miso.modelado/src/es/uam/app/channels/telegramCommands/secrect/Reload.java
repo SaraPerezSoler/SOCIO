@@ -2,8 +2,8 @@ package es.uam.app.channels.telegramCommands.secrect;
 
 import org.telegram.telegrambots.api.objects.Update;
 
+import es.uam.app.channels.CommandList;
 import es.uam.app.channels.telegramCommands.TelegramControl;
-import es.uam.app.main.Main;
 
 public class Reload extends SecretCommand {
 
@@ -21,7 +21,7 @@ public class Reload extends SecretCommand {
 		this.setStandardState(update.getMessage().getChatId());
 		this.removerAllUserTalk(update.getMessage().getChatId());
 		
-		tChannel.write(update,  Main.MainCommandEnum.RELOAD.getName(), "", "");
+		tChannel.write(update, CommandList.RELOAD, "", "");
 	}
 
 }

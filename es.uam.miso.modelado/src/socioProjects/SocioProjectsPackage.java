@@ -169,13 +169,22 @@ public interface SocioProjectsPackage extends EPackage {
 	int PROJECT__ADMIN = 5;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__ID = 6;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 6;
+	int PROJECT_FEATURE_COUNT = 7;
 
 	/**
 	 * The operation id for the '<em>Get Path</em>' operation.
@@ -429,6 +438,15 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_PROJEC__ADMIN = PROJECT__ADMIN;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__ID = PROJECT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Model Projec</em>' class.
@@ -691,6 +709,15 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int METAMODEL_PROJECT__ADMIN = PROJECT__ADMIN;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__ID = PROJECT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel Project</em>' class.
@@ -1218,6 +1245,17 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_Admin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.Project#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see socioProjects.Project#getId()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Id();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.Project#getPath() <em>Get Path</em>}' operation.
@@ -1773,6 +1811,14 @@ public interface SocioProjectsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__ADMIN = eINSTANCE.getProject_Admin();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__ID = eINSTANCE.getProject_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Path</b></em>' operation.

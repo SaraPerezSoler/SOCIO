@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link projectHistory.Update#getNew <em>New</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getUpdate()
+ * @see projectHistory.projectHistoryPackage#getUpdate()
  * @model abstract="true"
  * @generated
  */
@@ -32,7 +32,7 @@ public interface Update extends Action {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Old</em>' containment reference.
 	 * @see #setOld(EObject)
-	 * @see projectHistory.DslHistoryPackage#getUpdate_Old()
+	 * @see projectHistory.projectHistoryPackage#getUpdate_Old()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -58,7 +58,7 @@ public interface Update extends Action {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>New</em>' containment reference.
 	 * @see #setNew(EObject)
-	 * @see projectHistory.DslHistoryPackage#getUpdate_New()
+	 * @see projectHistory.projectHistoryPackage#getUpdate_New()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

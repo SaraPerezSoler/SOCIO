@@ -59,6 +59,7 @@
         eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="admin" lowerBound="1" eType="#//User"
         eOpposite="#//User/ownProjects"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelProjec" eSuperTypes="#//Project">
     <eOperations name="parseSentence" upperBound="-1" eType="ecore:EClass history.ecore#//Action">

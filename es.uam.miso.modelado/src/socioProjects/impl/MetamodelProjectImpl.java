@@ -2,6 +2,8 @@
  */
 package socioProjects.impl;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,11 +14,19 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
+import es.uam.app.parser.WordConfigure;
 import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.projects.ecore.AttributeControl;
+import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
 import es.uam.app.projects.ecore.EcoreControl;
+import es.uam.app.projects.ecore.Feature;
+import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.words.WordNet;
+import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
@@ -54,7 +64,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		if (model!=null){
 			ec=new EcoreControl(model.eResource());
 		}else{
-			ec=new EcoreControl(getPath()+"/"+name+".ecore", name);
+			ec=new EcoreControl(getFilePath(), name);
 			this.model=ec.getObject();
 		}
 	}
@@ -157,6 +167,245 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		} else {
 			return "Validation completed successfully";
 		}
+	}
+	
+	/*add unAdd elements*/
+	@Override
+	public void addAttribute(AttributeControl attr, ClassControl of) {
+		of.addAttrRef(attr.getEAtribute());
+	}
+	@Override
+	public void unAddAttribute(AttributeControl attr, ClassControl of) {
+		of.removeAttrRef(attr.getEAtribute());
+
+	}
+	@Override
+	public void addReference(ReferenceControl ref, ClassControl of) {
+		of.addAttrRef(ref.getEReference());
+
+	}
+	@Override
+	public void unAddReference(ReferenceControl ref, ClassControl of) {
+		of.removeAttrRef(ref.getEReference());
+	}
+	@Override
+	public void addClass(ClassControl clase) {
+		ec.addClass(clase);
+	}
+	@Override
+	public void unAddClass(ClassControl clase) {
+		ec.remove(clase);
+	}
+	
+	/*remove unRemove elements*/
+	@Override
+	public void removeAttribute(AttributeControl atr, ClassControl parent) {
+		atr.copyValuesIn(atr);
+		this.remove.getElementsDeletes().add(atr.getObject());
+		parent.removeAttrRef(atr.getEAtribute());
+	}
+	@Override
+	public void unRemoveAttribute(AttributeControl atr) {
+		ClassControl parent = ec.getClass(atr.getParentName());
+		this.remove.getElementsDeletes().remove(atr.getObject());
+		parent.addAttrRef(atr.getEAtribute());
+		
+	}
+	@Override
+	public void removeReference(ReferenceControl ref, ClassControl parent) {
+		ref.copyValuesIn(ref);
+		this.remove.getElementsDeletes().add(ref.getObject());
+		parent.removeAttrRef(ref.getEReference());
+		
+	}
+	@Override
+	public void unRemoveReference(ReferenceControl ref) {
+		ClassControl type = ec.getClass(ref.getTypeName());
+		ClassControl parent = ec.getClass(ref.getParentName());
+		if (type != null) {
+			ref.setType(type);
+		}
+		remove.getElementsDeletes().remove(ref.getObject());
+		parent.addAttrRef(ref.getEReference());
+		
+	}
+	@Override
+	public void removeClass(ClassControl class_) {
+		this.remove.getElementsDeletes().add(class_.getObject());
+		ec.remove(class_);
+
+	}
+	@Override
+	public void unRemoveClass(ClassControl class_) {
+		this.remove.getElementsDeletes().remove(class_.getObject());
+		ec.addClass(class_);
+		
+	}
+	
+	/*get elements*/
+	@Override
+	public ClassControl  getClass(String clas) throws FileNotFoundException, JWNLException {
+		ClassControl ret = ec.getClass(clas);
+
+		if (ret == null) {
+			List<String> synonyms;
+			synonyms = WordNet.getWordNet().getSynonyms(clas);
+
+			for (String s : synonyms) {
+				ret = ec.getClass(s);
+				if (ret != null) {
+					return ret;
+				}
+			}
+		}
+
+		return ret;
+	}
+	@Override
+	public ClassControl  getClass(NP element) throws FileNotFoundException, JWNLException {
+
+		ClassControl ret = this.getClass(element.upperCammelCase());
+		if (ret == null) {
+			List<String> nouns;
+			if (element.getNoun() != null) {
+				nouns = WordNet.getWordNet().getSynonyms(element.getNoun().getLemma());
+			} else {
+				nouns = new ArrayList<>();
+			}
+			List<String> adjs;
+			if (!element.getAdj().isEmpty()) {
+				adjs = WordNet.getWordNet().getSynonyms(element.getAdjCammelCase());
+			} else {
+				adjs = new ArrayList<>();
+			}
+			for (String n : nouns) {
+				for (String a : adjs) {
+					ret = ec.getClass(WordConfigure.startUpperCase(a) + WordConfigure.startUpperCase(n));
+					if (ret != null) {
+						return ret;
+					}
+				}
+			}
+
+			for (String n : nouns) {
+				ret = ec.getClass(WordConfigure.startUpperCase(n));
+				if (ret != null) {
+					return ret;
+				}
+			}
+
+		}
+		return ret;
+
+	}
+	@Override
+	public ClassControl getExactlyClass(String clas) throws FileNotFoundException, JWNLException {
+		ClassControl ret = ec.getExactlyClass(clas);
+		return ret;
+	}
+	@Override
+	public ClassControl getExactlyClass(NP element) throws FileNotFoundException, JWNLException {
+
+		ClassControl ret = this.getExactlyClass(element.upperCammelCase());
+		return ret;
+
+	}
+	@Override
+	public Feature getFeature(String verb) throws FileNotFoundException, JWNLException {
+		String feature = WordConfigure.startLowerCase(verb);
+		List<ClassControl> classes = ec.getClasses();
+		Feature ret = null;
+		for (ClassControl cc : classes) {
+			ret = cc.getAttr(feature);
+			if (ret == null) {
+				ret = cc.getRef(feature);
+			}
+			if (ret != null) {
+				return ret;
+			}
+		}
+
+		List<String> synonyms;
+		synonyms = WordNet.getWordNet().getSynonyms(feature);
+
+		for (String s : synonyms) {
+			for (ClassControl cc : classes) {
+				ret = cc.getAttr(WordConfigure.startLowerCase(s));
+				if (ret == null) {
+					ret = cc.getRef(WordConfigure.startLowerCase(s));
+				}
+				if (ret != null) {
+					return ret;
+				}
+			}
+		}
+
+		return null;
+	}
+	@Override
+	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
+
+		String feature = WordConfigure.startLowerCase(verb);
+
+		if (cc == null) {
+			return getFeature(feature);
+		}
+		Feature ret = cc.getAttr(feature);
+		if (ret == null) {
+			ret = cc.getRef(feature);
+		}
+
+		if (ret == null) {
+			List<String> synonyms;
+
+			synonyms = WordNet.getWordNet().getSynonyms(feature);
+
+			for (String s : synonyms) {
+				ret = cc.getAttr(WordConfigure.startLowerCase(s));
+				if (ret == null) {
+					ret = cc.getRef(WordConfigure.startLowerCase(s));
+				}
+				if (ret != null) {
+					return ret;
+				}
+			}
+		}
+		return ret;
+	}
+	@Override
+	public Feature getExactlyFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
+
+		String feature = WordConfigure.startLowerCase(verb);
+
+		if (cc == null) {
+			return null;
+		}
+		Feature ret = cc.getAttr(feature);
+		if (ret == null) {
+			ret = cc.getRef(feature);
+		}
+		return ret;
+	}
+	@Override
+	public List<ReferenceControl> getRefereceTo(ClassControl cc) {
+		return ec.getReferencesTo(cc);
+	}
+	@Override
+	public List<ClassControl> getSubTypesOf(ClassControl c) {
+		return ec.getSubTypesOf(c);
+	}
+	@Override
+	public String getFileExtension() {
+		return "ecore";
+	}
+	@Override
+	String getType() {
+		return "metamodel";
+	}
+	@Override
+	protected void removeFiles() {
+		File f=new File(getFilePath());
+		f.delete();
 	}
 
 } //MetamodelProjectImpl

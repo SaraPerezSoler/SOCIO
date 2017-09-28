@@ -5,6 +5,7 @@ package socioProjects.impl;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -62,6 +63,7 @@ import socioProjects.Visibility;
  *   <li>{@link socioProjects.impl.ProjectImpl#getModel <em>Model</em>}</li>
  *   <li>{@link socioProjects.impl.ProjectImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link socioProjects.impl.ProjectImpl#getAdmin <em>Admin</em>}</li>
+ *   <li>{@link socioProjects.impl.ProjectImpl#getId <em>Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -139,10 +141,36 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 */
 	protected User admin;
 
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final long ID_EDEFAULT = 0L;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected long id = ID_EDEFAULT;
+
 	public static final int DESCENDING = 0;
 	public static final int ASCENDING = 1;
 
 	private Stack<Msg> undoMsg = new Stack<>();
+
+	static long lastId = -1;
+
+	public static long getNextId() {
+		return lastId++;
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -372,11 +400,35 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(long newId) {
+		long oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
 	public String getPath() {
 		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName();
+	}
+
+	public String getFilePath() {
+		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName()
+				+ "/" + getName() + "." + getFileExtension();
 	}
 
 	/**
@@ -615,7 +667,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -656,7 +709,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -683,7 +737,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -724,7 +779,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -849,7 +905,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -888,12 +945,13 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		return getChart(actionName_date_actions, "Actions", "Number of actions");
 	}
-	
+
 	protected abstract List<Controlador> getAllObjects();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 * 
 	 * @generated NOT
 	 */
@@ -926,15 +984,15 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		// Creando el Grafico
 		JFreeChart chart = ChartFactory.createPieChart("Percent of authorship", data, false, false, false);
 		// Mostrar Grafico
-		File jpg = new File(getPath()+"/" + name + "Percent of authorship.jpg");
+		File jpg = new File(getPath() + "/" + name + "Percent of authorship.jpg");
 		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
 
 		return jpg;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public abstract String validate();
@@ -1003,7 +1061,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return user_rate;
 	}
 
-	private File getChart(Map<String, Map<Date, List<Object>>> data, String chartName, String yName) throws IOException {
+	private File getChart(Map<String, Map<Date, List<Object>>> data, String chartName, String yName)
+			throws IOException {
 
 		Day last = new Day(new Date());
 		Day first = new Day(history.getCreateMsg().getDate());
@@ -1020,7 +1079,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		chart.getXYPlot().setRenderer(new XYSplineRenderer());
 
 		// Mostrar Grafico
-		File jpg = new File(getPath()+ "/" + name + chartName + ".jpg");
+		File jpg = new File(getPath() + "/" + name + chartName + ".jpg");
 		ChartUtilities.saveChartAsJPEG(jpg, chart, 600, 600);
 
 		return jpg;
@@ -1111,6 +1170,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		return dataset;
 	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -1164,6 +1224,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			case SocioProjectsPackage.PROJECT__ADMIN:
 				if (resolve) return getAdmin();
 				return basicGetAdmin();
+			case SocioProjectsPackage.PROJECT__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1192,6 +1254,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case SocioProjectsPackage.PROJECT__ADMIN:
 				setAdmin((User)newValue);
+				return;
+			case SocioProjectsPackage.PROJECT__ID:
+				setId((Long)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1222,6 +1287,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			case SocioProjectsPackage.PROJECT__ADMIN:
 				setAdmin((User)null);
 				return;
+			case SocioProjectsPackage.PROJECT__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1245,6 +1313,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				return visibility != VISIBILITY_EDEFAULT;
 			case SocioProjectsPackage.PROJECT__ADMIN:
 				return admin != null;
+			case SocioProjectsPackage.PROJECT__ID:
+				return id != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1324,8 +1394,31 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		result.append(name);
 		result.append(", visibility: ");
 		result.append(visibility);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
+	}
+
+	public Date getCreateDate() {
+		return history.getCreateMsg().getDate();
+	}
+
+	public void remove(){
+		removeFiles();
+		getAdmin().getOwnProjects().remove(this);
+		
+		
+	}
+	protected abstract void removeFiles(); 
+	
+	abstract String getType();
+
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+
+	public String getProjectData() {
+		return getAdmin().getChannel() + "/" + getAdmin().getNick() + "/" + getName() + "\n\t"
+				+ formatter.format(getCreateDate()) + ", " + getType() + ", " + getVisibility();
 	}
 
 } // ProjectImpl

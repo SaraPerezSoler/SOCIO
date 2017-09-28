@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import projectHistory.Action;
-import projectHistory.DslHistoryPackage;
 import projectHistory.Sentence;
+import projectHistory.projectHistoryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DslHistoryPackage.Literals.SENTENCE;
+		return projectHistoryPackage.Literals.SENTENCE;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 		String oldSentence = sentence;
 		sentence = newSentence;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DslHistoryPackage.SENTENCE__SENTENCE, oldSentence, sentence));
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.SENTENCE__SENTENCE, oldSentence, sentence));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	 */
 	public EList<Action> getCommands() {
 		if (commands == null) {
-			commands = new EObjectContainmentEList<Action>(Action.class, this, DslHistoryPackage.SENTENCE__COMMANDS);
+			commands = new EObjectContainmentEList<Action>(Action.class, this, projectHistoryPackage.SENTENCE__COMMANDS);
 		}
 		return commands;
 	}
@@ -127,7 +127,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DslHistoryPackage.SENTENCE__COMMANDS:
+			case projectHistoryPackage.SENTENCE__COMMANDS:
 				return ((InternalEList<?>)getCommands()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -141,9 +141,9 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DslHistoryPackage.SENTENCE__SENTENCE:
+			case projectHistoryPackage.SENTENCE__SENTENCE:
 				return getSentence();
-			case DslHistoryPackage.SENTENCE__COMMANDS:
+			case projectHistoryPackage.SENTENCE__COMMANDS:
 				return getCommands();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -158,10 +158,10 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DslHistoryPackage.SENTENCE__SENTENCE:
+			case projectHistoryPackage.SENTENCE__SENTENCE:
 				setSentence((String)newValue);
 				return;
-			case DslHistoryPackage.SENTENCE__COMMANDS:
+			case projectHistoryPackage.SENTENCE__COMMANDS:
 				getCommands().clear();
 				getCommands().addAll((Collection<? extends Action>)newValue);
 				return;
@@ -177,10 +177,10 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.SENTENCE__SENTENCE:
+			case projectHistoryPackage.SENTENCE__SENTENCE:
 				setSentence(SENTENCE_EDEFAULT);
 				return;
-			case DslHistoryPackage.SENTENCE__COMMANDS:
+			case projectHistoryPackage.SENTENCE__COMMANDS:
 				getCommands().clear();
 				return;
 		}
@@ -195,9 +195,9 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DslHistoryPackage.SENTENCE__SENTENCE:
+			case projectHistoryPackage.SENTENCE__SENTENCE:
 				return SENTENCE_EDEFAULT == null ? sentence != null : !SENTENCE_EDEFAULT.equals(sentence);
-			case DslHistoryPackage.SENTENCE__COMMANDS:
+			case projectHistoryPackage.SENTENCE__COMMANDS:
 				return commands != null && !commands.isEmpty();
 		}
 		return super.eIsSet(featureID);

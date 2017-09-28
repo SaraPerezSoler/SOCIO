@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link projectHistory.Sentence#getCommands <em>Commands</em>}</li>
  * </ul>
  *
- * @see projectHistory.DslHistoryPackage#getSentence()
+ * @see projectHistory.projectHistoryPackage#getSentence()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface Sentence extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sentence</em>' attribute.
 	 * @see #setSentence(String)
-	 * @see projectHistory.DslHistoryPackage#getSentence_Sentence()
+	 * @see projectHistory.projectHistoryPackage#getSentence_Sentence()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface Sentence extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Commands</em>' containment reference list.
-	 * @see projectHistory.DslHistoryPackage#getSentence_Commands()
+	 * @see projectHistory.projectHistoryPackage#getSentence_Commands()
 	 * @model containment="true"
 	 * @generated
 	 */

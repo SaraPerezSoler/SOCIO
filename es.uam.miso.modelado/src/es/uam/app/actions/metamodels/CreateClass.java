@@ -3,7 +3,7 @@ package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.AddMetamodel;
 import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.MetaModelProject;
+import socioProjects.MetamodelProject;
 import es.uam.app.projects.ecore.ClassControl;
 
 public class CreateClass extends AddMetamodel implements IsClass{
@@ -17,11 +17,11 @@ public class CreateClass extends AddMetamodel implements IsClass{
 		this.object=object;
 	}*/
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public CreateClass(MetaModelProject proj, String class_, boolean abs) {
+	public CreateClass(MetamodelProject proj, String class_, boolean abs) {
 		setProject(proj);
 		this.class_ = class_;
 		this.abstract_=abs;
@@ -74,11 +74,11 @@ public class CreateClass extends AddMetamodel implements IsClass{
 		setUndo(false);
 	}
 
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
 
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 

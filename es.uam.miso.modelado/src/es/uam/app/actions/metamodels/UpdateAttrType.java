@@ -3,9 +3,9 @@ package es.uam.app.actions.metamodels;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.projects.MetaModelProject;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.IsAttribute;
+import socioProjects.MetamodelProject;
 
 public class UpdateAttrType extends UpdateMetamodel{
 
@@ -17,11 +17,11 @@ public class UpdateAttrType extends UpdateMetamodel{
 	private AttributeControl new_=null;
 	private AttributeControl object=null;
 	
-	private MetaModelProject project;
+	private MetamodelProject project;
 	private boolean isUndo=false;
 	private boolean isExecute=false;
 	
-	public UpdateAttrType(MetaModelProject proj, IsAttribute attr, String type) {
+	public UpdateAttrType(MetamodelProject proj, IsAttribute attr, String type) {
 		setProject(proj);
 	
 		this.attr=attr;
@@ -87,10 +87,10 @@ public class UpdateAttrType extends UpdateMetamodel{
 		
 		setUndo(false);
 	}
-	public MetaModelProject getProject() {
+	public MetamodelProject getProject() {
 		return project;
 	}
-	public void setProject(MetaModelProject project) {
+	public void setProject(MetamodelProject project) {
 		this.project = project;
 	}
 	public boolean isUndo() {

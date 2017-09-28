@@ -4,36 +4,47 @@ import java.io.File;
 
 import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
-import es.uam.app.message.ReceivedMessage;
 import es.uam.app.message.SendMessageExc;
-import es.uam.app.projects.LocalProjects;
+import projectHistory.Msg;
+import socioProjects.Project;
 
 public class Get extends MainCommand {
 
-	public Get() {	}
+	public Get() {
+	}
 
 	@Override
-	public void execute(ReceivedMessage rm) throws SendMessageExc, Exception {
-		String nameProject = validProjectName(rm.getProjectName());
-		LocalProjects actual = LocalProjects.getProject(nameProject);
-		if (actual != null) {
-			
-			if (!(rm.getUser().canEdit(actual))){
-				throw new NotAccessException("");
-			}
-			
-			File file = new File(actual.FilePath());
-			if (file.exists()) {
-				SendMessageExc e=new SendMessageExc(rm.getText());
-				e.setDocument(file);
-				throw e;
-			} else {
-				throw new ProjectNotFoundException(nameProject);
-			}
-		} else {
-			throw new ProjectNotFoundException(nameProject);
+	public void execute(Msg rm) throws SendMessageExc, Exception {
+
+		Project actual=searchProject(rm);
+		if (!(rm.getUser().canEdit(actual))) {
+			throw new NotAccessException("");
 		}
 
+		File file = new File(actual.getFilePath());
+		if (file.exists()) {
+			SendMessageExc e = new SendMessageExc(rm.getText());
+			e.setDocument(file);
+			throw e;
+		} else {
+			throw new ProjectNotFoundException(actual.getName());
+		}
+
+	}
+
+	@Override
+	public String getName() {
+		return "GET";
+	}
+
+	@Override
+	public String getDesc() {
+		return "downloads the meta-model in ecore format, the user needs permission to read";
+	}
+
+	@Override
+	public String getNeeds() {
+		return project();
 	}
 
 }

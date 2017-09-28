@@ -39,7 +39,7 @@ import socioProjects.SocioApp;
 import socioProjects.Visibility;
 import socioProjects.impl.ProjectImpl;
 
-public abstract class LocalProjects extends ProjectImpl{
+public abstract class LocalProjectsFalse extends ProjectImpl{
 
 	protected final static String URI = "./projects";
 

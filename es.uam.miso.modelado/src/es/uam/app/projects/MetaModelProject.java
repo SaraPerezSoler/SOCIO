@@ -32,7 +32,7 @@ import es.uam.app.projects.log.RemoveLogControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 
-public class MetaModelProject extends LocalProjects {
+public class MetaModelProjectFalse extends LocalProjects {
 
 	private EcoreControl ec;
 
@@ -215,6 +215,7 @@ public class MetaModelProject extends LocalProjects {
 
 		return ret;
 	}
+
 
 	public ClassControl getExactlyClass(String clas) throws FileNotFoundException, JWNLException {
 		ClassControl ret = ec.getExactlyClass(clas);
