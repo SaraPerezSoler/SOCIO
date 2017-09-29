@@ -33,21 +33,22 @@ public interface CommandList {
 
 	/**@author Sara Pérez-Soler
 	* send back all the msg with some action
-	* Needs: a project (channel/usernick/projectName), the action (update, create, delete)
+	* Needs: a project (channel/usernick/projectName), the action (update, create, delete) in the field text
 	*/
 
 	public static final String HISTORY_ACTIONS="HISTORY_ACTIONS";
 
 	/**@author Sara Pérez-Soler
 	* sends back all the msg for a project
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName), optional: one or two dates to filter and the order (ASCENDING/DESCENDING) 
+	* to show (dd/MM/yyyy-dd/MM/yyyy-order) in the field text
 	*/
 
 	public static final String HISTORY_ALL="HISTORY_ALL";
 
 	/**@author Sara Pérez-Soler
 	* sends back all the mgs which modify a element
-	* Needs: a project (channel/usernick/projectName), the name of a element
+	* Needs: a project (channel/usernick/projectName), the name of a element in the text field
 	*/
 
 	public static final String HISTORY_ELEMENT="HISTORY_ELEMENT";
@@ -134,7 +135,7 @@ public interface CommandList {
 	* Needs: a project (channel/usernick/projectName), optional:a user to search (channel/usernick)
 	*/
 
-	public static final String S_USER_ACTIONS="S_USER_ACTIONS";
+	public static final String STA_USER_ACTIONS="STA_USER_ACTIONS";
 
 	/**@author Sara Pérez-Soler
 	* 

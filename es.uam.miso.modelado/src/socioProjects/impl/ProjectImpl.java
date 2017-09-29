@@ -169,7 +169,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	static long lastId = -1;
 
 	public static long getNextId() {
-		return lastId++;
+		lastId++;
+		return lastId;
 	}
 
 	/**
@@ -427,8 +428,15 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	public String getFilePath() {
-		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName()
-				+ "/" + getName() + "." + getFileExtension();
+		return getPath()+ "/" + getName() + "." + getFileExtension();
+	}
+	
+	public String getPath(User admin) {
+		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName();
+	}
+
+	public String getFilePath(User admin) {
+		return getPath(admin)+ "/" + getName() + "." + getFileExtension();
 	}
 
 	/**
@@ -1321,7 +1329,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
@@ -1329,15 +1337,31 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			case SocioProjectsPackage.PROJECT___GET_PATH:
 				return getPath();
 			case SocioProjectsPackage.PROJECT___PARSE_SENTENCE__STRING:
+			try {
 				return parseSentence((String)arguments.get(0));
+			} catch (Exception e) {
+				throw new InvocationTargetException(e);
+			}
 			case SocioProjectsPackage.PROJECT___EXECUTE__MSG:
+			try {
 				execute((Msg)arguments.get(0));
+			} catch (Exception e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___UNDO:
+			try {
 				undo();
+			} catch (Exception e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___REDO:
+			try {
 				redo();
+			} catch (Exception e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG:
 				return getHistoryMsg();
@@ -1352,28 +1376,60 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ACTION__STRING:
 				return getHistoryForAction((String)arguments.get(0));
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG:
+			try {
 				getStatisticsUserMsg();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG__USER:
+			try {
 				getStatisticsUserMsg((User)arguments.get(0));
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION:
+			try {
 				getStatisticsUserAction();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION__USER:
+			try {
 				getStatisticsUserAction((User)arguments.get(0));
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG_ABS:
+			try {
 				getStatisticsUserMsgAbs();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION_ABS:
+			try {
 				getStatisticsUserActionAbs();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___GET_STATISTICS_ACTIONS:
+			try {
 				getStatisticsActions();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___PERCENT_OF_AUTHORSHIP:
+			try {
 				percentOfAuthorship();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 				return null;
 			case SocioProjectsPackage.PROJECT___VALIDATE:
 				return validate();

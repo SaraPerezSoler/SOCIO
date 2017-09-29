@@ -89,7 +89,7 @@ public class Consola extends Channel {
 				msg.setDate(new Date());
 				msg.setUser(getUser());
 				msg.setCommand(comand);
-				msg.setProjectName(project);
+				msg.setProject(project);
 				msg.setId(id + "");
 				msg.setText(args);
 				msg.setMsg(args);

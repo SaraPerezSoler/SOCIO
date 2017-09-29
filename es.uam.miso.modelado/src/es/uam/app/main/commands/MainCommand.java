@@ -29,7 +29,7 @@ public abstract class MainCommand {
 			ret = SocioData.getSocioData().getProject(msg.getProjectId());
 			msgError = " with the id= " + msg.getProjectId();
 		} else if (msg.hasProjectName()) {
-			String[] split = msg.getProjectName().split("/");
+			String[] split = msg.getProject().split("/");
 
 			if (split.length == 3) {
 				User user = SocioData.getSocioData().getUser(split[1], split[0]);
@@ -38,8 +38,8 @@ public abstract class MainCommand {
 				}
 				msgError = " with the name= " + split[0] + "/" + split[1] + "/" + validProjectName(split[2]);
 			} else {
-				ret = SocioData.getSocioData().getProject(validProjectName(msg.getProjectName()), msg.getUser());
-				msgError = " with the name= " + msg.getChannel() + "/" + msg.getUser().getNick() + "/" + validProjectName(msg.getProjectName());
+				ret = SocioData.getSocioData().getProject(validProjectName(msg.getProject()), msg.getUser());
+				msgError = " with the name= " + msg.getChannel() + "/" + msg.getUser().getNick() + "/" + validProjectName(msg.getProject());
 			}
 
 		}
@@ -73,7 +73,7 @@ public abstract class MainCommand {
 	}
 	
 	public String project(){
-		return "a project (channel/usernick/projectName)";
+		return "a project (channel/usernick/projectName or projectId)";
 	}
 	public String userToSearch(){
 		return "a user to search (channel/usernick)";

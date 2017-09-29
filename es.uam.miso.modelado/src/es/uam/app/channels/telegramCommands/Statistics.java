@@ -5,17 +5,17 @@ import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main.MainCommandEnum;
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
-public class HistoryStatistics extends HistoryOption {
+public class Statistics extends HistoryOption {
 
-	private static HistoryStatistics historyStatistics = null;
+	private static Statistics historyStatistics = null;
 	protected final String KIND = "Which kind?";
 
-	public static HistoryStatistics getHistoryStatistics(History history) {
+	public static Statistics getHistoryStatistics(History history) {
 		if (historyStatistics == null) {
-			historyStatistics = new HistoryStatistics(history);
+			historyStatistics = new Statistics(history);
 		}
 		return historyStatistics;
 	}
@@ -28,7 +28,7 @@ public class HistoryStatistics extends HistoryOption {
 	private Map<Long, Boolean> start_state = new HashMap<Long, Boolean>();
 	private String option = null;
 
-	private HistoryStatistics(History history) {
+	private Statistics(History history) {
 		super(history);
 	}
 
@@ -55,11 +55,11 @@ public class HistoryStatistics extends HistoryOption {
 						update.getMessage().getChatId(), sMessage,
 						new String[][] { { YES_OPTION }, { NO_OPTION }, { BACK } });
 			} else if (text.equals(KIND_OPTIONS[4])) {
-				history.tChannel.write(update, MainCommandEnum.ACTIONS_STATISTICS.getName(),
-						history.getProject(update.getMessage().getChatId()), "");
+				history.tChannel.write(update, CommandList.STA_ACTIONS,
+						history.getProject(update.getMessage().getChatId()), null, null);
 			} else if (text.equals(KIND_OPTIONS[5])) {
-				history.tChannel.write(update, MainCommandEnum.RATE_STATISTICS.getName(),
-						history.getProject(update.getMessage().getChatId()), "");
+				history.tChannel.write(update, CommandList.PERCENT_AUTHORSHIP,
+						history.getProject(update.getMessage().getChatId()), null, null);
 			} else {
 				history.commandAction(update);
 			}
@@ -69,29 +69,29 @@ public class HistoryStatistics extends HistoryOption {
 				history.exit(update);
 			}
 			if (option.equals(KIND_OPTIONS[0])) {
-				history.tChannel.write(update, MainCommandEnum.USER_MSG_STATISTICS.getName(),
-						history.getProject(update.getMessage().getChatId()), update.getMessage().getText());
+				history.tChannel.write(update, CommandList.STA_USER_MSG,
+						history.getProject(update.getMessage().getChatId()), update.getMessage().getText(), null);
 
 			} else if (option.equals(KIND_OPTIONS[2])) {
-				history.tChannel.write(update, MainCommandEnum.USER_ACTIONS_STATISTICS.getName(),
-						history.getProject(update.getMessage().getChatId()), update.getMessage().getText());
+				history.tChannel.write(update, CommandList.STA_USER_ACTIONS,
+						history.getProject(update.getMessage().getChatId()), update.getMessage().getText(), null);
 			} else if (option.equals(KIND_OPTIONS[1])) {
 				if (update.getMessage().getText().equals(YES_OPTION)) {
-					history.tChannel.write(update, MainCommandEnum.USER_MSG_STATISTICS.getName(),
-							history.getProject(update.getMessage().getChatId()), "");
+					history.tChannel.write(update, CommandList.STA_USER_MSG,
+							history.getProject(update.getMessage().getChatId()), null, null);
 				} else if (update.getMessage().getText().equals(NO_OPTION)) {
-					history.tChannel.write(update, MainCommandEnum.ABS_USER_MSG_STATISTICS.getName(),
-							history.getProject(update.getMessage().getChatId()), "");
+					history.tChannel.write(update, CommandList.STA_USER_ACTIONS_ABS,
+							history.getProject(update.getMessage().getChatId()), null,null);
 				}
 			} else if (option.equals(KIND_OPTIONS[3])) {
 
 				if (update.getMessage().getText().equals(YES_OPTION)) {
-					history.tChannel.write(update, MainCommandEnum.USER_ACTIONS_STATISTICS.getName(),
-							history.getProject(update.getMessage().getChatId()), "");
+					history.tChannel.write(update, CommandList.STA_USER_ACTIONS,
+							history.getProject(update.getMessage().getChatId()), null, null);
 
 				} else if (update.getMessage().getText().equals(NO_OPTION)) {
-					history.tChannel.write(update, MainCommandEnum.ABS_USER_ACTIONS_STATISTICS.getName(),
-							history.getProject(update.getMessage().getChatId()), "");
+					history.tChannel.write(update, CommandList.STA_USER_ACTIONS_ABS,
+							history.getProject(update.getMessage().getChatId()), null, null);
 
 				} else {
 					this.start(update);

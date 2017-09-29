@@ -41,26 +41,26 @@ public interface History extends EObject {
 	EList<Msg> getMsg();
 
 	/**
-	 * Returns the value of the '<em><b>Create Msg</b></em>' reference.
+	 * Returns the value of the '<em><b>Create Msg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Create Msg</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Create Msg</em>' reference.
+	 * @return the value of the '<em>Create Msg</em>' containment reference.
 	 * @see #setCreateMsg(CreateMsg)
 	 * @see projectHistory.projectHistoryPackage#getHistory_CreateMsg()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	CreateMsg getCreateMsg();
 
 	/**
-	 * Sets the value of the '{@link projectHistory.History#getCreateMsg <em>Create Msg</em>}' reference.
+	 * Sets the value of the '{@link projectHistory.History#getCreateMsg <em>Create Msg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Create Msg</em>' reference.
+	 * @param value the new value of the '<em>Create Msg</em>' containment reference.
 	 * @see #getCreateMsg()
 	 * @generated
 	 */

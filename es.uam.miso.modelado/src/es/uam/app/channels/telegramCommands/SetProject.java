@@ -2,7 +2,7 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
+import es.uam.app.channels.CommandList;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -36,18 +36,18 @@ public class SetProject extends TelegramCommand {
 		String[] split = text.split(" ");
 		// Si el comando no tiene argumentos
 		if (split.length == 1) {
-			tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "", "");
+			tChannel.write(update, CommandList.PROJECTS,null,null,null);
 		} else {
 			String text2 = text.replace(split[0], "");
 			text2 = text2.replace(" ", "");
-			tChannel.write(update,"", text2, "");
+			tChannel.write(update,CommandList.BASE_CASE, text2, null,null);
 		}
 
 	}
 	
 	@Override
 	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
-		if (rMessageCommand.getCommand().equals(Main.MainCommandEnum.PROJECTS.getName())) {
+		if (rMessageCommand.getCommand().equals(CommandList.PROJECTS)) {
 			sMessage.setText(SET_PROJECT_MSG1);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
@@ -57,7 +57,7 @@ public class SetProject extends TelegramCommand {
 				tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 			} else {
 				sMessage.setText(SET_PROJECT_MSG2);
-				this.setProject(chatId, rMessageCommand.getProjectId());
+				this.setProject(chatId, rMessageCommand.getProject());
 				this.setStandardState(chatId);
 				tChannel.sendMessage(msgId, chatId, sMessage);
 			}
@@ -66,7 +66,7 @@ public class SetProject extends TelegramCommand {
 	@Override
 	public void userAnswerText(Update update) {
 		this.setState(update.getMessage().getChatId());
-		tChannel.write(update, "", update.getMessage().getText(), "");
+		tChannel.write(update, CommandList.BASE_CASE, update.getMessage().getText(),null, null);
 	};
 
 }

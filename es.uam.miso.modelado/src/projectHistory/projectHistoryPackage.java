@@ -77,7 +77,7 @@ public interface projectHistoryPackage extends EPackage {
 	int HISTORY__MSG = 0;
 
 	/**
-	 * The feature id for the '<em><b>Create Msg</b></em>' reference.
+	 * The feature id for the '<em><b>Create Msg</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -772,10 +772,10 @@ public interface projectHistoryPackage extends EPackage {
 	EReference getHistory_Msg();
 
 	/**
-	 * Returns the meta object for the reference '{@link projectHistory.History#getCreateMsg <em>Create Msg</em>}'.
+	 * Returns the meta object for the containment reference '{@link projectHistory.History#getCreateMsg <em>Create Msg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Create Msg</em>'.
+	 * @return the meta object for the containment reference '<em>Create Msg</em>'.
 	 * @see projectHistory.History#getCreateMsg()
 	 * @see #getHistory()
 	 * @generated
@@ -1172,7 +1172,7 @@ public interface projectHistoryPackage extends EPackage {
 		EReference HISTORY__MSG = eINSTANCE.getHistory_Msg();
 
 		/**
-		 * The meta object literal for the '<em><b>Create Msg</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Create Msg</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

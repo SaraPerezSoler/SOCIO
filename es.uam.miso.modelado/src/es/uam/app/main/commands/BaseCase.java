@@ -20,14 +20,14 @@ public class BaseCase extends MainCommand {
 		if (rm.hasText()) {
 			if (rm.getUser().canEdit(actual)) {
 				File png = actual.execute(rm);
-				throw new SendMessageExc(rm.getCommand(), png);
+				throw new SendMessageExc("", png);
 			} else {
 				throw new NotAccessException("You don't have editing permissions in this project.");
 			}
 		} else {
 			if (rm.getUser().canRead(actual)) {
 				File png = actual.execute(rm);
-				throw new SendMessageExc(rm.getCommand(), png);
+				throw new SendMessageExc("", png);
 			} else {
 				throw new NotAccessException("You don't have reading permissions in this project.");
 			}

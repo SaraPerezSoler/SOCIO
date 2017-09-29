@@ -36,7 +36,7 @@ public class StatisticsUserActions extends MainCommand {
 
 	@Override
 	public String getName() {
-		return "S_USER_ACTIONS";
+		return "STA_USER_ACTIONS";
 	}
 
 	@Override

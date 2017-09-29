@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.telegram.telegrambots.api.objects.Update;
 
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
 public class Talk extends TelegramCommand {
@@ -47,7 +48,7 @@ public class Talk extends TelegramCommand {
 			} else {
 				String text2 = text.replace(split[0], "");
 				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update,"", project, text2);
+				tChannel.write(update,CommandList.BASE_CASE, project, null,text2);
 
 			}
 		}

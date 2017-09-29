@@ -1,11 +1,12 @@
 package es.uam.app.channels.telegramCommands;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
 public class NewProject extends TelegramCommand {
@@ -58,7 +59,7 @@ public class NewProject extends TelegramCommand {
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), text2, "");
+			tChannel.write(update, CommandList.NEW_PROJECT, text2,null, null);
 			this.setProject(update.getMessage().getChatId(), text2);
 			state.put(update.getMessage().getChatId(), STATE.CONF);
 		}
@@ -73,16 +74,16 @@ public class NewProject extends TelegramCommand {
 			this.setStandardState(id);
 			this.setProject(id, projectName.get(id));
 			if (update.getMessage().getText().equals(CONST[0])){ //Public	
-				tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), projectName.get(id), "PUBLIC");
+				tChannel.write(update, CommandList.NEW_PROJECT, projectName.get(id), null,"PUBLIC");
 				
 			}else if (update.getMessage().getText().equals(CONST[1])){ //Protected
-				tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), projectName.get(id), "PROTECTED");
+				tChannel.write(update, CommandList.NEW_PROJECT, projectName.get(id), null,"PROTECTED");
 				
 			}else if (update.getMessage().getText().equals(CONST[2])){ //Private
-				tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), projectName.get(id), "PRIVATE");
+				tChannel.write(update, CommandList.NEW_PROJECT, projectName.get(id), null,"PRIVATE");
 				
 			}else{//SKip
-				tChannel.write(update, Main.MainCommandEnum.NEW_PROJECT.getName(), projectName.get(id), "");
+				tChannel.write(update, CommandList.NEW_PROJECT, projectName.get(id), null,null);
 			}
 		}else if (s==STATE.GET_PROJECT_NAME){
 

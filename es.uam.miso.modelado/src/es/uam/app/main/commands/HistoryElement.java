@@ -73,7 +73,7 @@ public class HistoryElement extends MainCommand {
 
 	@Override
 	public String getNeeds() {
-		return project()+", the name of a element";
+		return project()+", the name of a element in the text field";
 	}
 
 }

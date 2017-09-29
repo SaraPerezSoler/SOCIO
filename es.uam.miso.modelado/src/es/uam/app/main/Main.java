@@ -123,7 +123,7 @@ public class Main {
 	public static void registerChannel(Class<? extends Channel> channelClass) {
 
 		try {
-			log.info("Registrando canal: " + channelClass.getName());
+			log.info("Registrando channel: " + channelClass.getName());
 			Constructor<? extends Channel> channelConstructor = channelClass.getConstructor(new Class[] { Pipe.class });
 
 			if (channelConstructor != null) {
@@ -154,9 +154,9 @@ public class Main {
 
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException e) {
-			log.error("Error al registrar channel: " + e.getMessage());
+			log.error("Error al registrar mainCommand: " + e.getMessage());
 		} catch (NoSuchMethodException e) {
-			log.error("Error al registrar channel: " + e.getMessage());
+			log.error("Error al registrar mainCommand: " + e.getMessage());
 		}
 
 	}

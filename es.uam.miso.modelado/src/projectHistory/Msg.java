@@ -254,15 +254,12 @@ public interface Msg extends EObject {
 
 	List<Action> getActionsFromObject(Controlador obj);
 
-	void setProjectId(long id);
-
-	long getProjectId();
-	
-	void setProjectName(String id);
-
-	String getProjectName();
-	
 	boolean hasProjectId();
+
+	void setProject(String id);
+
+	String getProject();
+	
 	
 	boolean hasProjectName();
 
@@ -273,5 +270,7 @@ public interface Msg extends EObject {
 	void setUserToSearch(String userToSearch);
 
 	boolean hasUserToSearch();
+
+	long getProjectId();
 
 } // Msg

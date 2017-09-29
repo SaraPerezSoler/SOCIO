@@ -2,7 +2,7 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
+import es.uam.app.channels.CommandList;
 import es.uam.app.main.exceptions.ProjectNotFoundException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -40,17 +40,17 @@ public class Show extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(),null, null);
+				tChannel.write(update, CommandList.PROJECTS,null, null, null);
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update,"", project, "");
+				tChannel.write(update,CommandList.BASE_CASE, project, null, null);
 			}
 
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update,"", text2, "");
+			tChannel.write(update,CommandList.BASE_CASE, text2, null, null);
 		}
 
 	}
@@ -71,7 +71,7 @@ public class Show extends TelegramCommand {
 	@Override
 	public void userAnswerText(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update,"", update.getMessage().getText(), "");
+		tChannel.write(update,CommandList.BASE_CASE, update.getMessage().getText(), null, null);
 	}
 
 }

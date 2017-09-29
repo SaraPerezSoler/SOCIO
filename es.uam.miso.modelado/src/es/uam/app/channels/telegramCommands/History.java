@@ -96,7 +96,7 @@ public class History extends TelegramCommand {
 		if (start_state.get(update.getMessage().getChatId())) {
 			start_state.put(update.getMessage().getChatId(), false);
 			if (text.equals(OPTIONS[0])) {
-				option = HistoryStatistics.getHistoryStatistics(this);
+				option = Statistics.getHistoryStatistics(this);
 			} else if (text.equals(OPTIONS[1])) {
 				option = HistoryMsg.getHistoryMsg(this);
 			} else {

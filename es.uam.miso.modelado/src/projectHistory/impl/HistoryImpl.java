@@ -49,7 +49,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	protected EList<Msg> msg;
 
 	/**
-	 * The cached value of the '{@link #getCreateMsg() <em>Create Msg</em>}' reference.
+	 * The cached value of the '{@link #getCreateMsg() <em>Create Msg</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCreateMsg()
@@ -95,14 +95,6 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * @generated
 	 */
 	public CreateMsg getCreateMsg() {
-		if (createMsg != null && createMsg.eIsProxy()) {
-			InternalEObject oldCreateMsg = (InternalEObject)createMsg;
-			createMsg = (CreateMsg)eResolveProxy(oldCreateMsg);
-			if (createMsg != oldCreateMsg) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, projectHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
-			}
-		}
 		return createMsg;
 	}
 
@@ -111,8 +103,14 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CreateMsg basicGetCreateMsg() {
-		return createMsg;
+	public NotificationChain basicSetCreateMsg(CreateMsg newCreateMsg, NotificationChain msgs) {
+		CreateMsg oldCreateMsg = createMsg;
+		createMsg = newCreateMsg;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, projectHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, newCreateMsg);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -121,10 +119,17 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * @generated
 	 */
 	public void setCreateMsg(CreateMsg newCreateMsg) {
-		CreateMsg oldCreateMsg = createMsg;
-		createMsg = newCreateMsg;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.HISTORY__CREATE_MSG, oldCreateMsg, createMsg));
+		if (newCreateMsg != createMsg) {
+			NotificationChain msgs = null;
+			if (createMsg != null)
+				msgs = ((InternalEObject)createMsg).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.HISTORY__CREATE_MSG, null, msgs);
+			if (newCreateMsg != null)
+				msgs = ((InternalEObject)newCreateMsg).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - projectHistoryPackage.HISTORY__CREATE_MSG, null, msgs);
+			msgs = basicSetCreateMsg(newCreateMsg, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, projectHistoryPackage.HISTORY__CREATE_MSG, newCreateMsg, newCreateMsg));
 	}
 
 	/**
@@ -137,6 +142,8 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 		switch (featureID) {
 			case projectHistoryPackage.HISTORY__MSG:
 				return ((InternalEList<?>)getMsg()).basicRemove(otherEnd, msgs);
+			case projectHistoryPackage.HISTORY__CREATE_MSG:
+				return basicSetCreateMsg(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -152,8 +159,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 			case projectHistoryPackage.HISTORY__MSG:
 				return getMsg();
 			case projectHistoryPackage.HISTORY__CREATE_MSG:
-				if (resolve) return getCreateMsg();
-				return basicGetCreateMsg();
+				return getCreateMsg();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -29,7 +29,7 @@ public class Help extends TelegramCommand {
 
 		this.removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
 		this.setState(update.getMessage().getChatId());
-		tChannel.write(update, CommandList.HELP, "", "");
+		tChannel.write(update, CommandList.HELP, null, null, null);
 	}
 	
 	@Override

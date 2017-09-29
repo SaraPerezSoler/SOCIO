@@ -2,7 +2,7 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
+import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
 
 public class Redo extends TelegramCommand {
@@ -30,7 +30,7 @@ public class Redo extends TelegramCommand {
 			SendMessageExc sent = new SendMessageExc(STANDARD_ERROR_MSG);
 			tChannel.sendMessage(-1, update.getMessage().getChatId(), sent);
 		} else {
-			tChannel.write(update, Main.MainCommandEnum.REDO.getName(), project, "");
+			tChannel.write(update, CommandList.REDO, project, null,null);
 		}
 
 	}

@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import es.uam.app.main.exceptions.FatalException;
 import projectHistory.Action;
 import projectHistory.History;
 import projectHistory.Msg;
@@ -408,6 +409,7 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	String validate();
+	void initialize() throws FatalException;
 	
 	Date getCreateDate();
 	

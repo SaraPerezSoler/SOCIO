@@ -8,6 +8,7 @@ import java.util.Map;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
 
+import es.uam.app.channels.CommandList;
 import es.uam.app.channels.telegramCommands.secrect.SecretCommand;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -132,7 +133,7 @@ public abstract class TCommand {
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text = update.getMessage().getText().toLowerCase();
-			tChannel.write(update,"", project, text);
+			tChannel.write(update,CommandList.BASE_CASE, project, null, text);
 		}
 	}
 	public void userAnswer(Update update) {

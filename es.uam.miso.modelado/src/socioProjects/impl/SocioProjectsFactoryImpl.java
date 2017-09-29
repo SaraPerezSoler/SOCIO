@@ -124,7 +124,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public MetamodelProject createMetamodelProject() {
 		MetamodelProjectImpl metamodelProject = new MetamodelProjectImpl();

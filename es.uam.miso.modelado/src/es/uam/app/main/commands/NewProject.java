@@ -20,23 +20,23 @@ public class NewProject extends MainCommand{
 			return;
 		}
 		try{
-			String[] split=rm.getProjectName().split("/");
+			String[] split=rm.getProject().split("/");
 			if (split.length>1){
-				rm.setProjectName(split[split.length-1]);
+				rm.setProject(split[split.length-1]);
 			}
-			rm.setProjectName(validProjectName(rm.getProjectName()));
+			rm.setProject(validProjectName(rm.getProject()));
 			searchProject(rm);
 		}catch(ProjectNotFoundException e){
 			Visibility c;
 			if (rm.hasText()){
-				c=Visibility.valueOf(rm.getText());
+				c=Visibility.valueOf(rm.getText().toUpperCase());
 			}else{
 				c=Visibility.PUBLIC;
 			}
-			SocioData.getSocioData().createProject(rm.getProjectName(), rm, ProjectType.METAMODEL, c);
-			throw new SendMessageExc("Excellent! Now there is a new "+ c.name().toLowerCase()+" project with the name " + rm.getProjectName());
+			SocioData.getSocioData().createProject(rm.getProject(), rm, ProjectType.METAMODEL, c);
+			throw new SendMessageExc("Excellent! Now there is a new "+ c.name().toLowerCase()+" project with the name " + rm.getProject());
 		}
-		throw new SendMessageExc("A project with the name "+rm.getChannel()+"/"+rm.getUser().getNick()+"/"+rm.getProjectName()+" already exists");
+		throw new SendMessageExc("A project with the name "+rm.getChannel()+"/"+rm.getUser().getNick()+"/"+rm.getProject()+" already exists");
 		
 	}
 
@@ -52,7 +52,7 @@ public class NewProject extends MainCommand{
 
 	@Override
 	public String getNeeds() {
-		return "the name of the project (only the name)";
+		return "the name of the project (only the name), optional: The visiblity (PUBLIC, PROTECTED, PRIVATE) in the text field.";
 	}
 
 }

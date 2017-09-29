@@ -2,7 +2,7 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
-import es.uam.app.main.Main;
+import es.uam.app.channels.CommandList;
 
 public class Projects extends TelegramCommand{
 
@@ -24,7 +24,7 @@ public class Projects extends TelegramCommand{
 	public void commandAction(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
 		this.removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
-		tChannel.write(update, Main.MainCommandEnum.PROJECTS.getName(), "", "");
+		tChannel.write(update, CommandList.PROJECTS,null,null,null);
 	}
 
 }

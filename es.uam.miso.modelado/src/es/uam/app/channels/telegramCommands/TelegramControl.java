@@ -86,7 +86,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 	}
 
-	private Msg standardMensaje(Update update, String command, String projectName, String text) {
+	private Msg standardMensaje(Update update, String command, String projectName,String userToSearch, String text) {
 		User us = getUser(update);
 		Date date = getDate(update);
 		String msgId = getId(update);
@@ -101,7 +101,8 @@ public class TelegramControl extends TelegramLongPollingBot {
 		msg.setUser(us);
 		msg.setDate(date);
 		msg.setCommand(command);
-		msg.setProjectName(projectName);
+		msg.setProject(projectName);
+		msg.setUserToSearch(userToSearch);
 		msg.setId(msgId);
 		msg.setText(text);
 		return msg;
@@ -329,8 +330,8 @@ public class TelegramControl extends TelegramLongPollingBot {
 		}
 	}
 
-	public void write(Update update, String command, String projectName, String text) {
-		channel.write(standardMensaje(update, command, projectName, text));
+	public void write(Update update, String command, String projectName,String userToSearch, String text) {
+		channel.write(standardMensaje(update, command, projectName, userToSearch, text));
 	}
 
 	public static boolean isDebug() {

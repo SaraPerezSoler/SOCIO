@@ -43,17 +43,17 @@ public class Get extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, CommandList.PROJECTS,"", "");
+				tChannel.write(update, CommandList.PROJECTS,null,null, null);
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());
-				tChannel.write(update, CommandList.GET, project, "");
+				tChannel.write(update, CommandList.GET, project, null, null);
 			}
 
 		} else {
 			this.setStandardState(update.getMessage().getChatId());
 			String text2 = text.replace(split[0] + " ", "");
-			tChannel.write(update, CommandList.GET, text2, "");
+			tChannel.write(update, CommandList.GET, text2, null, null);
 		}
 	}
 
@@ -73,7 +73,7 @@ public class Get extends TelegramCommand {
 	@Override
 	public void userAnswerText(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update, CommandList.GET, update.getMessage().getText(), "");
+		tChannel.write(update, CommandList.GET, update.getMessage().getText(),null, null);
 	}
 
 }

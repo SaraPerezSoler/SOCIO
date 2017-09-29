@@ -72,7 +72,7 @@ public class HistoryActions extends MainCommand {
 
 	@Override
 	public String getNeeds() {
-		return project()+", the action (update, create, delete)";
+		return project()+", the action (update, create, delete) in the field text";
 	}
 
 }

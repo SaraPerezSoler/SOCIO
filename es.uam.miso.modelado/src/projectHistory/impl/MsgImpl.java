@@ -165,10 +165,9 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 */
 	protected EList<Sentence> sentences;
 
-	private long projectId=-1;
-	private String projectName=null;
-	private String userToSearch=null;
-	
+	private String project = null;
+	private String userToSearch = null;
+
 	/**
 	 * The default value of the '{@link #isUndoable() <em>Undoable</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -186,8 +185,6 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * @ordered
 	 */
 	protected boolean undoable = UNDOABLE_EDEFAULT;
-
-	
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -367,8 +364,8 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String getChannel() {
@@ -516,8 +513,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -617,10 +613,10 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 
 	@Override
 	public List<Action> getActionsFromObject(Controlador obj) {
-		List<Action> ret= new ArrayList<>();
-		List<Action> actions=getAllActions();
-		for(Action act: actions){
-			if (act.getObject().equals(obj)){
+		List<Action> ret = new ArrayList<>();
+		List<Action> actions = getAllActions();
+		for (Action act : actions) {
+			if (act.getObject().equals(obj)) {
 				ret.add(act);
 			}
 		}
@@ -628,80 +624,105 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	}
 
 	@Override
-	public void setProjectId(long id) {
-		this.projectId=id;
-		
-	}
-	
-	@Override
-	public long getProjectId() {
-		if (projectId==-1){
-			if (this.eContainer()!=null){
-				if (this.eContainer().eContainer()!=null){
-					if (this.eContainer().eContainer() instanceof Project){
-						projectId=((Project)this.eContainer().eContainer()).getId();
-					}
-				}
-			}
-				
-		}
-		return projectId;
-		
-	}
-
-
-	@Override
 	public boolean hasText() {
-		if (this.getText()!=null && !this.getText().isEmpty() && !this.getText().equals(" ")){
+		if (this.getText() != null && !this.getText().isEmpty() && !this.getText().equals(" ")) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public void setProjectName(String name) {
-		this.projectName=name;
-		
+	public void setProject(String proj) {
+		this.project = proj;
+
 	}
 
 	@Override
-	public String getProjectName() {
-		
-		return projectName;
-	}
+	public String getProject() {
 
-	@Override
-	public boolean hasProjectId() {
-		if (projectId==-1){
-			if (this.eContainer()!=null){
-				if (this.eContainer().eContainer()!=null){
-					if (this.eContainer().eContainer() instanceof Project){
-						return true;
-					}
+		/*
+		 * Si esta guardado en el modelo ya está asignado a un proyecto por lo
+		 * que podemos obtener los datos
+		 */
+		if (this.eContainer() != null) {
+			if (this.eContainer().eContainer() != null) {
+				if (this.eContainer().eContainer() instanceof Project) {
+					return ((Project) this.eContainer().eContainer()).getId() + "";
 				}
 			}
-			return false;
-				
-		}else{
-			return true;
 		}
+		/* sino comprobamos si tenemos el campo project guardado */
+		if (project != null && !project.isEmpty()) {
+			return project;
+		}
+		return null;
+	}
+
+	@Override
+	public long getProjectId() {
+		if (hasProjectId()) {
+			return Long.parseLong(project);
+		} else {
+			return -1;
+		}
+	}
+
+	public boolean hasProjectId() {
+
+		/*
+		 * Si esta guardado en el modelo ya está asignado a un proyecto por lo
+		 * que podemos obtener los datos
+		 */
+		if (this.eContainer() != null) {
+			if (this.eContainer().eContainer() != null) {
+				if (this.eContainer().eContainer() instanceof Project) {
+					return true;
+				}
+			}
+		}
+
+		/*
+		 * Si el campo project tiene datos y comprobamos si es un numero, en
+		 * caso contrario no es el id
+		 */
+		if (project != null && !project.isEmpty()) {
+
+			try {
+				Long.parseLong(project);
+				return true;
+			} catch (NumberFormatException e) {
+				return false;
+			}
+		}
+		return false;
 	}
 
 	@Override
 	public boolean hasProjectName() {
-		if (projectName==null || projectName.isEmpty()){
-			if (this.eContainer()!=null){
-				if (this.eContainer().eContainer()!=null){
-					if (this.eContainer().eContainer() instanceof Project){
-						return true;
-					}
+
+		/*
+		 * Si esta guardado en el modelo ya está asignado a un proyecto por lo
+		 * que podemos obtener los datos
+		 */
+		if (this.eContainer() != null) {
+			if (this.eContainer().eContainer() != null) {
+				if (this.eContainer().eContainer() instanceof Project) {
+					return true;
 				}
 			}
-			return false;
-				
-		}else{
+		}
+
+		if (project != null && !project.isEmpty()) {
+			/*
+			 * Si el campo project tiene datos y no son el id presuponemos que
+			 * es el nombre
+			 */
+			if (hasProjectId()) {
+				return false;
+			}
 			return true;
 		}
+		return false;
 	}
 
 	public String getUserToSearch() {
@@ -714,7 +735,8 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 
 	@Override
 	public boolean hasUserToSearch() {
-		if (this.getUserToSearch()!=null && !this.getUserToSearch().isEmpty() && !this.getUserToSearch().equals(" ")){
+		if (this.getUserToSearch() != null && !this.getUserToSearch().isEmpty()
+				&& !this.getUserToSearch().equals(" ")) {
 			return true;
 		}
 		return false;

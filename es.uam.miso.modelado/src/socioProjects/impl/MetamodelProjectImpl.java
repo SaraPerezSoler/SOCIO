@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
@@ -61,12 +62,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	 */
 	protected MetamodelProjectImpl() {
 		super();	
-		if (model!=null){
-			ec=new EcoreControl(model.eResource());
-		}else{
-			ec=new EcoreControl(getFilePath(), name);
-			this.model=ec.getObject();
-		}
+		
 	}
 
 	/**
@@ -406,6 +402,15 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	protected void removeFiles() {
 		File f=new File(getFilePath());
 		f.delete();
+	}
+	@Override
+	public void initialize() throws FatalException {
+		if (model!=null){
+			ec=new EcoreControl(getFilePath(admin));
+		}else{
+			ec=new EcoreControl(getFilePath(admin), name);
+			this.model=ec.getObject();
+		}		
 	}
 
 } //MetamodelProjectImpl

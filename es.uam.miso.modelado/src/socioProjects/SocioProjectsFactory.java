@@ -44,7 +44,7 @@ public interface SocioProjectsFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Metamodel Project</em>'.
-	 * @generated
+	 * @generated NOT
 	 */
 	MetamodelProject createMetamodelProject();
 
@@ -74,5 +74,6 @@ public interface SocioProjectsFactory extends EFactory {
 	 * @generated
 	 */
 	SocioProjectsPackage getSocioProjectsPackage();
+	
 
 } //SocioProjectsFactory

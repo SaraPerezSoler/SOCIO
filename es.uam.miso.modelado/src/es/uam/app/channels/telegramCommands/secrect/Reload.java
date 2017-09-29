@@ -21,7 +21,7 @@ public class Reload extends SecretCommand {
 		this.setStandardState(update.getMessage().getChatId());
 		this.removerAllUserTalk(update.getMessage().getChatId());
 		
-		tChannel.write(update, CommandList.RELOAD, "", "");
+		tChannel.write(update, CommandList.RELOAD, null,null,null);
 	}
 
 }

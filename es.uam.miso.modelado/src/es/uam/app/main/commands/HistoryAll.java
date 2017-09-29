@@ -123,7 +123,7 @@ public class HistoryAll extends MainCommand {
 
 	@Override
 	public String getNeeds() {
-		return project();
+		return project()+", optional: one or two dates to filter and the order (ASCENDING/DESCENDING) \nto show (dd/MM/yyyy-dd/MM/yyyy-order) in the field text";
 	}
 
 }
