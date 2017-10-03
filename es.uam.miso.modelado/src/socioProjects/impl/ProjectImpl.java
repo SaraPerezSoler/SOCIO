@@ -493,6 +493,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		msg.setSentences(actions);
 		history.getMsg().add(msg);
+		
 		return getPng(allActions);
 	}
 
@@ -1462,6 +1463,8 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	public void remove(){
 		removeFiles();
+		File f=new File(getPath());
+		f.delete();
 		getAdmin().getOwnProjects().remove(this);
 		
 		

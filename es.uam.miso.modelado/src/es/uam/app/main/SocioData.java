@@ -78,9 +78,12 @@ public class SocioData {
 					p.initialize();
 					}catch (FatalException e) {
 						remove.add(p);
+					
 					}
 				}
-				socioApp.getProjects().removeAll(remove);
+				for (Project p: remove){
+					removeProject(p);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new FatalException("In class " + this.getClass().getName() + ": the file " + PROJECTS_PATH + "/"
@@ -186,6 +189,12 @@ public class SocioData {
 		return null;
 	}
 
+	public File execute(Project p, Msg msg) throws Exception{
+		File f=p.execute(msg);
+		save();
+		return f;
+	}
+	
 	public List<Project> getProjects(User user) {
 		return user.getOwnProjects();
 	}
@@ -280,7 +289,7 @@ public class SocioData {
 		save();
 	}
 
-	public void removeProject(Project p, Msg msg) throws Exception {
+	public void removeProject(Project p) throws Exception {
 
 		List<User> users = socioApp.getUsers();
 		for (User u : users) {
@@ -321,7 +330,7 @@ public class SocioData {
 			}
 		}
 		if (count == 0) {
-			ret = "I don't have projects with visibility " + v.getName() + "\n";
+			ret = "";
 		}
 		return ret;
 	}

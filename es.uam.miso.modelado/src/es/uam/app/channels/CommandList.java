@@ -12,14 +12,14 @@ public interface CommandList {
 	* Base case of the bot, analyzes a message in natural language(NL) to modify the model
 	* if the msg doesnt have a text, the bot displays the current state of the model.
 	* the user need permission to write to modify the model and permission to read to see the state
-	* Needs: a project (channel/usernick/projectName), a sentence in NL
+	* Needs: a project (channel/usernick/projectName or projectId), a sentence in NL
 	*/
 
 	public static final String BASE_CASE="BASE_CASE";
 
 	/**@author Sara Pérez-Soler
 	* downloads the meta-model in ecore format, the user needs permission to read
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String GET="GET";
@@ -33,14 +33,14 @@ public interface CommandList {
 
 	/**@author Sara Pérez-Soler
 	* send back all the msg with some action
-	* Needs: a project (channel/usernick/projectName), the action (update, create, delete) in the field text
+	* Needs: a project (channel/usernick/projectName or projectId), the action (update, create, delete) in the field text
 	*/
 
 	public static final String HISTORY_ACTIONS="HISTORY_ACTIONS";
 
 	/**@author Sara Pérez-Soler
 	* sends back all the msg for a project
-	* Needs: a project (channel/usernick/projectName), optional: one or two dates to filter and the order (ASCENDING/DESCENDING) 
+	* Needs: a project (channel/usernick/projectName or projectId), optional: one or two dates to filter and the order (ASCENDING/DESCENDING) 
 	* to show (dd/MM/yyyy-dd/MM/yyyy-order) in the field text
 	*/
 
@@ -48,21 +48,21 @@ public interface CommandList {
 
 	/**@author Sara Pérez-Soler
 	* sends back all the mgs which modify a element
-	* Needs: a project (channel/usernick/projectName), the name of a element in the text field
+	* Needs: a project (channel/usernick/projectName or projectId), the name of a element in the text field
 	*/
 
 	public static final String HISTORY_ELEMENT="HISTORY_ELEMENT";
 
 	/**@author Sara Pérez-Soler
 	* sends back all the msg from a user
-	* Needs: a project (channel/usernick/projectName), a user to search (channel/usernick)
+	* Needs: a project (channel/usernick/projectName or projectId), a user to search (channel/usernick)
 	*/
 
 	public static final String HISTORY_USER="HISTORY_USER";
 
 	/**@author Sara Pérez-Soler
 	* creates a new project
-	* Needs: the name of the project (only the name)
+	* Needs: the name of the project (only the name), optional: The visiblity (PUBLIC, PROTECTED, PRIVATE) in the text field.
 	*/
 
 	public static final String NEW_PROJECT="NEW_PROJECT";
@@ -104,7 +104,7 @@ public interface CommandList {
 
 	/**@author Sara Pérez-Soler
 	* redo the last undo
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String REDO="REDO";
@@ -118,63 +118,63 @@ public interface CommandList {
 
 	/**@author Sara Pérez-Soler
 	* remove a project, only the owner can do this
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String REMOVE_PROJECT="REMOVE_PROJECT";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String STA_ACTIONS="STA_ACTIONS";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName), optional:a user to search (channel/usernick)
+	* Needs: a project (channel/usernick/projectName or projectId), optional:a user to search (channel/usernick)
 	*/
 
 	public static final String STA_USER_ACTIONS="STA_USER_ACTIONS";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String STA_USER_ACTIONS_ABS="STA_USER_ACTIONS_ABS";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String PERCENT_AUTHORSHIP="PERCENT_AUTHORSHIP";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName), optional: a user to search (channel/usernick)
+	* Needs: a project (channel/usernick/projectName or projectId), optional: a user to search (channel/usernick)
 	*/
 
 	public static final String STA_USER_MSG="STA_USER_MSG";
 
 	/**@author Sara Pérez-Soler
 	* 
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String STA_USER_MSG_ABS="STA_USER_MSG_ABS";
 
 	/**@author Sara Pérez-Soler
 	* undo the last msg
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String UNDO="UNDO";
 
 	/**@author Sara Pérez-Soler
 	* verifies that the meta-model is correct, reporting all errors.
-	* Needs: a project (channel/usernick/projectName)
+	* Needs: a project (channel/usernick/projectName or projectId)
 	*/
 
 	public static final String VALIDATE="VALIDATE";

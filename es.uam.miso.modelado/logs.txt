@@ -257,3 +257,837 @@
 1063 29/09/2017 16:03:04: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
 5529 29/09/2017 16:03:08: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@312ab28e (msg: /show, command: PROJECTS, text: null, date: Fri Sep 29 16:03:14 CEST 2017, id: 12263;14419070, undoable: false) 
 10004 29/09/2017 16:03:12: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@cb191ca (msg: jesus, command: BASE_CASE, text: null, date: Fri Sep 29 16:03:18 CEST 2017, id: 12265;14419070, undoable: false) 
+0 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+7 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+7 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+7 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+11 03/10/2017 12:42:49: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+11 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+12 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+13 03/10/2017 12:42:49: [main] ERROR Modelado  Error al registrar mainCommand: null 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+13 03/10/2017 12:42:49: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+13 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+14 03/10/2017 12:42:49: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+14 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+356 03/10/2017 12:42:49: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1579 03/10/2017 12:42:51: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+0 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+4 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+4 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+5 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+6 03/10/2017 12:45:15: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+6 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+6 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+6 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+7 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+7 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+7 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+7 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+8 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+8 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+8 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+8 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+8 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+9 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+9 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+9 03/10/2017 12:45:15: [main] ERROR Modelado  Error al registrar mainCommand: null 
+9 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+10 03/10/2017 12:45:15: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+10 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+10 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+10 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+10 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+11 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+11 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+11 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+11 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+12 03/10/2017 12:45:15: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+12 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+122 03/10/2017 12:45:15: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+4984 03/10/2017 12:45:20: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+12448 03/10/2017 12:45:27: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6dcd5639 (msg: /show, command: PROJECTS, text: null, date: Tue Oct 03 12:44:36 CEST 2017, id: 12268;14419070, undoable: false) 
+63587 03/10/2017 12:46:18: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@592238c5 (msg: jesus, command: BASE_CASE, text: null, date: Tue Oct 03 12:46:02 CEST 2017, id: 12270;14419070, undoable: false) 
+0 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+1 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+1 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+1 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+1 03/10/2017 12:49:50: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+1 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+1 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+2 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+3 03/10/2017 12:49:50: [main] ERROR Modelado  Error al registrar mainCommand: null 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+3 03/10/2017 12:49:50: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+3 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+4 03/10/2017 12:49:50: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+4 03/10/2017 12:49:50: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+89 03/10/2017 12:49:51: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1116 03/10/2017 12:49:52: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+8005 03/10/2017 12:49:58: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@1522d8a0 (msg: /show, command: PROJECT_USER_ACCESS, text: null, date: Tue Oct 03 12:49:58 CEST 2017, id: 12272;14419070, undoable: false) 
+35224 03/10/2017 12:50:26: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@5b444398 (msg: jesus, command: BASE_CASE, text: null, date: Tue Oct 03 12:50:26 CEST 2017, id: 12274;14419070, undoable: false) 
+0 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 13:18:52: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 13:18:52: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 13:18:52: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 13:18:52: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+112 03/10/2017 13:18:52: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+2998 03/10/2017 13:18:55: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+0 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+2 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 14:46:34: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 14:46:34: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 14:46:34: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 14:46:34: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+92 03/10/2017 14:46:34: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1246 03/10/2017 14:46:36: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+23247 03/10/2017 14:46:58: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@3a095ec0 (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 14:46:57 CEST 2017, id: 12280;14419070, undoable: false) 
+41179 03/10/2017 14:47:15: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@1ded7b14 (msg: /get, command: GET, text: null, date: Tue Oct 03 14:47:15 CEST 2017, id: 12282;14419070, undoable: false) 
+71972 03/10/2017 14:47:46: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@76b224cd (msg: /start, command: NO_COMMAND, text: null, date: Tue Oct 03 14:47:46 CEST 2017, id: 12284;14419070, undoable: false) 
+81078 03/10/2017 14:47:55: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@77ee25f1 (msg: /get, command: PROJECTS, text: null, date: Tue Oct 03 14:47:52 CEST 2017, id: 12286;14419070, undoable: false) 
+0 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+2 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 14:48:46: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 14:48:46: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 14:48:46: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+6 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 14:48:46: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+136 03/10/2017 14:48:46: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1309 03/10/2017 14:48:47: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+24261 03/10/2017 14:49:10: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@153d4abb (msg: /get, command: PROJECTS, text: null, date: Tue Oct 03 14:49:10 CEST 2017, id: 12287;14419070, undoable: false) 
+0 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+2 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+3 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+3 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 14:49:30: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+4 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+4 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+5 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+6 03/10/2017 14:49:30: [main] ERROR Modelado  Error al registrar mainCommand: null 
+6 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+6 03/10/2017 14:49:30: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+6 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+6 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+6 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+6 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+7 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+7 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+7 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+7 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+7 03/10/2017 14:49:30: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+7 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+94 03/10/2017 14:49:30: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1162 03/10/2017 14:49:31: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+38198 03/10/2017 14:50:08: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@705f83a7 (msg: /get, command: PROJECTS, text: null, date: Tue Oct 03 14:49:42 CEST 2017, id: 12288;14419070, undoable: false) 
+91812 03/10/2017 14:51:02: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@1abc9f14 (msg: jesus, command: GET, text: null, date: Tue Oct 03 14:51:02 CEST 2017, id: 12290;14419070, undoable: false) 
+0 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+1 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+2 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 14:57:23: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+2 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+3 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 14:57:23: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 14:57:23: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+4 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 14:57:23: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+94 03/10/2017 14:57:23: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1300 03/10/2017 14:57:24: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+12054 03/10/2017 14:57:35: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@67dba613 (msg: /start, command: NO_COMMAND, text: null, date: Tue Oct 03 14:57:35 CEST 2017, id: 12292;14419070, undoable: false) 
+27692 03/10/2017 14:57:51: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@57540fd0 (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 14:57:51 CEST 2017, id: 12294;14419070, undoable: false) 
+0 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+1 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+1 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+1 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+1 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:00:48: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+2 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+3 03/10/2017 15:00:48: [main] ERROR Modelado  Error al registrar mainCommand: null 
+3 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+3 03/10/2017 15:00:48: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+4 03/10/2017 15:00:48: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+4 03/10/2017 15:00:48: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+103 03/10/2017 15:00:49: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1223 03/10/2017 15:00:50: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+7178 03/10/2017 15:00:56: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@2ce45a7b (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:00:55 CEST 2017, id: 12298;14419070, undoable: false) 
+33298 03/10/2017 15:01:22: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@616b241a (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:01:18 CEST 2017, id: 12300;14419070, undoable: false) 
+49046 03/10/2017 15:01:37: [main] ERROR Modelado  Error al leer los comandos: null 
+58257 03/10/2017 15:01:47: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@1f387978 (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:01:44 CEST 2017, id: 12301;14419070, undoable: false) 
+74416 03/10/2017 15:02:03: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@7cb2651f (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:02:03 CEST 2017, id: 12303;14419070, undoable: false) 
+114746 03/10/2017 15:02:43: [main] ERROR Modelado  Error al leer los comandos: null 
+119239 03/10/2017 15:02:48: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@3e1624c7 (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:02:48 CEST 2017, id: 12304;14419070, undoable: false) 
+132073 03/10/2017 15:03:01: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@79d743e6 (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:02:58 CEST 2017, id: 12306;14419070, undoable: false) 
+171474 03/10/2017 15:03:40: [main] ERROR Modelado  Error al leer los comandos: null 
+174930 03/10/2017 15:03:43: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@776802b0 (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:03:43 CEST 2017, id: 12307;14419070, undoable: false) 
+182550 03/10/2017 15:03:51: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@64c4c01 (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:03:51 CEST 2017, id: 12309;14419070, undoable: false) 
+0 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+1 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+1 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:08:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+2 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+2 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+3 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 15:08:18: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 15:08:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+4 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 15:08:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+105 03/10/2017 15:08:18: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1193 03/10/2017 15:08:19: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+6150 03/10/2017 15:08:24: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@67dba613 (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:08:24 CEST 2017, id: 12310;14419070, undoable: false) 
+19353 03/10/2017 15:08:38: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@5631962 (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:08:38 CEST 2017, id: 12312;14419070, undoable: false) 
+78043 03/10/2017 15:09:36: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@1eaf1e62 (msg: /projects, command: PROJECTS, text: null, date: Tue Oct 03 15:09:36 CEST 2017, id: 12314;14419070, undoable: false) 
+80507 03/10/2017 15:09:39: [main] ERROR Modelado  org.telegram.telegrambots.exceptions.TelegramApiRequestException: Error sending message: [400] Bad Request: message must be non-empty 
+0 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.DeleteProject 
+2 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+3 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+3 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:11:44: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:11:44: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:11:44: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 15:11:44: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+114 03/10/2017 15:11:44: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1289 03/10/2017 15:11:45: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+8911 03/10/2017 15:11:53: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@7fc645e4 (msg: /projects, command: PROJECTS, text: null, date: Tue Oct 03 15:11:53 CEST 2017, id: 12315;14419070, undoable: false) 
+35454 03/10/2017 15:12:20: [main] ERROR Modelado  org.telegram.telegrambots.exceptions.TelegramApiRequestException: Error sending message: [400] Bad Request: message must be non-empty 
+57783 03/10/2017 15:12:42: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@5e1218b4 (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 15:12:39 CEST 2017, id: 12320;14419070, undoable: false) 
+120684 03/10/2017 15:13:45: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@4f82663e (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:13:39 CEST 2017, id: 12322;14419070, undoable: false) 
+149202 03/10/2017 15:14:13: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@4647881c (msg: Telegram/Sarukii/jesus, command: DEL_PROJECT, text: null, date: Tue Oct 03 15:14:13 CEST 2017, id: 12324;14419070, undoable: false) 
+0 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:20:37: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 15:20:37: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 15:20:37: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 15:20:37: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+93 03/10/2017 15:20:37: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1286 03/10/2017 15:20:38: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+15647 03/10/2017 15:20:52: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@385ef531 (msg: /projects, command: PROJECTS, text: null, date: Tue Oct 03 15:20:52 CEST 2017, id: 12326;14419070, undoable: false) 
+20359 03/10/2017 15:20:57: [main] ERROR Modelado  org.telegram.telegrambots.exceptions.TelegramApiRequestException: Error sending message: [400] Bad Request: message must be non-empty 
+36234 03/10/2017 15:21:13: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@3a2b2322 (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 15:21:13 CEST 2017, id: 12331;14419070, undoable: false) 
+46587 03/10/2017 15:21:23: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@36dfbdaf (msg: /delproject, command: PROJECTS_FOR_USER, text: null, date: Tue Oct 03 15:21:23 CEST 2017, id: 12333;14419070, undoable: false) 
+75721 03/10/2017 15:21:52: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@4f82663e (msg: Telegram/Sarukii/jesus, command: REMOVE_PROJECT, text: null, date: Tue Oct 03 15:21:52 CEST 2017, id: 12335;14419070, undoable: false) 
+88501 03/10/2017 15:22:05: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@e04ccf8 (msg: /projects, command: PROJECTS, text: null, date: Tue Oct 03 15:22:05 CEST 2017, id: 12337;14419070, undoable: false) 
+92890 03/10/2017 15:22:10: [main] ERROR Modelado  org.telegram.telegrambots.exceptions.TelegramApiRequestException: Error sending message: [400] Bad Request: message must be non-empty 
+180985 03/10/2017 15:23:38: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6e0cff20 (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 15:23:38 CEST 2017, id: 12342;14419070, undoable: false) 
+0 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:27:07: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 15:27:07: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 15:27:07: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 15:27:07: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+97 03/10/2017 15:27:07: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1312 03/10/2017 15:27:09: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+17054 03/10/2017 15:27:24: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@78de58ea (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 15:27:24 CEST 2017, id: 12348;14419070, undoable: false) 
+0 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+3 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+3 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:28:13: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+4 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+4 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+4 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+5 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+6 03/10/2017 15:28:13: [main] ERROR Modelado  Error al registrar mainCommand: null 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+6 03/10/2017 15:28:13: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+6 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+7 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+7 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+7 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+7 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+7 03/10/2017 15:28:13: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+7 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+98 03/10/2017 15:28:13: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1161 03/10/2017 15:28:14: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+0 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:28:59: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:28:59: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:28:59: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 15:28:59: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+88 03/10/2017 15:28:59: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1183 03/10/2017 15:29:00: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+26682 03/10/2017 15:29:26: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@3e14c16d (msg: Private, command: NEW_PROJECT, text: PRIVATE, date: Tue Oct 03 15:29:26 CEST 2017, id: 12354;14419070, undoable: false) 
+42953 03/10/2017 15:29:42: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@463b4ac8 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:29:42 CEST 2017, id: 12358;14419070, undoable: false) 
+43800 03/10/2017 15:29:43: [main] ERROR Modelado  Error al leer los comandos: Unable to install net.didion.jwnl.dictionary.FileBackedDictionary 
+0 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:30:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 15:30:18: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 15:30:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+5 03/10/2017 15:30:18: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+5 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+102 03/10/2017 15:30:18: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1212 03/10/2017 15:30:19: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+9086 03/10/2017 15:30:27: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6fc3e1a4 (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:30:27 CEST 2017, id: 12359;14419070, undoable: false) 
+26315 03/10/2017 15:30:44: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6a9b0a6f (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:30:44 CEST 2017, id: 12361;14419070, undoable: false) 
+52790 03/10/2017 15:31:11: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@31ee2fdb (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:31:11 CEST 2017, id: 12366;14419070, undoable: false) 
+0 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:33:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:33:33: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:33:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+5 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 15:33:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+112 03/10/2017 15:33:33: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1321 03/10/2017 15:33:35: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+6255 03/10/2017 15:33:40: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@7a24eb3 (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:33:39 CEST 2017, id: 12367;14419070, undoable: false) 
+22820 03/10/2017 15:33:56: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@77bd7fe7 (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:33:56 CEST 2017, id: 12369;14419070, undoable: false) 
+43170 03/10/2017 15:34:17: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@295bf2a (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:34:16 CEST 2017, id: 12374;14419070, undoable: false) 
+0 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:37:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+5 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+5 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+5 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:37:39: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:37:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+6 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+7 03/10/2017 15:37:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+7 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+118 03/10/2017 15:37:39: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1312 03/10/2017 15:37:40: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+6470 03/10/2017 15:37:45: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@2d5f7182 (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:37:45 CEST 2017, id: 12375;14419070, undoable: false) 
+28012 03/10/2017 15:38:07: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@191a709b (msg: elearningplrform, command: BASE_CASE, text: null, date: Tue Oct 03 15:38:01 CEST 2017, id: 12377;14419070, undoable: false) 
+51992 03/10/2017 15:38:31: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@203c20cf (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:38:31 CEST 2017, id: 12380;14419070, undoable: false) 
+123415 03/10/2017 15:39:42: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@46c269e0 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:39:42 CEST 2017, id: 12385;14419070, undoable: false) 
+333281 03/10/2017 15:43:12: [main] ERROR Modelado  Error al leer los comandos: Unable to install net.didion.jwnl.dictionary.FileBackedDictionary 
+350387 03/10/2017 15:43:29: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@53e76c11 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:43:29 CEST 2017, id: 12388;14419070, undoable: false) 
+465660 03/10/2017 15:45:24: [main] ERROR Modelado  Error al leer los comandos: Unable to install net.didion.jwnl.dictionary.FileBackedDictionary 
+474055 03/10/2017 15:45:33: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@208f0007 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:45:33 CEST 2017, id: 12391;14419070, undoable: false) 
+0 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+1 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+1 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+1 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:47:45: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+2 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+3 03/10/2017 15:47:45: [main] ERROR Modelado  Error al registrar mainCommand: null 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+3 03/10/2017 15:47:45: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+3 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+4 03/10/2017 15:47:45: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+4 03/10/2017 15:47:45: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+98 03/10/2017 15:47:46: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1230 03/10/2017 15:47:47: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+6710 03/10/2017 15:47:52: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@205b132e (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:47:52 CEST 2017, id: 12392;14419070, undoable: false) 
+27775 03/10/2017 15:48:13: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6f3f0fae (msg: e-learning platform, command: BASE_CASE, text: null, date: Tue Oct 03 15:48:01 CEST 2017, id: 12393;14419070, undoable: false) 
+51681 03/10/2017 15:48:37: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@5c77ba8f (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:48:37 CEST 2017, id: 12399;14419070, undoable: false) 
+1 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:49:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+2 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+3 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+4 03/10/2017 15:49:33: [main] ERROR Modelado  Error al registrar mainCommand: null 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+4 03/10/2017 15:49:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+4 03/10/2017 15:49:33: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+4 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+93 03/10/2017 15:49:33: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1067 03/10/2017 15:49:34: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+11687 03/10/2017 15:49:45: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@f001896 (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:49:45 CEST 2017, id: 12400;14419070, undoable: false) 
+22527 03/10/2017 15:49:56: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@201b6b6f (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:49:55 CEST 2017, id: 12402;14419070, undoable: false) 
+41549 03/10/2017 15:50:15: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@2ca65ce4 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:50:15 CEST 2017, id: 12407;14419070, undoable: false) 
+42211 03/10/2017 15:50:15: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@682c1e93 
+42458 03/10/2017 15:50:16: [main] ERROR Modelado  Error al leer los comandos: null 
+1 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+3 03/10/2017 15:50:29: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+3 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:50:29: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:50:29: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+6 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+6 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+6 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 15:50:29: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+103 03/10/2017 15:50:29: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1380 03/10/2017 15:50:30: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+6801 03/10/2017 15:50:36: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@3fa76c61 (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:50:36 CEST 2017, id: 12408;14419070, undoable: false) 
+22662 03/10/2017 15:50:52: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@10667848 (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:50:49 CEST 2017, id: 12410;14419070, undoable: false) 
+39790 03/10/2017 15:51:09: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@262816a8 (msg: an e-learning platform is made of courses, command: BASE_CASE, text: an e-learning platform is made of courses, date: Tue Oct 03 15:51:05 CEST 2017, id: 12415;14419070, undoable: false) 
+118261 03/10/2017 15:52:27: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@3a4ab7f7 
+452734 03/10/2017 15:58:02: [main] ERROR Modelado  Error al leer los comandos: null 
+462403 03/10/2017 15:58:11: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@4a2e7bcb (msg: an e-learning platform is made of course, command: BASE_CASE, text: an e-learning platform is made of course, date: Tue Oct 03 15:58:11 CEST 2017, id: 12418;14419070, undoable: false) 
+528207 03/10/2017 15:59:17: [main] ERROR Modelado  Error al leer los comandos: null 
+538361 03/10/2017 15:59:27: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@6e0e5dec (msg: an e-learning platform is made of course, command: BASE_CASE, text: an e-learning platform is made of course, date: Tue Oct 03 15:59:27 CEST 2017, id: 12421;14419070, undoable: false) 
+0 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.BaseCase 
+2 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Get 
+2 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Help 
+2 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.History 
+2 03/10/2017 15:59:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.History.<init>() 
+2 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryActions 
+3 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryAll 
+3 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryElement 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.HistoryUser 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.NewProject 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Projects 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUser 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForUserAccess 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsForVisibility 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.ProjectsOwnedUser 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
+4 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
+5 03/10/2017 15:59:39: [main] ERROR Modelado  Error al registrar mainCommand: null 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
+5 03/10/2017 15:59:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.Statistics.<init>() 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsActions 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActions 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserActionsAbs 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserAuthorship 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsg 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.StatisticsUserMsgAbs 
+5 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Undo 
+6 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.UserProperties 
+6 03/10/2017 15:59:39: [main] ERROR Modelado  Error al registrar mainCommand: es.uam.app.main.commands.UserProperties.<init>() 
+6 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Validate 
+101 03/10/2017 15:59:39: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TelegramChannel 
+1187 03/10/2017 15:59:40: [main] INFO  Modelado  Registrando channel: es.uam.app.channels.TwitterChannel 
+8866 03/10/2017 15:59:48: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@60d1b21f (msg: /setproject, command: PROJECTS, text: null, date: Tue Oct 03 15:59:47 CEST 2017, id: 12422;14419070, undoable: false) 
+20679 03/10/2017 15:59:59: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@234a8f27 (msg: elearningplatform, command: BASE_CASE, text: null, date: Tue Oct 03 15:59:57 CEST 2017, id: 12424;14419070, undoable: false) 
+33964 03/10/2017 16:00:13: [main] INFO  Modelado  Mensaje recibido: projectHistory.impl.MsgImpl@554f0dfb (msg: an e-learning platform is made of course, command: BASE_CASE, text: an e-learning platform is made of course, date: Tue Oct 03 16:00:13 CEST 2017, id: 12429;14419070, undoable: false) 
+71009 03/10/2017 16:00:50: [main] INFO  net.didion.jwnl.dictionary.Dictionary  Installing dictionary net.didion.jwnl.dictionary.FileBackedDictionary@2f74900b 

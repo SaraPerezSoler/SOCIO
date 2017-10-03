@@ -27,9 +27,6 @@ public class Get extends TelegramCommand {
 
 	@Override
 	public void commandAction(Update update) {
-		
-
-		
 		this.removerUserTalk(update.getMessage().getChatId(), update.getMessage().getFrom());
 
 		String text = update.getMessage().getText();
@@ -43,7 +40,7 @@ public class Get extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, CommandList.PROJECTS,null,null, null);
+				tChannel.write(update, CommandList.PROJECTS_FOR_USER, null, null, null);
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());
@@ -64,8 +61,9 @@ public class Get extends TelegramCommand {
 			this.setStandardState(chatId);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
+			//cuando responda el programa principal lo hace al standard state
 			this.setState(chatId);
-			sMessage.setText(GET_MSG);
+			sMessage.setText(sMessage.getMessage()+"\n\n"+GET_MSG);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		}
 	}
@@ -73,7 +71,7 @@ public class Get extends TelegramCommand {
 	@Override
 	public void userAnswerText(Update update) {
 		this.setStandardState(update.getMessage().getChatId());
-		tChannel.write(update, CommandList.GET, update.getMessage().getText(),null, null);
+		tChannel.write(update, CommandList.GET, update.getMessage().getText(), null, null);
 	}
 
 }

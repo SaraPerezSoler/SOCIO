@@ -19,7 +19,7 @@ public class RemoveProject extends MainCommand {
 			throw new NotAccessException("");
 		}
 			
-		SocioData.getSocioData().removeProject(actual, rm);
+		SocioData.getSocioData().removeProject(actual);
 		throw new SendMessageExc("The project "+ actual.getName()+" has been deleted.");
 		
 	}

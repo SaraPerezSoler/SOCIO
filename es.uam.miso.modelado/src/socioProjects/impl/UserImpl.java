@@ -356,7 +356,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	public void removeContribution(Project project) {
 		Contribution remove=getContribution(project);
-		contributions.remove(remove);
+		getContributions().remove(remove);
 	}
 
 	/**
@@ -372,7 +372,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 			Contribution c= SocioProjectsFactoryImpl.eINSTANCE.createContribution();
 			c.setAccess(access);
 			c.setProject(project);
-			contributions.add(c);
+			getContributions().add(c);
 				
 		}
 		
@@ -395,7 +395,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated NOT
 	 */
 	public Contribution getContribution(Project project) {
-		for (Contribution c: contributions){
+		for (Contribution c: getContributions()){
 			if (c.getProject().equals(project)){
 				return c;
 			}

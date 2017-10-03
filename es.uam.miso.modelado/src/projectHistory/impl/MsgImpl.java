@@ -557,7 +557,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 			Sentence sentence = projectHistoryFactoryImpl.eINSTANCE.createSentence();
 			sentence.setSentence(s);
 			sentence.getCommands().addAll(actions.get(s));
-			this.sentences.add(sentence);
+			this.getSentences().add(sentence);
 		}
 	}
 

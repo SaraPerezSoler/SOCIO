@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 
+import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.projects.ecore.Controlador;
 import projectHistory.Action;
 import socioProjects.ModelProjec;
@@ -76,6 +77,12 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 
 	@Override
 	protected void removeFiles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initialize() throws FatalException {
 		// TODO Auto-generated method stub
 		
 	}

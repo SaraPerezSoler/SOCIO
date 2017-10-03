@@ -2,6 +2,7 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 
+import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -19,14 +20,14 @@ public class BaseCase extends MainCommand {
 
 		if (rm.hasText()) {
 			if (rm.getUser().canEdit(actual)) {
-				File png = actual.execute(rm);
+				File png = SocioData.getSocioData().execute(actual, rm);
 				throw new SendMessageExc("", png);
 			} else {
 				throw new NotAccessException("You don't have editing permissions in this project.");
 			}
 		} else {
 			if (rm.getUser().canRead(actual)) {
-				File png = actual.execute(rm);
+				File png = SocioData.getSocioData().execute(actual, rm);
 				throw new SendMessageExc("", png);
 			} else {
 				throw new NotAccessException("You don't have reading permissions in this project.");

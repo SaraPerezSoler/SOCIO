@@ -40,7 +40,7 @@ public class Show extends TelegramCommand {
 				// enviamos la imagen con todos los proyectos y
 				// esperamos respuesta.
 				this.setState(update.getMessage().getChatId());
-				tChannel.write(update, CommandList.PROJECTS,null, null, null);
+				tChannel.write(update, CommandList.PROJECT_USER_ACCESS,null, null, null);
 
 			} else {
 				this.setStandardState(update.getMessage().getChatId());
@@ -63,7 +63,7 @@ public class Show extends TelegramCommand {
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
 			this.setState(chatId);
-			sMessage.setText(SHOW_MSG);
+			sMessage.setText(sMessage.getMessage()+"\n\n"+SHOW_MSG);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		}
 	}
