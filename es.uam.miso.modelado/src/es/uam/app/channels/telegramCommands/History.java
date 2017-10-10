@@ -13,7 +13,7 @@ import projectHistory.Msg;
 
 public class History extends TelegramCommand {
 
-	private final String EXIT = "Exit from " + this.getCommand();
+	
 	public final String BACK = "\u2b05\ufe0f" + " Back";
 
 	private final String OPTIONS_MSG = "Do you want see Statistics or get the messages from the project?";
@@ -65,6 +65,7 @@ public class History extends TelegramCommand {
 
 	@Override
 	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
+		
 		if (sMessage instanceof SendHistoryMsg && sMessage.getMessage().equals("")) {
 			String split[] = ((SendHistoryMsg) sMessage).toString().split("\n");
 			if (split.length >= 30) {
@@ -85,10 +86,13 @@ public class History extends TelegramCommand {
 			}
 			this.setStandardState(chatId);
 		} else {
-			super.modellingAnswer(chatId, msgId, rMessageCommand, sMessage);
+			if(!option.modellingAnswerYou(chatId, msgId, rMessageCommand, sMessage)){
+				super.modellingAnswer(chatId, msgId, rMessageCommand, sMessage);
+			}
 		}
 
 	}
+	
 
 	@Override
 	public void userAnswerText(Update update) {
@@ -113,10 +117,6 @@ public class History extends TelegramCommand {
 		}
 	}
 
-	public void exit(Update update) {
-		this.setStandardState(update.getMessage().getChatId());
-		SendMessageExc sent = new SendMessageExc(EXIT);
-		tChannel.sendMessage(update.getMessage().getMessageId(), update.getMessage().getChatId(), sent);
-	}
+
 
 }

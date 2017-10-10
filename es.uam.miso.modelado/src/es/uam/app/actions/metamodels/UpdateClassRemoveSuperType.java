@@ -2,8 +2,9 @@ package es.uam.app.actions.metamodels;
 
 import java.util.List;
 
-import es.uam.app.projects.ecore.IsClass;
 import socioProjects.MetamodelProject;
+import es.uam.app.actions.metamodels.UpdateClassSuperType;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.ClassControl;
 
 public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
@@ -12,10 +13,6 @@ public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 	public UpdateClassRemoveSuperType(MetamodelProject proj, IsClass class_, ClassControl superType) {
 		super(proj, class_, superType);
 	}
-
-	/*public UpdateClassRemoveSuperType(ClassControl object, ClassControl old, ClassControl new_) {
-		super(object,old, new_);
-	}*/
 
 	@Override
 	public void doIt() throws Exception {
@@ -32,13 +29,13 @@ public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 			throw new Exception("Problem ocurred in"+this.getClass().getName()+": the class is not found");
 		}
 
-		this.old = classClassCont.copyObject();
+		setOld(classClassCont.copyObject());
 
 		List<ClassControl> superTypes=classClassCont.getSuperTypes();
 		superTypes.remove(superTypeClassC);
 		classClassCont.addAllSuperType(superTypes);
-
-		new_ = classClassCont.copyObject();
+		setObject(classClassCont);
+		setNew(classClassCont.copyObject());
 
 		setExecute(true);
 

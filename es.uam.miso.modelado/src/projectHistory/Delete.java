@@ -2,6 +2,7 @@
  */
 package projectHistory;
 
+import socioProjects.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,8 +11,13 @@ package projectHistory;
  *
  *
  * @see projectHistory.projectHistoryPackage#getDelete()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Delete extends Action {
+	default String getActionName(){
+		return "Delete";
+	}
+	
+	void setAction(es.uam.app.actions.Delete<? extends Project> action);
 } // Delete

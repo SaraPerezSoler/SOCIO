@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -490,9 +492,10 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			msg.setUndoable(false);
 		} else {
 			undoMsg.clear();
+			msg.setUndoable(true);
+			msg.setSentences(actions);
+			history.getMsg().add(msg);
 		}
-		msg.setSentences(actions);
-		history.getMsg().add(msg);
 		
 		return getPng(allActions);
 	}
@@ -512,8 +515,15 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 * @generated NOT
 	 */
 	public File undo() throws Exception {
-		List<Msg> list = history.getMsg();
-		Collections.reverse(list);
+		EList<Msg> list = history.getMsg();
+		
+		ECollections.sort(list, new Comparator<Msg>() {
+			@Override
+			public int compare(Msg o1, Msg o2) {
+				return o2.getDate().compareTo(o1.getDate());
+			}
+			
+		});
 		for (Msg m : list) {
 			if (m.isUndoable()) {
 				Map<String, List<Action>> sentences = m.getSentencesMap();
@@ -1476,8 +1486,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 
 	public String getProjectData() {
-		return getAdmin().getChannel() + "/" + getAdmin().getNick() + "/" + getName() + "\n\t"
+		return getCompleteName() + "\n\t"
 				+ formatter.format(getCreateDate()) + ", " + getType() + ", " + getVisibility();
+	}
+	public String getCompleteName(){
+		return getAdmin().getChannel() + "/" + getAdmin().getNick() + "/" + getName();
 	}
 
 } // ProjectImpl

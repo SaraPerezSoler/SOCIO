@@ -5,7 +5,11 @@ package socioProjects.impl;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
+import es.uam.app.actions.Add;
+import es.uam.app.actions.Delete;
+import es.uam.app.actions.Update;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.projects.ecore.Controlador;
 import projectHistory.Action;
@@ -83,6 +87,30 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 
 	@Override
 	public void initialize() throws FatalException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Add<ModelProjec> createAddAction(EObject element) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Delete<ModelProjec> createDeleteAction(EObject element) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Update<ModelProjec> createUpdateAction(EObject element, EObject new_, EObject old) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save() {
 		// TODO Auto-generated method stub
 		
 	}

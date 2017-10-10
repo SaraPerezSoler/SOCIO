@@ -5,6 +5,7 @@ package projectHistory;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.projects.ecore.Controlador;
+import socioProjects.Project;
 
 
 /**
@@ -105,5 +106,8 @@ public interface Action extends EObject {
 	 * @generated NOT
 	 */
 	Controlador getObject();
+	
+	Project getProject();
+
 
 } // Action

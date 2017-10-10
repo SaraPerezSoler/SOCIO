@@ -4,6 +4,9 @@ package projectHistory;
 
 import org.eclipse.emf.ecore.EObject;
 
+import socioProjects.Project;
+
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Update</b></em>'.
@@ -18,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see projectHistory.projectHistoryPackage#getUpdate()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Update extends Action {
@@ -73,5 +76,11 @@ public interface Update extends Action {
 	 * @generated
 	 */
 	void setNew(EObject value);
+	
+	void setAction(es.uam.app.actions.Update<? extends Project> action);
+	
+	default String getActionName(){
+		return "Update";
+	}
 
 } // Update

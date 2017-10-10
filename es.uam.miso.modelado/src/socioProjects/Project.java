@@ -10,6 +10,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import es.uam.app.actions.Add;
+import es.uam.app.actions.Delete;
+import es.uam.app.actions.Update;
 import es.uam.app.main.exceptions.FatalException;
 import projectHistory.Action;
 import projectHistory.History;
@@ -416,5 +419,13 @@ public interface Project extends EObject {
 	String getProjectData();
 
 	void remove();
+
+	Add<? extends Project> createAddAction(EObject element);
+
+	Delete<? extends Project> createDeleteAction(EObject element);
+
+	Update<? extends Project> createUpdateAction(EObject element, EObject new_, EObject old);
+	void save();
+
 
 } // Project

@@ -1,9 +1,9 @@
 package es.uam.app.actions.metamodels;
 
-import es.uam.app.actions.AddMetamodel;
-import es.uam.app.projects.ecore.IsAttribute;
-import es.uam.app.projects.ecore.IsClass;
 import socioProjects.MetamodelProject;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.projects.IsAttribute;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 
@@ -13,29 +13,18 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 	private IsClass of = null;
 	private int min = 0, max = -1;
 
-	private AttributeControl object = null;
-
-	private MetamodelProject project;
-	private boolean isUndo=false;
-	private boolean isExecute=false;
 
 	public CreateAttribute(MetamodelProject proj, String name, IsClass of, int min, int max) {
-		super();
-		this.project=proj;
+		super(proj);
 		this.name = name;
-		
 		this.of =of;
-	
 		this.min = min;
 		this.max = max;
 	}
 
 	public CreateAttribute(MetamodelProject proj, String name, IsClass of) {
-		super();
-		
-		this.project=proj;
+		super(proj);
 		this.name = name;
-		
 		this.of = of;
 		
 	}
@@ -45,6 +34,15 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 		this.object=attributeControl;
 		of= attributeControl.getParent();
 	}*/
+
+	public CreateAttribute(MetamodelProject p, AttributeControl attributeControl) {
+		super(p);
+		setObject(attributeControl);
+		this.of=attributeControl.getParent();
+		this.name=attributeControl.getName();
+		this.setExecute(true);
+		this.setUndo(false);
+	}
 
 	@Override
 	public void doIt() throws Exception {
@@ -61,7 +59,7 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 			attr.setLowerBound(min);
 			attr.setUpperBound(max);
 			getProject().addAttribute(attr, ofClass);
-			object = attr;
+			setObject(attr);
 		}else{
 			throw new Exception("Problem ocurred in CreateAttribute: the attribute "+name+" in "+ofClass.getName()+" already exists");
 		}
@@ -72,7 +70,7 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 	@Override
 	public AttributeControl getObject() {
 		
-		return object;
+		return (AttributeControl)super.getObject();
 	}
 
 	@Override
@@ -87,7 +85,7 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 			return;
 		}
 		
-		project.unAddAttribute(object, object.getParent());
+		getProject().unAddAttribute(getObject(), getObject().getParent());
 		setUndo(true);
 		
 	}
@@ -97,35 +95,8 @@ public class CreateAttribute extends AddMetamodel implements IsAttribute {
 		if (!isExecute() || !isUndo()){
 			return;
 		}
-		project.addAttribute(object, of.getClassControl());
+		getProject().addAttribute(getObject(), of.getClassControl());
 		
 		setUndo(false);
 	}
-
-	public MetamodelProject getProject() {
-		return project;
-	}
-
-	public void setProject(MetamodelProject project) {
-		this.project = project;
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
-	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
-	}
-
-	public boolean isExecute() {
-		return isExecute;
-	}
-
-	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
-	}
-
-
-
 }

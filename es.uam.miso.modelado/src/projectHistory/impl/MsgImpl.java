@@ -564,7 +564,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public Map<String, List<Action>> getSentencesMap() {
 		Map<String, List<Action>> ret = new HashMap<>();
-		for (Sentence sentence : sentences) {
+		for (Sentence sentence : getSentences()) {
 			ret.put(sentence.getSentence(), sentence.getCommands());
 		}
 		return ret;
@@ -605,7 +605,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	public List<Action> getAllActions() {
 
 		List<Action> actions = new ArrayList<Action>();
-		for (Sentence s : sentences) {
+		for (Sentence s : getSentences()) {
 			actions.addAll(s.getCommands());
 		}
 		return actions;

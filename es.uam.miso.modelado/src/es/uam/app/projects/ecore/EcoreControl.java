@@ -1,5 +1,6 @@
 package es.uam.app.projects.ecore;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,10 @@ public class EcoreControl implements Controlador, FileProject {
 		 * paquete por defecto.
 		 */
 		try {
+			File f=new File(uri);
+			if (!f.exists()){
+				throw new FatalException("In class "+this.getClass().getName()+": the file "+ uri+" can be opened");
+			}
 			resource = SocioData.getResourceSet().getResource(URI.createURI(uri), true);
 		} catch (Exception e) {
 			throw new FatalException("In class "+this.getClass().getName()+": the file "+ uri+" can be opened");

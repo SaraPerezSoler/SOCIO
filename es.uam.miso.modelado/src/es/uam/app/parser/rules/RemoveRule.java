@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import es.uam.app.actions.metamodels.RemoveAttribute;
 import es.uam.app.actions.metamodels.RemoveClass;
 import es.uam.app.actions.metamodels.RemoveReference;
@@ -13,10 +12,10 @@ import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.IsClass;
 import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
@@ -45,10 +44,10 @@ public class RemoveRule extends MetemodelRule {
 				if (f != null) {
 					if (f instanceof AttributeControl) {
 						RemoveAttribute ra = new RemoveAttribute(proj, (AttributeControl) f);
-						ret.add(ra);
+						ret.add(ra.getAction());
 					} else {
 						RemoveReference rr = new RemoveReference(proj, (ReferenceControl) f);
-						ret.add(rr);
+						ret.add(rr.getAction());
 					}
 				}
 			}
@@ -59,25 +58,25 @@ public class RemoveRule extends MetemodelRule {
 				List<ReferenceControl> references = proj.getRefereceTo(c);
 				for (ReferenceControl r : references) {
 					UpdateRefType upr = new UpdateRefType(proj, r, null);
-					ret.add(upr);
+					ret.add(upr.getAction());
 				}
 				List<ClassControl> subTypes = proj.getSubTypesOf(c);
 				for (ClassControl subType : subTypes) {
 					UpdateClassRemoveSuperType ucrst = new UpdateClassRemoveSuperType(proj, subType, c);
-					ret.add(ucrst);
+					ret.add(ucrst.getAction());
 				}
 
 				RemoveClass rc = new RemoveClass(proj, c);
-				ret.add(rc);
+				ret.add(rc.getAction());
 			} else {
 				Feature f = proj.getFeature(dobj.lowerCammelCase());
 				if (f != null) {
 					if (f instanceof AttributeControl) {
 						RemoveAttribute ra = new RemoveAttribute(proj, (AttributeControl) f);
-						ret.add(ra);
+						ret.add(ra.getAction());
 					} else {
 						RemoveReference rr = new RemoveReference(proj, (ReferenceControl) f);
-						ret.add(rr);
+						ret.add(rr.getAction());
 					}
 				}
 			}

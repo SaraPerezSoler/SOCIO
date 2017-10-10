@@ -1,4 +1,4 @@
-package es.uam.app.projects.ecore;
+package es.uam.app.projects;
 
 import java.io.FileNotFoundException;
 
@@ -12,7 +12,7 @@ import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import socioProjects.MetamodelProject;
 
-public interface IsReference {
+public interface IsReference extends IsInterface{
 
 //	public static IsReference getReference(NP ref, IsClass of, Project proj)
 //			throws FileNotFoundException, JWNLException {

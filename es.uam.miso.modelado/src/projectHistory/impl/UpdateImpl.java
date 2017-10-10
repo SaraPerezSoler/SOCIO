@@ -10,8 +10,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import projectHistory.Update;
 import projectHistory.projectHistoryPackage;
+import socioProjects.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +29,7 @@ import projectHistory.projectHistoryPackage;
  *
  * @generated
  */
-public abstract class UpdateImpl extends ActionImpl implements Update {
+public class UpdateImpl extends ActionImpl implements Update {
 	/**
 	 * The cached value of the '{@link #getOld() <em>Old</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -47,6 +49,8 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	 * @ordered
 	 */
 	protected EObject new_;
+	
+	private es.uam.app.actions.Update<? extends Project> action;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,6 +78,18 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 	 */
 	public EObject getOld() {
 		return old;
+	}
+
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOt
+	 */
+	public void doIt() throws Exception {
+		super.doIt();
+		setOld(getAction().getOld());
+		setNew(getAction().getNew());
 	}
 
 	/**
@@ -235,6 +251,26 @@ public abstract class UpdateImpl extends ActionImpl implements Update {
 				return new_ != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	protected es.uam.app.actions.Update<? extends Project> createAction() {
+		Project p=getProject();
+		return p.createUpdateAction(this.getElement(), this.new_, this.old);
+	}
+
+	@Override
+	public void setAction(es.uam.app.actions.Update<? extends Project> action) {
+		this.action=action;
+		
+	}
+
+	@Override
+	public es.uam.app.actions.Update<? extends Project> getAction() {
+		if (action==null){
+			action=createAction();
+		}
+		return action;
 	}
 
 } //UpdateImpl

@@ -12,8 +12,15 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import es.uam.app.actions.Add;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.actions.Delete;
+import es.uam.app.actions.DeleteMetamodel;
+import es.uam.app.actions.Update;
+import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
@@ -411,6 +418,24 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 			ec=new EcoreControl(getFilePath(admin), name);
 			this.model=ec.getObject();
 		}		
+	}
+	@Override
+	public Add<MetamodelProject> createAddAction(EObject element) {
+		return AddMetamodel.createAction(element, this);
+	}
+	@Override
+	public Delete<MetamodelProject> createDeleteAction(EObject element) {
+		
+		return DeleteMetamodel.createAction(this, element);
+	}
+	@Override
+	public Update<MetamodelProject> createUpdateAction(EObject element, EObject new_, EObject old) {
+		return UpdateMetamodel.createAction(element, old, new_, this);
+	}
+	@Override
+	public void save() {
+		ec.save();
+		
 	}
 
 } //MetamodelProjectImpl

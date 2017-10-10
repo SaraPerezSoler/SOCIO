@@ -60,6 +60,9 @@ public class projectHistoryFactoryImpl extends EFactoryImpl implements projectHi
 			case projectHistoryPackage.CREATE_MSG: return createCreateMsg();
 			case projectHistoryPackage.MSG: return createMsg();
 			case projectHistoryPackage.SENTENCE: return createSentence();
+			case projectHistoryPackage.ADD: return createAdd();
+			case projectHistoryPackage.DELETE: return createDelete();
+			case projectHistoryPackage.UPDATE: return createUpdate();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -103,6 +106,36 @@ public class projectHistoryFactoryImpl extends EFactoryImpl implements projectHi
 	public Sentence createSentence() {
 		SentenceImpl sentence = new SentenceImpl();
 		return sentence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Add createAdd() {
+		AddImpl add = new AddImpl();
+		return add;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Delete createDelete() {
+		DeleteImpl delete = new DeleteImpl();
+		return delete;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Update createUpdate() {
+		UpdateImpl update = new UpdateImpl();
+		return update;
 	}
 
 	/**

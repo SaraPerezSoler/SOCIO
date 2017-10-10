@@ -85,6 +85,7 @@ public class NewProject extends TelegramCommand {
 			}else{//SKip
 				tChannel.write(update, CommandList.NEW_PROJECT, projectName.get(id), null,null);
 			}
+			
 		}else if (s==STATE.GET_PROJECT_NAME){
 
 			this.projectName.put(id, update.getMessage().getText());

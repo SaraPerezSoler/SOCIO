@@ -22,7 +22,7 @@ public abstract class TCommand {
 	public static TCommand helpState;
 	
 	
-	
+	private final String EXIT = "Exit from " + this.getCommand();
 	
 	private static Map<Long, String> chatProject= new HashMap<Long, String>();
 	private static Map<Long, TCommand> chatState= new HashMap<Long, TCommand>();
@@ -148,5 +148,11 @@ public abstract class TCommand {
 
 	public TelegramControl gettChannel() {
 		return tChannel;
+	}
+	
+	public void exit(Update update) {
+		this.setStandardState(update.getMessage().getChatId());
+		SendMessageExc sent = new SendMessageExc(EXIT);
+		tChannel.sendMessage(update.getMessage().getMessageId(), update.getMessage().getChatId(), sent);
 	}
 }

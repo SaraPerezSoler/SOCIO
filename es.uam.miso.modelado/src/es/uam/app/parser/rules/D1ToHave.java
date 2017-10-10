@@ -6,16 +6,17 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
+import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
+import es.uam.app.projects.IsAttribute;
+import es.uam.app.projects.IsClass;
+import es.uam.app.projects.IsReference;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.IsAttribute;
-import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.ecore.IsReference;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
@@ -53,8 +54,8 @@ public class D1ToHave extends MetemodelRule {
 		NP B = A_B.get(i)[1];
 		// A has B// A es una clase del metamodelo
 		IsClass aClass = IsClass.getClass(A, proj);
-		if (aClass instanceof Action) {
-			ret.add((Action) aClass);
+		if (aClass instanceof ProjectAction) {
+			ret.add(((ProjectAction<?>) aClass).getAction());
 		}
 		// Si B tiene adjetivo
 		
@@ -65,12 +66,12 @@ public class D1ToHave extends MetemodelRule {
 			// B.noun es un atributo...
 
 			IsAttribute att = IsAttribute.getAttribute(B.getNoun().getLemma(), aClass, B.getMin(), B.getMax(), proj);
-			if (att instanceof Action) {
-				ret.add((Action) att);
+			if (att instanceof ProjectAction) {
+				ret.add(((ProjectAction<?>) att).getAction());
 			}
 			// ...con tipo B.adjetivo.
 			UpdateAttrType uat = new UpdateAttrType(proj, att, type.getName());
-			ret.add(uat);
+			ret.add(uat.getAction());
 			// Si B.adjetivo no es un tipo definido de ecore
 		} else {
 
@@ -82,20 +83,20 @@ public class D1ToHave extends MetemodelRule {
 			if (bClass instanceof ClassControl) {
 				// B.noun es una referencia...
 				IsReference ref = IsReference.getReference(B, aClass, proj, false);
-				if (ref instanceof Action) {
-					ret.add((Action) ref);
+				if (ref instanceof ProjectAction) {
+					ret.add(((ProjectAction<?>) ref).getAction());
 				}
 				// ...con tipo B.adjetive
 				UpdateRefType urt = new UpdateRefType(proj, ref, bClass);
-				ret.add(urt);
+				ret.add(urt.getAction());
 				// Si B.adjetive no es ni un tipo definido de ecore ni
 				// una clase creada previamente
 			} else {
 				// B es un elemento sin definir que primero que pondrá
 				// como adjetivo sin tipo
 				IsAttribute att = IsAttribute.getAttribute(B, aClass, proj);
-				if (att instanceof Action) {
-					ret.add((Action) att);
+				if (att instanceof ProjectAction) {
+					ret.add(((ProjectAction<?>) att).getAction());
 				}
 			}
 		}

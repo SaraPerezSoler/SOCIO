@@ -1,46 +1,62 @@
-User: SaraMiso at 28/06/17 10:09:01 in Telegram
+User: Sarukii at 06/10/17 03:54:22 in Telegram
+ send: course has a text name
+
+The message cause this actions:
+	* projectHistory.impl.AddImpl@6fc3e1a4
+	* projectHistory.impl.UpdateImpl@3fa76c61
+
+----------------------------
+User: Sarukii at 06/10/17 03:54:08 in Telegram
+ send: an e-learning platform contains users
+
+The message cause this actions:
+	* projectHistory.impl.AddImpl@f339eae
+	* projectHistory.impl.UpdateImpl@2822c6ff
+
+----------------------------
+User: Sarukii at 06/10/17 03:53:44 in Telegram
+ send: remove contais of elearning platform
+
+The message cause this actions:
+	* projectHistory.impl.DeleteImpl@1436a7ab
+
+----------------------------
+User: Sarukii at 06/10/17 03:52:09 in Telegram
+ send: course has a instructor and students
+
+The message cause this actions:
+	* projectHistory.impl.AddImpl@3a4ba480
+	* projectHistory.impl.UpdateImpl@27b71f50
+	* projectHistory.impl.AddImpl@383790cf
+	* projectHistory.impl.UpdateImpl@74971ed9
+
+----------------------------
+User: Sarukii at 06/10/17 03:51:54 in Telegram
+ send: users can be teachers or students
+
+The message cause this actions:
+	* projectHistory.impl.AddImpl@14151bc5
+	* projectHistory.impl.UpdateImpl@3013909b
+	* projectHistory.impl.AddImpl@2a49fe
+	* projectHistory.impl.UpdateImpl@66596a88
+
+----------------------------
+User: Sarukii at 06/10/17 03:51:35 in Telegram
+ send: an e-learning platform contais users
+
+The message cause this actions:
+	* projectHistory.impl.AddImpl@21719a0
+	* projectHistory.impl.AddImpl@76b224cd
+	* projectHistory.impl.UpdateImpl@77ee25f1
+
+----------------------------
+User: Sarukii at 06/10/17 03:51:21 in Telegram
  send: an e-learning platform is made of courses
 
 The message cause this actions:
-	* Create-> class ElearningPlatform
-	* Create-> class Course
-	* Create-> reference course
-	* Update-> Old: reference course [0..-1], type: null, from ElearningPlatform / New: reference course [0..-1], type: Course, from ElearningPlatform
-
-----------------------------
-User: SaraMiso at 28/06/17 10:12:39 in Telegram
- send: a course can be free or paid course
-
-The message cause this actions:
-	* Create-> class PaidCourse
-	* Update-> Old: class PaidCourse / New: class PaidCourse, superTypes: [Course]
-	* Create-> class FreeCourse
-	* Update-> Old: class FreeCourse / New: class FreeCourse, superTypes: [Course]
-
-----------------------------
-User: SaraMiso at 28/06/17 10:13:40 in Telegram
- send: /talk The course is evaluated with a test
-
-The message cause this actions:
-	* Create-> class Test
-	* Create-> reference evaluatedWith
-	* Update-> Old: reference evaluatedWith [0..1], type: null, from Course / New: reference evaluatedWith [0..1], type: Test, from Course
-
-----------------------------
-User: SaraMiso at 28/06/17 10:14:56 in Telegram
- send: users can be students or instructors
-
-The message cause this actions:
-	* Create-> class Instructor
-	* Update-> Old: class Instructor / New: class Instructor, superTypes: [User]
-	* Create-> class Student
-	* Update-> Old: class Student / New: class Student, superTypes: [User]
-
-----------------------------
-User: SaraMiso at 28/06/17 10:16:01 in Telegram
- send: /talk price is double
-
-The message cause this actions:
-	* Update-> Old: attribute price [0..1], type: null, from PaidCourse / New: attribute price [0..1], type: EDouble, from PaidCourse
+	* projectHistory.impl.AddImpl@344344fa
+	* projectHistory.impl.AddImpl@2db2cd5
+	* projectHistory.impl.AddImpl@70e659aa
+	* projectHistory.impl.UpdateImpl@615f972
 
 ----------------------------

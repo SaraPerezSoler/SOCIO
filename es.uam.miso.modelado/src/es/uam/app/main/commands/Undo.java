@@ -2,6 +2,7 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 
+import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -19,7 +20,7 @@ public class Undo extends MainCommand {
 		if (!(rm.getUser().canEdit(actual))){
 			throw new NotAccessException("");
 		}
-		File png = actual.undo();
+		File png = SocioData.getSocioData().undo(actual, rm);
 		throw new SendMessageExc(rm.getText(), png);		
 	}
 

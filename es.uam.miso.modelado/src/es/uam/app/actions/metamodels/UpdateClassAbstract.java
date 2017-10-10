@@ -1,11 +1,8 @@
 package es.uam.app.actions.metamodels;
 
-import org.eclipse.emf.ecore.EObject;
-
 import es.uam.app.actions.UpdateMetamodel;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.IsClass;
 import socioProjects.MetamodelProject;
 
 public class UpdateClassAbstract extends UpdateMetamodel {
@@ -13,29 +10,22 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 	private IsClass class_ = null;
 	private boolean abstract_=false;
 	
-
-	private ClassControl old=null;
-	private ClassControl new_=null;
-	private ClassControl object=null;
-	
-	private MetamodelProject project;
-	private boolean isUndo=false;
-	private boolean isExecute=false;
-	
 	public UpdateClassAbstract(MetamodelProject proj, IsClass class_, boolean abstract_) {
-		setProject(proj);
+		super(proj);
 		this.class_ =  class_;
 		
 		this.abstract_=abstract_;
 		
 	}
 
-	/*public UpdateClassAbstract(ClassControl object, ClassControl old, ClassControl new_) {
-		super(null);
-		this.object=object;
-		this.old=old;
-		this.new_=new_;
-	}*/
+	public UpdateClassAbstract(MetamodelProject p, ClassControl classControl, ClassControl oldC, ClassControl newC) {
+		super(p);
+		setObject(classControl);
+		this.class_=classControl;
+		setOld(oldC);
+		setNew(newC);
+		setExecute(true);
+	}
 
 	@Override
 	public void doIt() throws Exception {
@@ -48,10 +38,10 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 			throw new Exception("Problem ocurred in"+this.getClass().getName()+": the class is not found");
 		}
 		
-		old=classClassControl.copyObject();
+		setOld(classClassControl.copyObject());
 		classClassControl.setAbstract(abstract_);
-		new_=classClassControl.copyObject();
-		object= classClassControl;
+		setNew(classClassControl.copyObject());
+		setObject(classClassControl);
 		
 		setExecute(true);
 
@@ -59,18 +49,8 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 
 
 	@Override
-	public Controlador getObject() {
-		return object;
-	}
-
-	@Override
-	public EObject getOld() {
-		return old.getObject();
-	}
-
-	@Override
-	public EObject getNew() {
-		return new_.getObject();
+	public ClassControl getObject() {
+		return (ClassControl) super.getObject();
 	}
 	
 	@Override
@@ -79,7 +59,7 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 			return;
 		}
 		
-		object.setAbstract(old.getAbstract());
+		getObject().setAbstract(((ClassControl)getOldC()).getAbstract());
 		setUndo(true);
 	}
 
@@ -88,32 +68,7 @@ public class UpdateClassAbstract extends UpdateMetamodel {
 		if (!isExecute() || !isUndo()){
 			return;
 		}
-		this.object.setAbstract(new_.getAbstract());
+		this.getObject().setAbstract(((ClassControl)getNewC()).getAbstract());
 		setUndo(false);
 	}
-
-	public MetamodelProject getProject() {
-		return project;
-	}
-
-	public void setProject(MetamodelProject project) {
-		this.project = project;
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
-	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
-	}
-
-	public boolean isExecute() {
-		return isExecute;
-	}
-
-	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
-	}
-
 }

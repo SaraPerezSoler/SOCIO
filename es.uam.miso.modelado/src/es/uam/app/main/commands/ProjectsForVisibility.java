@@ -1,12 +1,15 @@
 package es.uam.app.main.commands;
 
+import java.util.List;
+
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
+import socioProjects.Project;
 import socioProjects.Visibility;
 
-public class ProjectsForVisibility extends MainCommand {
+public class ProjectsForVisibility extends MainCommand implements DataFormat{
 
 
 	public ProjectsForVisibility() {
@@ -17,8 +20,9 @@ public class ProjectsForVisibility extends MainCommand {
 	public void execute(Msg rm) throws SendMessageExc, FatalException {
 		Visibility v=Visibility.get(rm.getText());
 		
-		String list = SocioData.getSocioData().getProjectsForVisibility(v);
-		throw new SendMessageExc(list);
+		List<Project> list = SocioData.getSocioData().getProjectsForVisibility(v);
+		
+		throw new SendMessageExc(this.printVisibilityProjects(v, list));
 	}
 
 	@Override

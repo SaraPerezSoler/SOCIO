@@ -1,30 +1,28 @@
 package es.uam.app.actions.metamodels;
 
-
-import es.uam.app.actions.AddMetamodel;
-import es.uam.app.projects.ecore.IsClass;
 import socioProjects.MetamodelProject;
+import es.uam.app.actions.AddMetamodel;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.ClassControl;
 
 public class CreateClass extends AddMetamodel implements IsClass{
 
 	private String class_;
-	private ClassControl object=null;
 	private boolean abstract_=false;	
 	
-	/*public CreateClass(ClassControl object) {
-		super(null);
-		this.object=object;
-	}*/
-	
-	private MetamodelProject project;
-	private boolean isUndo=false;
-	private boolean isExecute=false;
-	
 	public CreateClass(MetamodelProject proj, String class_, boolean abs) {
-		setProject(proj);
+		super(proj);
 		this.class_ = class_;
 		this.abstract_=abs;
+	}
+
+	public CreateClass(MetamodelProject p, ClassControl classControl) {
+		super(p);
+		super.setObject(classControl);
+		this.class_=classControl.getName();
+		this.abstract_=classControl.getAbstract();
+		setExecute(true);
+		setUndo(false);
 	}
 
 	@Override
@@ -36,7 +34,7 @@ public class CreateClass extends AddMetamodel implements IsClass{
 			ClassControl clase=new ClassControl(class_);
 			clase.setAbstract(abstract_);
 			getProject().addClass(clase);
-			object=clase;
+			setObject(clase);
 		}else{
 			throw new Exception("Problem ocurred in CreateClass: the class "+class_ +"  already exists");
 		}
@@ -46,7 +44,7 @@ public class CreateClass extends AddMetamodel implements IsClass{
 	@Override
 	public ClassControl getObject(){
 		
-		return object;
+		return (ClassControl)super.getObject();
 	}
 
 	@Override
@@ -61,7 +59,7 @@ public class CreateClass extends AddMetamodel implements IsClass{
 			return;
 		}
 		
-		project.unAddClass(object);
+		getProject().unAddClass(getObject());
 		setUndo(true);
 	}
 
@@ -70,33 +68,10 @@ public class CreateClass extends AddMetamodel implements IsClass{
 		if (!isExecute() || !isUndo()){
 			return;
 		}
-		project.addClass(getObject());
+		getProject().addClass(getObject());
 		setUndo(false);
 	}
 
-	public MetamodelProject getProject() {
-		return project;
-	}
 
-	public void setProject(MetamodelProject project) {
-		this.project = project;
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
-	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
-	}
-
-	public boolean isExecute() {
-		return isExecute;
-	}
-
-	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
-	}
-	
 	
 }

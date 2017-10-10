@@ -4,8 +4,10 @@ package projectHistory.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import es.uam.app.actions.ProjectAction;
 import projectHistory.Add;
 import projectHistory.projectHistoryPackage;
+import socioProjects.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +16,10 @@ import projectHistory.projectHistoryPackage;
  *
  * @generated
  */
-public abstract class AddImpl extends ActionImpl implements Add {
+public class AddImpl extends ActionImpl implements Add {
+	
+	private es.uam.app.actions.Add<? extends Project> action;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33,5 +38,28 @@ public abstract class AddImpl extends ActionImpl implements Add {
 	protected EClass eStaticClass() {
 		return projectHistoryPackage.Literals.ADD;
 	}
+
+	@Override
+	protected es.uam.app.actions.Add<? extends Project> createAction() {
+			Project p=getProject();
+			return p.createAddAction(getElement());
+		
+	}
+
+	@Override
+	public ProjectAction<? extends Project> getAction() {
+		if(action==null){
+			action=createAction();
+		}
+		return action;
+	}
+
+	public void setAction(es.uam.app.actions.Add<? extends Project> action) {
+		this.action = action;
+	}
+
+
+	
+	
 
 } //AddImpl

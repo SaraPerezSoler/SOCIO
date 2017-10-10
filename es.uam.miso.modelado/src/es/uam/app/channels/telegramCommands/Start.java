@@ -30,7 +30,6 @@ public class Start extends TelegramCommand {
 		
 		
 		this.setState(update.getMessage().getChatId());
-		this.setProject(update.getMessage().getChatId(), "");
 		this.removerAllUserTalk(update.getMessage().getChatId());
 		
 		this.tChannel.write(update, CommandList.NO_COMMAND, null, null, null);

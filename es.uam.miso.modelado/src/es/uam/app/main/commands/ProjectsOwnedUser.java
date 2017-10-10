@@ -1,12 +1,15 @@
 package es.uam.app.main.commands;
 
+import java.util.List;
+
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
+import socioProjects.Project;
 import socioProjects.User;
 
-public class ProjectsOwnedUser extends MainCommand {
+public class ProjectsOwnedUser extends MainCommand implements DataFormat{
 
 
 	public ProjectsOwnedUser() {
@@ -16,8 +19,9 @@ public class ProjectsOwnedUser extends MainCommand {
 	public void execute(Msg rm) throws SendMessageExc, FatalException {
 	
 		User u=searchUser(rm.getUserToSearch());
-		String list = SocioData.getSocioData().getProjectForUser(u);
-		throw new SendMessageExc(list);
+		List<Project> list = SocioData.getSocioData().getProjects(u);
+		
+		throw new SendMessageExc(this.printOwnProject(u, list));
 	}
 
 	@Override

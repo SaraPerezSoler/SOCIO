@@ -250,6 +250,46 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 		}
 	}
+	
+	public void sendMessageWithInline(long chatId, SendMessageExc sMessage, String[][] options) {
+
+		InlineKeyboardMarkup inlineKeyBoar = new InlineKeyboardMarkup();
+		List<List<InlineKeyboardButton>> buttons = new ArrayList<List<InlineKeyboardButton>>();
+		for (int i = 0; i < options.length; i++) {
+			List<InlineKeyboardButton> row = new ArrayList<InlineKeyboardButton>();
+			for (int j = 0; j < options[i].length; j++) {
+				InlineKeyboardButton button = new InlineKeyboardButton();
+				button.setText(options[i][j]);
+				button.setCallbackData(options[i][j]);
+				row.add(button);
+			}
+			buttons.add(row);
+		}
+		inlineKeyBoar.setKeyboard(buttons);
+
+		if (sMessage.hasText()) {
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+
+			send.setReplyMarkup(inlineKeyBoar);
+			try {
+				sendMessage(send);
+
+			} catch (TelegramApiException e) {
+				Main.log.error(e);
+				;
+			}
+		} else if (sMessage.hasPng()) {
+			SendPhoto photo = new SendPhoto().setChatId(chatId).setNewPhoto(sMessage.getPng());
+			if (!sMessage.hasText()) {
+				photo.setReplyMarkup(inlineKeyBoar);
+			}
+			try {
+				sendPhoto(photo);
+			} catch (TelegramApiException e) {
+				Main.log.error(e);
+			}
+		}
+	}
 
 	public void sendMessageWithKeyBoar(int msgId, long chatId, SendMessageExc sMessage, String[][] options) {
 
@@ -267,6 +307,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 			buttons.add(row);
 		}
+		keyboardMarkup.setResizeKeyboard(true);
 		keyboardMarkup.setKeyboard(buttons);
 
 		if (sMessage.hasText()) {

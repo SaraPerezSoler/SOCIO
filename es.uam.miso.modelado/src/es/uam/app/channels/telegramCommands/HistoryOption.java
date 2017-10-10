@@ -2,6 +2,9 @@ package es.uam.app.channels.telegramCommands;
 
 import org.telegram.telegrambots.api.objects.Update;
 
+import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
+
 
 public abstract class HistoryOption {
 
@@ -19,4 +22,6 @@ public abstract class HistoryOption {
 	
 	public abstract void userAnswerText(Update update);
 	public abstract void start(Update update);
+	public abstract boolean modellingAnswerYou(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage);
+	
 }

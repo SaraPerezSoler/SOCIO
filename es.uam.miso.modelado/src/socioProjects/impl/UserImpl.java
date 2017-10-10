@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -94,7 +94,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long ID_EDEFAULT = 0L;
+	protected static final long ID_EDEFAULT = -1L;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -159,7 +159,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	protected EList<Project> ownProjects;
 
 	/**
-	 * The cached value of the '{@link #getContributions() <em>Contributions</em>}' reference list.
+	 * The cached value of the '{@link #getContributions() <em>Contributions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContributions()
@@ -290,7 +290,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 */
 	public EList<Contribution> getContributions() {
 		if (contributions == null) {
-			contributions = new EObjectResolvingEList<Contribution>(Contribution.class, this, SocioProjectsPackage.USER__CONTRIBUTIONS);
+			contributions = new EObjectContainmentEList<Contribution>(Contribution.class, this, SocioProjectsPackage.USER__CONTRIBUTIONS);
 		}
 		return contributions;
 	}
@@ -343,7 +343,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated NOT
 	 */
 	public boolean isAdmin(Project project) {
-		if (ownProjects.contains(project)){
+		if (getOwnProjects().contains(project)){
 			return true;
 		}
 		return false;
@@ -442,6 +442,8 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		switch (featureID) {
 			case SocioProjectsPackage.USER__OWN_PROJECTS:
 				return ((InternalEList<?>)getOwnProjects()).basicRemove(otherEnd, msgs);
+			case SocioProjectsPackage.USER__CONTRIBUTIONS:
+				return ((InternalEList<?>)getContributions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -608,6 +610,11 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 		result.append(channel);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String userInfo() {
+		return this.channel+"/"+this.nick+"\n\t"+this.name+", "+this.id;
 	}
 
 } //UserImpl

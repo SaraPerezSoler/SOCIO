@@ -3,19 +3,20 @@
 package projectHistory.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import es.uam.app.actions.ProjectAction;
 import es.uam.app.projects.ecore.Controlador;
 import projectHistory.Action;
 import projectHistory.projectHistoryPackage;
+import socioProjects.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,8 +40,9 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject element;
+	protected EObject element;	
 
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,49 +105,47 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated NOt
 	 */
-	public abstract void doIt() throws Exception;;
+	public void doIt() throws Exception {
+		getAction().doIt();
+		setElement(getAction().getEObject());
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract void undoIt() throws Exception;;
+	public void undoIt() throws Exception{
+		getAction().undoIt();
+		
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void redoIt() throws Exception{
+		getAction().redoIt();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public abstract void redoIt() throws Exception;;
+	public String getActionName(){
+		return getAction().getActionName();
+	}
+	
+	@Override
+	public boolean isUndo() throws Exception {
+		return getAction().isUndo();
+	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract boolean isUndo();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract boolean isExecute();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract String getActionName();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public abstract Controlador getObject();
+	@Override
+	public boolean isExecute() {
+		return getAction().isExecute();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,13 +236,52 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 			}
 				return null;
 			case projectHistoryPackage.ACTION___IS_UNDO:
+			try {
 				return isUndo();
+			} catch (Exception e) {
+				throw new InvocationTargetException(e);
+			}
 			case projectHistoryPackage.ACTION___IS_EXECUTE:
 				return isExecute();
 			case projectHistoryPackage.ACTION___GET_ACTION_NAME:
 				return getActionName();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+	
+	public Project getProject(){
+		
+		//project->history->msg->sentence->action
+		
+		if (this.eContainer()!=null){//el contenedor de action es sentence
+			if (this.eContainer().eContainer()!=null){//contenedor de sentence es msg
+				if (this.eContainer().eContainer().eContainer()!=null){//contenedor de msg es history
+					if (this.eContainer().eContainer().eContainer().eContainer()!=null){//contenedor de history es project
+						EObject obj=this.eContainer().eContainer().eContainer().eContainer();
+						if (obj instanceof Project){
+							return ((Project)obj);
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public abstract ProjectAction<? extends Project> getAction();
+	
+	protected abstract ProjectAction<? extends Project> createAction();
+	
+	public void setObject(Controlador object) {
+		setElement(object.getObject());
+	}
+	@Override
+	public Controlador getObject() {
+		return getAction().eobjectToControlador(getElement());
+	}	
+	
+	public String toString(){
+		return getAction().toString();
 	}
 
 } //ActionImpl

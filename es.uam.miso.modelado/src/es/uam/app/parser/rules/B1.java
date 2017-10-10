@@ -4,13 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
-import es.uam.app.projects.ecore.IsClass;
-import es.uam.app.projects.ecore.IsReference;
+import es.uam.app.projects.IsClass;
+import es.uam.app.projects.IsReference;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
@@ -47,15 +47,15 @@ public class B1 extends MetemodelRule {
 			// Comprobamos si exite la clase A, sino ponemos una accion para
 			// crearla.
 			IsClass classA = IsClass.getClass(A, proj);
-			if (classA instanceof Action) {
-				ret.add((Action) classA);
+			if (classA instanceof ProjectAction) {
+				ret.add(((ProjectAction<?>)classA).getAction());
 			}
 
 			// Comprobamos si exite la clase B, sino ponemos una accion para
 			// crearla.
 			IsClass classB = IsClass.getClass(B, proj);
-			if (classB instanceof Action) {
-				ret.add((Action) classB);
+			if (classB instanceof ProjectAction) {
+				ret.add(((ProjectAction<?>)classB).getAction());
 			}
 
 			IsReference ref = null;
@@ -65,12 +65,12 @@ public class B1 extends MetemodelRule {
 				ref = IsReference.getReference(verb.lowerCammelCase(), classA, B.getMin(), B.getMax(), proj, false);
 			}
 
-			if (ref instanceof Action) {
-				ret.add((Action) ref);
+			if (ref instanceof ProjectAction) {
+				ret.add(((ProjectAction<?>)ref).getAction());
 			}
 			// Se crea la accion para dale Typo a la referencia.
 			UpdateRefType urt = new UpdateRefType(proj, ref, classB);
-			ret.add(urt);
+			ret.add(urt.getAction());
 		return ret;
 	}
 

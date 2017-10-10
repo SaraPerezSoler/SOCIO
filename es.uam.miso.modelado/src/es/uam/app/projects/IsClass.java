@@ -1,4 +1,4 @@
-package es.uam.app.projects.ecore;
+package es.uam.app.projects;
 
 import java.io.FileNotFoundException;
 
@@ -9,7 +9,7 @@ import es.uam.app.projects.ecore.ClassControl;
 import net.didion.jwnl.JWNLException;
 import socioProjects.MetamodelProject;
 
-public interface IsClass {
+public interface IsClass extends IsInterface{
 
 	
 	public static IsClass getClass(NP clas, MetamodelProject proj) throws FileNotFoundException, JWNLException {
@@ -57,6 +57,6 @@ public interface IsClass {
 	}
 	
 	public ClassControl getClassControl() throws Exception;
-	@Override
-	public boolean equals(Object o);
+	
+
 }

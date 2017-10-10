@@ -72,18 +72,7 @@ public class SocioData {
 			try {
 				resource = getResourceSet().getResource(URI.createURI(PROJECTS_PATH + "/" + FILENAME), true);
 				socioApp = (SocioApp) resource.getContents().get(0);
-				List<Project> remove=new ArrayList<>();
-				for (Project p: socioApp.getProjects()){
-					try{
-					p.initialize();
-					}catch (FatalException e) {
-						remove.add(p);
-					
-					}
-				}
-				for (Project p: remove){
-					removeProject(p);
-				}
+				loadProjects();
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new FatalException("In class " + this.getClass().getName() + ": the file " + PROJECTS_PATH + "/"
@@ -93,17 +82,37 @@ public class SocioData {
 			this.resource = getResourceSet().createResource(URI.createURI(PROJECTS_PATH + "/" + FILENAME));
 			socioApp = SocioProjectsFactoryImpl.eINSTANCE.createSocioApp();
 			resource.getContents().add(socioApp);
-			save();
+			save(null);
 		}
 
-		save();
+		save(null);
 	}
 
-	public void save() {
+	public void loadProjects() throws Exception {
+		List<Project> remove = new ArrayList<>();
+		for (Project p : socioApp.getProjects()) {
+			try {
+				p.initialize();
+			} catch (FatalException e) {
+				remove.add(p);
+
+			}
+		}
+		for (Project p : remove) {
+			removeProject(p);
+		}
+
+		save(null);
+	}
+
+	public void save(Project p) {
 		try {
 			/*
 			 * Save the resource
 			 */
+			if (p != null) {
+				p.save();
+			}
 			resource.save(null);
 
 		} catch (IOException e) {
@@ -169,6 +178,29 @@ public class SocioData {
 		}
 	}
 
+	public List<User> getAllUser(Long id) {
+		List<User> users = socioApp.getUsers();
+		List<User> usersValid = new ArrayList<>();
+		for (User u : users) {
+			if (u.getId() == id) {
+				usersValid.add(u);
+			}
+		}
+		return usersValid;
+
+	}
+
+	public List<User> getAllUser(String nick) {
+		List<User> users = socioApp.getUsers();
+		List<User> usersValid = new ArrayList<>();
+		for (User u : users) {
+			if (u.getNick().equalsIgnoreCase(nick)) {
+				usersValid.add(u);
+			}
+		}
+		return usersValid;
+	}
+
 	public Project getProject(String name, User u) {
 		List<Project> projects = socioApp.getProjects();
 		for (Project p : projects) {
@@ -189,12 +221,24 @@ public class SocioData {
 		return null;
 	}
 
-	public File execute(Project p, Msg msg) throws Exception{
-		File f=p.execute(msg);
-		save();
+	public File execute(Project p, Msg msg) throws Exception {
+		File f = p.execute(msg);
+		save(p);
 		return f;
 	}
-	
+
+	public File undo(Project p, Msg msg) throws Exception {
+		File f = p.undo();
+		save(p);
+		return f;
+	}
+
+	public File redo(Project p, Msg msg) throws Exception {
+		File f = p.redo();
+		save(p);
+		return f;
+	}
+
 	public List<Project> getProjects(User user) {
 		return user.getOwnProjects();
 	}
@@ -208,22 +252,23 @@ public class SocioData {
 	}
 
 	public User addUser(User u) {
-		User aux;
+		User aux=null;
 		if (u.getId() != -1) {
 			aux = getUser(u.getId(), u.getChannel());
-		} else {
+		}
+		if (aux==null){
 			aux = getUser(u.getNick(), u.getChannel());
 		}
 
 		if (aux == null) {
 			socioApp.getUsers().add(u);
-			save();
+			save(null);
 			return u;
 		} else {
 			aux.setId(u.getId());
 			aux.setNick(u.getNick());
 			aux.setName(u.getName());
-			save();
+			save(null);
 			return aux;
 		}
 	}
@@ -269,7 +314,7 @@ public class SocioData {
 
 		p.getHistory().setCreateMsg(cmsg);
 		socioApp.getProjects().add(p);
-		save();
+		save(p);
 	}
 
 	public void removeProject(String name, Msg msg) throws Exception {
@@ -286,7 +331,7 @@ public class SocioData {
 		aux.getAdmin().getOwnProjects().remove(aux);
 		socioApp.getProjects().remove(aux);
 
-		save();
+		save(null);
 	}
 
 	public void removeProject(Project p) throws Exception {
@@ -297,87 +342,47 @@ public class SocioData {
 		}
 		p.remove();
 		socioApp.getProjects().remove(p);
-		save();
+		save(null);
 	}
 
-	public String getProjectForUser(User user) {
-		List<Project> projects = user.getOwnProjects();
-		if (projects.isEmpty()) {
-			return "The user " + user.getNick() + " doesn't have own projects.";
-		}
-		String ret;
-		if (user.getNick().endsWith("s")) {
-			ret = user.getNick() + "' projects:\n";
-		} else {
-			ret = user.getNick() + "'s projects:\n";
-		}
-		for (Project p : projects) {
-			ret += "> " + p.getProjectData() + "\n";
-		}
-
-		return ret;
-	}
-
-	public String getProjectsForVisibility(Visibility v) {
+	public List<Project> getProjectsForVisibility(Visibility v) {
 		List<Project> projects = getProjects();
+		List<Project> ret = new ArrayList<>();
 
-		int count = 0;
-		String ret = "Projects with visibility " + v.getName() + ":\n";
 		for (Project p : projects) {
 			if (p.getVisibility().equals(v)) {
-				ret += "> " + p.getProjectData() + "\n";
-				count++;
+				ret.add(p);
 			}
-		}
-		if (count == 0) {
-			ret = "";
 		}
 		return ret;
 	}
 
-	public String getProjectsForUserPermision(User user) {
-		String ret = getProjectForUser(user);
-
+	public List<Project> getProjectsForUserCanWrite(User user) {
 		List<Contribution> contributionProjects = user.getContributions();
-		List<Project> read = new ArrayList<>();
 		List<Project> write = new ArrayList<>();
 		for (Contribution c : contributionProjects) {
 			if (c.getAccess().equals(Access.EDIT)) {
 				write.add(c.getProject());
-			} else {
+			}
+		}
+		return write;
+	}
+
+	public List<Project> getProjectsForUserCanRead(User user) {
+		List<Contribution> contributionProjects = user.getContributions();
+		List<Project> read = new ArrayList<>();
+		for (Contribution c : contributionProjects) {
+			if (c.getAccess().equals(Access.READ)) {
 				read.add(c.getProject());
 			}
 		}
-
-		if (!write.isEmpty()) {
-			ret += "\nProjects that " + user.getNick() + " can edit:\n";
-			for (Project p : write) {
-				ret += "> " + p.getProjectData() + "\n";
-			}
-		}
-		if (!read.isEmpty()) {
-			ret += "\nProjects that " + user.getNick() + " can read:\n";
-			for (Project p : read) {
-				ret += "> " + p.getProjectData() + "\n";
-			}
-		}
-
-		ret += "\n" + getProjectsForVisibility(Visibility.PUBLIC);
-		return ret;
-	}
-
-	public String getAllProjects() {
-		String ret = getProjectsForVisibility(Visibility.PUBLIC);
-		ret += "\n" + getProjectsForVisibility(Visibility.PROTECTED);
-		ret += "\n" + getProjectsForVisibility(Visibility.PRIVATE);
-		return ret;
+		return read;
 	}
 
 	public String getProjectData(Project p) {
 		List<User> users = getUsers();
 
 		String ret = "Project: " + p.getProjectData() + "\n";
-		ret += "Visibility: " + p.getVisibility().getName() + "\n";
 
 		String usersCanEdit = "Users can edit:\n";
 		String usersCanRead = "Users can read:\n";
@@ -388,9 +393,57 @@ public class SocioData {
 				usersCanRead += "> " + u.getNick() + ", " + u.getChannel() + "\n";
 			}
 		}
-		ret += usersCanEdit + "\n" + usersCanRead;
+		if (p.getVisibility().equals(Visibility.PRIVATE)) {
+			ret += usersCanEdit + "\n" + usersCanRead;
+		} else if (p.getVisibility().equals(Visibility.PROTECTED)) {
+			ret += usersCanEdit;
+		}
 
 		return ret;
+	}
+
+	public List<User> getUsers(Project p) {
+		List<User> users = getUsers();
+		List<User> ret = new ArrayList<User>();
+		if (p.getVisibility().equals(Visibility.PRIVATE)) {
+			for (User u : users) {
+				if ((u.canEdit(p) || u.canRead(p)) && !u.isAdmin(p)) {
+					ret.add(u);
+				}
+			}
+		} else if (p.getVisibility().equals(Visibility.PROTECTED)) {
+			for (User u : users) {
+				if (u.canEdit(p) && !u.isAdmin(p)) {
+					ret.add(u);
+				}
+			}
+		}
+		return ret;
+
+	}
+
+	public void changeProjectVisibility(Project actual, Visibility c) {
+		actual.setVisibility(c);
+		this.save(actual);
+
+	}
+
+	public void removeUserToProject(Project actual, User u) {
+		Contribution c = u.getContribution(actual);
+		u.getContributions().remove(c);
+		this.save(actual);
+	}
+
+	public void addUserToProject(Project actual, User u, Access access) {
+		if (u.getContribution(actual) != null) {
+			u.getContribution(actual).setAccess(access);
+		} else {
+			Contribution c = SocioProjectsFactoryImpl.eINSTANCE.createContribution();
+			c.setAccess(access);
+			c.setProject(actual);
+			u.getContributions().add(c);
+		}
+		this.save(actual);
 	}
 
 }

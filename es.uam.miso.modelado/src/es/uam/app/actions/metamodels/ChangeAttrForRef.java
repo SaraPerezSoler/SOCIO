@@ -2,11 +2,11 @@ package es.uam.app.actions.metamodels;
 
 
 
-import org.eclipse.emf.ecore.EObject;
-
 import es.uam.app.actions.UpdateMetamodel;
+import es.uam.app.actions.metamodels.CreateReference;
+import es.uam.app.actions.metamodels.RemoveAttribute;
+import es.uam.app.projects.IsReference;
 import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.IsReference;
 import es.uam.app.projects.ecore.ReferenceControl;
 import socioProjects.MetamodelProject;
 
@@ -14,36 +14,36 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 
 	private RemoveAttribute remove;
 	private CreateReference createReference;
-	
-	private boolean isUndo=false;
-	private boolean isExecute=false;
-	
-	private ReferenceControl new_;
-	
+
 	public ChangeAttrForRef(MetamodelProject proj, AttributeControl attr) {
-		super();
+		super(proj);
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(), attr.getLowerBound(), attr.getUpperBound());
 	}
 
 	public ChangeAttrForRef(MetamodelProject proj,AttributeControl attr, int min, int max) {
-		super();
+		super(proj);
 		this.remove = new RemoveAttribute(proj, attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max);
 	}
 	
 	public ChangeAttrForRef(MetamodelProject proj, AttributeControl attr, int min, int max, boolean containment) {
-		super();
+		super(proj);
 		this.remove = new RemoveAttribute(proj,attr);
 		this.createReference = new CreateReference(proj, attr.getName(), attr.getParent(),min, max, containment);
 	}
 
-	/*public ChangeAttrForRef(ReferenceControl element, AttributeControl old, ReferenceControl new_) {
-		super ();
-		this.remove = new RemoveAttribute(old);
-		this.createReference = new CreateReference(element);
-		this.new_=new_;
-	}*/
+
+	public ChangeAttrForRef(MetamodelProject p, ReferenceControl referenceControl, AttributeControl oldC,
+			ReferenceControl newC) {
+		super(p);
+		this.remove=new RemoveAttribute(p, oldC,true);
+		this.createReference= new CreateReference(p, referenceControl);
+		setNew(newC);
+		setOld(oldC);
+		setObject(referenceControl);
+		this.setExecute(true);
+	}
 
 	@Override
 	public void doIt() throws Exception {
@@ -54,32 +54,18 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 		remove.doIt();
 		createReference.doIt();
 		
-		
-		new_= createReference.getObject().copyObject();
+		setObject(createReference.getObject());
+		setOld(remove.getObject().copyObject());
+		setNew(createReference.getObject().copyObject());
 		
 		setExecute(true);
 		
 	}
 	
-	
-
-	public ReferenceControl getObject() {
-		return createReference.getObject();
-	}
-
-	@Override
-	public EObject getOld() {
-		return remove.getObject().getObject();
-	}
-
-	@Override
-	public EObject getNew() {
-		return new_.getObject();
-	}
 
 	@Override
 	public ReferenceControl getReferenceControl() {
-		return getObject();
+		return (ReferenceControl)getObject();
 	}
 
 	@Override
@@ -109,30 +95,24 @@ public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{
 	public void setProject(MetamodelProject proj) {
 		remove.setProject(proj);
 		createReference.setProject(proj);
+		super.setProject(proj);
 	}
 
 	
 
 	@Override
-	public MetamodelProject getProject() {
-		return remove.getProject();
-		
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
 	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
+		this.createReference.setUndo(isUndo);
+		this.remove.setUndo(isUndo);
+		super.setUndo(isUndo);
 	}
 
-	public boolean isExecute() {
-		return isExecute;
-	}
+	
 
 	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
+		this.createReference.setExecute(isExecute);
+		this.remove.setExecute(isExecute);
+		super.setExecute(isExecute);
 	}
 
 }

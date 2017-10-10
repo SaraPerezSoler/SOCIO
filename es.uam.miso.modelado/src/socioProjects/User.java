@@ -82,6 +82,7 @@ public interface User extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
@@ -91,7 +92,7 @@ public interface User extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(long)
 	 * @see socioProjects.SocioProjectsPackage#getUser_Id()
-	 * @model
+	 * @model default="-1"
 	 * @generated
 	 */
 	long getId();
@@ -151,7 +152,7 @@ public interface User extends EObject {
 	EList<Project> getOwnProjects();
 
 	/**
-	 * Returns the value of the '<em><b>Contributions</b></em>' reference list.
+	 * Returns the value of the '<em><b>Contributions</b></em>' containment reference list.
 	 * The list contents are of type {@link socioProjects.Contribution}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -159,9 +160,9 @@ public interface User extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contributions</em>' reference list.
+	 * @return the value of the '<em>Contributions</em>' containment reference list.
 	 * @see socioProjects.SocioProjectsPackage#getUser_Contributions()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Contribution> getContributions();
@@ -229,5 +230,7 @@ public interface User extends EObject {
 	 * @generated
 	 */
 	boolean isRoot();
+	
+	String userInfo();
 
 } // User

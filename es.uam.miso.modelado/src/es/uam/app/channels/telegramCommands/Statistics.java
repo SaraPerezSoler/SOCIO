@@ -7,6 +7,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public class Statistics extends HistoryOption {
 
@@ -116,6 +117,12 @@ public class Statistics extends HistoryOption {
 		history.gettChannel().sendMessageWithKeyBoar(update.getMessage().getMessageId(),
 				update.getMessage().getChatId(), sMessage, options);
 
+	}
+
+	/*Por hacer*/
+	@Override
+	public boolean modellingAnswerYou(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
+		return false;
 	}
 
 }

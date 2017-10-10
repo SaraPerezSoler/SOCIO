@@ -973,7 +973,7 @@ public interface SocioProjectsPackage extends EPackage {
 	int USER__OWN_PROJECTS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Contributions</b></em>' reference list.
+	 * The feature id for the '<em><b>Contributions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1563,10 +1563,10 @@ public interface SocioProjectsPackage extends EPackage {
 	EReference getUser_OwnProjects();
 
 	/**
-	 * Returns the meta object for the reference list '{@link socioProjects.User#getContributions <em>Contributions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link socioProjects.User#getContributions <em>Contributions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Contributions</em>'.
+	 * @return the meta object for the containment reference list '<em>Contributions</em>'.
 	 * @see socioProjects.User#getContributions()
 	 * @see #getUser()
 	 * @generated
@@ -2067,7 +2067,7 @@ public interface SocioProjectsPackage extends EPackage {
 		EReference USER__OWN_PROJECTS = eINSTANCE.getUser_OwnProjects();
 
 		/**
-		 * The meta object literal for the '<em><b>Contributions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Contributions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

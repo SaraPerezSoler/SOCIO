@@ -2,6 +2,7 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 
+import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.message.SendMessageExc;
 import projectHistory.Msg;
@@ -20,7 +21,7 @@ public class Redo extends MainCommand {
 			throw new NotAccessException("");
 		}
 			
-		File png = actual.redo();
+		File png = SocioData.getSocioData().redo(actual, rm);
 		throw new SendMessageExc(rm.getText(), png);
 		
 	}

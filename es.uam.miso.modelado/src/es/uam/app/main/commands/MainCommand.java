@@ -1,5 +1,8 @@
 package es.uam.app.main.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import es.uam.app.main.SocioData;
 import es.uam.app.main.ValidText;
 import es.uam.app.main.exceptions.FatalException;
@@ -67,6 +70,28 @@ public abstract class MainCommand {
 				u=SocioData.getSocioData().getUser(id, split[0]);
 			}catch (NumberFormatException e) {
 				u=SocioData.getSocioData().getUser(split[1], split[0]);
+			}
+		}
+		return u;
+	}
+	
+	public List<User> searchAllUser(String text) throws FatalException{
+		String [] split=text.split("/");
+		List<User> u=new ArrayList<User>();
+		if (split.length<2){
+			try{
+				Long id=Long.parseLong(text);
+				u.addAll(SocioData.getSocioData().getAllUser(id));
+			}catch (NumberFormatException e) {
+				u.addAll(SocioData.getSocioData().getAllUser(text));
+			}
+			
+		}else{
+			try{
+				Long id=Long.parseLong(split[1]);
+				u.add(SocioData.getSocioData().getUser(id, split[0]));
+			}catch (NumberFormatException e) {
+				u.add(SocioData.getSocioData().getUser(split[1], split[0]));
 			}
 		}
 		return u;

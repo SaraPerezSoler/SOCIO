@@ -10,6 +10,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import es.uam.app.channels.CommandList;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Msg;
 
 public class HistoryMsg extends HistoryOption {
 
@@ -21,6 +22,7 @@ public class HistoryMsg extends HistoryOption {
 	};
 
 	protected Map<Long, HistoryState> historyState = new HashMap<Long, HistoryState>();
+	protected Map<Long, Update> historyUpdate = new HashMap<Long, Update>();
 	protected final String[] OPTIONS = new String[] { "Element", "User", "Action", "Date", "All" };
 	protected final String[] ACTIONS = new String[] { "Create", "Update", "Remove" };
 	protected final String[] ORDER_OPTION = new String[] { "Increasing order", "Descending order" };
@@ -53,9 +55,10 @@ public class HistoryMsg extends HistoryOption {
 			history.tChannel.write(update, CommandList.HISTORY_ACTIONS, project,null, text);
 
 		} else if (historyState.get(update.getMessage().getChatId()) == HistoryState.USER) {
+			historyState.put(update.getMessage().getChatId(), HistoryState.USER);
 			String text = update.getMessage().getText();
-			history.tChannel.write(update, CommandList.HISTORY_USER, project, text, null);
-
+			history.tChannel.write(update, CommandList.FIND_USERS, null, text, null);
+			this.historyUpdate.put(update.getMessage().getChatId(), update);
 		} else if (historyState.get(update.getMessage().getChatId()) == HistoryState.ELEMENT) {
 			String text = update.getMessage().getText();
 			history.tChannel.write(update, CommandList.HISTORY_ELEMENT, project, null, text);
@@ -161,6 +164,32 @@ public class HistoryMsg extends HistoryOption {
 
 		history.gettChannel().sendMessageWithKeyBoar(update.getMessage().getMessageId(),
 				update.getMessage().getChatId(), sMessage, options);
+	}
+
+	@Override
+	public boolean modellingAnswerYou(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
+		if (historyState.get(chatId) == HistoryState.USER && rMessageCommand.getCommand().equals(CommandList.FIND_USERS)){
+			String text=sMessage.getText();
+			String[] split=text.split(">");
+			if ((!sMessage.hasText()) || sMessage.getText().equals("Missing values")){
+				sMessage.setText("I don't have this user.");
+				history.tChannel.sendMessage(msgId, chatId, sMessage);
+				
+			}else if(split.length==2){
+				String project = history.getProject(chatId);
+				history.tChannel.write(historyUpdate.get(chatId), CommandList.HISTORY_USER, project, split[1].split("\n")[0], null);
+			}else{
+				String [][] options=new String[split.length][1];
+				for (int i=0; i<split.length; i++){
+					options[i][0]=split[i].split("\n")[0];
+				}
+				SendMessageExc s=new SendMessageExc(WHO);
+				history.tChannel.sendMessageWithKeyBoar(msgId, chatId, s, options);;
+			}
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

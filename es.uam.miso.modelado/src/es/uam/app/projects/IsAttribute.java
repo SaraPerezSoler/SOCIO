@@ -1,4 +1,4 @@
-package es.uam.app.projects.ecore;
+package es.uam.app.projects;
 
 import java.io.FileNotFoundException;
 
@@ -13,7 +13,7 @@ import es.uam.app.projects.ecore.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import socioProjects.MetamodelProject;
 
-public interface IsAttribute {
+public interface IsAttribute extends IsInterface{
 
 	
 	

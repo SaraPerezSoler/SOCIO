@@ -58,6 +58,33 @@ public interface projectHistoryFactory extends EFactory {
 	Sentence createSentence();
 
 	/**
+	 * Returns a new object of class '<em>Add</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Add</em>'.
+	 * @generated
+	 */
+	Add createAdd();
+
+	/**
+	 * Returns a new object of class '<em>Delete</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Delete</em>'.
+	 * @generated
+	 */
+	Delete createDelete();
+
+	/**
+	 * Returns a new object of class '<em>Update</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Update</em>'.
+	 * @generated
+	 */
+	Update createUpdate();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -6,6 +6,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
+import es.uam.app.projects.IsAttribute;
+
 
 public class AttributeControl implements Feature, IsAttribute {
 

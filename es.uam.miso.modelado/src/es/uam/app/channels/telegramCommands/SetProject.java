@@ -40,7 +40,7 @@ public class SetProject extends TelegramCommand {
 		} else {
 			String text2 = text.replace(split[0], "");
 			text2 = text2.replace(" ", "");
-			tChannel.write(update,CommandList.BASE_CASE, text2, null,null);
+			tChannel.write(update,CommandList.PROJECT_INFO, text2, null,null);
 		}
 
 	}
@@ -48,16 +48,17 @@ public class SetProject extends TelegramCommand {
 	@Override
 	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
 		if (rMessageCommand.getCommand().equals(CommandList.PROJECTS)) {
-			sMessage.setText(SET_PROJECT_MSG1);
+			sMessage.setText(sMessage.getMessage()+"\n\n"+SET_PROJECT_MSG1);
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
 			if (sMessage.getText() != null && sMessage.getText().startsWith(ProjectNotFoundException.PROJECT_NOT_FOUND)) {
 				tChannel.sendMessage(msgId, chatId, sMessage);
-				sMessage.setText(SET_PROJECT_MSG1);
+				sMessage.setText(sMessage.getMessage()+"\n\n"+SET_PROJECT_MSG1);
 				tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 			} else {
-				sMessage.setText(SET_PROJECT_MSG2);
-				this.setProject(chatId, rMessageCommand.getProject());
+				String projectName=sMessage.getText().split("\n")[0].replace("Project: ", "");
+				sMessage.setText(sMessage.getMessage()+"\n\n"+SET_PROJECT_MSG2);
+				this.setProject(chatId, projectName);
 				this.setStandardState(chatId);
 				tChannel.sendMessage(msgId, chatId, sMessage);
 			}
@@ -66,7 +67,7 @@ public class SetProject extends TelegramCommand {
 	@Override
 	public void userAnswerText(Update update) {
 		this.setState(update.getMessage().getChatId());
-		tChannel.write(update, CommandList.BASE_CASE, update.getMessage().getText(),null, null);
+		tChannel.write(update, CommandList.PROJECT_INFO, update.getMessage().getText(),null, null);
 	};
 
 }

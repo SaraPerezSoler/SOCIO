@@ -12,7 +12,7 @@ public class Reload extends RootCommands {
 	@Override
 	public void exe(Msg rm) throws SendMessageExc, Exception {
 	
-			SocioData.getSocioData().save();
+			SocioData.getSocioData().loadProjects();
 	}
 
 	@Override

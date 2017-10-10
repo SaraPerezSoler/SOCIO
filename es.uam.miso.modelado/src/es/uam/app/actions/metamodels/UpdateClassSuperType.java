@@ -3,13 +3,10 @@ package es.uam.app.actions.metamodels;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
-
 import es.uam.app.actions.UpdateMetamodel;
-import es.uam.app.projects.ecore.IsClass;
-import socioProjects.MetamodelProject;
+import es.uam.app.projects.IsClass;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
+import socioProjects.MetamodelProject;
 
 public class UpdateClassSuperType extends UpdateMetamodel{
 
@@ -17,30 +14,21 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 	protected IsClass superType = null;
 	
 
-	protected ClassControl old = null;
-	protected ClassControl new_ = null;
-	protected ClassControl object=null;
-	
-	private MetamodelProject project;
-	private boolean isUndo=false;
-	private boolean isExecute=false;
-	
-
 	public UpdateClassSuperType(MetamodelProject proj, IsClass class_, IsClass superType) {
-		setProject(proj);
-
+		super(proj);
 		this.class_ =  class_;
-
 		this.superType = superType;
 
 	}
 
-	/*public UpdateClassSuperType(ClassControl object, ClassControl old, ClassControl new_) {
-		super(null);
-		this.object = object;
-		this.old = old;
-		this.new_ = new_;
-	}*/
+	public UpdateClassSuperType(MetamodelProject p, ClassControl classControl, ClassControl oldC, ClassControl newC) {
+		super(p);
+		setObject(classControl);
+		this.class_=classControl;
+		setOld(oldC);
+		setNew(newC);
+		this.setExecute(true);
+	}
 
 	@Override
 	public void doIt() throws Exception {
@@ -57,46 +45,36 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 			throw new Exception("Problem ocurred in"+this.getClass().getName()+": the class is not found");
 		}
 
-		old = classClassCont.copyObject();
+		this.setOld(classClassCont.copyObject());
 
 		classClassCont.setESuperTypes(superTypeClassC);
 
-		new_ = classClassCont.copyObject();
-		this.object=classClassCont;
+		setNew(classClassCont.copyObject());
+		setObject(classClassCont);
 		setExecute(true);
 
 	}
 
 	@Override
-	public Controlador getObject() {
-		return object;
+	public ClassControl getObject() {
+		return (ClassControl)super.getObject();
 	}
 
-	@Override
-	public EObject getOld() {
-		return old.getObject();
-	}
-
-	@Override
-	public EObject getNew() {
-		return new_.getObject();
-	}
-	
 	@Override
 	public void undoIt() throws Exception {
 		if (!isExecute() || isUndo()){
 			return;
 		}
 		
-		List<String> supertypes=old.getSuperTypesNames();
+		List<String> supertypes=((ClassControl)getOldC()).getSuperTypesNames();
 		List<ClassControl> superTypeClass= new ArrayList<ClassControl>();
 		for (String s: supertypes){
-			ClassControl c=project.getClass(s);
+			ClassControl c=getProject().getClass(s);
 			if (c!=null){
 				superTypeClass.add(c);
 			}
 		}
-		object.addAllSuperType(superTypeClass);
+		getObject().addAllSuperType(superTypeClass);
 		setUndo(true);
 	}
 
@@ -105,40 +83,16 @@ public class UpdateClassSuperType extends UpdateMetamodel{
 		if (!isExecute() || !isUndo()){
 			return;
 		}
-		List<String> supertypes=new_.getSuperTypesNames();
+		List<String> supertypes=((ClassControl)getNewC()).getSuperTypesNames();
 		List<ClassControl> superTypeClass= new ArrayList<ClassControl>();
 		for (String s: supertypes){
-			ClassControl c=project.getClass(s);
+			ClassControl c=getProject().getClass(s);
 			if (c!=null){
 				superTypeClass.add(c);
 			}
 		}
-		this.object.addAllSuperType(superTypeClass);
+		this.getObject().addAllSuperType(superTypeClass);
 		setUndo(false);
-	}
-
-	public MetamodelProject getProject() {
-		return project;
-	}
-
-	public void setProject(MetamodelProject project) {
-		this.project = project;
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
-	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
-	}
-
-	public boolean isExecute() {
-		return isExecute;
-	}
-
-	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
 	}
 
 }

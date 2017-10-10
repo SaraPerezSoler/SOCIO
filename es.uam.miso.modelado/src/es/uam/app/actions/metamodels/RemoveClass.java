@@ -2,19 +2,13 @@ package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.DeleteMetamodel;
 import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
 import socioProjects.MetamodelProject;
 
 public class RemoveClass extends DeleteMetamodel{
 
-	private ClassControl class_;
-	
-	private MetamodelProject project;
-	private boolean isUndo=false;
-	private boolean isExecute=false;
 	public RemoveClass(MetamodelProject proj, ClassControl class_) {
-		setProject(proj);
-		this.class_ = class_;
+		super(proj);
+		setObject(class_);
 	}
 
 	/*public RemoveClass(ClassControl classControl) {
@@ -22,19 +16,24 @@ public class RemoveClass extends DeleteMetamodel{
 		this.class_ = classControl;
 	}*/
 
+	public RemoveClass(MetamodelProject p, ClassControl classControl, boolean isExecute) {
+		super(p);
+		setObject(classControl);
+		setExecute(isExecute);
+	}
+
 	@Override
 	public void doIt() {
 		if (isExecute()){
 			return;
 		}
-		getProject().removeClass(class_);
+		getProject().removeClass(getObject());
 		setExecute(true);
 	}
 
 	@Override
-	public Controlador getObject() {
-		doIt();
-		return class_;
+	public ClassControl getObject() {
+		return (ClassControl)super.getObject();
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class RemoveClass extends DeleteMetamodel{
 			return;
 		}
 		
-		project.unRemoveClass(class_);
+		getProject().unRemoveClass(getObject());
 		setUndo(true);
 	}
 
@@ -52,32 +51,7 @@ public class RemoveClass extends DeleteMetamodel{
 		if (!isExecute() || !isUndo()){
 			return;
 		}
-		project.removeClass(class_);
+		getProject().removeClass(getObject());
 		setUndo(false);
 	}
-
-	public MetamodelProject getProject() {
-		return project;
-	}
-
-	public void setProject(MetamodelProject project) {
-		this.project = project;
-	}
-
-	public boolean isUndo() {
-		return isUndo;
-	}
-
-	public void setUndo(boolean isUndo) {
-		this.isUndo = isUndo;
-	}
-
-	public boolean isExecute() {
-		return isExecute;
-	}
-
-	public void setExecute(boolean isExecute) {
-		this.isExecute = isExecute;
-	}
-
 }

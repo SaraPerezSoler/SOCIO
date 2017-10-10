@@ -2,6 +2,7 @@
  */
 package projectHistory;
 
+import socioProjects.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,8 +11,14 @@ package projectHistory;
  *
  *
  * @see projectHistory.projectHistoryPackage#getAdd()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Add extends Action {
+	
+	default String getActionName(){
+		return "Add";
+	}
+	
+	void setAction(es.uam.app.actions.Add<? extends Project> action);
 } // Add
