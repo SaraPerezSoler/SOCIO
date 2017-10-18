@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.Sentence;
@@ -47,16 +46,12 @@ public class B1 extends MetemodelRule {
 			// Comprobamos si exite la clase A, sino ponemos una accion para
 			// crearla.
 			IsClass classA = IsClass.getClass(A, proj);
-			if (classA instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>)classA).getAction());
-			}
+			super.addIfNecesary(classA, ret);
 
 			// Comprobamos si exite la clase B, sino ponemos una accion para
 			// crearla.
 			IsClass classB = IsClass.getClass(B, proj);
-			if (classB instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>)classB).getAction());
-			}
+			super.addIfNecesary(classB, ret);
 
 			IsReference ref = null;
 			if (i > 0) {
@@ -65,9 +60,7 @@ public class B1 extends MetemodelRule {
 				ref = IsReference.getReference(verb.lowerCammelCase(), classA, B.getMin(), B.getMax(), proj, false);
 			}
 
-			if (ref instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>)ref).getAction());
-			}
+			super.addIfNecesary(ref, ret);
 			// Se crea la accion para dale Typo a la referencia.
 			UpdateRefType urt = new UpdateRefType(proj, ref, classB);
 			ret.add(urt.getAction());

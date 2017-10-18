@@ -40,20 +40,17 @@ import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Metamodel Project</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Metamodel Project</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProject {
 
-	
 	private EcoreControl ec;
-	
+
 	private static Map<Class<? extends ExtractionRule<MetamodelProject>>, Constructor<? extends ExtractionRule<MetamodelProject>>> extractionRules = new HashMap<>();
-	
-	
+
 	public static void registerRule(Class<? extends ExtractionRule<MetamodelProject>> er)
 			throws NoSuchMethodException, SecurityException {
 		Constructor<? extends ExtractionRule<MetamodelProject>> ruleConstructor = er
@@ -62,29 +59,31 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 			extractionRules.put(er, ruleConstructor);
 		}
 	}
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	protected MetamodelProjectImpl() {
-		super();	
-		
+		super();
+
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return SocioProjectsPackage.Literals.METAMODEL_PROJECT;
 	}
-	
-	public List<Action> parseSentence(String sentence) throws Exception{
+
+	public List<Action> parseSentence(String sentence) throws Exception {
 		Sentence<MetamodelProject> sentenceParse = new Sentence<MetamodelProject>(sentence);
-		List<List<ExtractionRule<MetamodelProject>>> allRules = sentenceParse.parser(MetamodelProjectImpl.extractionRules);
+		List<List<ExtractionRule<MetamodelProject>>> allRules = sentenceParse
+				.parser(MetamodelProjectImpl.extractionRules);
 		List<ExtractionRule<MetamodelProject>> rules = decide(allRules);
 
 		List<Action> act = new ArrayList<Action>();
@@ -102,16 +101,19 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return act;
 	}
+
 	@Override
-	protected String createUML(List<Action> actions) {
-		return ec.createUML(actions);
+	protected String createUML(List<Action> actions, List<Action> actual) {
+		return ec.createUML(actions, actual);
 	}
+
 	@Override
 	protected List<Controlador> getAllObjects() {
 		return ec.getAllObjects();
 	}
+
 	@Override
-	public String validate()  {
+	public String validate() {
 
 		Diagnostic diagnostic = null;
 
@@ -133,7 +135,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		return validateRet;
 
 	}
-	
+
 	public String getStringDiagnostic(Diagnostic d) {
 		if (d.getSeverity() == Diagnostic.ERROR) {
 			if (d.getCode() == 1) {
@@ -171,56 +173,64 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 			return "Validation completed successfully";
 		}
 	}
-	
-	/*add unAdd elements*/
+
+	/* add unAdd elements */
 	@Override
 	public void addAttribute(AttributeControl attr, ClassControl of) {
 		of.addAttrRef(attr.getEAtribute());
 	}
+
 	@Override
 	public void unAddAttribute(AttributeControl attr, ClassControl of) {
 		of.removeAttrRef(attr.getEAtribute());
 
 	}
+
 	@Override
 	public void addReference(ReferenceControl ref, ClassControl of) {
 		of.addAttrRef(ref.getEReference());
 
 	}
+
 	@Override
 	public void unAddReference(ReferenceControl ref, ClassControl of) {
 		of.removeAttrRef(ref.getEReference());
 	}
+
 	@Override
 	public void addClass(ClassControl clase) {
 		ec.addClass(clase);
 	}
+
 	@Override
 	public void unAddClass(ClassControl clase) {
 		ec.remove(clase);
 	}
-	
-	/*remove unRemove elements*/
+
+	/* remove unRemove elements */
 	@Override
 	public void removeAttribute(AttributeControl atr, ClassControl parent) {
 		atr.copyValuesIn(atr);
 		this.remove.getElementsDeletes().add(atr.getObject());
 		parent.removeAttrRef(atr.getEAtribute());
 	}
+
 	@Override
 	public void unRemoveAttribute(AttributeControl atr) {
 		ClassControl parent = ec.getClass(atr.getParentName());
 		this.remove.getElementsDeletes().remove(atr.getObject());
 		parent.addAttrRef(atr.getEAtribute());
-		
+
 	}
+
 	@Override
 	public void removeReference(ReferenceControl ref, ClassControl parent) {
 		ref.copyValuesIn(ref);
 		this.remove.getElementsDeletes().add(ref.getObject());
 		parent.removeAttrRef(ref.getEReference());
-		
+
 	}
+
 	@Override
 	public void unRemoveReference(ReferenceControl ref) {
 		ClassControl type = ec.getClass(ref.getTypeName());
@@ -230,24 +240,26 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		remove.getElementsDeletes().remove(ref.getObject());
 		parent.addAttrRef(ref.getEReference());
-		
+
 	}
+
 	@Override
 	public void removeClass(ClassControl class_) {
 		this.remove.getElementsDeletes().add(class_.getObject());
 		ec.remove(class_);
 
 	}
+
 	@Override
 	public void unRemoveClass(ClassControl class_) {
 		this.remove.getElementsDeletes().remove(class_.getObject());
 		ec.addClass(class_);
-		
+
 	}
-	
-	/*get elements*/
+
+	/* get elements */
 	@Override
-	public ClassControl  getClass(String clas) throws FileNotFoundException, JWNLException {
+	public ClassControl getClass(String clas) throws FileNotFoundException, JWNLException {
 		ClassControl ret = ec.getClass(clas);
 
 		if (ret == null) {
@@ -264,8 +276,9 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 		return ret;
 	}
+
 	@Override
-	public ClassControl  getClass(NP element) throws FileNotFoundException, JWNLException {
+	public ClassControl getClass(NP element) throws FileNotFoundException, JWNLException {
 
 		ClassControl ret = this.getClass(element.upperCammelCase());
 		if (ret == null) {
@@ -301,11 +314,13 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		return ret;
 
 	}
+
 	@Override
 	public ClassControl getExactlyClass(String clas) throws FileNotFoundException, JWNLException {
 		ClassControl ret = ec.getExactlyClass(clas);
 		return ret;
 	}
+
 	@Override
 	public ClassControl getExactlyClass(NP element) throws FileNotFoundException, JWNLException {
 
@@ -313,6 +328,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		return ret;
 
 	}
+
 	@Override
 	public Feature getFeature(String verb) throws FileNotFoundException, JWNLException {
 		String feature = WordConfigure.startLowerCase(verb);
@@ -345,6 +361,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 		return null;
 	}
+
 	@Override
 	public Feature getFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
 
@@ -375,6 +392,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return ret;
 	}
+
 	@Override
 	public Feature getExactlyFeature(String verb, ClassControl cc) throws FileNotFoundException, JWNLException {
 
@@ -389,53 +407,72 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return ret;
 	}
+
 	@Override
 	public List<ReferenceControl> getRefereceTo(ClassControl cc) {
 		return ec.getReferencesTo(cc);
 	}
+
 	@Override
 	public List<ClassControl> getSubTypesOf(ClassControl c) {
 		return ec.getSubTypesOf(c);
 	}
+
 	@Override
 	public String getFileExtension() {
 		return "ecore";
 	}
+
 	@Override
 	String getType() {
 		return "metamodel";
 	}
+
 	@Override
 	protected void removeFiles() {
-		File f=new File(getFilePath());
+		File f = new File(getFilePath());
 		f.delete();
 	}
+
 	@Override
-	public void initialize() throws FatalException {
-		if (model!=null){
-			ec=new EcoreControl(getFilePath(admin));
-		}else{
-			ec=new EcoreControl(getFilePath(admin), name);
-			this.model=ec.getObject();
-		}		
+	protected void initialize2() throws FatalException {
+		if (model != null) {
+			ec = new EcoreControl(getFilePath());
+		} else {
+			ec = new EcoreControl(getFilePath(), name);
+			this.model = ec.getObject();
+		}
 	}
+
 	@Override
 	public Add<MetamodelProject> createAddAction(EObject element) {
 		return AddMetamodel.createAction(element, this);
 	}
+
 	@Override
 	public Delete<MetamodelProject> createDeleteAction(EObject element) {
-		
+
 		return DeleteMetamodel.createAction(this, element);
 	}
+
 	@Override
 	public Update<MetamodelProject> createUpdateAction(EObject element, EObject new_, EObject old) {
 		return UpdateMetamodel.createAction(element, old, new_, this);
 	}
+
 	@Override
 	public void save() {
 		ec.save();
-		
+
 	}
 
-} //MetamodelProjectImpl
+	public void setModel(EObject model) {
+		if (ec != null) {
+			List<EObject> contents = ec.getContents();
+			contents.clear();
+			contents.add(model);
+		}
+		super.setModel(model);
+	}
+
+} // MetamodelProjectImpl

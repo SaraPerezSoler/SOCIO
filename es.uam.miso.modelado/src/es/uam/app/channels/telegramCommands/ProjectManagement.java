@@ -25,10 +25,10 @@ public class ProjectManagement extends TelegramCommand {
 	private static final int USER_OPTION_EDIT=8;
 	private static final int USER_OPTION_READ=9;
 	
-	private static final String[] OPTIONS={"Change project visibility", "Manager user to de project"};
+	private static final String[] OPTIONS={"Change project visibility", "Manage project users"};
 	private static final String[] CONST={"Public", "Protected", "Private"};
-	private static final String[] USER={"Add an user to the project", "Kick an user to the project", "Change an user access"};
-	private static final String[] ADD_OPTIONS={"Read", "Edit"};
+	private static final String[] USER={"Add an user to the project", "Remove an user to the project", "Change an user access"};
+	private static final String[] ADD_OPTIONS={"Read", "Write"};
 	private static final String EXIT="exit";
 	
 

@@ -116,12 +116,6 @@ public class AttributeControl implements Feature, IsAttribute {
 		return eAttr;
 	}
 
-	public boolean equals(Object o) {
-		if (o instanceof AttributeControl) {
-			return this.eAttr.equals(((AttributeControl) o).eAttr);
-		}
-		return false;
-	}
 
 	public String toString() {
 
@@ -172,5 +166,30 @@ public class AttributeControl implements Feature, IsAttribute {
 	@Override
 	public String elementType() {
 		return "attribute";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eAttr == null) ? 0 : eAttr.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AttributeControl other = (AttributeControl) obj;
+		if (eAttr == null) {
+			if (other.eAttr != null)
+				return false;
+		} else if (!eAttr.equals(other.eAttr))
+			return false;
+		return true;
 	}
 }

@@ -30,4 +30,7 @@ public abstract class ExtractionRule<T extends Project>{
 	
 	public abstract boolean isPosibility();
 	
+
+	
+	
 }

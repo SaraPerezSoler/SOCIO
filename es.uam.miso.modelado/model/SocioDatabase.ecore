@@ -50,6 +50,8 @@
     <eOperations name="percentOfAuthorship" lowerBound="1"/>
     <eOperations name="validate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="open" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="history" lowerBound="1"
         eType="ecore:EClass history.ecore#//History" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="remove" lowerBound="1"
@@ -60,6 +62,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="admin" lowerBound="1" eType="#//User"
         eOpposite="#//User/ownProjects"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="branchGroup" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="branch" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OpenBranchs" upperBound="-1"
+        eType="#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="CloseBranchs" upperBound="-1"
+        eType="#//Project" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelProjec" eSuperTypes="#//Project">
     <eOperations name="parseSentence" upperBound="-1" eType="ecore:EClass history.ecore#//Action">

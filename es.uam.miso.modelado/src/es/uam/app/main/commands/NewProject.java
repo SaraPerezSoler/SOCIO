@@ -33,7 +33,7 @@ public class NewProject extends MainCommand{
 			}else{
 				c=Visibility.PUBLIC;
 			}
-			SocioData.getSocioData().createProject(rm.getProject(), rm, ProjectType.METAMODEL, c);
+			SocioData.getSocioData().createProject(rm.getProject(), rm, ProjectType.METAMODEL, c, false, null);
 			throw new SendMessageExc("Excellent! Now there is a new "+ c.name().toLowerCase()+" project with the name " + rm.getProject());
 		}
 		throw new SendMessageExc("A project with the name "+rm.getChannel()+"/"+rm.getUser().getNick()+"/"+rm.getProject()+" already exists");

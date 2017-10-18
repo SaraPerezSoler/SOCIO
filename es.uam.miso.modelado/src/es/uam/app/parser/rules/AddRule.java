@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
 import es.uam.app.parser.NP;
@@ -39,14 +38,11 @@ public class AddRule extends MetemodelRule {
 
 		if (in == null) {
 			IsClass dobjClass = IsClass.getExactlyClass(dobj, proj);
-			if (dobjClass instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) dobjClass).getAction());
-			}
+			super.addIfNecesary(dobjClass, ret);
+			
 		} else {
 			IsClass inClass = IsClass.getExactlyClass(in, proj);
-			if (inClass instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) inClass).getAction());
-			}
+			super.addIfNecesary(inClass, ret);
 
 			if (!dobj.getAdj().isEmpty()) {
 		
@@ -54,9 +50,7 @@ public class AddRule extends MetemodelRule {
 				if (type != null) {
 					
 					IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj);
-					if (inAtt instanceof ProjectAction) {
-						ret.add(((ProjectAction<?>) inAtt).getAction());
-					}
+					super.addIfNecesary(inAtt, ret);
 					UpdateAttrType uat = new UpdateAttrType(proj, inAtt, type.getName());
 					ret.add(uat.getAction());
 
@@ -65,25 +59,19 @@ public class AddRule extends MetemodelRule {
 					if (adjClass instanceof ClassControl) {
 						
 						IsReference ref = IsReference.getExactlyReference(dobj.getNoun().getLemma(), inClass, dobj.getMin(), dobj.getMax(), proj, false);
-						if (ref instanceof ProjectAction) {
-							ret.add(((ProjectAction<?>) ref).getAction());
-						}
+						super.addIfNecesary(ref, ret);
 
 						UpdateRefType urt = new UpdateRefType(proj, ref, adjClass);
 						ret.add(urt.getAction());
 					} else {
 						IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-						if (inAtt instanceof ProjectAction) {
-							ret.add(((ProjectAction<?>) inAtt).getAction());
-						}
+						super.addIfNecesary(inAtt, ret);
 					}
 				}
 
 			} else {
 				IsAttribute inAtt = IsAttribute.getExactlyAttribute(dobj, inClass, proj);
-				if (inAtt instanceof ProjectAction) {
-					ret.add(((ProjectAction<?>) inAtt).getAction());
-				}
+				super.addIfNecesary(inAtt, ret);
 			}
 		}
 		return ret;

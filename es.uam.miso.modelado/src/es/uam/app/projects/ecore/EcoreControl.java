@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -141,6 +142,10 @@ public class EcoreControl implements Controlador, FileProject {
 		return resource.getURI().lastSegment();
 	}
 	
+	public EList<EObject>getContents(){
+		return resource.getContents();
+	}
+	
 	public String getName(){
 		return resource.getURI().lastSegment().replace(".ecore", "");
 	}
@@ -273,8 +278,8 @@ public class EcoreControl implements Controlador, FileProject {
 	}
 
 	@Override
-	public String createUML(List<Action> actions) {
-		return new CreateMetamodelUML(getPackage()).createUML(actions);
+	public String createUML(List<Action> actions, List<Action> actual) {
+		return new CreateMetamodelUML(getPackage()).createUML(actions, actual);
 	}
 
 	public List<Controlador> getAllObjects() {

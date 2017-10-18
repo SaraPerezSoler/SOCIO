@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import es.uam.app.actions.metamodels.UpdateClassSuperType;
+import es.uam.app.projects.ecore.ClassControl;
 import projectHistory.Update;
 import projectHistory.projectHistoryPackage;
 import socioProjects.Project;
@@ -271,6 +273,26 @@ public class UpdateImpl extends ActionImpl implements Update {
 			action=createAction();
 		}
 		return action;
+	}
+
+	@Override
+	public boolean isUpdateAbstract() {
+		if (getNew() instanceof EClass && getOld() instanceof EClass){
+			return ((EClass)getNew()).isAbstract()!=((EClass)getOld()).isAbstract();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isUpdateSuperType(ClassControl superType) {
+		if (action instanceof UpdateClassSuperType){
+			ClassControl oldC=(ClassControl)action.getOldC();
+			ClassControl newC=(ClassControl)action.getNewC();
+			if (!oldC.isSubTypeOf(superType) && newC.isSubTypeOf(superType)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 } //UpdateImpl

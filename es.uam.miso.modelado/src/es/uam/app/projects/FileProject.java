@@ -7,6 +7,6 @@ import projectHistory.Action;
 public interface FileProject {
 	
 	public void save();
-	public String createUML(List<Action> actions);
+	public String createUML(List<Action> actions, List<Action> actual);
 	
 }

@@ -29,12 +29,17 @@ import removeLog.Root;
  * </p>
  * <ul>
  *   <li>{@link socioProjects.Project#getName <em>Name</em>}</li>
+ *   <li>{@link socioProjects.Project#isOpen <em>Open</em>}</li>
  *   <li>{@link socioProjects.Project#getHistory <em>History</em>}</li>
  *   <li>{@link socioProjects.Project#getRemove <em>Remove</em>}</li>
  *   <li>{@link socioProjects.Project#getModel <em>Model</em>}</li>
  *   <li>{@link socioProjects.Project#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link socioProjects.Project#getAdmin <em>Admin</em>}</li>
  *   <li>{@link socioProjects.Project#getId <em>Id</em>}</li>
+ *   <li>{@link socioProjects.Project#getBranchGroup <em>Branch Group</em>}</li>
+ *   <li>{@link socioProjects.Project#isBranch <em>Branch</em>}</li>
+ *   <li>{@link socioProjects.Project#getOpenBranchs <em>Open Branchs</em>}</li>
+ *   <li>{@link socioProjects.Project#getCloseBranchs <em>Close Branchs</em>}</li>
  * </ul>
  *
  * @see socioProjects.SocioProjectsPackage#getProject()
@@ -69,6 +74,33 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Open</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Open</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Open</em>' attribute.
+	 * @see #setOpen(boolean)
+	 * @see socioProjects.SocioProjectsPackage#getProject_Open()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isOpen();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.Project#isOpen <em>Open</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Open</em>' attribute.
+	 * @see #isOpen()
+	 * @generated
+	 */
+	void setOpen(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>History</b></em>' containment reference.
@@ -230,6 +262,92 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	void setId(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Branch Group</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Branch Group</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Branch Group</em>' attribute.
+	 * @see #setBranchGroup(String)
+	 * @see socioProjects.SocioProjectsPackage#getProject_BranchGroup()
+	 * @model default="" required="true"
+	 * @generated
+	 */
+	String getBranchGroup();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.Project#getBranchGroup <em>Branch Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Branch Group</em>' attribute.
+	 * @see #getBranchGroup()
+	 * @generated
+	 */
+	void setBranchGroup(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Branch</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Branch</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Branch</em>' attribute.
+	 * @see #setBranch(boolean)
+	 * @see socioProjects.SocioProjectsPackage#getProject_Branch()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isBranch();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.Project#isBranch <em>Branch</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Branch</em>' attribute.
+	 * @see #isBranch()
+	 * @generated
+	 */
+	void setBranch(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Open Branchs</b></em>' reference list.
+	 * The list contents are of type {@link socioProjects.Project}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Open Branchs</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Open Branchs</em>' reference list.
+	 * @see socioProjects.SocioProjectsPackage#getProject_OpenBranchs()
+	 * @model
+	 * @generated
+	 */
+	EList<Project> getOpenBranchs();
+
+	/**
+	 * Returns the value of the '<em><b>Close Branchs</b></em>' containment reference list.
+	 * The list contents are of type {@link socioProjects.Project}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Close Branchs</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Close Branchs</em>' containment reference list.
+	 * @see socioProjects.SocioProjectsPackage#getProject_CloseBranchs()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Project> getCloseBranchs();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -414,6 +532,7 @@ public interface Project extends EObject {
 	String validate();
 	void initialize() throws FatalException;
 	
+	
 	Date getCreateDate();
 	
 	String getProjectData();
@@ -426,6 +545,13 @@ public interface Project extends EObject {
 
 	Update<? extends Project> createUpdateAction(EObject element, EObject new_, EObject old);
 	void save();
+	void setFather(Project father);
+	Project getFather();
 
+	Project getOpenBranch(String branchName);
+
+	void createBranch(Project p) throws Exception;
+
+	Project getCloseBranch(String text);
 
 } // Project

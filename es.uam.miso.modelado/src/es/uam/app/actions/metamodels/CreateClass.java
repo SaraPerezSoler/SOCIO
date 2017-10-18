@@ -8,19 +8,18 @@ import es.uam.app.projects.ecore.ClassControl;
 public class CreateClass extends AddMetamodel implements IsClass{
 
 	private String class_;
-	private boolean abstract_=false;	
+	private UpdateClassAbstract abstract_;	
 	
 	public CreateClass(MetamodelProject proj, String class_, boolean abs) {
 		super(proj);
 		this.class_ = class_;
-		this.abstract_=abs;
+		this.abstract_=new UpdateClassAbstract(proj, this, abs);
 	}
 
 	public CreateClass(MetamodelProject p, ClassControl classControl) {
 		super(p);
 		super.setObject(classControl);
 		this.class_=classControl.getName();
-		this.abstract_=classControl.getAbstract();
 		setExecute(true);
 		setUndo(false);
 	}
@@ -32,7 +31,6 @@ public class CreateClass extends AddMetamodel implements IsClass{
 		}
 		if (getProject().getExactlyClass(class_)==null){
 			ClassControl clase=new ClassControl(class_);
-			clase.setAbstract(abstract_);
 			getProject().addClass(clase);
 			setObject(clase);
 		}else{
@@ -72,6 +70,9 @@ public class CreateClass extends AddMetamodel implements IsClass{
 		setUndo(false);
 	}
 
+	public UpdateClassAbstract getAbstract(){
+		return abstract_;
+	}
 
 	
 }

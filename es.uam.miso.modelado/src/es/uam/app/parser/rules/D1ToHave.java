@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
@@ -54,9 +53,7 @@ public class D1ToHave extends MetemodelRule {
 		NP B = A_B.get(i)[1];
 		// A has B// A es una clase del metamodelo
 		IsClass aClass = IsClass.getClass(A, proj);
-		if (aClass instanceof ProjectAction) {
-			ret.add(((ProjectAction<?>) aClass).getAction());
-		}
+		super.addIfNecesary(aClass, ret);
 		// Si B tiene adjetivo
 		
 		EClassifier type = B.adjType();
@@ -66,9 +63,7 @@ public class D1ToHave extends MetemodelRule {
 			// B.noun es un atributo...
 
 			IsAttribute att = IsAttribute.getAttribute(B.getNoun().getLemma(), aClass, B.getMin(), B.getMax(), proj);
-			if (att instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) att).getAction());
-			}
+			super.addIfNecesary(att, ret);
 			// ...con tipo B.adjetivo.
 			UpdateAttrType uat = new UpdateAttrType(proj, att, type.getName());
 			ret.add(uat.getAction());
@@ -83,9 +78,7 @@ public class D1ToHave extends MetemodelRule {
 			if (bClass instanceof ClassControl) {
 				// B.noun es una referencia...
 				IsReference ref = IsReference.getReference(B, aClass, proj, false);
-				if (ref instanceof ProjectAction) {
-					ret.add(((ProjectAction<?>) ref).getAction());
-				}
+				super.addIfNecesary(ref, ret);
 				// ...con tipo B.adjetive
 				UpdateRefType urt = new UpdateRefType(proj, ref, bClass);
 				ret.add(urt.getAction());
@@ -95,9 +88,7 @@ public class D1ToHave extends MetemodelRule {
 				// B es un elemento sin definir que primero que pondrá
 				// como adjetivo sin tipo
 				IsAttribute att = IsAttribute.getAttribute(B, aClass, proj);
-				if (att instanceof ProjectAction) {
-					ret.add(((ProjectAction<?>) att).getAction());
-				}
+				super.addIfNecesary(att, ret);
 			}
 		}
 

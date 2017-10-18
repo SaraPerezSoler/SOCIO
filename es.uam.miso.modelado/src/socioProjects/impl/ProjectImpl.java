@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -25,6 +26,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -37,6 +42,8 @@ import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
 
 import es.uam.app.main.SocioData;
+import es.uam.app.main.exceptions.FatalException;
+import es.uam.app.message.SendMessageExc;
 import es.uam.app.parser.SentencesSplitter;
 import es.uam.app.parser.rules.ExtractionRule;
 import es.uam.app.projects.ecore.Controlador;
@@ -59,13 +66,22 @@ import socioProjects.Visibility;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link socioProjects.impl.ProjectImpl#getName <em>Name</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getHistory <em>History</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getRemove <em>Remove</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getModel <em>Model</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getAdmin <em>Admin</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getId <em>Id</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getName <em>Name</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#isOpen <em>Open</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getHistory <em>History</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getRemove <em>Remove</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getModel <em>Model</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getVisibility
+ * <em>Visibility</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getAdmin <em>Admin</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getId <em>Id</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getBranchGroup <em>Branch
+ * Group</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#isBranch <em>Branch</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getOpenBranchs <em>Open
+ * Branchs</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getCloseBranchs <em>Close
+ * Branchs</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +90,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -83,6 +100,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -90,8 +108,29 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getHistory() <em>History</em>}' containment reference.
+	 * The default value of the '{@link #isOpen() <em>Open</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isOpen()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OPEN_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isOpen() <em>Open</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isOpen()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean open = OPEN_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getHistory() <em>History</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHistory()
 	 * @generated
 	 * @ordered
@@ -99,8 +138,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected History history;
 
 	/**
-	 * The cached value of the '{@link #getRemove() <em>Remove</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRemove() <em>Remove</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRemove()
 	 * @generated
 	 * @ordered
@@ -110,6 +150,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModel()
 	 * @generated
 	 * @ordered
@@ -117,8 +158,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected EObject model;
 
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -126,8 +168,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PUBLIC;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -137,6 +180,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * The cached value of the '{@link #getAdmin() <em>Admin</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAdmin()
 	 * @generated
 	 * @ordered
@@ -163,10 +207,72 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 */
 	protected long id = ID_EDEFAULT;
 
+	/**
+	 * The default value of the '{@link #getBranchGroup() <em>Branch
+	 * Group</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getBranchGroup()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String BRANCH_GROUP_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getBranchGroup() <em>Branch Group</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getBranchGroup()
+	 * @generated
+	 * @ordered
+	 */
+	protected String branchGroup = BRANCH_GROUP_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isBranch() <em>Branch</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isBranch()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean BRANCH_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isBranch() <em>Branch</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isBranch()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean branch = BRANCH_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOpenBranchs() <em>Open Branchs</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getOpenBranchs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Project> openBranchs;
+
+	/**
+	 * The cached value of the '{@link #getCloseBranchs() <em>Close
+	 * Branchs</em>}' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getCloseBranchs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Project> closeBranchs;
+
 	public static final int DESCENDING = 0;
 	public static final int ASCENDING = 1;
 
 	private Stack<Msg> undoMsg = new Stack<>();
+	private Project father;
 
 	static long lastId = -1;
 
@@ -177,6 +283,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectImpl() {
@@ -185,6 +292,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,6 +302,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -202,6 +311,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -213,6 +323,28 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isOpen() {
+		return open;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setOpen(boolean newOpen) {
+		boolean oldOpen = open;
+		open = newOpen;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__OPEN, oldOpen, open));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public History getHistory() {
@@ -221,38 +353,48 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetHistory(History newHistory, NotificationChain msgs) {
 		History oldHistory = history;
 		history = newHistory;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, oldHistory, newHistory);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__HISTORY, oldHistory, newHistory);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHistory(History newHistory) {
 		if (newHistory != history) {
 			NotificationChain msgs = null;
 			if (history != null)
-				msgs = ((InternalEObject)history).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
+				msgs = ((InternalEObject) history).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
 			if (newHistory != null)
-				msgs = ((InternalEObject)newHistory).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
+				msgs = ((InternalEObject) newHistory).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
 			msgs = basicSetHistory(newHistory, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, newHistory, newHistory));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, newHistory,
+					newHistory));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Root getRemove() {
@@ -261,47 +403,58 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRemove(Root newRemove, NotificationChain msgs) {
 		Root oldRemove = remove;
 		remove = newRemove;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, oldRemove, newRemove);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__REMOVE, oldRemove, newRemove);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRemove(Root newRemove) {
 		if (newRemove != remove) {
 			NotificationChain msgs = null;
 			if (remove != null)
-				msgs = ((InternalEObject)remove).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
+				msgs = ((InternalEObject) remove).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
 			if (newRemove != null)
-				msgs = ((InternalEObject)newRemove).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
+				msgs = ((InternalEObject) newRemove).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
 			msgs = basicSetRemove(newRemove, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, newRemove, newRemove));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, newRemove,
+					newRemove));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject getModel() {
 		if (model != null && model.eIsProxy()) {
-			InternalEObject oldModel = (InternalEObject)model;
+			InternalEObject oldModel = (InternalEObject) model;
 			model = eResolveProxy(oldModel);
 			if (model != oldModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__MODEL, oldModel, model));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__MODEL,
+							oldModel, model));
 			}
 		}
 		return model;
@@ -309,6 +462,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject basicGetModel() {
@@ -317,17 +471,20 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModel(EObject newModel) {
 		EObject oldModel = model;
 		model = newModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__MODEL, oldModel, model));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__MODEL, oldModel,
+					model));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Visibility getVisibility() {
@@ -336,26 +493,30 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVisibility(Visibility newVisibility) {
 		Visibility oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__VISIBILITY, oldVisibility, visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__VISIBILITY,
+					oldVisibility, visibility));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getAdmin() {
 		if (admin != null && admin.eIsProxy()) {
-			InternalEObject oldAdmin = (InternalEObject)admin;
-			admin = (User)eResolveProxy(oldAdmin);
+			InternalEObject oldAdmin = (InternalEObject) admin;
+			admin = (User) eResolveProxy(oldAdmin);
 			if (admin != oldAdmin) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, admin));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__ADMIN,
+							oldAdmin, admin));
 			}
 		}
 		return admin;
@@ -363,6 +524,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetAdmin() {
@@ -371,38 +533,48 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAdmin(User newAdmin, NotificationChain msgs) {
 		User oldAdmin = admin;
 		admin = newAdmin;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, newAdmin);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, newAdmin);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAdmin(User newAdmin) {
 		if (newAdmin != admin) {
 			NotificationChain msgs = null;
 			if (admin != null)
-				msgs = ((InternalEObject)admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
+				msgs = ((InternalEObject) admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
 			if (newAdmin != null)
-				msgs = ((InternalEObject)newAdmin).eInverseAdd(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
+				msgs = ((InternalEObject) newAdmin).eInverseAdd(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
 			msgs = basicSetAdmin(newAdmin, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, newAdmin, newAdmin));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, newAdmin,
+					newAdmin));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public long getId() {
@@ -411,6 +583,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(long newId) {
@@ -423,22 +596,116 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @generated
+	 */
+	public String getBranchGroup() {
+		return branchGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setBranchGroup(String newBranchGroup) {
+		String oldBranchGroup = branchGroup;
+		branchGroup = newBranchGroup;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_GROUP,
+					oldBranchGroup, branchGroup));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isBranch() {
+		return branch;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setBranch(boolean newBranch) {
+		boolean oldBranch = branch;
+		branch = newBranch;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH, oldBranch,
+					branch));
+	}
+	
+
+	
+	public Project getOpenBranch(String branchName){
+		for (Project b: getOpenBranchs()){
+			if (b.getName().equalsIgnoreCase(branchName)){
+				return b;
+			}
+		}
+		return null;
+	}
+	
+	public Project getCloseBranch(String branchName){
+		for (Project b: getCloseBranchs()){
+			if (b.getName().equalsIgnoreCase(branchName)){
+				return b;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Project> getOpenBranchs() {
+		if (openBranchs == null) {
+			openBranchs = new EObjectResolvingEList<Project>(Project.class, this,
+					SocioProjectsPackage.PROJECT__OPEN_BRANCHS);
+		}
+		return openBranchs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Project> getCloseBranchs() {
+		if (closeBranchs == null) {
+			closeBranchs = new EObjectContainmentEList<Project>(Project.class, this,
+					SocioProjectsPackage.PROJECT__CLOSE_BRANCHS);
+		}
+		return closeBranchs;
+	}
+
+	public void initialize() throws FatalException {
+		for (Project ob : getOpenBranchs()) {
+			ob.setFather(this);
+		}
+		initialize2();
+	}
+
+	protected abstract void initialize2() throws FatalException;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String getPath() {
+		if (isBranch()) {
+			return getFather().getPath() + "/" + getName();
+		}
 		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName();
 	}
 
 	public String getFilePath() {
-		return getPath()+ "/" + getName() + "." + getFileExtension();
-	}
-	
-	public String getPath(User admin) {
-		return SocioData.PROJECTS_PATH + "/" + getAdmin().getChannel() + "/" + getAdmin().getId() + "/" + getName();
-	}
-
-	public String getFilePath(User admin) {
-		return getPath(admin)+ "/" + getName() + "." + getFileExtension();
+		return getPath() + "/" + getName() + "." + getFileExtension();
 	}
 
 	/**
@@ -476,10 +743,13 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 * @generated NOT
 	 */
 	public File execute(Msg msg) throws Exception {
-		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getText());
-		Map<String, List<Action>> actions = new HashMap<>();
 
 		List<Action> allActions = new ArrayList<>();
+		if (!isOpen()) {
+			throw new SendMessageExc("The project can't be edited. It is close.");
+		}
+		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getText());
+		Map<String, List<Action>> actions = new HashMap<>();
 
 		for (String s : sentences) {
 
@@ -496,17 +766,25 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			msg.setSentences(actions);
 			history.getMsg().add(msg);
 		}
-		
+
 		return getPng(allActions);
 	}
 
 	private File getPng(List<Action> actions) {
-		File txt = UML.write(getPath() + "/" + name + ".txt", createUML(actions));
+		File txt = UML.write(getPath() + "/" + name + ".txt", createUML(actions, getAllActions()));
 		File png = UML.getUML(txt);
 		return png;
 	}
 
-	protected abstract String createUML(List<Action> actions);
+	private List<Action> getAllActions() {
+		List<Action> actions=new ArrayList<>();
+		for (Msg m: history.getMsg()){
+			actions.addAll(m.getAllActions());
+		}
+		return actions;
+	}
+
+	protected abstract String createUML(List<Action> actions,List<Action> actual);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -515,14 +793,17 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 * @generated NOT
 	 */
 	public File undo() throws Exception {
+		if (!isOpen()) {
+			throw new SendMessageExc("The project can't be edited. It is close.");
+		}
 		EList<Msg> list = history.getMsg();
-		
+
 		ECollections.sort(list, new Comparator<Msg>() {
 			@Override
 			public int compare(Msg o1, Msg o2) {
 				return o2.getDate().compareTo(o1.getDate());
 			}
-			
+
 		});
 		for (Msg m : list) {
 			if (m.isUndoable()) {
@@ -552,6 +833,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 * @generated NOT
 	 */
 	public File redo() throws Exception {
+		if (!isOpen()) {
+			throw new SendMessageExc("The project can't be edited. It is close.");
+		}
 		List<Action> all = new ArrayList<Action>();
 		if (!undoMsg.isEmpty()) {
 			Msg m = undoMsg.pop();
@@ -1192,277 +1476,350 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				if (admin != null)
-					msgs = ((InternalEObject)admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
-				return basicSetAdmin((User)otherEnd, msgs);
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			if (admin != null)
+				msgs = ((InternalEObject) admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
+			return basicSetAdmin((User) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return basicSetHistory(null, msgs);
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return basicSetRemove(null, msgs);
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				return basicSetAdmin(null, msgs);
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return basicSetHistory(null, msgs);
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return basicSetRemove(null, msgs);
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			return basicSetAdmin(null, msgs);
+		case SocioProjectsPackage.PROJECT__CLOSE_BRANCHS:
+			return ((InternalEList<?>) getCloseBranchs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				return getName();
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return getHistory();
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return getRemove();
-			case SocioProjectsPackage.PROJECT__MODEL:
-				if (resolve) return getModel();
-				return basicGetModel();
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				return getVisibility();
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				if (resolve) return getAdmin();
-				return basicGetAdmin();
-			case SocioProjectsPackage.PROJECT__ID:
-				return getId();
+		case SocioProjectsPackage.PROJECT__NAME:
+			return getName();
+		case SocioProjectsPackage.PROJECT__OPEN:
+			return isOpen();
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return getHistory();
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return getRemove();
+		case SocioProjectsPackage.PROJECT__MODEL:
+			if (resolve)
+				return getModel();
+			return basicGetModel();
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			return getVisibility();
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			if (resolve)
+				return getAdmin();
+			return basicGetAdmin();
+		case SocioProjectsPackage.PROJECT__ID:
+			return getId();
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			return getBranchGroup();
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			return isBranch();
+		case SocioProjectsPackage.PROJECT__OPEN_BRANCHS:
+			return getOpenBranchs();
+		case SocioProjectsPackage.PROJECT__CLOSE_BRANCHS:
+			return getCloseBranchs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				setName((String)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				setHistory((History)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				setRemove((Root)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				setModel((EObject)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				setVisibility((Visibility)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				setAdmin((User)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__ID:
-				setId((Long)newValue);
-				return;
+		case SocioProjectsPackage.PROJECT__NAME:
+			setName((String) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN:
+			setOpen((Boolean) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			setHistory((History) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			setRemove((Root) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			setModel((EObject) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			setVisibility((Visibility) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			setAdmin((User) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__ID:
+			setId((Long) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			setBranchGroup((String) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			setBranch((Boolean) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN_BRANCHS:
+			getOpenBranchs().clear();
+			getOpenBranchs().addAll((Collection<? extends Project>) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__CLOSE_BRANCHS:
+			getCloseBranchs().clear();
+			getCloseBranchs().addAll((Collection<? extends Project>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				setHistory((History)null);
-				return;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				setRemove((Root)null);
-				return;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				setModel((EObject)null);
-				return;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				setAdmin((User)null);
-				return;
-			case SocioProjectsPackage.PROJECT__ID:
-				setId(ID_EDEFAULT);
-				return;
+		case SocioProjectsPackage.PROJECT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN:
+			setOpen(OPEN_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			setHistory((History) null);
+			return;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			setRemove((Root) null);
+			return;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			setModel((EObject) null);
+			return;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			setVisibility(VISIBILITY_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			setAdmin((User) null);
+			return;
+		case SocioProjectsPackage.PROJECT__ID:
+			setId(ID_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			setBranchGroup(BRANCH_GROUP_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			setBranch(BRANCH_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN_BRANCHS:
+			getOpenBranchs().clear();
+			return;
+		case SocioProjectsPackage.PROJECT__CLOSE_BRANCHS:
+			getCloseBranchs().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return history != null;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return remove != null;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				return model != null;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				return admin != null;
-			case SocioProjectsPackage.PROJECT__ID:
-				return id != ID_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case SocioProjectsPackage.PROJECT__OPEN:
+			return open != OPEN_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return history != null;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return remove != null;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			return model != null;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			return visibility != VISIBILITY_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			return admin != null;
+		case SocioProjectsPackage.PROJECT__ID:
+			return id != ID_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			return BRANCH_GROUP_EDEFAULT == null ? branchGroup != null : !BRANCH_GROUP_EDEFAULT.equals(branchGroup);
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			return branch != BRANCH_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__OPEN_BRANCHS:
+			return openBranchs != null && !openBranchs.isEmpty();
+		case SocioProjectsPackage.PROJECT__CLOSE_BRANCHS:
+			return closeBranchs != null && !closeBranchs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case SocioProjectsPackage.PROJECT___GET_PATH:
-				return getPath();
-			case SocioProjectsPackage.PROJECT___PARSE_SENTENCE__STRING:
+		case SocioProjectsPackage.PROJECT___GET_PATH:
+			return getPath();
+		case SocioProjectsPackage.PROJECT___PARSE_SENTENCE__STRING:
 			try {
-				return parseSentence((String)arguments.get(0));
+				return parseSentence((String) arguments.get(0));
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
-			case SocioProjectsPackage.PROJECT___EXECUTE__MSG:
+		case SocioProjectsPackage.PROJECT___EXECUTE__MSG:
 			try {
-				execute((Msg)arguments.get(0));
+				execute((Msg) arguments.get(0));
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___UNDO:
+			return null;
+		case SocioProjectsPackage.PROJECT___UNDO:
 			try {
 				undo();
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___REDO:
+			return null;
+		case SocioProjectsPackage.PROJECT___REDO:
 			try {
 				redo();
 			} catch (Exception e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG:
-				return getHistoryMsg();
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG__DATE_INT:
-				return getHistoryMsg((Date)arguments.get(0), (Integer)arguments.get(1));
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG__DATE_DATE_INT:
-				return getHistoryMsg((Date)arguments.get(0), (Date)arguments.get(1), (Integer)arguments.get(2));
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_USER__USER:
-				return getHistoryForUser((User)arguments.get(0));
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ELEMENT__STRING:
-				return getHistoryForElement((String)arguments.get(0));
-			case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ACTION__STRING:
-				return getHistoryForAction((String)arguments.get(0));
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG:
+			return getHistoryMsg();
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG__DATE_INT:
+			return getHistoryMsg((Date) arguments.get(0), (Integer) arguments.get(1));
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_MSG__DATE_DATE_INT:
+			return getHistoryMsg((Date) arguments.get(0), (Date) arguments.get(1), (Integer) arguments.get(2));
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_USER__USER:
+			return getHistoryForUser((User) arguments.get(0));
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ELEMENT__STRING:
+			return getHistoryForElement((String) arguments.get(0));
+		case SocioProjectsPackage.PROJECT___GET_HISTORY_FOR_ACTION__STRING:
+			return getHistoryForAction((String) arguments.get(0));
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG:
 			try {
 				getStatisticsUserMsg();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG__USER:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG__USER:
 			try {
-				getStatisticsUserMsg((User)arguments.get(0));
+				getStatisticsUserMsg((User) arguments.get(0));
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION:
 			try {
 				getStatisticsUserAction();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION__USER:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION__USER:
 			try {
-				getStatisticsUserAction((User)arguments.get(0));
+				getStatisticsUserAction((User) arguments.get(0));
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG_ABS:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_MSG_ABS:
 			try {
 				getStatisticsUserMsgAbs();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION_ABS:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_USER_ACTION_ABS:
 			try {
 				getStatisticsUserActionAbs();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___GET_STATISTICS_ACTIONS:
+			return null;
+		case SocioProjectsPackage.PROJECT___GET_STATISTICS_ACTIONS:
 			try {
 				getStatisticsActions();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___PERCENT_OF_AUTHORSHIP:
+			return null;
+		case SocioProjectsPackage.PROJECT___PERCENT_OF_AUTHORSHIP:
 			try {
 				percentOfAuthorship();
 			} catch (IOException e) {
 				throw new InvocationTargetException(e);
 			}
-				return null;
-			case SocioProjectsPackage.PROJECT___VALIDATE:
-				return validate();
+			return null;
+		case SocioProjectsPackage.PROJECT___VALIDATE:
+			return validate();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", open: ");
+		result.append(open);
 		result.append(", visibility: ");
 		result.append(visibility);
 		result.append(", id: ");
 		result.append(id);
+		result.append(", branchGroup: ");
+		result.append(branchGroup);
+		result.append(", branch: ");
+		result.append(branch);
 		result.append(')');
 		return result.toString();
 	}
@@ -1471,26 +1828,66 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return history.getCreateMsg().getDate();
 	}
 
-	public void remove(){
+	public void remove() {
 		removeFiles();
-		File f=new File(getPath());
+		File f = new File(getPath());
 		f.delete();
 		getAdmin().getOwnProjects().remove(this);
-		
-		
+
 	}
-	protected abstract void removeFiles(); 
-	
+
+	protected abstract void removeFiles();
+
 	abstract String getType();
 
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 
 	public String getProjectData() {
-		return getCompleteName() + "\n\t"
-				+ formatter.format(getCreateDate()) + ", " + getType() + ", " + getVisibility();
+		String openStatus="";
+		if (open){
+			openStatus="Open";
+		}else{
+			openStatus="Close";
+		}
+		return getCompleteName() + "\n\t" + formatter.format(getCreateDate()) + ", " + getType() + ", "
+				+ getVisibility()+","+openStatus;
 	}
-	public String getCompleteName(){
+
+	public String getCompleteName() {
 		return getAdmin().getChannel() + "/" + getAdmin().getNick() + "/" + getName();
 	}
+
+	public Project getFather() {
+		if (!isOpen()) {
+			if (eContainer() != null && eContainer() instanceof Project) {
+				return (Project) eContainer();
+			}
+		}
+		return father;
+	}
+
+	public void setFather(Project father) {
+		this.father = father;
+	}
+	/*private EList<Msg> getAllMessages(){
+		return history.getMsg();
+	}*/
+	
+	public void createBranch(Project p) throws Exception{
+		if (isBranch()){
+			throw new Exception("A branch can't has branchs");
+		}
+		
+		if(getOpenBranch(p.getName())!=null || getCloseBranch(p.getName())!=null){
+			throw new Exception("The branch with the name "+p.getName()+" already exists in the project "+name);
+		}
+		 Copier copier = new Copier();
+		 p.setModel(copier.copy(getModel()));
+		 copier.copyReferences();
+		getOpenBranchs().add(p);
+
+	}
+	
+
 
 } // ProjectImpl

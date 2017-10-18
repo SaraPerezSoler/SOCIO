@@ -7,7 +7,7 @@ public interface ValidText {
 
 	
 	
-	public static String validText(String text, char [] validChars, int maxLenth) {
+public static String validText(String text, char [] validChars, int maxLenth) {
 		if (text==null || maxLenth==0){
 			return null;
 		}

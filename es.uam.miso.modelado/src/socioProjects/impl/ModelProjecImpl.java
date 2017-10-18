@@ -50,7 +50,7 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 	}
 
 	@Override
-	protected String createUML(List<Action> actions) {
+	protected String createUML(List<Action> actions, List<Action> actual) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -86,7 +86,7 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 	}
 
 	@Override
-	public void initialize() throws FatalException {
+	public void initialize2() throws FatalException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -114,6 +114,7 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 } //ModelProjecImpl

@@ -159,12 +159,6 @@ public class ReferenceControl implements Feature, IsReference {
 
 	}
 
-	public boolean equals(Object o) {
-		if (o instanceof ReferenceControl) {
-			return this.eRef.equals(((ReferenceControl) o).eRef);
-		}
-		return false;
-	}
 
 	public String toString() {
 
@@ -210,5 +204,30 @@ public class ReferenceControl implements Feature, IsReference {
 	@Override
 	public String elementType() {
 		return "reference";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eRef == null) ? 0 : eRef.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ReferenceControl other = (ReferenceControl) obj;
+		if (eRef == null) {
+			if (other.eRef != null)
+				return false;
+		} else if (!eRef.equals(other.eRef))
+			return false;
+		return true;
 	}
 }

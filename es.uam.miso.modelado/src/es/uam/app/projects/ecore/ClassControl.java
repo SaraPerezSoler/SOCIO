@@ -230,13 +230,7 @@ public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 		return eClass;
 	}
 
-	public boolean equals(Object o) {
-		if (o instanceof ClassControl) {
-			return this.eClass.equals(((ClassControl) o).eClass);
-
-		}
-		return false;
-	}
+	
 
 	/*
 	 * @Override public boolean containEElement(Object o) { if (o instanceof
@@ -270,8 +264,8 @@ public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 	}
 
 	public boolean isSubTypeOf(ClassControl c) {
-		List<ClassControl> superTypes= this.getSuperTypes();
-		if (superTypes.contains(c)){
+		List<String> superTypes= this.getSuperTypesNames();
+		if (superTypes.contains(c.getName())){
 			return true;
 		}
 		return false;
@@ -280,5 +274,30 @@ public class ClassControl implements MetamodelControl, IsClass, ControlCopier {
 	@Override
 	public String elementType() {
 		return "class";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eClass == null) ? 0 : eClass.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClassControl other = (ClassControl) obj;
+		if (eClass == null) {
+			if (other.eClass != null)
+				return false;
+		} else if (!eClass.equals(other.eClass))
+			return false;
+		return true;
 	}
 }

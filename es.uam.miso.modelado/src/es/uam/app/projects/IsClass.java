@@ -3,6 +3,7 @@ package es.uam.app.projects;
 import java.io.FileNotFoundException;
 
 import es.uam.app.actions.metamodels.CreateClass;
+import es.uam.app.actions.metamodels.UpdateClassAbstract;
 import es.uam.app.parser.NP;
 import es.uam.app.parser.WordConfigure;
 import es.uam.app.projects.ecore.ClassControl;
@@ -23,6 +24,13 @@ public interface IsClass extends IsInterface{
 		}else{
 			return new CreateClass(proj,clas.upperCammelCase(), false);
 		}
+	}
+	
+	public static UpdateClassAbstract getUpdateClassAbstractAction(IsClass clas){
+		if (clas instanceof CreateClass){
+			return ((CreateClass) clas).getAbstract();
+		}
+		return null;
 	}
 	
 	public static IsClass getClass(String clas, MetamodelProject proj) throws FileNotFoundException, JWNLException {

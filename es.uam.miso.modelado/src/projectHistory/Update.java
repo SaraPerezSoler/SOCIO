@@ -4,6 +4,7 @@ package projectHistory;
 
 import org.eclipse.emf.ecore.EObject;
 
+import es.uam.app.projects.ecore.ClassControl;
 import socioProjects.Project;
 
 
@@ -79,8 +80,12 @@ public interface Update extends Action {
 	
 	void setAction(es.uam.app.actions.Update<? extends Project> action);
 	
+	boolean isUpdateAbstract();
+	
 	default String getActionName(){
 		return "Update";
 	}
+
+	boolean isUpdateSuperType(ClassControl superType);
 
 } // Update

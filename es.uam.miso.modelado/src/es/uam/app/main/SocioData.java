@@ -19,6 +19,7 @@ import projectHistory.impl.projectHistoryFactoryImpl;
 import removeLog.impl.RemoveLogFactoryImpl;
 import socioProjects.Access;
 import socioProjects.Contribution;
+import socioProjects.MetamodelProject;
 import socioProjects.Project;
 import socioProjects.SocioApp;
 import socioProjects.User;
@@ -99,6 +100,10 @@ public class SocioData {
 			}
 		}
 		for (Project p : remove) {
+			if (p.isBranch()){
+				p.getFather().getCloseBranchs().remove(p);
+				p.getFather().getOpenBranchs().remove(p);
+			}
 			removeProject(p);
 		}
 
@@ -204,7 +209,7 @@ public class SocioData {
 	public Project getProject(String name, User u) {
 		List<Project> projects = socioApp.getProjects();
 		for (Project p : projects) {
-			if (p.getName().equals(name) && p.getAdmin().equals(u)) {
+			if (p.getName().equalsIgnoreCase(name) && p.getAdmin().equals(u)) {
 				return p;
 			}
 		}
@@ -283,7 +288,7 @@ public class SocioData {
 		}
 	}
 
-	public void createProject(String name, Msg msg, ProjectType type, Visibility constraint) throws Exception {
+	public Project createProject(String name, Msg msg, ProjectType type, Visibility constraint, boolean isBranch, Project father) throws Exception {
 		Project aux = getProject(name, msg.getUser());
 		if (aux != null) {
 			throw new SendMessageExc(
@@ -302,6 +307,8 @@ public class SocioData {
 		p.setRemove(RemoveLogFactoryImpl.eINSTANCE.createRoot());
 		p.setId(ProjectImpl.getNextId());
 		p.setVisibility(constraint);
+		p.setBranch(isBranch);
+		p.setFather(father);
 		addProject(p, msg.getUser());
 		p.initialize();
 
@@ -315,6 +322,7 @@ public class SocioData {
 		p.getHistory().setCreateMsg(cmsg);
 		socioApp.getProjects().add(p);
 		save(p);
+		return p;
 	}
 
 	public void removeProject(String name, Msg msg) throws Exception {
@@ -426,6 +434,25 @@ public class SocioData {
 		actual.setVisibility(c);
 		this.save(actual);
 
+	}
+	
+	public void createBranch(Project actual, Msg msg, String branchName) throws Exception{
+		Project aux = actual.getOpenBranch(branchName);
+		if (aux != null) {
+			throw new SendMessageExc(
+					"The branch " + branchName+ " from the project " + actual.getName() + " already exist");
+		}
+
+		ProjectType pt;
+		if(actual instanceof MetamodelProject){
+			pt=ProjectType.METAMODEL;
+		}else{
+			pt=ProjectType.MODEL;
+		}
+		Project p=createProject(branchName, msg, pt, actual.getVisibility(), true, actual);
+		actual.createBranch(p);
+		save(actual);
+		save(p);
 	}
 
 	public void removeUserToProject(Project actual, User u) {

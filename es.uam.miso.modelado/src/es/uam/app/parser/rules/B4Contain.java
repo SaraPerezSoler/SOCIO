@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateRefType;
@@ -55,9 +54,7 @@ public class B4Contain extends MetemodelRule {
 			NP A=A_B.get(i)[0];
 			NP B=A_B.get(i)[1];
 			IsClass aClass = IsClass.getClass(A, proj);
-			if (aClass instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) aClass).getAction());
-			}
+			super.addIfNecesary(aClass, ret);
 
 			if (!B.getAdj().isEmpty()) {
 				EClassifier type = B.adjType();
@@ -66,9 +63,7 @@ public class B4Contain extends MetemodelRule {
 					// B.noun es un atributo...
 					
 					IsAttribute att = IsAttribute.getAttribute(B.getNoun().getWord(), aClass, B.getMin(), B.getMax(), proj);
-					if (att instanceof ProjectAction) {
-						ret.add(((ProjectAction<?>) att).getAction());
-					}
+					super.addIfNecesary(att, ret);
 					// ...con tipo B.adjetivo.
 					UpdateAttrType uat = new UpdateAttrType(proj, att, type.getName());
 					ret.add(uat.getAction());
@@ -84,9 +79,7 @@ public class B4Contain extends MetemodelRule {
 					if (bClass instanceof ClassControl) {
 						// B.noun es una referencia...
 						IsReference ref = IsReference.getReference(B, aClass, proj, true);
-						if (ref instanceof ProjectAction) {
-							ret.add(((ProjectAction<?>) ref).getAction());
-						}
+						super.addIfNecesary(ref, ret);
 						// ...con tipo B.adjetive
 						UpdateRefType urt = new UpdateRefType(proj, ref, bClass);
 						ret.add(urt.getAction());
@@ -95,28 +88,20 @@ public class B4Contain extends MetemodelRule {
 						// clase creada previamente
 					} else {
 						bClass = bClassAux;
-						if (bClass instanceof ProjectAction) {
-							ret.add(((ProjectAction<?>) bClass).getAction());
-						}
+						super.addIfNecesary(bClass, ret);
 
 						IsReference bRef = IsReference.getReference(B, aClass, proj, true);
-						if (bRef instanceof ProjectAction) {
-							ret.add(((ProjectAction<?>) bRef).getAction());
-						}
+						super.addIfNecesary(bRef, ret);
 						UpdateRefType urt = new UpdateRefType(proj, bRef, bClass);
 						ret.add(urt.getAction());
 					}
 				}
 			} else {
 				IsClass bClass = IsClass.getClass(B, proj);
-				if (bClass instanceof ProjectAction) {
-					ret.add(((ProjectAction<?>) bClass).getAction());
-				}
+				super.addIfNecesary(bClass, ret);
 
 				IsReference bRef = IsReference.getReference(B, aClass, proj, true);
-				if (bRef instanceof ProjectAction) {
-					ret.add(((ProjectAction<?>) bRef).getAction());
-				}
+				super.addIfNecesary(bRef, ret);
 				UpdateRefType urt = new UpdateRefType(proj, bRef, bClass);
 				ret.add(urt.getAction());
 			}

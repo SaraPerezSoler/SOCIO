@@ -124,13 +124,22 @@ public interface SocioProjectsPackage extends EPackage {
 	int PROJECT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Open</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__OPEN = 1;
+
+	/**
 	 * The feature id for the '<em><b>History</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__HISTORY = 1;
+	int PROJECT__HISTORY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Remove</b></em>' containment reference.
@@ -139,7 +148,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__REMOVE = 2;
+	int PROJECT__REMOVE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -148,7 +157,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__MODEL = 3;
+	int PROJECT__MODEL = 4;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -157,7 +166,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__VISIBILITY = 4;
+	int PROJECT__VISIBILITY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Admin</b></em>' reference.
@@ -166,7 +175,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__ADMIN = 5;
+	int PROJECT__ADMIN = 6;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -175,7 +184,43 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__ID = 6;
+	int PROJECT__ID = 7;
+
+	/**
+	 * The feature id for the '<em><b>Branch Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__BRANCH_GROUP = 8;
+
+	/**
+	 * The feature id for the '<em><b>Branch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__BRANCH = 9;
+
+	/**
+	 * The feature id for the '<em><b>Open Branchs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__OPEN_BRANCHS = 10;
+
+	/**
+	 * The feature id for the '<em><b>Close Branchs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__CLOSE_BRANCHS = 11;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -184,7 +229,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 7;
+	int PROJECT_FEATURE_COUNT = 12;
 
 	/**
 	 * The operation id for the '<em>Get Path</em>' operation.
@@ -395,6 +440,15 @@ public interface SocioProjectsPackage extends EPackage {
 	int MODEL_PROJEC__NAME = PROJECT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Open</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__OPEN = PROJECT__OPEN;
+
+	/**
 	 * The feature id for the '<em><b>History</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,6 +501,42 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_PROJEC__ID = PROJECT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Branch Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__BRANCH_GROUP = PROJECT__BRANCH_GROUP;
+
+	/**
+	 * The feature id for the '<em><b>Branch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__BRANCH = PROJECT__BRANCH;
+
+	/**
+	 * The feature id for the '<em><b>Open Branchs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__OPEN_BRANCHS = PROJECT__OPEN_BRANCHS;
+
+	/**
+	 * The feature id for the '<em><b>Close Branchs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__CLOSE_BRANCHS = PROJECT__CLOSE_BRANCHS;
 
 	/**
 	 * The number of structural features of the '<em>Model Projec</em>' class.
@@ -666,6 +756,15 @@ public interface SocioProjectsPackage extends EPackage {
 	int METAMODEL_PROJECT__NAME = PROJECT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Open</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__OPEN = PROJECT__OPEN;
+
+	/**
 	 * The feature id for the '<em><b>History</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -718,6 +817,42 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int METAMODEL_PROJECT__ID = PROJECT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Branch Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__BRANCH_GROUP = PROJECT__BRANCH_GROUP;
+
+	/**
+	 * The feature id for the '<em><b>Branch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__BRANCH = PROJECT__BRANCH;
+
+	/**
+	 * The feature id for the '<em><b>Open Branchs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__OPEN_BRANCHS = PROJECT__OPEN_BRANCHS;
+
+	/**
+	 * The feature id for the '<em><b>Close Branchs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__CLOSE_BRANCHS = PROJECT__CLOSE_BRANCHS;
 
 	/**
 	 * The number of structural features of the '<em>Metamodel Project</em>' class.
@@ -1192,6 +1327,17 @@ public interface SocioProjectsPackage extends EPackage {
 	EAttribute getProject_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.Project#isOpen <em>Open</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Open</em>'.
+	 * @see socioProjects.Project#isOpen()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Open();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link socioProjects.Project#getHistory <em>History</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1256,6 +1402,50 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProject_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.Project#getBranchGroup <em>Branch Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Branch Group</em>'.
+	 * @see socioProjects.Project#getBranchGroup()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_BranchGroup();
+
+	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.Project#isBranch <em>Branch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Branch</em>'.
+	 * @see socioProjects.Project#isBranch()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Branch();
+
+	/**
+	 * Returns the meta object for the reference list '{@link socioProjects.Project#getOpenBranchs <em>Open Branchs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Open Branchs</em>'.
+	 * @see socioProjects.Project#getOpenBranchs()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_OpenBranchs();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link socioProjects.Project#getCloseBranchs <em>Close Branchs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Close Branchs</em>'.
+	 * @see socioProjects.Project#getCloseBranchs()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EReference getProject_CloseBranchs();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.Project#getPath() <em>Get Path</em>}' operation.
@@ -1773,6 +1963,14 @@ public interface SocioProjectsPackage extends EPackage {
 		EAttribute PROJECT__NAME = eINSTANCE.getProject_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Open</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__OPEN = eINSTANCE.getProject_Open();
+
+		/**
 		 * The meta object literal for the '<em><b>History</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1819,6 +2017,38 @@ public interface SocioProjectsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROJECT__ID = eINSTANCE.getProject_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Branch Group</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__BRANCH_GROUP = eINSTANCE.getProject_BranchGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Branch</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__BRANCH = eINSTANCE.getProject_Branch();
+
+		/**
+		 * The meta object literal for the '<em><b>Open Branchs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__OPEN_BRANCHS = eINSTANCE.getProject_OpenBranchs();
+
+		/**
+		 * The meta object literal for the '<em><b>Close Branchs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROJECT__CLOSE_BRANCHS = eINSTANCE.getProject_CloseBranchs();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Path</b></em>' operation.

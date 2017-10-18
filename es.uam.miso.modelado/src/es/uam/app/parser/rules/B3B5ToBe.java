@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import es.uam.app.actions.ProjectAction;
 import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateClassAbstract;
 import es.uam.app.actions.metamodels.UpdateClassRemoveSuperType;
@@ -62,9 +61,7 @@ public class B3B5ToBe extends MetemodelRule {
 		if (A.getOf() != null) {
 			IsClass of = IsClass.getClass(A.getOf(), proj);
 			ret.addAll(withOf(proj, of, A, B));
-			if (of instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) of).getAction());
-			}
+			super.addIfNecesary(of, ret);
 
 		} else {
 			ret.addAll(withoutOf(proj, A, B));
@@ -79,13 +76,9 @@ public class B3B5ToBe extends MetemodelRule {
 
 		if (type == null) {
 			IsReference ref = IsReference.getReference(A, of, proj, false);
-			if (ref instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) ref).getAction());
-			}
+			super.addIfNecesary(ref, ret);
 			IsClass bClass = IsClass.getClass(B, proj);
-			if (bClass instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) bClass).getAction());
-			}
+			super.addIfNecesary(bClass, ret);
 			if (no) {
 				if (ref instanceof ReferenceControl && bClass instanceof ClassControl) {
 					if (((ReferenceControl) ret).getType().equals((ClassControl) bClass)) {
@@ -99,9 +92,7 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		} else {
 			IsAttribute att = IsAttribute.getAttribute(A, of, proj);
-			if (att instanceof ProjectAction) {
-				ret.add(((ProjectAction<?>) att).getAction());
-			}
+			super.addIfNecesary(att, ret);
 
 			if (no) {
 				if (att instanceof AttributeControl) {
@@ -123,7 +114,7 @@ public class B3B5ToBe extends MetemodelRule {
 	private List<Action> withoutOf(MetamodelProject proj, NP A, NP B) throws FileNotFoundException, JWNLException {
 
 		IsClass aClass = IsClass.getClass(A.upperCammelCase(), proj);
-		if (aClass instanceof ProjectAction) {
+		if (!(aClass instanceof ClassControl)) {
 			Feature f = proj.getFeature(A.lowerCammelCase());
 			if (f != null) {
 				ClassControl of = f.getParent();
@@ -132,9 +123,7 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		}
 		List<Action> ret = new ArrayList<Action>();
-		if (aClass instanceof ProjectAction) {
-			ret.add(((ProjectAction<?>) aClass).getAction());
-		}
+		super.addIfNecesary(aClass, ret);
 
 		if (B.isAbstract() && (B.getNoun() == null || B.getNoun().lemmaEquals("class"))) {
 			if (no) {
@@ -155,9 +144,7 @@ public class B3B5ToBe extends MetemodelRule {
 			}
 		}
 
-		if (bClass instanceof ProjectAction) {
-			ret.add(((ProjectAction<?>) bClass).getAction());
-		}
+		super.addIfNecesary(bClass, ret);
 		if (no) {
 			if (bClass instanceof ClassControl) {
 				UpdateClassRemoveSuperType ucrst = new UpdateClassRemoveSuperType(proj, aClass, (ClassControl) bClass);
