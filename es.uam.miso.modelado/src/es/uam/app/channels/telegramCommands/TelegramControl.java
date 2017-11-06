@@ -171,7 +171,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 		ReplyKeyboardRemove replyremove = new ReplyKeyboardRemove();
 		if (sMessage.hasText()) {
-			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText()).setParseMode("Markdown");
 			if (msgId != -1) {
 				replyremove.setSelective(true);
 				send.setReplyToMessageId(msgId);
@@ -182,7 +182,6 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 			} catch (TelegramApiException e) {
 				Main.log.error(e);
-				;
 			}
 		}
 		if (sMessage.hasPng()) {
@@ -228,7 +227,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		inlineKeyBoar.setKeyboard(buttons);
 
 		if (sMessage.hasText()) {
-			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText()).setParseMode("Markdown");
 
 			send.setReplyMarkup(inlineKeyBoar);
 			try {
@@ -268,7 +267,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		inlineKeyBoar.setKeyboard(buttons);
 
 		if (sMessage.hasText()) {
-			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText()).setParseMode("Markdown");
 
 			send.setReplyMarkup(inlineKeyBoar);
 			try {
@@ -311,7 +310,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		keyboardMarkup.setKeyboard(buttons);
 
 		if (sMessage.hasText()) {
-			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText()).setParseMode("Markdown");
 			if (msgId != -1) {
 				keyboardMarkup.setSelective(true);
 				send.setReplyToMessageId(msgId);
@@ -342,6 +341,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		}
 	}
 
+
 	public void sendMessageAndWait(int msgId, long chatId, SendMessageExc sMessage) {
 
 		if (sMessage.hasPng()) {
@@ -357,7 +357,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 		if (sMessage.hasText()) {
 			ForceReplyKeyboard replyK = new ForceReplyKeyboard();
 			replyK.setSelective(true);
-			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText());
+			SendMessage send = new SendMessage().setChatId(chatId).setText(sMessage.getText()).setParseMode("Markdown");
 			send.setReplyMarkup(replyK);
 
 			send.setReplyToMessageId(msgId);

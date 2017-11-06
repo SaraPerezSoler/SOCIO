@@ -30,4 +30,12 @@
             genModel="model/SocioDatabase.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="branchDecision"
+            class="branchDecision.BranchDecisionPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
 </plugin>

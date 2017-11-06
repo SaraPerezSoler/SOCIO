@@ -63,8 +63,10 @@ public class Show extends TelegramCommand {
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
 			this.setState(chatId);
-			sMessage.setText(sMessage.getMessage()+"\n\n"+SHOW_MSG);
-			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
+			String text=sMessage.getText();
+			sMessage.setText(super.getProjectsFormat(sMessage.getMessage())+"\n\n"+SHOW_MSG);
+			String [][] projects =super.getProjects(text);
+			tChannel.sendMessageWithKeyBoar(msgId, chatId, sMessage, projects);
 		}
 	}
 

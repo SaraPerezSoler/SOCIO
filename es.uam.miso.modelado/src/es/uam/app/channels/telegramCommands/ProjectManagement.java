@@ -24,12 +24,17 @@ public class ProjectManagement extends TelegramCommand {
 	private static final int USER_OPTION_CHANGE=7;
 	private static final int USER_OPTION_EDIT=8;
 	private static final int USER_OPTION_READ=9;
+	private static final int BRANCH_OPTION = 10;
 	
 	private static final String[] OPTIONS={"Change project visibility", "Manage project users"};
+	private static final String BRANCH_GROUP="Set branch group";
 	private static final String[] CONST={"Public", "Protected", "Private"};
 	private static final String[] USER={"Add an user to the project", "Remove an user to the project", "Change an user access"};
+	
 	private static final String[] ADD_OPTIONS={"Read", "Write"};
 	private static final String EXIT="exit";
+	private static final String CONSENSUS = "/selectBranchFor ";
+	
 	
 
 	public ProjectManagement(TelegramControl tChannel) {
@@ -62,31 +67,7 @@ public class ProjectManagement extends TelegramCommand {
 		}
 	}
 	
-	private String[][] getProjects(String text){
-		
-		String[] projectsInfo=text.split(">");
-		String[][] projects;
-		int numProjecst=projectsInfo.length-1;
-		
-		if ((numProjecst)%2==0){
-			projects= new String[numProjecst/2][];
-		}else{
-			projects= new String[(numProjecst/2)+1][];
-		} 
-		
-		for (int i=0; i<projectsInfo.length-1; i++){
-			String p=projectsInfo[i+1].split("\n")[0];
-			if (i%2==0){
-				if (i!=numProjecst-1){
-					projects[i/2]=new String[2];
-				}else{
-					projects[i/2]=new String[1];
-				}
-			}
-			projects[i/2][i%2]=p;
-		}
-		return projects;
-	}
+	
 	
 	
 	@Override
@@ -113,8 +94,16 @@ public class ProjectManagement extends TelegramCommand {
 				projectName.put(chatId, null);
 				tChannel.sendMessage(msgId, chatId, sMessage);
 			}else{
-				sMessage.setText(sMessage.getText()+"\n\nWhat do you want to do?");
-				tChannel.sendMessageWithKeyBoar(msgId,chatId, sMessage, new String[][]{{OPTIONS[0]},{OPTIONS[1]},{EXIT}});
+				String[][] options;
+				if (super.projectInfoIsBranch(sMessage.getText())){
+					options=new String[][]{{OPTIONS[0]},{OPTIONS[1]},{BRANCH_GROUP}, {EXIT}};
+				}else if (super.projectInfoHasBranch(sMessage.getText())){
+					options=new String[][]{{OPTIONS[0]},{OPTIONS[1]},{CONSENSUS+projectName.get(chatId)}, {EXIT}};
+				}else{
+					options=new String[][]{{OPTIONS[0]},{OPTIONS[1]}, {EXIT}};
+				}
+				sMessage.setText(super.getProjectsFormat(sMessage.getText())+"\n\nWhat do you want to do?");
+				tChannel.sendMessageWithKeyBoar(msgId,chatId, sMessage, options);
 			}
 		}else if (state.get(chatId)==USER_OPTION_REMOVE || state.get(chatId)==USER_OPTION_CHANGE){
 			if (sMessage.hasText()){
@@ -155,6 +144,10 @@ public class ProjectManagement extends TelegramCommand {
 				this.state.put(chatId, USER_OPTION);
 				SendMessageExc sMsg=new SendMessageExc("What?:");
 				this.tChannel.sendMessageWithKeyBoar(msgId, chatId, sMsg, new String[][]{{USER[0]},{USER[1]},{USER[2]},{EXIT}});
+			}else if (update.getMessage().getText().equals(BRANCH_GROUP)){
+				this.state.put(chatId, BRANCH_OPTION);
+				SendMessageExc sMessage=new SendMessageExc("Write the name of the group branch:");
+				this.tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 			}else{
 				exit(update);
 			}
@@ -216,6 +209,9 @@ public class ProjectManagement extends TelegramCommand {
 		}else if(state.get(chatId)==USER_OPTION_EDIT){
 			this.setStandardState(chatId);
 			this.tChannel.write(update, CommandList.ADD_USER_TO_PROJECT, projectName.get(chatId), update.getMessage().getText(), "EDIT");
+		}else if (state.get(chatId)==BRANCH_OPTION){
+			this.setStandardState(chatId);
+			this.tChannel.write(update, CommandList.SET_BRANCH_GROUP, projectName.get(chatId), null, update.getMessage().getText());
 		}
 	}
 	

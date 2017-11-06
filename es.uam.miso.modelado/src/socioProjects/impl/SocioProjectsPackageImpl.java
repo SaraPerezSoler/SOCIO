@@ -2,6 +2,8 @@
  */
 package socioProjects.impl;
 
+import branchDecision.BranchDecisionPackage;
+import branchDecision.impl.BranchDecisionPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -139,16 +141,19 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		// Obtain or create and register interdependencies
 		projectHistoryPackageImpl theprojectHistoryPackage = (projectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) instanceof projectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) : projectHistoryPackage.eINSTANCE);
 		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) : RemoveLogPackage.eINSTANCE);
+		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) : BranchDecisionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSocioProjectsPackage.createPackageContents();
 		theprojectHistoryPackage.createPackageContents();
 		theRemoveLogPackage.createPackageContents();
+		theBranchDecisionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theSocioProjectsPackage.initializePackageContents();
 		theprojectHistoryPackage.initializePackageContents();
 		theRemoveLogPackage.initializePackageContents();
+		theBranchDecisionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theSocioProjectsPackage.freeze();
@@ -263,7 +268,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Id() {
+	public EAttribute getProject_BranchIsLocking() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -272,7 +277,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_BranchGroup() {
+	public EAttribute getProject_Id() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -281,7 +286,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProject_Branch() {
+	public EAttribute getProject_BranchGroup() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -290,8 +295,17 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProject_Branch() {
+		return (EAttribute)projectEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getProject_OpenBranchs() {
-		return (EReference)projectEClass.getEStructuralFeatures().get(10);
+		return (EReference)projectEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -300,7 +314,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * @generated
 	 */
 	public EReference getProject_CloseBranchs() {
-		return (EReference)projectEClass.getEStructuralFeatures().get(11);
+		return (EReference)projectEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -739,6 +753,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		createEReference(projectEClass, PROJECT__MODEL);
 		createEAttribute(projectEClass, PROJECT__VISIBILITY);
 		createEReference(projectEClass, PROJECT__ADMIN);
+		createEAttribute(projectEClass, PROJECT__BRANCH_IS_LOCKING);
 		createEAttribute(projectEClass, PROJECT__ID);
 		createEAttribute(projectEClass, PROJECT__BRANCH_GROUP);
 		createEAttribute(projectEClass, PROJECT__BRANCH);
@@ -822,6 +837,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		// Obtain other dependent packages
 		projectHistoryPackage theprojectHistoryPackage = (projectHistoryPackage)EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI);
 		RemoveLogPackage theRemoveLogPackage = (RemoveLogPackage)EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
+		BranchDecisionPackage theBranchDecisionPackage = (BranchDecisionPackage)EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -844,11 +860,12 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		initEReference(getProject_Model(), ecorePackage.getEObject(), null, "model", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Visibility(), this.getVisibility(), "visibility", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Admin(), this.getUser(), this.getUser_OwnProjects(), "admin", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProject_BranchIsLocking(), ecorePackage.getEBoolean(), "branchIsLocking", "true", 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Id(), ecorePackage.getELong(), "id", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_BranchGroup(), ecorePackage.getEString(), "branchGroup", "", 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Branch(), ecorePackage.getEBoolean(), "branch", "false", 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_OpenBranchs(), this.getProject(), null, "OpenBranchs", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_CloseBranchs(), this.getProject(), null, "CloseBranchs", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_CloseBranchs(), theBranchDecisionPackage.getDecision(), null, "CloseBranchs", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getProject__GetPath(), ecorePackage.getEString(), "getPath", 1, 1, IS_UNIQUE, IS_ORDERED);
 

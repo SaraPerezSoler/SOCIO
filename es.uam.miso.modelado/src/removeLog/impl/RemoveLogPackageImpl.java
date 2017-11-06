@@ -2,6 +2,8 @@
  */
 package removeLog.impl;
 
+import branchDecision.BranchDecisionPackage;
+import branchDecision.impl.BranchDecisionPackageImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -80,16 +82,19 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 		// Obtain or create and register interdependencies
 		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) : SocioProjectsPackage.eINSTANCE);
 		projectHistoryPackageImpl theprojectHistoryPackage = (projectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) instanceof projectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(projectHistoryPackage.eNS_URI) : projectHistoryPackage.eINSTANCE);
+		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) : BranchDecisionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRemoveLogPackage.createPackageContents();
 		theSocioProjectsPackage.createPackageContents();
 		theprojectHistoryPackage.createPackageContents();
+		theBranchDecisionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRemoveLogPackage.initializePackageContents();
 		theSocioProjectsPackage.initializePackageContents();
 		theprojectHistoryPackage.initializePackageContents();
+		theBranchDecisionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRemoveLogPackage.freeze();

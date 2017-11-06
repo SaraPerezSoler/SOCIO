@@ -53,8 +53,10 @@ public class DelProject extends TelegramCommand {
 			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 		} else {
 			this.setState(chatId);
-			sMessage.setText(sMessage.getText()+"\n\n"+DEL_MSG);
-			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
+			String text=sMessage.getText();
+			sMessage.setText(super.getProjectsFormat(sMessage.getText())+"\n\n"+DEL_MSG);
+			String [][] projects=super.getProjects(text);
+			tChannel.sendMessageWithKeyBoar(msgId, chatId, sMessage, projects);
 		}
 	}
 	

@@ -301,9 +301,6 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * @generated NOT
 	 */
 	public boolean canEdit(Project project) {
-		if (!project.isOpen()){
-			return false;
-		}
 		if (project.getVisibility()==Visibility.PUBLIC){
 			return true;
 		}

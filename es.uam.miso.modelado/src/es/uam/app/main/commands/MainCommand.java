@@ -13,7 +13,7 @@ import socioProjects.Project;
 import socioProjects.User;
 
 public abstract class MainCommand {
-	private static final char[] validProjectCharacteres = { '_' };
+	private static final char[] validProjectCharacteres = { '_', '/' };
 
 	public abstract void execute(Msg rm) throws SendMessageExc, Exception;
 

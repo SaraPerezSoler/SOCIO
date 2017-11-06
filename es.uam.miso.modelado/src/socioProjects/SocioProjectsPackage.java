@@ -178,13 +178,22 @@ public interface SocioProjectsPackage extends EPackage {
 	int PROJECT__ADMIN = 6;
 
 	/**
+	 * The feature id for the '<em><b>Branch Is Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__BRANCH_IS_LOCKING = 7;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__ID = 7;
+	int PROJECT__ID = 8;
 
 	/**
 	 * The feature id for the '<em><b>Branch Group</b></em>' attribute.
@@ -193,7 +202,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__BRANCH_GROUP = 8;
+	int PROJECT__BRANCH_GROUP = 9;
 
 	/**
 	 * The feature id for the '<em><b>Branch</b></em>' attribute.
@@ -202,7 +211,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__BRANCH = 9;
+	int PROJECT__BRANCH = 10;
 
 	/**
 	 * The feature id for the '<em><b>Open Branchs</b></em>' reference list.
@@ -211,7 +220,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__OPEN_BRANCHS = 10;
+	int PROJECT__OPEN_BRANCHS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Close Branchs</b></em>' containment reference list.
@@ -220,7 +229,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__CLOSE_BRANCHS = 11;
+	int PROJECT__CLOSE_BRANCHS = 12;
 
 	/**
 	 * The number of structural features of the '<em>Project</em>' class.
@@ -229,7 +238,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 12;
+	int PROJECT_FEATURE_COUNT = 13;
 
 	/**
 	 * The operation id for the '<em>Get Path</em>' operation.
@@ -492,6 +501,15 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL_PROJEC__ADMIN = PROJECT__ADMIN;
+
+	/**
+	 * The feature id for the '<em><b>Branch Is Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJEC__BRANCH_IS_LOCKING = PROJECT__BRANCH_IS_LOCKING;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -808,6 +826,15 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @ordered
 	 */
 	int METAMODEL_PROJECT__ADMIN = PROJECT__ADMIN;
+
+	/**
+	 * The feature id for the '<em><b>Branch Is Locking</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_PROJECT__BRANCH_IS_LOCKING = PROJECT__BRANCH_IS_LOCKING;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1391,6 +1418,17 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProject_Admin();
+
+	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.Project#isBranchIsLocking <em>Branch Is Locking</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Branch Is Locking</em>'.
+	 * @see socioProjects.Project#isBranchIsLocking()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_BranchIsLocking();
 
 	/**
 	 * Returns the meta object for the attribute '{@link socioProjects.Project#getId <em>Id</em>}'.
@@ -2009,6 +2047,14 @@ public interface SocioProjectsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__ADMIN = eINSTANCE.getProject_Admin();
+
+		/**
+		 * The meta object literal for the '<em><b>Branch Is Locking</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__BRANCH_IS_LOCKING = eINSTANCE.getProject_BranchIsLocking();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.

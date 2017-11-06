@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClass;
-
 import es.uam.app.projects.ecore.AttributeControl;
 import es.uam.app.projects.ecore.ClassControl;
 import es.uam.app.projects.ecore.Controlador;
@@ -243,10 +241,6 @@ public class CreateMetamodelUML {
 	}
 
 	private String getClassText(ClassControl cc) {
-		List<Controlador> addNewClass = addControl.get(CLASS);
-		List<Controlador> updateNewClass = updateControl.get(CLASS);
-		List<Controlador> addActualClass = addActualElements.get(CLASS);
-		List<Controlador> updateActualClass = updateActualElements.get(CLASS);
 		String cad = "";
 		String head=createClassHead(cc);
 		String name=getClassName(cc);

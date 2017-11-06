@@ -2,6 +2,9 @@ package es.uam.app.main.commands;
 
 
 
+
+import java.io.File;
+
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.NotAccessException;
 import es.uam.app.message.SendMessageExc;
@@ -23,7 +26,7 @@ public class NewBranch extends MainCommand{
 		if (!rm.hasText()){
 			throw new SendMessageExc("The branch needs a name");
 		}
-		rm.setText(validProjectName(rm.getText()));
+		
 		Project p=SocioData.getSocioData().getProject(rm.getText(), rm.getUser());
 		if (p!=null){
 			throw new SendMessageExc("The project "+rm.getUser().getChannel()+"/"+rm.getUser().getNick()+"/"
@@ -39,9 +42,18 @@ public class NewBranch extends MainCommand{
 		if (!rm.getUser().canEdit(actual)){
 			throw new NotAccessException("The user needs write permissions to create a branch");
 		}
-		
-		SocioData.getSocioData().createBranch(actual, rm, rm.getText());
-		
+		if (!rm.hasText()){
+			throw new SendMessageExc("It's necessary the name of the branch and the branch group in the text field");
+		}
+		String[] split=rm.getText().split("-");
+		String group;
+		if (split.length==2){
+			group=split[1];
+		}else{
+			group="default";
+		}
+		File png=SocioData.getSocioData().createBranch(actual, rm, validProjectName(split[0]), validProjectName(group));
+		throw new SendMessageExc(png);
 	}
 
 	@Override
@@ -51,12 +63,12 @@ public class NewBranch extends MainCommand{
 
 	@Override
 	public String getDesc() {
-		return "creates a new project";
+		return "creates a branch to a project";
 	}
 
 	@Override
 	public String getNeeds() {
-		return project()+", name to the new branch (in text field)";
+		return project()+", name to the new branch and the branch group (<name>-<groupName>) (in text field)";
 	}
 
 }

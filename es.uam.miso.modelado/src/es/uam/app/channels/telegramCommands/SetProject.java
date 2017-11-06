@@ -36,20 +36,21 @@ public class SetProject extends TelegramCommand {
 		String[] split = text.split(" ");
 		// Si el comando no tiene argumentos
 		if (split.length == 1) {
-			tChannel.write(update, CommandList.PROJECTS,null,null,null);
+			tChannel.write(update, CommandList.PROJECT_USER_ACCESS,null,null,null);
 		} else {
 			String text2 = text.replace(split[0], "");
 			text2 = text2.replace(" ", "");
 			tChannel.write(update,CommandList.PROJECT_INFO, text2, null,null);
 		}
-
 	}
 	
 	@Override
 	public void modellingAnswer(long chatId, int msgId, Msg rMessageCommand, SendMessageExc sMessage) {
-		if (rMessageCommand.getCommand().equals(CommandList.PROJECTS)) {
-			sMessage.setText(sMessage.getMessage()+"\n\n"+SET_PROJECT_MSG1);
-			tChannel.sendMessageAndWait(msgId, chatId, sMessage);
+		if (rMessageCommand.getCommand().equals(CommandList.PROJECT_USER_ACCESS)) {
+			String text=sMessage.getText();
+			sMessage.setText(getProjectsFormat(sMessage.getMessage())+"\n\n"+SET_PROJECT_MSG1);
+			String[][] projects=super.getProjects(text);
+			tChannel.sendMessageWithKeyBoar(msgId, chatId, sMessage, projects);
 		} else {
 			if (sMessage.getText() != null && sMessage.getText().startsWith(ProjectNotFoundException.PROJECT_NOT_FOUND)) {
 				tChannel.sendMessage(msgId, chatId, sMessage);
@@ -57,7 +58,7 @@ public class SetProject extends TelegramCommand {
 				tChannel.sendMessageAndWait(msgId, chatId, sMessage);
 			} else {
 				String projectName=sMessage.getText().split("\n")[0].replace("Project: ", "");
-				sMessage.setText(sMessage.getMessage()+"\n\n"+SET_PROJECT_MSG2);
+				sMessage.setText(getProjectsFormat(sMessage.getMessage())+"\n\n"+SET_PROJECT_MSG2);
 				this.setProject(chatId, projectName);
 				this.setStandardState(chatId);
 				tChannel.sendMessage(msgId, chatId, sMessage);

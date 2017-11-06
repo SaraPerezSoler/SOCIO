@@ -11,8 +11,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import branchDecision.AdminChoice;
+import branchDecision.Decision;
+import branchDecision.impl.BranchDecisionFactoryImpl;
+import branchDecision.impl.BranchDecisionPackageImpl;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.message.SendMessageExc;
+import projectHistory.Action;
 import projectHistory.CreateMsg;
 import projectHistory.Msg;
 import projectHistory.impl.projectHistoryFactoryImpl;
@@ -56,7 +61,7 @@ public class SocioData {
 			// es un XMI.
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 			resourceSet.getPackageRegistry().put("socioProjects", SocioProjectsPackageImpl.eINSTANCE);
-		}
+			}
 		return resourceSet;
 	}
 
@@ -227,25 +232,49 @@ public class SocioData {
 	}
 
 	public File execute(Project p, Msg msg) throws Exception {
+		if (!p.isOpen() && msg.hasText()){
+			throw new SendMessageExc("The project is closed, you can't edit it");
+		}else if (p.isLocked() && msg.hasText()){
+			throw new SendMessageExc("The project is locked, you can't edit it. Close all branch to unlock the project");
+		}
+		
 		File f = p.execute(msg);
 		save(p);
 		return f;
 	}
 
 	public File undo(Project p, Msg msg) throws Exception {
+		if (!p.isOpen()){
+			throw new SendMessageExc("The project is closed, you can't edit it");
+		}
+		if (p.isLocked()){
+			throw new SendMessageExc("The project is locked, you can't edit it. Close all branch to unlock the project");
+		}
 		File f = p.undo();
 		save(p);
 		return f;
 	}
 
 	public File redo(Project p, Msg msg) throws Exception {
+		if (!p.isOpen()){
+			throw new SendMessageExc("The project is closed, you can't edit it");
+		}
+		if (p.isLocked()){
+			throw new SendMessageExc("The project is locked, you can't edit it. Close all branch to unlock the project");
+		}
 		File f = p.redo();
 		save(p);
 		return f;
 	}
 
 	public List<Project> getProjects(User user) {
-		return user.getOwnProjects();
+		List<Project> ret=new ArrayList<>();
+		for (Project p: user.getOwnProjects()){
+			if (p.isOpen()){
+				ret.add(p);
+			}
+		}
+		return ret;
 	}
 
 	public List<Project> getProjects() {
@@ -436,7 +465,7 @@ public class SocioData {
 
 	}
 	
-	public void createBranch(Project actual, Msg msg, String branchName) throws Exception{
+	public File createBranch(Project actual, Msg msg, String branchName, String group) throws Exception{
 		Project aux = actual.getOpenBranch(branchName);
 		if (aux != null) {
 			throw new SendMessageExc(
@@ -451,8 +480,10 @@ public class SocioData {
 		}
 		Project p=createProject(branchName, msg, pt, actual.getVisibility(), true, actual);
 		actual.createBranch(p);
+		p.setBranchGroup(group);
 		save(actual);
 		save(p);
+		return p.getPng(new ArrayList<Action>());
 	}
 
 	public void removeUserToProject(Project actual, User u) {
@@ -472,5 +503,20 @@ public class SocioData {
 		}
 		this.save(actual);
 	}
+
+	public void startDecision(Project actual, String text) {
+		AdminChoice a= BranchDecisionFactoryImpl.eINSTANCE.createAdminChoice();
+		List<Project>branchs=actual.startDecision(a, text);
+		this.getProjects().removeAll(branchs);
+		this.save(actual);		
+	}
+
+	public File makeDecision(Project actual, Decision d, Project p) throws Exception {
+		List<Action> actions=actual.makeDecision(d, p);
+		this.save(actual);
+		return actual.getPng(actions);
+	}
+	
+	
 
 }

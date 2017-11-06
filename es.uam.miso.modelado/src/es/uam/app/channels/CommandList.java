@@ -46,6 +46,13 @@ public interface CommandList {
 	public static final String GET="GET";
 
 	/**@author Sara Pérez-Soler
+	* get all the open branch group of a project
+	* Needs: a project (channel/usernick/projectName or projectId)
+	*/
+
+	public static final String GET_OPEN_BRANCH_GROUP="GET_OPEN_BRANCH_GROUP";
+
+	/**@author Sara Pérez-Soler
 	* redirects to a web page with tips and examples to work with SOCIO
 	* Needs: 
 	*/
@@ -80,6 +87,20 @@ public interface CommandList {
 	*/
 
 	public static final String HISTORY_USER="HISTORY_USER";
+
+	/**@author Sara Pérez-Soler
+	* Select a project in a decision group
+	* Needs: a project (channel/usernick/projectName or projectId), branchGroup and the project winner (<group>-<winner>) in text field
+	*/
+
+	public static final String MAKE_DECISION="MAKE_DECISION";
+
+	/**@author Sara Pérez-Soler
+	* creates a branch to a project
+	* Needs: a project (channel/usernick/projectName or projectId), name to the new branch and the branch group (<name>-<groupName>) (in text field)
+	*/
+
+	public static final String NEW_BRANCH="NEW_BRANCH";
 
 	/**@author Sara Pérez-Soler
 	* creates a new project
@@ -157,6 +178,34 @@ public interface CommandList {
 	*/
 
 	public static final String REMOVE_USER_TO_PROJECT="REMOVE_USER_TO_PROJECT";
+
+	/**@author Sara Pérez-Soler
+	* Select a branch of a group branch to the project
+	* Needs: a project (channel/usernick/projectName or projectId), the branch in the field text
+	*/
+
+	public static final String SELECT_BRANCH="SELECT_BRANCH";
+
+	/**@author Sara Pérez-Soler
+	* Set a branch group name in a branch project
+	* Needs: a project (channel/usernick/projectName or projectId), the group name in text field
+	*/
+
+	public static final String SET_BRANCH_GROUP="SET_BRANCH_GROUP";
+
+	/**@author Sara Pérez-Soler
+	* start the necesary process to discurs about the branch
+	* Needs: a project (channel/usernick/projectName or projectId), branchs about debate (text field), users to debate(userstosearch field)
+	*/
+
+	public static final String START_CONSENSUS="START_CONSENSUS";
+
+	/**@author Sara Pérez-Soler
+	* start a Admin decision
+	* Needs: a project (channel/usernick/projectName or projectId), branch group (text field)
+	*/
+
+	public static final String START_DECISION="START_DECISION";
 
 	/**@author Sara Pérez-Soler
 	* 

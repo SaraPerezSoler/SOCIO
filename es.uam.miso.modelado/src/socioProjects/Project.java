@@ -2,6 +2,7 @@
  */
 package socioProjects;
 
+import branchDecision.Decision;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -35,6 +36,7 @@ import removeLog.Root;
  *   <li>{@link socioProjects.Project#getModel <em>Model</em>}</li>
  *   <li>{@link socioProjects.Project#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link socioProjects.Project#getAdmin <em>Admin</em>}</li>
+ *   <li>{@link socioProjects.Project#isBranchIsLocking <em>Branch Is Locking</em>}</li>
  *   <li>{@link socioProjects.Project#getId <em>Id</em>}</li>
  *   <li>{@link socioProjects.Project#getBranchGroup <em>Branch Group</em>}</li>
  *   <li>{@link socioProjects.Project#isBranch <em>Branch</em>}</li>
@@ -238,6 +240,33 @@ public interface Project extends EObject {
 	void setAdmin(User value);
 
 	/**
+	 * Returns the value of the '<em><b>Branch Is Locking</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Branch Is Locking</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Branch Is Locking</em>' attribute.
+	 * @see #setBranchIsLocking(boolean)
+	 * @see socioProjects.SocioProjectsPackage#getProject_BranchIsLocking()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isBranchIsLocking();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.Project#isBranchIsLocking <em>Branch Is Locking</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Branch Is Locking</em>' attribute.
+	 * @see #isBranchIsLocking()
+	 * @generated
+	 */
+	void setBranchIsLocking(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -335,7 +364,7 @@ public interface Project extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Close Branchs</b></em>' containment reference list.
-	 * The list contents are of type {@link socioProjects.Project}.
+	 * The list contents are of type {@link branchDecision.Decision}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Close Branchs</em>' containment reference list isn't clear,
@@ -347,7 +376,7 @@ public interface Project extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Project> getCloseBranchs();
+	EList<Decision> getCloseBranchs();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -552,6 +581,24 @@ public interface Project extends EObject {
 
 	void createBranch(Project p) throws Exception;
 
+	Decision getDecision(String text);
 	Project getCloseBranch(String text);
+	
+	boolean isLocked();
+
+	String getCompleteName();
+
+	File getPng(List<Action> arrayList);
+
+	void removeBranch(Project project);
+	
+	/*void startDecision(Decision d, List<Project> branchsGroup);*/
+	List<Project> startDecision(Decision d, String branchsGroup);
+
+	String getAllOpenBranchsGroup();
+
+	List<Project> getOpenBranchGroup(String text);
+	
+	List<Action> makeDecision(Decision d, Project branch) throws Exception;
 
 } // Project

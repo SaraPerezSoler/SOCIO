@@ -72,7 +72,6 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
