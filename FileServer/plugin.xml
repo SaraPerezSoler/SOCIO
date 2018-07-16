@@ -11,7 +11,7 @@
       <package
             uri="SaveFile"
             class="SaveFile.SaveFilePackage"
-            genModel="Model/SaveFiles.genmodel"/>
+            genModel="model/SaveFiles.genmodel"/>
    </extension>
 
 </plugin>
