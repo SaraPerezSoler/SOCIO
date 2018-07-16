@@ -3,3 +3,12 @@
 *.aird
 old/es.uam.miso.modelado/tmp.txt
 old/es.uam.miso.modelado/es.uam.miso.modelado2.jar
+*/es.uam.miso.modelado.jar
+*/dict/
+*/libs/
+*/bin/
+*/META-INF/
+*/projects/
+*/.settings/
+*/target/
+

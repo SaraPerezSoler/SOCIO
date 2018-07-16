@@ -1,0 +1,29 @@
+User: saraSocioTest at 24/05/18 12:13:44 in twitter
+Sends: @modCol101 add person
+The message cause this actions:
+	 · Create-> class Person
+------------------------
+User: saraSocioTest at 17/05/18 11:44:35 in twitter
+Sends: @modCol101 a door has a woodType
+The message cause this actions:
+	 · Create-> attribute woodtype
+------------------------
+User: Sarukii at 18/01/70 05:02:31 in telegram
+Sends: a house has walls
+The message cause this actions:
+	 · Create-> attribute walls
+------------------------
+User: Sarukii at 18/01/70 05:02:30 in telegram
+Sends: a house contains doors
+The message cause this actions:
+	 · Create-> class House
+	 · Create-> class Door
+	 · Create-> reference doors
+	 · Update-> Old: reference doors [1..-1], type: null, from House / New: reference doors [1..-1], type: Door, from House
+------------------------
+User: saraSocioTest at 24/05/18 12:24:54 in twitter
+Sends: @modCol101 add flowers
+The message cause this actions:
+	 · Create-> class Flower
+------------------------
+
