@@ -30,9 +30,9 @@ public interface HashTag {
 	public String getHashtag();
 	public String getDescription();
 	
-	public default String cleanText(String text) {
+	public default String cleanText(String text) throws TwitterException {
 		String text2 = text.replace("#"+this.getHashtag(), "");
-		text2 = text2.replace("@"+TwitterControl.name, "");
+		text2 = text2.replace("@"+TwitterControl.getTwitterControl().getName(), "");
 		text2 = text2.replace("  ", " ");
 		return text2;
 	}

@@ -1,12 +1,16 @@
 package com.socio.client.twitter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONObject;
 
 import twitter4j.HashtagEntity;
 import twitter4j.Status;
@@ -28,22 +32,71 @@ import com.socio.client.command.responseExceptions.ResponseError;
 
 public class TwitterControl extends UserStreamAdapter {
 
+	public static final String TEST = "Test";
+	public static final String MISO_TEST = "MisoTest";
+	public static final String SOCIO = "SOCIO";
+
+	private static final String NICK = "Nick";
+	private static final String CONSUMER_KEY = "Consumer_Key";
+	private static final String CONSUMER_SECRET = "Consumer_Secret";
+	private static final String ACCESS_TOKEN = "Access_Token";
+	private static final String ACCESS_TOKEN_SECRET = "Access_Token_Secret";
+
+	private static final String PASS = "pass.json";
+
 	public static Map<String, HashTag> hashtagCommand = new HashMap<>();
 	private Twitter twitter;
 	private TwitterStream twitterStream;
 	private TwitterChannel channel = new TwitterChannel();
 	private Map<String, ProjectRef> projects = new HashMap<>();
-	// private Map<Long, ProjectRef> tweets_projects = new HashMap<>();
-	public static String name = ITwitterKeys.NICK;
+	private String name;
+	
 	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat("dd/MM/yy");
+	
+	
+	private static TwitterControl TC = null;
+	
+	public static TwitterControl getTwitterControl(String debug) throws TwitterException {
+		if (TC == null) {
+			TC = new TwitterControl(debug);
+		}
+		return TC;
+	}
+	
+	public static TwitterControl getTwitterControl() throws TwitterException {
+		if (TC == null) {
+			TC = new TwitterControl(SOCIO);
+		}
+		return TC;
+	}
+	
+	private TwitterControl(String debug) throws TwitterException {
 
-	public TwitterControl() {
-
+		if (!debug.equals(TEST) && !debug.equals(MISO_TEST) && !debug.equals(SOCIO)) {
+			debug = SOCIO;
+		}
+		String text = readPass();
+		JSONObject object = new JSONObject(text);
+		if (!object.has(debug)) {
+			throw new TwitterException("Impossible to read the bot tokens: Bot Name");
+		}
+		JSONObject bot = object.getJSONObject(debug);
+		if (!bot.has(NICK) || !bot.has(CONSUMER_KEY) || !bot.has(CONSUMER_SECRET) || !bot.has(ACCESS_TOKEN)
+				|| !bot.has(ACCESS_TOKEN_SECRET)) {
+			throw new TwitterException("Impossible to read the bot tokens: Bot info");
+		}
+		this.setName(bot.getString(NICK));
+		String key = bot.getString(CONSUMER_KEY);
+		String secret = bot.getString(CONSUMER_SECRET);
+		String token = bot.getString(ACCESS_TOKEN);
+		String token_secret = bot.getString(ACCESS_TOKEN_SECRET);
+		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 
-		cb.setDebugEnabled(true).setOAuthConsumerKey(ITwitterKeys.KEY).setOAuthConsumerSecret(ITwitterKeys.SECRET)
-				.setOAuthAccessToken(ITwitterKeys.TOKEN).setOAuthAccessTokenSecret(ITwitterKeys.TOKEN_SECRET);
+		cb.setDebugEnabled(true).setOAuthConsumerKey(key).setOAuthConsumerSecret(secret)
+				.setOAuthAccessToken(token).setOAuthAccessTokenSecret(token_secret);
 		Configuration conf = cb.build();
+		
 		try {
 
 			TwitterFactory tf = new TwitterFactory(conf);
@@ -58,6 +111,36 @@ public class TwitterControl extends UserStreamAdapter {
 		} catch (TwitterException ex) {
 			System.out.println("Error: " + ex.getMessage());
 		}
+	}
+
+	private String readPass() {
+		File file = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		String text = "";
+		try {
+			file = new File(PASS);
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+
+			// Lectura del fichero
+
+			String line;
+			while ((line = br.readLine()) != null)
+				text += "\n" + line;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (null != fr) {
+					fr.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return text;
 	}
 
 	/*
@@ -193,8 +276,16 @@ public class TwitterControl extends UserStreamAdapter {
 		if (project.isBranch()) {
 			cad += "\t Branch of " + project.getFather().getName() + "\n";
 			cad += "\t Branch group: " + project.getBranchGroup() + "\n";
-		} 
+		}
 		return cad;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	private class TwitterChannel extends Channel {

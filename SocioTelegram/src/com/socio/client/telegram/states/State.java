@@ -122,7 +122,7 @@ public interface State {
 		return "";
 
 	}
-	public static User textToUser(String text) {
+	public static User textToUser(String text) throws TelegramApiException {
 		String[] split = text.split("/");
 		User userToSearch;
 		if (split.length == 1) {
@@ -133,7 +133,7 @@ public interface State {
 		return userToSearch;
 	}
 	
-	public static User getUser(org.telegram.telegrambots.api.objects.User from) {
+	public static User getUser(org.telegram.telegrambots.api.objects.User from) throws TelegramApiException {
 		User user = new User(TelegramControl.getTelegramControl().getChannelName(), from.getUserName(),
 				from.getFirstName(), from.getId());
 		return user;

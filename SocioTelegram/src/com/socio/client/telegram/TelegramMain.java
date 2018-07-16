@@ -13,10 +13,10 @@ import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 public class TelegramMain {
 
 	public static void main(String[] args) {
-		boolean debug=false;
+		String debug=TelegramControl.SOCIO;
 		for (String s: args) {
 			if (s.equalsIgnoreCase("debug")) {
-				debug=true;
+				debug=TelegramControl.TEST;
 			}
 		}
 		ApiContextInitializer.init();

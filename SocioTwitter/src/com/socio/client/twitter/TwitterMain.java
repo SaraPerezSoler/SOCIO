@@ -9,9 +9,17 @@ import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 public class TwitterMain {
 
 	public static void main(String[] args) {
+		
+		String debug=TwitterControl.SOCIO;
+		for (String s: args) {
+			if (s.equalsIgnoreCase("debug")) {
+				debug=TwitterControl.TEST;
+			}
+		}
+		
 		try {
 			init();
-			new TwitterControl();
+			TwitterControl.getTwitterControl(debug);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
