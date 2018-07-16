@@ -103,7 +103,6 @@
 4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Redo 
 4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Reload 
 4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveProject 
-4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RemoveUserToProject 
 4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.RootCommands 
 4 19/10/2017 11:54:00: [main] ERROR Modelado  Error al registrar mainCommand: null 
 4 19/10/2017 11:54:00: [main] INFO  Modelado  Registrando mainCommand: es.uam.app.main.commands.Statistics 
