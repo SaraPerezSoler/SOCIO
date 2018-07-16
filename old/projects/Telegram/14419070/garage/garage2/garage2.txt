@@ -1,0 +1,55 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+BackgroundColor<<Old>> #E0E6F8
+BorderColor<<Old>> #0B0B61
+HeaderBackgroundColor<<Mod>> #E0E6F8
+BorderColor<<Mod>> #0B0B61
+}
+skinparam nodeSep 20 
+skinparam rankSep 30 
+hide empty members   
+class Garage<<(C, #8181F7)Old>> {
+}
+Garage *-[#0B0B61]-"1..*"Employee : employees
+Garage *--"1..*"Vehicle : vehicles
+Garage *--"1..*"Client : clients
+class Employee<<(C, #8181F7)Old>> {
+<b><color:#0B0B61>[1,1] id: int </color></b>
+}
+class Ticket<<(C, #8181F7)Mod>> {
+<b><color:#0B0B61>[1,1] description: String </color></b>
+<b><color:#0B0B61>[1,1] price: double </color></b>
+[1,1] isopen: boolean 
+}
+Ticket -[#0B0B61]->"1..1"Employee : employee
+Ticket -[#0B0B61]->"1..*"RepairAction : requiere
+class RepairAction<<(C, #8181F7)Old>> {
+}
+class Motorbike<<(C, #8181F7)Old>> {
+}
+Vehicle <|-[#0B0B61]- Motorbike
+class Vehicle<<(C, #8181F7)Old>> {
+<b><color:#0B0B61>[1,1] model: String </color></b>
+<b><color:#0B0B61>[1,1] brand: String </color></b>
+<b><color:#0B0B61>[1,1] color: String </color></b>
+<b><color:#0B0B61>[1,1] registration: int </color></b>
+}
+Vehicle *--"1..*"Ticket : tickets
+Vehicle -->"1..1"Client : ownedBy
+class Truck<<(C, #8181F7)Old>> {
+}
+Vehicle <|-[#0B0B61]- Truck
+class Car<<(C, #8181F7)Old>> {
+}
+Vehicle <|-[#0B0B61]- Car
+class Client<<(C, #8181F7)Old>> {
+<b><color:#0B0B61>[1,1] name: String </color></b>
+<b><color:#0B0B61>[1,1] number: int </color></b>
+}
+
+@enduml

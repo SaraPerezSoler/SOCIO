@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MarketingCampaign" nsURI="MarketingCampaign" nsPrefix="MarketingCampaign">
+  <eClassifiers xsi:type="ecore:EClass" name="CampaignPlanner">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="marketingCampaigns" lowerBound="1" upperBound="-1" eType="//MarketingCampaign" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employees" lowerBound="1" upperBound="-1" eType="//Employee" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarketingCampaign">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workTeam" lowerBound="1" upperBound="-1" eType="//Employee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="director" lowerBound="1" eType="//Employee"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="1" upperBound="-1" eType="//Task" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Employee">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo" lowerBound="1" eType="//Employee"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Report" eSuperTypes="//Task"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Communication" eSuperTypes="//Task"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Survey" eSuperTypes="//Task"/>
+</ecore:EPackage>

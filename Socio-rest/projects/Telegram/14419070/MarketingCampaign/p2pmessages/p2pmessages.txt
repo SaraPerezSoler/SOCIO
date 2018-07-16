@@ -1,0 +1,29 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+BackgroundColor<<Old>> #E0E6F8
+BorderColor<<Old>> #0B0B61
+HeaderBackgroundColor<<Mod>> #E0E6F8
+BorderColor<<Mod>> #0B0B61
+}
+skinparam nodeSep 50 
+skinparam rankSep 50 
+hide empty members   
+class Employee<<(C, #8181F7)Old>> {
+}
+Employee *--"1..1"MessageBox : messageBox
+class MessageBox<<(C, #F7BE81)>> {
+}
+MessageBox *--"1..*"Message : messages
+class Message<<(C, #F7BE81)>> {
+}
+
+Message -->"1..1"Employee : sentBy
+
+Message -->"1..*"Employee : sentTo
+
+@enduml
