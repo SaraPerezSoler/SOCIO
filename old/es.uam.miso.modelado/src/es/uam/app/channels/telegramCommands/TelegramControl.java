@@ -38,14 +38,14 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 	private static boolean debug = false;
 
-	public static final String NAME_BOT_PRUEBA = "pruebaSarabot";
-	private static final String ID_BOT_PRUEBA = "286872489:AAG83znaRy6MdSu0_yKlnwNVVORvI1-5ku0";
+	public static final String NAME_BOT_PRUEBA = "";
+	private static final String ID_BOT_PRUEBA = "";
 
-	//public static final String NAME_BOT_MODELLING = "ModellingBot";
-	//private static final String ID_BOT_MODELLING = "307974624:AAFfE4qi_OcfFXj0PlyE8RlGJ2ITAPaWpcs";
+	//public static final String NAME_BOT_MODELLING = "";
+	//private static final String ID_BOT_MODELLING = "";
 	
-	public static final String NAME_BOT_MODELLING = "MisoTestBot";
-	private static final String ID_BOT_MODELLING = "480658734:AAHLl35mQFUFnS-p3AkCpiPCjnqbbODoyhg";
+	public static final String NAME_BOT_MODELLING = "";
+	private static final String ID_BOT_MODELLING = "";
 
 	public static String NAME_BOT;
 	private static String ID_BOT;
