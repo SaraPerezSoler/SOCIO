@@ -186,6 +186,7 @@ public class Chat {
 				row.add(button);
 				i++;
 			}
+			rows.add(row);
 		}
 		ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
 		keyboardMarkup.setOneTimeKeyboard(true);

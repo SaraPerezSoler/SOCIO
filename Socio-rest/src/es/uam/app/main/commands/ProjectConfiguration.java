@@ -61,7 +61,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 
 		} catch (InternalException e) {
 
-			Project p = SocioData.getSocioData(context).createProject(project, user, ProjectType.METAMODEL, v, false);
+			Project p = SocioData.getSocioData(context).createProject(project, user, ProjectType.METAMODEL, v, null, "");
 			return Response.ok(getProjectJSON(context, p).toString(), MediaType.APPLICATION_JSON).build();
 		}
 		throw new InternalException("A project with the name " + user.getChannel() + "/" + user.getNick() + "/"
@@ -388,9 +388,8 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 			throw new InternalException(
 					"The project " + user.getChannel() + "/" + user.getNick() + "/" + branchName + " already exits");
 		}
-		p = actual.getOpenBranch(branchName);
-		Project p1 = actual.getCloseBranch(branchName);
-		if (p != null || p1 != null) {
+		p = actual.getBranch(branchName);
+		if (p != null) {
 			throw new InternalException("The branch " + branchName + " already exits in the project "
 					+ actual.getAdmin().getChannel() + "/" + actual.getAdmin().getNick() + "/" + actual.getName());
 		}
@@ -436,6 +435,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	}
 	
 	private Response branchgroup(ServletContext context, InputStream incomingData, Project actual) throws Exception {
+		
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
 		String branchGroup = getString(object, "branchGroup");
@@ -447,7 +447,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 		if (!user.isAdmin(actual)){
 			throw new InternalException("You are not authorised to do this action. Only the project admin can change the branch group");
 		}
-		actual.setBranchGroup(branchGroup);
+		SocioData.getSocioData(context).changeBranchGroup(actual, branchGroup);
 		return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
 
 		

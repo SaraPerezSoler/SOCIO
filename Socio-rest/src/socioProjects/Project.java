@@ -16,6 +16,7 @@ import es.uam.app.actions.Add;
 import es.uam.app.actions.Delete;
 import es.uam.app.actions.Update;
 import es.uam.app.main.exceptions.FatalException;
+import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Action;
 import projectHistory.History;
 import projectHistory.Msg;
@@ -364,6 +365,7 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	EList<BranchGroup> getBranchs();
+	Project getBranch(String name);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -579,16 +581,24 @@ public interface Project extends EObject {
 
 	List<BranchGroup> getMergedBranchs();
 	
-	/*void startDecision(Decision d, List<Project> branchsGroup);*/
+	BranchGroup getBranchGroup(String text);
+	
+	List<Project> startDecision(Decision d, String branchsGroup) throws InternalException;
 
 	Map<String, List<Project>> getOpenBranchsString();
 
 	BranchGroup getOpenBranchGroup(String text);
+	BranchGroup getCloseBranchGroup(String text);
+	BranchGroup getMergedBranchGroup(String text);
 	
 	List<Action> makeDecision(Decision d, Project branch) throws Exception;
 
 
 	String getType();
 	File getLastModify();
+
+	void copyModel(Project p);
+
+	void changeBranchGroup(Project actual, String branchGroup) throws InternalException;
 
 } // Project

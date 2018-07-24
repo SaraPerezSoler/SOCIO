@@ -180,7 +180,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDecision_Branchs() {
+	public EReference getDecision_ChosenBranch() {
 		return (EReference)decisionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -189,17 +189,8 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDecision_ChosenBranch() {
-		return (EReference)decisionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getDecision_Start() {
-		return (EAttribute)decisionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)decisionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -208,7 +199,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * @generated
 	 */
 	public EAttribute getDecision_MergedDate() {
-		return (EAttribute)decisionEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)decisionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -403,7 +394,6 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 		// Create classes and their features
 		decisionEClass = createEClass(DECISION);
 		createEAttribute(decisionEClass, DECISION__NAME);
-		createEReference(decisionEClass, DECISION__BRANCHS);
 		createEReference(decisionEClass, DECISION__CHOSEN_BRANCH);
 		createEAttribute(decisionEClass, DECISION__START);
 		createEAttribute(decisionEClass, DECISION__MERGED_DATE);
@@ -471,7 +461,6 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 		// Initialize classes, features, and operations; add parameters
 		initEClass(decisionEClass, Decision.class, "Decision", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDecision_Name(), ecorePackage.getEString(), "name", null, 1, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDecision_Branchs(), theSocioProjectsPackage.getProject(), null, "branchs", null, 1, -1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDecision_ChosenBranch(), theSocioProjectsPackage.getProject(), null, "chosenBranch", null, 0, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDecision_Start(), ecorePackage.getEDate(), "start", null, 1, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDecision_MergedDate(), ecorePackage.getEDate(), "mergedDate", null, 0, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

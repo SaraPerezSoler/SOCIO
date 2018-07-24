@@ -462,7 +462,7 @@ public class SocioData implements DataFormat {
 		return aux;
 	}
 	
-	public Project createProject(String name, User user, ProjectType type, Visibility constraint, boolean isBranch) throws Exception {
+	public Project createProject(String name, User user, ProjectType type, Visibility constraint, Project father, String branchGroup) throws Exception {
 		Project aux = getProject(name, user);
 		if (aux != null) {
 			throw new InternalException("The project " + name + " from the user " + user.getNick() + " already exist");
@@ -480,9 +480,20 @@ public class SocioData implements DataFormat {
 		p.setRemove(RemoveLogFactoryImpl.eINSTANCE.createRoot());
 		p.setId(ProjectImpl.getNextId());
 		p.setVisibility(constraint);
-		p.setBranch(isBranch);
 		addProject(p, user);
-		p.initialize();
+		
+		
+		if (father!=null) {
+			p.setBranch(true);
+			father.addBranch(p, branchGroup);
+			p.initialize();
+			father.copyModel(p);
+		}else {
+			p.setBranch(false);
+			p.initialize();
+		}
+		
+		
 
 		CreateMsg cmsg = ProjectHistoryFactoryImpl.eINSTANCE.createCreateMsg();
 		cmsg.setDate(new Date());
@@ -502,10 +513,8 @@ public class SocioData implements DataFormat {
 		} else {
 			pt = ProjectType.MODEL;
 		}
-		Project p = createProject(branchName, user, pt, actual.getVisibility(), true);
-		actual.addBranch(p, group);
+		Project p = createProject(branchName, user, pt, actual.getVisibility(), actual, group);
 		save(actual);
-		save(p);
 		return p.getPng(new ArrayList<Action>());
 	}
 
@@ -566,19 +575,21 @@ public class SocioData implements DataFormat {
 		u.getContributions().remove(c);
 		this.save(actual);
 	}
-
+	public void changeBranchGroup(Project actual, String branchGroup) throws InternalException {
+		actual.getFather().changeBranchGroup(actual, branchGroup);
+		this.save(null);
+	}
 	
 	/*---------------------------------------------------------------------------Decision maker-------------------------------------------------------------------------*/
 
-	public void startDecision(Project actual, String branchGroup, Date date) {
+	public void startDecision(Project actual, String branchGroup, Date date) throws InternalException {
 		AdminChoice a = BranchDecisionFactoryImpl.eINSTANCE.createAdminChoice();
-		List<Project> branchs = actual.startDecision(a, branchGroup);
 		a.setStart(date);
-		this.getProjects().removeAll(branchs);
+		actual.startDecision(a, branchGroup);
 		this.save(actual);
 	}
 
-	public void startConsensus(Project actual, String text, List<User> users, Date date) {
+	public void startConsensus(Project actual, String text, List<User> users, Date date) throws InternalException {
 
 		Consensus consensus = BranchDecisionFactoryImpl.eINSTANCE.createConsensus();
 		consensus.getUsers().addAll(users);
@@ -691,4 +702,6 @@ public class SocioData implements DataFormat {
 	public File getLastPng(Project p) {
 		return p.getLastModify();
 	}
+
+
 }

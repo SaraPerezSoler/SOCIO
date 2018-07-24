@@ -105,7 +105,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	protected GroupStatus status = STATUS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDecision() <em>Decision</em>}' reference.
+	 * The cached value of the '{@link #getDecision() <em>Decision</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDecision()
@@ -197,13 +197,18 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setStatus(GroupStatus newStatus) {
 		GroupStatus oldStatus = status;
 		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.BRANCH_GROUP__STATUS, oldStatus, status));
+		if (status == GroupStatus.CLOSE) {
+			for (Project p: getBranchs()) {
+				p.setOpen(false);
+			}
+		}
 	}
 
 	/**
@@ -253,14 +258,6 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * @generated
 	 */
 	public Decision getDecision() {
-		if (decision != null && decision.eIsProxy()) {
-			InternalEObject oldDecision = (InternalEObject)decision;
-			decision = (Decision)eResolveProxy(oldDecision);
-			if (decision != oldDecision) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.BRANCH_GROUP__DECISION, oldDecision, decision));
-			}
-		}
 		return decision;
 	}
 
@@ -269,8 +266,14 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Decision basicGetDecision() {
-		return decision;
+	public NotificationChain basicSetDecision(Decision newDecision, NotificationChain msgs) {
+		Decision oldDecision = decision;
+		decision = newDecision;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.BRANCH_GROUP__DECISION, oldDecision, newDecision);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -279,10 +282,17 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * @generated
 	 */
 	public void setDecision(Decision newDecision) {
-		Decision oldDecision = decision;
-		decision = newDecision;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.BRANCH_GROUP__DECISION, oldDecision, decision));
+		if (newDecision != decision) {
+			NotificationChain msgs = null;
+			if (decision != null)
+				msgs = ((InternalEObject)decision).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.BRANCH_GROUP__DECISION, null, msgs);
+			if (newDecision != null)
+				msgs = ((InternalEObject)newDecision).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.BRANCH_GROUP__DECISION, null, msgs);
+			msgs = basicSetDecision(newDecision, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.BRANCH_GROUP__DECISION, newDecision, newDecision));
 	}
 
 	/**
@@ -326,6 +336,8 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 		switch (featureID) {
 			case SocioProjectsPackage.BRANCH_GROUP__FATHER:
 				return basicSetFather(null, msgs);
+			case SocioProjectsPackage.BRANCH_GROUP__DECISION:
+				return basicSetDecision(null, msgs);
 			case SocioProjectsPackage.BRANCH_GROUP__BRANCHS:
 				return ((InternalEList<?>)getBranchs()).basicRemove(otherEnd, msgs);
 		}
@@ -363,8 +375,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 			case SocioProjectsPackage.BRANCH_GROUP__FATHER:
 				return getFather();
 			case SocioProjectsPackage.BRANCH_GROUP__DECISION:
-				if (resolve) return getDecision();
-				return basicGetDecision();
+				return getDecision();
 			case SocioProjectsPackage.BRANCH_GROUP__BRANCHS:
 				return getBranchs();
 		}
@@ -499,6 +510,16 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 		for (Project p: getBranchs()) {
 			p.delete();
 		}
+	}
+
+	@Override
+	public Project getBranch(String name) {
+		for (Project p: getBranchs()) {
+			if (p.getName().equalsIgnoreCase(name)) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 } //BranchGroupImpl

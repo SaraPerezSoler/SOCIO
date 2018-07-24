@@ -87,7 +87,7 @@ public interface DataFormat {
 		project.put("usersCanRead", usersCanRead);
 
 		if (p.isBranch()) {
-			project.put("branchGroup", p.getBranchGroup());
+			project.put("branchGroup", p.getBranchGroup().getName());
 			JSONObject father = getSortProjectJSON(context, p.getFather());
 			project.put("father", father);
 		} else {

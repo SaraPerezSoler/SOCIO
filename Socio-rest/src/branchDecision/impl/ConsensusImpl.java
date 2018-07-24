@@ -290,7 +290,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	public Project getConsensusFirstOption() {
 		Round round = getRounds().get(getRounds().size() - 1);
 		String first = round.getFirst().getProjectName();
-		for (Project p : branchs) {
+		for (Project p : getBranchs()) {
 			if (p.getName().equalsIgnoreCase(first) || p.getCompleteName().equalsIgnoreCase(first)) {
 				return p;
 			}

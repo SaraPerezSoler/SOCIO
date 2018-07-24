@@ -76,22 +76,13 @@ public interface BranchDecisionPackage extends EPackage {
 	int DECISION__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Branchs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION__BRANCHS = 1;
-
-	/**
 	 * The feature id for the '<em><b>Chosen Branch</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION__CHOSEN_BRANCH = 2;
+	int DECISION__CHOSEN_BRANCH = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start</b></em>' attribute.
@@ -100,7 +91,7 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION__START = 3;
+	int DECISION__START = 2;
 
 	/**
 	 * The feature id for the '<em><b>Merged Date</b></em>' attribute.
@@ -109,7 +100,7 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION__MERGED_DATE = 4;
+	int DECISION__MERGED_DATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Decision</em>' class.
@@ -118,7 +109,7 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_FEATURE_COUNT = 5;
+	int DECISION_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Decision</em>' class.
@@ -147,15 +138,6 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSENSUS__NAME = DECISION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Branchs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSENSUS__BRANCHS = DECISION__BRANCHS;
 
 	/**
 	 * The feature id for the '<em><b>Chosen Branch</b></em>' reference.
@@ -451,15 +433,6 @@ public interface BranchDecisionPackage extends EPackage {
 	int ADMIN_CHOICE__NAME = DECISION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Branchs</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADMIN_CHOICE__BRANCHS = DECISION__BRANCHS;
-
-	/**
 	 * The feature id for the '<em><b>Chosen Branch</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -525,17 +498,6 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDecision_Name();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link branchDecision.Decision#getBranchs <em>Branchs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Branchs</em>'.
-	 * @see branchDecision.Decision#getBranchs()
-	 * @see #getDecision()
-	 * @generated
-	 */
-	EReference getDecision_Branchs();
 
 	/**
 	 * Returns the meta object for the reference '{@link branchDecision.Decision#getChosenBranch <em>Chosen Branch</em>}'.
@@ -802,14 +764,6 @@ public interface BranchDecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DECISION__NAME = eINSTANCE.getDecision_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Branchs</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DECISION__BRANCHS = eINSTANCE.getDecision_Branchs();
 
 		/**
 		 * The meta object literal for the '<em><b>Chosen Branch</b></em>' reference feature.

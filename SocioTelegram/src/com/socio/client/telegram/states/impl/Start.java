@@ -1,5 +1,8 @@
 package com.socio.client.telegram.states.impl;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
@@ -41,7 +44,8 @@ public class Start implements CommandState {
 
 	private static String getStartMsg() {
 		String ret = WELCOME + "\n\n";
-		for (String key : TelegramControl.commandState.keySet()) {
+		SortedSet<String> keys = new TreeSet<String>(TelegramControl.commandState.keySet());
+		for (String key : keys) {
 			ret += "/" + TelegramControl.commandState.get(key).getCommand() + " - "
 					+ TelegramControl.commandState.get(key).getDescription() + "\n";
 		}

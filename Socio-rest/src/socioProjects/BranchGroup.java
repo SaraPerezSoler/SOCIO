@@ -142,26 +142,26 @@ public interface BranchGroup extends EObject {
 	void setFather(Project value);
 
 	/**
-	 * Returns the value of the '<em><b>Decision</b></em>' reference.
+	 * Returns the value of the '<em><b>Decision</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Decision</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Decision</em>' reference.
+	 * @return the value of the '<em>Decision</em>' containment reference.
 	 * @see #setDecision(Decision)
 	 * @see socioProjects.SocioProjectsPackage#getBranchGroup_Decision()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	Decision getDecision();
 
 	/**
-	 * Sets the value of the '{@link socioProjects.BranchGroup#getDecision <em>Decision</em>}' reference.
+	 * Sets the value of the '{@link socioProjects.BranchGroup#getDecision <em>Decision</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Decision</em>' reference.
+	 * @param value the new value of the '<em>Decision</em>' containment reference.
 	 * @see #getDecision()
 	 * @generated
 	 */
@@ -190,5 +190,8 @@ public interface BranchGroup extends EObject {
 	void removeProject(Project projectImpl);
 	
 	void remove();
+
+	Project getBranch(String name);
+
 
 } // BranchGroup

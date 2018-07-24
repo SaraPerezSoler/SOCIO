@@ -144,7 +144,8 @@
         eType="#//GroupStatus" defaultValueLiteral="OPEN"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="father" lowerBound="1"
         eType="#//Project" eOpposite="#//Project/branchs"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="decision" eType="ecore:EClass BranchDecision.ecore#//Decision"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="decision" eType="ecore:EClass BranchDecision.ecore#//Decision"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="branchs" upperBound="-1"
         eType="#//Project" eOpposite="#//Project/branchGroup"/>
   </eClassifiers>

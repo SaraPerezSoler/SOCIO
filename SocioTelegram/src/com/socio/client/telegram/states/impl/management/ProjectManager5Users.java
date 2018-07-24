@@ -13,7 +13,7 @@ import com.socio.client.telegram.TelegramControl;
 import com.socio.client.telegram.states.ConversationalState;
 import com.socio.client.telegram.states.State;
 
-public class ProjectManagertUsers implements ConversationalState {
+public class ProjectManager5Users implements ConversationalState {
 	public static final int REMOVE = 0;
 	public static final int CHANGE = 1;
 	public static final int ADD = 2;
@@ -28,11 +28,11 @@ public class ProjectManagertUsers implements ConversationalState {
 	private User userToSearch = null;
 	private Boolean edit = null;
 
-	public static ProjectManagertUsers getState(Project project, int action) {
-		return new ProjectManagertUsers(project, action);
+	public static ProjectManager5Users getState(Project project, int action) {
+		return new ProjectManager5Users(project, action);
 	}
 
-	private ProjectManagertUsers(Project project, int action) {
+	private ProjectManager5Users(Project project, int action) {
 		this.project = project;
 		this.managementUserAction = action;
 	}

@@ -9,19 +9,19 @@ import com.socio.client.telegram.Chat;
 import com.socio.client.telegram.states.CommandState;
 import com.socio.client.telegram.states.State;
 
-public class ProjectManager implements CommandState {
-	private static ProjectManager projectManagement = new ProjectManager();
+public class ProjectManager1 implements CommandState {
+	private static ProjectManager1 projectManagement = new ProjectManager1();
 
-	public static ProjectManager getState() {
+	public static ProjectManager1 getState() {
 		return projectManagement;
 	}
 
-	private ProjectManager() {
+	private ProjectManager1() {
 	}
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 		chat.askProject(message.getMessageId(), Chat.OWNER_LEVEL, State.getUser(message.getFrom()));
-		return ProjectManagerGetProject.getState();
+		return ProjectManager2GetProject.getState();
 	}
 
 	@Override

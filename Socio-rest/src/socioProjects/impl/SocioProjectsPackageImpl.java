@@ -1056,7 +1056,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		initEAttribute(getBranchGroup_CreateAt(), ecorePackage.getEDate(), "createAt", null, 1, 1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBranchGroup_Status(), this.getGroupStatus(), "status", "OPEN", 1, 1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBranchGroup_Father(), this.getProject(), this.getProject_Branchs(), "father", null, 1, 1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBranchGroup_Decision(), theBranchDecisionPackage.getDecision(), null, "decision", null, 0, 1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBranchGroup_Decision(), theBranchDecisionPackage.getDecision(), null, "decision", null, 0, 1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBranchGroup_Branchs(), this.getProject(), this.getProject_BranchGroup(), "branchs", null, 0, -1, BranchGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

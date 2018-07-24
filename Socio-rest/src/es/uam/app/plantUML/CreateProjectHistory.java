@@ -100,7 +100,7 @@ public class CreateProjectHistory implements CreateText {
 					cad+=level(i+1)+df.format(d.getMergedDate())+": \""+d.getChosenBranch().getName()+"\" is chosen"+ENTR;
 					
 				}else{
-					for (Round r: ((Consensus)d).getPreferencesRound()){
+					for (Round r: ((Consensus)d).getRounds()){
 						cad+=level(i+1)+df.format(r.getRoundDate())+": Consensus round "+(r.getRoundId()+1)+" measure = "+String.format("%.2f",r.getConsensusMeasure())+ENTR;
 					}
 				}

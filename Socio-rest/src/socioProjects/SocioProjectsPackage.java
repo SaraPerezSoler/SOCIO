@@ -1299,7 +1299,7 @@ public interface SocioProjectsPackage extends EPackage {
 	int BRANCH_GROUP__FATHER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Decision</b></em>' reference.
+	 * The feature id for the '<em><b>Decision</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2023,10 +2023,10 @@ public interface SocioProjectsPackage extends EPackage {
 	EReference getBranchGroup_Father();
 
 	/**
-	 * Returns the meta object for the reference '{@link socioProjects.BranchGroup#getDecision <em>Decision</em>}'.
+	 * Returns the meta object for the containment reference '{@link socioProjects.BranchGroup#getDecision <em>Decision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Decision</em>'.
+	 * @return the meta object for the containment reference '<em>Decision</em>'.
 	 * @see socioProjects.BranchGroup#getDecision()
 	 * @see #getBranchGroup()
 	 * @generated
@@ -2616,7 +2616,7 @@ public interface SocioProjectsPackage extends EPackage {
 		EReference BRANCH_GROUP__FATHER = eINSTANCE.getBranchGroup_Father();
 
 		/**
-		 * The meta object literal for the '<em><b>Decision</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Decision</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

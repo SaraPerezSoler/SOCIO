@@ -3,7 +3,7 @@
 package branchDecision;
 
 import java.util.Date;
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -19,7 +19,6 @@ import socioProjects.Project;
  * </p>
  * <ul>
  *   <li>{@link branchDecision.Decision#getName <em>Name</em>}</li>
- *   <li>{@link branchDecision.Decision#getBranchs <em>Branchs</em>}</li>
  *   <li>{@link branchDecision.Decision#getChosenBranch <em>Chosen Branch</em>}</li>
  *   <li>{@link branchDecision.Decision#getStart <em>Start</em>}</li>
  *   <li>{@link branchDecision.Decision#getMergedDate <em>Merged Date</em>}</li>
@@ -55,22 +54,6 @@ public interface Decision extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Branchs</b></em>' containment reference list.
-	 * The list contents are of type {@link socioProjects.Project}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Branchs</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Branchs</em>' containment reference list.
-	 * @see branchDecision.BranchDecisionPackage#getDecision_Branchs()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<Project> getBranchs();
 
 	/**
 	 * Returns the value of the '<em><b>Chosen Branch</b></em>' reference.
@@ -155,6 +138,8 @@ public interface Decision extends EObject {
 	String decisionInformation();
 	
 	Project getProject();
+
+	List<Project> getBranchs();
 
 
 } // Decision

@@ -15,20 +15,20 @@ import com.socio.client.telegram.TelegramControl;
 import com.socio.client.telegram.states.ConversationalState;
 import com.socio.client.telegram.states.State;
 
-public class ProjectManagerGetProject implements ConversationalState {
+public class ProjectManager2GetProject implements ConversationalState {
 
 	static final String[] OPTIONS = { "Change project visibility",  };
 	static final String [] NO_PUBLIC_OPTION= {"Manage project users"};
 	static final String[] BRANCH_OPTIONS = { "Change branch group" };
 	static final String[] WITH_BRANCH_OPTIONS = { "Select a branch" };
 	static final String EXIT = "Exit";
-	private static ProjectManagerGetProject projectManagement = new ProjectManagerGetProject();
+	private static ProjectManager2GetProject projectManagement = new ProjectManager2GetProject();
 
-	public static ProjectManagerGetProject getState() {
+	public static ProjectManager2GetProject getState() {
 		return projectManagement;
 	}
 
-	private ProjectManagerGetProject() {
+	private ProjectManager2GetProject() {
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class ProjectManagerGetProject implements ConversationalState {
 		
 		chat.sendMessageWithKeyboard(State.printProjectAllInfo(project) + "\n\nWhat do you want to do?",
 				message.getMessageId(), true, options);
-		return ProjectManagerGetOption.getState(project);
+		return ProjectManager3Option.getState(project);
 	}
 
 }

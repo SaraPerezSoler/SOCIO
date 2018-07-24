@@ -28,6 +28,7 @@ public class SocioCommands extends Commands {
 	private static final String VALIDATE_PATH = CONFIGURATION_PATH + "validate/";
 	private static final String ADD_USER_PATH = CONFIGURATION_PATH + "addUser/";
 	private static final String NEW_BRANCH_PATH = CONFIGURATION_PATH + "newBranch/";
+	private static final String BRANCHGROUP_PATH = CONFIGURATION_PATH + "branchgroup/";
 	private static final String UPDATE_USER_PATH = CONFIGURATION_PATH + "updateUser/";
 	private static final String REMOVE_USER_PATH = "CONFIGURATION_PATH + \"removeUser/";
 	private static final String HISTORY_PATH = "history/";
@@ -46,6 +47,8 @@ public class SocioCommands extends Commands {
 	private static final String GET_UPDATES = UPDATES_PATH + "getupdates/";
 	private static final String GET_UPDATE = UPDATES_PATH + "getupdate/";
 	private static final String GET_LAST_FILE = UPDATES_PATH + "getlastfile/";
+	private static final String DECISION = "decisionMaker/";
+	private static final String SET_CHOICE = DECISION+ "setChoice/";
 	
 	
 	private static final SocioCommands SOCIO = new SocioCommands();
@@ -333,6 +336,29 @@ public class SocioCommands extends Commands {
 		return newBranch(getProjectData(channel, nick, project), user, branchName, groupName);
 	}
 
+	public Project branchGroup(String projectName, User user, String groupName)
+			throws ResponseError, ForbiddenResponse {
+		String path = BRANCHGROUP_PATH + getProjectData(projectName);
+		JSONObject object = addUser(user, new JSONObject());
+		object.put("branchGroup", groupName);
+		return responseProject(path, object);
+	}
+
+	public Project branchGroup(Project project, User user, String groupName)
+			throws ResponseError, ForbiddenResponse {
+		return branchGroup(getProjectData(project), user, groupName);
+	}
+
+	public Project branchGroup(long project, User user, String groupName)
+			throws ResponseError, ForbiddenResponse {
+		return branchGroup(getProjectData(project), user, groupName);
+	}
+
+	public Project branchGroup(String channel, String nick, String project, User user, String groupName)
+			throws ResponseError, ForbiddenResponse {
+		return branchGroup(getProjectData(channel, nick, project), user, groupName);
+	}
+	
 	private List<Message> history(String projectName, User user, JSONObject object)
 			throws ResponseError, ForbiddenResponse {
 		String path = HISTORY_PATH + getProjectData(projectName);
@@ -697,6 +723,25 @@ public class SocioCommands extends Commands {
 		return responseFile(path1, null);
 
 	}
-	
 
+	public File setChoice (String projectName, User user, String branchGroup, String branchChannel, String branchUser, String branchName)  throws ResponseError, ForbiddenResponse  {
+		String path=SET_CHOICE+getProjectData(projectName)+"/"+branchGroup;
+		JSONObject object= addUser(user, new JSONObject());
+		object.put("branchChannel", branchChannel);
+		object.put("branchUser", branchUser);
+		object.put("branchName", branchName);
+		return responseFile(path, object);
+	}
+	public File setChoice(Project p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(p);
+		return setChoice( projectName,user, branchGroup, branchChannel, branchUser, branchName);
+	}
+	public File setChoice(long p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(p);
+		return setChoice (projectName,user, branchGroup, branchChannel, branchUser, branchName);
+	}
+	public File setChoice(String projectchannel, String user, String pname,  User user1, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(projectchannel, user, pname);
+		return setChoice(projectName,user1, branchGroup, branchChannel, branchUser, branchName);
+	}
 }

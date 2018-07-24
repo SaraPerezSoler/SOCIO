@@ -4,24 +4,17 @@ package branchDecision.impl;
 
 import branchDecision.BranchDecisionPackage;
 import branchDecision.Decision;
-
-import java.util.Collection;
-
 import java.util.Date;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
+import socioProjects.BranchGroup;
 import socioProjects.Project;
 
 /**
@@ -32,7 +25,6 @@ import socioProjects.Project;
  * </p>
  * <ul>
  *   <li>{@link branchDecision.impl.DecisionImpl#getName <em>Name</em>}</li>
- *   <li>{@link branchDecision.impl.DecisionImpl#getBranchs <em>Branchs</em>}</li>
  *   <li>{@link branchDecision.impl.DecisionImpl#getChosenBranch <em>Chosen Branch</em>}</li>
  *   <li>{@link branchDecision.impl.DecisionImpl#getStart <em>Start</em>}</li>
  *   <li>{@link branchDecision.impl.DecisionImpl#getMergedDate <em>Merged Date</em>}</li>
@@ -58,15 +50,6 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getBranchs() <em>Branchs</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getBranchs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Project> branchs;
 
 	/**
 	 * The cached value of the '{@link #getChosenBranch() <em>Chosen Branch</em>}' reference.
@@ -157,17 +140,6 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Project> getBranchs() {
-		if (branchs == null) {
-			branchs = new EObjectContainmentEList<Project>(Project.class, this, BranchDecisionPackage.DECISION__BRANCHS);
-		}
-		return branchs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Project getChosenBranch() {
 		if (chosenBranch != null && chosenBranch.eIsProxy()) {
 			InternalEObject oldChosenBranch = (InternalEObject)chosenBranch;
@@ -246,25 +218,10 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BranchDecisionPackage.DECISION__BRANCHS:
-				return ((InternalEList<?>)getBranchs()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BranchDecisionPackage.DECISION__NAME:
 				return getName();
-			case BranchDecisionPackage.DECISION__BRANCHS:
-				return getBranchs();
 			case BranchDecisionPackage.DECISION__CHOSEN_BRANCH:
 				if (resolve) return getChosenBranch();
 				return basicGetChosenBranch();
@@ -280,16 +237,12 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BranchDecisionPackage.DECISION__NAME:
 				setName((String)newValue);
-				return;
-			case BranchDecisionPackage.DECISION__BRANCHS:
-				getBranchs().clear();
-				getBranchs().addAll((Collection<? extends Project>)newValue);
 				return;
 			case BranchDecisionPackage.DECISION__CHOSEN_BRANCH:
 				setChosenBranch((Project)newValue);
@@ -314,9 +267,6 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 			case BranchDecisionPackage.DECISION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case BranchDecisionPackage.DECISION__BRANCHS:
-				getBranchs().clear();
-				return;
 			case BranchDecisionPackage.DECISION__CHOSEN_BRANCH:
 				setChosenBranch((Project)null);
 				return;
@@ -339,8 +289,6 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case BranchDecisionPackage.DECISION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case BranchDecisionPackage.DECISION__BRANCHS:
-				return branchs != null && !branchs.isEmpty();
 			case BranchDecisionPackage.DECISION__CHOSEN_BRANCH:
 				return chosenBranch != null;
 			case BranchDecisionPackage.DECISION__START:
@@ -371,7 +319,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	public Project getBranch(String branchName) {
-		for (Project b : branchs) {
+		for (Project b : getBranchs()) {
 			if (b.getName().equalsIgnoreCase(branchName)) {
 				return b;
 			}
@@ -401,6 +349,12 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	public Project getProject(){
 		if (eContainer() instanceof Project){
 			return (Project)eContainer();
+		}
+		return null;
+	}
+	public List<Project> getBranchs(){
+		if (this.eContainer() instanceof BranchGroup) {
+			return ((BranchGroup)this.eContainer()).getBranchs();
 		}
 		return null;
 	}

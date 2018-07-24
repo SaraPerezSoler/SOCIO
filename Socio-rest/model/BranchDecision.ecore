@@ -3,8 +3,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="branchDecision" nsURI="branchDecision" nsPrefix="branchDecision">
   <eClassifiers xsi:type="ecore:EClass" name="Decision" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="branchs" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass SocioDatabase.ecore#//Project" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chosenBranch" eType="ecore:EClass SocioDatabase.ecore#//Project"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mergedDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
