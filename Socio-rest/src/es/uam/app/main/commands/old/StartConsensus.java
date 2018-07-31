@@ -1,4 +1,4 @@
-package es.uam.app.main.commands.old;
+/*package es.uam.app.main.commands.old;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,4 +63,4 @@ public class StartConsensus extends MainCommand implements DataFormat{
 		return project()+", branchs about debate (text field), users to debate(userstosearch field <user1>-<user2>-...)";
 	}
 
-}
+}*/

@@ -126,6 +126,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	protected Date roundDate = ROUND_DATE_EDEFAULT;
 
 	private final double b=0.5;
+	private long timer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -566,6 +567,14 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 		
 		getUserPreferences().add(p);
 		
+	}
+
+	public long getTimer() {
+		return timer;
+	}
+
+	public void setTimer(long timer) {
+		this.timer = timer;
 	}
 
 } //RoundImpl

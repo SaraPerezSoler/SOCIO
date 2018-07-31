@@ -140,6 +140,9 @@ public interface Decision extends EObject {
 	Project getProject();
 
 	List<Project> getBranchs();
+	
+	String getFilePath();
+	void setFilePath(String path);
 
 
 } // Decision

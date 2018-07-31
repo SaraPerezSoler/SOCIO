@@ -1,30 +1,24 @@
 package com.socio.client.command;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.socio.client.beans.Bean;
+import com.socio.client.beans.JSONObj;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.User;
-import com.socio.client.command.responseExceptions.FileResponse;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
-import com.socio.client.command.responseExceptions.JSONResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
-import com.socio.client.command.responseExceptions.TextResponse;
-import com.sun.jersey.api.client.ClientResponse;
 
 public abstract class Commands extends CreateRequest {
 
-	private static final ResponseError UNEXPECTED_ERROR = new ResponseError("A error has ocurred with the command");
+	
 	private static final String URL = "http://localhost:8080/Socio-rest/";
 	public Commands() {
 		super (URL);
@@ -32,7 +26,7 @@ public abstract class Commands extends CreateRequest {
 
 	protected JSONObject addUser(User user, JSONObject object) throws ResponseError {
 		try {
-			object.put("user", Bean.getJSONObject(user));
+			object.put("user", JSONObj.getJSONObject(user));
 			return object;
 		} catch (JSONException | JsonProcessingException e1) {
 			throw UNEXPECTED_ERROR;
@@ -44,7 +38,7 @@ public abstract class Commands extends CreateRequest {
 			return addUser(user, object);
 		}
 		try {
-			object.put(dataName, Bean.getJSONObject(user));
+			object.put(dataName, JSONObj.getJSONObject(user));
 			return object;
 		} catch (JSONException | JsonProcessingException e1) {
 			throw UNEXPECTED_ERROR;
@@ -53,7 +47,7 @@ public abstract class Commands extends CreateRequest {
 
 	protected JSONObject addMsg(Message msg, JSONObject object) throws ResponseError {
 		try {
-			object.put("msg", Bean.getJSONObject(msg));
+			object.put("msg", JSONObj.getJSONObject(msg));
 			return object;
 		} catch (JSONException | JsonProcessingException e1) {
 			throw UNEXPECTED_ERROR;
@@ -108,64 +102,5 @@ public abstract class Commands extends CreateRequest {
 		return message;
 	}
 
-	protected JSONObject responseJSON(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
-		try {
-			ClientResponse response;
-			String[] types = new String[] { MediaType.APPLICATION_JSON };
-			if (object == null) {
-				response = getRequest(path, types);
 
-			} else {
-				response = postRequest(path, object, types);
-			}
-			readResponse(response);
-		} catch (JSONResponse e) {
-			return e.getObject();
-		} catch (JSONException e1) {
-			throw UNEXPECTED_ERROR;
-		} catch (TextResponse | FileResponse e) {
-			throw UNEXPECTED_ERROR;
-		}
-		throw UNEXPECTED_ERROR;
-	}
-
-	protected String responseText(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
-		try {
-			String[] types = new String[] { MediaType.TEXT_PLAIN };
-			ClientResponse response;
-			if (object == null) {
-				response = getRequest(path, types);
-			} else {
-				response = postRequest(path, object, types);
-			}
-			readResponse(response);
-		} catch (TextResponse e) {
-			return e.getText();
-		} catch (JSONException e1) {
-			throw UNEXPECTED_ERROR;
-		} catch (JSONResponse | FileResponse e) {
-			throw UNEXPECTED_ERROR;
-		}
-		throw UNEXPECTED_ERROR;
-	}
-
-	protected File responseFile(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
-		try {
-			ClientResponse response;
-			String[] types = new String[] { MediaType.APPLICATION_OCTET_STREAM };
-			if (object == null) {
-				response = getRequest(path, types);
-			} else {
-				response = postRequest(path, object, types);
-			}
-			readResponse(response);
-		} catch (FileResponse e) {
-			return e.getFile();
-		} catch (JSONException e1) {
-			throw UNEXPECTED_ERROR;
-		} catch (JSONResponse | TextResponse e) {
-			throw UNEXPECTED_ERROR;
-		}
-		throw UNEXPECTED_ERROR;
-	}
 }

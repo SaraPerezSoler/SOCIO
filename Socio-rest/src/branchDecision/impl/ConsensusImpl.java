@@ -27,6 +27,7 @@ import branchDecision.Order;
 import branchDecision.Preference;
 import branchDecision.PreferenceOrdering;
 import branchDecision.Round;
+import socioProjects.BranchGroup;
 import socioProjects.Project;
 import socioProjects.User;
 
@@ -405,4 +406,31 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 		return p2;
 	}
 
+	@Override
+	public BranchGroup getBranchGroup() {
+		if (eContainer() instanceof BranchGroup) {
+			return (BranchGroup) eContainer();
+		}
+		return null;
+	}
+
+	@Override
+	public EList<Order> getConsensusOrder() {
+		return getLastRound().getConsensusOrder();
+	}
+
+	@Override
+	public Round getLastRound() {
+		return getRounds().get(getRounds().size()-1);
+	}
+
+	@Override
+	public boolean isRevoteCandidate(User u){
+		Round round = getLastRound();
+		Map<User, Double> proximityMeasures = round.proximityMeasures(beta);
+		if (proximityMeasures.get(u)==null || proximityMeasures.get(u)<MIN){
+			return true;
+		}
+		return false;
+	}
 } // ConsensusImpl

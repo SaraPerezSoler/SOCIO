@@ -149,5 +149,7 @@ public interface Round extends EObject {
 	Map<User, Double> proximityMeasures(double beta);
 	
 	void addUserPreference(Preference p);
+	long getTimer();
+	void setTimer(long timer);
 
 } // Round

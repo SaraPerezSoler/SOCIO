@@ -99,6 +99,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected Date mergedDate = MERGED_DATE_EDEFAULT;
+	private String path;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -358,6 +359,11 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 		}
 		return null;
 	}
-
+	public String getFilePath() {
+		return path;
+	}
+	public void setFilePath(String path) {
+		this.path = path;
+	}
 
 } // DecisionImpl

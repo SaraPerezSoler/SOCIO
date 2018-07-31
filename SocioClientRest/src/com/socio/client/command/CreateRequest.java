@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.socio.client.command.responseExceptions.FileResponse;
@@ -20,6 +21,7 @@ import com.sun.jersey.api.client.WebResource;
 public abstract class CreateRequest {
 	private String URL;
 	private static final Client CLIENT = Client.create();
+	protected static final ResponseError UNEXPECTED_ERROR = new ResponseError("A error has ocurred with the command");
 	
 	public CreateRequest(String URL) {
 		this.URL = URL;
@@ -101,5 +103,66 @@ public abstract class CreateRequest {
 
 	public String getURL() {
 		return URL;
+	}
+	
+	protected JSONObject responseJSON(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
+		try {
+			ClientResponse response;
+			String[] types = new String[] { MediaType.APPLICATION_JSON };
+			if (object == null) {
+				response = getRequest(path, types);
+
+			} else {
+				response = postRequest(path, object, types);
+			}
+			readResponse(response);
+		} catch (JSONResponse e) {
+			return e.getObject();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (TextResponse | FileResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
+
+	protected String responseText(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
+		try {
+			String[] types = new String[] { MediaType.TEXT_PLAIN };
+			ClientResponse response;
+			if (object == null) {
+				response = getRequest(path, types);
+			} else {
+				response = postRequest(path, object, types);
+			}
+			readResponse(response);
+		} catch (TextResponse e) {
+			return e.getText();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (JSONResponse | FileResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
+
+	protected File responseFile(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
+		try {
+			ClientResponse response;
+			String[] types = new String[] { MediaType.APPLICATION_OCTET_STREAM };
+			if (object == null) {
+				response = getRequest(path, types);
+			} else {
+				response = postRequest(path, object, types);
+			}
+			readResponse(response);
+		} catch (FileResponse e) {
+			return e.getFile();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (JSONResponse | TextResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
 	}
 }

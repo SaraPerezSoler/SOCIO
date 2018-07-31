@@ -2,7 +2,7 @@ package com.socio.client.beans;
 
 import org.json.JSONObject;
 
-public class User extends Bean{
+public class User{
 
 	private String channel;
 	private String nick;

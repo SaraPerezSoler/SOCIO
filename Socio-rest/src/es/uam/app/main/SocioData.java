@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletContext;
 
@@ -17,6 +18,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import com.socio.client.command.SaveFileServer;
 
 import branchDecision.AdminChoice;
 import branchDecision.Consensus;
@@ -60,9 +63,11 @@ public class SocioData implements DataFormat {
 	protected final static String FILENAME = "socioData.xmi";
 	private SocioApp socioApp;
 	private Map<String, ConsensusTimeOut> timesOuts = new HashMap<String, ConsensusTimeOut>();
+
 	private Map<String, List<Project>> channels_projects = new HashMap<>();
 	private Map<String, Map<Project, List<Msg>>> updated = new HashMap<>();
-
+	private Map<String, List<Consensus>> poll = new HashMap<>();
+	private Map<String, List<Consensus>> pollEnd = new HashMap<>();
 	public enum ProjectType {
 		METAMODEL, MODEL
 	}
@@ -88,10 +93,13 @@ public class SocioData implements DataFormat {
 	}
 
 	/**
-	 * Crear la clase singleton SocioData, para ello es necesario usar el contexto de la aplicación
-	 * @param context Contexto de la aplicacion
+	 * Crear la clase singleton SocioData, para ello es necesario usar el contexto
+	 * de la aplicación
+	 * 
+	 * @param context
+	 *            Contexto de la aplicacion
 	 * @return La instancia de la clase singleton SocioData
-	 * */
+	 */
 	public static SocioData getSocioData(ServletContext context) throws Exception {
 		if (socioData == null) {
 			PATH = context.getInitParameter("project.files") + PROJECTS_PATH;
@@ -196,18 +204,18 @@ public class SocioData implements DataFormat {
 		}
 
 	}
-	
+
 	/*-------------------------------------------------------Users looking for methods--------------------------------------------------------------------------------*/
 	public List<User> getUsers() {
 		return socioApp.getUsers();
 	}
-	
+
 	public User getUser(String nick, String channel) throws InternalException {
 		List<User> users = socioApp.getUsers();
 		try {
 			Long id = Long.parseLong(nick);
 			return getUser(id, channel);
-			
+
 		} catch (NumberFormatException e) {
 			for (User u : users) {
 				if (u.getNick().equalsIgnoreCase(nick) && u.getChannel().equalsIgnoreCase(channel)) {
@@ -287,7 +295,7 @@ public class SocioData implements DataFormat {
 		}
 		return usersValid;
 	}
-	
+
 	public List<User> getUsers(Project p) {
 		List<User> users = getUsers();
 		List<User> ret = new ArrayList<User>();
@@ -307,12 +315,12 @@ public class SocioData implements DataFormat {
 		return ret;
 
 	}
-	
+
 	/*-----------------------------------------------------Project looking for methods-------------------------------------------------------------------------------------*/
 	public List<Project> getProjects() {
 		return socioApp.getProjects();
 	}
-	
+
 	public List<Project> getProjects(User user) {
 		List<Project> ret = new ArrayList<>();
 		for (Project p : user.getOwnProjects()) {
@@ -322,7 +330,7 @@ public class SocioData implements DataFormat {
 		}
 		return ret;
 	}
-	
+
 	public Project getProject(String name, User u) {
 		List<Project> projects = socioApp.getProjects();
 		for (Project p : projects) {
@@ -342,7 +350,7 @@ public class SocioData implements DataFormat {
 		}
 		return null;
 	}
-	
+
 	public List<Project> getProjectsForVisibility(Visibility v) {
 		List<Project> projects = getProjects();
 		List<Project> ret = new ArrayList<>();
@@ -376,9 +384,9 @@ public class SocioData implements DataFormat {
 		}
 		return read;
 	}
-	
+
 	/*-----------------------------------------------------------------Do, undo and redo methods--------------------------------------------------------------------------*/
-	
+
 	public File execute(Project p, Msg msg) throws Exception {
 		if (!p.isOpen() && msg.hasText()) {
 			throw new InternalException("The project " + p.getCompleteName() + " is closed, you can't edit it");
@@ -421,9 +429,7 @@ public class SocioData implements DataFormat {
 		return f;
 	}
 
-
 	/*---------------------------------------------------------------Create users and projects, remove projects------------------------------------------------------------*/
-
 
 	public User addUser(User u) throws InternalException {
 		User aux = null;
@@ -461,8 +467,9 @@ public class SocioData implements DataFormat {
 		save(null);
 		return aux;
 	}
-	
-	public Project createProject(String name, User user, ProjectType type, Visibility constraint, Project father, String branchGroup) throws Exception {
+
+	public Project createProject(String name, User user, ProjectType type, Visibility constraint, Project father,
+			String branchGroup) throws Exception {
 		Project aux = getProject(name, user);
 		if (aux != null) {
 			throw new InternalException("The project " + name + " from the user " + user.getNick() + " already exist");
@@ -481,19 +488,16 @@ public class SocioData implements DataFormat {
 		p.setId(ProjectImpl.getNextId());
 		p.setVisibility(constraint);
 		addProject(p, user);
-		
-		
-		if (father!=null) {
+
+		if (father != null) {
 			p.setBranch(true);
 			father.addBranch(p, branchGroup);
 			p.initialize();
 			father.copyModel(p);
-		}else {
+		} else {
 			p.setBranch(false);
 			p.initialize();
 		}
-		
-		
 
 		CreateMsg cmsg = ProjectHistoryFactoryImpl.eINSTANCE.createCreateMsg();
 		cmsg.setDate(new Date());
@@ -504,9 +508,9 @@ public class SocioData implements DataFormat {
 		save(p);
 		return p;
 	}
-	
+
 	public File createBranch(Project actual, User user, String branchName, String group) throws Exception {
-		
+
 		ProjectType pt;
 		if (actual instanceof MetamodelProject) {
 			pt = ProjectType.METAMODEL;
@@ -546,8 +550,6 @@ public class SocioData implements DataFormat {
 		save(null);
 	}
 
-	
-
 	/*---------------------------------------------------------------------Configurantion projects---------------------------------------------------------------------------*/
 
 	public Project changeProjectVisibility(Project actual, Visibility c) {
@@ -575,11 +577,12 @@ public class SocioData implements DataFormat {
 		u.getContributions().remove(c);
 		this.save(actual);
 	}
+
 	public void changeBranchGroup(Project actual, String branchGroup) throws InternalException {
 		actual.getFather().changeBranchGroup(actual, branchGroup);
 		this.save(null);
 	}
-	
+
 	/*---------------------------------------------------------------------------Decision maker-------------------------------------------------------------------------*/
 
 	public void startDecision(Project actual, String branchGroup, Date date) throws InternalException {
@@ -589,63 +592,135 @@ public class SocioData implements DataFormat {
 		this.save(actual);
 	}
 
-	public void startConsensus(Project actual, String text, List<User> users, Date date) throws InternalException {
+	public void startConsensus(Project actual, String text, List<User> users, double required, Date date) throws InternalException {
 
 		Consensus consensus = BranchDecisionFactoryImpl.eINSTANCE.createConsensus();
 		consensus.getUsers().addAll(users);
 		consensus.setConsensusRequired(0.75);
 		consensus.setStart(date);
+		consensus.setConsensusRequired(required);
 		List<Project> branchs = actual.startDecision(consensus, text);
 		this.getProjects().removeAll(branchs);
 		this.save(actual);
 	}
 
 	public File makeDecision(Project actual, Decision d, Project p, Date date) throws Exception {
-		List<Action> actions = actual.makeDecision(d, p);
-		d.setMergedDate(date);
-		this.save(actual);
-		return actual.getPng(actions);
+		synchronized (d) {
+			List<Action> actions = actual.makeDecision(d, p);
+			d.setMergedDate(date);
+			this.save(actual);
+			return actual.getPng(actions);
+		}
 	}
 
 	private Timer t = new Timer();
 
-	public void startVoting(Project actual, Consensus d, long time, Msg msg, Date date) {
-		Round r = BranchDecisionFactoryImpl.eINSTANCE.createRound();
-		r.setRoundDate(date);
-		r.setRoundId(d.getPreferencesRound().size());
-		d.addRound(r);
-		ConsensusTimeOut task = new ConsensusTimeOut(d, msg);
-		t.schedule(task, time);
-		timesOuts.put(actual.getCompleteName() + "/" + d.getName(), task);
-		this.save(actual);
-
+	public void startVoting(ServletContext context, Project actual, Consensus d, long timer, Date date) {
+		synchronized (d) {
+			Round r = BranchDecisionFactoryImpl.eINSTANCE.createRound();
+			r.setRoundDate(date);
+			r.setRoundId(d.getRounds().size());
+			r.setTimer(timer);
+			d.addRound(r);
+			ConsensusTimeOut task = new ConsensusTimeOut(context, d);
+			t.schedule(task, timer);
+			timesOuts.put(actual.getCompleteName() + "/" + d.getName(), task);
+			for (User u : d.getUsers()) {
+				List<Consensus> cons = poll.get(u.getChannel());
+				if (cons == null) {
+					cons = new ArrayList<>();
+					poll.put(u.getChannel(), cons);
+				}
+				if (!cons.contains(d)) {
+					cons.add(d);
+				}
+			}
+			this.save(actual);
+		}
+	}
+	SaveFileServer server = new SaveFileServer();
+	public void endVoting(Project actual, Consensus consensus) throws Exception  {
+		synchronized (consensus) {
+			consensus.calculateConsensus();
+			File ret = null;
+			if (consensus.getConsensusActualMeasure() >= consensus.getConsensusRequired()) {
+				Project p = consensus.getConsensusFirstOption();
+				ret = makeDecision(actual, consensus, p, new Date());
+				String path = server.saveFile(ret, 100, TimeUnit.DAYS);
+				consensus.setFilePath(path);
+			}
+			
+			for (String channel : poll.keySet()) {
+				if (poll.get(channel).contains(consensus)) {
+					poll.get(channel).remove(consensus);
+				}
+			}
+			List<Consensus> cons = pollEnd.get(actual.getAdmin().getChannel());
+			if (cons == null) {
+				cons = new ArrayList<>();
+				pollEnd.put(actual.getAdmin().getChannel(), cons);
+			}
+			cons.add(consensus);
+			for (User u: getUsers(actual)) {
+				cons = pollEnd.get(u.getChannel());
+				if (cons == null) {
+					cons = new ArrayList<>();
+					pollEnd.put(u.getChannel(), cons);
+				}
+				if (!cons.contains(consensus)) {
+					cons.add(consensus);
+				}
+			}
+			for (User u: consensus.getUsers()) {
+				cons = pollEnd.get(u.getChannel());
+				if (cons == null) {
+					cons = new ArrayList<>();
+					pollEnd.put(u.getChannel(), cons);
+				}
+				if (!cons.contains(consensus)) {
+					cons.add(consensus);
+				}
+			}
+		}
+		
+	}
+	
+	public List<Consensus> getAndRemoveEndConsensus(String channel) {
+		List<Consensus> ret = null;
+		if (pollEnd.get(channel) != null) {
+			ret = pollEnd.get(channel);
+			pollEnd.put(channel, new ArrayList<>());
+		}
+		return ret;
 	}
 
-	public double endVoting(Project actual, Consensus consensus) throws Exception {
-		consensus.calculateConsensus();
-		double con = consensus.getConsensusActualMeasure();
-		return con;
-
+	public List<Consensus> getAndRemoveConsensus(String channel) {
+		List<Consensus> ret = null;
+		if (poll.get(channel) != null) {
+			ret = poll.get(channel);
+			poll.put(channel, new ArrayList<>());
+		}
+		return ret;
 	}
 
 	public void addPreference(Project actual, Consensus d, User user, Map<String, Integer> pos) {
-		PreferenceOrdering pref = BranchDecisionFactoryImpl.eINSTANCE.createPreferenceOrdering();
-		pref.setUser(user);
-		for (Project p : ((Consensus) d).getBranchs()) {
-			Order o = BranchDecisionFactoryImpl.eINSTANCE.createOrder();
-			o.setProjectName(p.getCompleteName());
-			o.setPos(pos.get(p.getCompleteName()));
-			pref.getOrder().add(o);
+		synchronized (d) {
+			PreferenceOrdering pref = BranchDecisionFactoryImpl.eINSTANCE.createPreferenceOrdering();
+			pref.setUser(user);
+			for (Project p : ((Consensus) d).getBranchs()) {
+				Order o = BranchDecisionFactoryImpl.eINSTANCE.createOrder();
+				o.setProjectName(p.getCompleteName());
+				o.setPos(pos.get(p.getCompleteName()));
+				pref.getOrder().add(o);
+			}
+			if (d.setPreference(pref) == true) {
+				ConsensusTimeOut task = timesOuts.get(actual.getCompleteName() + "/" + d.getName());
+				task.run();
+			}
+			this.save(actual);
 		}
-		if (d.setPreference(pref) == true) {
-			ConsensusTimeOut task = timesOuts.get(actual.getCompleteName() + "/" + d.getName());
-			task.run();
-		}
-		this.save(actual);
-
 	}
 
-	
 	/*-----------------------------------------------------------------------------------Update status--------------------------------------------------------------------*/
 	public void register(String channel) {
 		channel = channel.toLowerCase();
@@ -666,7 +741,7 @@ public class SocioData implements DataFormat {
 	}
 
 	public void addUpdate(Project p, Msg msg) {
-		
+
 		Set<String> channels = channels_projects.keySet();
 
 		for (String channel : channels) {
@@ -702,6 +777,5 @@ public class SocioData implements DataFormat {
 	public File getLastPng(Project p) {
 		return p.getLastModify();
 	}
-
 
 }

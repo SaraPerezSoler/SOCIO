@@ -16,7 +16,10 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import com.socio.client.beans.Message;
+import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
+import com.socio.client.beans.Project.Subproject;
+import com.socio.client.beans.User;
 import com.socio.client.command.Channel;
 import com.socio.client.telegram.states.CommandState;
 
@@ -148,7 +151,6 @@ public class TelegramControl extends TelegramLongPollingBot {
 		return id;
 	}
 
-
 	private class TelegramChannel extends Channel {
 
 		public TelegramChannel() {
@@ -181,6 +183,23 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 		}
 
+		@Override
+		public void onPolling(Polling polling) {
+			for (User u : polling.getUsers()) {
+				if (u.getChannel().equals(getChannelName())) {
+					Chat chat = chats.get(u.getId());
+					if (chat != null) {
+						try {
+							chat.onStartPolling(polling.getProject(), polling.getBranchs());
+						} catch (TelegramApiException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+
+		}
+
 		private long getChatId(Message msg) {
 			String id = msg.getId().split("/")[0];
 			try {
@@ -190,6 +209,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 				return -1;
 			}
 		}
+
 	}
 
 }

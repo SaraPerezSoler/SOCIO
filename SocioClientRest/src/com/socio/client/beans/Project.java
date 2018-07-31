@@ -9,7 +9,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Project extends Bean{
+public class Project{
 
 	public enum Visibility {
 		PUBLIC, PRIVATE, PROTECTED;

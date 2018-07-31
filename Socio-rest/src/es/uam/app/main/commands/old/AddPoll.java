@@ -1,4 +1,4 @@
-package es.uam.app.main.commands.old;
+/*package es.uam.app.main.commands.old;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,4 +76,4 @@ public class AddPoll extends MainCommand {
 		return project()+", <consensusName>#<Option1>:<Pos>-<Option2>:<pos>-...";
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package es.uam.app.main.commands.old;
+/*package es.uam.app.main.commands.old;
 
 import java.io.File;
 
@@ -96,4 +96,4 @@ public class StartCVoting extends MainCommand {
 				+ ",group branch name about debate (text field), users to debate(userstosearch field <user1>-<user2>-...)";
 	}
 
-}
+}*/

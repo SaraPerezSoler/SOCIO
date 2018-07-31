@@ -44,7 +44,7 @@ public class ProjectManager8SelectBranchOption implements ConversationalState {
 			option = SELECT_BRANCH_OPTIONS[1];
 			chat.sendMessage("Under construction", false);
 			return Chat.getDefaultState();
-		} else {// EXIT
+		} else {
 			if (option != null) {
 				if (option.equals(SELECT_BRANCH_OPTIONS[0])) {// Select one option
 					Subproject selected = null;
@@ -69,7 +69,7 @@ public class ProjectManager8SelectBranchOption implements ConversationalState {
 				} else {// vote
 
 				}
-			}
+			}// EXIT
 			return ProjectManager1.exit(chat, message);
 		}
 	}

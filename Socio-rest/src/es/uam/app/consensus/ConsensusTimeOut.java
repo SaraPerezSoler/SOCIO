@@ -2,25 +2,28 @@ package es.uam.app.consensus;
 
 import java.util.TimerTask;
 
+import javax.servlet.ServletContext;
+
 import branchDecision.Consensus;
-import es.uam.app.message.VotingTerminate;
-import projectHistory.Msg;
+import es.uam.app.main.SocioData;
 
 public class ConsensusTimeOut extends TimerTask {
 
 	private Consensus consensus;
+	private ServletContext context;
 	private boolean isExecute=false;
-	private Msg msg;
-	public ConsensusTimeOut(Consensus c, Msg msg) {
+	public ConsensusTimeOut(ServletContext context, Consensus c) {
 		consensus=c;
-		this.msg=msg;
 	}
 
 	@Override
 	public void run(){
 		if (isExecute==false){
-			VotingTerminate m=new VotingTerminate(consensus, msg);
-			//Main.getPipe().write(m);
+				try {
+					SocioData.getSocioData(context).endVoting(consensus.getBranchGroup().getFather(), consensus);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			isExecute=true;
 		}
 	}

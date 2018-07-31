@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.telegram.telegrambots.api.methods.send.SendDocument;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -26,6 +27,7 @@ import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.states.State;
 import com.socio.client.telegram.states.impl.TalkConversation;
+import com.socio.client.telegram.states.impl.management.StartPolling;
 
 public class Chat {
 
@@ -79,6 +81,12 @@ public class Chat {
 			sendMessage("This action has not been completed: " + e.getMessage(), false);
 			this.state = DEFAULT_STATE;
 		}
+	}
+	public void onEndPolling () {
+		
+	}
+	public void onStartPolling (Project project, Map<String, File> branchs) throws TelegramApiException {
+		exeState(StartPolling.getState(project, branchs), null);
 	}
 
 	public Project getProject() {

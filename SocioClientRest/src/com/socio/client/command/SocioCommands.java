@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.json.JSONObject;
 
+import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
+import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.Project.Visibility;
 import com.socio.client.beans.User;
@@ -743,5 +745,20 @@ public class SocioCommands extends Commands {
 	public File setChoice(String projectchannel, String user, String pname,  User user1, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
 		String projectName = getProjectData(projectchannel, user, pname);
 		return setChoice(projectName,user1, branchGroup, branchChannel, branchUser, branchName);
+	}
+
+	public List<Polling> getPolling(String channelName) throws ResponseError, ForbiddenResponse{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<EndConsensus> getEndConsensus(String channelName)throws ResponseError, ForbiddenResponse {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public File getMergeFile(Project project, String branchGroup) throws ResponseError, ForbiddenResponse{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

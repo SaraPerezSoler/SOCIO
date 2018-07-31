@@ -25,6 +25,7 @@ import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 import com.socio.client.beans.Message;
+import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
 import com.socio.client.command.Channel;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
@@ -314,6 +315,12 @@ public class TwitterControl extends UserStreamAdapter {
 				e.printStackTrace();
 			}
 
+		}
+
+		@Override
+		public void onPolling(Polling polling) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}

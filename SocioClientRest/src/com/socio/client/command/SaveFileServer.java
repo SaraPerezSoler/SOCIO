@@ -49,6 +49,11 @@ public class SaveFileServer extends CreateRequest{
 		}
 		return null;
 	}
+	
+	public File getFile (String path) throws ResponseError, ForbiddenResponse {
+		path = path.replace(URL, "");
+		return super.responseFile(path, null);
+	}
 	@Override
 	protected WebResource getWebResource(String path) {
 		String url = super.getURL() + path;

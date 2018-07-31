@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 
+import socioProjects.BranchGroup;
 import socioProjects.Project;
 import socioProjects.User;
 
@@ -103,6 +104,11 @@ public interface Consensus extends Decision {
 	Map<User, Double> getUsersReVote(int rNum);
 
 	void addRound(Round r);
+	BranchGroup getBranchGroup();
+	EList<Order> getConsensusOrder();
+	Round getLastRound();
+
+	boolean isRevoteCandidate(User u);
 
 
 } // Consensus
