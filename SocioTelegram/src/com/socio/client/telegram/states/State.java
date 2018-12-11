@@ -167,4 +167,12 @@ public interface State {
 	public default String getMessageId(Message message) {
 		return message.getChatId() + "/" + message.getMessageId();
 	}
+	
+	public static long getChatId(String messageId) {
+		return Long.parseLong(messageId.split("/")[0]);
+	}
+	
+	public static int getMsgId(String messageId) {
+		return Integer.parseInt(messageId.split("/")[1]);
+	}
 }

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +76,7 @@ public class DecisionMaker extends MainCommand {
 		String branchChannel = getString(object, "branchChannel");
 		String branchUser = getString(object, "branchUser");
 		String branchName = getString(object, "branchName");
+		String messageId = object.getString("messageId");
 		Project branch = getProject(context, branchChannel, branchUser, branchName);
 
 		BranchGroup group = actual.getOpenBranchGroup(branchGroup);
@@ -93,7 +95,7 @@ public class DecisionMaker extends MainCommand {
 			throw new InternalException("The branch group doesn't contain the project " + branch.getCompleteName());
 		}
 		if (group.getDecision() == null) {
-			SocioData.getSocioData(context).startDecision(actual, branchGroup, new Date());
+			SocioData.getSocioData(context).startDecision(actual, branchGroup, new Date(), messageId);
 		}
 		File f = endDecision(context, actual, branchGroup, branch);
 		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
@@ -176,8 +178,9 @@ public class DecisionMaker extends MainCommand {
 			throw new InternalException(
 					"The project " + p.getCompleteName() + " doesn't have the group " + branchGroup);
 		}
+		String messageId = object.getString("messageId");
 
-		SocioData.getSocioData(context).startConsensus(p, branchGroup, users, measureRequired, new Date());
+		SocioData.getSocioData(context).startConsensus(p, branchGroup, users, measureRequired, new Date(), messageId);
 		File f = p.getProjectHistory();
 		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"").build();
@@ -231,19 +234,20 @@ public class DecisionMaker extends MainCommand {
 			throw new InternalException("The consensus doesn't exits");
 		}
 
-		int nRound = ((Consensus) d).getRounds().size();
-		long timer = 600000;
+		
+		long timer = 240000;
 		if (object.has("timer")) {
 			timer = object.getLong("timer");
 		}
 
 		SocioData.getSocioData(context).startVoting(context, p, (Consensus) d, timer, new Date());
-		JSONObject polling = createPollingJSON(context, p, branchGroup, ((Consensus) d).getUsers(), nRound, timer);
+		int nRound = ((Consensus) d).getRounds().size();
+		JSONObject polling = createPollingJSON(context, p, branchGroup, ((Consensus) d).getUsers(), nRound, timer, ((Consensus) d).getMessageId());
 		return Response.ok(polling.toString(), MediaType.APPLICATION_JSON).build();
 	}
 
 	private JSONObject createPollingJSON(ServletContext context, Project project, String branchGroup, List<User> users,
-			int nRound, long timer) throws JSONException, Exception {
+			int nRound, long timer, String messageId) throws JSONException, Exception {
 		JSONObject object = new JSONObject();
 		object.put("project", getProjectJSON(context, project));
 		object.put("branchGroup", branchGroup);
@@ -255,6 +259,7 @@ public class DecisionMaker extends MainCommand {
 		object.put("users", array);
 		object.put("nRound", nRound);
 		object.put("timer", timer);
+		object.put("messageId", messageId);
 		return object;
 	}
 
@@ -274,7 +279,7 @@ public class DecisionMaker extends MainCommand {
 			List<Round> rounds = cons.getRounds();
 			int roundsSize = rounds.size();
 			array.put(createPollingJSON(context, cons.getBranchGroup().getFather(), cons.getName(), users, roundsSize,
-					rounds.get(roundsSize - 1).getTimer()));
+					rounds.get(roundsSize - 1).getTimer(), cons.getMessageId()));
 		}
 
 		JSONObject pollsJSON = new JSONObject();
@@ -306,7 +311,7 @@ public class DecisionMaker extends MainCommand {
 			@PathParam("branchGroup") String branchGroup) throws Exception {
 		try {
 			Project actual = getProject(context, id);
-			return startPoll(context, incomingData, actual, branchGroup);
+			return addPoll(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
 			return sendTextException(e);
 		}
@@ -331,9 +336,12 @@ public class DecisionMaker extends MainCommand {
 		}
 		Map<String, Integer> order = new HashMap<>();
 		JSONObject orderObject = object.getJSONObject("order");
-		for (int i=0; i<bg.getBranchs().size(); i++) {
-			String value = orderObject.getString(Integer.toString(i));
-			order.put(value, i);
+		
+		Iterator<?> keys = orderObject.keys();
+		while (keys.hasNext()) {
+			String i = (String)keys.next();
+			String value = orderObject.getString(i);
+			order.put(value, Integer.parseInt(i));
 		}
 		SocioData.getSocioData(context).addPreference(p, cons, user, order);
 		return Response.ok("The preferences are stored sussecfully").build();
@@ -378,9 +386,9 @@ public class DecisionMaker extends MainCommand {
 		for (User u : consensus.getUsers()) {
 			JSONObject user = getUserJSON(u);
 			if (consensus.isRevoteCandidate(u)) {
-				user.put("close", false);
-			}else {
 				user.put("close", true);
+			}else {
+				user.put("close", false);
 			}
 			array.put(user);
 		}
@@ -388,6 +396,7 @@ public class DecisionMaker extends MainCommand {
 		
 		object.put("measure", consensus.getConsensusActualMeasure());
 		object.put("required", consensus.getConsensusRequired());
+		object.put("messageId", consensus.getMessageId());
 		return object;
 	}
 }

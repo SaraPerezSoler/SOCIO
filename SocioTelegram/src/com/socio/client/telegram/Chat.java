@@ -20,6 +20,7 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButto
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.User;
@@ -27,7 +28,9 @@ import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.states.State;
 import com.socio.client.telegram.states.impl.TalkConversation;
-import com.socio.client.telegram.states.impl.management.StartPolling;
+import com.socio.client.telegram.states.impl.management.EndVote;
+import com.socio.client.telegram.states.impl.management.EndVoteAdmin;
+import com.socio.client.telegram.states.impl.management.Vote;
 
 public class Chat {
 
@@ -82,11 +85,15 @@ public class Chat {
 			this.state = DEFAULT_STATE;
 		}
 	}
-	public void onEndPolling () {
-		
+	public void onEndPolling (EndConsensus cons) throws TelegramApiException{
+		exeState(EndVote.getState(cons), null);
 	}
-	public void onStartPolling (Project project, Map<String, File> branchs) throws TelegramApiException {
-		exeState(StartPolling.getState(project, branchs), null);
+	
+	public void onEndPollingAdmin (EndConsensus cons) throws TelegramApiException{
+		exeState(EndVoteAdmin.getState(cons), null);
+	}
+	public void onStartPolling (Project project, String branchGroup, Map<String, File> branchs) throws TelegramApiException {
+		exeState(Vote.getState(project, branchGroup, branchs), null);
 	}
 
 	public Project getProject() {

@@ -207,6 +207,15 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDecision_MessageId() {
+		return (EAttribute)decisionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConsensus() {
 		return consensusEClass;
 	}
@@ -397,6 +406,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 		createEReference(decisionEClass, DECISION__CHOSEN_BRANCH);
 		createEAttribute(decisionEClass, DECISION__START);
 		createEAttribute(decisionEClass, DECISION__MERGED_DATE);
+		createEAttribute(decisionEClass, DECISION__MESSAGE_ID);
 
 		consensusEClass = createEClass(CONSENSUS);
 		createEAttribute(consensusEClass, CONSENSUS__CONSENSUS_REQUIRED);
@@ -464,6 +474,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 		initEReference(getDecision_ChosenBranch(), theSocioProjectsPackage.getProject(), null, "chosenBranch", null, 0, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDecision_Start(), ecorePackage.getEDate(), "start", null, 1, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDecision_MergedDate(), ecorePackage.getEDate(), "mergedDate", null, 0, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDecision_MessageId(), ecorePackage.getEString(), "messageId", null, 1, 1, Decision.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(consensusEClass, Consensus.class, "Consensus", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConsensus_ConsensusRequired(), ecorePackage.getEDouble(), "consensusRequired", "0.75", 1, 1, Consensus.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

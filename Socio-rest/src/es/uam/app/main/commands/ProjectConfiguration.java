@@ -62,7 +62,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 		} catch (InternalException e) {
 
 			Project p = SocioData.getSocioData(context).createProject(project, user, ProjectType.METAMODEL, v, null, "");
-			return Response.ok(getProjectJSON(context, p).toString(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(new JSONObject().put("project", getProjectJSON(context, p)).toString(), MediaType.APPLICATION_JSON).build();
 		}
 		throw new InternalException("A project with the name " + user.getChannel() + "/" + user.getNick() + "/"
 				+ project + " already exists");
@@ -147,7 +147,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 			throw new InternalException("Only the project admin can do this.");
 		}
 		SocioData.getSocioData(context).changeProjectVisibility(actual, c);
-		return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
+		return Response.ok(new JSONObject().put("project", getProjectJSON(context, actual)).toString(), MediaType.APPLICATION_JSON).build();
 	}
 
 	@POST
@@ -236,7 +236,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 		}
 
 		SocioData.getSocioData(context).addUserToProject(actual, user2Search, a);
-		return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
+		return Response.ok(new JSONObject().put("project", getProjectJSON(context, actual)).toString(), MediaType.APPLICATION_JSON).build();
 	}
 
 	@POST
@@ -280,7 +280,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 
 		if (user2Search.canEdit(actual) || user2Search.canRead(actual)) {
 			SocioData.getSocioData(context).removeUserToProject(actual, user2Search);
-			return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(new JSONObject().put("project", getProjectJSON(context, actual)).toString(), MediaType.APPLICATION_JSON).build();
 
 		}
 		throw new InternalException("The user " + user2Search.getChannel() + "/" + user2Search.getNick()
@@ -334,7 +334,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 			throw new InternalException("The user " + user2Search.getChannel() + "/" + user2Search.getNick()
 					+ " is not in the project " + actual.getCompleteName());
 		}
-		return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
+		return Response.ok(new JSONObject().put("project", getProjectJSON(context, actual)).toString(), MediaType.APPLICATION_JSON).build();
 
 	}
 
@@ -408,7 +408,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@POST
 	@Path("/branchgroup/{channel}/{user}/{project}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response branchgroup(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
 			throws Exception {
@@ -423,7 +423,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@POST
 	@Path("/branchgroup/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response branchgroup(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
 			throws Exception {
 		try {
@@ -448,7 +448,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 			throw new InternalException("You are not authorised to do this action. Only the project admin can change the branch group");
 		}
 		SocioData.getSocioData(context).changeBranchGroup(actual, branchGroup);
-		return Response.ok(getProjectJSON(context, actual).toString(), MediaType.APPLICATION_JSON).build();
+		return Response.ok(new JSONObject().put("project", getProjectJSON(context, actual)).toString(), MediaType.APPLICATION_JSON).build();
 
 		
 	}

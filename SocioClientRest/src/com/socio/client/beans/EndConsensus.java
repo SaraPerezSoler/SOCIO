@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.socio.client.command.SaveFileServer;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 
 public class EndConsensus {
+	private String messageId;
 	private Project project;
 	private String branchGroup;
 	private Map<Integer, String> preference;
@@ -62,6 +61,9 @@ public class EndConsensus {
 
 		endConsensus.setMeasure(object.getDouble("measure"));
 		endConsensus.setRequired(object.getDouble("required"));
+		if (object.has("messageId")) {
+			endConsensus.setMessageId(object.getString("messageId"));
+		}
 		try {
 			if (object.has("filePath")) {
 				endConsensus.setBranchs(fileServer.getFile(object.getString("filePath")));
@@ -135,5 +137,13 @@ public class EndConsensus {
 
 	public void setRequired(double required) {
 		this.required = required;
+	}
+
+	public String getMessageId() {
+		return messageId;
+	}
+
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
 	}
 }

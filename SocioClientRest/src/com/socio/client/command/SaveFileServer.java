@@ -20,7 +20,7 @@ import com.sun.jersey.multipart.MultiPart;
 import com.sun.jersey.multipart.impl.MultiPartWriter;
 
 public class SaveFileServer extends CreateRequest{
-	private static final String URL = "http://localhost:8080/FileServer/file/";
+	private static final String URL = "http://miso1.ii.uam.es/FileServer/file/";
 	
 	public SaveFileServer() {
 		super(URL);

@@ -20,10 +20,10 @@ import socioProjects.Project;
 
 public class CreateProjectHistory implements CreateText {
 
-	private static final String START = "@startsalt"+ENTR+"{" + ENTR + ENTR;
+	private static final String START = "@startsalt" + ENTR + "{" + ENTR + ENTR;
 	private static final String START_LIST = "{T" + ENTR + ENTR;
 	private static final String END_LIST = ENTR + "}";
-	private static final String END = ENTR + "}"+ENTR+"@endsalt";
+	private static final String END = ENTR + "}" + ENTR + "@endsalt";
 	private static final String LEVEL_CARACTER = "+";
 	DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -34,10 +34,10 @@ public class CreateProjectHistory implements CreateText {
 	public String createHistory(Project project) {
 		String cad = START + START_LIST;
 		int i = 1;
-		cad += level(i) + project.getCompleteName()+ENTR;
+		cad += level(i) + project.getCompleteName() + ENTR;
 		i++;
-		cad += level(i) + df.format(project.getCreateDate()) + ": ** project creation **"+ENTR;
-		cad+=branchs(project, i);
+		cad += level(i) + df.format(project.getCreateDate()) + ": ** project creation **" + ENTR;
+		cad += branchs(project, i);
 		cad += END_LIST + END;
 		return cad;
 	}
@@ -47,7 +47,7 @@ public class CreateProjectHistory implements CreateText {
 		for (int j = 0; j < i; j++) {
 			ret += LEVEL_CARACTER;
 		}
-		return ret+" ";
+		return ret + " ";
 	}
 
 	private String branchs(Project project, int i) {
@@ -89,27 +89,31 @@ public class CreateProjectHistory implements CreateText {
 			List<Project> branchs = openGroups.get(group);
 
 			if (branchs != null) {
-				cad += level(i) + df.format(date) + ": <&lock-unlocked> ** branch group \"" + group + "\"**"+ENTR;
-				cad+=printProjects(branchs, null, i+1);
+				cad += level(i) + df.format(date) + ": <&lock-unlocked> ** branch group \"" + group + "\"**" + ENTR;
+				cad += printProjects(branchs, null, i + 1);
 
 			} else {
-				cad += level(i) + df.format(date) + ": <&lock-locked> ** branch group \"" + group + "\"**"+ENTR;
+				cad += level(i) + df.format(date) + ": <&lock-locked> ** branch group \"" + group + "\"**" + ENTR;
 				Decision d = closeBranchs.get(group);
-				cad+=printProjects(d.getBranchs(), d.getChosenBranch(), i+1);
-				if (d instanceof AdminChoice){
-					cad+=level(i+1)+df.format(d.getMergedDate())+": \""+d.getChosenBranch().getName()+"\" is chosen"+ENTR;
-					
-				}else{
-					for (Round r: ((Consensus)d).getRounds()){
-						cad+=level(i+1)+df.format(r.getRoundDate())+": Consensus round "+(r.getRoundId()+1)+" measure = "+String.format("%.2f",r.getConsensusMeasure())+ENTR;
+				cad += printProjects(d.getBranchs(), d.getChosenBranch(), i + 1);
+				if (d instanceof AdminChoice) {
+					cad += level(i + 1) + df.format(d.getMergedDate()) + ": \"" + d.getChosenBranch().getName()
+							+ "\" is chosen" + ENTR;
+
+				} else {
+					for (Round r : ((Consensus) d).getRounds()) {
+						cad += level(i + 1) + df.format(r.getRoundDate()) + ": Consensus round " + (r.getRoundId() + 1)
+								+ " measure = " + String.format("%.2f", r.getConsensusMeasure()) + ENTR;
 					}
 				}
-				cad+=level(i)+df.format(d.getMergedDate())+": ** merge branch \""+d.getChosenBranch().getName()+" \"**"+ENTR;
-				cad+=level(i)+df.format(d.getMergedDate())+": ** close branch group \""+d.getName()+" \"**"+ENTR;
+				if (d.getMergedDate() != null) {
+					cad += level(i) + df.format(d.getMergedDate()) + ": ** merge branch \""
+							+ d.getChosenBranch().getName() + " \"**" + ENTR;
+					cad += level(i) + df.format(d.getMergedDate()) + ": ** close branch group \"" + d.getName()
+							+ " \"**" + ENTR;
+				}
 			}
-			
-			
-			
+
 		}
 		return cad;
 
@@ -119,7 +123,8 @@ public class CreateProjectHistory implements CreateText {
 		String cad = "";
 		for (Project o : list) {
 			if (winner != null && o.equals(winner)) {
-				cad += level(i) + df.format(o.getCreateDate()) + ":  [<&heart>] ** branch \"" + o.getName() + "\"**" + ENTR;
+				cad += level(i) + df.format(o.getCreateDate()) + ":  [<&heart>] ** branch \"" + o.getName() + "\"**"
+						+ ENTR;
 			} else {
 				cad += level(i) + df.format(o.getCreateDate()) + ": // branch \"" + o.getName() + "\"//" + ENTR;
 

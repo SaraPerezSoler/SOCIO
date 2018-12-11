@@ -28,6 +28,7 @@ import socioProjects.Project;
  *   <li>{@link branchDecision.impl.DecisionImpl#getChosenBranch <em>Chosen Branch</em>}</li>
  *   <li>{@link branchDecision.impl.DecisionImpl#getStart <em>Start</em>}</li>
  *   <li>{@link branchDecision.impl.DecisionImpl#getMergedDate <em>Merged Date</em>}</li>
+ *   <li>{@link branchDecision.impl.DecisionImpl#getMessageId <em>Message Id</em>}</li>
  * </ul>
  *
  * @generated
@@ -99,6 +100,26 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected Date mergedDate = MERGED_DATE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getMessageId() <em>Message Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMessageId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MESSAGE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMessageId() <em>Message Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMessageId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String messageId = MESSAGE_ID_EDEFAULT;
+
 	private String path;
 
 	/**
@@ -215,6 +236,27 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMessageId() {
+		return messageId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMessageId(String newMessageId) {
+		String oldMessageId = messageId;
+		messageId = newMessageId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BranchDecisionPackage.DECISION__MESSAGE_ID, oldMessageId, messageId));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -230,6 +272,8 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 				return getStart();
 			case BranchDecisionPackage.DECISION__MERGED_DATE:
 				return getMergedDate();
+			case BranchDecisionPackage.DECISION__MESSAGE_ID:
+				return getMessageId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,6 +298,9 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 			case BranchDecisionPackage.DECISION__MERGED_DATE:
 				setMergedDate((Date)newValue);
 				return;
+			case BranchDecisionPackage.DECISION__MESSAGE_ID:
+				setMessageId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -277,6 +324,9 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 			case BranchDecisionPackage.DECISION__MERGED_DATE:
 				setMergedDate(MERGED_DATE_EDEFAULT);
 				return;
+			case BranchDecisionPackage.DECISION__MESSAGE_ID:
+				setMessageId(MESSAGE_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -296,6 +346,8 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 				return START_EDEFAULT == null ? start != null : !START_EDEFAULT.equals(start);
 			case BranchDecisionPackage.DECISION__MERGED_DATE:
 				return MERGED_DATE_EDEFAULT == null ? mergedDate != null : !MERGED_DATE_EDEFAULT.equals(mergedDate);
+			case BranchDecisionPackage.DECISION__MESSAGE_ID:
+				return MESSAGE_ID_EDEFAULT == null ? messageId != null : !MESSAGE_ID_EDEFAULT.equals(messageId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -315,6 +367,8 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 		result.append(start);
 		result.append(", mergedDate: ");
 		result.append(mergedDate);
+		result.append(", messageId: ");
+		result.append(messageId);
 		result.append(')');
 		return result.toString();
 	}

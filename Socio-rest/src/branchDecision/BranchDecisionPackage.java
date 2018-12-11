@@ -103,13 +103,22 @@ public interface BranchDecisionPackage extends EPackage {
 	int DECISION__MERGED_DATE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECISION__MESSAGE_ID = 4;
+
+	/**
 	 * The number of structural features of the '<em>Decision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_FEATURE_COUNT = 4;
+	int DECISION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Decision</em>' class.
@@ -165,6 +174,15 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSENSUS__MERGED_DATE = DECISION__MERGED_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSENSUS__MESSAGE_ID = DECISION__MESSAGE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Consensus Required</b></em>' attribute.
@@ -460,6 +478,15 @@ public interface BranchDecisionPackage extends EPackage {
 	int ADMIN_CHOICE__MERGED_DATE = DECISION__MERGED_DATE;
 
 	/**
+	 * The feature id for the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADMIN_CHOICE__MESSAGE_ID = DECISION__MESSAGE_ID;
+
+	/**
 	 * The number of structural features of the '<em>Admin Choice</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -531,6 +558,17 @@ public interface BranchDecisionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDecision_MergedDate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link branchDecision.Decision#getMessageId <em>Message Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message Id</em>'.
+	 * @see branchDecision.Decision#getMessageId()
+	 * @see #getDecision()
+	 * @generated
+	 */
+	EAttribute getDecision_MessageId();
 
 	/**
 	 * Returns the meta object for class '{@link branchDecision.Consensus <em>Consensus</em>}'.
@@ -788,6 +826,14 @@ public interface BranchDecisionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DECISION__MERGED_DATE = eINSTANCE.getDecision_MergedDate();
+
+		/**
+		 * The meta object literal for the '<em><b>Message Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DECISION__MESSAGE_ID = eINSTANCE.getDecision_MessageId();
 
 		/**
 		 * The meta object literal for the '{@link branchDecision.impl.ConsensusImpl <em>Consensus</em>}' class.

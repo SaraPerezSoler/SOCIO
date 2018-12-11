@@ -2,6 +2,7 @@ package com.socio.client.telegram.states.impl.management;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,21 +16,23 @@ import com.socio.client.telegram.Chat;
 import com.socio.client.telegram.states.ConversationalState;
 import com.socio.client.telegram.states.State;
 
-public class StartPolling implements ConversationalState{
+public class Vote implements ConversationalState{
 
 	private Project project;
+	private String branchGroup;
 	private Map<String, File> branchs;
 	private List<String> branchOptions;
-	private Map<Integer, String> preference;
+	private Map<Integer, String> preference = new HashMap<>();
 	private int pos = 1;
-	public static StartPolling getState(Project project, Map<String, File> branchs) {
-		return new StartPolling(project, branchs);
+	public static Vote getState(Project project, String branchGroup, Map<String, File> branchs) {
+		return new Vote(project, branchGroup, branchs);
 	}
 	
-	public StartPolling(Project project, Map<String, File> branchs) {
+	public Vote(Project project, String branchGroup,  Map<String, File> branchs) {
 		super();
 		this.project = project;
 		this.branchs = branchs;
+		this.branchGroup = branchGroup;
 		this.branchOptions = new ArrayList<>(this.branchs.keySet());
 	}
 
@@ -62,7 +65,8 @@ public class StartPolling implements ConversationalState{
 				preference.put(pos, branchOptions.get(0));
 			}
 			//Enviar a SOCIO la votacion
-			SOCIO.;
+			String ans = SOCIO.setPoll(project, State.getUser(message.getFrom()), branchGroup, preference);
+			chat.sendMessage(ans, false);
 			return Chat.getDefaultState();
 		}
 	}

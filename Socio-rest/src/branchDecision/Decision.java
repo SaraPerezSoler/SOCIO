@@ -22,6 +22,7 @@ import socioProjects.Project;
  *   <li>{@link branchDecision.Decision#getChosenBranch <em>Chosen Branch</em>}</li>
  *   <li>{@link branchDecision.Decision#getStart <em>Start</em>}</li>
  *   <li>{@link branchDecision.Decision#getMergedDate <em>Merged Date</em>}</li>
+ *   <li>{@link branchDecision.Decision#getMessageId <em>Message Id</em>}</li>
  * </ul>
  *
  * @see branchDecision.BranchDecisionPackage#getDecision()
@@ -132,6 +133,32 @@ public interface Decision extends EObject {
 	 * @generated
 	 */
 	void setMergedDate(Date value);
+
+	/**
+	 * Returns the value of the '<em><b>Message Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Message Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Message Id</em>' attribute.
+	 * @see #setMessageId(String)
+	 * @see branchDecision.BranchDecisionPackage#getDecision_MessageId()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getMessageId();
+
+	/**
+	 * Sets the value of the '{@link branchDecision.Decision#getMessageId <em>Message Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Message Id</em>' attribute.
+	 * @see #getMessageId()
+	 * @generated
+	 */
+	void setMessageId(String value);
 
 	Project getBranch(String branchName);
 

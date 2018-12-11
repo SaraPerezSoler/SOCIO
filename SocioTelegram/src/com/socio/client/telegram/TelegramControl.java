@@ -15,13 +15,14 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
-import com.socio.client.beans.Project.Subproject;
 import com.socio.client.beans.User;
 import com.socio.client.command.Channel;
 import com.socio.client.telegram.states.CommandState;
+import com.socio.client.telegram.states.State;
 
 public class TelegramControl extends TelegramLongPollingBot {
 
@@ -185,12 +186,13 @@ public class TelegramControl extends TelegramLongPollingBot {
 
 		@Override
 		public void onPolling(Polling polling) {
+
 			for (User u : polling.getUsers()) {
 				if (u.getChannel().equals(getChannelName())) {
 					Chat chat = chats.get(u.getId());
 					if (chat != null) {
 						try {
-							chat.onStartPolling(polling.getProject(), polling.getBranchs());
+							chat.onStartPolling(polling.getProject(), polling.getBranchGroup(), polling.getBranchs());
 						} catch (TelegramApiException e) {
 							e.printStackTrace();
 						}
@@ -208,6 +210,43 @@ public class TelegramControl extends TelegramLongPollingBot {
 			} catch (NumberFormatException e) {
 				return -1;
 			}
+		}
+
+		@Override
+		public void onEndConsensus(EndConsensus cons) {
+			long chatId = State.getChatId(cons.getMessageId());
+			Chat adminChat = chats.get(chatId);
+
+			for (User u : cons.getNotVoted()) {
+				if (u.getChannel().equals(getChannelName())) {
+					Chat chat = chats.get(u.getId());
+					if (chat != null) {
+						try {
+							chat.onEndPolling(cons);
+						} catch (TelegramApiException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+			for (User u : cons.getClose().keySet()) {
+				if (u.getChannel().equals(getChannelName())) {
+					Chat chat = chats.get(u.getId());
+					if (chat != null) {
+						try {
+							chat.onEndPolling(cons);
+						} catch (TelegramApiException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+			try {
+				adminChat.onEndPollingAdmin(cons);
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 	}

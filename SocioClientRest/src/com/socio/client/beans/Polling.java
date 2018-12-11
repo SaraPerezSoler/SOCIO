@@ -110,5 +110,19 @@ public class Polling {
 	public void setTime(long time) {
 		this.time = time;
 	}
+	
+	public String getCardinalRound(){
+		String number=nRound+"";
+		if (nRound%10==1 && nRound!=11){
+			number+="st";
+		}else if (nRound==2){
+			number+="nd";
+		}else if (nRound==3){
+			number+="rd";
+		}else{
+			number+="th";
+		}
+		return number;
+	}
 
 }

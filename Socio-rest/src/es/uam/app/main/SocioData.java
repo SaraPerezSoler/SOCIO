@@ -585,22 +585,23 @@ public class SocioData implements DataFormat {
 
 	/*---------------------------------------------------------------------------Decision maker-------------------------------------------------------------------------*/
 
-	public void startDecision(Project actual, String branchGroup, Date date) throws InternalException {
+	public void startDecision(Project actual, String branchGroup, Date date, String messageId) throws InternalException {
 		AdminChoice a = BranchDecisionFactoryImpl.eINSTANCE.createAdminChoice();
 		a.setStart(date);
+		a.setMessageId(messageId);
 		actual.startDecision(a, branchGroup);
 		this.save(actual);
 	}
 
-	public void startConsensus(Project actual, String text, List<User> users, double required, Date date) throws InternalException {
+	public void startConsensus(Project actual, String text, List<User> users, double required, Date date, String messageId) throws InternalException {
 
 		Consensus consensus = BranchDecisionFactoryImpl.eINSTANCE.createConsensus();
 		consensus.getUsers().addAll(users);
 		consensus.setConsensusRequired(0.75);
 		consensus.setStart(date);
 		consensus.setConsensusRequired(required);
-		List<Project> branchs = actual.startDecision(consensus, text);
-		this.getProjects().removeAll(branchs);
+		consensus.setMessageId(messageId);
+		actual.startDecision(consensus, text);
 		this.save(actual);
 	}
 
@@ -629,11 +630,12 @@ public class SocioData implements DataFormat {
 				List<Consensus> cons = poll.get(u.getChannel());
 				if (cons == null) {
 					cons = new ArrayList<>();
-					poll.put(u.getChannel(), cons);
+					
 				}
 				if (!cons.contains(d)) {
 					cons.add(d);
 				}
+				poll.put(u.getChannel(), cons);
 			}
 			this.save(actual);
 		}
@@ -686,7 +688,7 @@ public class SocioData implements DataFormat {
 	}
 	
 	public List<Consensus> getAndRemoveEndConsensus(String channel) {
-		List<Consensus> ret = null;
+		List<Consensus> ret = new ArrayList<>();
 		if (pollEnd.get(channel) != null) {
 			ret = pollEnd.get(channel);
 			pollEnd.put(channel, new ArrayList<>());
@@ -695,8 +697,8 @@ public class SocioData implements DataFormat {
 	}
 
 	public List<Consensus> getAndRemoveConsensus(String channel) {
-		List<Consensus> ret = null;
-		if (poll.get(channel) != null) {
+		List<Consensus> ret = new ArrayList<>();
+		if (poll.get(channel) != null && !poll.get(channel).isEmpty()) {
 			ret = poll.get(channel);
 			poll.put(channel, new ArrayList<>());
 		}

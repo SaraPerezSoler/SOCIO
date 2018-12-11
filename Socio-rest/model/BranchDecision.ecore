@@ -6,6 +6,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="chosenBranch" eType="ecore:EClass SocioDatabase.ecore#//Project"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mergedDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="messageId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Consensus" eSuperTypes="#//Decision">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="consensusRequired" lowerBound="1"

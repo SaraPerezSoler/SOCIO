@@ -112,7 +112,7 @@ public class Projects extends MainCommand implements DataFormat {
 			@PathParam("user") String userInfo, @PathParam("project") String project) throws Exception {
 		try {
 			Project p = getProject(context, channel, userInfo, project);
-			return Response.ok(getProjectJSON(context, p).toString(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(new JSONObject().put("project", getProjectJSON(context, p)).toString(), MediaType.APPLICATION_JSON).build();
 		} catch (InternalException e) {
 			return sendTextException(e);
 		}
@@ -124,7 +124,7 @@ public class Projects extends MainCommand implements DataFormat {
 	public Response project(@Context ServletContext context, @PathParam("project") long id) throws Exception {
 		try {
 			Project p = getProject(context, id);
-			return Response.ok(getProjectJSON(context, p).toString(), MediaType.APPLICATION_JSON).build();
+			return Response.ok(new JSONObject().put("project", getProjectJSON(context, p)).toString(), MediaType.APPLICATION_JSON).build();
 		} catch (InternalException e) {
 			return sendTextException(e);
 		}

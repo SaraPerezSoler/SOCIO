@@ -1,9 +1,12 @@
 package com.socio.client.command;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.socio.client.beans.EndConsensus;
@@ -49,8 +52,15 @@ public class SocioCommands extends Commands {
 	private static final String GET_UPDATES = UPDATES_PATH + "getupdates/";
 	private static final String GET_UPDATE = UPDATES_PATH + "getupdate/";
 	private static final String GET_LAST_FILE = UPDATES_PATH + "getlastfile/";
+	
+	
 	private static final String DECISION = "decisionMaker/";
 	private static final String SET_CHOICE = DECISION+ "setChoice/";
+	private static final String CONSENSUS = DECISION+ "consensus/";
+	private static final String START_POLL = DECISION+ "startPoll/";
+	private static final String GET_POLL = DECISION+ "getPoll/";
+	private static final String SET_POLL = DECISION+ "addPoll/";
+	private static final String GET_END_POLL = DECISION+ "getEndPoll/";
 	
 	
 	private static final SocioCommands SOCIO = new SocioCommands();
@@ -726,39 +736,114 @@ public class SocioCommands extends Commands {
 
 	}
 
-	public File setChoice (String projectName, User user, String branchGroup, String branchChannel, String branchUser, String branchName)  throws ResponseError, ForbiddenResponse  {
+	public File setChoice (String projectName, User user, String branchGroup, String branchChannel, String branchUser, String branchName, String messageId)  throws ResponseError, ForbiddenResponse  {
 		String path=SET_CHOICE+getProjectData(projectName)+"/"+branchGroup;
 		JSONObject object= addUser(user, new JSONObject());
 		object.put("branchChannel", branchChannel);
 		object.put("branchUser", branchUser);
 		object.put("branchName", branchName);
+		object.put("messageId", messageId);
 		return responseFile(path, object);
 	}
-	public File setChoice(Project p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+	public File setChoice(Project p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName, String messageId) throws ResponseError, ForbiddenResponse {
 		String projectName = getProjectData(p);
-		return setChoice( projectName,user, branchGroup, branchChannel, branchUser, branchName);
+		return setChoice( projectName,user, branchGroup, branchChannel, branchUser, branchName, messageId);
 	}
-	public File setChoice(long p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+	public File setChoice(long p,  User user, String branchGroup, String branchChannel, String branchUser, String branchName, String messageId) throws ResponseError, ForbiddenResponse {
 		String projectName = getProjectData(p);
-		return setChoice (projectName,user, branchGroup, branchChannel, branchUser, branchName);
+		return setChoice (projectName,user, branchGroup, branchChannel, branchUser, branchName, messageId);
 	}
-	public File setChoice(String projectchannel, String user, String pname,  User user1, String branchGroup, String branchChannel, String branchUser, String branchName) throws ResponseError, ForbiddenResponse {
+	public File setChoice(String projectchannel, String user, String pname,  User user1, String branchGroup, String branchChannel, String branchUser, String branchName, String messageId) throws ResponseError, ForbiddenResponse {
 		String projectName = getProjectData(projectchannel, user, pname);
-		return setChoice(projectName,user1, branchGroup, branchChannel, branchUser, branchName);
+		return setChoice(projectName,user1, branchGroup, branchChannel, branchUser, branchName, messageId);
+	}
+	
+	public String setPoll (String projectName,  User user, String branchGroup, Map<Integer, String> preference)  throws ResponseError, ForbiddenResponse  {
+		String path=SET_POLL+getProjectData(projectName)+"/"+branchGroup;
+		JSONObject object= addUser(user, new JSONObject());
+		JSONObject order= new JSONObject();
+		for (int i : preference.keySet()) {
+			order.put(Integer.toString(i), preference.get(i));
+		}
+		object.put("order", order);
+		return responseText(path, object);
+	}
+	public String setPoll(Project p,  User user, String branchGroup, Map<Integer, String> preference) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(p);
+		return setPoll( projectName,user, branchGroup, preference);
+	}
+	public String setPoll(long p,   User user, String branchGroup, Map<Integer, String> preference) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(p);
+		return setPoll (projectName,user, branchGroup, preference);
+	}
+	
+	public String setPoll(String projectchannel, String puser, String pname,  User user, String branchGroup, Map<Integer, String> preference) throws ResponseError, ForbiddenResponse {
+		String projectName = getProjectData(projectchannel, puser, pname);
+		return setPoll(projectName,user, branchGroup,preference);
 	}
 
 	public List<Polling> getPolling(String channelName) throws ResponseError, ForbiddenResponse{
-		// TODO Auto-generated method stub
-		return null;
+		String path = GET_POLL + channelName;
+		JSONObject object = responseJSON(path, null);
+		List<Polling> ret = new ArrayList<>();
+		JSONArray array = object.getJSONArray("polls");
+		for (int i =0; i<array.length(); i++) {
+			ret.add(Polling.createPolling(array.getJSONObject(i)));
+		}
+		return ret;
 	}
 
 	public List<EndConsensus> getEndConsensus(String channelName)throws ResponseError, ForbiddenResponse {
-		// TODO Auto-generated method stub
-		return null;
+		String path = GET_END_POLL + channelName;
+		JSONObject object = responseJSON(path, null);
+		List<EndConsensus> ret = new ArrayList<>();
+		JSONArray array = object.getJSONArray("polls");
+		for (int i =0; i<array.length(); i++) {
+			ret.add(EndConsensus.createEndConsensus(array.getJSONObject(i)));
+		}
+		return ret;
 	}
-
-	public File getMergeFile(Project project, String branchGroup) throws ResponseError, ForbiddenResponse{
-		// TODO Auto-generated method stub
-		return null;
+	
+	public File consensus (String projectName,  User user, List<User> usersToSearch, String branchGroup, String messageId)throws ResponseError, ForbiddenResponse  {
+		String path=CONSENSUS+getProjectData(projectName)+"/"+branchGroup;
+		JSONObject object= addUser(user, new JSONObject());
+		JSONArray array = new JSONArray();
+		for (User u: usersToSearch) {
+			array.put(addUser(u, new JSONObject()));
+		}
+		object.put("usersToSearch", array);
+		object.put("messageId", messageId);
+		return responseFile(path, object);
+	}
+	public File consensus (Project p,  User user, List<User> usersToSearch, String branchGroup, String messageId)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(p);
+		return consensus(projectName, user, usersToSearch, branchGroup, messageId);
+	}
+	public File consensus (long p,  User user, List<User> usersToSearch, String branchGroup, String messageId)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(p);
+		return consensus(projectName, user, usersToSearch, branchGroup, messageId);
+	}
+	public File consensus (String projectchannel, String puser, String pname,  User user, List<User> usersToSearch, String branchGroup, String messageId)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(projectchannel, puser, pname);
+		return consensus(projectName, user, usersToSearch, branchGroup, messageId);
+	}
+	
+	public Polling startPoll (String projectName,  User user, String branchGroup)throws ResponseError, ForbiddenResponse  {
+		String path=START_POLL+getProjectData(projectName)+"/"+branchGroup;
+		JSONObject object= addUser(user, new JSONObject());
+		JSONObject polling = responseJSON(path, object);
+		return Polling.createPolling(polling);
+	}
+	public Polling startPoll (Project p,  User user, String branchGroup)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(p);
+		return startPoll(projectName, user,  branchGroup);
+	}
+	public Polling startPoll (long p,  User user, String branchGroup)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(p);
+		return startPoll(projectName, user,  branchGroup);
+	}
+	public Polling startPoll (String projectchannel, String puser, String pname,  User user, String branchGroup)throws ResponseError, ForbiddenResponse  {
+		String projectName = getProjectData(projectchannel, puser, pname);
+		return startPoll(projectName, user,  branchGroup);
 	}
 }
