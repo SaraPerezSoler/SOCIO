@@ -33,7 +33,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 	private static final String NAME = "Name";
 	private static final String ID = "ID";
 
-	private static final String PASS = "pass.json";
+	public static String PASS = "pass.json";
 
 	public static Map<String, Project> projects = new HashMap<>();
 	public static Map<String, CommandState> commandState = new HashMap<>();

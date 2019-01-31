@@ -12,11 +12,19 @@ import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 
 public class TelegramMain {
 
+	private static String debugFile; 
 	public static void main(String[] args) {
 		String debug=TelegramControl.SOCIO;
-		for (String s: args) {
+		for (int i=0; i<args.length; i++) {
+			String s = args[i];
 			if (s.equalsIgnoreCase("debug")) {
 				debug=TelegramControl.TEST;
+			}
+			if (s.equalsIgnoreCase("-passfile")) {
+				TelegramControl.PASS=args[i+1];
+			}
+			if (s.equalsIgnoreCase("-debugfile")) {
+				debugFile=args[i+1];
 			}
 		}
 		ApiContextInitializer.init();
@@ -28,6 +36,7 @@ public class TelegramMain {
 			TelegramControl telegramControl = TelegramControl.createTelegramControl(debug);
 			botsApi.registerBot(telegramControl);
 		}catch (Throwable e) {
+			
 			e.printStackTrace();
 		}
 	}
