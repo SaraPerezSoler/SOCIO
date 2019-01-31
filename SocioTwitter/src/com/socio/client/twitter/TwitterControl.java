@@ -24,6 +24,7 @@ import twitter4j.UserStreamAdapter;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
+import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
@@ -319,6 +320,12 @@ public class TwitterControl extends UserStreamAdapter {
 
 		@Override
 		public void onPolling(Polling polling) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onEndConsensus(EndConsensus cons) {
 			// TODO Auto-generated method stub
 			
 		}

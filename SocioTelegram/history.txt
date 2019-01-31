@@ -1,55 +1,50 @@
-User: SaraPTSM at 07/06/18 04:10:57 in telegram
-Sends: /talk Payment method is abstract
+User: sarukituki at 22/01/19 01:15:15 in telegram
+Sends: A goods transport company handles Deliveries.
+A delivery has a numeric identifier.
+A delivery is made of packages.
+Packages can be bulky, heavy or fragile.
+Bulky packages are characterized by their width, length and height.
+Heavy packages have a weight in kilograms.
+Fragile packages have a description of their content.
+Fragile packages contain the value they should be insured for.
+All packages have a rate.
+Every delivery can be assigned to a carrier.
+Carriers can handle several deliveries.
 The message caused these actions:
-	 · Update-> Old: class PaymentMethod / New: abstract class PaymentMethod
-------------------------
-User: SaraPTSM at 07/06/18 04:09:07 in telegram
-Sends: /talk The order contains a payment method, which can be paypal, credit card or cash
-The message caused these actions:
-	 · Create-> class PaymentMethod
-	 · Create-> reference paymentMethod
-	 · Update-> Old: reference paymentMethod [1..1], type: null, from Order / New: reference paymentMethod [1..1], type: PaymentMethod, from Order
-	 · Create-> class CreditCard
-	 · Update-> Old: class CreditCard / New: class CreditCard, superTypes: [PaymentMethod]
-	 · Create-> class Cash
-	 · Update-> Old: class Cash / New: class Cash, superTypes: [PaymentMethod]
-	 · Create-> class Paypal
-	 · Update-> Old: class Paypal / New: class Paypal, superTypes: [PaymentMethod]
-------------------------
-User: sarukiTSM at 07/06/18 04:07:55 in twitter
-Sends: @ModellingBot #talk The order, that is associated with a client, may has several products
-The message caused these actions:
-	 · Create-> reference associatedWith
-	 · Update-> Old: reference associatedWith [1..1], type: null, from Order / New: reference associatedWith [1..1], type: Customer, from Order
-	 · Create-> reference products
-	 · Update-> Old: reference products [0..-1], type: null, from Order / New: reference products [0..-1], type: Product, from Order
-------------------------
-User: SaraPTSM at 07/06/18 04:06:09 in telegram
-Sends: A online shop is made of customers, orders and products. The products are identified by a numeric code
-The message caused these actions:
-	 · Create-> class OnlineShop
-	 · Create-> class Customer
-	 · Create-> reference customers
-	 · Update-> Old: reference customers [1..-1], type: null, from OnlineShop / New: reference customers [1..-1], type: Customer, from OnlineShop
-	 · Create-> class Order
-	 · Create-> reference orders
-	 · Update-> Old: reference orders [1..-1], type: null, from OnlineShop / New: reference orders [1..-1], type: Order, from OnlineShop
-	 · Create-> class Product
-	 · Create-> reference products
-	 · Update-> Old: reference products [1..-1], type: null, from OnlineShop / New: reference products [1..-1], type: Product, from OnlineShop
-	 · Create-> attribute code
-	 · Update-> Old: attribute code [1..1], type: null, from Product / New: attribute code [1..1], type: EInt, from Product
-------------------------
-User: sarukiTSM at 07/06/18 04:11:28 in twitter
-Sends: @ModellingBot Product and order have a price
-The message caused these actions:
-	 · Create-> attribute price
-	 · Create-> attribute price
-------------------------
-User: SaraPTSM at 07/06/18 04:18:49 in telegram
-Sends: /talk price in order and product is double
-The message caused these actions:
-	 · Update-> Old: attribute price [1..1], type: null, from Order / New: attribute price [1..1], type: EDouble, from Order
-	 · Update-> Old: attribute price [1..1], type: null, from Product / New: attribute price [1..1], type: EDouble, from Product
+	 · Create-> attribute identifier
+	 · Update-> Old: attribute identifier [1..1], type: null, from Delivery / New: attribute identifier [1..1], type: EInt, from Delivery
+	 · Create-> class GoodsTransportCompany
+	 · Create-> class Delivery
+	 · Create-> reference handle
+	 · Update-> Old: reference handle [1..-1], type: null, from GoodsTransportCompany / New: reference handle [1..-1], type: Delivery, from GoodsTransportCompany
+	 · Create-> class Value
+	 · Create-> reference value
+	 · Update-> Old: reference value [1..1], type: null, from FragilePackage / New: reference value [1..1], type: Value, from FragilePackage
+	 · Create-> reference handle
+	 · Update-> Old: reference handle [1..-1], type: null, from Carrier / New: reference handle [1..-1], type: Delivery, from Carrier
+	 · Create-> class HeavyPackage
+	 · Update-> Old: class HeavyPackage / New: class HeavyPackage, superTypes: [Package]
+	 · Create-> class FragilePackage
+	 · Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]
+	 · Create-> class BulkyPackage
+	 · Update-> Old: class BulkyPackage / New: class BulkyPackage, superTypes: [Package]
+	 · Create-> class Carrier
+	 · Create-> reference assignedTo
+	 · Update-> Old: reference assignedTo [1..1], type: null, from Delivery / New: reference assignedTo [1..1], type: Carrier, from Delivery
+	 · Create-> class Package
+	 · Create-> reference packages
+	 · Update-> Old: reference packages [1..-1], type: null, from Delivery / New: reference packages [1..-1], type: Package, from Delivery
+	 · Create-> reference width
+	 · Update-> Old: reference width [1..1], type: null, from BulkyPackage / New: reference width [1..1], type: GoodsTransportCompany, from BulkyPackage
+	 · Create-> attribute length
+	 · Create-> attribute height
+	 · Create-> class Content
+	 · Create-> reference description
+	 · Update-> Old: reference description [1..1], type: null, from FragilePackage / New: reference description [1..1], type: Content, from FragilePackage
+	 · Create-> class Kilogram
+	 · Create-> reference weight
+	 · Update-> Old: reference weight [1..1], type: null, from HeavyPackage / New: reference weight [1..-1], type: Kilogram, from HeavyPackage
+	 · Create-> reference rate
+	 · Update-> Old: reference rate [1..1], type: null, from Package / New: reference rate [1..1], type: Value, from Package
 ------------------------
 

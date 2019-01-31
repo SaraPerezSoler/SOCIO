@@ -9,14 +9,15 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class Project{
+public class Project {
 
 	public enum Visibility {
 		PUBLIC, PRIVATE, PROTECTED;
-		
+
 		public static boolean isVisibility(String text) {
 			String textUpper = text.toUpperCase();
-			if (textUpper.equals(PUBLIC.name()) || textUpper.equals(PRIVATE.name()) || textUpper.equals(PROTECTED.name())) {
+			if (textUpper.equals(PUBLIC.name()) || textUpper.equals(PRIVATE.name())
+					|| textUpper.equals(PROTECTED.name())) {
 				return true;
 			}
 			return false;
@@ -60,7 +61,6 @@ public class Project{
 		public String toString() {
 			return "Subproject [name=" + name + ", id=" + id + "]";
 		}
-		
 
 	}
 
@@ -80,6 +80,12 @@ public class Project{
 	private List<String> closeBranchs = new ArrayList<>();
 
 	public static Project createProject(JSONObject object) {
+		if (!object.isNull("Project")) {
+			object=object.getJSONObject("Project");
+		}
+		if (!object.isNull("project")) {
+			object=object.getJSONObject("project");
+		}
 
 		if (object.isNull("admin") || object.isNull("name") || object.isNull("id") || object.isNull("type")
 				|| object.isNull("visibility") || object.isNull("isOpen") || object.isNull("isBranch")
@@ -166,8 +172,9 @@ public class Project{
 	}
 
 	public String getCompleteName() {
-		return admin.getReference()+"/"+name;
+		return admin.getReference() + "/" + name;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -203,6 +210,7 @@ public class Project{
 	public boolean isOpen() {
 		return isOpen;
 	}
+
 	public String getOpenStatus() {
 		if (isOpen) {
 			return "Open";
