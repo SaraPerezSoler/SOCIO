@@ -95,6 +95,7 @@ public class SocioCommands extends Commands {
 			throws ResponseError, ForbiddenResponse {
 		Message message = new Message(user, msg, text, date, id);
 		JSONObject object = addMsg(message, new JSONObject());
+		System.out.println(object);
 		return responseFile(path, object);
 
 	}

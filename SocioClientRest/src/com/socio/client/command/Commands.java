@@ -19,8 +19,8 @@ import com.socio.client.command.responseExceptions.ResponseError;
 public abstract class Commands extends CreateRequest {
 
 	
-	//private static final String URL = "http://localhost:8080/Socio-rest/";
-	private static final String URL = "http://dimo1.ii.uam.es:8080/Socio-rest/";
+	private static final String URL = "http://localhost:8080/Socio-rest/";
+	//private static final String URL = "http://dimo1.ii.uam.es:8080/Socio-rest/";
 	public Commands() {
 		super (URL);
 	}
@@ -48,7 +48,7 @@ public abstract class Commands extends CreateRequest {
 
 	protected JSONObject addMsg(Message msg, JSONObject object) throws ResponseError {
 		try {
-			object.put("msg", JSONObj.getJSONObject(msg));
+			object.put("message", JSONObj.getJSONObject(msg));
 			return object;
 		} catch (JSONException | JsonProcessingException e1) {
 			throw UNEXPECTED_ERROR;

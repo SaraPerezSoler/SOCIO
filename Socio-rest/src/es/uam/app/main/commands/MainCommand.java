@@ -131,7 +131,7 @@ public abstract class MainCommand implements DataFormat{
 	protected Msg getMsg(ServletContext context, InputStream incomingData, String data) throws JSONException, Exception {
 		JSONObject object = readRequest(incomingData);
 		if (data == null) {
-			data = "msg";
+			data = "message";
 		}
 		if (object.isNull(data)) {
 			return getMsg(context, object);
