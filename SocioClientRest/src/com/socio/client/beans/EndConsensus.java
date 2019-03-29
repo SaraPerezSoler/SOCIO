@@ -21,7 +21,8 @@ public class EndConsensus {
 	private double measure;
 	private double required;
 	private File branchs;
-	private static final SaveFileServer fileServer = new SaveFileServer();
+	private static final SaveFileServer fileServer = new SaveFileServer("http://miso1.ii.uam.es:8080/FileServer/file/");
+	//private static final SaveFileServer fileServer = new SaveFileServer("http://dimo1.ii.uam.es:8080/FileServer/file/");
 
 	public static EndConsensus createEndConsensus(JSONObject object) {
 		if (object.isNull("project") || object.isNull("branchGroup") || object.isNull("colective")
@@ -66,7 +67,9 @@ public class EndConsensus {
 		}
 		try {
 			if (object.has("filePath")) {
+				System.out.println(object.getString("filePath"));
 				endConsensus.setBranchs(fileServer.getFile(object.getString("filePath")));
+				System.out.println("Despues...");
 			}
 		} catch (ResponseError | ForbiddenResponse e) {
 		}

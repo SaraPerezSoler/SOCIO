@@ -1527,23 +1527,26 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/*---------------------------------------------------------------delete project---------------------------------------------------------*/
 
 	/* Para eliminar cualquier proyecto */
-	public void delete() {
+	public void delete(SocioData socioData) {
 		removeFiles();
 		File f = new File(getPath());
 		f.delete();
 		if (isBranch()) {
-			branchGroup.removeProject(this);
+			branchGroup.pullProject(this);
 		} else {
 			for (BranchGroup b : branchs) {
-				b.remove();
+				b.remove(socioData);
 			}
 		}
-		getAdmin().getOwnProjects().remove(this);
+		removeFromLists(socioData);
 
 	}
 
-	protected abstract void removeFiles();
-
+	public abstract void removeFiles();
+	public void removeFromLists(SocioData socioData) {
+		getAdmin().getOwnProjects().remove(this);
+		socioData.getProjects().remove(this);
+	}
 	/*--------------------------------------------------------get some extra properties----------------------------------------------------------*/
 	public File getLastModify() {
 		return lastModify;
@@ -1633,7 +1636,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			throw new InternalException(
 					"The project " + actual.getCompleteName() + " is not a branch to " + this.getCompleteName());
 		}
-		actual.getBranchGroup().removeProject(actual);
+		actual.getBranchGroup().pullProject(actual);
 		actual.setBranchGroup(null);
 		addBranchGroup(actual, branchGroup);
 

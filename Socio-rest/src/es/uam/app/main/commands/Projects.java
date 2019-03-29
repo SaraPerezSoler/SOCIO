@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import org.json.JSONObject;
 
 import es.uam.app.main.SocioData;
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import socioProjects.Project;
 import socioProjects.User;
@@ -25,17 +26,27 @@ public class Projects extends MainCommand implements DataFormat {
 	public Projects() {
 	}
 
-	private Response sendProjects(ServletContext context, List<Project> projects) throws Exception {
-		JSONObject list = this.getProjectListJSON(context, projects);
-		return Response.ok(list.toString(), MediaType.APPLICATION_JSON).build();
+	private Response sendProjects(ServletContext context, List<Project> projects) {
+		JSONObject list;
+		try {
+			list = this.getProjectListJSON(context, projects);
+			return Response.ok(list.toString(), MediaType.APPLICATION_JSON).build();
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("sendProjects: ", e);
+			return sendTextException(e);
+		}
+		
 	}
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-	public Response projects(@Context ServletContext context) throws Exception {
+	public Response projects(@Context ServletContext context){
 		try {
 			List<Project> projects = SocioData.getSocioData(context).getProjects();
 			return sendProjects(context, projects);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projects: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -44,7 +55,7 @@ public class Projects extends MainCommand implements DataFormat {
 	@Path("/{channel}/{user}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 	public Response projectsForUser(@Context ServletContext context, @PathParam("channel") String channel,
-			@PathParam("user") String userInfo) throws Exception {
+			@PathParam("user") String userInfo){
 		try {
 			User user = SocioData.getSocioData(context).getUser(userInfo, channel);
 			if (user==null) {
@@ -54,6 +65,9 @@ public class Projects extends MainCommand implements DataFormat {
 			return sendProjects(context, list);
 		} catch (InternalException e) {
 			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectsForUser: ", e);
+			return sendTextException(e);
 		}
 
 	}
@@ -62,12 +76,15 @@ public class Projects extends MainCommand implements DataFormat {
 	@Path("/read/{channel}/{user}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 	public Response projectsReadUser(@Context ServletContext context, @PathParam("channel") String channel,
-			@PathParam("user") String userInfo) throws Exception {
+			@PathParam("user") String userInfo){
 		try {
 			User user = SocioData.getSocioData(context).getUser(userInfo, channel);
 			List<Project> list = SocioData.getSocioData(context).getProjectsForUserCanRead(user);
 			return sendProjects(context, list);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectsReadUser: ", e);
 			return sendTextException(e);
 		}
 
@@ -77,12 +94,15 @@ public class Projects extends MainCommand implements DataFormat {
 	@Path("/write/{channel}/{user}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 	public Response projectsWriteUser(@Context ServletContext context, @PathParam("channel") String channel,
-			@PathParam("user") String userInfo) throws Exception {
+			@PathParam("user") String userInfo) {
 		try {
 			User user = SocioData.getSocioData(context).getUser(userInfo, channel);
 			List<Project> list = SocioData.getSocioData(context).getProjectsForUserCanWrite(user);
 			return sendProjects(context, list);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectsWriteUser: ", e);
 			return sendTextException(e);
 		}
 
@@ -92,7 +112,7 @@ public class Projects extends MainCommand implements DataFormat {
 	@Path("/{visibility}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 	public Response projectsVisibility(@Context ServletContext context, @PathParam("visibility") String visibility)
-			throws Exception {
+			 {
 		try {
 			Visibility v = Visibility.get(visibility.toUpperCase());
 			if (v == null) {
@@ -102,6 +122,9 @@ public class Projects extends MainCommand implements DataFormat {
 			return sendProjects(context, list);
 		} catch (InternalException e) {
 			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectsVisibility: ", e);
+			return sendTextException(e);
 		}
 	}
 
@@ -109,11 +132,14 @@ public class Projects extends MainCommand implements DataFormat {
 	@Path("/info/{channel}/{user}/{project}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 	public Response project(@Context ServletContext context, @PathParam("channel") String channel,
-			@PathParam("user") String userInfo, @PathParam("project") String project) throws Exception {
+			@PathParam("user") String userInfo, @PathParam("project") String project)  {
 		try {
 			Project p = getProject(context, channel, userInfo, project);
 			return Response.ok(new JSONObject().put("project", getProjectJSON(context, p)).toString(), MediaType.APPLICATION_JSON).build();
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("project: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -121,11 +147,14 @@ public class Projects extends MainCommand implements DataFormat {
 	@GET
 	@Path("/info/{project}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-	public Response project(@Context ServletContext context, @PathParam("project") long id) throws Exception {
+	public Response project(@Context ServletContext context, @PathParam("project") long id)  {
 		try {
 			Project p = getProject(context, id);
 			return Response.ok(new JSONObject().put("project", getProjectJSON(context, p)).toString(), MediaType.APPLICATION_JSON).build();
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("project/id: ", e);
 			return sendTextException(e);
 		}
 	}

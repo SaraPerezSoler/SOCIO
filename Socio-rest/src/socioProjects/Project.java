@@ -15,6 +15,7 @@ import branchDecision.Decision;
 import es.uam.app.actions.Add;
 import es.uam.app.actions.Delete;
 import es.uam.app.actions.Update;
+import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Action;
@@ -554,8 +555,10 @@ public interface Project extends EObject {
 	Date getCreateDate();
 	
 
-	void delete();
+	void delete(SocioData socioData);
 
+	public void removeFiles();
+	public void removeFromLists(SocioData socioData);
 	Add<? extends Project> createAddAction(EObject element);
 
 	Delete<? extends Project> createDeleteAction(EObject element);

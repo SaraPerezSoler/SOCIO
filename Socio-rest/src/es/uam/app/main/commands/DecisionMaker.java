@@ -29,6 +29,7 @@ import branchDecision.Decision;
 import branchDecision.Order;
 import branchDecision.Round;
 import es.uam.app.main.SocioData;
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import socioProjects.BranchGroup;
 import socioProjects.GroupStatus;
@@ -43,12 +44,15 @@ public class DecisionMaker extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response setChoice(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		Project actual;
 		try {
 			actual = getProject(context, id);
 			return setChoice(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("setChoice: ", e);
 			return sendTextException(e);
 		}
 
@@ -60,11 +64,14 @@ public class DecisionMaker extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response setChoice(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return setChoice(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("setChoice: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -130,11 +137,14 @@ public class DecisionMaker extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response consensus(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return consensus(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("consensus: ", e);
 			return sendTextException(e);
 		}
 
@@ -145,11 +155,14 @@ public class DecisionMaker extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response consensus(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, id);
 			return consensus(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("consensus: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -192,11 +205,14 @@ public class DecisionMaker extends MainCommand {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response startPoll(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return startPoll(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("startPoll: ", e);
 			return sendTextException(e);
 		}
 
@@ -207,11 +223,14 @@ public class DecisionMaker extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response startPoll(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, id);
 			return startPoll(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("startPoll: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -234,15 +253,15 @@ public class DecisionMaker extends MainCommand {
 			throw new InternalException("The consensus doesn't exits");
 		}
 
-		
-		long timer = 240000;
+		long timer = 120000;
 		if (object.has("timer")) {
 			timer = object.getLong("timer");
 		}
 
 		SocioData.getSocioData(context).startVoting(context, p, (Consensus) d, timer, new Date());
 		int nRound = ((Consensus) d).getRounds().size();
-		JSONObject polling = createPollingJSON(context, p, branchGroup, ((Consensus) d).getUsers(), nRound, timer, ((Consensus) d).getMessageId());
+		JSONObject polling = createPollingJSON(context, p, branchGroup, ((Consensus) d).getUsers(), nRound, timer,
+				((Consensus) d).getMessageId());
 		return Response.ok(polling.toString(), MediaType.APPLICATION_JSON).build();
 	}
 
@@ -266,25 +285,30 @@ public class DecisionMaker extends MainCommand {
 	@GET
 	@Path("/getPoll/{channel}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
-	public Response getPoll(@Context ServletContext context, @PathParam("channel") String channel) throws Exception {
-		List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveConsensus(channel);
-		JSONArray array = new JSONArray();
-		for (Consensus cons : polls) {
-			List<User> users = new ArrayList<>();
-			for (User u : cons.getUsers()) {
-				if (u.getChannel().equals(channel)) {
-					users.add(u);
+	public Response getPoll(@Context ServletContext context, @PathParam("channel") String channel) {
+		try {
+			List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveConsensus(channel);
+			JSONArray array = new JSONArray();
+			for (Consensus cons : polls) {
+				List<User> users = new ArrayList<>();
+				for (User u : cons.getUsers()) {
+					if (u.getChannel().equals(channel)) {
+						users.add(u);
+					}
 				}
+				List<Round> rounds = cons.getRounds();
+				int roundsSize = rounds.size();
+				array.put(createPollingJSON(context, cons.getBranchGroup().getFather(), cons.getName(), users,
+						roundsSize, rounds.get(roundsSize - 1).getTimer(), cons.getMessageId()));
 			}
-			List<Round> rounds = cons.getRounds();
-			int roundsSize = rounds.size();
-			array.put(createPollingJSON(context, cons.getBranchGroup().getFather(), cons.getName(), users, roundsSize,
-					rounds.get(roundsSize - 1).getTimer(), cons.getMessageId()));
-		}
 
-		JSONObject pollsJSON = new JSONObject();
-		pollsJSON.put("polls", array);
-		return Response.ok(pollsJSON.toString(), MediaType.APPLICATION_JSON).build();
+			JSONObject pollsJSON = new JSONObject();
+			pollsJSON.put("polls", array);
+			return Response.ok(pollsJSON.toString(), MediaType.APPLICATION_JSON).build();
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("getPoll: ", e);
+			return sendTextException(e);
+		}
 	}
 
 	@POST
@@ -293,11 +317,14 @@ public class DecisionMaker extends MainCommand {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response addPoll(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return addPoll(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("addPoll: ", e);
 			return sendTextException(e);
 		}
 
@@ -308,67 +335,76 @@ public class DecisionMaker extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response addPoll(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id,
-			@PathParam("branchGroup") String branchGroup) throws Exception {
+			@PathParam("branchGroup") String branchGroup) {
 		try {
 			Project actual = getProject(context, id);
 			return addPoll(context, incomingData, actual, branchGroup);
 		} catch (InternalException e) {
 			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("addPoll: ", e);
+			return sendTextException(e);
 		}
 	}
 
-	private Response addPoll(ServletContext context, InputStream incomingData, Project p, String branchGroup) throws InternalException, Exception {
-		
-		
+	private Response addPoll(ServletContext context, InputStream incomingData, Project p, String branchGroup)
+			throws InternalException, Exception {
+
 		BranchGroup bg = p.getCloseBranchGroup(branchGroup);
 		if (bg == null) {
 			throw new InternalException("The branch group is not close or don't exits");
 		}
 		Decision d = bg.getDecision();
-		if ( d == null || !(d instanceof Consensus)) {
+		if (d == null || !(d instanceof Consensus)) {
 			throw new InternalException("The consensus doesn't exits");
 		}
-		Consensus cons =(Consensus) d;
+		Consensus cons = (Consensus) d;
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
-		if (!cons.getUsers().contains(user)){
+		if (!cons.getUsers().contains(user)) {
 			throw new InternalException("You need to be included in the poll");
 		}
 		Map<String, Integer> order = new HashMap<>();
 		JSONObject orderObject = object.getJSONObject("order");
-		
+
 		Iterator<?> keys = orderObject.keys();
 		while (keys.hasNext()) {
-			String i = (String)keys.next();
+			String i = (String) keys.next();
 			String value = orderObject.getString(i);
 			order.put(value, Integer.parseInt(i));
 		}
 		SocioData.getSocioData(context).addPreference(p, cons, user, order);
 		return Response.ok("The preferences are stored sussecfully").build();
 	}
-	
+
 	@GET
 	@Path("/getEndPoll/{channel}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
-	public Response getEndPoll(@Context ServletContext context, @PathParam("channel") String channel) throws Exception {
-		List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveEndConsensus(channel);
-		JSONArray array = new JSONArray();
-		for (Consensus cons : polls) {
-			array.put(createEndConsensusJSON(context, cons.getBranchGroup().getFather(), cons));
-		}
+	public Response getEndPoll(@Context ServletContext context, @PathParam("channel") String channel) {
+		try {
+			List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveEndConsensus(channel);
+			JSONArray array = new JSONArray();
+			for (Consensus cons : polls) {
+				array.put(createEndConsensusJSON(context, cons.getBranchGroup().getFather(), cons));
+			}
 
-		JSONObject pollsJSON = new JSONObject();
-		pollsJSON.put("polls", array);
-		return Response.ok(pollsJSON.toString(), MediaType.APPLICATION_JSON).build();
+			JSONObject pollsJSON = new JSONObject();
+			pollsJSON.put("polls", array);
+			return Response.ok(pollsJSON.toString(), MediaType.APPLICATION_JSON).build();
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("addPoll: ", e);
+			return sendTextException(e);
+		}
 	}
-	
-	private JSONObject createEndConsensusJSON(ServletContext context, Project project, Consensus consensus) throws JSONException, Exception {
+
+	private JSONObject createEndConsensusJSON(ServletContext context, Project project, Consensus consensus)
+			throws JSONException, Exception {
 		JSONObject object = new JSONObject();
 		object.put("project", getProjectJSON(context, project));
 		object.put("branchGroup", consensus.getName());
 		List<Order> order = consensus.getConsensusOrder();
 		JSONArray colective = new JSONArray();
-		for (Order o: order) {
+		for (Order o : order) {
 			JSONObject object2 = new JSONObject();
 			object2.put("pos", o.getPos());
 			object2.put("proj", o.getProjectName());
@@ -381,19 +417,19 @@ public class DecisionMaker extends MainCommand {
 			array.put(getUserJSON(u));
 		}
 		object.put("notVoted", array);
-		
+
 		array = new JSONArray();
 		for (User u : consensus.getUsers()) {
 			JSONObject user = getUserJSON(u);
 			if (consensus.isRevoteCandidate(u)) {
 				user.put("close", true);
-			}else {
+			} else {
 				user.put("close", false);
 			}
 			array.put(user);
 		}
 		object.put("close", array);
-		
+
 		object.put("measure", consensus.getConsensusActualMeasure());
 		object.put("required", consensus.getConsensusRequired());
 		object.put("messageId", consensus.getMessageId());

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import socioProjects.Project;
 import socioProjects.User;
@@ -25,11 +26,14 @@ public class Get extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response get(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return get(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("get: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -39,11 +43,14 @@ public class Get extends MainCommand {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response get(@Context ServletContext context, InputStream incomingData, @PathParam("channel") String channel,
-			@PathParam("user") String user, @PathParam("project") String project) throws Exception {
+			@PathParam("user") String user, @PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return get(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("get: ", e);
 			return sendTextException(e);
 		}
 	}

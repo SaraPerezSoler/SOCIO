@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.StatusType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -176,6 +177,10 @@ public abstract class MainCommand implements DataFormat{
 
 	protected Response sendTextException(InternalException e) {
 		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.FORBIDDEN).build();
+	}
+	
+	protected Response sendTextException(Exception e) {
+		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.INTERNAL_SERVER_ERROR).build();
 	}
 
 }

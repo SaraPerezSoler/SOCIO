@@ -16,7 +16,7 @@ public class Help extends MainCommand {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response help() throws Exception {
+	public Response help() {
 		JSONObject object= new JSONObject();
 		object.put("text", HELP_MSG);
 		object.put("url", HELP);

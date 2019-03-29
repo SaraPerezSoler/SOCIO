@@ -18,6 +18,7 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Msg;
 import socioProjects.Project;
@@ -32,11 +33,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response history(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return history(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("history: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -46,12 +50,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("/{channel}/{user}/{project}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response history(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project){
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return history(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("history: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -126,11 +132,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("project/{id}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response projectHistory(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+		{
 		try {
 			Project actual = getProject(context, id);
 			return projectHistory(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectHistory: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -140,12 +149,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("project/{channel}/{user}/{project}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response projectHistory(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project){
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return projectHistory(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("projectHistory: ", e);
 			return sendTextException(e);
 		}
 	}

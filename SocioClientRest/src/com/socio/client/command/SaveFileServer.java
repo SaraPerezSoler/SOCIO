@@ -20,10 +20,10 @@ import com.sun.jersey.multipart.MultiPart;
 import com.sun.jersey.multipart.impl.MultiPartWriter;
 
 public class SaveFileServer extends CreateRequest{
-	private static final String URL = "http://miso1.ii.uam.es/FileServer/file/";
-	
-	public SaveFileServer() {
-		super(URL);
+//	private static final String URL = "http://dimo1.ii.uam.es:8080/FileServer/file/";
+
+	public SaveFileServer(String url) {
+		super(url);
 	}
 	
 	public String saveFile (File file) {
@@ -43,7 +43,7 @@ public class SaveFileServer extends CreateRequest{
 		try {
 			readResponse(response);
 		} catch (TextResponse e) {
-			return URL + "get/"+e.getText();
+			return getURL() + "get/"+e.getText();
 		} catch (ForbiddenResponse | ResponseError | JSONResponse | FileResponse e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,10 @@ public class SaveFileServer extends CreateRequest{
 	}
 	
 	public File getFile (String path) throws ResponseError, ForbiddenResponse {
-		path = path.replace(URL, "");
+		System.out.println(path);
+		System.out.println("Url_: " + getURL());
+		path = path.replace(getURL(), "");
+		System.out.println(path);
 		return super.responseFile(path, null);
 	}
 	@Override

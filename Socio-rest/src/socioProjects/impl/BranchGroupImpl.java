@@ -3,6 +3,7 @@
 package socioProjects.impl;
 
 import branchDecision.Decision;
+import es.uam.app.main.SocioData;
 
 import java.util.Collection;
 import java.util.Date;
@@ -496,8 +497,9 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 		}
 	}
 
+	/*Saca el proyecto del branchGroup*/
 	@Override
-	public void removeProject(Project project) {
+	public void pullProject(Project project) {
 		if (getBranchs().contains(project)) {
 			project.setBranchGroup(null);
 			getBranchs().remove(project);
@@ -506,9 +508,10 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	}
 
 	@Override
-	public void remove() {
+	public void remove(SocioData socioData) {
 		for (Project p: getBranchs()) {
-			p.delete();
+			p.removeFiles();
+			p.removeFromLists(socioData);
 		}
 	}
 

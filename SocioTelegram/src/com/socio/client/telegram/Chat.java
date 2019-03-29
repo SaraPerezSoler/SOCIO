@@ -78,7 +78,7 @@ public class Chat {
 		try {
 			this.state = state.runAndNext(this, update);
 		} catch (TelegramApiException | ResponseError e) {
-			sendMessage("Unexpected internal error has ocurrred", false);
+			sendMessage("Unexpected internal error has ocurrred"+e.getMessage(), false);
 			this.state = DEFAULT_STATE;
 		} catch (ForbiddenResponse e) {
 			sendMessage("This action has not been completed: " + e.getMessage(), false);

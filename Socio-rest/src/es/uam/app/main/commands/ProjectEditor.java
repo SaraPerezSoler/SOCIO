@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import es.uam.app.main.SocioData;
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Msg;
 import socioProjects.Project;
@@ -26,11 +27,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response editProject(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return editProject(context, actual, incomingData);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -41,11 +45,14 @@ public class ProjectEditor extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response editProject(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return editProject(context, actual, incomingData);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
 			return sendTextException(e);
 		}
 
@@ -77,11 +84,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response redo(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return redo(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("redo: ", e);
 			return sendTextException(e);
 		}
 
@@ -93,11 +103,14 @@ public class ProjectEditor extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response redo(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return redo(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("redo: ", e);
 			return sendTextException(e);
 		}
 
@@ -125,6 +138,9 @@ public class ProjectEditor extends MainCommand {
 			return undo(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
+			return sendTextException(e);
 		}
 
 	}
@@ -135,11 +151,14 @@ public class ProjectEditor extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response undo(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return undo(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
 			return sendTextException(e);
 		}
 

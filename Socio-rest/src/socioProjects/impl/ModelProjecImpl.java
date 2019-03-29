@@ -80,7 +80,7 @@ public class ModelProjecImpl extends ProjectImpl implements ModelProjec {
 	}
 
 	@Override
-	protected void removeFiles() {
+	public void removeFiles() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -47,7 +47,6 @@ public class FileServer {
 
 	@GET
 	@Path("/get/{id}")
-	@Consumes({ MediaType.MULTIPART_FORM_DATA })
 	@Produces({MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN})
 	public Response uploadFile(@Context ServletContext context,@PathParam("id") String id) throws Exception {
 		String UPLOAD_PATH = context.getInitParameter("path.files");

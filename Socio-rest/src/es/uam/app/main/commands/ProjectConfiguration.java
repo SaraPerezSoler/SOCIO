@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import es.uam.app.main.SocioData;
 import es.uam.app.main.SocioData.ProjectType;
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import socioProjects.Access;
 import socioProjects.Project;
@@ -30,10 +31,13 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Path("/new_project/{project}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response newProject(@Context ServletContext context, InputStream incomingData,
-			@PathParam("project") String project) throws Exception {
+			@PathParam("project") String project) {
 		try {
 			return newProject(context, incomingData, project, Visibility.PUBLIC);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("newProject: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -43,11 +47,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response newProject(@Context ServletContext context, InputStream incomingData,
-			@PathParam("project") String project, @PathParam("visibility") String v) throws Exception {
+			@PathParam("project") String project, @PathParam("visibility") String v){
 		try {
 			Visibility c = Visibility.valueOf(v.toUpperCase());
 			return newProject(context, incomingData, project, c);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("newProject: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -73,11 +80,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Path("/remove_project/{id}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response removeProject(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return removeProject(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("removeProject: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -88,11 +98,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response removeProject(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return removeProject(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("removeProject: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -115,11 +128,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response changeVisibility(@Context ServletContext context, InputStream incomingData,
-			@PathParam("id") long id, @PathParam("visibility") String v) throws Exception {
+			@PathParam("id") long id, @PathParam("visibility") String v){
 		try {
 			Project actual = getProject(context, id);
 			return changeVisibility(context, incomingData, actual, v);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("changeVisibility: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -130,11 +146,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response changeVisibility(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project,
-			@PathParam("visibility") String v) throws Exception {
+			@PathParam("visibility") String v) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return changeVisibility(context, incomingData, actual, v);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("changeVisibility: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -156,11 +175,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response validate(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+	{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return validate(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("validate: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -170,11 +192,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response validate(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return validate(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("validate: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -194,11 +219,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response addUser(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return addUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("addUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -208,11 +236,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response addUser(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return addUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("addUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -245,11 +276,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response removeUser(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return removeUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("removeUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -259,11 +293,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response removeUser(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return removeUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("removeUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -293,11 +330,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response updateUser(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return updateUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("updateUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -307,11 +347,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response updateUser(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return updateUser(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("updateUser: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -344,11 +387,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response newBranch(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return newBranch(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("newBranch: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -358,11 +404,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response newBranch(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return newBranch(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("newBranch: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -411,11 +460,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response branchgroup(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return branchgroup(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("branchgroup: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -425,11 +477,14 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response branchgroup(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return branchgroup(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("branchgroup: ", e);
 			return sendTextException(e);
 		}
 	}

@@ -68,6 +68,8 @@ public class SocioData implements DataFormat {
 	private Map<String, Map<Project, List<Msg>>> updated = new HashMap<>();
 	private Map<String, List<Consensus>> poll = new HashMap<>();
 	private Map<String, List<Consensus>> pollEnd = new HashMap<>();
+	
+	private static SaveFileServer server = null;
 	public enum ProjectType {
 		METAMODEL, MODEL
 	}
@@ -106,6 +108,10 @@ public class SocioData implements DataFormat {
 			socioData = new SocioData(PATH);
 			ini();
 			WordNet.ini(context);
+		}
+		if (server == null) {
+			String url = context.getInitParameter("fileServer.url");
+			server = new SaveFileServer(url);
 		}
 		return socioData;
 	}
@@ -545,8 +551,8 @@ public class SocioData implements DataFormat {
 				}
 			}
 		}
-		p.delete();
-		socioApp.getProjects().remove(p);
+		p.delete(this);
+		
 		save(null);
 	}
 
@@ -640,7 +646,7 @@ public class SocioData implements DataFormat {
 			this.save(actual);
 		}
 	}
-	SaveFileServer server = new SaveFileServer();
+	
 	public void endVoting(Project actual, Consensus consensus) throws Exception  {
 		synchronized (consensus) {
 			consensus.calculateConsensus();

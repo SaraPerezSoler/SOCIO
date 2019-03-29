@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import socioProjects.Project;
 import socioProjects.User;
@@ -27,11 +28,14 @@ public class Statistics extends MainCommand {
 	@Path("/allactions/{id}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response allActions(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return allActions(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("allActions: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -42,11 +46,14 @@ public class Statistics extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response allActions(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return allActions(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("allActions: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -70,11 +77,14 @@ public class Statistics extends MainCommand {
 	@Path("/actions/{id}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response actions(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return actionsMessages(context, incomingData, actual, true);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("actions: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -85,11 +95,14 @@ public class Statistics extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response actions(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return actionsMessages(context, incomingData, actual, true);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("actions: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -146,11 +159,14 @@ public class Statistics extends MainCommand {
 	@Path("/authorship/{id}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response authorship(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, id);
 			return authorship(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("authorship: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -161,11 +177,14 @@ public class Statistics extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response authorship(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return authorship(context, incomingData, actual);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("authorship: ", e);
 			return sendTextException(e);
 		}
 	}
@@ -192,6 +211,9 @@ public class Statistics extends MainCommand {
 			return actionsMessages(context, incomingData, actual, false);
 		} catch (InternalException e) {
 			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("messages: ", e);
+			return sendTextException(e);
 		}
 	}
 
@@ -201,11 +223,14 @@ public class Statistics extends MainCommand {
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response messages(@Context ServletContext context, InputStream incomingData,
 			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			throws Exception {
+			{
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return actionsMessages(context, incomingData, actual, false);
 		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("messages: ", e);
 			return sendTextException(e);
 		}
 	}

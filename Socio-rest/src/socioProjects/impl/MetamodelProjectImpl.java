@@ -431,7 +431,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	}
 
 	@Override
-	protected void removeFiles() {
+	public void removeFiles() {
 		File f = new File(getFilePath());
 		f.delete();
 	}

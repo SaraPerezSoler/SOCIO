@@ -3,6 +3,7 @@
 package socioProjects;
 
 import branchDecision.Decision;
+import es.uam.app.main.SocioData;
 
 import java.util.Date;
 
@@ -187,9 +188,9 @@ public interface BranchGroup extends EObject {
 
 	void addProject(Project p);
 
-	void removeProject(Project projectImpl);
+	void pullProject(Project projectImpl);
 	
-	void remove();
+	void remove(SocioData socioData);
 
 	Project getBranch(String name);
 
