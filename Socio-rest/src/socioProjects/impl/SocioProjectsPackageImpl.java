@@ -23,7 +23,7 @@ import socioProjects.BranchGroup;
 import socioProjects.Contribution;
 import socioProjects.GroupStatus;
 import socioProjects.MetamodelProject;
-import socioProjects.ModelProjec;
+import socioProjects.ModelProject;
 import socioProjects.Project;
 import socioProjects.SocioApp;
 import socioProjects.SocioProjectsFactory;
@@ -1005,7 +1005,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEOperation(getProject__Validate(), ecorePackage.getEString(), "validate", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelProjecEClass, ModelProjec.class, "ModelProjec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelProjecEClass, ModelProject.class, "ModelProjec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getModelProjec__ParseSentence__String(), theProjectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "sentence", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -15,7 +15,7 @@ import es.uam.app.parser.Verb;
 import es.uam.app.projects.IsAttribute;
 import es.uam.app.projects.IsClass;
 import es.uam.app.projects.IsReference;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;

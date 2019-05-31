@@ -4,7 +4,9 @@ package projectHistory;
 
 import org.eclipse.emf.ecore.EObject;
 
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.model.EObjectControl;
 import socioProjects.Project;
 
 
@@ -41,6 +43,7 @@ public interface Update extends Action {
 	 * @generated
 	 */
 	EObject getOld();
+	Controlador getOldC();
 
 	/**
 	 * Sets the value of the '{@link projectHistory.Update#getOld <em>Old</em>}' containment reference.
@@ -67,7 +70,7 @@ public interface Update extends Action {
 	 * @generated
 	 */
 	EObject getNew();
-
+	Controlador getNewC();
 	/**
 	 * Sets the value of the '{@link projectHistory.Update#getNew <em>New</em>}' containment reference.
 	 * <!-- begin-user-doc -->

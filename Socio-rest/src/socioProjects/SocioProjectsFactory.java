@@ -37,7 +37,7 @@ public interface SocioProjectsFactory extends EFactory {
 	 * @return a new object of class '<em>Model Projec</em>'.
 	 * @generated
 	 */
-	ModelProjec createModelProjec();
+	ModelProject createModelProjec();
 
 	/**
 	 * Returns a new object of class '<em>Metamodel Project</em>'.

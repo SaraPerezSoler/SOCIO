@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 
 import edu.stanford.nlp.trees.Tree;
-import es.uam.app.projects.ecore.MetamodelControl;
+import es.uam.app.projects.emf.metamodel.MetamodelControlInterface;
 
 public class NP {
 
@@ -209,7 +209,7 @@ public class NP {
 	public EClassifier adjType() {
 		for (Word w : adj) {
 			String bAdjLemmaUpper = WordConfigure.startUpperCase(w.getLemma());
-			EClassifier type = MetamodelControl.getType(bAdjLemmaUpper);
+			EClassifier type = MetamodelControlInterface.getType(bAdjLemmaUpper);
 			if (type != null) {
 				return type;
 			}

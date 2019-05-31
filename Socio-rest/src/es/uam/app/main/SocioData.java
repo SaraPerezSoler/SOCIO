@@ -30,12 +30,14 @@ import branchDecision.Round;
 import branchDecision.impl.BranchDecisionFactoryImpl;
 import es.uam.app.consensus.ConsensusTimeOut;
 import es.uam.app.main.commands.DataFormat;
+import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
 import es.uam.app.parser.rules.ExtractionRule;
 import es.uam.app.parser.rules.MetemodelRule;
 import es.uam.app.words.WordNet;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import modelInfo.impl.ModelInfoPackageImpl;
 import projectHistory.Action;
 import projectHistory.CreateMsg;
 import projectHistory.Msg;
@@ -90,6 +92,7 @@ public class SocioData implements DataFormat {
 			// es un XMI.
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 			resourceSet.getPackageRegistry().put("socioProjects", SocioProjectsPackageImpl.eINSTANCE);
+			resourceSet.getPackageRegistry().put("modelInfo", ModelInfoPackageImpl.eINSTANCE);
 		}
 		return resourceSet;
 	}
@@ -649,6 +652,7 @@ public class SocioData implements DataFormat {
 	
 	public void endVoting(Project actual, Consensus consensus) throws Exception  {
 		synchronized (consensus) {
+			ExceptionControl.geExceptionControl(null).printLogger("Here!");
 			consensus.calculateConsensus();
 			File ret = null;
 			if (consensus.getConsensusActualMeasure() >= consensus.getConsensusRequired()) {

@@ -2,7 +2,7 @@ package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.projects.IsAttribute;
-import es.uam.app.projects.ecore.AttributeControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
 import socioProjects.MetamodelProject;
 
 public class UpdateAttrType extends UpdateMetamodel{

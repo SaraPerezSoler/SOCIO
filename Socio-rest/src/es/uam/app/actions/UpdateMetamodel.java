@@ -11,10 +11,10 @@ import es.uam.app.actions.metamodels.UpdateAttrType;
 import es.uam.app.actions.metamodels.UpdateClassAbstract;
 import es.uam.app.actions.metamodels.UpdateClassSuperType;
 import es.uam.app.actions.metamodels.UpdateRefType;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import socioProjects.MetamodelProject;
 
 public abstract class UpdateMetamodel extends  Update<MetamodelProject>{

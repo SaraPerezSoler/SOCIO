@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.PackageControl;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.PackageControl;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import projectHistory.Action;
 import projectHistory.Add;
 import projectHistory.Delete;

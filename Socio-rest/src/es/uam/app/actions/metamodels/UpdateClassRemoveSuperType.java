@@ -5,7 +5,7 @@ import java.util.List;
 import socioProjects.MetamodelProject;
 import es.uam.app.actions.metamodels.UpdateClassSuperType;
 import es.uam.app.projects.IsClass;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 
 public class UpdateClassRemoveSuperType extends UpdateClassSuperType {
 

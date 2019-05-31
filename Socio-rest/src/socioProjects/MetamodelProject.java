@@ -6,10 +6,10 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import es.uam.app.parser.NP;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.Feature;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 

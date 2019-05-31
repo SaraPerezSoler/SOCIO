@@ -18,11 +18,11 @@ import es.uam.app.parser.Word;
 import es.uam.app.projects.IsAttribute;
 import es.uam.app.projects.IsClass;
 import es.uam.app.projects.IsReference;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.MetamodelControl;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.Feature;
+import es.uam.app.projects.emf.metamodel.MetamodelControlInterface;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
@@ -74,7 +74,7 @@ public class B3B5ToBe extends MetemodelRule {
 	private List<Action> withOf(MetamodelProject proj, IsClass of, NP A, NP B)
 			throws FileNotFoundException, JWNLException {
 		List<Action> ret = new ArrayList<Action>();
-		EClassifier type = MetamodelControl.getType(B.lemmaUpperCammelCase());
+		EClassifier type = MetamodelControlInterface.getType(B.lemmaUpperCammelCase());
 
 		if (type == null) {
 			IsReference ref = IsReference.getReference(A, of, proj, false);

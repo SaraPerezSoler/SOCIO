@@ -4,8 +4,8 @@ import socioProjects.MetamodelProject;
 import es.uam.app.actions.AddMetamodel;
 import es.uam.app.projects.IsAttribute;
 import es.uam.app.projects.IsClass;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 
 public class CreateAttribute extends AddMetamodel implements IsAttribute {
 

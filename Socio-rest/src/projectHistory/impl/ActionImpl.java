@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import es.uam.app.actions.ProjectAction;
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.emf.Controlador;
 import projectHistory.Action;
 import projectHistory.ProjectHistoryPackage;
 import socioProjects.Project;
@@ -277,11 +277,17 @@ public abstract class ActionImpl extends MinimalEObjectImpl.Container implements
 	}
 	@Override
 	public Controlador getObject() {
-		return getAction().eobjectToControlador(getElement());
+		if (getAction() != null) {
+			return getAction().eobjectToControlador(getElement());
+		}
+		return null;
 	}	
 	
 	public String toString(){
-		return getAction().toString();
+		if (getAction()!= null) {
+			return getAction().toString();
+		}
+		return "";
 	}
 
 } //ActionImpl

@@ -1,7 +1,7 @@
 package es.uam.app.actions.metamodels;
 
 import es.uam.app.actions.DeleteMetamodel;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 import socioProjects.MetamodelProject;
 
 public class RemoveClass extends DeleteMetamodel{

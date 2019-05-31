@@ -77,22 +77,27 @@ public class Chat {
 			throws TelegramApiException {
 		try {
 			this.state = state.runAndNext(this, update);
-		} catch (TelegramApiException | ResponseError e) {
-			sendMessage("Unexpected internal error has ocurrred"+e.getMessage(), false);
+		} catch (TelegramApiException e) {
+			sendMessage("Unexpected internal error has ocurrred " + e.getCause()+" "+ e.getMessage(), false);
 			this.state = DEFAULT_STATE;
 		} catch (ForbiddenResponse e) {
 			sendMessage("This action has not been completed: " + e.getMessage(), false);
 			this.state = DEFAULT_STATE;
+		} catch (ResponseError e) {
+			sendMessage("Unexpected internal error has ocurrred " + e.getCause()+" "+ e.getMessage(), false);
 		}
 	}
-	public void onEndPolling (EndConsensus cons) throws TelegramApiException{
+
+	public void onEndPolling(EndConsensus cons) throws TelegramApiException {
 		exeState(EndVote.getState(cons), null);
 	}
-	
-	public void onEndPollingAdmin (EndConsensus cons) throws TelegramApiException{
+
+	public void onEndPollingAdmin(EndConsensus cons) throws TelegramApiException {
 		exeState(EndVoteAdmin.getState(cons), null);
 	}
-	public void onStartPolling (Project project, String branchGroup, Map<String, File> branchs) throws TelegramApiException {
+
+	public void onStartPolling(Project project, String branchGroup, Map<String, File> branchs)
+			throws TelegramApiException {
 		exeState(Vote.getState(project, branchGroup, branchs), null);
 	}
 
@@ -212,17 +217,61 @@ public class Chat {
 
 	public void sendMessage(String message, int inReply, boolean markDown, ReplyKeyboard keyboard)
 			throws TelegramApiException {
-		SendMessage msg = new SendMessage(this.id, message);
-		msg.setReplyMarkup(keyboard);
-		if (inReply != -1) {
-			msg.setReplyToMessageId(inReply);
+
+		System.out.println(message.length() );
+		if (message.length() > 4000) {
+			int index = indexMessage(message);
+			/*String message1 = message.substring(0, index);
+			String message2 = message.substring(index);
+			sendMessage(message1, inReply, markDown, keyboard);
+			sendMessage(message2, inReply, markDown, keyboard);*/
+			File f = new File("messege.txt");
+			FileWriter fichero = null;
+			PrintWriter pw = null;
+			try {
+
+				fichero = new FileWriter(f);
+				pw = new PrintWriter(fichero);
+				pw.println(message);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (null != fichero)
+						fichero.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			sendDocument(f, inReply);
+			
+		} else {
+			SendMessage msg = new SendMessage(this.id, message);
+			msg.setReplyMarkup(keyboard);
+			if (inReply != -1) {
+				msg.setReplyToMessageId(inReply);
+			}
+			if (markDown) {
+				msg.setParseMode("Markdown");
+			}
+			TelegramControl.getTelegramControl().sendMessage(msg);
 		}
-		if (markDown) {
-			msg.setParseMode("Markdown");
-		}
-		TelegramControl.getTelegramControl().sendMessage(msg);
 	}
 
+	private int indexMessage(String messager) {
+		int index = messager.indexOf("\n\n", 3000);
+		if (index == -1 || index > 4000) {
+			index = messager.indexOf("\n", 3000);
+			if (index == -1 || index > 4000) {
+				index = messager.indexOf(" ", 3000);
+				if (index == -1 || index > 4000) {
+					return 4000;
+				}
+			}
+		}
+		return index;
+	}
 	public void sendPhoto(File message) throws TelegramApiException {
 		sendPhoto(message, -1);
 	}
@@ -263,18 +312,17 @@ public class Chat {
 
 	public void sendHistory(List<Message> messages, int inReply) throws TelegramApiException {
 		String text = Message.getHistoryFormat(messages);
-		
 
 		if (text.length() > 1500) {
 			File f = new File("history.txt");
-			FileWriter fichero =null;
+			FileWriter fichero = null;
 			PrintWriter pw = null;
 			try {
-				
+
 				fichero = new FileWriter(f);
 				pw = new PrintWriter(fichero);
 				pw.println(text);
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {

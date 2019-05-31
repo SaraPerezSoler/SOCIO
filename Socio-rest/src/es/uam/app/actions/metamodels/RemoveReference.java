@@ -3,8 +3,8 @@ package es.uam.app.actions.metamodels;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.actions.DeleteMetamodel;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import socioProjects.MetamodelProject;
 
 public class RemoveReference extends DeleteMetamodel{

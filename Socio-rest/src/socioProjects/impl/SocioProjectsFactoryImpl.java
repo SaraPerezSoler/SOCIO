@@ -121,8 +121,8 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelProjec createModelProjec() {
-		ModelProjecImpl modelProjec = new ModelProjecImpl();
+	public ModelProject createModelProjec() {
+		ModelProjectImpl modelProjec = new ModelProjectImpl();
 		return modelProjec;
 	}
 

@@ -2,7 +2,7 @@ package es.uam.app.actions;
 
 import org.eclipse.emf.ecore.EObject;
 
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.emf.Controlador;
 import projectHistory.Action;
 import projectHistory.impl.ProjectHistoryFactoryImpl;
 import socioProjects.Project;

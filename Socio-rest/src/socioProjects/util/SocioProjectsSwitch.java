@@ -79,7 +79,7 @@ public class SocioProjectsSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case SocioProjectsPackage.MODEL_PROJEC: {
-				ModelProjec modelProjec = (ModelProjec)theEObject;
+				ModelProject modelProjec = (ModelProject)theEObject;
 				T result = caseModelProjec(modelProjec);
 				if (result == null) result = caseProject(modelProjec);
 				if (result == null) result = defaultCase(theEObject);
@@ -155,7 +155,7 @@ public class SocioProjectsSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelProjec(ModelProjec object) {
+	public T caseModelProjec(ModelProject object) {
 		return null;
 	}
 

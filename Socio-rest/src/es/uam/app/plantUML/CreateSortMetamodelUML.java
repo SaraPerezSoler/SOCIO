@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.PackageControl;
-import es.uam.app.projects.ecore.ReferenceControl;
+
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.PackageControl;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import projectHistory.Action;
 import projectHistory.Add;
 import projectHistory.Delete;
@@ -65,7 +66,7 @@ public class CreateSortMetamodelUML implements CreateText{
 			+"}" + ENTR
 			+ "skinparam nodeSep 50 "+ ENTR /////// configura espacio horizontal
 			+ "skinparam rankSep 50 "+ ENTR /////// configura espacio vertical
-			+ "hide empty members   "+ ENTR; /////// oculta la cajita de atributos si está vacía
+			+ "hide empty members   "+ ENTR; /////// oculta la cajita de atributos si estï¿½ vacï¿½a
 	public static final String END = ENTR + "@enduml";
 
 	private static final String CLASS = "Class";
@@ -322,7 +323,7 @@ public class CreateSortMetamodelUML implements CreateText{
 			
 		}
 		if (nullReference) {
-			cad += ENTR + "class \"Ø\" <<(?," + NULL_LINES + ") ???>>{" + ENTR + "}" + ENTR;
+			cad += ENTR + "class \"ï¿½\" <<(?," + NULL_LINES + ") ???>>{" + ENTR + "}" + ENTR;
 		}
 		if ((old && print==false && hasActualAttr==false)||printBefore){
 			return "";
@@ -554,7 +555,7 @@ public class CreateSortMetamodelUML implements CreateText{
 			}
 			cad += type.getName() + " : ";
 		} else {
-			cad += "Ø : ";
+			cad += "Ã˜ : ";
 			nullReference = true;
 		}
 		cad += nameStart+rc.getName() + nameEnd;

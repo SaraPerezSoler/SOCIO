@@ -1,50 +1,101 @@
-User: sarukituki at 22/01/19 01:15:15 in telegram
-Sends: A goods transport company handles Deliveries.
-A delivery has a numeric identifier.
-A delivery is made of packages.
-Packages can be bulky, heavy or fragile.
-Bulky packages are characterized by their width, length and height.
-Heavy packages have a weight in kilograms.
-Fragile packages have a description of their content.
-Fragile packages contain the value they should be insured for.
-All packages have a rate.
-Every delivery can be assigned to a carrier.
-Carriers can handle several deliveries.
+User: sarukituki at 26/03/19 10:31:45 in telegram
+Sends: a house has several walls
 The message caused these actions:
-	 · Create-> attribute identifier
-	 · Update-> Old: attribute identifier [1..1], type: null, from Delivery / New: attribute identifier [1..1], type: EInt, from Delivery
-	 · Create-> class GoodsTransportCompany
-	 · Create-> class Delivery
-	 · Create-> reference handle
-	 · Update-> Old: reference handle [1..-1], type: null, from GoodsTransportCompany / New: reference handle [1..-1], type: Delivery, from GoodsTransportCompany
-	 · Create-> class Value
-	 · Create-> reference value
-	 · Update-> Old: reference value [1..1], type: null, from FragilePackage / New: reference value [1..1], type: Value, from FragilePackage
-	 · Create-> reference handle
-	 · Update-> Old: reference handle [1..-1], type: null, from Carrier / New: reference handle [1..-1], type: Delivery, from Carrier
-	 · Create-> class HeavyPackage
-	 · Update-> Old: class HeavyPackage / New: class HeavyPackage, superTypes: [Package]
-	 · Create-> class FragilePackage
-	 · Update-> Old: class FragilePackage / New: class FragilePackage, superTypes: [Package]
-	 · Create-> class BulkyPackage
-	 · Update-> Old: class BulkyPackage / New: class BulkyPackage, superTypes: [Package]
-	 · Create-> class Carrier
-	 · Create-> reference assignedTo
-	 · Update-> Old: reference assignedTo [1..1], type: null, from Delivery / New: reference assignedTo [1..1], type: Carrier, from Delivery
-	 · Create-> class Package
-	 · Create-> reference packages
-	 · Update-> Old: reference packages [1..-1], type: null, from Delivery / New: reference packages [1..-1], type: Package, from Delivery
-	 · Create-> reference width
-	 · Update-> Old: reference width [1..1], type: null, from BulkyPackage / New: reference width [1..1], type: GoodsTransportCompany, from BulkyPackage
-	 · Create-> attribute length
-	 · Create-> attribute height
-	 · Create-> class Content
-	 · Create-> reference description
-	 · Update-> Old: reference description [1..1], type: null, from FragilePackage / New: reference description [1..1], type: Content, from FragilePackage
-	 · Create-> class Kilogram
-	 · Create-> reference weight
-	 · Update-> Old: reference weight [1..1], type: null, from HeavyPackage / New: reference weight [1..-1], type: Kilogram, from HeavyPackage
-	 · Create-> reference rate
-	 · Update-> Old: reference rate [1..1], type: null, from Package / New: reference rate [1..1], type: Value, from Package
+	 · 
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:31:26 in telegram
+Sends: remove wall to the house
+The message caused these actions:
+	 · Remove-> attribute wall [1..1], type: null, from House
+------------------------
+User: sarukituki at 26/03/19 10:30:11 in telegram
+Sends: father is a family member
+The message caused these actions:
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:28:54 in telegram
+Sends: father, mother and children are family members
+The message caused these actions:
+	 · 
+	 · 
+	 · 
+	 · 
+	 · 
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:24:03 in telegram
+Sends: add wall
+The message caused these actions:
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:11:24 in telegram
+Sends: a house has a wall
+The message caused these actions:
+	 · Create-> attribute wall
+------------------------
+User: sarukituki at 26/03/19 10:10:02 in telegram
+Sends: /talk the subject is evaluated with a test
+The message caused these actions:
+	 · 
+	 · 
+	 · 
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:09:04 in telegram
+Sends: /talk add a house
+The message caused these actions:
+	 · 
+------------------------
+User: Rancyy at 26/03/19 10:00:55 in telegram
+Sends: add windows
+The message caused these actions:
+	 · 
+------------------------
+User: Rancyy at 26/03/19 09:57:29 in telegram
+Sends: Delete home
+The message caused these actions:
+	 · Remove-> class House
+------------------------
+User: a_nevado at 26/03/19 09:55:05 in telegram
+Sends: Add house
+The message caused these actions:
+	 · Create-> class House
+------------------------
+User: sarukituki at 26/03/19 09:52:00 in telegram
+Sends: add doors
+The message caused these actions:
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:32:52 in telegram
+Sends: a house may has two main doors
+The message caused these actions:
+	 · 
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:33:23 in telegram
+Sends: a house has an owner
+The message caused these actions:
+	 · 
+------------------------
+User: sarukituki at 26/03/19 10:34:23 in telegram
+Sends: a test is made of questions
+The message caused these actions:
+	 · 
+	 · 
+	 · 
+------------------------
+User: sarukituki at 28/03/19 01:30:02 in telegram
+Sends: A mother has a name
+The message caused these actions:
+	 · 
+------------------------
+User: sarukituki at 28/03/19 01:30:48 in telegram
+Sends: A user listen music
+The message caused these actions:
+	 · 
+	 · 
+	 · 
+	 · 
 ------------------------
 

@@ -27,12 +27,12 @@ import es.uam.app.parser.Sentence;
 import es.uam.app.parser.Verb;
 import es.uam.app.parser.WordConfigure;
 import es.uam.app.parser.rules.ExtractionRule;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Controlador;
-import es.uam.app.projects.ecore.EcoreControl;
-import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.MetamodelControl;
+import es.uam.app.projects.emf.metamodel.Feature;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
@@ -47,7 +47,7 @@ import socioProjects.SocioProjectsPackage;
  */
 public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProject {
 
-	private EcoreControl ec;
+	private MetamodelControl ec;
 
 	private static Map<Class<? extends ExtractionRule<MetamodelProject>>, Constructor<? extends ExtractionRule<MetamodelProject>>> extractionRules = new HashMap<>();
 
@@ -439,9 +439,9 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	@Override
 	protected void initialize2() throws FatalException {
 		if (model != null) {
-			ec = new EcoreControl(getFilePath());
+			ec = new MetamodelControl(getFilePath());
 		} else {
-			ec = new EcoreControl(getFilePath(), name);
+			ec = new MetamodelControl(getFilePath(), name);
 			this.model = ec.getObject();
 		}
 	}

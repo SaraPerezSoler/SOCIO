@@ -139,6 +139,7 @@ public class Message{
 
 	public static String getHistoryFormat(List<Message> messages) {
 		String text = "";
+		messages.remove(null);
 		for (Message msg : messages) {
 			text += msg.getHistoryFormat();
 			

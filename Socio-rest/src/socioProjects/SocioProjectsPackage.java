@@ -421,10 +421,10 @@ public interface SocioProjectsPackage extends EPackage {
 	int PROJECT_OPERATION_COUNT = 20;
 
 	/**
-	 * The meta object id for the '{@link socioProjects.impl.ModelProjecImpl <em>Model Projec</em>}' class.
+	 * The meta object id for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Projec</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see socioProjects.impl.ModelProjecImpl
+	 * @see socioProjects.impl.ModelProjectImpl
 	 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProjec()
 	 * @generated
 	 */
@@ -1741,21 +1741,21 @@ public interface SocioProjectsPackage extends EPackage {
 	EOperation getProject__Validate();
 
 	/**
-	 * Returns the meta object for class '{@link socioProjects.ModelProjec <em>Model Projec</em>}'.
+	 * Returns the meta object for class '{@link socioProjects.ModelProject <em>Model Projec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Projec</em>'.
-	 * @see socioProjects.ModelProjec
+	 * @see socioProjects.ModelProject
 	 * @generated
 	 */
 	EClass getModelProjec();
 
 	/**
-	 * Returns the meta object for the '{@link socioProjects.ModelProjec#parseSentence(java.lang.String) <em>Parse Sentence</em>}' operation.
+	 * Returns the meta object for the '{@link socioProjects.ModelProject#parseSentence(java.lang.String) <em>Parse Sentence</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Parse Sentence</em>' operation.
-	 * @see socioProjects.ModelProjec#parseSentence(java.lang.String)
+	 * @see socioProjects.ModelProject#parseSentence(java.lang.String)
 	 * @generated
 	 */
 	EOperation getModelProjec__ParseSentence__String();
@@ -2390,10 +2390,10 @@ public interface SocioProjectsPackage extends EPackage {
 		EOperation PROJECT___VALIDATE = eINSTANCE.getProject__Validate();
 
 		/**
-		 * The meta object literal for the '{@link socioProjects.impl.ModelProjecImpl <em>Model Projec</em>}' class.
+		 * The meta object literal for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Projec</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see socioProjects.impl.ModelProjecImpl
+		 * @see socioProjects.impl.ModelProjectImpl
 		 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProjec()
 		 * @generated
 		 */

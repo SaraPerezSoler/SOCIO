@@ -47,7 +47,9 @@ public interface DataFormat {
 		msgObject.put("user", getUserJSON(msg.getUser()));
 		msgObject.put("msg", msg.getMsg());
 		msgObject.put("text", msg.getText());
-		msgObject.put("date", msg.getDate().getTime());
+		if (msg.getDate() != null) {
+			msgObject.put("date", msg.getDate().getTime());
+		}
 		msgObject.put("id", msg.getId());
 		JSONArray actionsArray = new JSONArray(ams);
 		msgObject.put("actions", actionsArray);

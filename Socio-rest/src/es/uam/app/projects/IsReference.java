@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import es.uam.app.actions.metamodels.ChangeAttrForRef;
 import es.uam.app.actions.metamodels.CreateReference;
 import es.uam.app.parser.NP;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.Feature;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.Feature;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import net.didion.jwnl.JWNLException;
 import socioProjects.MetamodelProject;
 

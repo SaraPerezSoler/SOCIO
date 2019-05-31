@@ -6,8 +6,8 @@ import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.actions.metamodels.CreateReference;
 import es.uam.app.actions.metamodels.RemoveAttribute;
 import es.uam.app.projects.IsReference;
-import es.uam.app.projects.ecore.AttributeControl;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.AttributeControl;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import socioProjects.MetamodelProject;
 
 public class ChangeAttrForRef extends UpdateMetamodel implements IsReference{

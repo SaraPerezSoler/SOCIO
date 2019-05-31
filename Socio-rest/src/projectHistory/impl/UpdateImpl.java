@@ -13,7 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import projectHistory.ProjectHistoryPackage;
 import es.uam.app.actions.metamodels.UpdateClassSuperType;
-import es.uam.app.projects.ecore.ClassControl;
+import es.uam.app.projects.emf.Controlador;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 import projectHistory.Update;
 import socioProjects.Project;
 
@@ -293,6 +294,16 @@ public class UpdateImpl extends ActionImpl implements Update {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Controlador getOldC() {
+		return action.getOldC();
+	}
+
+	@Override
+	public Controlador getNewC() {
+		return action.getNewC();
 	}
 
 } //UpdateImpl

@@ -4,7 +4,7 @@ package projectHistory;
 
 import org.eclipse.emf.ecore.EObject;
 
-import es.uam.app.projects.ecore.Controlador;
+import es.uam.app.projects.emf.Controlador;
 import socioProjects.Project;
 
 

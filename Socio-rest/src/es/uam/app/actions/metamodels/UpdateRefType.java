@@ -3,8 +3,8 @@ package es.uam.app.actions.metamodels;
 import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.projects.IsClass;
 import es.uam.app.projects.IsReference;
-import es.uam.app.projects.ecore.ClassControl;
-import es.uam.app.projects.ecore.ReferenceControl;
+import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import socioProjects.MetamodelProject;
 
 public class UpdateRefType extends UpdateMetamodel {
