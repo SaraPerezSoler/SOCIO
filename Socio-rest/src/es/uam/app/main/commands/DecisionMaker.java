@@ -86,6 +86,16 @@ public class DecisionMaker extends MainCommand {
 		String messageId = object.getString("messageId");
 		Project branch = getProject(context, branchChannel, branchUser, branchName);
 
+		File f = setChoice(context, actual, branchGroup, user, branchChannel, branchUser, branchName, messageId,
+				branch);
+		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"").build();
+	}
+
+	public static File setChoice(ServletContext context, Project actual, String branchGroup, User user,
+			String branchChannel, String branchUser, String branchName, String messageId, Project branch)
+			throws Exception {
+
 		BranchGroup group = actual.getOpenBranchGroup(branchGroup);
 		if (group == null) {
 			group = actual.getCloseBranchGroup(branchGroup);
@@ -105,11 +115,20 @@ public class DecisionMaker extends MainCommand {
 			SocioData.getSocioData(context).startDecision(actual, branchGroup, new Date(), messageId);
 		}
 		File f = endDecision(context, actual, branchGroup, branch);
-		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"").build();
+		return f;
 	}
 
-	private File endDecision(ServletContext context, Project actual, String branchGroup, Project branchSelected)
+	public static File setChoice(ServletContext context, String pChannel, String pUser, String pName,
+			String branchGroup, com.socio.client.beans.User user, long userId, String branchChannel, String branchUser,
+			String branchName, String messageId, Project branch) throws Exception {
+
+		Project project = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		return setChoice(context, project, branchGroup, u, branchChannel, branchUser, branchName, messageId, branch);
+
+	}
+
+	private static File endDecision(ServletContext context, Project actual, String branchGroup, Project branchSelected)
 			throws Exception {
 
 		BranchGroup bg = actual.getBranchGroup(branchGroup);
@@ -172,9 +191,6 @@ public class DecisionMaker extends MainCommand {
 
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
-		if (!user.isAdmin(p)) {
-			throw new InternalException("You need to be a project Admin");
-		}
 		List<User> users = new ArrayList<User>();
 		JSONArray usersArray = object.getJSONArray("usersToSearch");
 		for (int i = 0; i < usersArray.length(); i++) {
@@ -187,16 +203,42 @@ public class DecisionMaker extends MainCommand {
 		if (object.has("required")) {
 			measureRequired = object.getDouble("required");
 		}
+
+		String messageId = object.getString("messageId");
+		File f = consensus(context, p, branchGroup, user, users, measureRequired, messageId);
+		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"").build();
+
+	}
+
+	public static File consensus(ServletContext context, Project p, String branchGroup, User user, List<User> users,
+			double measureRequired, String messageId) throws InternalException, Exception {
+
+		if (!user.isAdmin(p)) {
+			throw new InternalException("You need to be a project Admin");
+		}
+
 		if (p.getOpenBranchGroup(branchGroup) == null) {
 			throw new InternalException(
 					"The project " + p.getCompleteName() + " doesn't have the group " + branchGroup);
 		}
-		String messageId = object.getString("messageId");
 
 		SocioData.getSocioData(context).startConsensus(p, branchGroup, users, measureRequired, new Date(), messageId);
 		File f = p.getProjectHistory();
-		return Response.ok(f, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + f.getName() + "\"").build();
+		return f;
+	}
+
+	public static File consensus(ServletContext context, String pChannel, String pUser, String pName,
+			String branchGroup, com.socio.client.beans.User user, List<com.socio.client.beans.User> users, double measureRequired, String messageId)
+			throws InternalException, Exception {
+
+		Project p = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		List<User> us = new ArrayList<>();
+		for (com.socio.client.beans.User bu: users) {
+			us.add(getUser(context, bu.getChannel(), bu.getNick(), bu.getId(), bu.getName()));
+		}
+		return consensus(context, p, branchGroup, u, us, measureRequired, messageId);
 	}
 
 	@POST
@@ -240,6 +282,18 @@ public class DecisionMaker extends MainCommand {
 
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
+
+		long timer = 120000;
+		if (object.has("timer")) {
+			timer = object.getLong("timer");
+		}
+		JSONObject polling = startPoll(context, p, branchGroup, user, timer);
+		return Response.ok(polling.toString(), MediaType.APPLICATION_JSON).build();
+	}
+
+	public static JSONObject startPoll(ServletContext context, Project p, String branchGroup, User user, long timer)
+			throws InternalException, Exception {
+
 		if (!user.isAdmin(p)) {
 			throw new InternalException("You need to be a project Admin");
 		}
@@ -253,27 +307,22 @@ public class DecisionMaker extends MainCommand {
 			throw new InternalException("The consensus doesn't exits");
 		}
 
-		long timer = 120000;
-		if (object.has("timer")) {
-			timer = object.getLong("timer");
-		}
-
 		SocioData.getSocioData(context).startVoting(context, p, (Consensus) d, timer, new Date());
 		int nRound = ((Consensus) d).getRounds().size();
 		JSONObject polling = createPollingJSON(context, p, branchGroup, ((Consensus) d).getUsers(), nRound, timer,
 				((Consensus) d).getMessageId());
-		return Response.ok(polling.toString(), MediaType.APPLICATION_JSON).build();
+		return polling;
 	}
 
-	private JSONObject createPollingJSON(ServletContext context, Project project, String branchGroup, List<User> users,
-			int nRound, long timer, String messageId) throws JSONException, Exception {
+	private static JSONObject createPollingJSON(ServletContext context, Project project, String branchGroup,
+			List<User> users, int nRound, long timer, String messageId) throws JSONException, Exception {
 		JSONObject object = new JSONObject();
-		object.put("project", getProjectJSON(context, project));
+		object.put("project", DataFormat.getProjectJSON(context, project));
 		object.put("branchGroup", branchGroup);
 
 		JSONArray array = new JSONArray();
 		for (User u : users) {
-			array.put(getUserJSON(u));
+			array.put(DataFormat.getUserJSON(u));
 		}
 		object.put("users", array);
 		object.put("nRound", nRound);
@@ -350,20 +399,9 @@ public class DecisionMaker extends MainCommand {
 	private Response addPoll(ServletContext context, InputStream incomingData, Project p, String branchGroup)
 			throws InternalException, Exception {
 
-		BranchGroup bg = p.getCloseBranchGroup(branchGroup);
-		if (bg == null) {
-			throw new InternalException("The branch group is not close or don't exits");
-		}
-		Decision d = bg.getDecision();
-		if (d == null || !(d instanceof Consensus)) {
-			throw new InternalException("The consensus doesn't exits");
-		}
-		Consensus cons = (Consensus) d;
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
-		if (!cons.getUsers().contains(user)) {
-			throw new InternalException("You need to be included in the poll");
-		}
+
 		Map<String, Integer> order = new HashMap<>();
 		JSONObject orderObject = object.getJSONObject("order");
 
@@ -373,8 +411,28 @@ public class DecisionMaker extends MainCommand {
 			String value = orderObject.getString(i);
 			order.put(value, Integer.parseInt(i));
 		}
+		String txt = addPoll(context, p, branchGroup, user, order);
+		return Response.ok(txt).build();
+	}
+
+	public static String addPoll(ServletContext context, Project p, String branchGroup, User user,
+			Map<String, Integer> order) throws InternalException, Exception {
+
+		BranchGroup bg = p.getCloseBranchGroup(branchGroup);
+		if (bg == null) {
+			throw new InternalException("The branch group is not close or don't exits");
+		}
+		Decision d = bg.getDecision();
+		if (d == null || !(d instanceof Consensus)) {
+			throw new InternalException("The consensus doesn't exits");
+		}
+		Consensus cons = (Consensus) d;
+		if (!cons.getUsers().contains(user)) {
+			throw new InternalException("You need to be included in the poll");
+		}
+
 		SocioData.getSocioData(context).addPreference(p, cons, user, order);
-		return Response.ok("The preferences are stored sussecfully").build();
+		return "The preferences are stored sussecfully";
 	}
 
 	@GET
@@ -382,14 +440,7 @@ public class DecisionMaker extends MainCommand {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response getEndPoll(@Context ServletContext context, @PathParam("channel") String channel) {
 		try {
-			List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveEndConsensus(channel);
-			JSONArray array = new JSONArray();
-			for (Consensus cons : polls) {
-				array.put(createEndConsensusJSON(context, cons.getBranchGroup().getFather(), cons));
-			}
-
-			JSONObject pollsJSON = new JSONObject();
-			pollsJSON.put("polls", array);
+			JSONObject pollsJSON = getEndPollS(context, channel);
 			return Response.ok(pollsJSON.toString(), MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("addPoll: ", e);
@@ -397,10 +448,24 @@ public class DecisionMaker extends MainCommand {
 		}
 	}
 
-	private JSONObject createEndConsensusJSON(ServletContext context, Project project, Consensus consensus)
+	public static JSONObject getEndPollS(@Context ServletContext context, String channel) throws Exception {
+
+		List<Consensus> polls = SocioData.getSocioData(context).getAndRemoveEndConsensus(channel);
+		JSONArray array = new JSONArray();
+		for (Consensus cons : polls) {
+			array.put(createEndConsensusJSON(context, cons.getBranchGroup().getFather(), cons));
+		}
+
+		JSONObject pollsJSON = new JSONObject();
+		pollsJSON.put("polls", array);
+		return pollsJSON;
+
+	}
+
+	private static JSONObject createEndConsensusJSON(ServletContext context, Project project, Consensus consensus)
 			throws JSONException, Exception {
 		JSONObject object = new JSONObject();
-		object.put("project", getProjectJSON(context, project));
+		object.put("project", DataFormat.getProjectJSON(context, project));
 		object.put("branchGroup", consensus.getName());
 		List<Order> order = consensus.getConsensusOrder();
 		JSONArray colective = new JSONArray();
@@ -414,13 +479,13 @@ public class DecisionMaker extends MainCommand {
 		object.put("filePath", consensus.getFilePath());
 		JSONArray array = new JSONArray();
 		for (User u : consensus.getUsersNoVoted()) {
-			array.put(getUserJSON(u));
+			array.put(DataFormat.getUserJSON(u));
 		}
 		object.put("notVoted", array);
 
 		array = new JSONArray();
 		for (User u : consensus.getUsers()) {
-			JSONObject user = getUserJSON(u);
+			JSONObject user = DataFormat.getUserJSON(u);
 			if (consensus.isRevoteCandidate(u)) {
 				user.put("close", true);
 			} else {

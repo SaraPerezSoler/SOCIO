@@ -58,7 +58,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SocioProjectsPackage.SOCIO_APP: return createSocioApp();
-			case SocioProjectsPackage.MODEL_PROJEC: return createModelProjec();
+			case SocioProjectsPackage.MODEL_PROJECT: return createModelProject();
 			case SocioProjectsPackage.METAMODEL_PROJECT: return createMetamodelProject();
 			case SocioProjectsPackage.USER: return createUser();
 			case SocioProjectsPackage.CONTRIBUTION: return createContribution();
@@ -121,9 +121,9 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelProject createModelProjec() {
-		ModelProjectImpl modelProjec = new ModelProjectImpl();
-		return modelProjec;
+	public ModelProject createModelProject() {
+		ModelProjectImpl modelProject = new ModelProjectImpl();
+		return modelProject;
 	}
 
 	/**

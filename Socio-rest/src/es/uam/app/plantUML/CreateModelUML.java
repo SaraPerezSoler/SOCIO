@@ -32,9 +32,9 @@ public class CreateModelUML implements CreateText {
 	private static final String OLD_BACKGROUND = "#E0E6F8";
 	private static final String OLD_LINES = "#0B0B61";
 
-//	private static final String NEW_TAG_COLOR = "#688A08";
-//	private static final String OLD_TAG_COLOR = "#8181F7";
-//	private static final String STANDAR_TAG_COLOR = "#F7BE81";
+	// private static final String NEW_TAG_COLOR = "#688A08";
+	// private static final String OLD_TAG_COLOR = "#8181F7";
+	// private static final String STANDAR_TAG_COLOR = "#F7BE81";
 
 	public static final String TAG_START = "<<";
 	public static final String TAG_END = ">>";
@@ -56,7 +56,7 @@ public class CreateModelUML implements CreateText {
 	public static final String START = "@startuml" + ENTR + ENTR;
 	private static final String CLASS_NULL = "<<???>>";
 
-	public static final String START_CLASS_DIAGRAM = START + "skinparam class {" + ENTR + "BackgroundColor" + TAG_START
+	public static final String START_CLASS_DIAGRAM = START + "skinparam object {" + ENTR + "BackgroundColor" + TAG_START
 			+ CLASS_NEW + TAG_END + " " + NEW_BACKGROUND + ENTR + "BorderColor" + TAG_START + CLASS_NEW + TAG_END + " "
 			+ NEW_LINES + ENTR + "BackgroundColor" + CLASS_NULL + " " + NULL_BACKGROUND + ENTR + "BorderColor"
 			+ CLASS_NULL + " " + NULL_LINES + ENTR + "BackgroundColor" + TAG_START + CLASS_OLD + TAG_END + " "
@@ -75,9 +75,9 @@ public class CreateModelUML implements CreateText {
 
 	private static List<EObjectControl> addElement;
 	private static List<EObjectControl> deleteElement;
-	//private static List<EObjectControl> updateElement;
+	// private static List<EObjectControl> updateElement;
 	private static List<EObjectControl> pastAddElements;
-	//private static List<EObjectControl> pastupdateElements;
+	// private static List<EObjectControl> pastupdateElements;
 
 	private ModelControl model;
 
@@ -91,7 +91,7 @@ public class CreateModelUML implements CreateText {
 		List<Action> pastAdd = getAdds(passActions);
 		List<Update> pastUpdate = getUpdates(passActions);
 		pastAddElements = getControlador(pastAdd);
-		//pastupdateElements = getUpdateControlador(pastUpdate);
+		// pastupdateElements = getUpdateControlador(pastUpdate);
 		elementPastUpdateActions = getControladorActions(pastUpdate);
 
 		adds = getAdds(actions);
@@ -99,11 +99,14 @@ public class CreateModelUML implements CreateText {
 		updates = getUpdates(actions);
 		addElement = getControlador(adds);
 		deleteElement = getControlador(deletes);
-		//updateElement = getUpdateControlador(updates);
+		// updateElement = getUpdateControlador(updates);
 		elementUpdateActions = getControladorActions(updates);
 
 		for (EObjectControl object : model.getAllObjects()) {
 			cad += getObjectText(object);
+		}
+		for (EObjectControl object : model.getAllObjects()) {
+			cad += getReferencesText(object);
 		}
 		// cad += updates();
 		cad += deletedElements();
@@ -111,16 +114,12 @@ public class CreateModelUML implements CreateText {
 		return cad;
 	}
 
-	/*private List<EObjectControl> getUpdateControlador(List<Update> updates2) {
-		List<EObjectControl> object = new ArrayList<EObjectControl>();
-		for (Update a : updates2) {
-			Controlador c = a.getObject();
-			if (c instanceof EObjectControl) {
-				object.add((EObjectControl) c);
-			}
-		}
-		return object;
-	}*/
+	/*
+	 * private List<EObjectControl> getUpdateControlador(List<Update> updates2) {
+	 * List<EObjectControl> object = new ArrayList<EObjectControl>(); for (Update a
+	 * : updates2) { Controlador c = a.getObject(); if (c instanceof EObjectControl)
+	 * { object.add((EObjectControl) c); } } return object; }
+	 */
 
 	private Map<EObjectControl, List<Update>> getControladorActions(List<Update> updates2) {
 		Map<EObjectControl, List<Update>> ret = new HashMap<EObjectControl, List<Update>>();
@@ -208,7 +207,6 @@ public class CreateModelUML implements CreateText {
 
 		String cad = "object " + head + " {" + ENTR;
 
-		Map<NLReference, Object> references = new HashMap<>();
 		for (NLFeature feature : object.getNLClass().getFeatures()) {
 			if (feature instanceof NLAttribute) {
 				cad += getAttributeText(object, (NLAttribute) feature);
@@ -217,19 +215,27 @@ public class CreateModelUML implements CreateText {
 				if (value == null) {
 					cad += getNullReference(object, (NLReference) feature);
 
-				} else {
-					references.put((NLReference) feature, value);
 				}
 			}
 		}
 		cad += "}" + ENTR;
 
-		for (NLReference rc : references.keySet()) {
-			cad += getReference(object, rc, references.get(rc));
-		}
-
 		return cad;
 
+	}
+
+	private String getReferencesText(EObjectControl object) {
+		String cad = "";
+		for (NLFeature feature : object.getNLClass().getFeatures()) {
+			if (feature instanceof NLReference) {
+				Object value = object.getNLFeatureValue(feature);
+				if (value != null) {
+					cad += getReference(object, (NLReference) feature, value) + ENTR;
+
+				}
+			}
+		}
+		return cad;
 	}
 
 	private String selectClassColor(EObjectControl object) {
@@ -243,13 +249,16 @@ public class CreateModelUML implements CreateText {
 	}
 
 	private String getObjectName(EObjectControl object) {
-		String name1 = "\"" + object.getName() + " as " + object.getIdString() + "\"";
+		String name1 = "\"" + object.getName() + "\" as " + object.getIdString() + " ";
 		return name1;
 	}
 
 	private String createObjectHead(EObjectControl cc) {
-
-		return getObjectName(cc) + TAG_START + selectClassColor(cc) + TAG_END;
+		String color = selectClassColor(cc);
+		if (color.isEmpty()) {
+			return getObjectName(cc);
+		}
+		return getObjectName(cc) + TAG_START + color + TAG_END;
 	}
 
 	private boolean isNewFeature(EObjectControl object, NLFeature attribute) {
@@ -327,8 +336,6 @@ public class CreateModelUML implements CreateText {
 		String nameEnd = ENTR;
 
 		if (isNewFeature(object, rc)) {
-			nameStart = ATTR_NEW_INI;
-			nameEnd = ATTR_NEW_FIN + ENTR;
 			line = "-[" + NEW_LINES + "]-";
 		}
 
@@ -336,19 +343,21 @@ public class CreateModelUML implements CreateText {
 			line = "-[" + OLD_LINES + "]-";
 		}
 		if (rc.getReference().isContainment()) {
-			line = " *" + line;
-		}else {
-			line =" " + line + ">";
+			line = " *" + line + "";
+		} else {
+			line = " " + line + ">";
 		}
 		String parentName = object.getIdString();
 		if (value instanceof List<?>) {
 			for (Object obj : (List<?>) value) {
-				EObjectControl valueControl = model.getControl((EObject)obj);
-				cad += nameStart+ parentName +line+ valueControl.getIdString()+nameEnd;
+				EObjectControl valueControl = model.getControl((EObject) obj);
+				cad += nameStart + parentName + line + " " + valueControl.getIdString() + " :\":" + rc.getName() + "\""
+						+ nameEnd;
 			}
 		} else {
-			EObjectControl valueControl = model.getControl((EObject)value);
-			cad += nameStart+ parentName +line+ valueControl.getIdString()+nameEnd;
+			EObjectControl valueControl = model.getControl((EObject) value);
+			cad += nameStart + parentName + line + " " + valueControl.getIdString() + " :\":" + rc.getName() + "\""
+					+ nameEnd;
 		}
 
 		return cad;

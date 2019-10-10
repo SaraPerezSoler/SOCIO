@@ -9,11 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.main.exceptions.InternalException;
-import es.uam.app.projects.IsEObject;
 import es.uam.app.projects.emf.model.EObjectControl;
-import modelInfo.NLAttribute;
 import modelInfo.NLClass;
 import modelInfo.NLFeature;
+import modelInfo.NLModel;
 import projectHistory.Action;
 
 
@@ -22,12 +21,44 @@ import projectHistory.Action;
  * A representation of the model object '<em><b>Model Projec</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link socioProjects.ModelProject#getMetamodelName <em>Metamodel Name</em>}</li>
+ * </ul>
  *
- * @see socioProjects.SocioProjectsPackage#getModelProjec()
+ * @see socioProjects.SocioProjectsPackage#getModelProject()
  * @model
  * @generated
  */
 public interface ModelProject extends Project {
+
+	/**
+	 * Returns the value of the '<em><b>Metamodel Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Metamodel Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Metamodel Name</em>' attribute.
+	 * @see #setMetamodelName(String)
+	 * @see socioProjects.SocioProjectsPackage#getModelProject_MetamodelName()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getMetamodelName();
+
+	/**
+	 * Sets the value of the '{@link socioProjects.ModelProject#getMetamodelName <em>Metamodel Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Metamodel Name</em>' attribute.
+	 * @see #getMetamodelName()
+	 * @generated
+	 */
+	void setMetamodelName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -35,9 +66,11 @@ public interface ModelProject extends Project {
 	 * @model sentenceRequired="true"
 	 * @generated NOT
 	 */
-	List<Action> parseSentence(String sentence);
+	List<Action> parseSentence(String sentence) throws Exception;
 	
 	EObjectControl createEObject(String name) throws InternalException;
+	void unCreateEObject(EObjectControl object) throws InternalException;
+	void reCreateEObject(EObjectControl object) throws InternalException;
 	
 	NLClass getNLClass(String className) throws InternalException;
 	NLClass getNLClass(EClass className);
@@ -65,5 +98,9 @@ public interface ModelProject extends Project {
 	EObjectControl getControl(EObject obj);
 
 	void unsetEReference(EObjectControl object, String refName);
+
+	NLModel getNLModel();
+
+	void setNLModel(NLModel nlModel);
 
 } // ModelProjec

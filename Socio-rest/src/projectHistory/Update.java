@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import es.uam.app.projects.emf.Controlador;
 import es.uam.app.projects.emf.metamodel.ClassControl;
-import es.uam.app.projects.emf.model.EObjectControl;
 import socioProjects.Project;
 
 

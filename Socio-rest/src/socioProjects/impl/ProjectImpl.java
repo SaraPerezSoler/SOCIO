@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -44,8 +45,8 @@ import branchDecision.Decision;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
-import es.uam.app.parser.SentencesSplitter;
-import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.metamodel.parser.SentencesSplitter;
+import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.plantUML.*;
 import es.uam.app.projects.emf.Controlador;
 import projectHistory.Action;
@@ -742,16 +743,12 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		if (isLocked()) {
 			throw new InternalException("The project can't be edited. It is locked.");
 		}
-		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getText());
-		Map<String, List<Action>> actions = new HashMap<>();
+		Map<String, List<Action>> actions = getSentencesAction(msg.getText());
 
-		for (String s : sentences) {
-
-			List<Action> act = parseSentence(s);
-
-			actions.put(s, act);
-			allActions.addAll(act);
+		for (String s : actions.keySet()) {
+			allActions.addAll(actions.get(s));
 		}
+		
 		if (allActions.isEmpty()) {
 			msg.setUndoable(false);
 		} else {
@@ -763,6 +760,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		return getPng(allActions);
 	}
+	protected abstract Map<String, List<Action>> getSentencesAction(String text) throws Exception;
 
 	public File getPng(List<Action> actions) {
 		return getPng(actions, false);
@@ -835,8 +833,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	private List<String> orderedSentences(Set<String> keys, Msg m) throws Exception {
 		List<String> ret = new ArrayList<>();
-		List<String> sentences = SentencesSplitter.sentencesSplitter(m.getMsg());
-		Collections.reverse(sentences);
+		List<String> sentences = getSentenceOrder(m);
 		for (String s : sentences) {
 			bucle1: for (String k : keys) {
 				if (s.contains(k)) {
@@ -847,10 +844,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		return ret;
 	}
-
+	protected abstract List<String> getSentenceOrder(Msg msg) throws ParseException;
+	protected abstract List<String> getSentenceOrder2(Msg msg) throws ParseException;
 	private List<String> orderedSentences2(Set<String> keys, Msg m) throws Exception {
 		List<String> ret = new ArrayList<>();
-		List<String> sentences = SentencesSplitter.sentencesSplitter(m.getMsg());
+		List<String> sentences = getSentenceOrder2(m);
 		for (String s : sentences) {
 			bucle1: for (String k : keys) {
 				if (s.contains(k)) {

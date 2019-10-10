@@ -1,5 +1,7 @@
 package es.uam.app.projects.emf.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ public class EObjectControl implements Controlador, IsEObject {
 
 	private EObject object;
 	private NLClass class_;
+	private Map<NLReference, List<EObjectControl>> refernces = new HashMap<>();
 
 	public EObjectControl(EObject object, NLClass class_) {
 		this.object = object;
@@ -34,7 +37,8 @@ public class EObjectControl implements Controlador, IsEObject {
 	@SuppressWarnings("unchecked")
 	void setEAttribute(NLAttribute nlattribute, Object value) throws InternalException {
 
-		if (!nlattribute.isType(value.getClass())) {
+		Class c = nlattribute.getAttribute().getEType().getInstanceClass();
+		if (!c.isInstance(value)) {
 			throw new InternalException("The type of the attribute " + nlattribute.getAttribute().getName()
 					+ " don't match with the type if the value " + value.getClass().getName());
 		}
@@ -56,23 +60,37 @@ public class EObjectControl implements Controlador, IsEObject {
 		setEReference(trg, nlreference);
 	}
 
+	@SuppressWarnings("unchecked")
 	void setEReference(EObjectControl trg, NLReference nlreference) throws InternalException {
 
-		if (!nlreference.isType(trg.getNLClass())) {
+		if (!nlreference.getReference().getEReferenceType().isInstance(trg.getObject())) {
 			throw new InternalException("The class of the reference " + nlreference.getReference().getName()
 					+ " don't match with the class of the trg " + trg.getName());
 		}
-		object.eSet(nlreference.getReference(), trg.getObject());
+		Object oldValue = this.object.eGet(nlreference.getReference());
+		if (oldValue instanceof List<?>) {
+			((List<Object>) oldValue).add(trg.getObject());
+		} else {
+			object.eSet(nlreference.getReference(), trg.getObject());
+
+		}
+
+		List<EObjectControl> ref = refernces.get(nlreference);
+		if (ref == null) {
+			ref = new ArrayList<>();
+			refernces.put(nlreference, ref);
+		}
+		ref.add(trg);
 
 	}
 
 	@Override
 	public String getName() {
-		String id = " : ";
+		String id = "";
 		for (NLAttribute att : class_.getId()) {
 			id += object.eGet(att.getAttribute()).toString() + " ";
 		}
-		return object.eClass().getName() + id;
+		return id + ":" + object.eClass().getName();
 	}
 
 	@Override
@@ -113,14 +131,45 @@ public class EObjectControl implements Controlador, IsEObject {
 
 		if (this.getNLClass().equals(other.getNLClass())) {
 			for (NLFeature feature : this.getNLClass().getFeatures()) {
-				NLAttribute attr = (NLAttribute) feature;
-				if (isNLFeatureDifferent(other, attr)) {
-					return attr;
+				if (feature instanceof NLReference) {
+					if (!isSameReference((NLReference) feature, other)) {
+						return feature;
+					}
+				} else {
+					if (isNLFeatureDifferent(other, feature)) {
+						return feature;
+					}
 				}
 
 			}
 		}
 		return null;
+	}
+
+	private boolean isSameReference(NLReference reference, EObjectControl other) {
+		List<EObjectControl> objects1 = this.refernces.get(reference);
+		List<EObjectControl> objects2 = other.refernces.get(reference);
+		if (objects1 == null) {
+			if (objects2 != null) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			if (objects2 == null) {
+				return false;
+			} else {
+				if (objects1.size() != objects2.size()) {
+					return false;
+				}
+				for (EObjectControl obj : objects1) {
+					if (!objects2.contains(obj)) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
 	}
 
 	private boolean isNLFeatureDifferent(EObjectControl other, NLFeature feature) {
@@ -139,12 +188,20 @@ public class EObjectControl implements Controlador, IsEObject {
 	public EObjectControl copyObject() {
 		Copier copier = new Copier();
 		EObjectControl eObj = new EObjectControl(copier.copy(this.getObject()), class_);
+
+		for (NLReference key : refernces.keySet()) {
+			List<EObjectControl> ref = new ArrayList<>();
+			for (EObjectControl object : this.refernces.get(key)) {
+				ref.add(object);
+			}
+			eObj.refernces.put(key, ref);
+		}
 		copier.clear();
 		return eObj;
 	}
 
 	public Object unset(NLAttribute feature, Object value) {
-		
+
 		EObject currValue = (EObject) this.getNLFeatureValue(feature);
 		if (currValue instanceof List<?>) {
 			List<?> currList = (List<?>) currValue;
@@ -158,12 +215,13 @@ public class EObjectControl implements Controlador, IsEObject {
 				return value;
 			}
 		}
-		
+
 		return null;
 
 	}
+
 	public EObjectControl unset(NLReference feature, EObjectControl value) {
-		
+
 		EObject currValue = (EObject) this.getNLFeatureValue(feature);
 		if (currValue instanceof List<?>) {
 			List<?> currList = (List<?>) currValue;
@@ -178,18 +236,17 @@ public class EObjectControl implements Controlador, IsEObject {
 			}
 		}
 		return null;
-		
 
 	}
 
-
 	public Object unset(NLFeature feature) {
-		
-		Object currValue = getNLFeatureValue(feature);		
+
+		Object currValue = getNLFeatureValue(feature);
 		this.object.eUnset(feature.getFeature());
 		return currValue;
 
 	}
+
 	public NLClass getNLClass() {
 		return class_;
 	}
@@ -202,13 +259,13 @@ public class EObjectControl implements Controlador, IsEObject {
 	public NLReference getNLFeature(EObjectControl object2) {
 		for (NLFeature feature : getNLClass().getFeatures()) {
 			if (feature instanceof NLReference) {
-				NLReference reference = (NLReference)feature;
+				NLReference reference = (NLReference) feature;
 				Object value = object.eGet(reference.getReference());
 				if (value instanceof List<?>) {
-					if (((List<?>)value).contains(object2)) {
+					if (((List<?>) value).contains(object2)) {
 						return reference;
 					}
-				}else {
+				} else {
 					if (value.equals(object2)) {
 						return reference;
 					}
@@ -221,9 +278,76 @@ public class EObjectControl implements Controlador, IsEObject {
 	public String getIdString() {
 		String id = "";
 		for (NLAttribute att : class_.getId()) {
-			id += object.eGet(att.getAttribute()).toString().replaceAll(" \n\t", "");
+			id += object.eGet(att.getAttribute()).toString().replaceAll(" ", "").replaceAll("\n", "");
 		}
 		return id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((class_ == null) ? 0 : class_.hashCode());
+		result = prime * result + ((object == null) ? 0 : object.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EObjectControl other = (EObjectControl) obj;
+		if (class_ == null) {
+			if (other.class_ != null)
+				return false;
+		} else if (!class_.equals(other.class_))
+			return false;
+		if (object == null) {
+			if (other.object != null)
+				return false;
+		} else if (!object.equals(other.object))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		String values = "";
+		List<NLFeature> features = class_.getFeatures();
+		for (NLFeature feature : features) {
+			if (feature instanceof NLAttribute) {
+				values += getNLFeatureValue(feature);
+			} else {
+				List<EObjectControl> refs = refernces.get(feature);
+				values += "[";
+				if (refs != null) {
+					for (EObjectControl ref : refs) {
+						values += ref.getName();
+						if (refs.indexOf(ref) != refs.size() - 1) {
+							values += ",";
+						}
+					}
+				}
+				values += "]";
+			}
+			if (features.indexOf(feature) != features.size() - 1) {
+				values += ",";
+			}
+		}
+		return getName() + "{" + values + "}";
+	}
+	
+	public void validate() {
+		 if (class_.isAbstract()) {
+			 //TODO no puede haber clases abstractas
+		 }
+		 
+		 
+		 
 	}
 
 }

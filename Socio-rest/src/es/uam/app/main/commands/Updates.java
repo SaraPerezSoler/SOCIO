@@ -21,17 +21,29 @@ import socioProjects.Project;
 @Path("/updates")
 public class Updates extends MainCommand implements DataFormat {
 
+	
+	/*Falta modificar para que las entr
+	 * */
 	@GET
 	@Path("/register/{channel}")
 	@Produces({ MediaType.TEXT_PLAIN, MediaType.TEXT_PLAIN })
 	public Response register(@Context ServletContext context, @PathParam("channel") String channel) {
 		try {
-			SocioData.getSocioData(context).register(channel);
-			return Response.ok("OK", MediaType.TEXT_PLAIN).build();
+			String text = registerS(context, channel);
+			return Response.ok(text, MediaType.TEXT_PLAIN).build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("register: ", e);
 			return sendTextException(e);
 		}
+
+	}
+	
+	public static String registerS(ServletContext context, String channel)
+			throws Exception {
+
+			SocioData.getSocioData(context).register(channel);
+			return "OK";
+		
 
 	}
 
@@ -40,13 +52,18 @@ public class Updates extends MainCommand implements DataFormat {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response getUpdatesProjects(@Context ServletContext context, @PathParam("channel") String channel) {
 		try {
-			List<Project> projects = SocioData.getSocioData(context).getUpdates(channel);
-			JSONObject projectsJSON = this.getProjectListJSON(context, projects);
+			JSONObject projectsJSON = getUpdatesProjectsS(context, channel);
 			return Response.ok(projectsJSON.toString(), MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("getUpdatesProjects: ", e);
 			return sendTextException(e);
 		}
+	}
+	
+	public static JSONObject getUpdatesProjectsS(ServletContext context, String channel) throws Exception {
+			List<Project> projects = SocioData.getSocioData(context).getUpdates(channel);
+			JSONObject projectsJSON = DataFormat.getProjectListJSON(context, projects);
+			return projectsJSON;
 	}
 
 	@GET
@@ -56,7 +73,8 @@ public class Updates extends MainCommand implements DataFormat {
 			@PathParam("projectId") Long id) {
 		try {
 			Project project = getProject(context, id);
-			return getProjectUpdate(context, channel, project);
+			JSONObject msgs = getProjectUpdateS(context, channel, project);
+			return Response.ok(msgs.toString(), MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("getProjectUpdate: ", e);
 			return sendTextException(e);
@@ -71,18 +89,27 @@ public class Updates extends MainCommand implements DataFormat {
 			@PathParam("projectname") String projectname) {
 		try {
 			Project project = getProject(context, userChannel, user, projectname);
-			return getProjectUpdate(context, channel, project);
+			JSONObject msgs = getProjectUpdateS(context, channel, project);
+			return Response.ok(msgs.toString(), MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("getProjectUpdate: ", e);
 			return sendTextException(e);
 		}
 	}
 
-	private Response getProjectUpdate(ServletContext context, String channel, Project project) throws Exception {
+	public static JSONObject getProjectUpdateS(ServletContext context, String channel, Project project) throws Exception {
 		List<Msg> msgs = SocioData.getSocioData(context).getUpdate(project, channel);
-		return Response.ok(this.getMsgListJSON(msgs).toString(), MediaType.APPLICATION_JSON).build();
+		return DataFormat.getMsgListJSON(msgs);
 
 	}
+	
+	public static JSONObject getProjectUpdateS(ServletContext context, String channel, String pChannel, String pUser, String pName) throws Exception {
+		Project project = getProject(context, pChannel, pUser, pName);
+		return getProjectUpdateS(context, pChannel, project);
+
+	}
+	
+	
 
 	@GET
 	@Path("/getlastfile/{projectId}")
@@ -90,7 +117,9 @@ public class Updates extends MainCommand implements DataFormat {
 	public Response getlastfile(@Context ServletContext context, @PathParam("projectId") Long id) {
 		try {
 			Project project = getProject(context, id);
-			return getlastfile(context, project);
+			File png = getlastfileS(context, project);
+			return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+					.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("getlastfile: ", e);
 			return sendTextException(e);
@@ -104,16 +133,23 @@ public class Updates extends MainCommand implements DataFormat {
 			@PathParam("user") String user, @PathParam("projectname") String projectname) {
 		try {
 			Project project = getProject(context, channel, user, projectname);
-			return getlastfile(context, project);
+			File png = getlastfileS(context, project);
+			return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+					.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+		
 		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("getlastfile: ", e);
 			return sendTextException(e);
 		}
 	}
 
-	private Response getlastfile(ServletContext context, Project project) throws Exception {
+	public static File getlastfileS(ServletContext context, Project project) throws Exception {
 		File png = SocioData.getSocioData(context).getLastPng(project);
-		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+		return png;
+	}
+	
+	public static File getlastfileS(ServletContext context, String pChannel, String pUser, String pName) throws Exception {
+		Project project = getProject(context, pChannel, pUser, pName);
+		return getlastfileS(context, project);
 	}
 }

@@ -31,13 +31,13 @@ public interface SocioProjectsFactory extends EFactory {
 	SocioApp createSocioApp();
 
 	/**
-	 * Returns a new object of class '<em>Model Projec</em>'.
+	 * Returns a new object of class '<em>Model Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Model Projec</em>'.
+	 * @return a new object of class '<em>Model Project</em>'.
 	 * @generated
 	 */
-	ModelProject createModelProjec();
+	ModelProject createModelProject();
 
 	/**
 	 * Returns a new object of class '<em>Metamodel Project</em>'.

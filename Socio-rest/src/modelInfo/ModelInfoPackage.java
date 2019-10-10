@@ -250,13 +250,22 @@ public interface ModelInfoPackage extends EPackage {
 	int NL_CLASS__INSTANTIABLE = NL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_CLASS__ABSTRACT = NL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Container</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NL_CLASS__CONTAINER = NL_ELEMENT_FEATURE_COUNT + 3;
+	int NL_CLASS__CONTAINER = NL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Create</b></em>' attribute.
@@ -265,7 +274,7 @@ public interface ModelInfoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NL_CLASS__CREATE = NL_ELEMENT_FEATURE_COUNT + 4;
+	int NL_CLASS__CREATE = NL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' containment reference list.
@@ -274,7 +283,7 @@ public interface ModelInfoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NL_CLASS__ID = NL_ELEMENT_FEATURE_COUNT + 5;
+	int NL_CLASS__ID = NL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -283,7 +292,7 @@ public interface ModelInfoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NL_CLASS__FEATURES = NL_ELEMENT_FEATURE_COUNT + 6;
+	int NL_CLASS__FEATURES = NL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>NL Class</em>' class.
@@ -292,7 +301,7 @@ public interface ModelInfoPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NL_CLASS_FEATURE_COUNT = NL_ELEMENT_FEATURE_COUNT + 7;
+	int NL_CLASS_FEATURE_COUNT = NL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>NL Class</em>' class.
@@ -341,13 +350,31 @@ public interface ModelInfoPackage extends EPackage {
 	int NL_FEATURE__ASK = NL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_FEATURE__LOWER_BOUND = NL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_FEATURE__UPPER_BOUND = NL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>NL Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NL_FEATURE_FEATURE_COUNT = NL_ELEMENT_FEATURE_COUNT + 1;
+	int NL_FEATURE_FEATURE_COUNT = NL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>NL Feature</em>' class.
@@ -394,6 +421,24 @@ public interface ModelInfoPackage extends EPackage {
 	 * @ordered
 	 */
 	int NL_ATTRIBUTE__ASK = NL_FEATURE__ASK;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_ATTRIBUTE__LOWER_BOUND = NL_FEATURE__LOWER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_ATTRIBUTE__UPPER_BOUND = NL_FEATURE__UPPER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -458,6 +503,24 @@ public interface ModelInfoPackage extends EPackage {
 	 * @ordered
 	 */
 	int NL_REFERENCE__ASK = NL_FEATURE__ASK;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_REFERENCE__LOWER_BOUND = NL_FEATURE__LOWER_BOUND;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NL_REFERENCE__UPPER_BOUND = NL_FEATURE__UPPER_BOUND;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -909,6 +972,17 @@ public interface ModelInfoPackage extends EPackage {
 	EAttribute getNLClass_Instantiable();
 
 	/**
+	 * Returns the meta object for the attribute '{@link modelInfo.NLClass#isAbstract <em>Abstract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Abstract</em>'.
+	 * @see modelInfo.NLClass#isAbstract()
+	 * @see #getNLClass()
+	 * @generated
+	 */
+	EAttribute getNLClass_Abstract();
+
+	/**
 	 * Returns the meta object for the attribute '{@link modelInfo.NLClass#getContainer <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -972,6 +1046,28 @@ public interface ModelInfoPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNLFeature_Ask();
+
+	/**
+	 * Returns the meta object for the attribute '{@link modelInfo.NLFeature#getLowerBound <em>Lower Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lower Bound</em>'.
+	 * @see modelInfo.NLFeature#getLowerBound()
+	 * @see #getNLFeature()
+	 * @generated
+	 */
+	EAttribute getNLFeature_LowerBound();
+
+	/**
+	 * Returns the meta object for the attribute '{@link modelInfo.NLFeature#getUpperBound <em>Upper Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Upper Bound</em>'.
+	 * @see modelInfo.NLFeature#getUpperBound()
+	 * @see #getNLFeature()
+	 * @generated
+	 */
+	EAttribute getNLFeature_UpperBound();
 
 	/**
 	 * Returns the meta object for class '{@link modelInfo.NLAttribute <em>NL Attribute</em>}'.
@@ -1345,6 +1441,14 @@ public interface ModelInfoPackage extends EPackage {
 		EAttribute NL_CLASS__INSTANTIABLE = eINSTANCE.getNLClass_Instantiable();
 
 		/**
+		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NL_CLASS__ABSTRACT = eINSTANCE.getNLClass_Abstract();
+
+		/**
 		 * The meta object literal for the '<em><b>Container</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1393,6 +1497,22 @@ public interface ModelInfoPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NL_FEATURE__ASK = eINSTANCE.getNLFeature_Ask();
+
+		/**
+		 * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NL_FEATURE__LOWER_BOUND = eINSTANCE.getNLFeature_LowerBound();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NL_FEATURE__UPPER_BOUND = eINSTANCE.getNLFeature_UpperBound();
 
 		/**
 		 * The meta object literal for the '{@link modelInfo.impl.NLAttributeImpl <em>NL Attribute</em>}' class.

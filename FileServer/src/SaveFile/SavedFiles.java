@@ -46,7 +46,7 @@ public interface SavedFiles extends EObject {
 	void deleteFile(String key);
 
 	String addFile(File file, String completeName, long duration, SaveFile.TimeUnit unit);
-
+	String addSecondFile(File file, String completeName, long duration, SaveFile.TimeUnit unit);
 	File getFile(String key);
 
 } // SavedFiles

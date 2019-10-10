@@ -57,6 +57,12 @@ public class Get extends MainCommand {
 
 	private Response get(ServletContext context, InputStream incomingData, Project actual) throws Exception {
 		User user = getUser(context, incomingData, "user");
+		File file = get(context, actual, user);
+		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"").build();
+	}
+	
+	public static File get(ServletContext context, Project actual, User user) throws Exception {
 
 		if (!(user.canEdit(actual))) {
 			throw new InternalException("You don't have editing permissions in this project.");
@@ -64,11 +70,17 @@ public class Get extends MainCommand {
 
 		File file = new File(actual.getFilePath());
 		if (file.exists()) {
-			return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-					.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"").build();
+			return file;
 		} else {
 			throw new InternalException("I don't find the specified file.");
 		}
+	}
+	
+	public static File get(ServletContext context,String pChannel, String pUser, String pName, com.socio.client.beans.User user) throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		return get(context, actual, u);
 	}
 
 }

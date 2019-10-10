@@ -57,7 +57,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modelProjecEClass = null;
+	private EClass modelProjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -509,8 +509,8 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModelProjec() {
-		return modelProjecEClass;
+	public EClass getModelProject() {
+		return modelProjectEClass;
 	}
 
 	/**
@@ -518,8 +518,17 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModelProjec__ParseSentence__String() {
-		return modelProjecEClass.getEOperations().get(0);
+	public EAttribute getModelProject_MetamodelName() {
+		return (EAttribute)modelProjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModelProject__ParseSentence__String() {
+		return modelProjectEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -858,8 +867,9 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		createEOperation(projectEClass, PROJECT___PERCENT_OF_AUTHORSHIP);
 		createEOperation(projectEClass, PROJECT___VALIDATE);
 
-		modelProjecEClass = createEClass(MODEL_PROJEC);
-		createEOperation(modelProjecEClass, MODEL_PROJEC___PARSE_SENTENCE__STRING);
+		modelProjectEClass = createEClass(MODEL_PROJECT);
+		createEAttribute(modelProjectEClass, MODEL_PROJECT__METAMODEL_NAME);
+		createEOperation(modelProjectEClass, MODEL_PROJECT___PARSE_SENTENCE__STRING);
 
 		metamodelProjectEClass = createEClass(METAMODEL_PROJECT);
 		createEOperation(metamodelProjectEClass, METAMODEL_PROJECT___PARSE_SENTENCE__STRING);
@@ -931,7 +941,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		modelProjecEClass.getESuperTypes().add(this.getProject());
+		modelProjectEClass.getESuperTypes().add(this.getProject());
 		metamodelProjectEClass.getESuperTypes().add(this.getProject());
 
 		// Initialize classes, features, and operations; add parameters
@@ -945,7 +955,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		initEAttribute(getProject_Open(), ecorePackage.getEBoolean(), "open", "true", 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_History(), theProjectHistoryPackage.getHistory(), null, "history", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Remove(), theRemoveLogPackage.getRoot(), null, "remove", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProject_Model(), ecorePackage.getEObject(), null, "model", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProject_Model(), ecorePackage.getEObject(), null, "model", null, 0, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_Visibility(), this.getVisibility(), "visibility", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProject_Admin(), this.getUser(), this.getUser_OwnProjects(), "admin", null, 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProject_BranchIsLocking(), ecorePackage.getEBoolean(), "branchIsLocking", "true", 1, 1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1005,9 +1015,10 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEOperation(getProject__Validate(), ecorePackage.getEString(), "validate", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(modelProjecEClass, ModelProject.class, "ModelProjec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modelProjectEClass, ModelProject.class, "ModelProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModelProject_MetamodelName(), ecorePackage.getEString(), "metamodelName", null, 1, 1, ModelProject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getModelProjec__ParseSentence__String(), theProjectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getModelProject__ParseSentence__String(), theProjectHistoryPackage.getAction(), "parseSentence", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "sentence", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(metamodelProjectEClass, MetamodelProject.class, "MetamodelProject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

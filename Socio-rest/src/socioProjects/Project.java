@@ -195,7 +195,7 @@ public interface Project extends EObject {
 	 * @return the value of the '<em>Model</em>' reference.
 	 * @see #setModel(EObject)
 	 * @see socioProjects.SocioProjectsPackage#getProject_Model()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	EObject getModel();

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ASCII"?>
+<modelInfo:NLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modelInfo="modelInfo" name="ProjectPlaning" container="false" ask="false">
+  <model href="Metamodel\ProjectPlaning.ecore#/"/>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Project"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Project/name"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Project/goal"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//Project/tasks"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//Project/resources"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//TaskUnit"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/id"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/description"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//TaskUnit/next"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Milestone"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/id"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Milestone/date"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//Milestone/from"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/description"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//TaskUnit/next"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Task"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/id"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Task/date"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Task/days"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//Task/resources"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/description"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//TaskUnit/next"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//CompositeTask"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/id"/>
+    </id>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//CompositeTask/subtasks"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//TaskUnit/description"/>
+    </features>
+    <features xsi:type="modelInfo:NLReference" ask="false">
+      <reference href="Metamodel\ProjectPlaning.ecore#//TaskUnit/next"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Resource"/>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Human"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Human/name"/>
+    </id>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Human/surname"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Human/available"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Human/expertise"/>
+    </features>
+  </classes>
+  <classes instantiable="true" create="true">
+    <class href="Metamodel\ProjectPlaning.ecore#//Technical"/>
+    <id ask="true" lowerBound="1" upperBound="1">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Technical/id"/>
+    </id>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Technical/description"/>
+    </features>
+    <features xsi:type="modelInfo:NLAttribute" ask="false">
+      <attribute href="Metamodel\ProjectPlaning.ecore#//Technical/units"/>
+    </features>
+  </classes>
+</modelInfo:NLModel>

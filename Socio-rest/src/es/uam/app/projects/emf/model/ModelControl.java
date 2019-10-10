@@ -31,40 +31,15 @@ import projectHistory.Action;
 public class ModelControl implements Controlador {
 	private Resource resource;
 	private NLModel model;
-	private EObjectControl root;
 
 	public ModelControl(String mdUri, NLModel model) throws FatalException {
-		try {
-			this.model = model;
-			createResource(mdUri);
-			if (resource.getContents().isEmpty()) {
-
-				root = createEObject(model.getRoot());
-
-				resource.getContents().add(root.getObject());
-			} else {
-				root = new EObjectControl(resource.getContents().get(0), model.getRoot());
-			}
-		} catch (InternalException e) {
-			throw new FatalException(e.getMessage());
-		}
+		this.model = model;
+		createResource(mdUri);
 	}
 
 	public ModelControl(Resource eResource, NLModel model) throws FatalException {
-		try {
-			this.model = model;
-			this.resource = eResource;
-			if (resource.getContents().isEmpty()) {
-
-				root = createEObject(model.getRoot());
-
-				resource.getContents().add(root.getObject());
-			} else {
-				root = new EObjectControl(resource.getContents().get(0), model.getRoot());
-			}
-		} catch (InternalException e) {
-			throw new FatalException(e.getMessage());
-		}
+		this.model = model;
+		this.resource = eResource;
 
 	}
 
@@ -127,8 +102,9 @@ public class ModelControl implements Controlador {
 		addReference(object, reference, value);
 
 	}
-	
-	public void addReference(EObjectControl object, NLReference reference, EObjectControl value) throws InternalException {
+
+	public void addReference(EObjectControl object, NLReference reference, EObjectControl value)
+			throws InternalException {
 		if (reference.getReference().isContainment()) {
 			if (resource.getContents().contains(value.getObject())) {
 				resource.getContents().remove(value.getObject());
@@ -272,10 +248,6 @@ public class ModelControl implements Controlador {
 		if (efeature == null) {
 			throw new InternalException(
 					"The featute with name " + attributeName + " does not exist in the class " + eclass.getName());
-		} else if (!(efeature instanceof EAttribute)) {
-
-			throw new InternalException(
-					"The attribute with name " + attributeName + " does not exist in the class " + eclass.getName());
 		}
 		return efeature;
 
@@ -297,10 +269,7 @@ public class ModelControl implements Controlador {
 		if (efeature == null) {
 			throw new InternalException(
 					"The featute with name " + referenceName + " does not exist in the class " + eclass.getName());
-		} else if (!(efeature instanceof EAttribute)) {
-			throw new InternalException(
-					"The reference with name " + referenceName + " does not exist in the class " + eclass.getName());
-		}
+		} 
 		return efeature;
 
 	}
@@ -330,7 +299,10 @@ public class ModelControl implements Controlador {
 	}
 
 	public EObject getObject() {
-		return root.getObject();
+		if (resource.getContents().isEmpty()) {
+			return null;
+		}
+		return resource.getContents().get(0);
 	}
 
 	@Override
@@ -352,6 +324,13 @@ public class ModelControl implements Controlador {
 			EObject object = iterator.next();
 			NLClass clas = getNLClass(object.eClass());
 			ret.add(new EObjectControl(object, clas));
+		}
+		for (EObject object : resource.getContents()) {
+			NLClass clas = getNLClass(object.eClass());
+			EObjectControl objectControl = new EObjectControl(object, clas);
+			if (!ret.contains(objectControl)) {
+				ret.add(objectControl);
+			}
 		}
 		return ret;
 	}
@@ -379,7 +358,7 @@ public class ModelControl implements Controlador {
 	}
 
 	public void removeObject(EObjectControl object) {
-		
+
 		if (object.getObject().eContainer() != null) {
 			EObjectControl container = getControl(object.getObject().eContainer());
 			NLReference reference = container.getNLFeature(object);

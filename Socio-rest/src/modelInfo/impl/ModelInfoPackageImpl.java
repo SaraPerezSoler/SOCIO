@@ -329,7 +329,7 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNLClass_Container() {
+	public EAttribute getNLClass_Abstract() {
 		return (EAttribute)nlClassEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -338,7 +338,7 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNLClass_Create() {
+	public EAttribute getNLClass_Container() {
 		return (EAttribute)nlClassEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -347,8 +347,17 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNLClass_Create() {
+		return (EAttribute)nlClassEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNLClass_Id() {
-		return (EReference)nlClassEClass.getEStructuralFeatures().get(5);
+		return (EReference)nlClassEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -357,7 +366,7 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 	 * @generated
 	 */
 	public EReference getNLClass_Features() {
-		return (EReference)nlClassEClass.getEStructuralFeatures().get(6);
+		return (EReference)nlClassEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -376,6 +385,24 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 	 */
 	public EAttribute getNLFeature_Ask() {
 		return (EAttribute)nlFeatureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNLFeature_LowerBound() {
+		return (EAttribute)nlFeatureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNLFeature_UpperBound() {
+		return (EAttribute)nlFeatureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -612,6 +639,7 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 		createEReference(nlClassEClass, NL_CLASS__CLASS);
 		createEAttribute(nlClassEClass, NL_CLASS__ROOT);
 		createEAttribute(nlClassEClass, NL_CLASS__INSTANTIABLE);
+		createEAttribute(nlClassEClass, NL_CLASS__ABSTRACT);
 		createEAttribute(nlClassEClass, NL_CLASS__CONTAINER);
 		createEAttribute(nlClassEClass, NL_CLASS__CREATE);
 		createEReference(nlClassEClass, NL_CLASS__ID);
@@ -619,6 +647,8 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 
 		nlFeatureEClass = createEClass(NL_FEATURE);
 		createEAttribute(nlFeatureEClass, NL_FEATURE__ASK);
+		createEAttribute(nlFeatureEClass, NL_FEATURE__LOWER_BOUND);
+		createEAttribute(nlFeatureEClass, NL_FEATURE__UPPER_BOUND);
 
 		nlAttributeEClass = createEClass(NL_ATTRIBUTE);
 		createEReference(nlAttributeEClass, NL_ATTRIBUTE__ATTRIBUTE);
@@ -708,6 +738,7 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 		initEReference(getNLClass_Class(), theEcorePackage.getEClass(), null, "class", null, 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNLClass_Root(), ecorePackage.getEBoolean(), "root", null, 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNLClass_Instantiable(), ecorePackage.getEBoolean(), "instantiable", null, 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNLClass_Abstract(), theEcorePackage.getEBoolean(), "abstract", "false", 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNLClass_Container(), theEcorePackage.getEBooleanObject(), "container", "null", 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNLClass_Create(), theEcorePackage.getEBooleanObject(), "create", "null", 1, 1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNLClass_Id(), this.getNLAttribute(), null, "id", null, 1, -1, NLClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -715,6 +746,8 @@ public class ModelInfoPackageImpl extends EPackageImpl implements ModelInfoPacka
 
 		initEClass(nlFeatureEClass, NLFeature.class, "NLFeature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNLFeature_Ask(), theEcorePackage.getEBooleanObject(), "ask", "null", 1, 1, NLFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNLFeature_LowerBound(), theEcorePackage.getEInt(), "lowerBound", "0", 1, 1, NLFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNLFeature_UpperBound(), theEcorePackage.getEInt(), "upperBound", "-1", 1, 1, NLFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nlAttributeEClass, NLAttribute.class, "NLAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNLAttribute_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 1, 1, NLAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

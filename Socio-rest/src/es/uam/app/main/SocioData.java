@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContext;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -33,10 +34,11 @@ import es.uam.app.main.commands.DataFormat;
 import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
-import es.uam.app.parser.rules.ExtractionRule;
-import es.uam.app.parser.rules.MetemodelRule;
+import es.uam.app.metamodel.parser.rules.ExtractionRule;
+import es.uam.app.metamodel.parser.rules.MetemodelRule;
 import es.uam.app.words.WordNet;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import modelInfo.NLModel;
 import modelInfo.impl.ModelInfoPackageImpl;
 import projectHistory.Action;
 import projectHistory.CreateMsg;
@@ -47,6 +49,7 @@ import socioProjects.Access;
 import socioProjects.BranchGroup;
 import socioProjects.Contribution;
 import socioProjects.MetamodelProject;
+import socioProjects.ModelProject;
 import socioProjects.Project;
 import socioProjects.SocioApp;
 import socioProjects.User;
@@ -70,8 +73,11 @@ public class SocioData implements DataFormat {
 	private Map<String, Map<Project, List<Msg>>> updated = new HashMap<>();
 	private Map<String, List<Consensus>> poll = new HashMap<>();
 	private Map<String, List<Consensus>> pollEnd = new HashMap<>();
-	
+	private static Map<String, NLModel> modelInfo = new HashMap<>();
+	private static Map<String, EPackage> metamodel = new HashMap<>();
+
 	private static SaveFileServer server = null;
+
 	public enum ProjectType {
 		METAMODEL, MODEL
 	}
@@ -108,8 +114,8 @@ public class SocioData implements DataFormat {
 	public static SocioData getSocioData(ServletContext context) throws Exception {
 		if (socioData == null) {
 			PATH = context.getInitParameter("project.files") + PROJECTS_PATH;
-			socioData = new SocioData(PATH);
 			ini();
+			socioData = new SocioData(PATH);
 			WordNet.ini(context);
 		}
 		if (server == null) {
@@ -117,6 +123,11 @@ public class SocioData implements DataFormat {
 			server = new SaveFileServer(url);
 		}
 		return socioData;
+	}
+
+	public static NLModel getMetamodel(String name) {
+		return modelInfo.get(name);
+
 	}
 
 	private static void ini() throws Exception {
@@ -133,6 +144,37 @@ public class SocioData implements DataFormat {
 
 		} catch (NoSuchMethodException | SecurityException e) {
 			throw e;
+		}
+
+		File f = new File(SocioData.PATH + "/Metamodel/");
+		if (!f.exists() || !f.isDirectory()) {
+			throw new FatalException("The metamodel directory does not exist");
+		}
+		for (File subfile : f.listFiles()) {
+//			if (subfile.getName().endsWith(".xmi")) {
+//				try {
+//					File ecoreFile = new File(subfile.getPath().replace(".xmi", ".ecore"));
+//					if (ecoreFile.exists()) {
+//						
+//						Resource meta = getResourceSet().getResource(URI.createURI(ecoreFile.getPath()), true);
+//						Resource nlmodel = getResourceSet().getResource(URI.createURI(subfile.getPath()), true);						
+//						
+//						EPackage pack= (EPackage) meta.getContents().get(0);
+//						NLModel model = (NLModel) nlmodel.getContents().get(0);
+//						
+//						modelInfo.put(model.getName(), model);
+//						metamodel.put(model.getName(), pack);						
+//					}
+//				} catch (Exception e) {
+//					System.out.println(e.getStackTrace().toString());
+//				}
+//			}
+			
+			if (subfile.getName().equalsIgnoreCase("ProjectPlaning.ecore")) {
+				NLModel model = CreateNLModel.getNlModel(subfile);
+				modelInfo.put(model.getName(), model);
+				resourceSet.getPackageRegistry().put(model.getModel().getNsURI(), model.getModel());
+			}
 		}
 
 	}
@@ -194,6 +236,7 @@ public class SocioData implements DataFormat {
 		for (Project p : remove) {
 			removeProject(p);
 		}
+
 		ProjectImpl.setLastId(lastid);
 		save(null);
 	}
@@ -477,8 +520,8 @@ public class SocioData implements DataFormat {
 		return aux;
 	}
 
-	public Project createProject(String name, User user, ProjectType type, Visibility constraint, Project father,
-			String branchGroup) throws Exception {
+	public Project createProject(String name, User user, ProjectType type, String mmodel, Visibility constraint,
+			Project father, String branchGroup) throws Exception {
 		Project aux = getProject(name, user);
 		if (aux != null) {
 			throw new InternalException("The project " + name + " from the user " + user.getNick() + " already exist");
@@ -488,7 +531,8 @@ public class SocioData implements DataFormat {
 		if (type == ProjectType.METAMODEL) {
 			p = SocioProjectsFactoryImpl.eINSTANCE.createMetamodelProject();
 		} else {
-			p = SocioProjectsFactoryImpl.eINSTANCE.createModelProjec();
+			p = SocioProjectsFactoryImpl.eINSTANCE.createModelProject();
+			((ModelProject) p).setNLModel(modelInfo.get(mmodel));
 		}
 
 		p.setName(name);
@@ -521,12 +565,14 @@ public class SocioData implements DataFormat {
 	public File createBranch(Project actual, User user, String branchName, String group) throws Exception {
 
 		ProjectType pt;
+		String mmodel = null;
 		if (actual instanceof MetamodelProject) {
 			pt = ProjectType.METAMODEL;
 		} else {
 			pt = ProjectType.MODEL;
+			mmodel = ((ModelProject) actual).getNLModel().getName();
 		}
-		Project p = createProject(branchName, user, pt, actual.getVisibility(), actual, group);
+		Project p = createProject(branchName, user, pt, mmodel, actual.getVisibility(), actual, group);
 		save(actual);
 		return p.getPng(new ArrayList<Action>());
 	}
@@ -555,7 +601,7 @@ public class SocioData implements DataFormat {
 			}
 		}
 		p.delete(this);
-		
+
 		save(null);
 	}
 
@@ -594,7 +640,8 @@ public class SocioData implements DataFormat {
 
 	/*---------------------------------------------------------------------------Decision maker-------------------------------------------------------------------------*/
 
-	public void startDecision(Project actual, String branchGroup, Date date, String messageId) throws InternalException {
+	public void startDecision(Project actual, String branchGroup, Date date, String messageId)
+			throws InternalException {
 		AdminChoice a = BranchDecisionFactoryImpl.eINSTANCE.createAdminChoice();
 		a.setStart(date);
 		a.setMessageId(messageId);
@@ -602,7 +649,8 @@ public class SocioData implements DataFormat {
 		this.save(actual);
 	}
 
-	public void startConsensus(Project actual, String text, List<User> users, double required, Date date, String messageId) throws InternalException {
+	public void startConsensus(Project actual, String text, List<User> users, double required, Date date,
+			String messageId) throws InternalException {
 
 		Consensus consensus = BranchDecisionFactoryImpl.eINSTANCE.createConsensus();
 		consensus.getUsers().addAll(users);
@@ -639,7 +687,7 @@ public class SocioData implements DataFormat {
 				List<Consensus> cons = poll.get(u.getChannel());
 				if (cons == null) {
 					cons = new ArrayList<>();
-					
+
 				}
 				if (!cons.contains(d)) {
 					cons.add(d);
@@ -649,8 +697,8 @@ public class SocioData implements DataFormat {
 			this.save(actual);
 		}
 	}
-	
-	public void endVoting(Project actual, Consensus consensus) throws Exception  {
+
+	public void endVoting(Project actual, Consensus consensus) throws Exception {
 		synchronized (consensus) {
 			ExceptionControl.geExceptionControl(null).printLogger("Here!");
 			consensus.calculateConsensus();
@@ -661,7 +709,7 @@ public class SocioData implements DataFormat {
 				String path = server.saveFile(ret, 100, TimeUnit.DAYS);
 				consensus.setFilePath(path);
 			}
-			
+
 			for (String channel : poll.keySet()) {
 				if (poll.get(channel).contains(consensus)) {
 					poll.get(channel).remove(consensus);
@@ -673,7 +721,7 @@ public class SocioData implements DataFormat {
 				pollEnd.put(actual.getAdmin().getChannel(), cons);
 			}
 			cons.add(consensus);
-			for (User u: getUsers(actual)) {
+			for (User u : getUsers(actual)) {
 				cons = pollEnd.get(u.getChannel());
 				if (cons == null) {
 					cons = new ArrayList<>();
@@ -683,7 +731,7 @@ public class SocioData implements DataFormat {
 					cons.add(consensus);
 				}
 			}
-			for (User u: consensus.getUsers()) {
+			for (User u : consensus.getUsers()) {
 				cons = pollEnd.get(u.getChannel());
 				if (cons == null) {
 					cons = new ArrayList<>();
@@ -694,9 +742,9 @@ public class SocioData implements DataFormat {
 				}
 			}
 		}
-		
+
 	}
-	
+
 	public List<Consensus> getAndRemoveEndConsensus(String channel) {
 		List<Consensus> ret = new ArrayList<>();
 		if (pollEnd.get(channel) != null) {

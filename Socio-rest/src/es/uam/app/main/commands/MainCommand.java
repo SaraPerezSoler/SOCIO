@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.StatusType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,11 +24,11 @@ import socioProjects.Project;
 import socioProjects.SocioProjectsFactory;
 import socioProjects.User;
 
-public abstract class MainCommand implements DataFormat{
+public abstract class MainCommand implements DataFormat {
 	private static final char[] validProjectCharacteres = { '_', '/' };
 	// protected ObjectMapper mapper = new ObjectMapper();
 
-	protected String validProjectName(String text) {
+	protected static String validProjectName(String text) {
 		return ValidText.validText(text, validProjectCharacteres);
 	}
 
@@ -108,7 +107,6 @@ public abstract class MainCommand implements DataFormat{
 			}
 		}
 
-		User user = SocioProjectsFactory.eINSTANCE.createUser();
 		String name = "";
 		if (!object.isNull("name")) {
 			name = object.getString("name");
@@ -122,14 +120,12 @@ public abstract class MainCommand implements DataFormat{
 		if (!object.isNull("id")) {
 			id = object.getLong("id");
 		}
-		user.setName(name);
-		user.setNick(nick);
-		user.setChannel(channel);
-		user.setId(id);
-		return SocioData.getSocioData(context).addUser(user);
+
+		return getUser(context, channel, nick, id, name);
 	}
 
-	protected Msg getMsg(ServletContext context, InputStream incomingData, String data) throws JSONException, Exception {
+	protected Msg getMsg(ServletContext context, InputStream incomingData, String data)
+			throws JSONException, Exception {
 		JSONObject object = readRequest(incomingData);
 		if (data == null) {
 			data = "message";
@@ -157,6 +153,16 @@ public abstract class MainCommand implements DataFormat{
 
 	}
 
+	protected static Msg getMsg(String id, String message, User user, long date, String text) {
+		Msg msg = ProjectHistoryFactory.eINSTANCE.createMsg();
+		msg.setId(id);
+		msg.setMsg(message);
+		msg.setUser(user);
+		msg.setDate(new Date(date));
+		msg.setText(text);
+		return msg;
+	}
+
 	protected Project getProject(ServletContext context, long id) throws Exception {
 		Project project = SocioData.getSocioData(context).getProject(id);
 		if (project == null) {
@@ -166,7 +172,8 @@ public abstract class MainCommand implements DataFormat{
 
 	}
 
-	protected Project getProject(ServletContext context, String channel, String user, String project) throws Exception {
+	protected static Project getProject(ServletContext context, String channel, String user, String project)
+			throws Exception {
 		User user1 = SocioData.getSocioData(context).getUser(user, channel);
 		Project p = SocioData.getSocioData(context).getProject(project, user1);
 		if (p == null) {
@@ -175,10 +182,21 @@ public abstract class MainCommand implements DataFormat{
 		return p;
 	}
 
+	protected static User getUser(ServletContext context, String channel, String nick, long id, String name)
+			throws InternalException, Exception {
+		User u = SocioProjectsFactory.eINSTANCE.createUser();
+		u.setChannel(channel);
+		u.setId(id);
+		u.setName(name);
+		u.setNick(nick);
+		u = SocioData.getSocioData(context).addUser(u);
+		return u;
+	}
+
 	protected Response sendTextException(InternalException e) {
 		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.FORBIDDEN).build();
 	}
-	
+
 	protected Response sendTextException(Exception e) {
 		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.INTERNAL_SERVER_ERROR).build();
 	}

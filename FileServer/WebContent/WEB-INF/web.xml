@@ -24,12 +24,12 @@
 	</servlet-mapping>
 
 	<!-- Windows Configuration -->
-	<!--<context-param> <param-name>path.files</param-name> <param-value>/FileServer</param-value> 
-		</context-param> -->
-
-	<!-- Linux Configuration -->
 	<context-param>
 		<param-name>path.files</param-name>
-		<param-value>/home/sara/FileServe</param-value>
+		<param-value>/FileServer</param-value>
 	</context-param>
+
+	<!-- Linux Configuration -->
+	<!--<context-param> <param-name>path.files</param-name> <param-value>/home/sara/FileServe</param-value> 
+		</context-param> -->
 </web-app>

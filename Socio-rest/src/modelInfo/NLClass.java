@@ -2,8 +2,6 @@
  */
 package modelInfo;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *   <li>{@link modelInfo.NLClass#getClass_ <em>Class</em>}</li>
  *   <li>{@link modelInfo.NLClass#isRoot <em>Root</em>}</li>
  *   <li>{@link modelInfo.NLClass#isInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link modelInfo.NLClass#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link modelInfo.NLClass#getContainer <em>Container</em>}</li>
  *   <li>{@link modelInfo.NLClass#getCreate <em>Create</em>}</li>
  *   <li>{@link modelInfo.NLClass#getId <em>Id</em>}</li>
@@ -110,6 +109,33 @@ public interface NLClass extends NLElement {
 	 * @generated
 	 */
 	void setInstantiable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Abstract</em>' attribute.
+	 * @see #setAbstract(boolean)
+	 * @see modelInfo.ModelInfoPackage#getNLClass_Abstract()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isAbstract();
+
+	/**
+	 * Sets the value of the '{@link modelInfo.NLClass#isAbstract <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Abstract</em>' attribute.
+	 * @see #isAbstract()
+	 * @generated
+	 */
+	void setAbstract(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Container</b></em>' attribute.

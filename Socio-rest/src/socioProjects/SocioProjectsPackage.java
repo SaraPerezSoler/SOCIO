@@ -421,14 +421,14 @@ public interface SocioProjectsPackage extends EPackage {
 	int PROJECT_OPERATION_COUNT = 20;
 
 	/**
-	 * The meta object id for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Projec</em>}' class.
+	 * The meta object id for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Project</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see socioProjects.impl.ModelProjectImpl
-	 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProjec()
+	 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProject()
 	 * @generated
 	 */
-	int MODEL_PROJEC = 2;
+	int MODEL_PROJECT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -437,7 +437,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__NAME = PROJECT__NAME;
+	int MODEL_PROJECT__NAME = PROJECT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -446,7 +446,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__ID = PROJECT__ID;
+	int MODEL_PROJECT__ID = PROJECT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Open</b></em>' attribute.
@@ -455,7 +455,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__OPEN = PROJECT__OPEN;
+	int MODEL_PROJECT__OPEN = PROJECT__OPEN;
 
 	/**
 	 * The feature id for the '<em><b>History</b></em>' containment reference.
@@ -464,7 +464,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__HISTORY = PROJECT__HISTORY;
+	int MODEL_PROJECT__HISTORY = PROJECT__HISTORY;
 
 	/**
 	 * The feature id for the '<em><b>Remove</b></em>' containment reference.
@@ -473,7 +473,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__REMOVE = PROJECT__REMOVE;
+	int MODEL_PROJECT__REMOVE = PROJECT__REMOVE;
 
 	/**
 	 * The feature id for the '<em><b>Model</b></em>' reference.
@@ -482,7 +482,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__MODEL = PROJECT__MODEL;
+	int MODEL_PROJECT__MODEL = PROJECT__MODEL;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -491,7 +491,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__VISIBILITY = PROJECT__VISIBILITY;
+	int MODEL_PROJECT__VISIBILITY = PROJECT__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Admin</b></em>' reference.
@@ -500,7 +500,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__ADMIN = PROJECT__ADMIN;
+	int MODEL_PROJECT__ADMIN = PROJECT__ADMIN;
 
 	/**
 	 * The feature id for the '<em><b>Branch Is Locking</b></em>' attribute.
@@ -509,7 +509,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__BRANCH_IS_LOCKING = PROJECT__BRANCH_IS_LOCKING;
+	int MODEL_PROJECT__BRANCH_IS_LOCKING = PROJECT__BRANCH_IS_LOCKING;
 
 	/**
 	 * The feature id for the '<em><b>Branch</b></em>' attribute.
@@ -518,7 +518,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__BRANCH = PROJECT__BRANCH;
+	int MODEL_PROJECT__BRANCH = PROJECT__BRANCH;
 
 	/**
 	 * The feature id for the '<em><b>Branchs</b></em>' containment reference list.
@@ -527,7 +527,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__BRANCHS = PROJECT__BRANCHS;
+	int MODEL_PROJECT__BRANCHS = PROJECT__BRANCHS;
 
 	/**
 	 * The feature id for the '<em><b>Branch Group</b></em>' reference.
@@ -536,16 +536,25 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC__BRANCH_GROUP = PROJECT__BRANCH_GROUP;
+	int MODEL_PROJECT__BRANCH_GROUP = PROJECT__BRANCH_GROUP;
 
 	/**
-	 * The number of structural features of the '<em>Model Projec</em>' class.
+	 * The feature id for the '<em><b>Metamodel Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC_FEATURE_COUNT = PROJECT_FEATURE_COUNT + 0;
+	int MODEL_PROJECT__METAMODEL_NAME = PROJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Model Project</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_PROJECT_FEATURE_COUNT = PROJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Path</em>' operation.
@@ -554,7 +563,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_PATH = PROJECT___GET_PATH;
+	int MODEL_PROJECT___GET_PATH = PROJECT___GET_PATH;
 
 	/**
 	 * The operation id for the '<em>Execute</em>' operation.
@@ -563,7 +572,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___EXECUTE__MSG = PROJECT___EXECUTE__MSG;
+	int MODEL_PROJECT___EXECUTE__MSG = PROJECT___EXECUTE__MSG;
 
 	/**
 	 * The operation id for the '<em>Undo</em>' operation.
@@ -572,7 +581,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___UNDO = PROJECT___UNDO;
+	int MODEL_PROJECT___UNDO = PROJECT___UNDO;
 
 	/**
 	 * The operation id for the '<em>Redo</em>' operation.
@@ -581,7 +590,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___REDO = PROJECT___REDO;
+	int MODEL_PROJECT___REDO = PROJECT___REDO;
 
 	/**
 	 * The operation id for the '<em>Get History Msg</em>' operation.
@@ -590,7 +599,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_MSG = PROJECT___GET_HISTORY_MSG;
+	int MODEL_PROJECT___GET_HISTORY_MSG = PROJECT___GET_HISTORY_MSG;
 
 	/**
 	 * The operation id for the '<em>Get History Msg</em>' operation.
@@ -599,7 +608,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_MSG__DATE_INT = PROJECT___GET_HISTORY_MSG__DATE_INT;
+	int MODEL_PROJECT___GET_HISTORY_MSG__DATE_INT = PROJECT___GET_HISTORY_MSG__DATE_INT;
 
 	/**
 	 * The operation id for the '<em>Get History Msg</em>' operation.
@@ -608,7 +617,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_MSG__DATE_DATE_INT = PROJECT___GET_HISTORY_MSG__DATE_DATE_INT;
+	int MODEL_PROJECT___GET_HISTORY_MSG__DATE_DATE_INT = PROJECT___GET_HISTORY_MSG__DATE_DATE_INT;
 
 	/**
 	 * The operation id for the '<em>Get History For User</em>' operation.
@@ -617,7 +626,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_FOR_USER__USER = PROJECT___GET_HISTORY_FOR_USER__USER;
+	int MODEL_PROJECT___GET_HISTORY_FOR_USER__USER = PROJECT___GET_HISTORY_FOR_USER__USER;
 
 	/**
 	 * The operation id for the '<em>Get History For Element</em>' operation.
@@ -626,7 +635,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_FOR_ELEMENT__STRING = PROJECT___GET_HISTORY_FOR_ELEMENT__STRING;
+	int MODEL_PROJECT___GET_HISTORY_FOR_ELEMENT__STRING = PROJECT___GET_HISTORY_FOR_ELEMENT__STRING;
 
 	/**
 	 * The operation id for the '<em>Get History For Action</em>' operation.
@@ -635,7 +644,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_HISTORY_FOR_ACTION__STRING = PROJECT___GET_HISTORY_FOR_ACTION__STRING;
+	int MODEL_PROJECT___GET_HISTORY_FOR_ACTION__STRING = PROJECT___GET_HISTORY_FOR_ACTION__STRING;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg</em>' operation.
@@ -644,7 +653,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_MSG = PROJECT___GET_STATISTICS_USER_MSG;
+	int MODEL_PROJECT___GET_STATISTICS_USER_MSG = PROJECT___GET_STATISTICS_USER_MSG;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg</em>' operation.
@@ -653,7 +662,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_MSG__USER = PROJECT___GET_STATISTICS_USER_MSG__USER;
+	int MODEL_PROJECT___GET_STATISTICS_USER_MSG__USER = PROJECT___GET_STATISTICS_USER_MSG__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action</em>' operation.
@@ -662,7 +671,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_ACTION = PROJECT___GET_STATISTICS_USER_ACTION;
+	int MODEL_PROJECT___GET_STATISTICS_USER_ACTION = PROJECT___GET_STATISTICS_USER_ACTION;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action</em>' operation.
@@ -671,7 +680,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_ACTION__USER = PROJECT___GET_STATISTICS_USER_ACTION__USER;
+	int MODEL_PROJECT___GET_STATISTICS_USER_ACTION__USER = PROJECT___GET_STATISTICS_USER_ACTION__USER;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Msg Abs</em>' operation.
@@ -680,7 +689,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_MSG_ABS = PROJECT___GET_STATISTICS_USER_MSG_ABS;
+	int MODEL_PROJECT___GET_STATISTICS_USER_MSG_ABS = PROJECT___GET_STATISTICS_USER_MSG_ABS;
 
 	/**
 	 * The operation id for the '<em>Get Statistics User Action Abs</em>' operation.
@@ -689,7 +698,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_USER_ACTION_ABS = PROJECT___GET_STATISTICS_USER_ACTION_ABS;
+	int MODEL_PROJECT___GET_STATISTICS_USER_ACTION_ABS = PROJECT___GET_STATISTICS_USER_ACTION_ABS;
 
 	/**
 	 * The operation id for the '<em>Get Statistics Actions</em>' operation.
@@ -698,7 +707,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___GET_STATISTICS_ACTIONS = PROJECT___GET_STATISTICS_ACTIONS;
+	int MODEL_PROJECT___GET_STATISTICS_ACTIONS = PROJECT___GET_STATISTICS_ACTIONS;
 
 	/**
 	 * The operation id for the '<em>Percent Of Authorship</em>' operation.
@@ -707,7 +716,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___PERCENT_OF_AUTHORSHIP = PROJECT___PERCENT_OF_AUTHORSHIP;
+	int MODEL_PROJECT___PERCENT_OF_AUTHORSHIP = PROJECT___PERCENT_OF_AUTHORSHIP;
 
 	/**
 	 * The operation id for the '<em>Validate</em>' operation.
@@ -716,7 +725,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___VALIDATE = PROJECT___VALIDATE;
+	int MODEL_PROJECT___VALIDATE = PROJECT___VALIDATE;
 
 	/**
 	 * The operation id for the '<em>Parse Sentence</em>' operation.
@@ -725,16 +734,16 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC___PARSE_SENTENCE__STRING = PROJECT_OPERATION_COUNT + 0;
+	int MODEL_PROJECT___PARSE_SENTENCE__STRING = PROJECT_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Model Projec</em>' class.
+	 * The number of operations of the '<em>Model Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_PROJEC_OPERATION_COUNT = PROJECT_OPERATION_COUNT + 1;
+	int MODEL_PROJECT_OPERATION_COUNT = PROJECT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link socioProjects.impl.MetamodelProjectImpl <em>Metamodel Project</em>}' class.
@@ -1741,14 +1750,25 @@ public interface SocioProjectsPackage extends EPackage {
 	EOperation getProject__Validate();
 
 	/**
-	 * Returns the meta object for class '{@link socioProjects.ModelProject <em>Model Projec</em>}'.
+	 * Returns the meta object for class '{@link socioProjects.ModelProject <em>Model Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Model Projec</em>'.
+	 * @return the meta object for class '<em>Model Project</em>'.
 	 * @see socioProjects.ModelProject
 	 * @generated
 	 */
-	EClass getModelProjec();
+	EClass getModelProject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link socioProjects.ModelProject#getMetamodelName <em>Metamodel Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Metamodel Name</em>'.
+	 * @see socioProjects.ModelProject#getMetamodelName()
+	 * @see #getModelProject()
+	 * @generated
+	 */
+	EAttribute getModelProject_MetamodelName();
 
 	/**
 	 * Returns the meta object for the '{@link socioProjects.ModelProject#parseSentence(java.lang.String) <em>Parse Sentence</em>}' operation.
@@ -1758,7 +1778,7 @@ public interface SocioProjectsPackage extends EPackage {
 	 * @see socioProjects.ModelProject#parseSentence(java.lang.String)
 	 * @generated
 	 */
-	EOperation getModelProjec__ParseSentence__String();
+	EOperation getModelProject__ParseSentence__String();
 
 	/**
 	 * Returns the meta object for class '{@link socioProjects.MetamodelProject <em>Metamodel Project</em>}'.
@@ -2390,14 +2410,22 @@ public interface SocioProjectsPackage extends EPackage {
 		EOperation PROJECT___VALIDATE = eINSTANCE.getProject__Validate();
 
 		/**
-		 * The meta object literal for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Projec</em>}' class.
+		 * The meta object literal for the '{@link socioProjects.impl.ModelProjectImpl <em>Model Project</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see socioProjects.impl.ModelProjectImpl
-		 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProjec()
+		 * @see socioProjects.impl.SocioProjectsPackageImpl#getModelProject()
 		 * @generated
 		 */
-		EClass MODEL_PROJEC = eINSTANCE.getModelProjec();
+		EClass MODEL_PROJECT = eINSTANCE.getModelProject();
+
+		/**
+		 * The meta object literal for the '<em><b>Metamodel Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MODEL_PROJECT__METAMODEL_NAME = eINSTANCE.getModelProject_MetamodelName();
 
 		/**
 		 * The meta object literal for the '<em><b>Parse Sentence</b></em>' operation.
@@ -2405,7 +2433,7 @@ public interface SocioProjectsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL_PROJEC___PARSE_SENTENCE__STRING = eINSTANCE.getModelProjec__ParseSentence__String();
+		EOperation MODEL_PROJECT___PARSE_SENTENCE__STRING = eINSTANCE.getModelProject__ParseSentence__String();
 
 		/**
 		 * The meta object literal for the '{@link socioProjects.impl.MetamodelProjectImpl <em>Metamodel Project</em>}' class.

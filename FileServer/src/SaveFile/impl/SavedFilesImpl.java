@@ -273,6 +273,39 @@ public class SavedFilesImpl extends MinimalEObjectImpl.Container implements Save
 		save();
 		return id;
 	}
+	
+	@Override
+	public String addSecondFile(File file, String completeName, long duration, SaveFile.TimeUnit unit) {
+		
+		String id = java.util.UUID.randomUUID().toString();
+		String ext = FilenameUtils.getExtension(completeName);
+		String name = completeName.replaceAll("." + ext, "")+id;
+		
+		String name2=name;
+		File f = new File(PATH + "/" + name2 + "." + ext);
+		int i = 1;
+		
+		while (f.exists()) {
+			name2 = name + i;
+			f = new File(PATH + "/" + name2 + "." + ext);
+			i++;
+		}
+		name = name2;
+		file.renameTo(f);
+		// Guardamos el fichero en nuesta base de datos
+		
+
+		SaveFile.File newfile = SaveFileFactory.eINSTANCE.createFile();
+		newfile.setName(name);
+		newfile.setExtension(ext);
+		newfile.addTimer(duration, unit);
+		newfile.setCreateAt(new Date());
+		getFiles().put(id, newfile);
+		new TimerFile(id, this, TimeUnit.valueOf(unit.getLiteral()), duration);
+		save();
+		return name+"."+ext;
+	}
+
 
 	public File getFile(String key) {
 		SaveFile.File file = getFiles().get(key);
@@ -284,5 +317,6 @@ public class SavedFilesImpl extends MinimalEObjectImpl.Container implements Save
 		}
 		return null;
 	}
+
 
 } // SavedFilesImpl

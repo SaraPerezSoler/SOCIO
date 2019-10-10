@@ -32,14 +32,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link modelInfo.impl.NLClassImpl#getClass_ <em>Class</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#isRoot <em>Root</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#isInstantiable
- * <em>Instantiable</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#getContainer <em>Container</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#getCreate <em>Create</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#getId <em>Id</em>}</li>
- * <li>{@link modelInfo.impl.NLClassImpl#getFeatures <em>Features</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#isRoot <em>Root</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#isInstantiable <em>Instantiable</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#getCreate <em>Create</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#getId <em>Id</em>}</li>
+ *   <li>{@link modelInfo.impl.NLClassImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @generated
@@ -76,9 +76,8 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	protected boolean root = ROOT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isInstantiable() <em>Instantiable</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isInstantiable()
 	 * @generated
 	 * @ordered
@@ -86,14 +85,33 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	protected static final boolean INSTANTIABLE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isInstantiable() <em>Instantiable</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isInstantiable()
 	 * @generated
 	 * @ordered
 	 */
 	protected boolean instantiable = INSTANTIABLE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getContainer() <em>Container</em>}'
@@ -106,9 +124,8 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	protected static final Boolean CONTAINER_EDEFAULT = null; 
 
 	/**
-	 * The cached value of the '{@link #getContainer() <em>Container</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getContainer() <em>Container</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getContainer()
 	 * @generated
 	 * @ordered
@@ -128,7 +145,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	/**
 	 * The cached value of the '{@link #getCreate() <em>Create</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getCreate()
 	 * @generated
 	 * @ordered
@@ -136,9 +152,8 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	protected Boolean create = CREATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -146,9 +161,8 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 	protected EList<NLAttribute> id;
 
 	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFeatures()
 	 * @generated
 	 * @ordered
@@ -157,7 +171,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NLClassImpl() {
@@ -166,7 +179,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,25 +188,23 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getClass_() {
 		if (class_ != null && class_.eIsProxy()) {
-			InternalEObject oldClass = (InternalEObject) class_;
-			class_ = (EClass) eResolveProxy(oldClass);
+			InternalEObject oldClass = (InternalEObject)class_;
+			class_ = (EClass)eResolveProxy(oldClass);
 			if (class_ != oldClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelInfoPackage.NL_CLASS__CLASS,
-							oldClass, class_));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelInfoPackage.NL_CLASS__CLASS, oldClass, class_));
 			}
 		}
 		return class_;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass basicGetClass() {
@@ -203,7 +213,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setClass(EClass newClass) {
@@ -215,7 +224,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isRoot() {
@@ -224,7 +232,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRoot(boolean newRoot) {
@@ -236,7 +243,6 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isInstantiable() {
@@ -245,20 +251,38 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInstantiable(boolean newInstantiable) {
 		boolean oldInstantiable = instantiable;
 		instantiable = newInstantiable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__INSTANTIABLE,
-					oldInstantiable, instantiable));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__INSTANTIABLE, oldInstantiable, instantiable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAbstract() {
+		return abstract_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAbstract(boolean newAbstract) {
+		boolean oldAbstract = abstract_;
+		abstract_ = newAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Boolean getContainer() {
@@ -267,20 +291,17 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setContainer(Boolean newContainer) {
 		Boolean oldContainer = container;
 		container = newContainer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__CONTAINER, oldContainer,
-					container));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__CONTAINER, oldContainer, container));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Boolean getCreate() {
@@ -289,20 +310,17 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCreate(Boolean newCreate) {
 		Boolean oldCreate = create;
 		create = newCreate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__CREATE, oldCreate,
-					create));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelInfoPackage.NL_CLASS__CREATE, oldCreate, create));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NLAttribute> getId() {
@@ -314,171 +332,173 @@ public class NLClassImpl extends NLElementImpl implements NLClass {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NLFeature> getFeatures() {
 		if (features == null) {
-			features = new EObjectContainmentEList<NLFeature>(NLFeature.class, this,
-					ModelInfoPackage.NL_CLASS__FEATURES);
+			features = new EObjectContainmentEList<NLFeature>(NLFeature.class, this, ModelInfoPackage.NL_CLASS__FEATURES);
 		}
 		return features;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelInfoPackage.NL_CLASS__ID:
-			return ((InternalEList<?>) getId()).basicRemove(otherEnd, msgs);
-		case ModelInfoPackage.NL_CLASS__FEATURES:
-			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
+			case ModelInfoPackage.NL_CLASS__ID:
+				return ((InternalEList<?>)getId()).basicRemove(otherEnd, msgs);
+			case ModelInfoPackage.NL_CLASS__FEATURES:
+				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ModelInfoPackage.NL_CLASS__CLASS:
-			if (resolve)
-				return getClass_();
-			return basicGetClass();
-		case ModelInfoPackage.NL_CLASS__ROOT:
-			return isRoot();
-		case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
-			return isInstantiable();
-		case ModelInfoPackage.NL_CLASS__CONTAINER:
-			return getContainer();
-		case ModelInfoPackage.NL_CLASS__CREATE:
-			return getCreate();
-		case ModelInfoPackage.NL_CLASS__ID:
-			return getId();
-		case ModelInfoPackage.NL_CLASS__FEATURES:
-			return getFeatures();
+			case ModelInfoPackage.NL_CLASS__CLASS:
+				if (resolve) return getClass_();
+				return basicGetClass();
+			case ModelInfoPackage.NL_CLASS__ROOT:
+				return isRoot();
+			case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
+				return isInstantiable();
+			case ModelInfoPackage.NL_CLASS__ABSTRACT:
+				return isAbstract();
+			case ModelInfoPackage.NL_CLASS__CONTAINER:
+				return getContainer();
+			case ModelInfoPackage.NL_CLASS__CREATE:
+				return getCreate();
+			case ModelInfoPackage.NL_CLASS__ID:
+				return getId();
+			case ModelInfoPackage.NL_CLASS__FEATURES:
+				return getFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ModelInfoPackage.NL_CLASS__CLASS:
-			setClass((EClass) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__ROOT:
-			setRoot((Boolean) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
-			setInstantiable((Boolean) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__CONTAINER:
-			setContainer((Boolean) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__CREATE:
-			setCreate((Boolean) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__ID:
-			getId().clear();
-			getId().addAll((Collection<? extends NLAttribute>) newValue);
-			return;
-		case ModelInfoPackage.NL_CLASS__FEATURES:
-			getFeatures().clear();
-			getFeatures().addAll((Collection<? extends NLFeature>) newValue);
-			return;
+			case ModelInfoPackage.NL_CLASS__CLASS:
+				setClass((EClass)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__ROOT:
+				setRoot((Boolean)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
+				setInstantiable((Boolean)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__ABSTRACT:
+				setAbstract((Boolean)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__CONTAINER:
+				setContainer((Boolean)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__CREATE:
+				setCreate((Boolean)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__ID:
+				getId().clear();
+				getId().addAll((Collection<? extends NLAttribute>)newValue);
+				return;
+			case ModelInfoPackage.NL_CLASS__FEATURES:
+				getFeatures().clear();
+				getFeatures().addAll((Collection<? extends NLFeature>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ModelInfoPackage.NL_CLASS__CLASS:
-			setClass((EClass) null);
-			return;
-		case ModelInfoPackage.NL_CLASS__ROOT:
-			setRoot(ROOT_EDEFAULT);
-			return;
-		case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
-			setInstantiable(INSTANTIABLE_EDEFAULT);
-			return;
-		case ModelInfoPackage.NL_CLASS__CONTAINER:
-			setContainer(CONTAINER_EDEFAULT);
-			return;
-		case ModelInfoPackage.NL_CLASS__CREATE:
-			setCreate(CREATE_EDEFAULT);
-			return;
-		case ModelInfoPackage.NL_CLASS__ID:
-			getId().clear();
-			return;
-		case ModelInfoPackage.NL_CLASS__FEATURES:
-			getFeatures().clear();
-			return;
+			case ModelInfoPackage.NL_CLASS__CLASS:
+				setClass((EClass)null);
+				return;
+			case ModelInfoPackage.NL_CLASS__ROOT:
+				setRoot(ROOT_EDEFAULT);
+				return;
+			case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
+				setInstantiable(INSTANTIABLE_EDEFAULT);
+				return;
+			case ModelInfoPackage.NL_CLASS__ABSTRACT:
+				setAbstract(ABSTRACT_EDEFAULT);
+				return;
+			case ModelInfoPackage.NL_CLASS__CONTAINER:
+				setContainer(CONTAINER_EDEFAULT);
+				return;
+			case ModelInfoPackage.NL_CLASS__CREATE:
+				setCreate(CREATE_EDEFAULT);
+				return;
+			case ModelInfoPackage.NL_CLASS__ID:
+				getId().clear();
+				return;
+			case ModelInfoPackage.NL_CLASS__FEATURES:
+				getFeatures().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ModelInfoPackage.NL_CLASS__CLASS:
-			return class_ != null;
-		case ModelInfoPackage.NL_CLASS__ROOT:
-			return root != ROOT_EDEFAULT;
-		case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
-			return instantiable != INSTANTIABLE_EDEFAULT;
-		case ModelInfoPackage.NL_CLASS__CONTAINER:
-			return CONTAINER_EDEFAULT == null ? container != null : !CONTAINER_EDEFAULT.equals(container);
-		case ModelInfoPackage.NL_CLASS__CREATE:
-			return CREATE_EDEFAULT == null ? create != null : !CREATE_EDEFAULT.equals(create);
-		case ModelInfoPackage.NL_CLASS__ID:
-			return id != null && !id.isEmpty();
-		case ModelInfoPackage.NL_CLASS__FEATURES:
-			return features != null && !features.isEmpty();
+			case ModelInfoPackage.NL_CLASS__CLASS:
+				return class_ != null;
+			case ModelInfoPackage.NL_CLASS__ROOT:
+				return root != ROOT_EDEFAULT;
+			case ModelInfoPackage.NL_CLASS__INSTANTIABLE:
+				return instantiable != INSTANTIABLE_EDEFAULT;
+			case ModelInfoPackage.NL_CLASS__ABSTRACT:
+				return abstract_ != ABSTRACT_EDEFAULT;
+			case ModelInfoPackage.NL_CLASS__CONTAINER:
+				return CONTAINER_EDEFAULT == null ? container != null : !CONTAINER_EDEFAULT.equals(container);
+			case ModelInfoPackage.NL_CLASS__CREATE:
+				return CREATE_EDEFAULT == null ? create != null : !CREATE_EDEFAULT.equals(create);
+			case ModelInfoPackage.NL_CLASS__ID:
+				return id != null && !id.isEmpty();
+			case ModelInfoPackage.NL_CLASS__FEATURES:
+				return features != null && !features.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (root: ");
 		result.append(root);
 		result.append(", instantiable: ");
 		result.append(instantiable);
+		result.append(", abstract: ");
+		result.append(abstract_);
 		result.append(", container: ");
 		result.append(container);
 		result.append(", create: ");

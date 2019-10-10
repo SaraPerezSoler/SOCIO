@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 
 import es.uam.app.actions.metamodels.ChangeRefForAttr;
 import es.uam.app.actions.metamodels.CreateAttribute;
-import es.uam.app.parser.NP;
-import es.uam.app.parser.WordConfigure;
+import es.uam.app.metamodel.parser.NP;
+import es.uam.app.metamodel.parser.WordConfigure;
 import es.uam.app.projects.emf.metamodel.AttributeControl;
 import es.uam.app.projects.emf.metamodel.ClassControl;
 import es.uam.app.projects.emf.metamodel.Feature;

@@ -17,10 +17,16 @@ public class Help extends MainCommand {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response help() {
+		JSONObject object= helpS();
+		return Response.ok(object.toString(), MediaType.APPLICATION_JSON).build();
+	}
+	
+	public static JSONObject helpS() {
 		JSONObject object= new JSONObject();
 		object.put("text", HELP_MSG);
 		object.put("url", HELP);
-		return Response.ok(object.toString(), MediaType.APPLICATION_JSON).build();
+		return object;
 	}
+
 
 }

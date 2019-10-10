@@ -17,45 +17,50 @@
 		<description>JAX-RS Tools Generated</description>
 		<servlet-name>Socio</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>es.uam.app.main.commands</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Socio</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	<!-- Windows Configuration -->
-	<!--<context-param> <param-name>project.files</param-name> <param-value>/Socio</param-value> 
-		</context-param> <context-param> <param-name>log.file</param-name> <param-value>log.txt</param-value> 
-		</context-param> <context-param> <param-name>wordNet.file</param-name> <param-value>/Socio/file_properties.xml</param-value> 
-		</context-param> <context-param> <param-name>wordNet.dict</param-name> <param-value>/Socio/dict</param-value> 
-		</context-param> -->
-
-
-
-	<!-- Linux Configuration -->
+	<context-param>
+		<param-name>project.files</param-name>
+		<param-value>/Socio</param-value>
+	</context-param>
 	<context-param>
 		<param-name>log.file</param-name>
 		<param-value>log.txt</param-value>
 	</context-param>
 	<context-param>
-		<param-name>project.files</param-name>
-		<param-value>/home/sara/Socio</param-value>
-	</context-param>
-	<context-param>
 		<param-name>wordNet.file</param-name>
-		<param-value>/home/sara/Socio/file_properties.xml</param-value>
+		<param-value>/Socio/file_properties.xml</param-value>
 	</context-param>
 	<context-param>
 		<param-name>wordNet.dict</param-name>
-		<param-value>/home/sara/Socio/dict</param-value>
+		<param-value>/Socio/dict</param-value>
 	</context-param>
+
+
+
+	<!-- Linux Configuration -->
+	<!--<context-param> <param-name>log.file</param-name> <param-value>log.txt</param-value> 
+		</context-param> <context-param> <param-name>project.files</param-name> <param-value>/home/sara/Socio</param-value> 
+		</context-param> <context-param> <param-name>wordNet.file</param-name> <param-value>/home/sara/Socio/file_properties.xml</param-value> 
+		</context-param> <context-param> <param-name>wordNet.dict</param-name> <param-value>/home/sara/Socio/dict</param-value> 
+		</context-param> -->
+
+	<!--<context-param> <param-name>fileServer.url</param-name> <param-value>http://dimo1.ii.uam.es:8080/FileServer/file/</param-value> 
+		</context-param> -->
 
 	<context-param>
 		<param-name>fileServer.url</param-name>
-		<param-value>http://dimo1.ii.uam.es:8080/FileServer/file/</param-value>
+		<param-value>http://miso1.ii.uam.es:8080/FileServer/file/</param-value>
 	</context-param>
-
-	<!--<context-param> <param-name>fileServer.url</param-name> <param-value>http://miso1.ii.uam.es:8080/FileServer/file/</param-value> 
-		</context-param> -->
 
 </web-app>

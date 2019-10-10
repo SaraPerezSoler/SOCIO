@@ -13,11 +13,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.socio.client.beans.Message;
+
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Msg;
 import socioProjects.Project;
+import socioProjects.User;
 
 @Path("/editor")
 public class ProjectEditor extends MainCommand {
@@ -60,23 +63,36 @@ public class ProjectEditor extends MainCommand {
 
 	private Response editProject(ServletContext context, Project actual, InputStream incomingData) throws Exception {
 		Msg msg = getMsg(context, incomingData, null);
+		File png = editProject(context, actual, msg);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+	
+	public static File editProject(ServletContext context, Project actual, Msg msg) throws Exception {
+
 		if (msg.hasText()) {
 			if (msg.getUser().canEdit(actual)) {
 				File png = SocioData.getSocioData(context).execute(actual, msg);
-				return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-						.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+				return png;
 			} else {
 				throw new InternalException("You don't have editing permissions in this project.");
 			}
 		} else {
 			if (msg.getUser().canRead(actual)) {
 				File png = actual.getPng(null);
-				return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-						.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+				return png;
 			} else {
 				throw new InternalException("You don't have reading permissions in this project.");
 			}
 		}
+	}
+	
+	public static File editProject(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
+		return editProject(context, actual, msg);
 	}
 
 	@POST
@@ -118,15 +134,29 @@ public class ProjectEditor extends MainCommand {
 
 	private Response redo(@Context ServletContext context, InputStream incomingData, Project actual) throws Exception {
 		Msg msg = getMsg(context, incomingData, null);
+		File png = redo(context, actual, msg);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+
+	public static File redo(@Context ServletContext context, Project actual, Msg msg) throws Exception {
+
 		if (!(msg.getUser().canEdit(actual))) {
 			throw new InternalException("You don't have editing permissions in this project.");
 		}
 
 		File png = SocioData.getSocioData(context).redo(actual, msg);
-		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+		return png;
+		
 	}
+	public static File redo(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
 
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
+		return redo(context, actual, msg);
+	}
+	
 	@POST
 	@Path("/undo/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -164,15 +194,30 @@ public class ProjectEditor extends MainCommand {
 
 	}
 
-	private Response undo(@Context ServletContext context, InputStream incomingData, Project actual) throws Exception {
+	private Response undo(ServletContext context, InputStream incomingData, Project actual) throws Exception {
 
 		Msg msg = getMsg(context, incomingData, null);
+		SocioData.getSocioData(context).addUser(msg.getUser());
+		File png = undo(context, actual, msg);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+	
+	public static File undo(ServletContext context, Project actual, Msg msg) throws Exception {
+
 		SocioData.getSocioData(context).addUser(msg.getUser());
 		if (!(msg.getUser().canEdit(actual))) {
 			throw new InternalException("You don't have editing permissions in this project.");
 		}
 		File png = SocioData.getSocioData(context).undo(actual, msg);
-		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+		return png;
+		
+	}
+	public static File undo(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
+		return undo(context, actual, msg);
 	}
 }

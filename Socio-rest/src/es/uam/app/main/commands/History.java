@@ -26,20 +26,19 @@ import socioProjects.User;
 import socioProjects.impl.ProjectImpl;
 
 @Path("/history")
-public class History extends MainCommand implements DataFormat{
+public class History extends MainCommand implements DataFormat {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
-	public Response history(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			{
+	public Response history(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id) {
 		try {
 			Project actual = getProject(context, id);
 			return history(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("history: ", e);
 			return sendTextException(e);
 		}
@@ -50,13 +49,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("/{channel}/{user}/{project}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 	public Response history(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project){
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return history(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("history: ", e);
 			return sendTextException(e);
 		}
@@ -65,7 +65,7 @@ public class History extends MainCommand implements DataFormat{
 	public static final String ERROR_MENSAGE = "I don't fine history for this parametres:";
 	public static final String ERROR_MENSAGE2_START = "The project ";
 	public static final String ERROR_MENSAGE2_END = " is empty.";
-	private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
 
 	private Response history(@Context ServletContext context, InputStream incomingData, Project actual)
 			throws Exception {
@@ -75,7 +75,6 @@ public class History extends MainCommand implements DataFormat{
 			throw new InternalException("You are not authorised to do this action.");
 		}
 
-		String error;
 		long dateStart = getLong(object, "startDate");
 		long dateEnd = getLong(object, "endDate");
 		String action = getString(object, "action");
@@ -83,9 +82,22 @@ public class History extends MainCommand implements DataFormat{
 		User user2Search;
 		try {
 			user2Search = getUser(context, object, "userToSearch");
-		}catch (InternalException e) {
-			user2Search=null;
+		} catch (InternalException e) {
+			user2Search = null;
 		}
+		JSONObject history = history(context, user, user2Search, dateStart, dateEnd, action, element, actual);
+
+		return Response.ok(history.toString(), MediaType.APPLICATION_JSON).build();
+
+	}
+
+	public static JSONObject history(@Context ServletContext context, User user, User user2Search, long dateStart,
+			long dateEnd, String action, String element, Project actual) throws Exception {
+		if (!(user.canRead(actual))) {
+			throw new InternalException("You are not authorised to do this action.");
+		}
+
+		String error;
 		List<Msg> msgList;
 		if (dateStart != -1) {
 			Date start = new Date(dateStart);
@@ -121,24 +133,39 @@ public class History extends MainCommand implements DataFormat{
 			throw new InternalException(error);
 		} else {
 
-			return Response.ok(getMsgListJSON(msgList).toString(), MediaType.APPLICATION_JSON).build();
+			return DataFormat.getMsgListJSON(msgList);
 		}
 
 	}
 
-	
+	public static JSONObject history(@Context ServletContext context, com.socio.client.beans.User user,
+			com.socio.client.beans.User user2Search, long dateStart, long dateEnd, String action, String element,
+			String pChannel, String pUser, String pName) throws Exception {
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		User u2s;
+		try {
+			u2s = getUser(context, user2Search.getChannel(), user2Search.getNick(), user2Search.getId(),
+					user2Search.getName());
+		} catch (Exception e) {
+			u2s = null;
+		}
+		return history(context, u, u2s, dateStart, dateEnd, action, element, actual);
+
+	}
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("project/{id}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
-	public Response projectHistory(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-		{
+	public Response projectHistory(@Context ServletContext context, InputStream incomingData,
+			@PathParam("id") long id) {
 		try {
 			Project actual = getProject(context, id);
 			return projectHistory(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("projectHistory: ", e);
 			return sendTextException(e);
 		}
@@ -149,13 +176,14 @@ public class History extends MainCommand implements DataFormat{
 	@Path("project/{channel}/{user}/{project}")
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response projectHistory(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project){
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return projectHistory(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("projectHistory: ", e);
 			return sendTextException(e);
 		}
@@ -164,12 +192,25 @@ public class History extends MainCommand implements DataFormat{
 	private Response projectHistory(ServletContext context, InputStream incomingData, Project actual) throws Exception {
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, "user");
+		File png = projectHistory(context, user, actual);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+
+	public static File projectHistory(ServletContext context, User user, Project actual) throws Exception {
+
 		if (!(user.canRead(actual))) {
 			throw new InternalException("You are not authorised to do this action.");
 		}
 
 		File png = actual.getProjectHistory();
-		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+		return png;
+	}
+
+	public static File projectHistory(ServletContext context, com.socio.client.beans.User user, String pChannel,
+			String pUser, String pName) throws Exception {
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		Project actual = getProject(context, pChannel, pUser, pName);
+		return projectHistory(context, u, actual);
 	}
 }

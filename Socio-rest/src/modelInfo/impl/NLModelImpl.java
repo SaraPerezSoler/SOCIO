@@ -522,7 +522,7 @@ public class NLModelImpl extends MinimalEObjectImpl.Container implements NLModel
 	@Override
 	public NLClass getClass(String className) {
 		for (NLClass clas : getClasses()) {
-			if (clas.getClass_().getName().equalsIgnoreCase(className)) {
+			if (clas.getName().equalsIgnoreCase(className)) {
 				return clas;
 			}
 		}

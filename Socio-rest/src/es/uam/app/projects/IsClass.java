@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.UpdateClassAbstract;
-import es.uam.app.parser.NP;
-import es.uam.app.parser.WordConfigure;
+import es.uam.app.metamodel.parser.NP;
+import es.uam.app.metamodel.parser.WordConfigure;
 import es.uam.app.projects.emf.metamodel.ClassControl;
 import net.didion.jwnl.JWNLException;
 import socioProjects.MetamodelProject;

@@ -5,7 +5,7 @@ package socioProjects;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import es.uam.app.parser.NP;
+import es.uam.app.metamodel.parser.NP;
 import es.uam.app.projects.emf.metamodel.AttributeControl;
 import es.uam.app.projects.emf.metamodel.ClassControl;
 import es.uam.app.projects.emf.metamodel.Feature;

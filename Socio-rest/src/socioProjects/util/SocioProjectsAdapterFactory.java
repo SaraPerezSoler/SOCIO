@@ -75,8 +75,8 @@ public class SocioProjectsAdapterFactory extends AdapterFactoryImpl {
 				return createProjectAdapter();
 			}
 			@Override
-			public Adapter caseModelProjec(ModelProject object) {
-				return createModelProjecAdapter();
+			public Adapter caseModelProject(ModelProject object) {
+				return createModelProjectAdapter();
 			}
 			@Override
 			public Adapter caseMetamodelProject(MetamodelProject object) {
@@ -143,7 +143,7 @@ public class SocioProjectsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link socioProjects.ModelProject <em>Model Projec</em>}'.
+	 * Creates a new adapter for an object of class '{@link socioProjects.ModelProject <em>Model Project</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -152,7 +152,7 @@ public class SocioProjectsAdapterFactory extends AdapterFactoryImpl {
 	 * @see socioProjects.ModelProject
 	 * @generated
 	 */
-	public Adapter createModelProjecAdapter() {
+	public Adapter createModelProjectAdapter() {
 		return null;
 	}
 

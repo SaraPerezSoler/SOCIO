@@ -49,6 +49,26 @@ public class SaveFileServer extends CreateRequest{
 		}
 		return null;
 	}
+	public String saveSecondFile (File file, long duration, TimeUnit unit) {
+		@SuppressWarnings("resource")
+		final MultiPart multiPart = new FormDataMultiPart().field("file", file, MediaType.APPLICATION_OCTET_STREAM_TYPE)
+				.field("fileName", file.getName(), MediaType.TEXT_PLAIN_TYPE);
+		multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
+		ClientResponse response;
+		if (duration != -1 && unit != null) {
+			response=super.postRequest("uploadSecond/"+duration+"/"+unit.toString(), multiPart, MediaType.MULTIPART_FORM_DATA, MediaType.TEXT_PLAIN);
+		}else {
+			response=super.postRequest("uploadSecond", multiPart, MediaType.MULTIPART_FORM_DATA, MediaType.TEXT_PLAIN);
+		}
+		try {
+			readResponse(response);
+		} catch (TextResponse e) {
+			return e.getText();
+		} catch (ForbiddenResponse | ResponseError | JSONResponse | FileResponse e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public File getFile (String path) throws ResponseError, ForbiddenResponse {
 		System.out.println(path);

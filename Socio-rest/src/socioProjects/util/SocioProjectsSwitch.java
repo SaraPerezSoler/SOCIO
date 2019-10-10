@@ -78,10 +78,10 @@ public class SocioProjectsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SocioProjectsPackage.MODEL_PROJEC: {
-				ModelProject modelProjec = (ModelProject)theEObject;
-				T result = caseModelProjec(modelProjec);
-				if (result == null) result = caseProject(modelProjec);
+			case SocioProjectsPackage.MODEL_PROJECT: {
+				ModelProject modelProject = (ModelProject)theEObject;
+				T result = caseModelProject(modelProject);
+				if (result == null) result = caseProject(modelProject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -145,17 +145,17 @@ public class SocioProjectsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Projec</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Model Project</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Projec</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Project</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelProjec(ModelProject object) {
+	public T caseModelProject(ModelProject object) {
 		return null;
 	}
 

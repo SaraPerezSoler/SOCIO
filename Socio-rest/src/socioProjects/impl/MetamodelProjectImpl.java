@@ -5,7 +5,9 @@ package socioProjects.impl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +24,12 @@ import es.uam.app.actions.DeleteMetamodel;
 import es.uam.app.actions.Update;
 import es.uam.app.actions.UpdateMetamodel;
 import es.uam.app.main.exceptions.FatalException;
-import es.uam.app.parser.NP;
-import es.uam.app.parser.Sentence;
-import es.uam.app.parser.Verb;
-import es.uam.app.parser.WordConfigure;
-import es.uam.app.parser.rules.ExtractionRule;
+import es.uam.app.metamodel.parser.NP;
+import es.uam.app.metamodel.parser.Sentence;
+import es.uam.app.metamodel.parser.SentencesSplitter;
+import es.uam.app.metamodel.parser.Verb;
+import es.uam.app.metamodel.parser.WordConfigure;
+import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.projects.emf.metamodel.AttributeControl;
 import es.uam.app.projects.emf.metamodel.ClassControl;
 import es.uam.app.projects.emf.Controlador;
@@ -36,6 +39,7 @@ import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
+import projectHistory.Msg;
 import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
 
@@ -475,6 +479,33 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 			contents.add(model);
 		}
 		super.setModel(model);
+	}
+
+	@Override
+	protected Map<String, List<Action>> getSentencesAction(String text) throws Exception {
+		List<String> sentences = SentencesSplitter.sentencesSplitter(text);
+		Map<String, List<Action>> actions = new HashMap<>();
+
+		for (String s : sentences) {
+
+			List<Action> act = parseSentence(s);
+
+			actions.put(s, act);
+		}
+		return actions;
+	}
+
+	@Override
+	protected List<String> getSentenceOrder(Msg msg) throws ParseException {
+		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getMsg());
+		Collections.reverse(sentences);
+		return sentences;
+	}
+
+	@Override
+	protected List<String> getSentenceOrder2(Msg msg) throws ParseException {
+		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getMsg());
+		return sentences;
 	}
 
 

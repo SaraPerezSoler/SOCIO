@@ -3,17 +3,19 @@
 package socioProjects.impl;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import es.uam.app.actions.Add;
 import es.uam.app.actions.AddModel;
@@ -24,6 +26,7 @@ import es.uam.app.actions.UpdateModel;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
+import es.uam.app.model.parser.DialogflowIntent;
 import es.uam.app.projects.emf.Controlador;
 import es.uam.app.projects.emf.model.EObjectControl;
 import es.uam.app.projects.emf.model.ModelControl;
@@ -32,23 +35,32 @@ import modelInfo.NLClass;
 import modelInfo.NLFeature;
 import modelInfo.NLModel;
 import projectHistory.Action;
+import projectHistory.Msg;
 import socioProjects.ModelProject;
 import socioProjects.SocioProjectsPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model
  * Projec</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link socioProjects.impl.ModelProjectImpl#getMetamodelName <em>Metamodel Name</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class ModelProjectImpl extends ProjectImpl implements ModelProject {
+	
+	
 
 	private ModelControl mc;
 	private NLModel nlmodel;
-
+	protected static final String METAMODEL_NAME_EDEFAULT = null;
+	protected String metamodelName = METAMODEL_NAME_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelProjectImpl() {
@@ -57,18 +69,21 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SocioProjectsPackage.Literals.MODEL_PROJEC;
+		return SocioProjectsPackage.Literals.MODEL_PROJECT;
 	}
 
 	@Override
-	public List<Action> parseSentence(String sentence) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Action> parseSentence(String sentence) throws Exception{
+		DialogflowIntent intent = DialogflowIntent.getIntent(sentence);
+		List<Action> actual = intent.evaluete(this);
+		for (Action a : actual) {
+			a.doIt();
+		}
+		return actual;
 	}
 
 	@Override
@@ -172,15 +187,8 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	@Override
 	public void initialize2() throws FatalException {
 
-		String nlmodelUri = getPath() + "/" + getName() + ".xmi";
 		if (nlmodel == null) {
-			File f = new File(nlmodelUri);
-			if (!f.exists()) {
-				throw new FatalException(
-						"In class " + this.getClass().getName() + ": the file " + nlmodelUri + " can be opened");
-			}
-			Resource resource = SocioData.getResourceSet().getResource(URI.createURI(nlmodelUri), true);
-			nlmodel = (NLModel) resource.getContents().get(0);
+			nlmodel = SocioData.getMetamodel(metamodelName);
 		}
 		mc = new ModelControl(getFilePath(), nlmodel);
 		if (model == null) {
@@ -213,6 +221,17 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	@Override
 	public EObjectControl createEObject(String name) throws InternalException {
 		return mc.createEObject(name);
+	}
+	
+	@Override
+	public void unCreateEObject(EObjectControl object) throws InternalException {
+		mc.removeObject(object);
+		
+	}
+	@Override
+	public void reCreateEObject(EObjectControl object) throws InternalException {
+		mc.addObjectToResource(object);
+		
 	}
 
 	public NLClass getNLClass(String className) throws InternalException {
@@ -303,5 +322,135 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	public EObjectControl getControl(EObject obj) {
 		return mc.getControl(obj);
 	}
+
+	@Override
+	public NLModel getNLModel() {
+		if (nlmodel == null) {
+			nlmodel = SocioData.getMetamodel(metamodelName);
+		}
+		return nlmodel;
+	}
+
+	@Override
+	public void setNLModel(NLModel nlModel) {
+		this.nlmodel = nlModel;
+		setMetamodelName(this.nlmodel.getName());		
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMetamodelName() {
+		return metamodelName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMetamodelName(String newMetamodelName) {
+		String oldMetamodelName = metamodelName;
+		metamodelName = newMetamodelName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.MODEL_PROJECT__METAMODEL_NAME, oldMetamodelName, metamodelName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SocioProjectsPackage.MODEL_PROJECT__METAMODEL_NAME:
+				return getMetamodelName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SocioProjectsPackage.MODEL_PROJECT__METAMODEL_NAME:
+				setMetamodelName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SocioProjectsPackage.MODEL_PROJECT__METAMODEL_NAME:
+				setMetamodelName(METAMODEL_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SocioProjectsPackage.MODEL_PROJECT__METAMODEL_NAME:
+				return METAMODEL_NAME_EDEFAULT == null ? metamodelName != null : !METAMODEL_NAME_EDEFAULT.equals(metamodelName);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (metamodelName: ");
+		result.append(metamodelName);
+		result.append(')');
+		return result.toString();
+	}
+
+	@Override
+	protected Map<String, List<Action>> getSentencesAction(String text) throws Exception {
+		Map<String, List<Action>> map = new HashMap<>();
+		map.put(text, parseSentence(text));
+		return map;
+	}
+
+	@Override
+	protected List<String> getSentenceOrder(Msg msg) {
+		List<String> list = new ArrayList<>();
+		list.add(msg.getText());
+		return list;
+	}
+
+	@Override
+	protected List<String> getSentenceOrder2(Msg msg) throws ParseException {
+		return getSentenceOrder(msg);
+	}
+
+
 
 } // ModelProjecImpl

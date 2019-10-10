@@ -19,7 +19,7 @@ import socioProjects.User;
 
 public interface DataFormat {
 
-	public default JSONObject getMsgListJSON(List<Msg> msgList) {
+	public static JSONObject getMsgListJSON(List<Msg> msgList) {
 		JSONObject response = new JSONObject();
 		JSONArray array = new JSONArray();
 
@@ -33,7 +33,7 @@ public interface DataFormat {
 		return response;
 	}
 
-	public default JSONObject getMsgJSON(Msg msg) {
+	public static JSONObject getMsgJSON(Msg msg) {
 
 		List<String> ams = new ArrayList<String>();
 		Map<String, List<Action>> sentences = msg.getSentencesMap();
@@ -56,7 +56,7 @@ public interface DataFormat {
 		return msgObject;
 	}
 
-	public default JSONObject getUserJSON(User u) {
+	public static JSONObject getUserJSON(User u) {
 		JSONObject user = new JSONObject();
 		user.put("nick", u.getNick());
 		user.put("name", u.getName());
@@ -65,13 +65,13 @@ public interface DataFormat {
 		return user;
 	}
 
-	public default JSONObject getProjectJSON(ServletContext context, Project p) throws Exception {
+	public static JSONObject getProjectJSON(ServletContext context, Project p) throws Exception {
 		JSONObject project = new JSONObject();
 		project.put("admin", getUserJSON(p.getAdmin()));
 		project.put("name", p.getName());
 		project.put("id", p.getId());
 		project.put("type", p.getType());
-		project.put("visibility", p.getVisibility());
+		project.put("visibility", p.getVisibility().toString());
 		project.put("isOpen", p.isOpen());
 		project.put("isBranch", p.isBranch());
 		project.put("createDate", p.getCreateDate().getTime());
@@ -123,14 +123,14 @@ public interface DataFormat {
 		return project;
 	}
 
-	public default JSONObject getSortProjectJSON(ServletContext context, Project p) {
+	public static JSONObject getSortProjectJSON(ServletContext context, Project p) {
 		JSONObject ob = new JSONObject();
 		ob.put("name", p.getCompleteName());
 		ob.put("id", p.getId());
 		return ob;
 	}
 
-	public default JSONObject getProjectListJSON(ServletContext context, List<Project> list) throws Exception {
+	public static JSONObject getProjectListJSON(ServletContext context, List<Project> list) throws Exception {
 		JSONObject projects = new JSONObject();
 		JSONArray listProjects = new JSONArray();
 		for (Project p : list) {

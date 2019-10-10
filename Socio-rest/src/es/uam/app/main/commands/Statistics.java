@@ -62,13 +62,29 @@ public class Statistics extends MainCommand {
 			throws Exception {
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, null);
+		File jpg = allActions(context, actual, user);
+		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+
+	}
+	
+	public static File allActions(@Context ServletContext context,  Project actual, User user)
+			throws Exception {
 
 		if (!(user.canRead(actual))) {
 			throw new InternalException("You are not authorised to do this action.");
 		}
 		File jpg = actual.getStatisticsActions();
-		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+		return jpg;
+
+	}
+	
+	public static File allActions(@Context ServletContext context,  String pChannel, String pUser, String pName, com.socio.client.beans.User user)
+			throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		return allActions(context, actual, u);
 
 	}
 
@@ -112,23 +128,37 @@ public class Statistics extends MainCommand {
 		JSONObject object = readRequest(incomingData);
 		User user = getUser(context, object, null);
 		User user2Search;
+		
+		boolean abs;
+		if (object.isNull("absolute")) {
+			abs = false;
+		} else {
+			abs = object.getBoolean("absolute");
+		}
+			
 		try {
 			user2Search = getUser(context, object, "userToSearch");
 		}catch (InternalException e) {
 			user2Search=null;
 		}
+		
+		File jpg = actionsMessages(context, actual, isAction, user, user2Search, abs);
+		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+		
+	}
+	
+	public static File actionsMessages(ServletContext context, Project actual, boolean isAction, User user, User user2Search, boolean abs)
+			throws Exception {
+
+		
 		File jpg;
 		if (!(user.canRead(actual))) {
 			throw new InternalException("You are not authorised to do this action.");
 		}
 
 		if (user2Search == null) {
-			boolean abs;
-			if (object.isNull("absolute")) {
-				abs = false;
-			} else {
-				abs = object.getBoolean("absolute");
-			}
+
 			if (abs) {
 				if (isAction) {
 					jpg = actual.getStatisticsUserActionAbs();
@@ -150,8 +180,15 @@ public class Statistics extends MainCommand {
 			}
 		}
 
-		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+		return jpg;
+	}
+	
+	public static File actionsMessages(ServletContext context, String pChannel, String pUser, String pName, boolean isAction, com.socio.client.beans.User user, com.socio.client.beans.User user2Search, boolean abs)
+			throws Exception {
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		User u2s = getUser(context, user2Search.getChannel(), user2Search.getNick(), user2Search.getId(), user2Search.getName());
+		return actionsMessages(context, actual, isAction, u, u2s, abs);
 	}
 
 	@POST
@@ -191,15 +228,28 @@ public class Statistics extends MainCommand {
 
 	private Response authorship(ServletContext context, InputStream incomingData, Project actual) throws Exception {
 		User user = getUser(context, incomingData, null);
+		File jpg = authorship(context, actual, user);
+		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+	}
+
+	
+	public static File authorship(ServletContext context, Project actual, User user) throws Exception {
 
 		if (!(user.canRead(actual))) {
 			throw new InternalException("You are not authorised to do this action.");
 		}
 		File jpg = actual.percentOfAuthorship();
-		return Response.ok(jpg, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + jpg.getName() + "\"").build();
+		return jpg;
 	}
+	
+	public static File authorship(ServletContext context,  String pChannel, String pUser, String pName, com.socio.client.beans.User user) throws Exception {
 
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User u = getUser(context, user.getChannel(), user.getNick(), user.getId(), user.getName());
+		return authorship(context, actual, u);
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/messages/{id}")
