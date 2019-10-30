@@ -4,7 +4,7 @@
 <!--
 -->
 
-<plugin>
+<plugin id= "es.uam.esp.miso.SocioRest" name ="SocioRest" version ="1.0">
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SocioDatabase -->

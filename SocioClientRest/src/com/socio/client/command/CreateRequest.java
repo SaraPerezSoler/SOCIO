@@ -3,9 +3,14 @@ package com.socio.client.command;
 import java.io.File;
 import java.util.List;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.glassfish.jersey.client.ClientResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,13 +19,10 @@ import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.JSONResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.command.responseExceptions.TextResponse;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 
 public abstract class CreateRequest {
 	private String URL;
-	private static final Client CLIENT = Client.create();
+	private static final Client CLIENT = ClientBuilder.newClient();
 	protected static final ResponseError UNEXPECTED_ERROR = new ResponseError("A error has ocurred with the command");
 	
 	public CreateRequest(String URL) {
@@ -28,23 +30,34 @@ public abstract class CreateRequest {
 	}
 
 	protected ClientResponse getRequest(String path, String ... mediaType) {
-		WebResource webResource = getWebResource(path);
-		return webResource.accept(MediaType.TEXT_PLAIN).accept(mediaType).get(ClientResponse.class);
+		WebTarget webTarget = getWebTarget(path);
+		return webTarget.request(addMediaTypeText(mediaType)).get(ClientResponse.class);
+	}
+	
+	private String[] addMediaTypeText (String ... mediaType) {
+		String  [] ret = new String[mediaType.length+1];
+		for (int i =0; i<mediaType.length; i++) {
+			if (mediaType[i].equals(MediaType.TEXT_PLAIN)) {
+				return mediaType;
+			}
+			ret[i] = mediaType[i];
+		}
+		ret[mediaType.length] = MediaType.TEXT_PLAIN;
+		return ret;
 	}
 
 	protected ClientResponse postRequest(String path, JSONObject object, String ... mediaTypeAcept) {
-		return postRequest(path, object.toString(), MediaType.APPLICATION_JSON, mediaTypeAcept);
+		return postRequest(path, object, MediaType.APPLICATION_JSON, mediaTypeAcept);
 	}
 	
 	protected ClientResponse postRequest(String path, Object object, String mediaType,  String ... mediaTypeAcept) {
-		WebResource webResource = getWebResource(path);
-		return webResource.type(mediaType).accept(MediaType.TEXT_PLAIN).accept(mediaTypeAcept)
-				.post(ClientResponse.class, object);
+		WebTarget webTarget = getWebTarget(path);
+		return webTarget.request(addMediaTypeText(mediaTypeAcept))
+				.post(Entity.entity(object, mediaType), ClientResponse.class);
 	}
 
-	protected WebResource getWebResource(String path) {
-		String url = URL + path;
-		return CLIENT.resource(url);
+	protected WebTarget getWebTarget(String path) {
+		return CLIENT.target(URL).path(path);
 	}
 
 	protected void readResponse(ClientResponse response)
@@ -55,22 +68,22 @@ public abstract class CreateRequest {
 		// La peticion se ha recibido pero no se ha procesado por algun problema
 		if (response.getStatus() == 403) {
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
-				String output = response.getEntity(String.class);
+				String output =(String)response.getEntity();
 				throw new ForbiddenResponse(output);
 			}
 			// La peticion es correcta
 		} else if (response.getStatus() == 200) {
 
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
-				String output = response.getEntity(String.class);
+				String output = (String)response.getEntity();
 				throw new TextResponse(output);
 			}
 			if (contentType.contains(MediaType.APPLICATION_JSON)) {
-				String output = response.getEntity(String.class);
+				String output = (String)response.getEntity();
 				throw new JSONResponse(new JSONObject(output));
 			}
 			if (contentType.contains(MediaType.APPLICATION_OCTET_STREAM)) {
-				File output = response.getEntity(File.class);
+				File output = (File)response.getEntity();
 				String name = null;
 				List<String> contentDisposition = header.get("Content-Disposition");
 				if (contentDisposition != null) {

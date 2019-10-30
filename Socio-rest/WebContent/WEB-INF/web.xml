@@ -16,9 +16,9 @@
 	<servlet>
 		<description>JAX-RS Tools Generated</description>
 		<servlet-name>Socio</servlet-name>
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
-			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>es.uam.app.main.commands</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

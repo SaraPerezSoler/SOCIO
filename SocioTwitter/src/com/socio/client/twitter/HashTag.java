@@ -87,7 +87,7 @@ public interface HashTag {
 		sendFile(f, twitter, message, project);
 	}
 	
-	public static final SaveFileServer server = new SaveFileServer();
+	public static final SaveFileServer server = new SaveFileServer("");
 	
 	public default void sendFile(File file, TwitterControl twitter, Status message, Project project) throws TwitterException {
 		String text = cleanText(message.getText()).replace("/" + project.getCompleteName(), "");

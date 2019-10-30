@@ -3,21 +3,22 @@ package com.socio.client.command;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientResponse;
+import org.glassfish.jersey.media.multipart.FormDataMultiPart;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.internal.MultiPartWriter;
 
 import com.socio.client.command.responseExceptions.FileResponse;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.JSONResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.command.responseExceptions.TextResponse;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.MultiPart;
-import com.sun.jersey.multipart.impl.MultiPartWriter;
 
 public class SaveFileServer extends CreateRequest{
 //	private static final String URL = "http://dimo1.ii.uam.es:8080/FileServer/file/";
@@ -78,12 +79,12 @@ public class SaveFileServer extends CreateRequest{
 		return super.responseFile(path, null);
 	}
 	@Override
-	protected WebResource getWebResource(String path) {
-		String url = super.getURL() + path;
-		final ClientConfig config = new DefaultClientConfig();
+	protected WebTarget getWebTarget(String path) {
+		String url = super.getURL();
+		ClientConfig config = new ClientConfig();
 		config.getClasses().add(MultiPartWriter.class);
-		final Client client = Client.create(config);
-		return client.resource(url);
+		Client client = ClientBuilder.newClient(config);
+		return client.target(url).path(path);
 	}
 	
 }

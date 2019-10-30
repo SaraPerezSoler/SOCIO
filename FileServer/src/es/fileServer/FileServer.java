@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,8 +14,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.sun.jersey.api.client.ClientResponse.Status;
-import com.sun.jersey.multipart.FormDataParam;
+import javax.ws.rs.core.Response.Status;
+
 
 import SaveFile.TimeUnit;
 import SaveFile.impl.SavedFilesImpl;
@@ -26,8 +27,8 @@ public class FileServer {
 	@Path("/upload")
 	@Consumes({ MediaType.MULTIPART_FORM_DATA })
 	@Produces(MediaType.TEXT_PLAIN)
-	public String uploadFile(@Context ServletContext context, @FormDataParam("file") File file,
-			@FormDataParam("fileName") String filename) throws Exception {
+	public String uploadFile(@Context ServletContext context, @FormParam("file") File file,
+			@FormParam("fileName") String filename) throws Exception {
 		return uploadFile(context, file, filename, 1, TimeUnit.DAYS);
 
 	}
@@ -36,8 +37,8 @@ public class FileServer {
 	@Path("/upload/{duration}/{unit}")
 	@Consumes({ MediaType.MULTIPART_FORM_DATA })
 	@Produces(MediaType.TEXT_PLAIN)
-	public String uploadFile(@Context ServletContext context, @FormDataParam("file") File file,
-			@FormDataParam("fileName") String filename, @PathParam("duration") long duration,
+	public String uploadFile(@Context ServletContext context, @FormParam("file") File file,
+			@FormParam("fileName") String filename, @PathParam("duration") long duration,
 			@PathParam("unit") TimeUnit unit) throws Exception {
 		String UPLOAD_PATH = context.getInitParameter("path.files");
 		String id = SavedFilesImpl.getSavedFiles(UPLOAD_PATH).addFile(file, filename, duration, unit);
@@ -49,8 +50,8 @@ public class FileServer {
 	@Path("/uploadSecond")
 	@Consumes({ MediaType.MULTIPART_FORM_DATA })
 	@Produces(MediaType.TEXT_PLAIN)
-	public String uploadSecongFile(@Context ServletContext context, @FormDataParam("file") File file,
-			@FormDataParam("fileName") String filename) throws Exception {
+	public String uploadSecongFile(@Context ServletContext context, @FormParam("file") File file,
+			@FormParam("fileName") String filename) throws Exception {
 		return uploadSecongFile(context, file, filename, 1, TimeUnit.DAYS);
 
 	}
@@ -59,8 +60,8 @@ public class FileServer {
 	@Path("/uploadSecond/{duration}/{unit}")
 	@Consumes({ MediaType.MULTIPART_FORM_DATA })
 	@Produces(MediaType.TEXT_PLAIN)
-	public String uploadSecongFile(@Context ServletContext context, @FormDataParam("file") File file,
-			@FormDataParam("fileName") String filename, @PathParam("duration") long duration,
+	public String uploadSecongFile(@Context ServletContext context, @FormParam("file") File file,
+			@FormParam("fileName") String filename, @PathParam("duration") long duration,
 			@PathParam("unit") TimeUnit unit) throws Exception {
 		String UPLOAD_PATH = context.getInitParameter("path.files");
 		String id = SavedFilesImpl.getSavedFiles(UPLOAD_PATH).addSecondFile(file, filename, duration, unit);

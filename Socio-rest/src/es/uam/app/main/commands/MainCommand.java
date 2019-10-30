@@ -9,11 +9,11 @@ import java.util.Date;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.sun.jersey.api.client.ClientResponse.Status;
 
 import es.uam.app.main.SocioData;
 import es.uam.app.main.ValidText;
