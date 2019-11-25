@@ -26,7 +26,7 @@ public class Help implements CommandState {
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 
-		String[] help=SOCIO.help();
+		String[] help=State.SOCIO().help();
 		
 		InlineKeyboardMarkup inlineKeyBoar = new InlineKeyboardMarkup();
 		List<List<InlineKeyboardButton>> rows = new ArrayList<List<InlineKeyboardButton>>();

@@ -54,7 +54,7 @@ public class History implements CommandState, ConversationalState {
 				chat.sendMessageWithKeyboard(MESSAGE_TEXT, message.getMessageId(), false, MESSAGE_OPTIONS);
 				return HistoryMessages.getState();
 			}else if (text.equals(OPTIONS[2])) {//ProjectHistory
-				File file=SOCIO.projectHistory(chat.getProject(), State.getUser(message.getFrom()));
+				File file=State.SOCIO().projectHistory(chat.getProject(), State.getUser(message.getFrom()));
 				chat.sendPhoto(file, message.getMessageId());
 				return Chat.getDefaultState();
 			}else {//back

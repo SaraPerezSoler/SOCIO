@@ -21,6 +21,7 @@ import com.socio.client.beans.Polling;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.User;
 import com.socio.client.command.Channel;
+import com.socio.client.command.SocioCommands;
 import com.socio.client.telegram.states.CommandState;
 import com.socio.client.telegram.states.State;
 
@@ -33,29 +34,37 @@ public class TelegramControl extends TelegramLongPollingBot {
 	private static final String NAME = "Name";
 	private static final String ID = "ID";
 
+	public static final String HOST = "host";
+	public static final String DEBUG_HOST = "DebugHost";
+	
 	public static String PASS = "pass.json";
 
 	public static Map<String, Project> projects = new HashMap<>();
 	public static Map<String, CommandState> commandState = new HashMap<>();
 	public static Map<Long, Chat> chats = new HashMap<>();
 
-	private TelegramChannel channel = new TelegramChannel();
+	private TelegramChannel channel = null;
 
 	private String name;
 	private String id;
-
+	private String url;
+	
 	private static TelegramControl TELEGRAM_CONTROL = null;
 
-	public static TelegramControl getTelegramControl() throws TelegramApiException {
+	public static TelegramControl getTelegramControl() {
 		if (TELEGRAM_CONTROL == null) {
-			TELEGRAM_CONTROL = new TelegramControl(SOCIO);
+			try {
+				TELEGRAM_CONTROL = new TelegramControl(SOCIO, HOST);
+			} catch (TelegramApiException e) {
+				 System.exit(0);
+			}
 		}
 		return TELEGRAM_CONTROL;
 	}
 
-	public static TelegramControl createTelegramControl(String debug) throws TelegramApiException {
+	public static TelegramControl createTelegramControl(String botSelected, String hostSelected) throws TelegramApiException {
 		if (TELEGRAM_CONTROL == null) {
-			TELEGRAM_CONTROL = new TelegramControl(debug);
+			TELEGRAM_CONTROL = new TelegramControl(botSelected, hostSelected);
 		}
 		return TELEGRAM_CONTROL;
 	}
@@ -71,24 +80,33 @@ public class TelegramControl extends TelegramLongPollingBot {
 		}
 	}
 
-	private TelegramControl(String debug) throws TelegramApiException {
+	private TelegramControl(String botSelected, String hostSelected) throws TelegramApiException {
 		String text = readPass();
 		if (text == null || text.isEmpty()) {
 			throw new TelegramApiException("Impossible to read the bot tokens: File");
 		}
 		JSONObject object = new JSONObject(text);
-		if (!debug.equals(TEST) && !debug.equals(MISO_TEST) && !debug.equals(SOCIO)) {
-			debug = SOCIO;
+		if (!botSelected.equals(TEST) && !botSelected.equals(MISO_TEST) && !botSelected.equals(SOCIO)) {
+			botSelected = SOCIO;
 		}
-		if (!object.has(debug)) {
+		if (!object.has(botSelected)) {
 			throw new TelegramApiException("Impossible to read the bot tokens: Bot Name");
 		}
-		JSONObject bot = object.getJSONObject(debug);
+		JSONObject bot = object.getJSONObject(botSelected);
 		if (!bot.has(NAME) || !bot.has(ID)) {
 			throw new TelegramApiException("Impossible to read the bot tokens: Bot info");
 		}
+		if (!hostSelected.equals(HOST)&& !hostSelected.equals(DEBUG_HOST)) {
+			hostSelected = HOST;
+		}
+		if(!object.has(hostSelected)) {
+			throw new TelegramApiException("Impossible to read the bot tokens: host");
+		}
+		
 		this.name = bot.getString(NAME);
 		this.id = bot.getString(ID);
+		this.url = object.getString(hostSelected);
+		this.channel = new TelegramChannel(this.url);
 	}
 
 	private String readPass() {
@@ -151,11 +169,16 @@ public class TelegramControl extends TelegramLongPollingBot {
 	public String getBotToken() {
 		return id;
 	}
+	
+	public SocioCommands getSOCIO() {
+		return channel.getSOCIO();
+		
+	}
 
 	private class TelegramChannel extends Channel {
 
-		public TelegramChannel() {
-			super();
+		public TelegramChannel(String url) {
+			super(url);
 		}
 
 		@Override
@@ -168,7 +191,7 @@ public class TelegramControl extends TelegramLongPollingBot {
 			Set<Long> ids = chats.keySet();
 			Message lastMessage = msgs.get(msgs.size() - 1);
 			long lastChatId = -1;
-			if (lastMessage.getUser().getChannel().equals(this.getChannelName())) {
+			if (lastMessage.getUser().getChannel().equalsIgnoreCase(this.getChannelName())) {
 				lastChatId = getChatId(lastMessage);
 			}
 			for (Long id : ids) {
@@ -248,7 +271,12 @@ public class TelegramControl extends TelegramLongPollingBot {
 			}
 
 		}
+		public SocioCommands getSOCIO() {
+			return this.SOCIO;
+			
+		}
 
 	}
+
 
 }

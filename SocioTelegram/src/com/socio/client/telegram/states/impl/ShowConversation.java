@@ -30,15 +30,15 @@ public class ShowConversation implements ConversationalState {
 		text = State.removeFirstCommand(text);
 		File file;
 		if (text.isEmpty() && chat.hasProject()) {
-			file = SOCIO.edit(chat.getProject(), State.getUser(message.getFrom()), message.getText(), "",
+			file = State.SOCIO().edit(chat.getProject(), State.getUser(message.getFrom()), message.getText(), "",
 					new Date(message.getDate()), message.getMessageId().toString());
 		} else {
 			Project project = TelegramControl.projects.get(text);
 			if (project == null) {
-				file= SOCIO.edit(text, State.getUser(message.getFrom()), message.getText(), "",
+				file= State.SOCIO().edit(text, State.getUser(message.getFrom()), message.getText(), "",
 					new Date(message.getDate()), message.getMessageId().toString());
 			}else {
-				file= SOCIO.edit(project, State.getUser(message.getFrom()), message.getText(), "",
+				file= State.SOCIO().edit(project, State.getUser(message.getFrom()), message.getText(), "",
 						new Date(message.getDate()), message.getMessageId().toString());
 			}
 		}

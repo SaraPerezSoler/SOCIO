@@ -44,7 +44,7 @@ public class UpdateAttrType extends UpdateMetamodel{
 		
 		setNew(attControl.copyObject());
 		setObject(attControl);
-		
+		System.out.println(attControl.getEAtribute().getEType().getInstanceTypeName());
 		setExecute(true);
 	}
 

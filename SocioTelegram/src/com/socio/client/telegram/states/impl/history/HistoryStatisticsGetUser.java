@@ -35,7 +35,7 @@ public class HistoryStatisticsGetUser implements ConversationalState {
 		} else {
 			userToSearch = new User(split[0], split[1]);
 		}
-		File file = SOCIO.statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, userToSearch);
+		File file = State.SOCIO().statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, userToSearch);
 		chat.sendPhoto(file, message.getMessageId());
 		return Chat.getDefaultState();
 	}

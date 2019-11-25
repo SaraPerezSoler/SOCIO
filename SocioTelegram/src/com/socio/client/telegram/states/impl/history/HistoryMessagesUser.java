@@ -27,7 +27,7 @@ public class HistoryMessagesUser implements ConversationalState {
 		String text = message.getText();
 		User userToSearch=State.textToUser(text);
 
-		List<com.socio.client.beans.Message> messages = SOCIO.history(chat.getProject(),
+		List<com.socio.client.beans.Message> messages = State.SOCIO().history(chat.getProject(),
 				State.getUser(message.getFrom()), userToSearch);
 		chat.sendHistory(messages, message.getMessageId());
 		return Chat.getDefaultState();

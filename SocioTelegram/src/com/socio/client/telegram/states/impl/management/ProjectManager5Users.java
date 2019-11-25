@@ -49,10 +49,10 @@ public class ProjectManager5Users implements ConversationalState {
 		Project p;
 		String msg = "The user " + userToSearch.getReference();
 		if (this.managementUserAction == REMOVE) {
-			p = SOCIO.removeUserFromProject(project, State.getUser(message.getFrom()), userToSearch);
+			p = State.SOCIO().removeUserFromProject(project, State.getUser(message.getFrom()), userToSearch);
 			msg += REMOVE_MSG;
 		} else if (this.managementUserAction == CHANGE) {
-			p = SOCIO.updateUserInProject(project, State.getUser(message.getFrom()), userToSearch);
+			p = State.SOCIO().updateUserInProject(project, State.getUser(message.getFrom()), userToSearch);
 			msg += CHANGE_MSG;
 		} else {
 			if (flag) {
@@ -70,7 +70,7 @@ public class ProjectManager5Users implements ConversationalState {
 					edit = true;
 				}
 			}
-			p = SOCIO.addUserToProject(project, State.getUser(message.getFrom()), userToSearch, edit);
+			p = State.SOCIO().addUserToProject(project, State.getUser(message.getFrom()), userToSearch, edit);
 			msg += ADD_MSG;
 		}
 		TelegramControl.projects.put(p.getCompleteName(), p);

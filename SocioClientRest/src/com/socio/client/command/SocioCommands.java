@@ -63,14 +63,17 @@ public class SocioCommands extends Commands {
 	private static final String GET_END_POLL = DECISION+ "getEndPoll/";
 	
 	
-	private static final SocioCommands SOCIO = new SocioCommands();
+	private static SocioCommands SOCIO = null;
 	
-	public static SocioCommands getSOCIO() {
+	public static SocioCommands getSOCIO(String url) {
+		if (SOCIO == null) {
+			SOCIO = new SocioCommands(url);
+		}
 		return SOCIO;
 	}
 	
-	private SocioCommands() {
-		// TODO Auto-generated constructor stub
+	private SocioCommands(String url) {
+		super (url);
 	}
 
 	public File get(String projectName, User user) throws ResponseError, ForbiddenResponse {

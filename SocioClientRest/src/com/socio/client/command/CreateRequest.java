@@ -9,8 +9,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
-import org.glassfish.jersey.client.ClientResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,9 +29,9 @@ public abstract class CreateRequest {
 		this.URL = URL;
 	}
 
-	protected ClientResponse getRequest(String path, String ... mediaType) {
+	protected Response getRequest(String path, String ... mediaType) {
 		WebTarget webTarget = getWebTarget(path);
-		return webTarget.request(addMediaTypeText(mediaType)).get(ClientResponse.class);
+		return webTarget.request(addMediaTypeText(mediaType)).get();
 	}
 	
 	private String[] addMediaTypeText (String ... mediaType) {
@@ -46,44 +46,44 @@ public abstract class CreateRequest {
 		return ret;
 	}
 
-	protected ClientResponse postRequest(String path, JSONObject object, String ... mediaTypeAcept) {
-		return postRequest(path, object, MediaType.APPLICATION_JSON, mediaTypeAcept);
+	protected Response postRequest(String path, JSONObject object, String ... mediaTypeAcept) {
+		return postRequest(path, object.toString(), MediaType.APPLICATION_JSON, mediaTypeAcept);
 	}
 	
-	protected ClientResponse postRequest(String path, Object object, String mediaType,  String ... mediaTypeAcept) {
+	protected Response postRequest(String path, Object object, String mediaType,  String ... mediaTypeAcept) {
 		WebTarget webTarget = getWebTarget(path);
 		return webTarget.request(addMediaTypeText(mediaTypeAcept))
-				.post(Entity.entity(object, mediaType), ClientResponse.class);
+				.post(Entity.entity(object, mediaType));
 	}
 
 	protected WebTarget getWebTarget(String path) {
 		return CLIENT.target(URL).path(path);
 	}
 
-	protected void readResponse(ClientResponse response)
+	protected void readResponse(Response response)
 			throws ResponseError, ForbiddenResponse, TextResponse, JSONResponse, FileResponse {
-		MultivaluedMap<String, String> header = response.getHeaders();
+		MultivaluedMap<String, String> header = response.getStringHeaders();
 		List<String> contentType = header.get("Content-type");
 
 		// La peticion se ha recibido pero no se ha procesado por algun problema
 		if (response.getStatus() == 403) {
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
-				String output =(String)response.getEntity();
+				String output =response.readEntity(String.class);
 				throw new ForbiddenResponse(output);
 			}
 			// La peticion es correcta
 		} else if (response.getStatus() == 200) {
 
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
-				String output = (String)response.getEntity();
+				String output = response.readEntity(String.class);
 				throw new TextResponse(output);
 			}
 			if (contentType.contains(MediaType.APPLICATION_JSON)) {
-				String output = (String)response.getEntity();
+				String output = response.readEntity(String.class);
 				throw new JSONResponse(new JSONObject(output));
 			}
 			if (contentType.contains(MediaType.APPLICATION_OCTET_STREAM)) {
-				File output = (File)response.getEntity();
+				File output = response.readEntity(File.class);
 				String name = null;
 				List<String> contentDisposition = header.get("Content-Disposition");
 				if (contentDisposition != null) {
@@ -120,7 +120,7 @@ public abstract class CreateRequest {
 	
 	protected JSONObject responseJSON(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
 		try {
-			ClientResponse response;
+			Response response;
 			String[] types = new String[] { MediaType.APPLICATION_JSON };
 			if (object == null) {
 				response = getRequest(path, types);
@@ -142,7 +142,7 @@ public abstract class CreateRequest {
 	protected String responseText(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
 		try {
 			String[] types = new String[] { MediaType.TEXT_PLAIN };
-			ClientResponse response;
+			Response response;
 			if (object == null) {
 				response = getRequest(path, types);
 			} else {
@@ -161,7 +161,7 @@ public abstract class CreateRequest {
 
 	protected File responseFile(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
 		try {
-			ClientResponse response;
+			Response response;
 			String[] types = new String[] { MediaType.APPLICATION_OCTET_STREAM };
 			if (object == null) {
 				response = getRequest(path, types);

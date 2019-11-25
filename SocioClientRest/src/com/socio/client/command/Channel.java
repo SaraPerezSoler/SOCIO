@@ -11,12 +11,16 @@ import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 
 public abstract class Channel {
-	public static final SocioCommands SOCIO = SocioCommands.getSOCIO();
+	public static  SocioCommands SOCIO = null;
 	private ReaderUpdateThread reader;
 
-	public Channel() {
+	public Channel(String url) {
+		if (SOCIO == null) {
+			SOCIO = SocioCommands.getSOCIO(url);
+		}
 		reader = new ReaderUpdateThread();
 		reader.start();
+	
 	}
 
 	public abstract String getChannelName();

@@ -30,9 +30,9 @@ public class HistoryStatisticsGetAbs implements ConversationalState {
 		String text = message.getText();
 		File file;
 		if (text.equals(YES_OPTION)) {
-			file = SOCIO.statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, false);
+			file = State.SOCIO().statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, false);
 		} else {
-			file = SOCIO.statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, true);
+			file = State.SOCIO().statistics(chat.getProject(), State.getUser(message.getFrom()), isAction, true);
 		}
 		
 		chat.sendPhoto(file, message.getMessageId());

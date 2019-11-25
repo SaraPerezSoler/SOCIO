@@ -24,7 +24,7 @@ public class ProjectManager6BranchGroup implements ConversationalState {
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 		String text = message.getText();
-		Project p = SOCIO.branchGroup(project, State.getUser(message.getFrom()), text);
+		Project p = State.SOCIO().branchGroup(project, State.getUser(message.getFrom()), text);
 		chat.sendMessage("The branch group has been updated \n"+State.printProjectAllInfo(p), message.getMessageId(), true);
 		return Chat.getDefaultState();
 	}

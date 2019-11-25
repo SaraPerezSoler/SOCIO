@@ -24,6 +24,7 @@ import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.User;
+import com.socio.client.command.SocioCommands;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.states.State;
@@ -46,6 +47,8 @@ public class Chat {
 	private State state;
 	private Project project = null;
 
+
+	
 	public Chat(long id) {
 		super();
 		this.id = id;
@@ -163,13 +166,13 @@ public class Chat {
 			throws ResponseError, ForbiddenResponse, TelegramApiException {
 		List<Project> projects = new ArrayList<>();
 		if (level <= READ_LEVEL) {
-			projects.addAll(State.SOCIO.projects(user, false));
+			projects.addAll(TelegramControl.getTelegramControl().getSOCIO().projects(user, false));
 		}
 		if (level <= EDIT_LEVEL) {
-			projects.addAll(State.SOCIO.projects(user, true));
+			projects.addAll(TelegramControl.getTelegramControl().getSOCIO().projects(user, true));
 
 		}
-		projects.addAll(State.SOCIO.projects(user));
+		projects.addAll(TelegramControl.getTelegramControl().getSOCIO().projects(user));
 		String[] projOptions = new String[projects.size()];
 		for (int i = 0; i < projects.size(); i++) {
 			projOptions[i] = projects.get(i).getCompleteName();
@@ -220,8 +223,8 @@ public class Chat {
 
 		System.out.println(message.length() );
 		if (message.length() > 4000) {
-			int index = indexMessage(message);
-			/*String message1 = message.substring(0, index);
+			/*int index = indexMessage(message);
+			String message1 = message.substring(0, index);
 			String message2 = message.substring(index);
 			sendMessage(message1, inReply, markDown, keyboard);
 			sendMessage(message2, inReply, markDown, keyboard);*/
@@ -259,7 +262,7 @@ public class Chat {
 		}
 	}
 
-	private int indexMessage(String messager) {
+	/*private int indexMessage(String messager) {
 		int index = messager.indexOf("\n\n", 3000);
 		if (index == -1 || index > 4000) {
 			index = messager.indexOf("\n", 3000);
@@ -271,7 +274,7 @@ public class Chat {
 			}
 		}
 		return index;
-	}
+	}*/
 	public void sendPhoto(File message) throws TelegramApiException {
 		sendPhoto(message, -1);
 	}

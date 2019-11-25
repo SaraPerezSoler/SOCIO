@@ -49,6 +49,11 @@
 			<version>2.29</version>
 		</dependency>
 		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>2.29</version>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>[2.9.10,)</version>
@@ -58,6 +63,7 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.9.10</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>io.github.lukehutch</groupId>
 			<artifactId>fast-classpath-scanner</artifactId>

@@ -29,7 +29,7 @@ public class NewProjectGetVisibility implements ConversationalState {
 		if (visibility==null) {
 			visibility=Visibility.PUBLIC;
 		}
-		Project project = SOCIO.newProject(name, State.getUser(message.getFrom()), visibility);
+		Project project = State.SOCIO().newProject(name, State.getUser(message.getFrom()), visibility);
 		chat.sendMessage("Project created:", message.getMessageId(), false);
 		chat.setProject(project, -1);
 		return Chat.getDefaultState();

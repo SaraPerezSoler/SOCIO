@@ -27,7 +27,7 @@ public class Redo implements CommandState {
 		if (!chat.hasProject()) {
 			throw new NotProjectException();
 		}
-		File file = SOCIO.redo(chat.getProject(), State.getUser(message.getFrom()), message.getText(), message.getText(),
+		File file = State.SOCIO().redo(chat.getProject(), State.getUser(message.getFrom()), message.getText(), message.getText(),
 				new Date(), getMessageId(message));
 		chat.sendPhoto(file, message.getMessageId());
 		return Chat.getDefaultState();

@@ -54,7 +54,7 @@ public class HistoryMessagesDate implements ConversationalState {
 			}
 		}
 
-		List<com.socio.client.beans.Message> messages = SOCIO.history(chat.getProject(),
+		List<com.socio.client.beans.Message> messages = State.SOCIO().history(chat.getProject(),
 				State.getUser(message.getFrom()), start, end);
 		chat.sendHistory(messages, message.getMessageId());
 		return Chat.getDefaultState();

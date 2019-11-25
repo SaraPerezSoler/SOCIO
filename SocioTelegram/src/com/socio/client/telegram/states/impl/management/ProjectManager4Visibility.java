@@ -25,7 +25,7 @@ public class ProjectManager4Visibility implements ConversationalState{
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 		Visibility v= Visibility.valueOf(message.getText().toUpperCase());
-		project=SOCIO.changeVisibility(project, State.getUser(message.getFrom()), v);
+		project=State.SOCIO().changeVisibility(project, State.getUser(message.getFrom()), v);
 		chat.sendMessage("The project visibility has been updated \n"+State.printProjectAllInfo(project), message.getMessageId(), true);
 		return Chat.getDefaultState();
 	}

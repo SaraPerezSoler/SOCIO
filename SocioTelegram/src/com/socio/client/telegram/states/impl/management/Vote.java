@@ -65,7 +65,7 @@ public class Vote implements ConversationalState{
 				preference.put(pos, branchOptions.get(0));
 			}
 			//Enviar a SOCIO la votacion
-			String ans = SOCIO.setPoll(project, State.getUser(message.getFrom()), branchGroup, preference);
+			String ans = State.SOCIO().setPoll(project, State.getUser(message.getFrom()), branchGroup, preference);
 			chat.sendMessage(ans, false);
 			return Chat.getDefaultState();
 		}

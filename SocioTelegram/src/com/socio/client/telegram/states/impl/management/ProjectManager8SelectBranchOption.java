@@ -62,11 +62,11 @@ public class ProjectManager8SelectBranchOption implements ConversationalState {
 					if (selected == null) {
 						chat.sendMessage(text + " is not a branch of " + project.getCompleteName(), false);
 					} else {
-						Project branch = SOCIO.project(selected.getName());
-						File f = SOCIO.setChoice(project, State.getUser(message.getFrom()), branchGroup,
+						Project branch = State.SOCIO().project(selected.getName());
+						File f = State.SOCIO().setChoice(project, State.getUser(message.getFrom()), branchGroup,
 								branch.getAdmin().getChannel(), branch.getAdmin().getNick(), branch.getName(),
 								getMessageId(message));
-						project = SOCIO.project(project);
+						project = State.SOCIO().project(project);
 						chat.setProject(project, message.getMessageId());
 						chat.sendMessage("Branch merged", false);
 						chat.sendPhoto(f, -1);
@@ -83,10 +83,10 @@ public class ProjectManager8SelectBranchOption implements ConversationalState {
 							askForUsers(chat, message);
 							return this;
 						}
-						File f = SOCIO.consensus(project, State.getUser(message.getFrom()), users, branchGroup,
+						File f = State.SOCIO().consensus(project, State.getUser(message.getFrom()), users, branchGroup,
 								getMessageId(message));
 						chat.sendPhoto(f);
-						Polling poll = SOCIO.startPoll(project, State.getUser(message.getFrom()), branchGroup);
+						Polling poll = State.SOCIO().startPoll(project, State.getUser(message.getFrom()), branchGroup);
 						
 						chat.sendMessage("The "+ poll.getCardinalRound() +" round of the poll has begun. ", false);
 						return Chat.getDefaultState();

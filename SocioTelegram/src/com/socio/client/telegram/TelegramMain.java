@@ -14,11 +14,13 @@ public class TelegramMain {
 
 	private static String debugFile; 
 	public static void main(String[] args) {
-		String debug=TelegramControl.SOCIO;
+		String botSelected=TelegramControl.SOCIO;
+		String hostSelected = TelegramControl.HOST;
 		for (int i=0; i<args.length; i++) {
 			String s = args[i];
 			if (s.equalsIgnoreCase("debug")) {
-				debug=TelegramControl.TEST;
+				botSelected=TelegramControl.TEST;
+				hostSelected = TelegramControl.DEBUG_HOST;
 			}
 			if (s.equalsIgnoreCase("-passfile")) {
 				TelegramControl.PASS=args[i+1];
@@ -33,7 +35,7 @@ public class TelegramMain {
 
 		try {
 			init();
-			TelegramControl telegramControl = TelegramControl.createTelegramControl(debug);
+			TelegramControl telegramControl = TelegramControl.createTelegramControl(botSelected, hostSelected);
 			botsApi.registerBot(telegramControl);
 		}catch (Throwable e) {
 			

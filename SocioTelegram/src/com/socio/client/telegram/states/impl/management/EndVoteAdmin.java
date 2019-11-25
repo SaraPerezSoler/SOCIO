@@ -80,7 +80,7 @@ public class EndVoteAdmin implements ConversationalState {
 			if (message.getText().equals(OPTIONS[1])) {//Select one option
 				return ProjectManager8SelectBranchOption.getState(end.getProject(), end.getBranchGroup()).runAndNext(chat, message);
 			}else { //revote
-				Polling poll = SOCIO.startPoll(end.getProject(), State.getUser(message.getFrom()), end.getBranchGroup());
+				Polling poll = State.SOCIO().startPoll(end.getProject(), State.getUser(message.getFrom()), end.getBranchGroup());
 				chat.sendMessage("The"+ poll.getCardinalRound() +" round of the poll has begun. ", false);
 				return Chat.getDefaultState();
 			}

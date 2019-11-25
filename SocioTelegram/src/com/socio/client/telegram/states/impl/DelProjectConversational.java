@@ -27,9 +27,9 @@ public class DelProjectConversational implements ConversationalState {
 		Project project = TelegramControl.projects.get(text);
 		String response;
 		if (project == null) {
-			response = SOCIO.removeProject(text, State.getUser(message.getFrom()));
+			response = State.SOCIO().removeProject(text, State.getUser(message.getFrom()));
 		} else {
-			response = SOCIO.removeProject(project, State.getUser(message.getFrom()));
+			response = State.SOCIO().removeProject(project, State.getUser(message.getFrom()));
 		}
 		chat.sendMessage(response, message.getMessageId(), false);
 		return Chat.getDefaultState();

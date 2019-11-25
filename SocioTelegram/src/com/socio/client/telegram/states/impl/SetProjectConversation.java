@@ -26,9 +26,9 @@ public class SetProjectConversation implements ConversationalState {
 		String text = State.removeFirstCommand(message.getText());
 		Project project = TelegramControl.projects.get(text);
 		if (project == null) {
-			project = SOCIO.project(text);
+			project = State.SOCIO().project(text);
 		} else {
-			project = SOCIO.project(project);
+			project = State.SOCIO().project(project);
 		}
 		chat.setProject(project, message.getMessageId());
 		return Chat.getDefaultState();

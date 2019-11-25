@@ -22,7 +22,7 @@ import com.socio.client.command.responseExceptions.ResponseError;
 public class Main {
 
 	private static final User USER = new User("Console", "Console", "Sara", 1);
-	private static final SocioCommands SOCIOCOMMANDS = SocioCommands.getSOCIO();
+	private static final SocioCommands SOCIOCOMMANDS = SocioCommands.getSOCIO("http://localhost:80/Socio-rest/");
 
 	public static void main(String[] args) throws Exception {
 		boolean exit = false;

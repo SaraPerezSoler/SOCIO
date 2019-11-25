@@ -30,14 +30,14 @@ public class GetConversational implements ConversationalState {
 		text = State.removeFirstCommand(text);
 		File file;
 		if (text.isEmpty() && chat.hasProject()) {
-			file= SOCIO.get(chat.getProject(), State.getUser(message.getFrom()));
+			file= State.SOCIO().get(chat.getProject(), State.getUser(message.getFrom()));
 		} else {
 			Project project = TelegramControl.projects.get(text);
 			
 			if (project == null) {
-				file = SOCIO.get(text, State.getUser(message.getFrom()));
+				file = State.SOCIO().get(text, State.getUser(message.getFrom()));
 			} else {
-				file = SOCIO.get(project, State.getUser(message.getFrom()));
+				file = State.SOCIO().get(project, State.getUser(message.getFrom()));
 			}
 		}
 		chat.sendDocument(file, message.getMessageId());

@@ -20,20 +20,23 @@ import com.socio.client.telegram.TelegramControl;
 
 
 public interface State {
-	public static final SocioCommands SOCIO = SocioCommands.getSOCIO();
-	public State runAndNext(Chat chat, Message message)throws TelegramApiException, ResponseError, ForbiddenResponse;
 	
+	public State runAndNext(Chat chat, Message message)throws TelegramApiException, ResponseError, ForbiddenResponse;
 	
 	static final String DEFAULT = "default";
 	public static Project getFather(Project project) throws ResponseError, ForbiddenResponse {
 		if (project.isBranch()) {
-			Project p = SOCIO.project(project.getFather().getName());
+			Project p = SOCIO().project(project.getFather().getName());
 			TelegramControl.projects.put(p.getCompleteName(), p);
 			return p;
 		}
 		return null;
 	}
 	
+	public static SocioCommands SOCIO() {
+		return TelegramControl.getTelegramControl().getSOCIO();
+		
+	}
 	public static String printProjects(List<Project> projects) {
 		String cad = "";
 		for (Project p : projects) {

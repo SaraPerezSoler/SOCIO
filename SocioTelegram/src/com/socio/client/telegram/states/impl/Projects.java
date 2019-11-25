@@ -23,7 +23,7 @@ public class Projects implements CommandState {
 	}
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
-		List<Project> projects = SOCIO.projects();
+		List<Project> projects = State.SOCIO().projects();
 		chat.sendMessage(State.printProjects(projects), message.getMessageId(), true);
 		return Chat.getDefaultState();
 	}

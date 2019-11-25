@@ -25,7 +25,7 @@ public class BranchGetBranchName implements ConversationalState {
 	@Override
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 		String text = State.removeFirstCommand(message.getText());
-		Project project = SOCIO.project(chat.getProject());
+		Project project = State.SOCIO().project(chat.getProject());
 		chat.updateProject(project);
 //		String msg = projectGroup(project.getOpenBranchs());
 //		String [] options =projectGroupOptions(project.getOpenBranchs());

@@ -34,7 +34,7 @@ public class TalkConversation implements ConversationalState {
 		text = State.removeFirstCommand(text);
 		if (chat.hasProject()) {
 			User user = State.getUser(message.getFrom());
-			File response = SOCIO.edit(chat.getProject(), user, message.getText(), text, new Date(), getMessageId(message));
+			File response = State.SOCIO().edit(chat.getProject(), user, message.getText(), text, new Date(), getMessageId(message));
 			chat.sendPhoto(response, message.getMessageId());
 		} else {
 			throw new NotProjectException();

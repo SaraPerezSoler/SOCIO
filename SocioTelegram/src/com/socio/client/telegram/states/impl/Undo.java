@@ -27,7 +27,7 @@ public class Undo implements CommandState {
 		if (!chat.hasProject()) {
 			throw new NotProjectException();
 		}
-		File file = SOCIO.undo(chat.getProject(), State.getUser(message.getFrom()), message.getText(), message.getText(),
+		File file = State.SOCIO().undo(chat.getProject(), State.getUser(message.getFrom()), message.getText(), message.getText(),
 				new Date(), getMessageId(message));
 		chat.sendPhoto(file, message.getMessageId());
 		return Chat.getDefaultState();

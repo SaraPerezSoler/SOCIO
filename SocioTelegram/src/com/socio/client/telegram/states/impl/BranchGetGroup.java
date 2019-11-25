@@ -29,8 +29,8 @@ public class BranchGetGroup implements ConversationalState {
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 		String text = message.getText();
 		User user = State.getUser(message.getFrom());
-		File file=SOCIO.newBranch(chat.getProject(), user, branchName, text);
-		Project project = SOCIO.project(user.getChannel(), user.getNick(), branchName);
+		File file=State.SOCIO().newBranch(chat.getProject(), user, branchName, text);
+		Project project = State.SOCIO().project(user.getChannel(), user.getNick(), branchName);
 		chat.sendMessage("A branch is created ", message.getMessageId(), false);
 		chat.setProject(project, -1);
 		chat.sendPhoto(file);

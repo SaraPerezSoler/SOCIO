@@ -19,10 +19,10 @@ import com.socio.client.command.responseExceptions.ResponseError;
 public abstract class Commands extends CreateRequest {
 
 	
-	private static final String URL = "http://localhost:80/Socio-rest/";
+	//private static final String URL = "http://localhost:80/Socio-rest/";
 	//private static final String URL = "http://dimo1.ii.uam.es:8080/Socio-rest/";
-	public Commands() {
-		super (URL);
+	public Commands(String url) {
+		super (url);
 	}
 
 	protected JSONObject addUser(User user, JSONObject object) throws ResponseError {

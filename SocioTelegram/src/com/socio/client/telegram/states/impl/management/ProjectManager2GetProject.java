@@ -37,9 +37,9 @@ public class ProjectManager2GetProject implements ConversationalState {
 		String text = message.getText();
 		Project project = TelegramControl.projects.get(text);
 		if (project == null) {
-			project = SOCIO.project(text);
+			project = State.SOCIO().project(text);
 		} else {
-			project = SOCIO.project(project);
+			project = State.SOCIO().project(project);
 		}
 		TelegramControl.projects.put(project.getCompleteName(), project);
 		String[] options;

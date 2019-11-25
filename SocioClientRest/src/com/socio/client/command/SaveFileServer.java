@@ -7,6 +7,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientResponse;
@@ -35,7 +36,7 @@ public class SaveFileServer extends CreateRequest{
 		final MultiPart multiPart = new FormDataMultiPart().field("file", file, MediaType.APPLICATION_OCTET_STREAM_TYPE)
 				.field("fileName", file.getName(), MediaType.TEXT_PLAIN_TYPE);
 		multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-		ClientResponse response;
+		Response response;
 		if (duration != -1 && unit != null) {
 			response=super.postRequest("upload/"+duration+"/"+unit.toString(), multiPart, MediaType.MULTIPART_FORM_DATA, MediaType.TEXT_PLAIN);
 		}else {
@@ -55,7 +56,7 @@ public class SaveFileServer extends CreateRequest{
 		final MultiPart multiPart = new FormDataMultiPart().field("file", file, MediaType.APPLICATION_OCTET_STREAM_TYPE)
 				.field("fileName", file.getName(), MediaType.TEXT_PLAIN_TYPE);
 		multiPart.setMediaType(MediaType.MULTIPART_FORM_DATA_TYPE);
-		ClientResponse response;
+		Response response;
 		if (duration != -1 && unit != null) {
 			response=super.postRequest("uploadSecond/"+duration+"/"+unit.toString(), multiPart, MediaType.MULTIPART_FORM_DATA, MediaType.TEXT_PLAIN);
 		}else {

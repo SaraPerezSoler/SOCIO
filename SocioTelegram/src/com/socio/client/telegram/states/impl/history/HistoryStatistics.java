@@ -50,9 +50,9 @@ public class HistoryStatistics implements ConversationalState {
 					new String[] { YES_OPTION, NO_OPTION });
 			return HistoryStatisticsGetAbs.getState(true);
 		} else if (text.equals(OPTIONS[4])) { // All actions
-			file = SOCIO.statisticsAllActions(chat.getProject(), State.getUser(message.getFrom()));
+			file = State.SOCIO().statisticsAllActions(chat.getProject(), State.getUser(message.getFrom()));
 		} else if (text.equals(OPTIONS[5])) { // Percent of authorship
-			file = SOCIO.statisticsAthorship(chat.getProject(), State.getUser(message.getFrom()));
+			file = State.SOCIO().statisticsAthorship(chat.getProject(), State.getUser(message.getFrom()));
 		} else { // back
 			return History.exit(chat, message);
 		}

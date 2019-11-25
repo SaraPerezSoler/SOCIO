@@ -24,7 +24,7 @@ public class Validate implements CommandState {
 		if (!chat.hasProject()) {
 			throw new NotProjectException();
 		}
-		String response = SOCIO.validate(chat.getProject(), State.getUser(message.getFrom()));
+		String response = State.SOCIO().validate(chat.getProject(), State.getUser(message.getFrom()));
 		chat.sendMessage(response, message.getMessageId(), false);
 		return Chat.getDefaultState();
 	}

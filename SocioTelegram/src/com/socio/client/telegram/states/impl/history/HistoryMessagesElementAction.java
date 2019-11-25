@@ -26,7 +26,7 @@ public class HistoryMessagesElementAction implements ConversationalState {
 	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
 
 		String text= message.getText();
-		List<com.socio.client.beans.Message>messages = SOCIO.history(chat.getProject(), State.getUser(message.getFrom()), text, isAction);
+		List<com.socio.client.beans.Message>messages = State.SOCIO().history(chat.getProject(), State.getUser(message.getFrom()), text, isAction);
 		chat.sendHistory(messages, message.getMessageId());
 		return Chat.getDefaultState();
 	}
