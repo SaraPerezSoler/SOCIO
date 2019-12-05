@@ -112,10 +112,10 @@ public class RestAccess {
 			@PathParam("name") String name) throws JsonParseException, JsonMappingException, IOException {
 		String data = readIncomingData(incomingData);
 
-		// System.out.println(data);
+		//System.out.println(data);
 
 		Request request = mapper.readValue(data, Request.class);
-		// System.out.println(request);
+		 System.out.println(request);
 
 		try {
 			return processRequest(context, request, name);

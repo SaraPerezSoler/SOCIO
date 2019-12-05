@@ -51,7 +51,6 @@ public class MetamodelControl implements Controlador, FileProject {
 			if (!f.exists()){
 				throw new FatalException("In class "+this.getClass().getName()+": the file "+ uri+" can be opened");
 			}
-			URI uri1 = URI.createURI(uri);
 			resource = SocioData.getResourceSet().getResource(URI.createURI(uri), true);
 		} catch (Exception e) {
 			throw new FatalException("In class "+this.getClass().getName()+": the file "+ uri+" can be opened");
@@ -106,7 +105,6 @@ public class MetamodelControl implements Controlador, FileProject {
 	 *            nsURI del paquete.
 	 */
 	private void crearEcore(String uri, String name, String nsPrefix, String nsURI) {
-		URI uri1 = URI.createURI(uri);
 		// Creamos el fichero ecore
 		this.resource = SocioData.getResourceSet().createResource(URI.createURI(uri));
 		// Creamos y añadimos el paquete con el nombre y el nsPrefix y nsURI

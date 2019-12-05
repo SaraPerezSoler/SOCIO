@@ -45,7 +45,6 @@ import branchDecision.Decision;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
-import es.uam.app.metamodel.parser.SentencesSplitter;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.plantUML.*;
 import es.uam.app.projects.emf.Controlador;
