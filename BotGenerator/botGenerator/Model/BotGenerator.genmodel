@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/botGenerator/src" modelPluginID="botGenerator"
+    modelName="BotGenerator" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>BotGenerator.ecore</foreignModel>
+  <genPackages prefix="Generator" disposableProviderFactory="true" ecorePackage="BotGenerator.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BotGenerator.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DataType/JSON"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DataType/FORM"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BotGenerator.ecore#//Method">
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Method/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Method/POST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BotGenerator.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/ENGLISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/SPANISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/DANISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/GERMAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/FRENCH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/HINDI"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/INDONESIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/ITALIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/JAPANESE"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/KOREAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/DUTCH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/NORWEGIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/POLISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/PORTUGUESE"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/RUSIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/SWEDISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/THAI"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/TURKISH"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/UKRANIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//Language/CHINESE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BotGenerator.ecore#//HTTPReturnType">
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//HTTPReturnType/TEXT"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//HTTPReturnType/STATUS_CODE"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//HTTPReturnType/IMAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//HTTPReturnType/DATA"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BotGenerator.ecore#//DefaultEntity">
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DefaultEntity/TEXT"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DefaultEntity/NUMBER"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DefaultEntity/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DefaultEntity/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="BotGenerator.ecore#//DefaultEntity/TIME"/>
+    </genEnums>
+    <genClasses ecoreClass="BotGenerator.ecore#//Bot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Bot/intents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Bot/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Bot/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Bot/flows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Bot/language"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BotGenerator.ecore#//Interaction"/>
+    <genClasses ecoreClass="BotGenerator.ecore#//BotInteraction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//BotInteraction/actions"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BotGenerator.ecore#//BotInteraction/incoming"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//BotInteraction/outcoming"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//UserInteraction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//UserInteraction/intent"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BotGenerator.ecore#//UserInteraction/src"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//UserInteraction/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BotGenerator.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Element/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BotGenerator.ecore#//Entity"/>
+    <genClasses ecoreClass="BotGenerator.ecore#//Simple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Simple/inputs"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//Composite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Composite/inputs"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//SimpleInput">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//SimpleInput/values"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//CompositeInput">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//CompositeInput/tokens"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BotGenerator.ecore#//Token"/>
+    <genClasses ecoreClass="BotGenerator.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Literal/text"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//EntityToken">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//EntityToken/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//ParameterToken">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//ParameterToken/parameter"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//ParameterReferenceToken">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//ParameterReferenceToken/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//ParameterReferenceToken/textReference"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//HTTPRequestToke">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//HTTPRequestToke/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//HTTPRequestToke/dataKey"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//Intent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Intent/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Intent/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Intent/fallbackIntent"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//TrainingPhrase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//TrainingPhrase/tokens"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//Parameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Parameter/entity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Parameter/defaultEntity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Parameter/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Parameter/prompts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Parameter/isList"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BotGenerator.ecore#//Action"/>
+    <genClasses ecoreClass="BotGenerator.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Image/URL"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//Image/caption"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//Text">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//Text/inputs"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//TextInput">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//TextInput/tokens"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//HTTPRequest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//HTTPRequest/URL"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//HTTPRequest/basicAuth"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//HTTPRequest/headers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//HTTPRequest/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//HTTPRequest/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//HTTPRequest/method"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//HTTPResponse">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//HTTPResponse/inputs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BotGenerator.ecore#//HTTPResponse/HTTPRequest"/>
+    </genClasses>
+    <genClasses ecoreClass="BotGenerator.ecore#//KeyValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BotGenerator.ecore#//KeyValue/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference BotGenerator.ecore#//KeyValue/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="generator" nsURI="http://generator" nsPrefix="generator">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Bot" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intents" lowerBound="1"
+        upperBound="-1" eType="#//Intent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" upperBound="-1"
+        eType="#//Entity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="#//Action" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flows" lowerBound="1" upperBound="-1"
+        eType="#//UserInteraction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+        eType="#//Language"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interaction" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BotInteraction" eSuperTypes="#//Interaction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" lowerBound="1"
+        eType="#//UserInteraction" eOpposite="#//UserInteraction/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outcoming" upperBound="-1"
+        eType="#//UserInteraction" containment="true" eOpposite="#//UserInteraction/src"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserInteraction" eSuperTypes="#//Interaction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intent" lowerBound="1"
+        eType="#//Intent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" eType="#//BotInteraction"
+        eOpposite="#//BotInteraction/outcoming"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//BotInteraction"
+        containment="true" eOpposite="#//BotInteraction/incoming"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true" eSuperTypes="#//Element"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Simple" eSuperTypes="#//Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="#//SimpleInput" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Composite" eSuperTypes="#//Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="#//CompositeInput" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleInput" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeInput">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="tokenComplexEntity"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="tokenComplexEntity" value="&#xA;&#x9;&#x9;&#x9;self.tokens->forAll(t| t.oclIsTypeOf(Literal) or t.oclIsTypeOf(EntityToken))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" lowerBound="1"
+        upperBound="-1" eType="#//Token" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Token" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//Token">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntityToken" eSuperTypes="#//Token">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="#//Entity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterToken" eSuperTypes="#//Token">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        eType="#//Parameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterReferenceToken" eSuperTypes="#//Token">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textReference" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTTPRequestToke" eSuperTypes="#//Token">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//HTTPReturnType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Intent" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" lowerBound="1"
+        upperBound="-1" eType="#//TrainingPhrase" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fallbackIntent" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrainingPhrase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
+        eType="#//Token" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultEntity" eType="#//DefaultEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prompts" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isList" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true" eSuperTypes="#//Element"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="URL" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" lowerBound="1"
+        upperBound="-1" eType="#//TextInput" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextInput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" lowerBound="1"
+        upperBound="-1" eType="#//Token" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTTPRequest" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="URL" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basicAuth" eType="#//KeyValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headers" upperBound="-1"
+        eType="#//KeyValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1" eType="#//KeyValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
+        eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" lowerBound="1"
+        eType="#//Method"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTTPResponse" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" lowerBound="1"
+        eType="#//TextInput" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="HTTPRequest" lowerBound="1"
+        eType="#//HTTPRequest"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eLiterals name="JSON" literal="JSON"/>
+    <eLiterals name="FORM" value="1" literal="FORM"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Method">
+    <eLiterals name="GET"/>
+    <eLiterals name="POST" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Language">
+    <eLiterals name="ENGLISH"/>
+    <eLiterals name="SPANISH" value="1"/>
+    <eLiterals name="DANISH" value="2"/>
+    <eLiterals name="GERMAN" value="3"/>
+    <eLiterals name="FRENCH" value="4"/>
+    <eLiterals name="HINDI" value="5"/>
+    <eLiterals name="INDONESIAN" value="6"/>
+    <eLiterals name="ITALIAN" value="7"/>
+    <eLiterals name="JAPANESE" value="8"/>
+    <eLiterals name="KOREAN" value="9"/>
+    <eLiterals name="DUTCH" value="10"/>
+    <eLiterals name="NORWEGIAN" value="11"/>
+    <eLiterals name="POLISH" value="18"/>
+    <eLiterals name="PORTUGUESE" value="12"/>
+    <eLiterals name="RUSIAN" value="13"/>
+    <eLiterals name="SWEDISH" value="14"/>
+    <eLiterals name="THAI" value="19"/>
+    <eLiterals name="TURKISH" value="15"/>
+    <eLiterals name="UKRANIAN" value="16"/>
+    <eLiterals name="CHINESE" value="17"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HTTPReturnType">
+    <eLiterals name="TEXT"/>
+    <eLiterals name="STATUS_CODE" value="1"/>
+    <eLiterals name="IMAGE" value="2"/>
+    <eLiterals name="DATA" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DefaultEntity">
+    <eLiterals name="TEXT"/>
+    <eLiterals name="NUMBER" value="1"/>
+    <eLiterals name="DATE" value="2"/>
+    <eLiterals name="FLOAT" value="3"/>
+    <eLiterals name="TIME" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Token"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
