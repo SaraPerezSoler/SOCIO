@@ -14,3 +14,6 @@ old/es.uam.miso.modelado/es.uam.miso.modelado2.jar
 */build/
 */pass.json
 *.class
+
+*.jar
+*.war
