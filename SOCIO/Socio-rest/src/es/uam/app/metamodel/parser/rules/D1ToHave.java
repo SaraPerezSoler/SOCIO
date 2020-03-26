@@ -20,7 +20,7 @@ import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
-public class D1ToHave extends MetemodelRule {
+public class D1ToHave extends MetamodelRule {
 
 	// <A> has <B>
 

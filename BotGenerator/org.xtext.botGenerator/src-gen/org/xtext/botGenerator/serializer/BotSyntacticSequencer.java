@@ -20,12 +20,12 @@ import org.xtext.botGenerator.services.BotGrammarAccess;
 public class BotSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected BotGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Text_TextKeyword_4_q;
+	protected AbstractElementAlias match_Text_TextKeyword_5_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (BotGrammarAccess) access;
-		match_Text_TextKeyword_4_q = new TokenAlias(false, true, grammarAccess.getTextAccess().getTextKeyword_4());
+		match_Text_TextKeyword_5_q = new TokenAlias(false, true, grammarAccess.getTextAccess().getTextKeyword_5());
 	}
 	
 	@Override
@@ -40,8 +40,8 @@ public class BotSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Text_TextKeyword_4_q.equals(syntax))
-				emit_Text_TextKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Text_TextKeyword_5_q.equals(syntax))
+				emit_Text_TextKeyword_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -51,9 +51,10 @@ public class BotSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'text:'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     language=Language ':' (ambiguity) inputs+=TextInputText
 	 *     name=EString ':' (ambiguity) inputs+=TextInputText
 	 */
-	protected void emit_Text_TextKeyword_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Text_TextKeyword_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

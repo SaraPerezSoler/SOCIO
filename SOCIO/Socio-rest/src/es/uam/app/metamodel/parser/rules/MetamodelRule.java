@@ -11,9 +11,9 @@ import es.uam.app.projects.IsReference;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
-public abstract class MetemodelRule extends ExtractionRule<MetamodelProject>{
+public abstract class MetamodelRule extends ExtractionRule<MetamodelProject>{
 
-	public MetemodelRule(Sentence<MetamodelProject> sentence, Verb v) {
+	public MetamodelRule(Sentence<MetamodelProject> sentence, Verb v) {
 		super(sentence, v);
 	}
 	

@@ -34,46 +34,50 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLanguageKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cLanguageAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cLanguageLanguageEnumRuleCall_3_0 = (RuleCall)cLanguageAssignment_3.eContents().get(0);
-		private final Keyword cIntentsKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cIntentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cIntentsIntentParserRuleCall_6_0 = (RuleCall)cIntentsAssignment_6.eContents().get(0);
+		private final Assignment cLanguagesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cLanguagesLanguageEnumRuleCall_3_0 = (RuleCall)cLanguagesAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cLanguagesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cLanguagesLanguageEnumRuleCall_4_1_0 = (RuleCall)cLanguagesAssignment_4_1.eContents().get(0);
+		private final Keyword cIntentsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cIntentsAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cIntentsIntentParserRuleCall_7_0 = (RuleCall)cIntentsAssignment_7.eContents().get(0);
-		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Keyword cEntitiesKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Keyword cColonKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
-		private final Assignment cEntitiesAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final RuleCall cEntitiesEntityParserRuleCall_8_2_0 = (RuleCall)cEntitiesAssignment_8_2.eContents().get(0);
-		private final Assignment cEntitiesAssignment_8_3 = (Assignment)cGroup_8.eContents().get(3);
-		private final RuleCall cEntitiesEntityParserRuleCall_8_3_0 = (RuleCall)cEntitiesAssignment_8_3.eContents().get(0);
+		private final Assignment cIntentsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cIntentsIntentParserRuleCall_8_0 = (RuleCall)cIntentsAssignment_8.eContents().get(0);
 		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cActionsKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Keyword cEntitiesKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
 		private final Keyword cColonKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
-		private final Assignment cActionsAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
-		private final RuleCall cActionsActionParserRuleCall_9_2_0 = (RuleCall)cActionsAssignment_9_2.eContents().get(0);
-		private final Assignment cActionsAssignment_9_3 = (Assignment)cGroup_9.eContents().get(3);
-		private final RuleCall cActionsActionParserRuleCall_9_3_0 = (RuleCall)cActionsAssignment_9_3.eContents().get(0);
-		private final Keyword cFlowsKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final Keyword cColonKeyword_11 = (Keyword)cGroup.eContents().get(11);
-		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
-		private final Keyword cHyphenMinusKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
-		private final Assignment cFlowsAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
-		private final RuleCall cFlowsTransitionParserRuleCall_12_1_0 = (RuleCall)cFlowsAssignment_12_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_12_2 = (Keyword)cGroup_12.eContents().get(2);
+		private final Assignment cEntitiesAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final RuleCall cEntitiesEntityParserRuleCall_9_2_0 = (RuleCall)cEntitiesAssignment_9_2.eContents().get(0);
+		private final Assignment cEntitiesAssignment_9_3 = (Assignment)cGroup_9.eContents().get(3);
+		private final RuleCall cEntitiesEntityParserRuleCall_9_3_0 = (RuleCall)cEntitiesAssignment_9_3.eContents().get(0);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cActionsKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Keyword cColonKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
+		private final Assignment cActionsAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
+		private final RuleCall cActionsActionParserRuleCall_10_2_0 = (RuleCall)cActionsAssignment_10_2.eContents().get(0);
+		private final Assignment cActionsAssignment_10_3 = (Assignment)cGroup_10.eContents().get(3);
+		private final RuleCall cActionsActionParserRuleCall_10_3_0 = (RuleCall)cActionsAssignment_10_3.eContents().get(0);
+		private final Keyword cFlowsKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Keyword cColonKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
+		private final Keyword cHyphenMinusKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
+		private final Assignment cFlowsAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
+		private final RuleCall cFlowsTransitionParserRuleCall_13_1_0 = (RuleCall)cFlowsAssignment_13_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_13_2 = (Keyword)cGroup_13.eContents().get(2);
 		
 		//Bot:
-		//	'Chatbot' name=EString 'language:' language=Language
+		//	'Chatbot' name=EString 'language:' languages+=Language (',' languages+=Language)*
 		//	'intents' ':' intents+=Intent intents+=Intent* ('entities' ':' entities+=Entity entities+=Entity*)? ('actions' ':'
 		//	actions+=Action actions+=Action*)?
 		//	'flows' ':' ('-' flows+=Transition ';')+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Chatbot' name=EString 'language:' language=Language 'intents' ':' intents+=Intent intents+=Intent* ('entities' ':'
-		//entities+=Entity entities+=Entity*)? ('actions' ':' actions+=Action actions+=Action*)? 'flows' ':' ('-'
-		//flows+=Transition ';')+
+		//'Chatbot' name=EString 'language:' languages+=Language (',' languages+=Language)* 'intents' ':' intents+=Intent
+		//intents+=Intent* ('entities' ':' entities+=Entity entities+=Entity*)? ('actions' ':' actions+=Action
+		//actions+=Action*)? 'flows' ':' ('-' flows+=Transition ';')+
 		public Group getGroup() { return cGroup; }
 		
 		//'Chatbot'
@@ -88,92 +92,104 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//'language:'
 		public Keyword getLanguageKeyword_2() { return cLanguageKeyword_2; }
 		
-		//language=Language
-		public Assignment getLanguageAssignment_3() { return cLanguageAssignment_3; }
+		//languages+=Language
+		public Assignment getLanguagesAssignment_3() { return cLanguagesAssignment_3; }
 		
 		//Language
-		public RuleCall getLanguageLanguageEnumRuleCall_3_0() { return cLanguageLanguageEnumRuleCall_3_0; }
+		public RuleCall getLanguagesLanguageEnumRuleCall_3_0() { return cLanguagesLanguageEnumRuleCall_3_0; }
+		
+		//(',' languages+=Language)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//languages+=Language
+		public Assignment getLanguagesAssignment_4_1() { return cLanguagesAssignment_4_1; }
+		
+		//Language
+		public RuleCall getLanguagesLanguageEnumRuleCall_4_1_0() { return cLanguagesLanguageEnumRuleCall_4_1_0; }
 		
 		//'intents'
-		public Keyword getIntentsKeyword_4() { return cIntentsKeyword_4; }
+		public Keyword getIntentsKeyword_5() { return cIntentsKeyword_5; }
 		
 		//':'
-		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
 		
 		//intents+=Intent
-		public Assignment getIntentsAssignment_6() { return cIntentsAssignment_6; }
-		
-		//Intent
-		public RuleCall getIntentsIntentParserRuleCall_6_0() { return cIntentsIntentParserRuleCall_6_0; }
-		
-		//intents+=Intent*
 		public Assignment getIntentsAssignment_7() { return cIntentsAssignment_7; }
 		
 		//Intent
 		public RuleCall getIntentsIntentParserRuleCall_7_0() { return cIntentsIntentParserRuleCall_7_0; }
 		
+		//intents+=Intent*
+		public Assignment getIntentsAssignment_8() { return cIntentsAssignment_8; }
+		
+		//Intent
+		public RuleCall getIntentsIntentParserRuleCall_8_0() { return cIntentsIntentParserRuleCall_8_0; }
+		
 		//('entities' ':' entities+=Entity entities+=Entity*)?
-		public Group getGroup_8() { return cGroup_8; }
-		
-		//'entities'
-		public Keyword getEntitiesKeyword_8_0() { return cEntitiesKeyword_8_0; }
-		
-		//':'
-		public Keyword getColonKeyword_8_1() { return cColonKeyword_8_1; }
-		
-		//entities+=Entity
-		public Assignment getEntitiesAssignment_8_2() { return cEntitiesAssignment_8_2; }
-		
-		//Entity
-		public RuleCall getEntitiesEntityParserRuleCall_8_2_0() { return cEntitiesEntityParserRuleCall_8_2_0; }
-		
-		//entities+=Entity*
-		public Assignment getEntitiesAssignment_8_3() { return cEntitiesAssignment_8_3; }
-		
-		//Entity
-		public RuleCall getEntitiesEntityParserRuleCall_8_3_0() { return cEntitiesEntityParserRuleCall_8_3_0; }
-		
-		//('actions' ':' actions+=Action actions+=Action*)?
 		public Group getGroup_9() { return cGroup_9; }
 		
-		//'actions'
-		public Keyword getActionsKeyword_9_0() { return cActionsKeyword_9_0; }
+		//'entities'
+		public Keyword getEntitiesKeyword_9_0() { return cEntitiesKeyword_9_0; }
 		
 		//':'
 		public Keyword getColonKeyword_9_1() { return cColonKeyword_9_1; }
 		
-		//actions+=Action
-		public Assignment getActionsAssignment_9_2() { return cActionsAssignment_9_2; }
+		//entities+=Entity
+		public Assignment getEntitiesAssignment_9_2() { return cEntitiesAssignment_9_2; }
 		
-		//Action
-		public RuleCall getActionsActionParserRuleCall_9_2_0() { return cActionsActionParserRuleCall_9_2_0; }
+		//Entity
+		public RuleCall getEntitiesEntityParserRuleCall_9_2_0() { return cEntitiesEntityParserRuleCall_9_2_0; }
 		
-		//actions+=Action*
-		public Assignment getActionsAssignment_9_3() { return cActionsAssignment_9_3; }
+		//entities+=Entity*
+		public Assignment getEntitiesAssignment_9_3() { return cEntitiesAssignment_9_3; }
 		
-		//Action
-		public RuleCall getActionsActionParserRuleCall_9_3_0() { return cActionsActionParserRuleCall_9_3_0; }
+		//Entity
+		public RuleCall getEntitiesEntityParserRuleCall_9_3_0() { return cEntitiesEntityParserRuleCall_9_3_0; }
 		
-		//'flows'
-		public Keyword getFlowsKeyword_10() { return cFlowsKeyword_10; }
+		//('actions' ':' actions+=Action actions+=Action*)?
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//'actions'
+		public Keyword getActionsKeyword_10_0() { return cActionsKeyword_10_0; }
 		
 		//':'
-		public Keyword getColonKeyword_11() { return cColonKeyword_11; }
+		public Keyword getColonKeyword_10_1() { return cColonKeyword_10_1; }
+		
+		//actions+=Action
+		public Assignment getActionsAssignment_10_2() { return cActionsAssignment_10_2; }
+		
+		//Action
+		public RuleCall getActionsActionParserRuleCall_10_2_0() { return cActionsActionParserRuleCall_10_2_0; }
+		
+		//actions+=Action*
+		public Assignment getActionsAssignment_10_3() { return cActionsAssignment_10_3; }
+		
+		//Action
+		public RuleCall getActionsActionParserRuleCall_10_3_0() { return cActionsActionParserRuleCall_10_3_0; }
+		
+		//'flows'
+		public Keyword getFlowsKeyword_11() { return cFlowsKeyword_11; }
+		
+		//':'
+		public Keyword getColonKeyword_12() { return cColonKeyword_12; }
 		
 		//('-' flows+=Transition ';')+
-		public Group getGroup_12() { return cGroup_12; }
+		public Group getGroup_13() { return cGroup_13; }
 		
 		//'-'
-		public Keyword getHyphenMinusKeyword_12_0() { return cHyphenMinusKeyword_12_0; }
+		public Keyword getHyphenMinusKeyword_13_0() { return cHyphenMinusKeyword_13_0; }
 		
 		//flows+=Transition
-		public Assignment getFlowsAssignment_12_1() { return cFlowsAssignment_12_1; }
+		public Assignment getFlowsAssignment_13_1() { return cFlowsAssignment_13_1; }
 		
 		//Transition
-		public RuleCall getFlowsTransitionParserRuleCall_12_1_0() { return cFlowsTransitionParserRuleCall_12_1_0; }
+		public RuleCall getFlowsTransitionParserRuleCall_13_1_0() { return cFlowsTransitionParserRuleCall_13_1_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_12_2() { return cSemicolonKeyword_12_2; }
+		public Keyword getSemicolonKeyword_13_2() { return cSemicolonKeyword_13_2; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.Entity");
@@ -274,32 +290,37 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameEStringParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cFallbackIntentAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cFallbackIntentFallbackKeyword_1_0 = (Keyword)cFallbackIntentAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cInputsKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cInputsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cInputsTrainingPhraseParserRuleCall_4_0 = (RuleCall)cInputsAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cInputsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cInputsTrainingPhraseParserRuleCall_5_1_0 = (RuleCall)cInputsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLanguageKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cColonKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cLanguageAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cLanguageLanguageEnumRuleCall_2_2_0 = (RuleCall)cLanguageAssignment_2_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cInputsKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cInputsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cInputsTrainingPhraseParserRuleCall_5_0 = (RuleCall)cInputsAssignment_5.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cParametersKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cParametersAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cParametersParameterParserRuleCall_6_1_0 = (RuleCall)cParametersAssignment_6_1.eContents().get(0);
-		private final Assignment cParametersAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
-		private final RuleCall cParametersParameterParserRuleCall_6_2_0 = (RuleCall)cParametersAssignment_6_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cInputsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cInputsTrainingPhraseParserRuleCall_6_1_0 = (RuleCall)cInputsAssignment_6_1.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cParametersKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cParametersAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cParametersParameterParserRuleCall_7_1_0 = (RuleCall)cParametersAssignment_7_1.eContents().get(0);
+		private final Assignment cParametersAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cParametersParameterParserRuleCall_7_2_0 = (RuleCall)cParametersAssignment_7_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Intent:
-		//	name=EString fallbackIntent?='Fallback'?
+		//	name=EString fallbackIntent?='Fallback'? ('language' ':' language=Language)?
 		//	'{'
 		//	'inputs:' inputs+=TrainingPhrase ("," inputs+=TrainingPhrase)* ('parameters:' parameters+=Parameter
 		//	parameters+=Parameter*)?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=EString fallbackIntent?='Fallback'? '{' 'inputs:' inputs+=TrainingPhrase ("," inputs+=TrainingPhrase)*
-		//('parameters:' parameters+=Parameter parameters+=Parameter*)? '}'
+		//name=EString fallbackIntent?='Fallback'? ('language' ':' language=Language)? '{' 'inputs:' inputs+=TrainingPhrase (","
+		//inputs+=TrainingPhrase)* ('parameters:' parameters+=Parameter parameters+=Parameter*)? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//name=EString
@@ -314,50 +335,65 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//'Fallback'
 		public Keyword getFallbackIntentFallbackKeyword_1_0() { return cFallbackIntentFallbackKeyword_1_0; }
 		
+		//('language' ':' language=Language)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'language'
+		public Keyword getLanguageKeyword_2_0() { return cLanguageKeyword_2_0; }
+		
+		//':'
+		public Keyword getColonKeyword_2_1() { return cColonKeyword_2_1; }
+		
+		//language=Language
+		public Assignment getLanguageAssignment_2_2() { return cLanguageAssignment_2_2; }
+		
+		//Language
+		public RuleCall getLanguageLanguageEnumRuleCall_2_2_0() { return cLanguageLanguageEnumRuleCall_2_2_0; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
 		//'inputs:'
-		public Keyword getInputsKeyword_3() { return cInputsKeyword_3; }
+		public Keyword getInputsKeyword_4() { return cInputsKeyword_4; }
 		
 		//inputs+=TrainingPhrase
-		public Assignment getInputsAssignment_4() { return cInputsAssignment_4; }
+		public Assignment getInputsAssignment_5() { return cInputsAssignment_5; }
 		
 		//TrainingPhrase
-		public RuleCall getInputsTrainingPhraseParserRuleCall_4_0() { return cInputsTrainingPhraseParserRuleCall_4_0; }
+		public RuleCall getInputsTrainingPhraseParserRuleCall_5_0() { return cInputsTrainingPhraseParserRuleCall_5_0; }
 		
 		//("," inputs+=TrainingPhrase)*
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//","
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
-		
-		//inputs+=TrainingPhrase
-		public Assignment getInputsAssignment_5_1() { return cInputsAssignment_5_1; }
-		
-		//TrainingPhrase
-		public RuleCall getInputsTrainingPhraseParserRuleCall_5_1_0() { return cInputsTrainingPhraseParserRuleCall_5_1_0; }
-		
-		//('parameters:' parameters+=Parameter parameters+=Parameter*)?
 		public Group getGroup_6() { return cGroup_6; }
 		
+		//","
+		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		
+		//inputs+=TrainingPhrase
+		public Assignment getInputsAssignment_6_1() { return cInputsAssignment_6_1; }
+		
+		//TrainingPhrase
+		public RuleCall getInputsTrainingPhraseParserRuleCall_6_1_0() { return cInputsTrainingPhraseParserRuleCall_6_1_0; }
+		
+		//('parameters:' parameters+=Parameter parameters+=Parameter*)?
+		public Group getGroup_7() { return cGroup_7; }
+		
 		//'parameters:'
-		public Keyword getParametersKeyword_6_0() { return cParametersKeyword_6_0; }
+		public Keyword getParametersKeyword_7_0() { return cParametersKeyword_7_0; }
 		
 		//parameters+=Parameter
-		public Assignment getParametersAssignment_6_1() { return cParametersAssignment_6_1; }
+		public Assignment getParametersAssignment_7_1() { return cParametersAssignment_7_1; }
 		
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_6_1_0() { return cParametersParameterParserRuleCall_6_1_0; }
+		public RuleCall getParametersParameterParserRuleCall_7_1_0() { return cParametersParameterParserRuleCall_7_1_0; }
 		
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_6_2() { return cParametersAssignment_6_2; }
+		public Assignment getParametersAssignment_7_2() { return cParametersAssignment_7_2; }
 		
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_6_2_0() { return cParametersParameterParserRuleCall_6_2_0; }
+		public RuleCall getParametersParameterParserRuleCall_7_2_0() { return cParametersParameterParserRuleCall_7_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 	public class TransitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.Transition");
@@ -616,14 +652,18 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_4_2 = (Group)cGroup_4.eContents().get(2);
 		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
 		private final Keyword cPromptsKeyword_4_2_1 = (Keyword)cGroup_4_2.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_4_2_2 = (Keyword)cGroup_4_2.eContents().get(2);
-		private final Assignment cPromptsAssignment_4_2_3 = (Assignment)cGroup_4_2.eContents().get(3);
-		private final RuleCall cPromptsEStringParserRuleCall_4_2_3_0 = (RuleCall)cPromptsAssignment_4_2_3.eContents().get(0);
-		private final Group cGroup_4_2_4 = (Group)cGroup_4_2.eContents().get(4);
-		private final Keyword cCommaKeyword_4_2_4_0 = (Keyword)cGroup_4_2_4.eContents().get(0);
-		private final Assignment cPromptsAssignment_4_2_4_1 = (Assignment)cGroup_4_2_4.eContents().get(1);
-		private final RuleCall cPromptsEStringParserRuleCall_4_2_4_1_0 = (RuleCall)cPromptsAssignment_4_2_4_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4_2_5 = (Keyword)cGroup_4_2.eContents().get(5);
+		private final Group cGroup_4_2_2 = (Group)cGroup_4_2.eContents().get(2);
+		private final Keyword cInKeyword_4_2_2_0 = (Keyword)cGroup_4_2_2.eContents().get(0);
+		private final Assignment cPrompLanguageAssignment_4_2_2_1 = (Assignment)cGroup_4_2_2.eContents().get(1);
+		private final RuleCall cPrompLanguageLanguageEnumRuleCall_4_2_2_1_0 = (RuleCall)cPrompLanguageAssignment_4_2_2_1.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_4_2_3 = (Keyword)cGroup_4_2.eContents().get(3);
+		private final Assignment cPromptsAssignment_4_2_4 = (Assignment)cGroup_4_2.eContents().get(4);
+		private final RuleCall cPromptsEStringParserRuleCall_4_2_4_0 = (RuleCall)cPromptsAssignment_4_2_4.eContents().get(0);
+		private final Group cGroup_4_2_5 = (Group)cGroup_4_2.eContents().get(5);
+		private final Keyword cCommaKeyword_4_2_5_0 = (Keyword)cGroup_4_2_5.eContents().get(0);
+		private final Assignment cPromptsAssignment_4_2_5_1 = (Assignment)cGroup_4_2_5.eContents().get(1);
+		private final RuleCall cPromptsEStringParserRuleCall_4_2_5_1_0 = (RuleCall)cPromptsAssignment_4_2_5_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_2_6 = (Keyword)cGroup_4_2.eContents().get(6);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cIsListAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -632,12 +672,13 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Parameter:
 		//	name=EString ':'
-		//	'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) (',' required?='required' (',' 'prompts' '['
-		//	prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')? ';';
+		//	'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) (',' required?='required' (',' 'prompts' ('in'
+		//	prompLanguage=Language)? '[' prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//name=EString ':' 'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) (',' required?='required' (','
-		//'prompts' '[' prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')? ';'
+		//'prompts' ('in' prompLanguage=Language)? '[' prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')?
+		//';'
 		public Group getGroup() { return cGroup; }
 		
 		//name=EString
@@ -670,7 +711,8 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//DefaultEntity
 		public RuleCall getDefaultEntityDefaultEntityEnumRuleCall_3_1_0() { return cDefaultEntityDefaultEntityEnumRuleCall_3_1_0; }
 		
-		//(',' required?='required' (',' 'prompts' '[' prompts+=EString (',' prompts+=EString)* ']')?)?
+		//(',' required?='required' (',' 'prompts' ('in' prompLanguage=Language)? '[' prompts+=EString (',' prompts+=EString)*
+		//']')?)?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//','
@@ -682,7 +724,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//'required'
 		public Keyword getRequiredRequiredKeyword_4_1_0() { return cRequiredRequiredKeyword_4_1_0; }
 		
-		//(',' 'prompts' '[' prompts+=EString (',' prompts+=EString)* ']')?
+		//(',' 'prompts' ('in' prompLanguage=Language)? '[' prompts+=EString (',' prompts+=EString)* ']')?
 		public Group getGroup_4_2() { return cGroup_4_2; }
 		
 		//','
@@ -691,29 +733,41 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//'prompts'
 		public Keyword getPromptsKeyword_4_2_1() { return cPromptsKeyword_4_2_1; }
 		
+		//('in' prompLanguage=Language)?
+		public Group getGroup_4_2_2() { return cGroup_4_2_2; }
+		
+		//'in'
+		public Keyword getInKeyword_4_2_2_0() { return cInKeyword_4_2_2_0; }
+		
+		//prompLanguage=Language
+		public Assignment getPrompLanguageAssignment_4_2_2_1() { return cPrompLanguageAssignment_4_2_2_1; }
+		
+		//Language
+		public RuleCall getPrompLanguageLanguageEnumRuleCall_4_2_2_1_0() { return cPrompLanguageLanguageEnumRuleCall_4_2_2_1_0; }
+		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_4_2_2() { return cLeftSquareBracketKeyword_4_2_2; }
+		public Keyword getLeftSquareBracketKeyword_4_2_3() { return cLeftSquareBracketKeyword_4_2_3; }
 		
 		//prompts+=EString
-		public Assignment getPromptsAssignment_4_2_3() { return cPromptsAssignment_4_2_3; }
+		public Assignment getPromptsAssignment_4_2_4() { return cPromptsAssignment_4_2_4; }
 		
 		//EString
-		public RuleCall getPromptsEStringParserRuleCall_4_2_3_0() { return cPromptsEStringParserRuleCall_4_2_3_0; }
+		public RuleCall getPromptsEStringParserRuleCall_4_2_4_0() { return cPromptsEStringParserRuleCall_4_2_4_0; }
 		
 		//(',' prompts+=EString)*
-		public Group getGroup_4_2_4() { return cGroup_4_2_4; }
+		public Group getGroup_4_2_5() { return cGroup_4_2_5; }
 		
 		//','
-		public Keyword getCommaKeyword_4_2_4_0() { return cCommaKeyword_4_2_4_0; }
+		public Keyword getCommaKeyword_4_2_5_0() { return cCommaKeyword_4_2_5_0; }
 		
 		//prompts+=EString
-		public Assignment getPromptsAssignment_4_2_4_1() { return cPromptsAssignment_4_2_4_1; }
+		public Assignment getPromptsAssignment_4_2_5_1() { return cPromptsAssignment_4_2_5_1; }
 		
 		//EString
-		public RuleCall getPromptsEStringParserRuleCall_4_2_4_1_0() { return cPromptsEStringParserRuleCall_4_2_4_1_0; }
+		public RuleCall getPromptsEStringParserRuleCall_4_2_5_1_0() { return cPromptsEStringParserRuleCall_4_2_5_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_4_2_5() { return cRightSquareBracketKeyword_4_2_5; }
+		public Keyword getRightSquareBracketKeyword_4_2_6() { return cRightSquareBracketKeyword_4_2_6; }
 		
 		//(',' isList?='isList')?
 		public Group getGroup_5() { return cGroup_5; }
@@ -916,19 +970,23 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEntityKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameEStringParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cInputsAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cInputsSimpleInputParserRuleCall_5_0_0 = (RuleCall)cInputsAssignment_5_0.eContents().get(0);
-		private final Assignment cInputsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cInputsSimpleInputParserRuleCall_5_1_0 = (RuleCall)cInputsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cInKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cLanguageAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cLanguageLanguageEnumRuleCall_4_1_0 = (RuleCall)cLanguageAssignment_4_1.eContents().get(0);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cInputsAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cInputsSimpleInputParserRuleCall_6_0_0 = (RuleCall)cInputsAssignment_6_0.eContents().get(0);
+		private final Assignment cInputsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cInputsSimpleInputParserRuleCall_6_1_0 = (RuleCall)cInputsAssignment_6_1.eContents().get(0);
 		
 		//Simple:
 		//	{Simple}
-		//	'Simple' 'entity' name=EString ':' (inputs+=SimpleInput inputs+=SimpleInput*)?;
+		//	'Simple' 'entity' name=EString ('in' language=Language)? ':' (inputs+=SimpleInput inputs+=SimpleInput*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Simple} 'Simple' 'entity' name=EString ':' (inputs+=SimpleInput inputs+=SimpleInput*)?
+		//{Simple} 'Simple' 'entity' name=EString ('in' language=Language)? ':' (inputs+=SimpleInput inputs+=SimpleInput*)?
 		public Group getGroup() { return cGroup; }
 		
 		//{Simple}
@@ -946,23 +1004,35 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNameEStringParserRuleCall_3_0() { return cNameEStringParserRuleCall_3_0; }
 		
+		//('in' language=Language)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'in'
+		public Keyword getInKeyword_4_0() { return cInKeyword_4_0; }
+		
+		//language=Language
+		public Assignment getLanguageAssignment_4_1() { return cLanguageAssignment_4_1; }
+		
+		//Language
+		public RuleCall getLanguageLanguageEnumRuleCall_4_1_0() { return cLanguageLanguageEnumRuleCall_4_1_0; }
+		
 		//':'
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
 		
 		//(inputs+=SimpleInput inputs+=SimpleInput*)?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//inputs+=SimpleInput
-		public Assignment getInputsAssignment_5_0() { return cInputsAssignment_5_0; }
+		public Assignment getInputsAssignment_6_0() { return cInputsAssignment_6_0; }
 		
 		//SimpleInput
-		public RuleCall getInputsSimpleInputParserRuleCall_5_0_0() { return cInputsSimpleInputParserRuleCall_5_0_0; }
+		public RuleCall getInputsSimpleInputParserRuleCall_6_0_0() { return cInputsSimpleInputParserRuleCall_6_0_0; }
 		
 		//inputs+=SimpleInput*
-		public Assignment getInputsAssignment_5_1() { return cInputsAssignment_5_1; }
+		public Assignment getInputsAssignment_6_1() { return cInputsAssignment_6_1; }
 		
 		//SimpleInput
-		public RuleCall getInputsSimpleInputParserRuleCall_5_1_0() { return cInputsSimpleInputParserRuleCall_5_1_0; }
+		public RuleCall getInputsSimpleInputParserRuleCall_6_1_0() { return cInputsSimpleInputParserRuleCall_6_1_0; }
 	}
 	public class CompositeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.Composite");
@@ -972,19 +1042,24 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEntityKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameEStringParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Assignment cInputsAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
-		private final RuleCall cInputsCompositeInputParserRuleCall_5_0_0 = (RuleCall)cInputsAssignment_5_0.eContents().get(0);
-		private final Assignment cInputsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cInputsCompositeInputParserRuleCall_5_1_0 = (RuleCall)cInputsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cInKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cLanguageAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cLanguageLanguageEnumRuleCall_4_1_0 = (RuleCall)cLanguageAssignment_4_1.eContents().get(0);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Assignment cInputsAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
+		private final RuleCall cInputsCompositeInputParserRuleCall_6_0_0 = (RuleCall)cInputsAssignment_6_0.eContents().get(0);
+		private final Assignment cInputsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cInputsCompositeInputParserRuleCall_6_1_0 = (RuleCall)cInputsAssignment_6_1.eContents().get(0);
 		
 		//Composite:
 		//	{Composite}
-		//	'Composite' 'entity' name=EString ':' (inputs+=CompositeInput inputs+=CompositeInput*)?;
+		//	'Composite' 'entity' name=EString ('in' language=Language)? ':' (inputs+=CompositeInput inputs+=CompositeInput*)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Composite} 'Composite' 'entity' name=EString ':' (inputs+=CompositeInput inputs+=CompositeInput*)?
+		//{Composite} 'Composite' 'entity' name=EString ('in' language=Language)? ':' (inputs+=CompositeInput
+		//inputs+=CompositeInput*)?
 		public Group getGroup() { return cGroup; }
 		
 		//{Composite}
@@ -1002,23 +1077,35 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNameEStringParserRuleCall_3_0() { return cNameEStringParserRuleCall_3_0; }
 		
+		//('in' language=Language)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'in'
+		public Keyword getInKeyword_4_0() { return cInKeyword_4_0; }
+		
+		//language=Language
+		public Assignment getLanguageAssignment_4_1() { return cLanguageAssignment_4_1; }
+		
+		//Language
+		public RuleCall getLanguageLanguageEnumRuleCall_4_1_0() { return cLanguageLanguageEnumRuleCall_4_1_0; }
+		
 		//':'
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
 		
 		//(inputs+=CompositeInput inputs+=CompositeInput*)?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//inputs+=CompositeInput
-		public Assignment getInputsAssignment_5_0() { return cInputsAssignment_5_0; }
+		public Assignment getInputsAssignment_6_0() { return cInputsAssignment_6_0; }
 		
 		//CompositeInput
-		public RuleCall getInputsCompositeInputParserRuleCall_5_0_0() { return cInputsCompositeInputParserRuleCall_5_0_0; }
+		public RuleCall getInputsCompositeInputParserRuleCall_6_0_0() { return cInputsCompositeInputParserRuleCall_6_0_0; }
 		
 		//inputs+=CompositeInput*
-		public Assignment getInputsAssignment_5_1() { return cInputsAssignment_5_1; }
+		public Assignment getInputsAssignment_6_1() { return cInputsAssignment_6_1; }
 		
 		//CompositeInput
-		public RuleCall getInputsCompositeInputParserRuleCall_5_1_0() { return cInputsCompositeInputParserRuleCall_5_1_0; }
+		public RuleCall getInputsCompositeInputParserRuleCall_6_1_0() { return cInputsCompositeInputParserRuleCall_6_1_0; }
 	}
 	public class SimpleInputElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.SimpleInput");
@@ -1117,21 +1204,25 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cResponseKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cTextKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cInputsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cInputsTextInputTextParserRuleCall_5_0 = (RuleCall)cInputsAssignment_5.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cInputsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cInputsTextInputTextParserRuleCall_6_1_0 = (RuleCall)cInputsAssignment_6_1.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cInKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cLanguageAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cLanguageLanguageEnumRuleCall_3_1_0 = (RuleCall)cLanguageAssignment_3_1.eContents().get(0);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cTextKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cInputsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cInputsTextInputTextParserRuleCall_6_0 = (RuleCall)cInputsAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cInputsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cInputsTextInputTextParserRuleCall_7_1_0 = (RuleCall)cInputsAssignment_7_1.eContents().get(0);
 		
 		//Text:
-		//	'text' 'response' name=EString ':'
+		//	'text' 'response' name=EString ('in' language=Language)? ':'
 		//	'text:'? inputs+=TextInputText (',' inputs+=TextInputText)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'text' 'response' name=EString ':' 'text:'? inputs+=TextInputText (',' inputs+=TextInputText)*
+		//'text' 'response' name=EString ('in' language=Language)? ':' 'text:'? inputs+=TextInputText (',' inputs+=TextInputText)*
 		public Group getGroup() { return cGroup; }
 		
 		//'text'
@@ -1146,29 +1237,41 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 		
+		//('in' language=Language)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'in'
+		public Keyword getInKeyword_3_0() { return cInKeyword_3_0; }
+		
+		//language=Language
+		public Assignment getLanguageAssignment_3_1() { return cLanguageAssignment_3_1; }
+		
+		//Language
+		public RuleCall getLanguageLanguageEnumRuleCall_3_1_0() { return cLanguageLanguageEnumRuleCall_3_1_0; }
+		
 		//':'
-		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
 		
 		//'text:'?
-		public Keyword getTextKeyword_4() { return cTextKeyword_4; }
+		public Keyword getTextKeyword_5() { return cTextKeyword_5; }
 		
 		//inputs+=TextInputText
-		public Assignment getInputsAssignment_5() { return cInputsAssignment_5; }
+		public Assignment getInputsAssignment_6() { return cInputsAssignment_6; }
 		
 		//TextInputText
-		public RuleCall getInputsTextInputTextParserRuleCall_5_0() { return cInputsTextInputTextParserRuleCall_5_0; }
+		public RuleCall getInputsTextInputTextParserRuleCall_6_0() { return cInputsTextInputTextParserRuleCall_6_0; }
 		
 		//(',' inputs+=TextInputText)*
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_7() { return cGroup_7; }
 		
 		//','
-		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
 		
 		//inputs+=TextInputText
-		public Assignment getInputsAssignment_6_1() { return cInputsAssignment_6_1; }
+		public Assignment getInputsAssignment_7_1() { return cInputsAssignment_7_1; }
 		
 		//TextInputText
-		public RuleCall getInputsTextInputTextParserRuleCall_6_1_0() { return cInputsTextInputTextParserRuleCall_6_1_0; }
+		public RuleCall getInputsTextInputTextParserRuleCall_7_1_0() { return cInputsTextInputTextParserRuleCall_7_1_0; }
 	}
 	public class HTTPResponseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.HTTPResponse");
@@ -1730,17 +1833,31 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cUKRANIANUkKeyword_18_0 = (Keyword)cUKRANIANEnumLiteralDeclaration_18.eContents().get(0);
 		private final EnumLiteralDeclaration cCHINESEEnumLiteralDeclaration_19 = (EnumLiteralDeclaration)cAlternatives.eContents().get(19);
 		private final Keyword cCHINESEZhKeyword_19_0 = (Keyword)cCHINESEEnumLiteralDeclaration_19.eContents().get(0);
+		private final EnumLiteralDeclaration cARABICEnumLiteralDeclaration_20 = (EnumLiteralDeclaration)cAlternatives.eContents().get(20);
+		private final Keyword cARABICArKeyword_20_0 = (Keyword)cARABICEnumLiteralDeclaration_20.eContents().get(0);
+		private final EnumLiteralDeclaration cCZECHEnumLiteralDeclaration_21 = (EnumLiteralDeclaration)cAlternatives.eContents().get(21);
+		private final Keyword cCZECHCzKeyword_21_0 = (Keyword)cCZECHEnumLiteralDeclaration_21.eContents().get(0);
+		private final EnumLiteralDeclaration cBULGARIANEnumLiteralDeclaration_22 = (EnumLiteralDeclaration)cAlternatives.eContents().get(22);
+		private final Keyword cBULGARIANBuKeyword_22_0 = (Keyword)cBULGARIANEnumLiteralDeclaration_22.eContents().get(0);
+		private final EnumLiteralDeclaration cFINISHEnumLiteralDeclaration_23 = (EnumLiteralDeclaration)cAlternatives.eContents().get(23);
+		private final Keyword cFINISHFiKeyword_23_0 = (Keyword)cFINISHEnumLiteralDeclaration_23.eContents().get(0);
+		private final EnumLiteralDeclaration cGREEKEnumLiteralDeclaration_24 = (EnumLiteralDeclaration)cAlternatives.eContents().get(24);
+		private final Keyword cGREEKGrKeyword_24_0 = (Keyword)cGREEKEnumLiteralDeclaration_24.eContents().get(0);
+		private final EnumLiteralDeclaration cBANGLAEnumLiteralDeclaration_25 = (EnumLiteralDeclaration)cAlternatives.eContents().get(25);
+		private final Keyword cBANGLABaKeyword_25_0 = (Keyword)cBANGLAEnumLiteralDeclaration_25.eContents().get(0);
 		
 		//enum Language:
 		//	ENGLISH='en' | SPANISH='es' | DANISH='da' | GERMAN='de' | FRENCH='fr' |
 		//	HINDI='hi' | INDONESIAN='id' | ITALIAN='it' | JAPANESE='ja' | KOREAN='ko' |
 		//	DUTCH='nl' | NORWEGIAN='no' | POLISH='pl' | PORTUGUESE='pt' | RUSIAN='ru' |
-		//	SWEDISH='sv' | THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh';
+		//	SWEDISH='sv' | THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh' |
+		//	ARABIC='ar' | CZECH='cz' | BULGARIAN='bu' | FINISH='fi' | GREEK='gr' | BANGLA='ba';
 		public EnumRule getRule() { return rule; }
 		
 		//ENGLISH='en' | SPANISH='es' | DANISH='da' | GERMAN='de' | FRENCH='fr' | HINDI='hi' | INDONESIAN='id' | ITALIAN='it' |
 		//JAPANESE='ja' | KOREAN='ko' | DUTCH='nl' | NORWEGIAN='no' | POLISH='pl' | PORTUGUESE='pt' | RUSIAN='ru' | SWEDISH='sv'
-		//| THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh'
+		//| THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh' | ARABIC='ar' | CZECH='cz' | BULGARIAN='bu' | FINISH='fi' |
+		//GREEK='gr' | BANGLA='ba'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ENGLISH='en'
@@ -1862,6 +1979,42 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'zh'
 		public Keyword getCHINESEZhKeyword_19_0() { return cCHINESEZhKeyword_19_0; }
+		
+		//ARABIC='ar'
+		public EnumLiteralDeclaration getARABICEnumLiteralDeclaration_20() { return cARABICEnumLiteralDeclaration_20; }
+		
+		//'ar'
+		public Keyword getARABICArKeyword_20_0() { return cARABICArKeyword_20_0; }
+		
+		//CZECH='cz'
+		public EnumLiteralDeclaration getCZECHEnumLiteralDeclaration_21() { return cCZECHEnumLiteralDeclaration_21; }
+		
+		//'cz'
+		public Keyword getCZECHCzKeyword_21_0() { return cCZECHCzKeyword_21_0; }
+		
+		//BULGARIAN='bu'
+		public EnumLiteralDeclaration getBULGARIANEnumLiteralDeclaration_22() { return cBULGARIANEnumLiteralDeclaration_22; }
+		
+		//'bu'
+		public Keyword getBULGARIANBuKeyword_22_0() { return cBULGARIANBuKeyword_22_0; }
+		
+		//FINISH='fi'
+		public EnumLiteralDeclaration getFINISHEnumLiteralDeclaration_23() { return cFINISHEnumLiteralDeclaration_23; }
+		
+		//'fi'
+		public Keyword getFINISHFiKeyword_23_0() { return cFINISHFiKeyword_23_0; }
+		
+		//GREEK='gr'
+		public EnumLiteralDeclaration getGREEKEnumLiteralDeclaration_24() { return cGREEKEnumLiteralDeclaration_24; }
+		
+		//'gr'
+		public Keyword getGREEKGrKeyword_24_0() { return cGREEKGrKeyword_24_0; }
+		
+		//BANGLA='ba'
+		public EnumLiteralDeclaration getBANGLAEnumLiteralDeclaration_25() { return cBANGLAEnumLiteralDeclaration_25; }
+		
+		//'ba'
+		public Keyword getBANGLABaKeyword_25_0() { return cBANGLABaKeyword_25_0; }
 	}
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.botGenerator.Bot.DataType");
@@ -2026,7 +2179,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Bot:
-	//	'Chatbot' name=EString 'language:' language=Language
+	//	'Chatbot' name=EString 'language:' languages+=Language (',' languages+=Language)*
 	//	'intents' ':' intents+=Intent intents+=Intent* ('entities' ':' entities+=Entity entities+=Entity*)? ('actions' ':'
 	//	actions+=Action actions+=Action*)?
 	//	'flows' ':' ('-' flows+=Transition ';')+;
@@ -2079,7 +2232,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Intent:
-	//	name=EString fallbackIntent?='Fallback'?
+	//	name=EString fallbackIntent?='Fallback'? ('language' ':' language=Language)?
 	//	'{'
 	//	'inputs:' inputs+=TrainingPhrase ("," inputs+=TrainingPhrase)* ('parameters:' parameters+=Parameter
 	//	parameters+=Parameter*)?
@@ -2135,8 +2288,8 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Parameter:
 	//	name=EString ':'
-	//	'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) (',' required?='required' (',' 'prompts' '['
-	//	prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')? ';';
+	//	'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) (',' required?='required' (',' 'prompts' ('in'
+	//	prompLanguage=Language)? '[' prompts+=EString (',' prompts+=EString)* ']')?)? (',' isList?='isList')? ';';
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -2217,7 +2370,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Simple:
 	//	{Simple}
-	//	'Simple' 'entity' name=EString ':' (inputs+=SimpleInput inputs+=SimpleInput*)?;
+	//	'Simple' 'entity' name=EString ('in' language=Language)? ':' (inputs+=SimpleInput inputs+=SimpleInput*)?;
 	public SimpleElements getSimpleAccess() {
 		return pSimple;
 	}
@@ -2228,7 +2381,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Composite:
 	//	{Composite}
-	//	'Composite' 'entity' name=EString ':' (inputs+=CompositeInput inputs+=CompositeInput*)?;
+	//	'Composite' 'entity' name=EString ('in' language=Language)? ':' (inputs+=CompositeInput inputs+=CompositeInput*)?;
 	public CompositeElements getCompositeAccess() {
 		return pComposite;
 	}
@@ -2258,7 +2411,7 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Text:
-	//	'text' 'response' name=EString ':'
+	//	'text' 'response' name=EString ('in' language=Language)? ':'
 	//	'text:'? inputs+=TextInputText (',' inputs+=TextInputText)*;
 	public TextElements getTextAccess() {
 		return pText;
@@ -2338,7 +2491,8 @@ public class BotGrammarAccess extends AbstractGrammarElementFinder {
 	//	ENGLISH='en' | SPANISH='es' | DANISH='da' | GERMAN='de' | FRENCH='fr' |
 	//	HINDI='hi' | INDONESIAN='id' | ITALIAN='it' | JAPANESE='ja' | KOREAN='ko' |
 	//	DUTCH='nl' | NORWEGIAN='no' | POLISH='pl' | PORTUGUESE='pt' | RUSIAN='ru' |
-	//	SWEDISH='sv' | THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh';
+	//	SWEDISH='sv' | THAI='th' | TURKISH='tr' | UKRANIAN='uk' | CHINESE='zh' |
+	//	ARABIC='ar' | CZECH='cz' | BULGARIAN='bu' | FINISH='fi' | GREEK='gr' | BANGLA='ba';
 	public LanguageElements getLanguageAccess() {
 		return eLanguage;
 	}

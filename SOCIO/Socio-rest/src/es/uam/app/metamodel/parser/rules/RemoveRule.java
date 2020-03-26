@@ -22,7 +22,7 @@ import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
 
-public class RemoveRule extends MetemodelRule {
+public class RemoveRule extends MetamodelRule {
 
 	private static final String[] DELETE_WORDS = { "remove", "delete", "erase" };
 	private List<NP[]> dobj_to;

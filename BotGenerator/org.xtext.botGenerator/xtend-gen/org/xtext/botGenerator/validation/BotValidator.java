@@ -8,16 +8,19 @@ import generator.Action;
 import generator.Bot;
 import generator.BotInteraction;
 import generator.Element;
+import generator.Entity;
 import generator.GeneratorPackage;
 import generator.HTTPRequest;
 import generator.HTTPRequestToke;
 import generator.HTTPResponse;
 import generator.HTTPReturnType;
 import generator.Intent;
+import generator.Language;
 import generator.Parameter;
 import generator.ParameterReferenceToken;
 import generator.Simple;
 import generator.SimpleInput;
+import generator.Text;
 import generator.TrainingPhrase;
 import generator.UserInteraction;
 import java.util.ArrayList;
@@ -118,9 +121,9 @@ public class BotValidator extends AbstractBotValidator {
         if (((!i.equals(e)) && i.getName().equals(e.getName()))) {
           String _name = i.getName();
           String _plus = ("There are several elements with the name " + _name);
-          String _plus_1 = (_plus + ". The name of the elements must be unique");
-          this.error(_plus_1, 
-            GeneratorPackage.Literals.ELEMENT__NAME);
+          String _plus_1 = (_plus + 
+            ". The name of the elements must be unique");
+          this.error(_plus_1, GeneratorPackage.Literals.ELEMENT__NAME);
         }
       }
     }
@@ -135,7 +138,8 @@ public class BotValidator extends AbstractBotValidator {
         if (((!param.equals(p)) && param.getName().equals(p.getName()))) {
           String _name = p.getName();
           String _plus = ("There are several parameters with the name " + _name);
-          String _plus_1 = (_plus + " in this intent. The name of the parameters must be unique");
+          String _plus_1 = (_plus + 
+            " in this intent. The name of the parameters must be unique");
           this.error(_plus_1, 
             GeneratorPackage.Literals.ELEMENT__NAME);
         }
@@ -152,7 +156,8 @@ public class BotValidator extends AbstractBotValidator {
         if (((!input.equals(i)) && input.getName().equals(i.getName()))) {
           String _name = i.getName();
           String _plus = ("There are several entries with the name " + _name);
-          String _plus_1 = (_plus + " in this entity. The name of the entries must be unique");
+          String _plus_1 = (_plus + 
+            " in this entity. The name of the entries must be unique");
           this.error(_plus_1, 
             GeneratorPackage.Literals.ELEMENT__NAME);
         }
@@ -163,8 +168,7 @@ public class BotValidator extends AbstractBotValidator {
   @Check
   public void paramEntity(final Parameter param) {
     if (((param.getEntity() == null) && (param.getDefaultEntity() == null))) {
-      this.error("The parameter must have a entity", 
-        GeneratorPackage.Literals.PARAMETER__ENTITY);
+      this.error("The parameter must have a entity", GeneratorPackage.Literals.PARAMETER__ENTITY);
     }
   }
   
@@ -175,14 +179,84 @@ public class BotValidator extends AbstractBotValidator {
       if ((action instanceof HTTPResponse)) {
         int index = interaction.getActions().indexOf(action);
         if ((index == 0)) {
-          this.error("Before an HttpResponse must go the HttpRequest which reference", GeneratorPackage.Literals.BOT_INTERACTION__ACTIONS);
+          this.error("Before an HttpResponse must go the HttpRequest which reference", 
+            GeneratorPackage.Literals.BOT_INTERACTION__ACTIONS);
         } else {
           Action _get = interaction.getActions().get((index - 1));
           HTTPRequest _hTTPRequest = ((HTTPResponse)action).getHTTPRequest();
           boolean _tripleNotEquals = (_get != _hTTPRequest);
           if (_tripleNotEquals) {
-            this.error("Before an HttpResponse must go the HttpRequest which reference", GeneratorPackage.Literals.BOT_INTERACTION__ACTIONS);
+            this.error("Before an HttpResponse must go the HttpRequest which reference", 
+              GeneratorPackage.Literals.BOT_INTERACTION__ACTIONS);
           }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void entityLanguage(final Entity entity) {
+    Language _language = entity.getLanguage();
+    boolean _tripleNotEquals = (_language != Language.EMPTY);
+    if (_tripleNotEquals) {
+      EObject container = entity.eContainer();
+      if ((container instanceof Bot)) {
+        boolean _contains = ((Bot)container).getLanguages().contains(entity.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The entity language must be some of the bot languages", 
+            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void intentLanguage(final Intent intent) {
+    Language _language = intent.getLanguage();
+    boolean _tripleNotEquals = (_language != Language.EMPTY);
+    if (_tripleNotEquals) {
+      EObject container = intent.eContainer();
+      if ((container instanceof Bot)) {
+        boolean _contains = ((Bot)container).getLanguages().contains(intent.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The intent language must be some of the bot languages", 
+            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void paramLanguage(final Parameter param) {
+    Language _prompLanguage = param.getPrompLanguage();
+    boolean _tripleNotEquals = (_prompLanguage != Language.EMPTY);
+    if (_tripleNotEquals) {
+      EObject container = param.eContainer().eContainer();
+      if ((container instanceof Bot)) {
+        boolean _contains = ((Bot)container).getLanguages().contains(param.getPrompLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The prompt language must be some of the bot languages", 
+            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void textLanguage(final Text text) {
+    Language _language = text.getLanguage();
+    boolean _tripleNotEquals = (_language != Language.EMPTY);
+    if (_tripleNotEquals) {
+      EObject container = text.eContainer();
+      if ((container instanceof Bot)) {
+        boolean _contains = ((Bot)container).getLanguages().contains(text.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The text language must be some of the bot languages", 
+            GeneratorPackage.Literals.ENTITY__LANGUAGE);
         }
       }
     }

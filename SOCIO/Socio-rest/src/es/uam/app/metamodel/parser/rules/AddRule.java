@@ -19,7 +19,7 @@ import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
-public class AddRule extends MetemodelRule {
+public class AddRule extends MetamodelRule {
 
 	private List<NP[]> dobj_in;
 	private static final String[] ADD_WORDS = { "add", "create", "make" };

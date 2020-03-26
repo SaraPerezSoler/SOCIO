@@ -21,7 +21,7 @@ import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
 
-public class B4Contain extends MetemodelRule {
+public class B4Contain extends MetamodelRule {
 
 	// <A> contain <B>
 	private List<NP[]> A_B;

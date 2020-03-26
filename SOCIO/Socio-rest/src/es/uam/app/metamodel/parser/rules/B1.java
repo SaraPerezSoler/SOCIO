@@ -15,7 +15,7 @@ import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
-public class B1 extends MetemodelRule {
+public class B1 extends MetamodelRule {
 
 	// <A> <verb> <B>
 

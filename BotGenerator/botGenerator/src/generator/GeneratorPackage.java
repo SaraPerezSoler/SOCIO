@@ -152,13 +152,13 @@ public interface GeneratorPackage extends EPackage {
 	int BOT__FLOWS = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * The feature id for the '<em><b>Languages</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOT__LANGUAGE = ELEMENT_FEATURE_COUNT + 4;
+	int BOT__LANGUAGES = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Bot</em>' class.
@@ -336,13 +336,22 @@ public interface GeneratorPackage extends EPackage {
 	int ENTITY__NAME = ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY__LANGUAGE = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int ENTITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Entity</em>' class.
@@ -371,6 +380,15 @@ public interface GeneratorPackage extends EPackage {
 	 * @ordered
 	 */
 	int SIMPLE__NAME = ENTITY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE__LANGUAGE = ENTITY__LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -417,6 +435,15 @@ public interface GeneratorPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE__NAME = ENTITY__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE__LANGUAGE = ENTITY__LANGUAGE;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -806,13 +833,22 @@ public interface GeneratorPackage extends EPackage {
 	int INTENT__FALLBACK_INTENT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTENT__LANGUAGE = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Intent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int INTENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Intent</em>' class.
@@ -925,13 +961,22 @@ public interface GeneratorPackage extends EPackage {
 	int PARAMETER__IS_LIST = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Promp Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__PROMP_LANGUAGE = ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 5;
+	int PARAMETER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -1063,13 +1108,22 @@ public interface GeneratorPackage extends EPackage {
 	int TEXT__INPUTS = ACTION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Language</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT__LANGUAGE = ACTION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Text</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+	int TEXT_FEATURE_COUNT = ACTION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Text</em>' class.
@@ -1415,15 +1469,15 @@ public interface GeneratorPackage extends EPackage {
 	EReference getBot_Flows();
 
 	/**
-	 * Returns the meta object for the attribute '{@link generator.Bot#getLanguage <em>Language</em>}'.
+	 * Returns the meta object for the attribute list '{@link generator.Bot#getLanguages <em>Languages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Language</em>'.
-	 * @see generator.Bot#getLanguage()
+	 * @return the meta object for the attribute list '<em>Languages</em>'.
+	 * @see generator.Bot#getLanguages()
 	 * @see #getBot()
 	 * @generated
 	 */
-	EAttribute getBot_Language();
+	EAttribute getBot_Languages();
 
 	/**
 	 * Returns the meta object for class '{@link generator.Interaction <em>Interaction</em>}'.
@@ -1551,6 +1605,17 @@ public interface GeneratorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEntity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link generator.Entity#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see generator.Entity#getLanguage()
+	 * @see #getEntity()
+	 * @generated
+	 */
+	EAttribute getEntity_Language();
 
 	/**
 	 * Returns the meta object for class '{@link generator.Simple <em>Simple</em>}'.
@@ -1817,6 +1882,17 @@ public interface GeneratorPackage extends EPackage {
 	EAttribute getIntent_FallbackIntent();
 
 	/**
+	 * Returns the meta object for the attribute '{@link generator.Intent#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see generator.Intent#getLanguage()
+	 * @see #getIntent()
+	 * @generated
+	 */
+	EAttribute getIntent_Language();
+
+	/**
 	 * Returns the meta object for class '{@link generator.TrainingPhrase <em>Training Phrase</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1903,6 +1979,17 @@ public interface GeneratorPackage extends EPackage {
 	EAttribute getParameter_IsList();
 
 	/**
+	 * Returns the meta object for the attribute '{@link generator.Parameter#getPrompLanguage <em>Promp Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Promp Language</em>'.
+	 * @see generator.Parameter#getPrompLanguage()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EAttribute getParameter_PrompLanguage();
+
+	/**
 	 * Returns the meta object for class '{@link generator.Action <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1964,6 +2051,17 @@ public interface GeneratorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getText_Inputs();
+
+	/**
+	 * Returns the meta object for the attribute '{@link generator.Text#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Language</em>'.
+	 * @see generator.Text#getLanguage()
+	 * @see #getText()
+	 * @generated
+	 */
+	EAttribute getText_Language();
 
 	/**
 	 * Returns the meta object for class '{@link generator.TextInput <em>Text Input</em>}'.
@@ -2242,12 +2340,12 @@ public interface GeneratorPackage extends EPackage {
 		EReference BOT__FLOWS = eINSTANCE.getBot_Flows();
 
 		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Languages</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BOT__LANGUAGE = eINSTANCE.getBot_Language();
+		EAttribute BOT__LANGUAGES = eINSTANCE.getBot_Languages();
 
 		/**
 		 * The meta object literal for the '{@link generator.impl.InteractionImpl <em>Interaction</em>}' class.
@@ -2354,6 +2452,14 @@ public interface GeneratorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ENTITY = eINSTANCE.getEntity();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENTITY__LANGUAGE = eINSTANCE.getEntity_Language();
 
 		/**
 		 * The meta object literal for the '{@link generator.impl.SimpleImpl <em>Simple</em>}' class.
@@ -2578,6 +2684,14 @@ public interface GeneratorPackage extends EPackage {
 		EAttribute INTENT__FALLBACK_INTENT = eINSTANCE.getIntent_FallbackIntent();
 
 		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTENT__LANGUAGE = eINSTANCE.getIntent_Language();
+
+		/**
 		 * The meta object literal for the '{@link generator.impl.TrainingPhraseImpl <em>Training Phrase</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2646,6 +2760,14 @@ public interface GeneratorPackage extends EPackage {
 		EAttribute PARAMETER__IS_LIST = eINSTANCE.getParameter_IsList();
 
 		/**
+		 * The meta object literal for the '<em><b>Promp Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__PROMP_LANGUAGE = eINSTANCE.getParameter_PrompLanguage();
+
+		/**
 		 * The meta object literal for the '{@link generator.impl.ActionImpl <em>Action</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2698,6 +2820,14 @@ public interface GeneratorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT__INPUTS = eINSTANCE.getText_Inputs();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT__LANGUAGE = eINSTANCE.getText_Language();
 
 		/**
 		 * The meta object literal for the '{@link generator.impl.TextInputImpl <em>Text Input</em>}' class.

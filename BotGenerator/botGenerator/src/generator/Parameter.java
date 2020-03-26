@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link generator.Parameter#isRequired <em>Required</em>}</li>
  *   <li>{@link generator.Parameter#getPrompts <em>Prompts</em>}</li>
  *   <li>{@link generator.Parameter#isIsList <em>Is List</em>}</li>
+ *   <li>{@link generator.Parameter#getPrompLanguage <em>Promp Language</em>}</li>
  * </ul>
  *
  * @see generator.GeneratorPackage#getParameter()
@@ -127,5 +128,31 @@ public interface Parameter extends Element {
 	 * @generated
 	 */
 	void setIsList(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Promp Language</b></em>' attribute.
+	 * The default value is <code>"EMPTY"</code>.
+	 * The literals are from the enumeration {@link generator.Language}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Promp Language</em>' attribute.
+	 * @see generator.Language
+	 * @see #setPrompLanguage(Language)
+	 * @see generator.GeneratorPackage#getParameter_PrompLanguage()
+	 * @model default="EMPTY"
+	 * @generated
+	 */
+	Language getPrompLanguage();
+
+	/**
+	 * Sets the value of the '{@link generator.Parameter#getPrompLanguage <em>Promp Language</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Promp Language</em>' attribute.
+	 * @see generator.Language
+	 * @see #getPrompLanguage()
+	 * @generated
+	 */
+	void setPrompLanguage(Language value);
 
 } // Parameter

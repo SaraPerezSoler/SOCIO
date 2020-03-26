@@ -21,6 +21,7 @@ import generator.Image
 import generator.ParameterReferenceToken
 import generator.ParameterToken
 import generator.TextInput
+import generator.Language
 
 class DialogflowGenerator {
 	String path;
@@ -40,11 +41,15 @@ class DialogflowGenerator {
 		var entities = resource.allContents.filter(Entity).toList;
 		for (Entity entity : entities) {
 			fsa.generateFile(path + '/entities/' + entity.name + '.json', entityFile(entity))
+			var lan = bot.languages.get(0);
+//			if (entity.language != Language.EMPTY){
+//				lan = entity.language
+//			}
 			if (entity instanceof Simple) {
-				fsa.generateFile(path+ '/entities/' + entity.name + '_entries_' + bot.languageAbbreviation +
+				fsa.generateFile(path+ '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
 					'.json', entriesFile(entity as Simple))
 			} else {
-				fsa.generateFile(path + '/entities/' + entity.name + '_entries_' + bot.languageAbbreviation +
+				fsa.generateFile(path + '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
 					'.json', entriesFile(entity as Composite))
 			}
 		}
@@ -54,8 +59,12 @@ class DialogflowGenerator {
 
 	}
 	def void createTransitionFiles(UserInteraction transition, String prefix, IFileSystemAccess2 fsa, Bot bot) {
+		var lan = bot.languages.get(0);
+//			if (transition.intent.language != Language.EMPTY){
+//				lan = transition.intent.language
+//			}
 		fsa.generateFile(
-			path + '/intents/' + prefix + transition.intent.name + '_usersays_' + bot.languageAbbreviation +
+			path + '/intents/' + prefix + transition.intent.name + '_usersays_' + lan.languageAbbreviation +
 				'.json', transition.usersayFile)
 		fsa.generateFile(path + '/intents/' + prefix + transition.intent.name + '.json',
 			transition.intentFile(prefix, bot))
@@ -152,7 +161,12 @@ class DialogflowGenerator {
 		        	  "prompts": [
 		        	  «FOR prompt :parameter.prompts»
 		        	  	{
-		        	  	  "lang": "«bot.languageAbbreviation»",
+		        	 	  «var lan = bot.languages.get(0)»
+		        	 «««  	  «IF parameter.prompLanguage != Language.EMPTY»
+		        	 «««  	  "lang": "«parameter.prompLanguage.languageAbbreviation»",
+		         	 «««   	  «ELSE»
+		        	 	  "lang": "«lan.languageAbbreviation»",
+		        	 «««  	  «ENDIF»
 		        	  	  "value": "«prompt»"
 		        	  	}«IF !isTheLast(parameter.prompts, prompt)»,«ENDIF»
 		        	  «ENDFOR»
@@ -167,7 +181,11 @@ class DialogflowGenerator {
 		      		«IF action instanceof Text»
 		    			{
 		  			"type": 0,
-		  			"lang": "«bot.languageAbbreviation»",
+		  			««««IF action.language != Language.EMPTY»
+		  			«««"lang": "«action.language.languageAbbreviation»",
+		  			««««ELSE»
+		  			"lang": "«bot.languages.get(0).languageAbbreviation»",
+		  			««««ENDIF»
 		  			"condition": "",
 		  			"speech": [
 		  				«action.speechText»
@@ -176,7 +194,6 @@ class DialogflowGenerator {
 				«ELSEIF action instanceof Image»
 					{
 					  "type": 3,
-					  "lang": "«bot.languageAbbreviation»",
 					  "condition": "",
 					  "imageUrl": "«action.URL»"
 					}«IF !transition.target.actions.isTheLast(action)»,«ENDIF»
@@ -205,7 +222,7 @@ class DialogflowGenerator {
 
 	def agentJSON(Bot bot, HTTPRequest request) '''
 		{
-		  "language": "«bot.languageAbbreviation»",
+		  "language": "«bot.languages.get(0).languageAbbreviation»",
 		  «IF request !== null »
 		  	"webhook": {
 		  	  "url": "«returnText(request.URL)»",
@@ -228,7 +245,13 @@ class DialogflowGenerator {
 		  "isPrivate": true,
 		  "customClassifierMode": "use.after",
 		  "mlMinConfidence": 0.3,
-		  "supportedLanguages": [],
+		  "supportedLanguages": [
+		  «IF  bot.languages.size > 1»
+		  «FOR  i : 1..bot.languages.size-1»
+		  "«bot.languages.get(i).languageAbbreviation»"«IF !bot.languages.isTheLast(bot.languages.get(i))»,«ENDIF»
+		  «ENDFOR»
+		  «ENDIF»
+		  ],
 		  "onePlatformApiVersion": "v2",
 		  "analyzeQueryTextSentiment": false,
 		  "enabledKnowledgeBaseNames": [],
@@ -278,50 +301,50 @@ class DialogflowGenerator {
 		}
 		return value
 	}
-
-	def languageAbbreviation(Bot bot) {
-		var lan = bot.language
+	def languageAbbreviation(Language lan) {
 		switch (lan) {
-			case ENGLISH:
+			case Language.ENGLISH:
 				return 'en'
-			case SPANISH:
+			case Language.SPANISH:
 				return 'es'
-			case DANISH:
+			case Language.DANISH:
 				return 'da'
-			case GERMAN:
+			case Language.GERMAN:
 				return 'de'
-			case FRENCH:
+			case Language.FRENCH:
 				return 'fr'
-			case HINDI:
+			case Language.HINDI:
 				return 'hi'
-			case INDONESIAN:
+			case Language.INDONESIAN:
 				return 'id'
-			case ITALIAN:
+			case Language.ITALIAN:
 				return 'it'
-			case JAPANESE:
+			case Language.JAPANESE:
 				return 'ja'
-			case KOREAN:
+			case Language.KOREAN:
 				return 'ko'
-			case DUTCH:
+			case Language.DUTCH:
 				return 'nl'
-			case NORWEGIAN:
+			case Language.NORWEGIAN:
 				return 'no'
-			case POLISH:
+			case Language.POLISH:
 				return 'pl'
-			case PORTUGUESE:
+			case Language.PORTUGUESE:
 				return 'pt'
-			case RUSIAN:
+			case Language.RUSIAN:
 				return 'ru'
-			case SWEDISH:
+			case Language.SWEDISH:
 				return 'sv'
-			case THAI:
+			case Language.THAI:
 				return 'th'
-			case TURKISH:
+			case Language.TURKISH:
 				return 'tr'
-			case UKRANIAN:
+			case Language.UKRANIAN:
 				return 'uk'
-			case CHINESE:
+			case Language.CHINESE:
 				return 'zh'
+			default:
+				return 'en'
 		}
 	}
 

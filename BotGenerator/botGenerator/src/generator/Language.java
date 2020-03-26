@@ -216,7 +216,63 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHINESE(17, "CHINESE", "CHINESE");
+	CHINESE(17, "CHINESE", "CHINESE"), /**
+	 * The '<em><b>ARABIC</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ARABIC_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ARABIC(18, "ARABIC", "ARABIC"), /**
+	 * The '<em><b>CZECH</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CZECH_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CZECH(19, "CZECH", "CZECH"), /**
+	 * The '<em><b>BULGARIAN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BULGARIAN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	BULGARIAN(20, "BULGARIAN", "BULGARIAN"), /**
+	 * The '<em><b>FINISH</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FINISH_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	FINISH(21, "FINISH", "FINISH"), /**
+	 * The '<em><b>GREEK</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GREEK_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	GREEK(22, "GREEK", "GREEK"), /**
+	 * The '<em><b>BANGLA</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BANGLA_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	BANGLA(23, "BANGLA", "BANGLA"), /**
+	 * The '<em><b>EMPTY</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EMPTY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	EMPTY(-1, "EMPTY", "EMPTY");
 
 	/**
 	 * The '<em><b>ENGLISH</b></em>' literal value.
@@ -439,6 +495,83 @@ public enum Language implements Enumerator {
 	public static final int CHINESE_VALUE = 17;
 
 	/**
+	 * The '<em><b>ARABIC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ARABIC
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ARABIC_VALUE = 18;
+
+	/**
+	 * The '<em><b>CZECH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CZECH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CZECH_VALUE = 19;
+
+	/**
+	 * The '<em><b>BULGARIAN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BULGARIAN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BULGARIAN_VALUE = 20;
+
+	/**
+	 * The '<em><b>FINISH</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FINISH
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FINISH_VALUE = 21;
+
+	/**
+	 * The '<em><b>GREEK</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #GREEK
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int GREEK_VALUE = 22;
+
+	/**
+	 * The '<em><b>BANGLA</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BANGLA
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BANGLA_VALUE = 23;
+
+	/**
+	 * The '<em><b>EMPTY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #EMPTY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int EMPTY_VALUE = -1;
+
+	/**
 	 * An array of all the '<em><b>Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -466,6 +599,13 @@ public enum Language implements Enumerator {
 			TURKISH,
 			UKRANIAN,
 			CHINESE,
+			ARABIC,
+			CZECH,
+			BULGARIAN,
+			FINISH,
+			GREEK,
+			BANGLA,
+			EMPTY,
 		};
 
 	/**
@@ -542,6 +682,11 @@ public enum Language implements Enumerator {
 			case TURKISH_VALUE: return TURKISH;
 			case UKRANIAN_VALUE: return UKRANIAN;
 			case CHINESE_VALUE: return CHINESE;
+			case BULGARIAN_VALUE: return BULGARIAN;
+			case FINISH_VALUE: return FINISH;
+			case GREEK_VALUE: return GREEK;
+			case BANGLA_VALUE: return BANGLA;
+			case EMPTY_VALUE: return EMPTY;
 		}
 		return null;
 	}

@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 @SuppressWarnings("all")
@@ -59,11 +60,12 @@ public class DialogflowGenerator {
         String _plus_1 = ((this.path + "/entities/") + _name_1);
         String _plus_2 = (_plus_1 + ".json");
         fsa.generateFile(_plus_2, this.entityFile(entity));
+        Language lan = bot.getLanguages().get(0);
         if ((entity instanceof Simple)) {
           String _name_2 = ((Simple)entity).getName();
           String _plus_3 = ((this.path + "/entities/") + _name_2);
           String _plus_4 = (_plus_3 + "_entries_");
-          String _languageAbbreviation = this.languageAbbreviation(bot);
+          String _languageAbbreviation = this.languageAbbreviation(lan);
           String _plus_5 = (_plus_4 + _languageAbbreviation);
           String _plus_6 = (_plus_5 + 
             ".json");
@@ -72,7 +74,7 @@ public class DialogflowGenerator {
           String _name_3 = entity.getName();
           String _plus_7 = ((this.path + "/entities/") + _name_3);
           String _plus_8 = (_plus_7 + "_entries_");
-          String _languageAbbreviation_1 = this.languageAbbreviation(bot);
+          String _languageAbbreviation_1 = this.languageAbbreviation(lan);
           String _plus_9 = (_plus_8 + _languageAbbreviation_1);
           String _plus_10 = (_plus_9 + 
             ".json");
@@ -87,10 +89,11 @@ public class DialogflowGenerator {
   }
   
   public void createTransitionFiles(final UserInteraction transition, final String prefix, final IFileSystemAccess2 fsa, final Bot bot) {
+    Language lan = bot.getLanguages().get(0);
     String _name = transition.getIntent().getName();
     String _plus = (((this.path + "/intents/") + prefix) + _name);
     String _plus_1 = (_plus + "_usersays_");
-    String _languageAbbreviation = this.languageAbbreviation(bot);
+    String _languageAbbreviation = this.languageAbbreviation(lan);
     String _plus_2 = (_plus_1 + _languageAbbreviation);
     String _plus_3 = (_plus_2 + 
       ".json");
@@ -323,19 +326,18 @@ public class DialogflowGenerator {
             _builder.append("  ");
             _builder.append("{");
             _builder.newLine();
-            _builder.append("        ");
-            _builder.append("  ");
-            _builder.append("  ");
+            _builder.append("\t\t        \t \t  ");
+            Language lan = bot.getLanguages().get(0);
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t        \t \t\t        \t \t\t         \t \t\t        \t \t  ");
             _builder.append("\"lang\": \"");
-            String _languageAbbreviation = this.languageAbbreviation(bot);
-            _builder.append(_languageAbbreviation, "            ");
+            String _languageAbbreviation = this.languageAbbreviation(lan);
+            _builder.append(_languageAbbreviation, "\t\t        \t \t\t        \t \t\t         \t \t\t        \t \t  ");
             _builder.append("\",");
             _builder.newLineIfNotEmpty();
-            _builder.append("        ");
-            _builder.append("  ");
-            _builder.append("  ");
+            _builder.append("\t\t        \t \t\t        \t  \t  ");
             _builder.append("\"value\": \"");
-            _builder.append(prompt, "            ");
+            _builder.append(prompt, "\t\t        \t \t\t        \t  \t  ");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("        ");
@@ -395,13 +397,13 @@ public class DialogflowGenerator {
                 _builder.append("\t\t  \t\t\t");
                 _builder.append("\"type\": 0,");
                 _builder.newLine();
-                _builder.append("\t\t  \t\t\t");
+                _builder.append("\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t");
                 _builder.append("\"lang\": \"");
-                String _languageAbbreviation_1 = this.languageAbbreviation(bot);
-                _builder.append(_languageAbbreviation_1, "\t\t  \t\t\t");
+                String _languageAbbreviation_1 = this.languageAbbreviation(bot.getLanguages().get(0));
+                _builder.append(_languageAbbreviation_1, "\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t");
                 _builder.append("\",");
                 _builder.newLineIfNotEmpty();
-                _builder.append("\t\t  \t\t\t");
+                _builder.append("\t\t  \t\t\t\t\t  \t\t\t");
                 _builder.append("\"condition\": \"\",");
                 _builder.newLine();
                 _builder.append("\t\t  \t\t\t");
@@ -430,12 +432,6 @@ public class DialogflowGenerator {
                   _builder.append("  ");
                   _builder.append("\"type\": 3,");
                   _builder.newLine();
-                  _builder.append("  ");
-                  _builder.append("\"lang\": \"");
-                  String _languageAbbreviation_2 = this.languageAbbreviation(bot);
-                  _builder.append(_languageAbbreviation_2, "  ");
-                  _builder.append("\",");
-                  _builder.newLineIfNotEmpty();
                   _builder.append("  ");
                   _builder.append("\"condition\": \"\",");
                   _builder.newLine();
@@ -525,7 +521,7 @@ public class DialogflowGenerator {
     _builder.newLine();
     _builder.append("  ");
     _builder.append("\"language\": \"");
-    String _languageAbbreviation = this.languageAbbreviation(bot);
+    String _languageAbbreviation = this.languageAbbreviation(bot.getLanguages().get(0));
     _builder.append(_languageAbbreviation, "  ");
     _builder.append("\",");
     _builder.newLineIfNotEmpty();
@@ -613,7 +609,36 @@ public class DialogflowGenerator {
     _builder.append("\"mlMinConfidence\": 0.3,");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("\"supportedLanguages\": [],");
+    _builder.append("\"supportedLanguages\": [");
+    _builder.newLine();
+    {
+      int _size = bot.getLanguages().size();
+      boolean _greaterThan = (_size > 1);
+      if (_greaterThan) {
+        {
+          int _size_1 = bot.getLanguages().size();
+          int _minus = (_size_1 - 1);
+          IntegerRange _upTo = new IntegerRange(1, _minus);
+          for(final Integer i : _upTo) {
+            _builder.append("  ");
+            _builder.append("\"");
+            String _languageAbbreviation_1 = this.languageAbbreviation(bot.getLanguages().get((i).intValue()));
+            _builder.append(_languageAbbreviation_1, "  ");
+            _builder.append("\"");
+            {
+              boolean _isTheLast = DialogflowGenerator.isTheLast(bot.getLanguages(), bot.getLanguages().get((i).intValue()));
+              boolean _not = (!_isTheLast);
+              if (_not) {
+                _builder.append(",");
+              }
+            }
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("  ");
+    _builder.append("],");
     _builder.newLine();
     _builder.append("  ");
     _builder.append("\"onePlatformApiVersion\": \"v2\",");
@@ -751,8 +776,7 @@ public class DialogflowGenerator {
     return value;
   }
   
-  public String languageAbbreviation(final Bot bot) {
-    Language lan = bot.getLanguage();
+  public String languageAbbreviation(final Language lan) {
     if (lan != null) {
       switch (lan) {
         case ENGLISH:
@@ -796,10 +820,11 @@ public class DialogflowGenerator {
         case CHINESE:
           return "zh";
         default:
-          break;
+          return "en";
       }
+    } else {
+      return "en";
     }
-    return null;
   }
   
   public CharSequence entityFile(final Entity entity) {

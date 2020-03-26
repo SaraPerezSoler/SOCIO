@@ -147,7 +147,8 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         name=EString 
-	 *         language=Language 
+	 *         languages+=Language 
+	 *         languages+=Language* 
 	 *         intents+=Intent 
 	 *         intents+=Intent* 
 	 *         (entities+=Entity entities+=Entity*)? 
@@ -178,7 +179,7 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Composite returns Composite
 	 *
 	 * Constraint:
-	 *     (name=EString (inputs+=CompositeInput inputs+=CompositeInput*)?)
+	 *     (name=EString language=Language? (inputs+=CompositeInput inputs+=CompositeInput*)?)
 	 */
 	protected void sequence_Composite(ISerializationContext context, Composite semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -300,7 +301,14 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Intent returns Intent
 	 *
 	 * Constraint:
-	 *     (name=EString fallbackIntent?='Fallback'? inputs+=TrainingPhrase inputs+=TrainingPhrase* (parameters+=Parameter parameters+=Parameter*)?)
+	 *     (
+	 *         name=EString 
+	 *         fallbackIntent?='Fallback'? 
+	 *         language=Language? 
+	 *         inputs+=TrainingPhrase 
+	 *         inputs+=TrainingPhrase* 
+	 *         (parameters+=Parameter parameters+=Parameter*)?
+	 *     )
 	 */
 	protected void sequence_Intent(ISerializationContext context, Intent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -396,7 +404,7 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         name=EString 
 	 *         (entity=[Entity|EString] | defaultEntity=DefaultEntity) 
-	 *         (required?='required' (prompts+=EString prompts+=EString*)?)? 
+	 *         (required?='required' (prompLanguage=Language? prompts+=EString prompts+=EString*)?)? 
 	 *         isList?='isList'?
 	 *     )
 	 */
@@ -423,7 +431,7 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Simple returns Simple
 	 *
 	 * Constraint:
-	 *     (name=EString (inputs+=SimpleInput inputs+=SimpleInput*)?)
+	 *     (name=EString language=Language? (inputs+=SimpleInput inputs+=SimpleInput*)?)
 	 */
 	protected void sequence_Simple(ISerializationContext context, Simple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -484,7 +492,7 @@ public class BotSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Text returns Text
 	 *
 	 * Constraint:
-	 *     (name=EString inputs+=TextInputText inputs+=TextInputText*)
+	 *     (name=EString language=Language? inputs+=TextInputText inputs+=TextInputText*)
 	 */
 	protected void sequence_Text(ISerializationContext context, Text semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

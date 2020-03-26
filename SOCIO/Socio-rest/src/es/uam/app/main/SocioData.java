@@ -35,7 +35,7 @@ import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
-import es.uam.app.metamodel.parser.rules.MetemodelRule;
+import es.uam.app.metamodel.parser.rules.MetamodelRule;
 import es.uam.app.words.WordNet;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import modelInfo.ModelInfoPackage;
@@ -137,7 +137,7 @@ public class SocioData implements DataFormat {
 		// Registrando Extraction Rules
 		List<Class<? extends ExtractionRule<MetamodelProject>>> rules = new ArrayList<>();
 		new FastClasspathScanner(ExtractionRule.class.getPackage().getName())
-				.matchSubclassesOf(MetemodelRule.class, rules::add).scan();
+				.matchSubclassesOf(MetamodelRule.class, rules::add).scan();
 		try {
 
 			for (Class<? extends ExtractionRule<MetamodelProject>> r : rules) {

@@ -11,17 +11,13 @@ import generator.Language;
 import generator.UserInteraction;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -37,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link generator.impl.BotImpl#getEntities <em>Entities</em>}</li>
  *   <li>{@link generator.impl.BotImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link generator.impl.BotImpl#getFlows <em>Flows</em>}</li>
- *   <li>{@link generator.impl.BotImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link generator.impl.BotImpl#getLanguages <em>Languages</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,24 +80,14 @@ public class BotImpl extends ElementImpl implements Bot {
 	protected EList<UserInteraction> flows;
 
 	/**
-	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
+	 * The cached value of the '{@link #getLanguages() <em>Languages</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
+	 * @see #getLanguages()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Language LANGUAGE_EDEFAULT = Language.ENGLISH;
-
-	/**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected Language language = LANGUAGE_EDEFAULT;
+	protected EList<Language> languages;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,21 +166,11 @@ public class BotImpl extends ElementImpl implements Bot {
 	 * @generated
 	 */
 	@Override
-	public Language getLanguage() {
-		return language;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setLanguage(Language newLanguage) {
-		Language oldLanguage = language;
-		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GeneratorPackage.BOT__LANGUAGE, oldLanguage, language));
+	public EList<Language> getLanguages() {
+		if (languages == null) {
+			languages = new EDataTypeUniqueEList<Language>(Language.class, this, GeneratorPackage.BOT__LANGUAGES);
+		}
+		return languages;
 	}
 
 	/**
@@ -233,8 +209,8 @@ public class BotImpl extends ElementImpl implements Bot {
 				return getActions();
 			case GeneratorPackage.BOT__FLOWS:
 				return getFlows();
-			case GeneratorPackage.BOT__LANGUAGE:
-				return getLanguage();
+			case GeneratorPackage.BOT__LANGUAGES:
+				return getLanguages();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,8 +240,9 @@ public class BotImpl extends ElementImpl implements Bot {
 				getFlows().clear();
 				getFlows().addAll((Collection<? extends UserInteraction>)newValue);
 				return;
-			case GeneratorPackage.BOT__LANGUAGE:
-				setLanguage((Language)newValue);
+			case GeneratorPackage.BOT__LANGUAGES:
+				getLanguages().clear();
+				getLanguages().addAll((Collection<? extends Language>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,8 +268,8 @@ public class BotImpl extends ElementImpl implements Bot {
 			case GeneratorPackage.BOT__FLOWS:
 				getFlows().clear();
 				return;
-			case GeneratorPackage.BOT__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
+			case GeneratorPackage.BOT__LANGUAGES:
+				getLanguages().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -314,8 +291,8 @@ public class BotImpl extends ElementImpl implements Bot {
 				return actions != null && !actions.isEmpty();
 			case GeneratorPackage.BOT__FLOWS:
 				return flows != null && !flows.isEmpty();
-			case GeneratorPackage.BOT__LANGUAGE:
-				return language != LANGUAGE_EDEFAULT;
+			case GeneratorPackage.BOT__LANGUAGES:
+				return languages != null && !languages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -330,8 +307,8 @@ public class BotImpl extends ElementImpl implements Bot {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (language: ");
-		result.append(language);
+		result.append(" (languages: ");
+		result.append(languages);
 		result.append(')');
 		return result.toString();
 	}

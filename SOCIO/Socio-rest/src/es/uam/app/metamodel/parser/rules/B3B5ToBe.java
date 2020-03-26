@@ -27,7 +27,7 @@ import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
 import socioProjects.MetamodelProject;
 
-public class B3B5ToBe extends MetemodelRule {
+public class B3B5ToBe extends MetamodelRule {
 
 	// <A> is a <B>
 

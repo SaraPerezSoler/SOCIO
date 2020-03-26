@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link generator.Bot#getEntities <em>Entities</em>}</li>
  *   <li>{@link generator.Bot#getActions <em>Actions</em>}</li>
  *   <li>{@link generator.Bot#getFlows <em>Flows</em>}</li>
- *   <li>{@link generator.Bot#getLanguage <em>Language</em>}</li>
+ *   <li>{@link generator.Bot#getLanguages <em>Languages</em>}</li>
  * </ul>
  *
  * @see generator.GeneratorPackage#getBot()
@@ -74,28 +74,17 @@ public interface Bot extends Element {
 	EList<UserInteraction> getFlows();
 
 	/**
-	 * Returns the value of the '<em><b>Language</b></em>' attribute.
+	 * Returns the value of the '<em><b>Languages</b></em>' attribute list.
+	 * The list contents are of type {@link generator.Language}.
 	 * The literals are from the enumeration {@link generator.Language}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Language</em>' attribute.
+	 * @return the value of the '<em>Languages</em>' attribute list.
 	 * @see generator.Language
-	 * @see #setLanguage(Language)
-	 * @see generator.GeneratorPackage#getBot_Language()
+	 * @see generator.GeneratorPackage#getBot_Languages()
 	 * @model required="true"
 	 * @generated
 	 */
-	Language getLanguage();
-
-	/**
-	 * Sets the value of the '{@link generator.Bot#getLanguage <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Language</em>' attribute.
-	 * @see generator.Language
-	 * @see #getLanguage()
-	 * @generated
-	 */
-	void setLanguage(Language value);
+	EList<Language> getLanguages();
 
 } // Bot

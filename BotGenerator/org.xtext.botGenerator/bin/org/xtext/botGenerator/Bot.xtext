@@ -5,7 +5,7 @@ import "platform:/resource/botGenerator/Model/BotGenerator.ecore"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Bot returns Bot:
-	'Chatbot' name=EString 'language:' language=Language
+	'Chatbot' name=EString 'language:' languages+=Language (','languages+=Language)*
 	
 		'intents'':' intents+=Intent ( intents+=Intent)*  
 		('entities'':'  entities+=Entity (entities+=Entity)*  )?
@@ -27,7 +27,7 @@ EString returns ecore::EString:
 	STRING | ID;
 
 Intent returns Intent:
-	name=EString (fallbackIntent?='Fallback')?
+	name=EString (fallbackIntent?='Fallback')? ('language'':' language=Language)?
 	'{'
 		'inputs:'  inputs+=TrainingPhrase ( "," inputs+=TrainingPhrase)*  
 		('parameters:'  parameters+=Parameter ( parameters+=Parameter)* )?
@@ -53,7 +53,7 @@ Parameter returns Parameter:
 	 name=EString ':' 
 		'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) 
 		(',' required?='required'
-		(',' 'prompts''['prompts+=EString (','prompts+=EString)*']')?
+		(',' 'prompts'('in' prompLanguage=Language)?'['prompts+=EString (','prompts+=EString)*']' )?
 		)? 
 		(','isList?='isList')? ';';
 
@@ -80,13 +80,13 @@ EBoolean returns ecore::EBoolean:
 
 Simple returns Simple:
 	{Simple}
-	'Simple' 'entity' name=EString ':'
+	'Simple' 'entity' name=EString ('in' language=Language)?':'
 			(inputs+=SimpleInput (inputs+=SimpleInput)* )?
 	;
 
 Composite returns Composite:
 	{Composite}
-	'Composite''entity' name=EString ':'
+	'Composite''entity' name=EString ('in' language=Language)?':'
 		(inputs+=CompositeInput ( inputs+=CompositeInput)* )?;
 
 SimpleInput returns SimpleInput:
@@ -97,7 +97,7 @@ CompositeInput returns CompositeInput:
 	 tokens+=(Literal | EntityToken)+';' ;
 
 Text returns Text:
-	'text' 'response' name=EString ':'
+	'text' 'response' name=EString ('in' language=Language)?':'
 		 ('text:')?inputs+=TextInputText (',' inputs+=TextInputText)*;
 HTTPResponse returns HTTPResponse:
 	'HttpResponse' name=EString ':'
@@ -133,7 +133,9 @@ enum Language returns Language:
 	ENGLISH = 'en' | SPANISH = 'es' | DANISH = 'da' | GERMAN = 'de' | FRENCH = 'fr' |
 	HINDI = 'hi'| INDONESIAN = 'id' | ITALIAN = 'it' | JAPANESE ='ja' | KOREAN = 'ko'|
 	DUTCH ='nl' | NORWEGIAN = 'no' | POLISH = 'pl' | PORTUGUESE = 'pt'| RUSIAN = 'ru'|
-	SWEDISH = 'sv'| THAI = 'th' | TURKISH = 'tr' | UKRANIAN = 'uk' | CHINESE = 'zh'
+	SWEDISH = 'sv'| THAI = 'th' | TURKISH = 'tr' | UKRANIAN = 'uk' | CHINESE = 'zh' | 
+	ARABIC = 'ar' | CZECH = 'cz'| BULGARIAN = 'bu' | FINISH = 'fi' | GREEK = 'gr' | BANGLA = 'ba'
+	
 ;
 KeyValue returns KeyValue:
 	key=EString ':' value=Literal;
