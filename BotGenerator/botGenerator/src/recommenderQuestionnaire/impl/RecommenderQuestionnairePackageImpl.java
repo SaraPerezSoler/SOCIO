@@ -149,7 +149,7 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public EReference getQuestionnaire_Bot() {
+	public EReference getQuestionnaire_Tools() {
 		return (EReference)questionnaireEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -159,18 +159,8 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public EReference getQuestionnaire_Tools() {
-		return (EReference)questionnaireEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EReference getQuestionnaire_Questions() {
-		return (EReference)questionnaireEClass.getEStructuralFeatures().get(2);
+		return (EReference)questionnaireEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -189,8 +179,28 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public EReference getTool_Options() {
+	public EReference getTool_AceptedOptions() {
 		return (EReference)toolEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTool_Unknown() {
+		return (EReference)toolEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTool_RefusedOptions() {
+		return (EReference)toolEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -269,7 +279,7 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public EReference getAnswer_Tools() {
+	public EReference getAnswer_AceptedTools() {
 		return (EReference)answerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -279,8 +289,18 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	@Override
-	public EReference getAnswer_NotKnowing() {
+	public EReference getAnswer_RefusedTools() {
 		return (EReference)answerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAnswer_Unknown() {
+		return (EReference)answerEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -333,12 +353,13 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 
 		// Create classes and their features
 		questionnaireEClass = createEClass(QUESTIONNAIRE);
-		createEReference(questionnaireEClass, QUESTIONNAIRE__BOT);
 		createEReference(questionnaireEClass, QUESTIONNAIRE__TOOLS);
 		createEReference(questionnaireEClass, QUESTIONNAIRE__QUESTIONS);
 
 		toolEClass = createEClass(TOOL);
-		createEReference(toolEClass, TOOL__OPTIONS);
+		createEReference(toolEClass, TOOL__ACEPTED_OPTIONS);
+		createEReference(toolEClass, TOOL__UNKNOWN);
+		createEReference(toolEClass, TOOL__REFUSED_OPTIONS);
 
 		questionEClass = createEClass(QUESTION);
 		createEAttribute(questionEClass, QUESTION__TEXT);
@@ -349,8 +370,9 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 
 		answerEClass = createEClass(ANSWER);
 		createEAttribute(answerEClass, ANSWER__TEXT);
-		createEReference(answerEClass, ANSWER__TOOLS);
-		createEReference(answerEClass, ANSWER__NOT_KNOWING);
+		createEReference(answerEClass, ANSWER__ACEPTED_TOOLS);
+		createEReference(answerEClass, ANSWER__REFUSED_TOOLS);
+		createEReference(answerEClass, ANSWER__UNKNOWN);
 
 		withNameEClass = createEClass(WITH_NAME);
 		createEAttribute(withNameEClass, WITH_NAME__NAME);
@@ -379,9 +401,6 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		GeneratorPackage theGeneratorPackage = (GeneratorPackage)EPackage.Registry.INSTANCE.getEPackage(GeneratorPackage.eNS_URI);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -393,12 +412,13 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(questionnaireEClass, Questionnaire.class, "Questionnaire", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getQuestionnaire_Bot(), theGeneratorPackage.getBot(), null, "bot", null, 1, 1, Questionnaire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuestionnaire_Tools(), this.getTool(), null, "tools", null, 1, -1, Questionnaire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuestionnaire_Questions(), this.getQuestion(), null, "questions", null, 1, -1, Questionnaire.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolEClass, Tool.class, "Tool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTool_Options(), this.getAnswer(), this.getAnswer_Tools(), "options", null, 1, -1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTool_AceptedOptions(), this.getAnswer(), this.getAnswer_AceptedTools(), "aceptedOptions", null, 1, -1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTool_Unknown(), this.getAnswer(), this.getAnswer_Unknown(), "unknown", null, 0, -1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTool_RefusedOptions(), this.getAnswer(), this.getAnswer_RefusedTools(), "refusedOptions", null, 0, -1, Tool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(questionEClass, Question.class, "Question", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getQuestion_Text(), ecorePackage.getEString(), "text", null, 1, 1, Question.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -409,8 +429,9 @@ public class RecommenderQuestionnairePackageImpl extends EPackageImpl implements
 
 		initEClass(answerEClass, Answer.class, "Answer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAnswer_Text(), ecorePackage.getEString(), "text", null, 1, 1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnswer_Tools(), this.getTool(), this.getTool_Options(), "tools", null, 1, -1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnswer_NotKnowing(), this.getTool(), null, "notKnowing", null, 0, -1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnswer_AceptedTools(), this.getTool(), this.getTool_AceptedOptions(), "aceptedTools", null, 1, -1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnswer_RefusedTools(), this.getTool(), this.getTool_RefusedOptions(), "refusedTools", null, 0, -1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnswer_Unknown(), this.getTool(), this.getTool_Unknown(), "unknown", null, 0, -1, Answer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(withNameEClass, WithName.class, "WithName", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWithName_Name(), ecorePackage.getEString(), "name", null, 1, 1, WithName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

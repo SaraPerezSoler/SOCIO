@@ -9,25 +9,28 @@
   <genPackages prefix="RecommenderQuestionnaire" disposableProviderFactory="true"
       ecorePackage="RecommenderQuestionnaire.ecore#/">
     <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Questionnaire">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Questionnaire/bot"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Questionnaire/tools"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Questionnaire/questions"/>
     </genClasses>
     <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Tool">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/options"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/aceptedOptions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/unknown"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/refusedOptions"/>
     </genClasses>
     <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Question">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Question/text"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Question/multiresponse"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Question/answers"/>
     </genClasses>
-    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Evaluation">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Evaluation/name"/>
-    </genClasses>
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Evaluation"/>
     <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Answer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Answer/text"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Answer/tools"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Answer/notKnowing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Answer/aceptedTools"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Answer/refusedTools"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Answer/unknown"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="RecommenderQuestionnaire.ecore#//WithName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//WithName/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

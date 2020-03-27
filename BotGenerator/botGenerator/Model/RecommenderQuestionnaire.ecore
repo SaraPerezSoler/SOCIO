@@ -2,7 +2,6 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="recommenderQuestionnaire" nsURI="recommenderQuestionnaire" nsPrefix="recommenderQuestionnaire">
   <eClassifiers xsi:type="ecore:EClass" name="Questionnaire">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bot" lowerBound="1" eType="ecore:EClass BotGenerator.ecore#//Bot"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tools" lowerBound="1" upperBound="-1"
         eType="#//Tool" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="questions" lowerBound="1"

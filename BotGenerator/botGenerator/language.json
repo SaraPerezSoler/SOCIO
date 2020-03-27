@@ -1,599 +1,637 @@
-{ 
-	"English" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Spanish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Danish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Rasa",
-			"SmartLoop",	
-		], 
-		"refused":[
-			"Watson", 
-			"Lex", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Xenio",
-			"Luis",
-		], 
-		"unknow":[
-			"Landb.io",
-			"Chatfuel",
-			"Botkit",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"German" : {
-		"acepted":[
-			"Dialogflow", 
-			"Watson", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Luis",
-			
-		], 
-		"refused":[
-			"Lex", 
-			"Xenio",
-		], 
-		"unknow":[
-			"Landb.io",
-			"Chatfuel",
-			"Botkit",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"French" : {
-		"acepted":[
-			"Dialogflow",
-			"Watson", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Hindi" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"Rasa",
-			"SmartLoop",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-			"FlowXO",
-			"Xenio",
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Indonesian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Rasa",
-		], 
-		"refused":[
-			"Watson",
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Lex",
-			"SmartLoop",
-			"Xenio",
-			"Luis"  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Italian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Japanese" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Korean" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Dutch" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Norwegian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Polish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Portuguese" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Rusian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Swedish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Thai" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Turkish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Ukranian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
- 	"Chinese" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Arabic" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Czech" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Bulgarian" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Finish" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Greek" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
-	"Bangla" : {
-		"acepted":[
-			"Dialogflow", 
-			"Microsoft Bot Framework"
-			"FlowXO",
-			"Rasa",
-			"SmartLoop",
-			"Xenio",
-			"Luis"
-			
-		], 
-		"refused":[
-			"Watson",
-			"Lex",  
-		], 
-		"unknow":[
-			"Chatfuel",
-			"Botkit",
-			"Landb.io",
-			"ChartterBot",
-			"Pandorabot"
-		]
-	},
+{
+	"languages" : 
+	{
+		"English": {
+			"acepted": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"refused": [
+				"Watson",
+				"Lex"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Spanish": {
+			"acepted": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
 
- }
+			],
+			"refused": [
+				"Watson",
+				"Lex"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Danish": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Landb.io",
+				"Chatfuel",
+				"Botkit",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"German": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"LUIS"
+			],
+			"refused": [
+				"Lex",
+				"Xenio"
+			],
+			"unknown": [
+				"Landb.io",
+				"Chatfuel",
+				"Botkit",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"French": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"refused": [
+				"Lex"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Hindi": {
+			"acepted": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"Rasa",
+				"SmartLoop",
+				"LUIS"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"FlowXO",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Indonesian": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa"
+			],
+			"refused": [
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Lex",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Italian": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+
+			],
+			"refused": [
+				"Lex"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Japanese": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"LUIS"
+
+			],
+			"refused": [
+				"Lex",
+				"SmartLoop",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Korean": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"LUIS"
+
+			],
+			"refused": [
+				"Lex",
+				"SmartLoop",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Dutch": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"refused": [
+				"Lex"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Norwegian": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa"
+			],
+			"refused": [
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Lex",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Polish": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Portuguese": {
+			"acepted": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"LUIS"
+
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Rusian": {
+			"acepted": [
+				"Dialogflow",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Swedish": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Thai": {
+			"acepted": [
+				"Dialogflow",
+				"FlowXO",
+				"Rasa"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Turkish": {
+			"acepted": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"LUIS"
+
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"SmartLoop",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Ukranian": {
+			"acepted": [
+				"Dialogflow",
+				"Rasa"
+			],
+			"refused": [
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Chinese": {
+			"acepted": [
+				"Dialogflow",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"SmartLoop",
+				"LUIS"
+
+			],
+			"refused": [
+				"Lex",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Arabic": {
+			"acepted": [
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Rasa",
+				"LUIS"
+
+			],
+			"refused": [
+				"Dialogflow",
+				"Lex",
+				"SmartLoop",
+				"Xenio"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Czech": {
+			"acepted": [
+				"Watson",
+				"FlowXO",
+				"Rasa"
+			],
+			"refused": [
+				"Dialogflow",
+				"Lex",
+				"Microsoft Bot Framework",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Bulgarian": {
+			"acepted": [
+				"FlowXO",
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Dialogflow",
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Finish": {
+			"acepted": [
+				"FlowXO",
+				"Rasa"
+			],
+			"refused": [
+				"Dialogflow",
+				"Microsoft Bot Framework",
+				"Watson",
+				"Lex",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Greek": {
+			"acepted": [
+				"FlowXO",
+				"Rasa"
+			],
+			"refused": [
+				"Dialogflow",
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		},
+		"Bangla": {
+			"acepted": [
+				"Rasa",
+				"SmartLoop"
+			],
+			"refused": [
+				"Dialogflow",
+				"Watson",
+				"Lex",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Xenio",
+				"LUIS"
+			],
+			"unknown": [
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			]
+		}
+	}, 
+	"multilanguage":{
+		"yes":{
+			"acepted": [
+				"Dialogflow",
+				"Chatfuel"
+			],
+			"refused": [
+
+			],
+			"unknown": [
+				
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot",
+				"Watson",
+				"Rasa",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Lex",
+				"SmartLoop",
+				"Xenio",
+				"LUIS"
+			]
+		},
+		"no":{
+			"acepted": [
+				"Dialogflow",
+				"Rasa",
+				"Watson",
+				"Microsoft Bot Framework",
+				"FlowXO",
+				"Lex",
+				"SmartLoop",
+				"Xenio",
+				"LUIS",
+				"Chatfuel",
+				"Botkit",
+				"Landb.io",
+				"ChartterBot",
+				"Pandorabot"
+			],
+			"refused": [
+				
+			],
+			"unknown": [
+				
+			]
+		}
+	}
+}

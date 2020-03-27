@@ -16,8 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link recommenderQuestionnaire.Answer#getText <em>Text</em>}</li>
- *   <li>{@link recommenderQuestionnaire.Answer#getTools <em>Tools</em>}</li>
- *   <li>{@link recommenderQuestionnaire.Answer#getNotKnowing <em>Not Knowing</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.Answer#getAceptedTools <em>Acepted Tools</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.Answer#getRefusedTools <em>Refused Tools</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.Answer#getUnknown <em>Unknown</em>}</li>
  * </ul>
  *
  * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer()
@@ -48,29 +49,45 @@ public interface Answer extends EObject {
 	void setText(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Tools</b></em>' reference list.
+	 * Returns the value of the '<em><b>Acepted Tools</b></em>' reference list.
 	 * The list contents are of type {@link recommenderQuestionnaire.Tool}.
-	 * It is bidirectional and its opposite is '{@link recommenderQuestionnaire.Tool#getOptions <em>Options</em>}'.
+	 * It is bidirectional and its opposite is '{@link recommenderQuestionnaire.Tool#getAceptedOptions <em>Acepted Options</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tools</em>' reference list.
-	 * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer_Tools()
-	 * @see recommenderQuestionnaire.Tool#getOptions
-	 * @model opposite="options" required="true"
+	 * @return the value of the '<em>Acepted Tools</em>' reference list.
+	 * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer_AceptedTools()
+	 * @see recommenderQuestionnaire.Tool#getAceptedOptions
+	 * @model opposite="aceptedOptions" required="true"
 	 * @generated
 	 */
-	EList<Tool> getTools();
+	EList<Tool> getAceptedTools();
 
 	/**
-	 * Returns the value of the '<em><b>Not Knowing</b></em>' reference list.
+	 * Returns the value of the '<em><b>Refused Tools</b></em>' reference list.
 	 * The list contents are of type {@link recommenderQuestionnaire.Tool}.
+	 * It is bidirectional and its opposite is '{@link recommenderQuestionnaire.Tool#getRefusedOptions <em>Refused Options</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Not Knowing</em>' reference list.
-	 * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer_NotKnowing()
-	 * @model
+	 * @return the value of the '<em>Refused Tools</em>' reference list.
+	 * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer_RefusedTools()
+	 * @see recommenderQuestionnaire.Tool#getRefusedOptions
+	 * @model opposite="refusedOptions"
 	 * @generated
 	 */
-	EList<Tool> getNotKnowing();
+	EList<Tool> getRefusedTools();
+
+	/**
+	 * Returns the value of the '<em><b>Unknown</b></em>' reference list.
+	 * The list contents are of type {@link recommenderQuestionnaire.Tool}.
+	 * It is bidirectional and its opposite is '{@link recommenderQuestionnaire.Tool#getUnknown <em>Unknown</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unknown</em>' reference list.
+	 * @see recommenderQuestionnaire.RecommenderQuestionnairePackage#getAnswer_Unknown()
+	 * @see recommenderQuestionnaire.Tool#getUnknown
+	 * @model opposite="unknown"
+	 * @generated
+	 */
+	EList<Tool> getUnknown();
 
 } // Answer

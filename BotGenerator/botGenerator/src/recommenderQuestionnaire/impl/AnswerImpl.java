@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,8 +30,9 @@ import recommenderQuestionnaire.Tool;
  * </p>
  * <ul>
  *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getText <em>Text</em>}</li>
- *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getTools <em>Tools</em>}</li>
- *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getNotKnowing <em>Not Knowing</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getAceptedTools <em>Acepted Tools</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getRefusedTools <em>Refused Tools</em>}</li>
+ *   <li>{@link recommenderQuestionnaire.impl.AnswerImpl#getUnknown <em>Unknown</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,24 +59,34 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTools() <em>Tools</em>}' reference list.
+	 * The cached value of the '{@link #getAceptedTools() <em>Acepted Tools</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTools()
+	 * @see #getAceptedTools()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Tool> tools;
+	protected EList<Tool> aceptedTools;
 
 	/**
-	 * The cached value of the '{@link #getNotKnowing() <em>Not Knowing</em>}' reference list.
+	 * The cached value of the '{@link #getRefusedTools() <em>Refused Tools</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNotKnowing()
+	 * @see #getRefusedTools()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Tool> notKnowing;
+	protected EList<Tool> refusedTools;
+
+	/**
+	 * The cached value of the '{@link #getUnknown() <em>Unknown</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnknown()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Tool> unknown;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,11 +136,11 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 	 * @generated
 	 */
 	@Override
-	public EList<Tool> getTools() {
-		if (tools == null) {
-			tools = new EObjectWithInverseResolvingEList.ManyInverse<Tool>(Tool.class, this, RecommenderQuestionnairePackage.ANSWER__TOOLS, RecommenderQuestionnairePackage.TOOL__OPTIONS);
+	public EList<Tool> getAceptedTools() {
+		if (aceptedTools == null) {
+			aceptedTools = new EObjectWithInverseResolvingEList.ManyInverse<Tool>(Tool.class, this, RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS, RecommenderQuestionnairePackage.TOOL__ACEPTED_OPTIONS);
 		}
-		return tools;
+		return aceptedTools;
 	}
 
 	/**
@@ -140,11 +149,24 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 	 * @generated
 	 */
 	@Override
-	public EList<Tool> getNotKnowing() {
-		if (notKnowing == null) {
-			notKnowing = new EObjectResolvingEList<Tool>(Tool.class, this, RecommenderQuestionnairePackage.ANSWER__NOT_KNOWING);
+	public EList<Tool> getRefusedTools() {
+		if (refusedTools == null) {
+			refusedTools = new EObjectWithInverseResolvingEList.ManyInverse<Tool>(Tool.class, this, RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS, RecommenderQuestionnairePackage.TOOL__REFUSED_OPTIONS);
 		}
-		return notKnowing;
+		return refusedTools;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Tool> getUnknown() {
+		if (unknown == null) {
+			unknown = new EObjectWithInverseResolvingEList.ManyInverse<Tool>(Tool.class, this, RecommenderQuestionnairePackage.ANSWER__UNKNOWN, RecommenderQuestionnairePackage.TOOL__UNKNOWN);
+		}
+		return unknown;
 	}
 
 	/**
@@ -156,8 +178,12 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTools()).basicAdd(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAceptedTools()).basicAdd(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRefusedTools()).basicAdd(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUnknown()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -170,8 +196,12 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				return ((InternalEList<?>)getTools()).basicRemove(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				return ((InternalEList<?>)getAceptedTools()).basicRemove(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				return ((InternalEList<?>)getRefusedTools()).basicRemove(otherEnd, msgs);
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				return ((InternalEList<?>)getUnknown()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -186,10 +216,12 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 		switch (featureID) {
 			case RecommenderQuestionnairePackage.ANSWER__TEXT:
 				return getText();
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				return getTools();
-			case RecommenderQuestionnairePackage.ANSWER__NOT_KNOWING:
-				return getNotKnowing();
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				return getAceptedTools();
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				return getRefusedTools();
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				return getUnknown();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,13 +238,17 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 			case RecommenderQuestionnairePackage.ANSWER__TEXT:
 				setText((String)newValue);
 				return;
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				getTools().clear();
-				getTools().addAll((Collection<? extends Tool>)newValue);
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				getAceptedTools().clear();
+				getAceptedTools().addAll((Collection<? extends Tool>)newValue);
 				return;
-			case RecommenderQuestionnairePackage.ANSWER__NOT_KNOWING:
-				getNotKnowing().clear();
-				getNotKnowing().addAll((Collection<? extends Tool>)newValue);
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				getRefusedTools().clear();
+				getRefusedTools().addAll((Collection<? extends Tool>)newValue);
+				return;
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				getUnknown().clear();
+				getUnknown().addAll((Collection<? extends Tool>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -229,11 +265,14 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 			case RecommenderQuestionnairePackage.ANSWER__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				getTools().clear();
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				getAceptedTools().clear();
 				return;
-			case RecommenderQuestionnairePackage.ANSWER__NOT_KNOWING:
-				getNotKnowing().clear();
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				getRefusedTools().clear();
+				return;
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				getUnknown().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -249,10 +288,12 @@ public class AnswerImpl extends MinimalEObjectImpl.Container implements Answer {
 		switch (featureID) {
 			case RecommenderQuestionnairePackage.ANSWER__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case RecommenderQuestionnairePackage.ANSWER__TOOLS:
-				return tools != null && !tools.isEmpty();
-			case RecommenderQuestionnairePackage.ANSWER__NOT_KNOWING:
-				return notKnowing != null && !notKnowing.isEmpty();
+			case RecommenderQuestionnairePackage.ANSWER__ACEPTED_TOOLS:
+				return aceptedTools != null && !aceptedTools.isEmpty();
+			case RecommenderQuestionnairePackage.ANSWER__REFUSED_TOOLS:
+				return refusedTools != null && !refusedTools.isEmpty();
+			case RecommenderQuestionnairePackage.ANSWER__UNKNOWN:
+				return unknown != null && !unknown.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -67,22 +67,13 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	int QUESTIONNAIRE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Bot</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUESTIONNAIRE__BOT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Tools</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUESTIONNAIRE__TOOLS = 1;
+	int QUESTIONNAIRE__TOOLS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Questions</b></em>' containment reference list.
@@ -91,7 +82,7 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUESTIONNAIRE__QUESTIONS = 2;
+	int QUESTIONNAIRE__QUESTIONS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Questionnaire</em>' class.
@@ -100,7 +91,7 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUESTIONNAIRE_FEATURE_COUNT = 3;
+	int QUESTIONNAIRE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Questionnaire</em>' class.
@@ -168,13 +159,31 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	int TOOL__NAME = WITH_NAME__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Options</b></em>' reference list.
+	 * The feature id for the '<em><b>Acepted Options</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL__OPTIONS = WITH_NAME_FEATURE_COUNT + 0;
+	int TOOL__ACEPTED_OPTIONS = WITH_NAME_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__UNKNOWN = WITH_NAME_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Refused Options</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOOL__REFUSED_OPTIONS = WITH_NAME_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Tool</em>' class.
@@ -183,7 +192,7 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_FEATURE_COUNT = WITH_NAME_FEATURE_COUNT + 1;
+	int TOOL_FEATURE_COUNT = WITH_NAME_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Tool</em>' class.
@@ -342,22 +351,31 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	int ANSWER__TEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Tools</b></em>' reference list.
+	 * The feature id for the '<em><b>Acepted Tools</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANSWER__TOOLS = 1;
+	int ANSWER__ACEPTED_TOOLS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Not Knowing</b></em>' reference list.
+	 * The feature id for the '<em><b>Refused Tools</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANSWER__NOT_KNOWING = 2;
+	int ANSWER__REFUSED_TOOLS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Unknown</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANSWER__UNKNOWN = 3;
 
 	/**
 	 * The number of structural features of the '<em>Answer</em>' class.
@@ -366,7 +384,7 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANSWER_FEATURE_COUNT = 3;
+	int ANSWER_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Answer</em>' class.
@@ -387,17 +405,6 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getQuestionnaire();
-
-	/**
-	 * Returns the meta object for the reference '{@link recommenderQuestionnaire.Questionnaire#getBot <em>Bot</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bot</em>'.
-	 * @see recommenderQuestionnaire.Questionnaire#getBot()
-	 * @see #getQuestionnaire()
-	 * @generated
-	 */
-	EReference getQuestionnaire_Bot();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link recommenderQuestionnaire.Questionnaire#getTools <em>Tools</em>}'.
@@ -432,15 +439,37 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	EClass getTool();
 
 	/**
-	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Tool#getOptions <em>Options</em>}'.
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Tool#getAceptedOptions <em>Acepted Options</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Options</em>'.
-	 * @see recommenderQuestionnaire.Tool#getOptions()
+	 * @return the meta object for the reference list '<em>Acepted Options</em>'.
+	 * @see recommenderQuestionnaire.Tool#getAceptedOptions()
 	 * @see #getTool()
 	 * @generated
 	 */
-	EReference getTool_Options();
+	EReference getTool_AceptedOptions();
+
+	/**
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Tool#getUnknown <em>Unknown</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Unknown</em>'.
+	 * @see recommenderQuestionnaire.Tool#getUnknown()
+	 * @see #getTool()
+	 * @generated
+	 */
+	EReference getTool_Unknown();
+
+	/**
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Tool#getRefusedOptions <em>Refused Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Refused Options</em>'.
+	 * @see recommenderQuestionnaire.Tool#getRefusedOptions()
+	 * @see #getTool()
+	 * @generated
+	 */
+	EReference getTool_RefusedOptions();
 
 	/**
 	 * Returns the meta object for class '{@link recommenderQuestionnaire.Question <em>Question</em>}'.
@@ -517,26 +546,37 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 	EAttribute getAnswer_Text();
 
 	/**
-	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Answer#getTools <em>Tools</em>}'.
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Answer#getAceptedTools <em>Acepted Tools</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Tools</em>'.
-	 * @see recommenderQuestionnaire.Answer#getTools()
+	 * @return the meta object for the reference list '<em>Acepted Tools</em>'.
+	 * @see recommenderQuestionnaire.Answer#getAceptedTools()
 	 * @see #getAnswer()
 	 * @generated
 	 */
-	EReference getAnswer_Tools();
+	EReference getAnswer_AceptedTools();
 
 	/**
-	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Answer#getNotKnowing <em>Not Knowing</em>}'.
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Answer#getRefusedTools <em>Refused Tools</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Not Knowing</em>'.
-	 * @see recommenderQuestionnaire.Answer#getNotKnowing()
+	 * @return the meta object for the reference list '<em>Refused Tools</em>'.
+	 * @see recommenderQuestionnaire.Answer#getRefusedTools()
 	 * @see #getAnswer()
 	 * @generated
 	 */
-	EReference getAnswer_NotKnowing();
+	EReference getAnswer_RefusedTools();
+
+	/**
+	 * Returns the meta object for the reference list '{@link recommenderQuestionnaire.Answer#getUnknown <em>Unknown</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Unknown</em>'.
+	 * @see recommenderQuestionnaire.Answer#getUnknown()
+	 * @see #getAnswer()
+	 * @generated
+	 */
+	EReference getAnswer_Unknown();
 
 	/**
 	 * Returns the meta object for class '{@link recommenderQuestionnaire.WithName <em>With Name</em>}'.
@@ -593,14 +633,6 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 		EClass QUESTIONNAIRE = eINSTANCE.getQuestionnaire();
 
 		/**
-		 * The meta object literal for the '<em><b>Bot</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference QUESTIONNAIRE__BOT = eINSTANCE.getQuestionnaire_Bot();
-
-		/**
 		 * The meta object literal for the '<em><b>Tools</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -627,12 +659,28 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 		EClass TOOL = eINSTANCE.getTool();
 
 		/**
-		 * The meta object literal for the '<em><b>Options</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Acepted Options</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TOOL__OPTIONS = eINSTANCE.getTool_Options();
+		EReference TOOL__ACEPTED_OPTIONS = eINSTANCE.getTool_AceptedOptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Unknown</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOOL__UNKNOWN = eINSTANCE.getTool_Unknown();
+
+		/**
+		 * The meta object literal for the '<em><b>Refused Options</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TOOL__REFUSED_OPTIONS = eINSTANCE.getTool_RefusedOptions();
 
 		/**
 		 * The meta object literal for the '{@link recommenderQuestionnaire.impl.QuestionImpl <em>Question</em>}' class.
@@ -697,20 +745,28 @@ public interface RecommenderQuestionnairePackage extends EPackage {
 		EAttribute ANSWER__TEXT = eINSTANCE.getAnswer_Text();
 
 		/**
-		 * The meta object literal for the '<em><b>Tools</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Acepted Tools</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANSWER__TOOLS = eINSTANCE.getAnswer_Tools();
+		EReference ANSWER__ACEPTED_TOOLS = eINSTANCE.getAnswer_AceptedTools();
 
 		/**
-		 * The meta object literal for the '<em><b>Not Knowing</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Refused Tools</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANSWER__NOT_KNOWING = eINSTANCE.getAnswer_NotKnowing();
+		EReference ANSWER__REFUSED_TOOLS = eINSTANCE.getAnswer_RefusedTools();
+
+		/**
+		 * The meta object literal for the '<em><b>Unknown</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANSWER__UNKNOWN = eINSTANCE.getAnswer_Unknown();
 
 		/**
 		 * The meta object literal for the '{@link recommenderQuestionnaire.impl.WithNameImpl <em>With Name</em>}' class.

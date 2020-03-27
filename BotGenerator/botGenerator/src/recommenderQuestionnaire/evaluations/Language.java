@@ -2,31 +2,59 @@ package recommenderQuestionnaire.evaluations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
 
 import generator.Bot;
-import recommenderQuestionnaire.Answer;
-import recommenderQuestionnaire.Questionnaire;
 
 public class Language extends Evaluator {
 
-	@Override
-	protected List<Answer> getAnswers(Questionnaire) {
-		List<Answer> ret = new ArrayList<Answer>();
-		Answer english = 
-		ret.add(e)
-		return null;
+
+	public Language(JSONObject object) {
+		super(object, "language");
 	}
 
 	@Override
 	protected boolean getMultiresponse() {
-		
 		return true;
 	}
 
+	/* returns the list of options the bot satisfy */
 	@Override
-	public List<Answer> evaluate(Bot bot) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> evaluate(Bot bot) {
+		List<String> ret = new ArrayList<String>();
+		for (generator.Language lan:bot.getLanguages()) {
+			for (String o: getOptions()) {
+				if (lan.getLiteral().equalsIgnoreCase(o)) {
+					ret.add(o);
+					break;
+				}
+			}	
+		}
+		return ret;
 	}
 
+	@Override
+	protected Map<String, List<String>> getRefused() {
+		return this.refused;
+	}
+
+	@Override
+	protected List<String> getOptions() {
+		return this.options;
+	}
+
+	@Override
+	protected List<String> getTools() {
+		return this.tools;
+	}
+
+	protected Map<String, List<String>> getAccepted() {
+		return accepted;
+	}
+
+	protected Map<String, List<String>> getUnknown() {
+		return unknown;
+	}
 }
