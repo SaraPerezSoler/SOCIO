@@ -13,6 +13,7 @@ public class Language extends Evaluator {
 
 	public Language(JSONObject object) {
 		super(object, "language");
+		this.text = "Chat bot languages";
 	}
 
 	@Override

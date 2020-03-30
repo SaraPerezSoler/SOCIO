@@ -10,6 +10,7 @@ public class Multilanguage extends Evaluator implements YesNoAnswer{
 
 	public Multilanguage(JSONObject object) {
 		super(object, "multilanguage");
+		text= "Is the bot multilanguage?";
 	}
 	
 	@Override

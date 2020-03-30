@@ -27,6 +27,7 @@ public abstract class Evaluator {
 	protected Map<String, List<String>> accepted;
 	protected Map<String, List<String>> refused;
 	protected Map<String, List<String>> unknown;
+	protected String text;
 
 	public static void loadEvaluators(Questionnaire questionnaire) throws NoSuchMethodException, SecurityException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -52,7 +53,7 @@ public abstract class Evaluator {
 					List<String> options = ev.getOptions();
 					Map<String, List<String>> acepted = ev.getAccepted();
 					Map<String, List<String>> refused = ev.getRefused();
-					qEvaluation = questionnaire.createEvaluation(evaluatorClass.getName(), evaluatorClass.getName(),
+					qEvaluation = questionnaire.createEvaluation(evaluatorClass.getName(), ev.getText(),
 							ev.getMultiresponse(), options, acepted, refused, ev);
 				} else {
 					qEvaluation.setEvaluator(ev);
@@ -60,6 +61,13 @@ public abstract class Evaluator {
 
 			}
 		}
+	}
+
+	protected String getText() {
+		if (text == null) {
+			text = "";
+		}
+		return text;
 	}
 
 	private static JSONObject readJsonFile() {
