@@ -23,14 +23,14 @@ import org.eclipse.emf.common.util.EList;
 public interface Simple extends Entity {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
-	 * The list contents are of type {@link generator.SimpleInput}.
+	 * The list contents are of type {@link generator.SimpleLanguageInput}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inputs</em>' containment reference list.
 	 * @see generator.GeneratorPackage#getSimple_Inputs()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<SimpleInput> getInputs();
+	EList<SimpleLanguageInput> getInputs();
 
 } // Simple

@@ -3,7 +3,7 @@
 package generator.impl;
 
 import generator.Composite;
-import generator.CompositeInput;
+import generator.CompositeLanguageInput;
 import generator.GeneratorPackage;
 
 import java.util.Collection;
@@ -40,7 +40,7 @@ public class CompositeImpl extends EntityImpl implements Composite {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CompositeInput> inputs;
+	protected EList<CompositeLanguageInput> inputs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class CompositeImpl extends EntityImpl implements Composite {
 	 * @generated
 	 */
 	@Override
-	public EList<CompositeInput> getInputs() {
+	public EList<CompositeLanguageInput> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectContainmentEList<CompositeInput>(CompositeInput.class, this, GeneratorPackage.COMPOSITE__INPUTS);
+			inputs = new EObjectContainmentEList<CompositeLanguageInput>(CompositeLanguageInput.class, this, GeneratorPackage.COMPOSITE__INPUTS);
 		}
 		return inputs;
 	}
@@ -113,7 +113,7 @@ public class CompositeImpl extends EntityImpl implements Composite {
 		switch (featureID) {
 			case GeneratorPackage.COMPOSITE__INPUTS:
 				getInputs().clear();
-				getInputs().addAll((Collection<? extends CompositeInput>)newValue);
+				getInputs().addAll((Collection<? extends CompositeLanguageInput>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

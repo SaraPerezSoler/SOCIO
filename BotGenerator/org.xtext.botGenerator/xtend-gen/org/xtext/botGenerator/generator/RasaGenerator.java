@@ -15,16 +15,21 @@ import generator.HTTPResponse;
 import generator.HTTPReturnType;
 import generator.Image;
 import generator.Intent;
+import generator.IntentLanguageInputs;
 import generator.Interaction;
 import generator.KeyValue;
+import generator.Language;
 import generator.Literal;
 import generator.Parameter;
 import generator.ParameterReferenceToken;
 import generator.ParameterToken;
+import generator.PromptLanguage;
 import generator.Simple;
 import generator.SimpleInput;
+import generator.SimpleLanguageInput;
 import generator.Text;
 import generator.TextInput;
+import generator.TextLanguageInput;
 import generator.Token;
 import generator.TrainingPhrase;
 import generator.UserInteraction;
@@ -53,16 +58,24 @@ public class RasaGenerator {
     for (final UserInteraction flow : _flows) {
       this.leafsU(flow, leafs);
     }
-    String _name = bot.getName();
-    String _plus = (_name + "Rasa");
-    this.path = _plus;
-    fsa.generateFile((this.path + "/actions.py"), this.actions(intents, entities, actions));
-    fsa.generateFile((this.path + "/config.yml"), this.config());
-    fsa.generateFile((this.path + "/credentials.yml"), this.credentials());
-    fsa.generateFile((this.path + "/domain.yml"), this.domain(intents, parameters, actions));
-    fsa.generateFile((this.path + "/endpoints.yml"), this.endpoint());
-    fsa.generateFile((this.path + "/data/nlu.md"), this.nlu(intents));
-    fsa.generateFile((this.path + "/data/stories.md"), this.stories(leafs));
+    EList<Language> _languages = bot.getLanguages();
+    for (final Language lan : _languages) {
+      {
+        String _name = bot.getName();
+        String _plus = (_name + "Rasa");
+        String _plus_1 = (_plus + "_");
+        String _languageAbbreviation = this.languageAbbreviation(lan);
+        String _plus_2 = (_plus_1 + _languageAbbreviation);
+        this.path = _plus_2;
+        fsa.generateFile((this.path + "/actions.py"), this.actions(intents, entities, actions, lan));
+        fsa.generateFile((this.path + "/config.yml"), this.config(lan));
+        fsa.generateFile((this.path + "/credentials.yml"), this.credentials());
+        fsa.generateFile((this.path + "/domain.yml"), this.domain(intents, parameters, actions, lan));
+        fsa.generateFile((this.path + "/endpoints.yml"), this.endpoint());
+        fsa.generateFile((this.path + "/data/nlu.md"), this.nlu(intents, lan));
+        fsa.generateFile((this.path + "/data/stories.md"), this.stories(leafs));
+      }
+    }
   }
   
   public String actionName(final Action action) {
@@ -118,12 +131,12 @@ public class RasaGenerator {
     _builder.newLineIfNotEmpty();
     {
       if ((flow instanceof UserInteraction)) {
-        String _flow = this.flow(((UserInteraction)flow), clean);
+        String _flow = this.flow(((UserInteraction) flow), clean);
         _builder.append(_flow);
         _builder.newLineIfNotEmpty();
       } else {
         if ((flow instanceof BotInteraction)) {
-          String _flow_1 = this.flow(((BotInteraction)flow), clean);
+          String _flow_1 = this.flow(((BotInteraction) flow), clean);
           _builder.append(_flow_1);
           _builder.newLineIfNotEmpty();
         }
@@ -210,7 +223,7 @@ public class RasaGenerator {
     return _builder.toString();
   }
   
-  public CharSequence actions(final List<Intent> intents, final List<Entity> entities, final List<Action> actions) {
+  public CharSequence actions(final List<Intent> intents, final List<Entity> entities, final List<Action> actions, final Language lan) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("# This files contains your custom actions which can be used to run");
     _builder.newLine();
@@ -335,71 +348,77 @@ public class RasaGenerator {
       for(final Entity entity : entities) {
         {
           if ((entity instanceof Simple)) {
-            String _rasaValue = this.getRasaValue(((Simple)entity).getName());
-            _builder.append(_rasaValue);
-            _builder.append("_db={");
-            _builder.newLineIfNotEmpty();
             {
-              EList<SimpleInput> _inputs = ((Simple)entity).getInputs();
-              for(final SimpleInput input : _inputs) {
-                _builder.append("\t");
-                _builder.append("\"");
-                String _lowerCase = input.getName().toLowerCase();
-                _builder.append(_lowerCase, "\t");
-                _builder.append("\":[\"");
-                String _lowerCase_1 = input.getName().toLowerCase();
-                _builder.append(_lowerCase_1, "\t");
-                _builder.append("\"");
+              EList<SimpleLanguageInput> _inputs = ((Simple)entity).getInputs();
+              for(final SimpleLanguageInput simpleLanguage : _inputs) {
                 {
-                  EList<String> _values = input.getValues();
-                  for(final String value : _values) {
-                    _builder.append(",\"");
-                    String _lowerCase_2 = value.toLowerCase();
-                    _builder.append(_lowerCase_2, "\t");
-                    _builder.append("\"");
+                  boolean _equals = simpleLanguage.getLanguage().equals(lan);
+                  if (_equals) {
+                    String _rasaValue = this.getRasaValue(((Simple)entity).getName());
+                    _builder.append(_rasaValue);
+                    _builder.append("_db={");
+                    _builder.newLineIfNotEmpty();
+                    {
+                      EList<SimpleInput> _inputs_1 = simpleLanguage.getInputs();
+                      for(final SimpleInput input : _inputs_1) {
+                        _builder.append("\t");
+                        _builder.append("\"");
+                        String _lowerCase = input.getName().toLowerCase();
+                        _builder.append(_lowerCase, "\t");
+                        _builder.append("\":[\"");
+                        String _lowerCase_1 = input.getName().toLowerCase();
+                        _builder.append(_lowerCase_1, "\t");
+                        _builder.append("\"");
+                        {
+                          EList<String> _values = input.getValues();
+                          for(final String value : _values) {
+                            _builder.append(",\"");
+                            String _lowerCase_2 = value.toLowerCase();
+                            _builder.append(_lowerCase_2, "\t");
+                            _builder.append("\"");
+                          }
+                        }
+                        _builder.append("]");
+                        {
+                          boolean _isTheLast = DialogflowGenerator.isTheLast(((Simple)entity).getInputs(), input);
+                          boolean _not = (!_isTheLast);
+                          if (_not) {
+                            _builder.append(",");
+                          }
+                        }
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                    _builder.append("}");
+                    _builder.newLine();
+                    _builder.newLine();
+                    _builder.append("def ");
+                    String _rasaValue_1 = this.getRasaValue(((Simple)entity).getName());
+                    _builder.append(_rasaValue_1);
+                    _builder.append("_validate(value:Text):");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t");
+                    _builder.append("for input in ");
+                    String _rasaValue_2 = this.getRasaValue(((Simple)entity).getName());
+                    _builder.append(_rasaValue_2, "\t");
+                    _builder.append("_db:");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t\t");
+                    _builder.append("if value.lower() in ");
+                    String _rasaValue_3 = this.getRasaValue(((Simple)entity).getName());
+                    _builder.append(_rasaValue_3, "\t\t");
+                    _builder.append("_db[input]:");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t\t\t");
+                    _builder.append("return input");
+                    _builder.newLine();
+                    _builder.append("\t");
+                    _builder.append("return None");
+                    _builder.newLine();
                   }
                 }
-                _builder.append("]");
-                {
-                  boolean _isTheLast = DialogflowGenerator.isTheLast(((Simple)entity).getInputs(), input);
-                  boolean _not = (!_isTheLast);
-                  if (_not) {
-                    _builder.append(",");
-                  }
-                }
-                _builder.newLineIfNotEmpty();
               }
             }
-            _builder.append("}");
-            _builder.newLine();
-            _builder.newLine();
-            _builder.append("def ");
-            String _rasaValue_1 = this.getRasaValue(((Simple)entity).getName());
-            _builder.append(_rasaValue_1);
-            _builder.append("_validate(value:Text):");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            _builder.append("for input in ");
-            String _rasaValue_2 = this.getRasaValue(((Simple)entity).getName());
-            _builder.append(_rasaValue_2, "\t");
-            _builder.append("_db:");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
-            _builder.append("if value.lower() in ");
-            String _rasaValue_3 = this.getRasaValue(((Simple)entity).getName());
-            _builder.append(_rasaValue_3, "\t\t");
-            _builder.append("_db[input]:");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t\t");
-            _builder.append("return input");
-            _builder.newLine();
-            _builder.append("\t");
-            _builder.append("return None");
-            _builder.newLine();
-            _builder.append("\t");
-            _builder.newLine();
-            _builder.append("\t");
-            _builder.newLine();
           } else {
             if ((entity instanceof Composite)) {
               _builder.append("def ");
@@ -423,43 +442,43 @@ public class RasaGenerator {
           boolean _isEmpty = intent.getParameters().isEmpty();
           boolean _not_1 = (!_isEmpty);
           if (_not_1) {
+            _builder.append("\t");
             _builder.append("class ");
             String _rasaValue_5 = this.getRasaValue(intent.getName());
-            _builder.append(_rasaValue_5);
+            _builder.append(_rasaValue_5, "\t");
             _builder.append("Form (FormAction):");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t");
+            _builder.append("\t\t");
             _builder.append("def name(self):");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t");
             _builder.append("# type: () -> Text");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t");
             _builder.append("\"\"\"Unique identifier of the form\"\"\"");
             _builder.newLine();
-            _builder.append("\t");
-            _builder.newLine();
             _builder.append("\t\t");
+            _builder.newLine();
+            _builder.append("\t\t\t");
             _builder.append("return \"");
             String _rasaValue_6 = this.getRasaValue(intent.getName());
-            _builder.append(_rasaValue_6, "\t\t");
+            _builder.append(_rasaValue_6, "\t\t\t");
             _builder.append("_form\"");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t");
             _builder.newLine();
-            _builder.append("\t");
+            _builder.append("\t\t");
             _builder.append("@staticmethod");
             _builder.newLine();
-            _builder.append("\t");
+            _builder.append("\t\t");
             _builder.append("def required_slots(tracker: Tracker) -> List[Text]:");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t");
             _builder.append("\"\"\"A list of required slots that the form has to fill\"\"\"");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t");
             String coma = "";
             _builder.newLineIfNotEmpty();
-            _builder.append("\t\t");
             _builder.append("return [");
             {
               EList<Parameter> _parameters = intent.getParameters();
@@ -467,14 +486,14 @@ public class RasaGenerator {
                 {
                   boolean _isRequired = param.isRequired();
                   if (_isRequired) {
-                    _builder.append(coma, "\t\t");
+                    _builder.append(coma);
                     _builder.append("\"");
                     String _xblockexpression = null;
                     {
                       coma = ",";
                       _xblockexpression = this.getRasaValue(param.getName());
                     }
-                    _builder.append(_xblockexpression, "\t\t");
+                    _builder.append(_xblockexpression);
                     _builder.append("\"");
                   }
                 }
@@ -485,12 +504,10 @@ public class RasaGenerator {
             {
               EList<Parameter> _parameters_1 = intent.getParameters();
               for(final Parameter param_1 : _parameters_1) {
-                _builder.append("\t");
                 _builder.newLine();
-                _builder.append("\t");
                 _builder.append("def validate_");
                 String _rasaValue_7 = this.getRasaValue(param_1.getName());
-                _builder.append(_rasaValue_7, "\t");
+                _builder.append(_rasaValue_7);
                 _builder.append("(self, value: Text,dispatcher: CollectingDispatcher,tracker: Tracker,domain: Dict[Text, Any]) -> Dict[Text, Any]:");
                 _builder.newLineIfNotEmpty();
                 {
@@ -498,17 +515,15 @@ public class RasaGenerator {
                   boolean _tripleNotEquals = (_entity != null);
                   if (_tripleNotEquals) {
                     _builder.append("\t");
-                    _builder.append("\t");
                     _builder.append("parseValue = ");
                     String _rasaValue_8 = this.getRasaValue(param_1.getEntity().getName());
-                    _builder.append(_rasaValue_8, "\t\t");
+                    _builder.append(_rasaValue_8, "\t");
                     _builder.append("_validate(value)");
                     _builder.newLineIfNotEmpty();
                   } else {
                     DefaultEntity _defaultEntity = param_1.getDefaultEntity();
                     boolean _tripleEquals = (_defaultEntity == DefaultEntity.DATE);
                     if (_tripleEquals) {
-                      _builder.append("\t");
                       _builder.append("\t");
                       _builder.append("parseValue = date_validate(value)");
                       _builder.newLine();
@@ -517,14 +532,12 @@ public class RasaGenerator {
                       boolean _tripleEquals_1 = (_defaultEntity_1 == DefaultEntity.TIME);
                       if (_tripleEquals_1) {
                         _builder.append("\t");
-                        _builder.append("\t");
                         _builder.append("parseValue = time_validate(value)");
                         _builder.newLine();
                       } else {
                         DefaultEntity _defaultEntity_2 = param_1.getDefaultEntity();
                         boolean _tripleEquals_2 = (_defaultEntity_2 == DefaultEntity.TEXT);
                         if (_tripleEquals_2) {
-                          _builder.append("\t");
                           _builder.append("\t");
                           _builder.append("parseValue = value");
                           _builder.newLine();
@@ -533,19 +546,15 @@ public class RasaGenerator {
                           boolean _tripleEquals_3 = (_defaultEntity_3 == DefaultEntity.FLOAT);
                           if (_tripleEquals_3) {
                             _builder.append("\t");
-                            _builder.append("\t");
                             _builder.append("try:");
                             _builder.newLine();
-                            _builder.append("\t");
                             _builder.append("\t");
                             _builder.append("\t");
                             _builder.append("parseValue = float (value)");
                             _builder.newLine();
                             _builder.append("\t");
-                            _builder.append("\t");
                             _builder.append("except ValueError:");
                             _builder.newLine();
-                            _builder.append("\t");
                             _builder.append("\t");
                             _builder.append("\t");
                             _builder.append("parseValue = None");
@@ -555,19 +564,15 @@ public class RasaGenerator {
                             boolean _tripleEquals_4 = (_defaultEntity_4 == DefaultEntity.NUMBER);
                             if (_tripleEquals_4) {
                               _builder.append("\t");
-                              _builder.append("\t");
                               _builder.append("try:");
                               _builder.newLine();
-                              _builder.append("\t");
                               _builder.append("\t");
                               _builder.append("\t");
                               _builder.append("parseValue = int (value)");
                               _builder.newLine();
                               _builder.append("\t");
-                              _builder.append("\t");
                               _builder.append("except ValueError:");
                               _builder.newLine();
-                              _builder.append("\t");
                               _builder.append("\t");
                               _builder.append("\t");
                               _builder.append("parseValue = None");
@@ -580,122 +585,113 @@ public class RasaGenerator {
                   }
                 }
                 _builder.append("\t");
-                _builder.append("\t");
                 _builder.append("if parseValue is None:");
                 _builder.newLine();
-                _builder.append("\t");
                 _builder.append("\t\t");
                 _builder.append("dispatcher.utter_template(\'utter_wrong_");
                 String _rasaValue_9 = this.getRasaValue(param_1.getName());
-                _builder.append(_rasaValue_9, "\t\t\t");
+                _builder.append(_rasaValue_9, "\t\t");
                 _builder.append("\', tracker)");
                 _builder.newLineIfNotEmpty();
-                _builder.append("\t");
                 _builder.append("\t\t");
                 _builder.append("return {\'");
                 String _rasaValue_10 = this.getRasaValue(param_1.getName());
-                _builder.append(_rasaValue_10, "\t\t\t");
+                _builder.append(_rasaValue_10, "\t\t");
                 _builder.append("\': None}");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
-                _builder.append("\t");
                 _builder.append("return {\'");
                 String _rasaValue_11 = this.getRasaValue(param_1.getName());
-                _builder.append(_rasaValue_11, "\t\t");
+                _builder.append(_rasaValue_11, "\t");
                 _builder.append("\': parseValue}");
                 _builder.newLineIfNotEmpty();
               }
             }
-            _builder.append("\t");
             _builder.newLine();
-            _builder.append("\t");
             _builder.append("def slot_mappings(self):");
             _builder.newLine();
-            _builder.append("\t");
             _builder.newLine();
-            _builder.append("\t        ");
+            _builder.append("        ");
             _builder.append("return {");
             _builder.newLine();
             {
               EList<Parameter> _parameters_2 = intent.getParameters();
               for(final Parameter param_2 : _parameters_2) {
-                _builder.append("\t        \t");
+                _builder.append("        \t");
                 _builder.append("\"");
                 String _rasaValue_12 = this.getRasaValue(param_2.getName());
-                _builder.append(_rasaValue_12, "\t        \t");
+                _builder.append(_rasaValue_12, "        \t");
                 _builder.append("\": [self.from_entity(entity=\"");
                 String _rasaValue_13 = this.getRasaValue(param_2.getName());
-                _builder.append(_rasaValue_13, "\t        \t");
+                _builder.append(_rasaValue_13, "        \t");
                 _builder.append("\"),self.from_");
                 String _paramType = this.paramType(param_2);
-                _builder.append(_paramType, "\t        \t");
+                _builder.append(_paramType, "        \t");
                 _builder.append("()],");
                 _builder.newLineIfNotEmpty();
               }
             }
-            _builder.append("\t            ");
+            _builder.append("        \t");
             _builder.append("}");
             _builder.newLine();
-            _builder.append("\t");
             _builder.append("def submit(");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("self,");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("dispatcher: CollectingDispatcher,");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("tracker: Tracker,");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("domain: Dict[Text, Any],");
             _builder.newLine();
-            _builder.append("\t");
             _builder.append(") -> List[Dict]:");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("\"\"\"Define what the form has to do");
             _builder.newLine();
-            _builder.append("\t        ");
+            _builder.append("        ");
             _builder.append("after all required slots are filled\"\"\"");
             _builder.newLine();
-            _builder.append("\t    ");
+            _builder.append("    ");
             _builder.append("return []");
             _builder.newLine();
             _builder.newLine();
+            _builder.append("\t\t");
             _builder.append("class ");
             String _rasaValue_14 = this.getRasaValue(intent.getName());
-            _builder.append(_rasaValue_14);
+            _builder.append(_rasaValue_14, "\t\t");
             _builder.append("Clean (Action):");
             _builder.newLineIfNotEmpty();
-            _builder.append("\t");
+            _builder.append("\t\t\t");
             _builder.append("def name(self) -> Text:");
             _builder.newLine();
-            _builder.append("\t\t");
+            _builder.append("\t\t\t\t");
             _builder.append("return \"");
             String _rasaValue_15 = this.getRasaValue(intent.getName());
-            _builder.append(_rasaValue_15, "\t\t");
+            _builder.append(_rasaValue_15, "\t\t\t\t");
             _builder.append("_clean\"");
             _builder.newLineIfNotEmpty();
             _builder.newLine();
-            _builder.append("\t");
+            _builder.append("\t\t");
             _builder.append("def run(self, dispatcher: CollectingDispatcher,");
             _builder.newLine();
-            _builder.append("\t\t\t");
+            _builder.append("\t\t\t\t");
             _builder.append("tracker: Tracker,");
             _builder.newLine();
-            _builder.append("\t\t\t");
+            _builder.append("\t\t\t\t");
             _builder.append("domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:");
             _builder.newLine();
-            _builder.append("\t\t");
             _builder.append("return [");
             {
               EList<Parameter> _parameters_3 = intent.getParameters();
               for(final Parameter param_3 : _parameters_3) {
                 _builder.append("SlotSet(\"");
                 String _rasaValue_16 = this.getRasaValue(param_3.getName());
-                _builder.append(_rasaValue_16, "\t\t");
+                _builder.append(_rasaValue_16);
                 _builder.append("\", None) ");
                 {
                   boolean _isTheLast_1 = DialogflowGenerator.isTheLast(intent.getParameters(), param_3);
@@ -734,13 +730,13 @@ public class RasaGenerator {
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.newLine();
-            _builder.append("\t");
+            _builder.append("\t\t");
             _builder.append("def run(self, dispatcher: CollectingDispatcher,");
             _builder.newLine();
-            _builder.append("\t\t\t");
+            _builder.append("\t\t\t\t");
             _builder.append("tracker: Tracker,");
             _builder.newLine();
-            _builder.append("\t\t\t");
+            _builder.append("\t\t\t\t");
             _builder.append("domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:");
             _builder.newLine();
             _builder.append("\t\t");
@@ -945,13 +941,13 @@ public class RasaGenerator {
               _builder.newLine();
               _builder.append("\t\t");
               _builder.append("response = ");
-              String _rasaValue_21 = this.getRasaValue(((HTTPResponse)action).getHTTPRequest().getName());
+              String _rasaValue_21 = this.getRasaValue(((HTTPResponse) action).getHTTPRequest().getName());
               _builder.append(_rasaValue_21, "\t\t");
               _builder.append(".response\t\t\t");
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
               _builder.append("text = ");
-              String _httpResponseText = this.getHttpResponseText(((HTTPResponse)action));
+              String _httpResponseText = this.getHttpResponseText(((HTTPResponse) action), lan);
               _builder.append(_httpResponseText, "\t\t");
               _builder.newLineIfNotEmpty();
               _builder.append("\t\t");
@@ -971,71 +967,77 @@ public class RasaGenerator {
     return _builder;
   }
   
-  public String getHttpResponseText(final HTTPResponse action) {
+  public String getHttpResponseText(final HTTPResponse action, final Language lan) {
     String ret = "";
-    EList<Token> _tokens = action.getInputs().getTokens();
-    for (final Token token : _tokens) {
-      {
-        if ((token instanceof Literal)) {
-          String _ret = ret;
-          String _text = ((Literal)token).getText();
-          String _plus = ("\'" + _text);
-          String _plus_1 = (_plus + "\'");
-          ret = (_ret + _plus_1);
-        } else {
-          if ((token instanceof ParameterToken)) {
-            String _ret_1 = ret;
-            String _rasaValue = this.getRasaValue(((ParameterToken)token).getParameter().getName());
-            String _plus_2 = ("tracker.get_slot(\"" + _rasaValue);
-            String _plus_3 = (_plus_2 + "\")");
-            ret = (_ret_1 + _plus_3);
-          } else {
-            if ((token instanceof HTTPRequestToke)) {
-              HTTPReturnType _type = ((HTTPRequestToke)token).getType();
-              boolean _equals = Objects.equal(_type, HTTPReturnType.TEXT);
-              if (_equals) {
-                String _ret_2 = ret;
-                ret = (_ret_2 + "response.text");
+    EList<TextLanguageInput> _inputs = action.getInputs();
+    for (final TextLanguageInput textLanguage : _inputs) {
+      boolean _equals = textLanguage.getLanguage().equals(lan);
+      if (_equals) {
+        EList<Token> _tokens = textLanguage.getInputs().get(0).getTokens();
+        for (final Token token : _tokens) {
+          {
+            if ((token instanceof Literal)) {
+              String _ret = ret;
+              String _text = ((Literal)token).getText();
+              String _plus = ("\'" + _text);
+              String _plus_1 = (_plus + "\'");
+              ret = (_ret + _plus_1);
+            } else {
+              if ((token instanceof ParameterToken)) {
+                String _ret_1 = ret;
+                String _rasaValue = this.getRasaValue(((ParameterToken)token).getParameter().getName());
+                String _plus_2 = ("tracker.get_slot(\"" + _rasaValue);
+                String _plus_3 = (_plus_2 + "\")");
+                ret = (_ret_1 + _plus_3);
               } else {
-                HTTPReturnType _type_1 = ((HTTPRequestToke)token).getType();
-                boolean _equals_1 = Objects.equal(_type_1, HTTPReturnType.STATUS_CODE);
-                if (_equals_1) {
-                  String _ret_3 = ret;
-                  ret = (_ret_3 + "response.status_code");
-                } else {
-                  HTTPReturnType _type_2 = ((HTTPRequestToke)token).getType();
-                  boolean _equals_2 = Objects.equal(_type_2, HTTPReturnType.DATA);
-                  if (_equals_2) {
-                    boolean _isEmpty = ((HTTPRequestToke)token).getDataKey().isEmpty();
-                    boolean _not = (!_isEmpty);
-                    if (_not) {
-                      String _ret_4 = ret;
-                      String _dataKey = ((HTTPRequestToke)token).getDataKey();
-                      String _plus_4 = ("response.json()[\'" + _dataKey);
-                      String _plus_5 = (_plus_4 + "\']");
-                      ret = (_ret_4 + _plus_5);
+                if ((token instanceof HTTPRequestToke)) {
+                  HTTPReturnType _type = ((HTTPRequestToke)token).getType();
+                  boolean _equals_1 = Objects.equal(_type, HTTPReturnType.TEXT);
+                  if (_equals_1) {
+                    String _ret_2 = ret;
+                    ret = (_ret_2 + "response.text");
+                  } else {
+                    HTTPReturnType _type_1 = ((HTTPRequestToke)token).getType();
+                    boolean _equals_2 = Objects.equal(_type_1, HTTPReturnType.STATUS_CODE);
+                    if (_equals_2) {
+                      String _ret_3 = ret;
+                      ret = (_ret_3 + "response.status_code");
                     } else {
-                      String _ret_5 = ret;
-                      ret = (_ret_5 + "response.json()");
+                      HTTPReturnType _type_2 = ((HTTPRequestToke)token).getType();
+                      boolean _equals_3 = Objects.equal(_type_2, HTTPReturnType.DATA);
+                      if (_equals_3) {
+                        boolean _isEmpty = ((HTTPRequestToke)token).getDataKey().isEmpty();
+                        boolean _not = (!_isEmpty);
+                        if (_not) {
+                          String _ret_4 = ret;
+                          String _dataKey = ((HTTPRequestToke)token).getDataKey();
+                          String _plus_4 = ("response.json()[\'" + _dataKey);
+                          String _plus_5 = (_plus_4 + "\']");
+                          ret = (_ret_4 + _plus_5);
+                        } else {
+                          String _ret_5 = ret;
+                          ret = (_ret_5 + "response.json()");
+                        }
+                      }
                     }
                   }
                 }
               }
             }
+            boolean _isTheLast = DialogflowGenerator.isTheLast(textLanguage.getInputs().get(0).getTokens(), token);
+            boolean _not_1 = (!_isTheLast);
+            if (_not_1) {
+              String _ret_6 = ret;
+              ret = (_ret_6 + "+");
+            }
           }
-        }
-        boolean _isTheLast = DialogflowGenerator.isTheLast(action.getInputs().getTokens(), token);
-        boolean _not_1 = (!_isTheLast);
-        if (_not_1) {
-          String _ret_6 = ret;
-          ret = (_ret_6 + "+");
         }
       }
     }
     return ret;
   }
   
-  public CharSequence domain(final List<Intent> intents, final List<Parameter> parameters, final List<Action> actions) {
+  public CharSequence domain(final List<Intent> intents, final List<Parameter> parameters, final List<Action> actions, final Language lan) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("intents:");
     _builder.newLine();
@@ -1094,13 +1096,23 @@ public class RasaGenerator {
             _builder.append(":");
             _builder.newLineIfNotEmpty();
             {
-              EList<String> _prompts = parameter_2.getPrompts();
-              for(final String prompt : _prompts) {
-                _builder.append("  ");
-                _builder.append("- text: \"");
-                _builder.append(prompt, "  ");
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
+              EList<PromptLanguage> _prompts = parameter_2.getPrompts();
+              for(final PromptLanguage prompt : _prompts) {
+                {
+                  boolean _equals = prompt.getLanguage().equals(lan);
+                  if (_equals) {
+                    {
+                      EList<String> _prompts_1 = prompt.getPrompts();
+                      for(final String text : _prompts_1) {
+                        _builder.append("  ");
+                        _builder.append("- text: \"");
+                        _builder.append(text, "  ");
+                        _builder.append("\"");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
+                }
               }
             }
             _builder.append("  ");
@@ -1129,14 +1141,24 @@ public class RasaGenerator {
             _builder.append(":");
             _builder.newLineIfNotEmpty();
             {
-              EList<TextInput> _inputs = ((Text)action).getInputs();
-              for(final TextInput input : _inputs) {
-                _builder.append("  ");
-                _builder.append("- text: \"");
-                String _textActionInput = this.textActionInput(input);
-                _builder.append(_textActionInput, "  ");
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
+              EList<TextLanguageInput> _inputs = ((Text)action).getInputs();
+              for(final TextLanguageInput textLanguageInput : _inputs) {
+                {
+                  boolean _equals_1 = textLanguageInput.getLanguage().equals(lan);
+                  if (_equals_1) {
+                    {
+                      EList<TextInput> _inputs_1 = textLanguageInput.getInputs();
+                      for(final TextInput input : _inputs_1) {
+                        _builder.append("  ");
+                        _builder.append("- text: \"");
+                        String _textActionInput = this.textActionInput(input);
+                        _builder.append(_textActionInput, "  ");
+                        _builder.append("\"");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
+                }
               }
             }
           } else {
@@ -1149,11 +1171,11 @@ public class RasaGenerator {
               _builder.append("  ");
               _builder.append("- text: ");
               {
-                String _caption = ((Image)action).getCaption();
+                String _caption = ((Image) action).getCaption();
                 boolean _tripleNotEquals = (_caption != null);
                 if (_tripleNotEquals) {
                   _builder.append("\"");
-                  String _caption_1 = ((Image)action).getCaption();
+                  String _caption_1 = ((Image) action).getCaption();
                   _builder.append(_caption_1, "  ");
                   _builder.append("\"");
                 } else {
@@ -1164,7 +1186,7 @@ public class RasaGenerator {
               _builder.append("  ");
               _builder.append("  ");
               _builder.append("image: \"");
-              String _uRL = ((Image)action).getURL();
+              String _uRL = ((Image) action).getURL();
               _builder.append(_uRL, "    ");
               _builder.append("\"");
               _builder.newLineIfNotEmpty();
@@ -1278,7 +1300,7 @@ public class RasaGenerator {
     return null;
   }
   
-  public CharSequence nlu(final List<Intent> intents) {
+  public CharSequence nlu(final List<Intent> intents, final Language lan) {
     StringConcatenation _builder = new StringConcatenation();
     {
       for(final Intent intent : intents) {
@@ -1287,12 +1309,22 @@ public class RasaGenerator {
         _builder.append(_rasaValue);
         _builder.newLineIfNotEmpty();
         {
-          EList<TrainingPhrase> _inputs = intent.getInputs();
-          for(final TrainingPhrase input : _inputs) {
-            _builder.append("- ");
-            String _generate = this.generate(input);
-            _builder.append(_generate);
-            _builder.newLineIfNotEmpty();
+          EList<IntentLanguageInputs> _inputs = intent.getInputs();
+          for(final IntentLanguageInputs intentLanguageInput : _inputs) {
+            {
+              boolean _equals = intentLanguageInput.getLanguage().equals(lan);
+              if (_equals) {
+                {
+                  EList<TrainingPhrase> _inputs_1 = intentLanguageInput.getInputs();
+                  for(final TrainingPhrase input : _inputs_1) {
+                    _builder.append("- ");
+                    String _generate = this.generate(input);
+                    _builder.append(_generate);
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
           }
         }
         _builder.newLine();
@@ -1417,14 +1449,16 @@ public class RasaGenerator {
     return _builder;
   }
   
-  public CharSequence config() {
+  public CharSequence config(final Language lan) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("# Configuration for Rasa NLU.");
     _builder.newLine();
     _builder.append("# https://rasa.com/docs/rasa/nlu/components/");
     _builder.newLine();
-    _builder.append("language: en");
-    _builder.newLine();
+    _builder.append("language: ");
+    String _languageAbbreviation = this.languageAbbreviation(lan);
+    _builder.append(_languageAbbreviation);
+    _builder.newLineIfNotEmpty();
     _builder.append("pipeline: supervised_embeddings");
     _builder.newLine();
     _builder.newLine();
@@ -1447,6 +1481,57 @@ public class RasaGenerator {
     _builder.append("- name: \"FormPolicy\"");
     _builder.newLine();
     return _builder;
+  }
+  
+  public String languageAbbreviation(final Language lan) {
+    if (lan != null) {
+      switch (lan) {
+        case ENGLISH:
+          return "en";
+        case SPANISH:
+          return "es";
+        case DANISH:
+          return "da";
+        case GERMAN:
+          return "de";
+        case FRENCH:
+          return "fr";
+        case HINDI:
+          return "hi";
+        case INDONESIAN:
+          return "id";
+        case ITALIAN:
+          return "it";
+        case JAPANESE:
+          return "ja";
+        case KOREAN:
+          return "ko";
+        case DUTCH:
+          return "nl";
+        case NORWEGIAN:
+          return "no";
+        case POLISH:
+          return "pl";
+        case PORTUGUESE:
+          return "pt";
+        case RUSIAN:
+          return "ru";
+        case SWEDISH:
+          return "sv";
+        case THAI:
+          return "th";
+        case TURKISH:
+          return "tr";
+        case UKRANIAN:
+          return "uk";
+        case CHINESE:
+          return "zh";
+        default:
+          return "en";
+      }
+    } else {
+      return "en";
+    }
   }
   
   public CharSequence credentials() {

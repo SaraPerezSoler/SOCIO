@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link generator.Intent#getInputs <em>Inputs</em>}</li>
  *   <li>{@link generator.Intent#getParameters <em>Parameters</em>}</li>
  *   <li>{@link generator.Intent#isFallbackIntent <em>Fallback Intent</em>}</li>
- *   <li>{@link generator.Intent#getLanguage <em>Language</em>}</li>
  * </ul>
  *
  * @see generator.GeneratorPackage#getIntent()
@@ -26,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Intent extends Element {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
-	 * The list contents are of type {@link generator.TrainingPhrase}.
+	 * The list contents are of type {@link generator.IntentLanguageInputs}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inputs</em>' containment reference list.
@@ -34,7 +33,7 @@ public interface Intent extends Element {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<TrainingPhrase> getInputs();
+	EList<IntentLanguageInputs> getInputs();
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
@@ -69,31 +68,5 @@ public interface Intent extends Element {
 	 * @generated
 	 */
 	void setFallbackIntent(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Language</b></em>' attribute.
-	 * The default value is <code>"EMPTY"</code>.
-	 * The literals are from the enumeration {@link generator.Language}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Language</em>' attribute.
-	 * @see generator.Language
-	 * @see #setLanguage(Language)
-	 * @see generator.GeneratorPackage#getIntent_Language()
-	 * @model default="EMPTY"
-	 * @generated
-	 */
-	Language getLanguage();
-
-	/**
-	 * Sets the value of the '{@link generator.Intent#getLanguage <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Language</em>' attribute.
-	 * @see generator.Language
-	 * @see #getLanguage()
-	 * @generated
-	 */
-	void setLanguage(Language value);
 
 } // Intent

@@ -672,15 +672,15 @@
 				"LUIS",
 				"Pandorabot", 
 				"FlowXO",
-				"Landb.io",
-				"Chatfuel",
-				"Botkit"
+				"Landb.io"
 			],
 			"refused": [
 				
 			],
 			"unknown": [
-			"ChatterBot"
+			"ChatterBot",
+			"Chatfuel",
+			"Botkit"
 			]
 		},
 		"defined": {
@@ -689,22 +689,23 @@
 				"Rasa",
 				"Watson",
 				"Microsoft Bot Framework",
-				
+				"LUIS",
 				"Lex",
 				"SmartLoop",
-				"Xenio",
-				"LUIS",
-				"Chatfuel",
-				"Botkit",
+				"Xenio"
 				
-				"ChatterBot",
-				"Pandorabot"
 			],
 			"refused": [
 				"FlowXO",
-				"Landb.io"
+				"Landb.io",
+				"Chatfuel",
+				"Botkit",
+				"ChatterBot",
+				"Pandorabot"
 			],
-			"unknown": []
+			"unknown": [
+				
+			]
 		}, 
 		"none": {
 			"acepted": [

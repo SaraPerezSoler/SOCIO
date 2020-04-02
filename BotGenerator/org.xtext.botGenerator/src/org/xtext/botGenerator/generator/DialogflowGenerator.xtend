@@ -22,6 +22,10 @@ import generator.ParameterReferenceToken
 import generator.ParameterToken
 import generator.TextInput
 import generator.Language
+import generator.SimpleLanguageInput
+import generator.CompositeLanguageInput
+import generator.IntentLanguageInputs
+import generator.TextLanguageInput
 
 class DialogflowGenerator {
 	String path;
@@ -41,16 +45,26 @@ class DialogflowGenerator {
 		var entities = resource.allContents.filter(Entity).toList;
 		for (Entity entity : entities) {
 			fsa.generateFile(path + '/entities/' + entity.name + '.json', entityFile(entity))
-			var lan = bot.languages.get(0);
-//			if (entity.language != Language.EMPTY){
-//				lan = entity.language
-//			}
+			
 			if (entity instanceof Simple) {
-				fsa.generateFile(path+ '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
-					'.json', entriesFile(entity as Simple))
-			} else {
-				fsa.generateFile(path + '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
-					'.json', entriesFile(entity as Composite))
+				for (SimpleLanguageInput input: entity.inputs){
+					var lan = bot.languages.get(0);
+					if (input.language != Language.EMPTY){
+						lan = input.language
+					}
+					fsa.generateFile(path+ '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
+					'.json', entriesFile(input))
+				}
+				
+			} else if (entity instanceof Composite){
+				for (CompositeLanguageInput input: entity.inputs){
+					var lan = bot.languages.get(0);
+					if (input.language != Language.EMPTY){
+						lan = input.language
+					}
+					fsa.generateFile(path+ '/entities/' + entity.name + '_entries_' + lan.languageAbbreviation +
+					'.json', entriesFile(input))
+				}
 			}
 		}
 		for (UserInteraction transition : bot.flows) {
@@ -59,15 +73,19 @@ class DialogflowGenerator {
 
 	}
 	def void createTransitionFiles(UserInteraction transition, String prefix, IFileSystemAccess2 fsa, Bot bot) {
-		var lan = bot.languages.get(0);
-//			if (transition.intent.language != Language.EMPTY){
-//				lan = transition.intent.language
-//			}
-		fsa.generateFile(
-			path + '/intents/' + prefix + transition.intent.name + '_usersays_' + lan.languageAbbreviation +
-				'.json', transition.usersayFile)
+		
 		fsa.generateFile(path + '/intents/' + prefix + transition.intent.name + '.json',
 			transition.intentFile(prefix, bot))
+			
+		for (IntentLanguageInputs input: transition.intent.inputs){
+			var lan = bot.languages.get(0)
+			if (input.language != Language.EMPTY){
+				lan = input.language
+			}
+			fsa.generateFile(
+			path + '/intents/' + prefix + transition.intent.name + '_usersays_' + lan.languageAbbreviation +
+				'.json', input.usersayFile)
+		}
 		if (transition.target !== null) {
 			var newPrefix = prefix + transition.intent.name + " - ";
 			for (UserInteraction t : transition.target.outcoming) {
@@ -88,7 +106,7 @@ class DialogflowGenerator {
 		return name
 	}
 
-	def speechText(Text textAction) {
+	def speechText(TextLanguageInput textAction) {
 		var ret = ""
 		for (TextInput input : textAction.inputs) {
 			ret += "\""
@@ -160,15 +178,16 @@ class DialogflowGenerator {
 		        	  "value": "$«parameter.name»",
 		        	  "prompts": [
 		        	  «FOR prompt :parameter.prompts»
+		        	  «FOR text : prompt.prompts»
 		        	  	{
-		        	 	  «var lan = bot.languages.get(0)»
-		        	 «««  	  «IF parameter.prompLanguage != Language.EMPTY»
-		        	 «««  	  "lang": "«parameter.prompLanguage.languageAbbreviation»",
-		         	 «««   	  «ELSE»
-		        	 	  "lang": "«lan.languageAbbreviation»",
-		        	 «««  	  «ENDIF»
-		        	  	  "value": "«prompt»"
-		        	  	}«IF !isTheLast(parameter.prompts, prompt)»,«ENDIF»
+		        	   	  «IF prompt.language != Language.EMPTY»
+		        	   	  "lang": "«prompt.language.languageAbbreviation»",
+		         	   	  «ELSE»
+		        	 	  "lang": "«bot.languages.get(0).languageAbbreviation»",
+		        	  	  «ENDIF»
+		        	  	  "value": "«text»"
+		        	  	}«IF !isTheLast(parameter.prompts, prompt) || !isTheLast(prompt.prompts, text)»,«ENDIF»
+		        	  «ENDFOR»
 		        	  «ENDFOR»
 		        	  ],
 		        	  "isList":«parameter.isList» 
@@ -179,23 +198,25 @@ class DialogflowGenerator {
 		      «IF transition.target!==null»
 		      	«FOR action:transition.target.actions»
 		      		«IF action instanceof Text»
-		    			{
+		      		«FOR texLanguage : action.inputs»
+		    		{
 		  			"type": 0,
-		  			««««IF action.language != Language.EMPTY»
-		  			«««"lang": "«action.language.languageAbbreviation»",
-		  			««««ELSE»
+		  			«IF texLanguage.language != Language.EMPTY»
+		  			"lang": "«texLanguage.language.languageAbbreviation»",
+		  			«ELSE»
 		  			"lang": "«bot.languages.get(0).languageAbbreviation»",
-		  			««««ENDIF»
+		  			«ENDIF»
 		  			"condition": "",
 		  			"speech": [
-		  				«action.speechText»
+		  				«texLanguage.speechText»
 		  			]
-					}«IF !transition.target.actions.isTheLast(action)»,«ENDIF»
+					}«IF !transition.target.actions.isTheLast(action) || !isTheLast(action.inputs, texLanguage)»,«ENDIF»
+					«ENDFOR»
 				«ELSEIF action instanceof Image»
 					{
 					  "type": 3,
 					  "condition": "",
-					  "imageUrl": "«action.URL»"
+					  "imageUrl": "«(action as Image).URL»"
 					}«IF !transition.target.actions.isTheLast(action)»,«ENDIF»
 				«ELSEIF action instanceof HTTPRequest»
 					«{webhook=true; ""}»
@@ -262,9 +283,9 @@ class DialogflowGenerator {
 		
 	'''
 
-	def usersayFile(UserInteraction transition) '''
+	def usersayFile(IntentLanguageInputs intent) '''
 		[
-		«FOR phrase : transition.intent.inputs»
+		«FOR phrase : intent.inputs»
 			{
 			  "data": [
 			«FOR token: phrase.tokens»
@@ -275,22 +296,22 @@ class DialogflowGenerator {
 					},
 				«ELSEIF token instanceof ParameterReferenceToken»
 					{
-					  "text": "«token.textReference»",
-					  "alias": "«token.parameter.name»",
-					  "meta": "«token.parameter.paramType»",
+					  "text": "«(token as ParameterReferenceToken).textReference»",
+					  "alias": "«(token as ParameterReferenceToken).parameter.name»",
+					  "meta": "«(token as ParameterReferenceToken).parameter.paramType»",
 					  "userDefined": true
 					},
 				«ENDIF»
 				{
 					"text": " ",
 					"userDefined": false
-				}«IF !transition.intent.inputs.isTheLast(token)»,«ENDIF»
+				}«IF !intent.inputs.isTheLast(token)»,«ENDIF»
 			«ENDFOR»
 			],
 			"isTemplate": false,
 			"count": 0,
 			"updated": 0
-			}«IF !isTheLast(transition.intent.inputs, phrase)»,«ENDIF»
+			}«IF !isTheLast(intent.inputs, phrase)»,«ENDIF»
 		 «ENDFOR»
 		 ]
 	'''
@@ -363,7 +384,7 @@ class DialogflowGenerator {
 		}
 	'''
 
-	def entriesFile(Simple entity) '''
+	def entriesFile(SimpleLanguageInput entity) '''
 		[
 			«FOR entry : entity.inputs»
 				{
@@ -379,7 +400,7 @@ class DialogflowGenerator {
 		]
 	'''
 
-	def entriesFile(Composite entity) '''
+	def entriesFile(CompositeLanguageInput entity) '''
 		[
 			«FOR entry : entity.inputs»
 				{

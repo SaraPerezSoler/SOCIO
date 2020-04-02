@@ -5,12 +5,13 @@ package generator.impl;
 import generator.DefaultEntity;
 import generator.Entity;
 import generator.GeneratorPackage;
-import generator.Language;
 import generator.Parameter;
+import generator.PromptLanguage;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -19,7 +20,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,9 +34,8 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link generator.impl.ParameterImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link generator.impl.ParameterImpl#getDefaultEntity <em>Default Entity</em>}</li>
  *   <li>{@link generator.impl.ParameterImpl#isRequired <em>Required</em>}</li>
- *   <li>{@link generator.impl.ParameterImpl#getPrompts <em>Prompts</em>}</li>
  *   <li>{@link generator.impl.ParameterImpl#isIsList <em>Is List</em>}</li>
- *   <li>{@link generator.impl.ParameterImpl#getPrompLanguage <em>Promp Language</em>}</li>
+ *   <li>{@link generator.impl.ParameterImpl#getPrompts <em>Prompts</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,16 +92,6 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 	protected boolean required = REQUIRED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPrompts() <em>Prompts</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrompts()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> prompts;
-
-	/**
 	 * The default value of the '{@link #isIsList() <em>Is List</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,24 +112,14 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 	protected boolean isList = IS_LIST_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getPrompLanguage() <em>Promp Language</em>}' attribute.
+	 * The cached value of the '{@link #getPrompts() <em>Prompts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPrompLanguage()
+	 * @see #getPrompts()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Language PROMP_LANGUAGE_EDEFAULT = Language.EMPTY;
-
-	/**
-	 * The cached value of the '{@link #getPrompLanguage() <em>Promp Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPrompLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected Language prompLanguage = PROMP_LANGUAGE_EDEFAULT;
+	protected EList<PromptLanguage> prompts;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,19 +232,6 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 	 * @generated
 	 */
 	@Override
-	public EList<String> getPrompts() {
-		if (prompts == null) {
-			prompts = new EDataTypeUniqueEList<String>(String.class, this, GeneratorPackage.PARAMETER__PROMPTS);
-		}
-		return prompts;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isIsList() {
 		return isList;
 	}
@@ -287,8 +255,11 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 	 * @generated
 	 */
 	@Override
-	public Language getPrompLanguage() {
-		return prompLanguage;
+	public EList<PromptLanguage> getPrompts() {
+		if (prompts == null) {
+			prompts = new EObjectContainmentEList<PromptLanguage>(PromptLanguage.class, this, GeneratorPackage.PARAMETER__PROMPTS);
+		}
+		return prompts;
 	}
 
 	/**
@@ -297,11 +268,12 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 	 * @generated
 	 */
 	@Override
-	public void setPrompLanguage(Language newPrompLanguage) {
-		Language oldPrompLanguage = prompLanguage;
-		prompLanguage = newPrompLanguage == null ? PROMP_LANGUAGE_EDEFAULT : newPrompLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GeneratorPackage.PARAMETER__PROMP_LANGUAGE, oldPrompLanguage, prompLanguage));
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case GeneratorPackage.PARAMETER__PROMPTS:
+				return ((InternalEList<?>)getPrompts()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -319,12 +291,10 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 				return getDefaultEntity();
 			case GeneratorPackage.PARAMETER__REQUIRED:
 				return isRequired();
-			case GeneratorPackage.PARAMETER__PROMPTS:
-				return getPrompts();
 			case GeneratorPackage.PARAMETER__IS_LIST:
 				return isIsList();
-			case GeneratorPackage.PARAMETER__PROMP_LANGUAGE:
-				return getPrompLanguage();
+			case GeneratorPackage.PARAMETER__PROMPTS:
+				return getPrompts();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -347,15 +317,12 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 			case GeneratorPackage.PARAMETER__REQUIRED:
 				setRequired((Boolean)newValue);
 				return;
-			case GeneratorPackage.PARAMETER__PROMPTS:
-				getPrompts().clear();
-				getPrompts().addAll((Collection<? extends String>)newValue);
-				return;
 			case GeneratorPackage.PARAMETER__IS_LIST:
 				setIsList((Boolean)newValue);
 				return;
-			case GeneratorPackage.PARAMETER__PROMP_LANGUAGE:
-				setPrompLanguage((Language)newValue);
+			case GeneratorPackage.PARAMETER__PROMPTS:
+				getPrompts().clear();
+				getPrompts().addAll((Collection<? extends PromptLanguage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -378,14 +345,11 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 			case GeneratorPackage.PARAMETER__REQUIRED:
 				setRequired(REQUIRED_EDEFAULT);
 				return;
-			case GeneratorPackage.PARAMETER__PROMPTS:
-				getPrompts().clear();
-				return;
 			case GeneratorPackage.PARAMETER__IS_LIST:
 				setIsList(IS_LIST_EDEFAULT);
 				return;
-			case GeneratorPackage.PARAMETER__PROMP_LANGUAGE:
-				setPrompLanguage(PROMP_LANGUAGE_EDEFAULT);
+			case GeneratorPackage.PARAMETER__PROMPTS:
+				getPrompts().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -405,12 +369,10 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 				return defaultEntity != DEFAULT_ENTITY_EDEFAULT;
 			case GeneratorPackage.PARAMETER__REQUIRED:
 				return required != REQUIRED_EDEFAULT;
-			case GeneratorPackage.PARAMETER__PROMPTS:
-				return prompts != null && !prompts.isEmpty();
 			case GeneratorPackage.PARAMETER__IS_LIST:
 				return isList != IS_LIST_EDEFAULT;
-			case GeneratorPackage.PARAMETER__PROMP_LANGUAGE:
-				return prompLanguage != PROMP_LANGUAGE_EDEFAULT;
+			case GeneratorPackage.PARAMETER__PROMPTS:
+				return prompts != null && !prompts.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -429,12 +391,8 @@ public class ParameterImpl extends ElementImpl implements Parameter {
 		result.append(defaultEntity);
 		result.append(", required: ");
 		result.append(required);
-		result.append(", prompts: ");
-		result.append(prompts);
 		result.append(", isList: ");
 		result.append(isList);
-		result.append(", prompLanguage: ");
-		result.append(prompLanguage);
 		result.append(')');
 		return result.toString();
 	}

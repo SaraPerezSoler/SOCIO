@@ -2,6 +2,7 @@
  */
 package generator;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>User Interaction</b></em>'.

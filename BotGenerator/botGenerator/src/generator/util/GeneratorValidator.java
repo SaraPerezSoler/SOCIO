@@ -96,14 +96,20 @@ public class GeneratorValidator extends EObjectValidator {
 				return validateUserInteraction((UserInteraction)value, diagnostics, context);
 			case GeneratorPackage.ELEMENT:
 				return validateElement((Element)value, diagnostics, context);
+			case GeneratorPackage.WITH_LANGUAGE:
+				return validateWithLanguage((WithLanguage)value, diagnostics, context);
 			case GeneratorPackage.ENTITY:
 				return validateEntity((Entity)value, diagnostics, context);
 			case GeneratorPackage.SIMPLE:
 				return validateSimple((Simple)value, diagnostics, context);
 			case GeneratorPackage.COMPOSITE:
 				return validateComposite((Composite)value, diagnostics, context);
+			case GeneratorPackage.SIMPLE_LANGUAGE_INPUT:
+				return validateSimpleLanguageInput((SimpleLanguageInput)value, diagnostics, context);
 			case GeneratorPackage.SIMPLE_INPUT:
 				return validateSimpleInput((SimpleInput)value, diagnostics, context);
+			case GeneratorPackage.COMPOSITE_LANGUAGE_INPUT:
+				return validateCompositeLanguageInput((CompositeLanguageInput)value, diagnostics, context);
 			case GeneratorPackage.COMPOSITE_INPUT:
 				return validateCompositeInput((CompositeInput)value, diagnostics, context);
 			case GeneratorPackage.TOKEN:
@@ -120,16 +126,22 @@ public class GeneratorValidator extends EObjectValidator {
 				return validateHTTPRequestToke((HTTPRequestToke)value, diagnostics, context);
 			case GeneratorPackage.INTENT:
 				return validateIntent((Intent)value, diagnostics, context);
+			case GeneratorPackage.INTENT_LANGUAGE_INPUTS:
+				return validateIntentLanguageInputs((IntentLanguageInputs)value, diagnostics, context);
 			case GeneratorPackage.TRAINING_PHRASE:
 				return validateTrainingPhrase((TrainingPhrase)value, diagnostics, context);
 			case GeneratorPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
+			case GeneratorPackage.PROMPT_LANGUAGE:
+				return validatePromptLanguage((PromptLanguage)value, diagnostics, context);
 			case GeneratorPackage.ACTION:
 				return validateAction((Action)value, diagnostics, context);
 			case GeneratorPackage.IMAGE:
 				return validateImage((Image)value, diagnostics, context);
 			case GeneratorPackage.TEXT:
 				return validateText((Text)value, diagnostics, context);
+			case GeneratorPackage.TEXT_LANGUAGE_INPUT:
+				return validateTextLanguageInput((TextLanguageInput)value, diagnostics, context);
 			case GeneratorPackage.TEXT_INPUT:
 				return validateTextInput((TextInput)value, diagnostics, context);
 			case GeneratorPackage.HTTP_REQUEST:
@@ -203,6 +215,15 @@ public class GeneratorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateWithLanguage(WithLanguage withLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(withLanguage, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEntity(Entity entity, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(entity, diagnostics, context);
 	}
@@ -230,8 +251,26 @@ public class GeneratorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateSimpleLanguageInput(SimpleLanguageInput simpleLanguageInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(simpleLanguageInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateSimpleInput(SimpleInput simpleInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(simpleInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompositeLanguageInput(CompositeLanguageInput compositeLanguageInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compositeLanguageInput, diagnostics, context);
 	}
 
 	/**
@@ -254,33 +293,31 @@ public class GeneratorValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the tokenComplexEntity constraint of '<em>Composite Input</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String COMPOSITE_INPUT__TOKEN_COMPLEX_ENTITY__EEXPRESSION = "\n" +
-		"\t\t\tself.tokens->forAll(t| t.oclIsTypeOf(Literal) or t.oclIsTypeOf(EntityToken))";
-
-	/**
 	 * Validates the tokenComplexEntity constraint of '<em>Composite Input</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateCompositeInput_tokenComplexEntity(CompositeInput compositeInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(GeneratorPackage.Literals.COMPOSITE_INPUT,
-				 compositeInput,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				 "tokenComplexEntity",
-				 COMPOSITE_INPUT__TOKEN_COMPLEX_ENTITY__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "tokenComplexEntity", getObjectLabel(compositeInput, context) },
+						 new Object[] { compositeInput },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -351,6 +388,15 @@ public class GeneratorValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateIntentLanguageInputs(IntentLanguageInputs intentLanguageInputs, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(intentLanguageInputs, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateTrainingPhrase(TrainingPhrase trainingPhrase, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(trainingPhrase, diagnostics, context);
 	}
@@ -362,6 +408,15 @@ public class GeneratorValidator extends EObjectValidator {
 	 */
 	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePromptLanguage(PromptLanguage promptLanguage, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(promptLanguage, diagnostics, context);
 	}
 
 	/**
@@ -389,6 +444,15 @@ public class GeneratorValidator extends EObjectValidator {
 	 */
 	public boolean validateText(Text text, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(text, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTextLanguageInput(TextLanguageInput textLanguageInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(textLanguageInput, diagnostics, context);
 	}
 
 	/**

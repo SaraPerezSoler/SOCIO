@@ -27,12 +27,14 @@ EString returns ecore::EString:
 	STRING | ID;
 
 Intent returns Intent:
-	name=EString (fallbackIntent?='Fallback')? ('language'':' language=Language)?
-	'{'
-		'inputs:'  inputs+=TrainingPhrase ( "," inputs+=TrainingPhrase)*  
+	name=EString (fallbackIntent?='Fallback')? ':'
+		(inputs+=IntentLanguageInputs)+
 		('parameters:'  parameters+=Parameter ( parameters+=Parameter)* )?
-	'}';
-	
+	;
+IntentLanguageInputs returns IntentLanguageInputs: 
+	'inputs' ('in' language=Language)? '{'  inputs+=TrainingPhrase ( "," inputs+=TrainingPhrase)*'}'
+;
+
 Transition returns UserInteraction:
 	'user' intent=[Intent|EString]('=>'target=(State|State2))?
 ;
@@ -53,9 +55,13 @@ Parameter returns Parameter:
 	 name=EString ':' 
 		'entity' (entity=[Entity|EString] | defaultEntity=DefaultEntity) 
 		(',' required?='required'
-		(',' 'prompts'('in' prompLanguage=Language)?'['prompts+=EString (','prompts+=EString)*']' )?
+		(','  (prompts+=PromptLanguage)+)?
 		)? 
 		(','isList?='isList')? ';';
+PromptLanguage returns PromptLanguage:
+	'prompts'('in' language=Language)?'['prompts+=EString (','prompts+=EString)*']' 
+;
+
 
 Literal returns Literal:
 	 text=EString;
@@ -80,14 +86,27 @@ EBoolean returns ecore::EBoolean:
 
 Simple returns Simple:
 	{Simple}
-	'Simple' 'entity' name=EString ('in' language=Language)?':'
-			(inputs+=SimpleInput (inputs+=SimpleInput)* )?
+	'Simple' 'entity' name=EString':'
+		(inputs+= SimpleLanguageInput)+	
 	;
+SimpleLanguageInput returns SimpleLanguageInput: 
+	('inputs' 'in' language=Language)? '{'
+		(inputs+=SimpleInput (inputs+=SimpleInput)* )
+	'}'
+;
 
 Composite returns Composite:
 	{Composite}
-	'Composite''entity' name=EString ('in' language=Language)?':'
-		(inputs+=CompositeInput ( inputs+=CompositeInput)* )?;
+	'Composite''entity' name=EString':'
+		(inputs+=CompositeLanguageInput)+
+		;
+CompositeLanguageInput returns CompositeLanguageInput:  
+{CompositeLanguageInput} 
+('inputs' 'in' language=Language)? '{'
+		(inputs+=CompositeInput ( inputs+=CompositeInput)* )?
+	'}'
+;
+
 
 SimpleInput returns SimpleInput:
 	{SimpleInput}
@@ -97,12 +116,17 @@ CompositeInput returns CompositeInput:
 	 tokens+=(Literal | EntityToken)+';' ;
 
 Text returns Text:
-	'text' 'response' name=EString ('in' language=Language)?':'
-		 ('text:')?inputs+=TextInputText (',' inputs+=TextInputText)*;
+	'text' 'response' name=EString':'
+	(inputs+=TextLanguageInput)+
+		 ;
+TextLanguageInput returns TextLanguageInput:
+	('text'('in' language=Language)?)?'{'inputs+=TextInputText (',' inputs+=TextInputText)* '}'
+;
+
 HTTPResponse returns HTTPResponse:
 	'HttpResponse' name=EString ':'
 		'HttpRequest:' HTTPRequest=[HTTPRequest|EString]';'
-		'text:'inputs=TextInputHttpResponse';';
+		(inputs+=TextLanguageInputHttpResponse)+;
 		
 HTTPRequest returns HTTPRequest:
 	'HTTP''request' method=Method name=EString ':'
@@ -116,7 +140,10 @@ Image returns Image:
 		'URL'':' URL=EString
 ;
 
-
+TextLanguageInputHttpResponse returns TextLanguageInput:
+	'text'('in' language=Language)?'{'inputs+=TextInputHttpResponse (',' inputs+=TextInputHttpResponse)* '}';
+	
+	
 TextInputHttpResponse returns TextInput:
 	(tokens+=(Literal|ParameterToken|HTTPRequestToken))+;
 	

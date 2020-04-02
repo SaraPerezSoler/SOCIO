@@ -5,13 +5,22 @@ package generator.impl;
 import generator.GeneratorPackage;
 import generator.HTTPRequest;
 import generator.HTTPResponse;
-import generator.TextInput;
+import generator.TextLanguageInput;
+
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,14 +38,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	/**
-	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference.
+	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInputs()
 	 * @generated
 	 * @ordered
 	 */
-	protected TextInput inputs;
+	protected EList<TextLanguageInput> inputs;
 
 	/**
 	 * The cached value of the '{@link #getHTTPRequest() <em>HTTP Request</em>}' reference.
@@ -73,43 +82,11 @@ public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	 * @generated
 	 */
 	@Override
-	public TextInput getInputs() {
+	public EList<TextLanguageInput> getInputs() {
+		if (inputs == null) {
+			inputs = new EObjectContainmentEList<TextLanguageInput>(TextLanguageInput.class, this, GeneratorPackage.HTTP_RESPONSE__INPUTS);
+		}
 		return inputs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInputs(TextInput newInputs, NotificationChain msgs) {
-		TextInput oldInputs = inputs;
-		inputs = newInputs;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GeneratorPackage.HTTP_RESPONSE__INPUTS, oldInputs, newInputs);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setInputs(TextInput newInputs) {
-		if (newInputs != inputs) {
-			NotificationChain msgs = null;
-			if (inputs != null)
-				msgs = ((InternalEObject)inputs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GeneratorPackage.HTTP_RESPONSE__INPUTS, null, msgs);
-			if (newInputs != null)
-				msgs = ((InternalEObject)newInputs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GeneratorPackage.HTTP_RESPONSE__INPUTS, null, msgs);
-			msgs = basicSetInputs(newInputs, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GeneratorPackage.HTTP_RESPONSE__INPUTS, newInputs, newInputs));
 	}
 
 	/**
@@ -161,7 +138,7 @@ public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GeneratorPackage.HTTP_RESPONSE__INPUTS:
-				return basicSetInputs(null, msgs);
+				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -193,7 +170,8 @@ public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case GeneratorPackage.HTTP_RESPONSE__INPUTS:
-				setInputs((TextInput)newValue);
+				getInputs().clear();
+				getInputs().addAll((Collection<? extends TextLanguageInput>)newValue);
 				return;
 			case GeneratorPackage.HTTP_RESPONSE__HTTP_REQUEST:
 				setHTTPRequest((HTTPRequest)newValue);
@@ -211,7 +189,7 @@ public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case GeneratorPackage.HTTP_RESPONSE__INPUTS:
-				setInputs((TextInput)null);
+				getInputs().clear();
 				return;
 			case GeneratorPackage.HTTP_RESPONSE__HTTP_REQUEST:
 				setHTTPRequest((HTTPRequest)null);
@@ -229,7 +207,7 @@ public class HTTPResponseImpl extends ActionImpl implements HTTPResponse {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case GeneratorPackage.HTTP_RESPONSE__INPUTS:
-				return inputs != null;
+				return inputs != null && !inputs.isEmpty();
 			case GeneratorPackage.HTTP_RESPONSE__HTTP_REQUEST:
 				return httpRequest != null;
 		}

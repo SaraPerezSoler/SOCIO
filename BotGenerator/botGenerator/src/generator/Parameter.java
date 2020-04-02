@@ -16,9 +16,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link generator.Parameter#getEntity <em>Entity</em>}</li>
  *   <li>{@link generator.Parameter#getDefaultEntity <em>Default Entity</em>}</li>
  *   <li>{@link generator.Parameter#isRequired <em>Required</em>}</li>
- *   <li>{@link generator.Parameter#getPrompts <em>Prompts</em>}</li>
  *   <li>{@link generator.Parameter#isIsList <em>Is List</em>}</li>
- *   <li>{@link generator.Parameter#getPrompLanguage <em>Promp Language</em>}</li>
+ *   <li>{@link generator.Parameter#getPrompts <em>Prompts</em>}</li>
  * </ul>
  *
  * @see generator.GeneratorPackage#getParameter()
@@ -96,18 +95,6 @@ public interface Parameter extends Element {
 	void setRequired(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Prompts</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Prompts</em>' attribute list.
-	 * @see generator.GeneratorPackage#getParameter_Prompts()
-	 * @model
-	 * @generated
-	 */
-	EList<String> getPrompts();
-
-	/**
 	 * Returns the value of the '<em><b>Is List</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,29 +117,15 @@ public interface Parameter extends Element {
 	void setIsList(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Promp Language</b></em>' attribute.
-	 * The default value is <code>"EMPTY"</code>.
-	 * The literals are from the enumeration {@link generator.Language}.
+	 * Returns the value of the '<em><b>Prompts</b></em>' containment reference list.
+	 * The list contents are of type {@link generator.PromptLanguage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Promp Language</em>' attribute.
-	 * @see generator.Language
-	 * @see #setPrompLanguage(Language)
-	 * @see generator.GeneratorPackage#getParameter_PrompLanguage()
-	 * @model default="EMPTY"
+	 * @return the value of the '<em>Prompts</em>' containment reference list.
+	 * @see generator.GeneratorPackage#getParameter_Prompts()
+	 * @model containment="true"
 	 * @generated
 	 */
-	Language getPrompLanguage();
-
-	/**
-	 * Sets the value of the '{@link generator.Parameter#getPrompLanguage <em>Promp Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Promp Language</em>' attribute.
-	 * @see generator.Language
-	 * @see #getPrompLanguage()
-	 * @generated
-	 */
-	void setPrompLanguage(Language value);
+	EList<PromptLanguage> getPrompts();
 
 } // Parameter

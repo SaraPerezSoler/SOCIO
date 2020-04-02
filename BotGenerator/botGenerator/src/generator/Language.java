@@ -216,7 +216,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHINESE(17, "CHINESE", "CHINESE"), /**
+	CHINESE(17, "CHINESE", "CHINESE"),
+
+	/**
 	 * The '<em><b>ARABIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -224,7 +226,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ARABIC(18, "ARABIC", "ARABIC"), /**
+	ARABIC(18, "ARABIC", "ARABIC"),
+
+	/**
 	 * The '<em><b>CZECH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -232,7 +236,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CZECH(19, "CZECH", "CZECH"), /**
+	CZECH(19, "CZECH", "CZECH"),
+
+	/**
 	 * The '<em><b>BULGARIAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,7 +246,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BULGARIAN(20, "BULGARIAN", "BULGARIAN"), /**
+	BULGARIAN(20, "BULGARIAN", "BULGARIAN"),
+
+	/**
 	 * The '<em><b>FINISH</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,7 +256,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FINISH(21, "FINISH", "FINISH"), /**
+	FINISH(21, "FINISH", "FINISH"),
+
+	/**
 	 * The '<em><b>GREEK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,7 +266,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GREEK(22, "GREEK", "GREEK"), /**
+	GREEK(22, "GREEK", "GREEK"),
+
+	/**
 	 * The '<em><b>BANGLA</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,7 +276,9 @@ public enum Language implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BANGLA(23, "BANGLA", "BANGLA"), /**
+	BANGLA(23, "BANGLA", "BANGLA"),
+
+	/**
 	 * The '<em><b>EMPTY</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

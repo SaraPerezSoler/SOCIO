@@ -4,7 +4,7 @@ package generator.impl;
 
 import generator.GeneratorPackage;
 import generator.Simple;
-import generator.SimpleInput;
+import generator.SimpleLanguageInput;
 
 import java.util.Collection;
 
@@ -40,7 +40,7 @@ public class SimpleImpl extends EntityImpl implements Simple {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SimpleInput> inputs;
+	protected EList<SimpleLanguageInput> inputs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,9 +67,9 @@ public class SimpleImpl extends EntityImpl implements Simple {
 	 * @generated
 	 */
 	@Override
-	public EList<SimpleInput> getInputs() {
+	public EList<SimpleLanguageInput> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectContainmentEList<SimpleInput>(SimpleInput.class, this, GeneratorPackage.SIMPLE__INPUTS);
+			inputs = new EObjectContainmentEList<SimpleLanguageInput>(SimpleLanguageInput.class, this, GeneratorPackage.SIMPLE__INPUTS);
 		}
 		return inputs;
 	}
@@ -113,7 +113,7 @@ public class SimpleImpl extends EntityImpl implements Simple {
 		switch (featureID) {
 			case GeneratorPackage.SIMPLE__INPUTS:
 				getInputs().clear();
-				getInputs().addAll((Collection<? extends SimpleInput>)newValue);
+				getInputs().addAll((Collection<? extends SimpleLanguageInput>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

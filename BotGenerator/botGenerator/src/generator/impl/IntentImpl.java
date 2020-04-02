@@ -4,9 +4,8 @@ package generator.impl;
 
 import generator.GeneratorPackage;
 import generator.Intent;
-import generator.Language;
+import generator.IntentLanguageInputs;
 import generator.Parameter;
-import generator.TrainingPhrase;
 
 import java.util.Collection;
 
@@ -34,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link generator.impl.IntentImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link generator.impl.IntentImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link generator.impl.IntentImpl#isFallbackIntent <em>Fallback Intent</em>}</li>
- *   <li>{@link generator.impl.IntentImpl#getLanguage <em>Language</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,7 +46,7 @@ public class IntentImpl extends ElementImpl implements Intent {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TrainingPhrase> inputs;
+	protected EList<IntentLanguageInputs> inputs;
 
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -81,26 +79,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 	protected boolean fallbackIntent = FALLBACK_INTENT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Language LANGUAGE_EDEFAULT = Language.EMPTY;
-
-	/**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected Language language = LANGUAGE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -125,9 +103,9 @@ public class IntentImpl extends ElementImpl implements Intent {
 	 * @generated
 	 */
 	@Override
-	public EList<TrainingPhrase> getInputs() {
+	public EList<IntentLanguageInputs> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectContainmentEList<TrainingPhrase>(TrainingPhrase.class, this, GeneratorPackage.INTENT__INPUTS);
+			inputs = new EObjectContainmentEList<IntentLanguageInputs>(IntentLanguageInputs.class, this, GeneratorPackage.INTENT__INPUTS);
 		}
 		return inputs;
 	}
@@ -174,29 +152,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 	 * @generated
 	 */
 	@Override
-	public Language getLanguage() {
-		return language;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setLanguage(Language newLanguage) {
-		Language oldLanguage = language;
-		language = newLanguage == null ? LANGUAGE_EDEFAULT : newLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GeneratorPackage.INTENT__LANGUAGE, oldLanguage, language));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case GeneratorPackage.INTENT__INPUTS:
@@ -221,8 +176,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 				return getParameters();
 			case GeneratorPackage.INTENT__FALLBACK_INTENT:
 				return isFallbackIntent();
-			case GeneratorPackage.INTENT__LANGUAGE:
-				return getLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,7 +191,7 @@ public class IntentImpl extends ElementImpl implements Intent {
 		switch (featureID) {
 			case GeneratorPackage.INTENT__INPUTS:
 				getInputs().clear();
-				getInputs().addAll((Collection<? extends TrainingPhrase>)newValue);
+				getInputs().addAll((Collection<? extends IntentLanguageInputs>)newValue);
 				return;
 			case GeneratorPackage.INTENT__PARAMETERS:
 				getParameters().clear();
@@ -246,9 +199,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 				return;
 			case GeneratorPackage.INTENT__FALLBACK_INTENT:
 				setFallbackIntent((Boolean)newValue);
-				return;
-			case GeneratorPackage.INTENT__LANGUAGE:
-				setLanguage((Language)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -271,9 +221,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 			case GeneratorPackage.INTENT__FALLBACK_INTENT:
 				setFallbackIntent(FALLBACK_INTENT_EDEFAULT);
 				return;
-			case GeneratorPackage.INTENT__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,8 +239,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 				return parameters != null && !parameters.isEmpty();
 			case GeneratorPackage.INTENT__FALLBACK_INTENT:
 				return fallbackIntent != FALLBACK_INTENT_EDEFAULT;
-			case GeneratorPackage.INTENT__LANGUAGE:
-				return language != LANGUAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -310,8 +255,6 @@ public class IntentImpl extends ElementImpl implements Intent {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (fallbackIntent: ");
 		result.append(fallbackIntent);
-		result.append(", language: ");
-		result.append(language);
 		result.append(')');
 		return result.toString();
 	}

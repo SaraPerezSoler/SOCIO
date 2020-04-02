@@ -67,6 +67,15 @@ public interface GeneratorFactory extends EFactory {
 	Composite createComposite();
 
 	/**
+	 * Returns a new object of class '<em>Simple Language Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simple Language Input</em>'.
+	 * @generated
+	 */
+	SimpleLanguageInput createSimpleLanguageInput();
+
+	/**
 	 * Returns a new object of class '<em>Simple Input</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,6 +83,15 @@ public interface GeneratorFactory extends EFactory {
 	 * @generated
 	 */
 	SimpleInput createSimpleInput();
+
+	/**
+	 * Returns a new object of class '<em>Composite Language Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composite Language Input</em>'.
+	 * @generated
+	 */
+	CompositeLanguageInput createCompositeLanguageInput();
 
 	/**
 	 * Returns a new object of class '<em>Composite Input</em>'.
@@ -139,6 +157,15 @@ public interface GeneratorFactory extends EFactory {
 	Intent createIntent();
 
 	/**
+	 * Returns a new object of class '<em>Intent Language Inputs</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Intent Language Inputs</em>'.
+	 * @generated
+	 */
+	IntentLanguageInputs createIntentLanguageInputs();
+
+	/**
 	 * Returns a new object of class '<em>Training Phrase</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,6 +184,15 @@ public interface GeneratorFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
+	 * Returns a new object of class '<em>Prompt Language</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Prompt Language</em>'.
+	 * @generated
+	 */
+	PromptLanguage createPromptLanguage();
+
+	/**
 	 * Returns a new object of class '<em>Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -173,6 +209,15 @@ public interface GeneratorFactory extends EFactory {
 	 * @generated
 	 */
 	Text createText();
+
+	/**
+	 * Returns a new object of class '<em>Text Language Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Text Language Input</em>'.
+	 * @generated
+	 */
+	TextLanguageInput createTextLanguageInput();
 
 	/**
 	 * Returns a new object of class '<em>Text Input</em>'.

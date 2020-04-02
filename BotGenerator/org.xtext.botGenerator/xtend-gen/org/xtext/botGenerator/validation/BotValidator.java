@@ -8,25 +8,29 @@ import generator.Action;
 import generator.Bot;
 import generator.BotInteraction;
 import generator.Element;
-import generator.Entity;
 import generator.GeneratorPackage;
 import generator.HTTPRequest;
 import generator.HTTPRequestToke;
 import generator.HTTPResponse;
 import generator.HTTPReturnType;
 import generator.Intent;
+import generator.IntentLanguageInputs;
 import generator.Language;
 import generator.Parameter;
 import generator.ParameterReferenceToken;
+import generator.PromptLanguage;
 import generator.Simple;
 import generator.SimpleInput;
+import generator.SimpleLanguageInput;
 import generator.Text;
+import generator.TextLanguageInput;
 import generator.TrainingPhrase;
 import generator.UserInteraction;
 import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.botGenerator.validation.AbstractBotValidator;
 
 /**
@@ -150,8 +154,8 @@ public class BotValidator extends AbstractBotValidator {
   @Check
   public void nameUnique(final SimpleInput input) {
     EObject container = input.eContainer();
-    if ((container instanceof Simple)) {
-      EList<SimpleInput> _inputs = ((Simple)container).getInputs();
+    if ((container instanceof SimpleLanguageInput)) {
+      EList<SimpleInput> _inputs = ((SimpleLanguageInput)container).getInputs();
       for (final SimpleInput i : _inputs) {
         if (((!input.equals(i)) && input.getName().equals(i.getName()))) {
           String _name = i.getName();
@@ -195,17 +199,64 @@ public class BotValidator extends AbstractBotValidator {
   }
   
   @Check
-  public void entityLanguage(final Entity entity) {
-    Language _language = entity.getLanguage();
-    boolean _tripleNotEquals = (_language != Language.EMPTY);
-    if (_tripleNotEquals) {
-      EObject container = entity.eContainer();
-      if ((container instanceof Bot)) {
-        boolean _contains = ((Bot)container).getLanguages().contains(entity.getLanguage());
+  public void entityLanguage(final Simple entity) {
+    ArrayList<Language> entityLan = new ArrayList<Language>();
+    EObject container = entity.eContainer();
+    if ((container instanceof Bot)) {
+      EList<SimpleLanguageInput> _inputs = entity.getInputs();
+      for (final SimpleLanguageInput input : _inputs) {
+        {
+          Language _language = input.getLanguage();
+          boolean _equals = Objects.equal(_language, Language.EMPTY);
+          if (_equals) {
+            input.setLanguage(((Bot)container).getLanguages().get(0));
+          }
+          boolean _contains = entityLan.contains(input.getLanguage());
+          boolean _not = (!_contains);
+          if (_not) {
+            entityLan.add(input.getLanguage());
+          }
+        }
+      }
+      EList<Language> _languages = ((Bot)container).getLanguages();
+      for (final Language lan : _languages) {
+        boolean _contains = entityLan.contains(lan);
         boolean _not = (!_contains);
         if (_not) {
-          this.error("The entity language must be some of the bot languages", 
-            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+          String _firstUpper = StringExtensions.toFirstUpper(lan.getLiteral().toLowerCase());
+          String _plus = ("The chatbot support the language " + _firstUpper);
+          String _plus_1 = (_plus + 
+            " and this entity does not have a input in this language");
+          this.warning(_plus_1, 
+            GeneratorPackage.Literals.ELEMENT__NAME);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void entityLanguage(final SimpleLanguageInput input) {
+    EObject bot = input.eContainer().eContainer();
+    EObject entity = input.eContainer();
+    if ((bot instanceof Bot)) {
+      if ((entity instanceof Simple)) {
+        Language _language = input.getLanguage();
+        boolean _equals = Objects.equal(_language, Language.EMPTY);
+        if (_equals) {
+          input.setLanguage(((Bot)bot).getLanguages().get(0));
+        }
+        boolean _contains = ((Bot)bot).getLanguages().contains(input.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The input languages must be one of the chatbot languages", 
+            GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+        }
+        EList<SimpleLanguageInput> _inputs = ((Simple)entity).getInputs();
+        for (final SimpleLanguageInput input2 : _inputs) {
+          if (((!input.equals(input2)) && input.getLanguage().equals(input2.getLanguage()))) {
+            this.error("The intent can not have several inputs with the same language", 
+              GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+          }
         }
       }
     }
@@ -213,16 +264,91 @@ public class BotValidator extends AbstractBotValidator {
   
   @Check
   public void intentLanguage(final Intent intent) {
-    Language _language = intent.getLanguage();
-    boolean _tripleNotEquals = (_language != Language.EMPTY);
-    if (_tripleNotEquals) {
-      EObject container = intent.eContainer();
-      if ((container instanceof Bot)) {
-        boolean _contains = ((Bot)container).getLanguages().contains(intent.getLanguage());
+    ArrayList<Language> intentLan = new ArrayList<Language>();
+    EObject container = intent.eContainer();
+    if ((container instanceof Bot)) {
+      EList<IntentLanguageInputs> _inputs = intent.getInputs();
+      for (final IntentLanguageInputs input : _inputs) {
+        {
+          Language _language = input.getLanguage();
+          boolean _equals = Objects.equal(_language, Language.EMPTY);
+          if (_equals) {
+            input.setLanguage(((Bot)container).getLanguages().get(0));
+          }
+          boolean _contains = intentLan.contains(input.getLanguage());
+          boolean _not = (!_contains);
+          if (_not) {
+            intentLan.add(input.getLanguage());
+          }
+        }
+      }
+      EList<Language> _languages = ((Bot)container).getLanguages();
+      for (final Language lan : _languages) {
+        boolean _contains = intentLan.contains(lan);
         boolean _not = (!_contains);
         if (_not) {
-          this.error("The intent language must be some of the bot languages", 
-            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+          String _firstUpper = StringExtensions.toFirstUpper(lan.getLiteral().toLowerCase());
+          String _plus = ("The chatbot support the language " + _firstUpper);
+          String _plus_1 = (_plus + 
+            " and this intent does not have a input in this language");
+          this.warning(_plus_1, 
+            GeneratorPackage.Literals.ELEMENT__NAME);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void intentLanguage(final IntentLanguageInputs input) {
+    EObject bot = input.eContainer().eContainer();
+    EObject intent = input.eContainer();
+    if ((bot instanceof Bot)) {
+      if ((intent instanceof Intent)) {
+        Language _language = input.getLanguage();
+        boolean _equals = Objects.equal(_language, Language.EMPTY);
+        if (_equals) {
+          input.setLanguage(((Bot)bot).getLanguages().get(0));
+        }
+        boolean _contains = ((Bot)bot).getLanguages().contains(input.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The input languages must be one of the chatbot languages", 
+            GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+        }
+        EList<IntentLanguageInputs> _inputs = ((Intent)intent).getInputs();
+        for (final IntentLanguageInputs input2 : _inputs) {
+          if (((!input.equals(input2)) && input.getLanguage().equals(input2.getLanguage()))) {
+            this.error("The intent can not have several inputs with the same language", 
+              GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void paramLanguage(final PromptLanguage prompt) {
+    EObject bot = prompt.eContainer().eContainer().eContainer();
+    EObject param = prompt.eContainer();
+    if ((bot instanceof Bot)) {
+      if ((param instanceof Parameter)) {
+        Language _language = prompt.getLanguage();
+        boolean _equals = Objects.equal(_language, Language.EMPTY);
+        if (_equals) {
+          prompt.setLanguage(((Bot)bot).getLanguages().get(0));
+        }
+        boolean _contains = ((Bot)bot).getLanguages().contains(prompt.getLanguage());
+        boolean _not = (!_contains);
+        if (_not) {
+          this.error("The prompt language must be some of the chatbot languages", 
+            GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+        }
+        EList<PromptLanguage> _prompts = ((Parameter)param).getPrompts();
+        for (final PromptLanguage prompt2 : _prompts) {
+          if (((!prompt.equals(prompt2)) && prompt.getLanguage().equals(prompt2.getLanguage()))) {
+            this.error("The parameter can not have several prompts with the same language", 
+              GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+          }
         }
       }
     }
@@ -230,33 +356,146 @@ public class BotValidator extends AbstractBotValidator {
   
   @Check
   public void paramLanguage(final Parameter param) {
-    Language _prompLanguage = param.getPrompLanguage();
-    boolean _tripleNotEquals = (_prompLanguage != Language.EMPTY);
-    if (_tripleNotEquals) {
-      EObject container = param.eContainer().eContainer();
-      if ((container instanceof Bot)) {
-        boolean _contains = ((Bot)container).getLanguages().contains(param.getPrompLanguage());
-        boolean _not = (!_contains);
-        if (_not) {
-          this.error("The prompt language must be some of the bot languages", 
-            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+    ArrayList<Language> paramLan = new ArrayList<Language>();
+    EObject container = param.eContainer().eContainer();
+    if ((container instanceof Bot)) {
+      EList<PromptLanguage> _prompts = param.getPrompts();
+      for (final PromptLanguage input : _prompts) {
+        {
+          Language _language = input.getLanguage();
+          boolean _equals = Objects.equal(_language, Language.EMPTY);
+          if (_equals) {
+            input.setLanguage(((Bot)container).getLanguages().get(0));
+          }
+          boolean _contains = paramLan.contains(input.getLanguage());
+          boolean _not = (!_contains);
+          if (_not) {
+            paramLan.add(input.getLanguage());
+          }
+        }
+      }
+      boolean _isEmpty = param.getPrompts().isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        EList<Language> _languages = ((Bot)container).getLanguages();
+        for (final Language lan : _languages) {
+          boolean _contains = paramLan.contains(lan);
+          boolean _not_1 = (!_contains);
+          if (_not_1) {
+            String _firstUpper = StringExtensions.toFirstUpper(lan.getLiteral().toLowerCase());
+            String _plus = ("The chatbot support the language " + _firstUpper);
+            String _plus_1 = (_plus + 
+              " and this parameter does not have a prompt in this language");
+            this.warning(_plus_1, 
+              GeneratorPackage.Literals.ELEMENT__NAME);
+          }
         }
       }
     }
   }
   
   @Check
-  public void textLanguage(final Text text) {
-    Language _language = text.getLanguage();
-    boolean _tripleNotEquals = (_language != Language.EMPTY);
-    if (_tripleNotEquals) {
-      EObject container = text.eContainer();
-      if ((container instanceof Bot)) {
-        boolean _contains = ((Bot)container).getLanguages().contains(text.getLanguage());
-        boolean _not = (!_contains);
-        if (_not) {
-          this.error("The text language must be some of the bot languages", 
-            GeneratorPackage.Literals.ENTITY__LANGUAGE);
+  public void textLanguage(final TextLanguageInput text) {
+    EObject bot = text.eContainer().eContainer();
+    EObject action = text.eContainer();
+    if ((bot instanceof Bot)) {
+      Language _language = text.getLanguage();
+      boolean _equals = Objects.equal(_language, Language.EMPTY);
+      if (_equals) {
+        text.setLanguage(((Bot)bot).getLanguages().get(0));
+      }
+      boolean _contains = ((Bot)bot).getLanguages().contains(text.getLanguage());
+      boolean _not = (!_contains);
+      if (_not) {
+        this.error("The text language must be some of the chatbot languages", 
+          GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+      }
+      if ((action instanceof Text)) {
+        EList<TextLanguageInput> _inputs = ((Text)action).getInputs();
+        for (final TextLanguageInput text2 : _inputs) {
+          if (((!text.equals(text2)) && text.getLanguage().equals(text2.getLanguage()))) {
+            this.error("The text response can not have several inputs with the same language", 
+              GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+          }
+        }
+      } else {
+        if ((action instanceof HTTPResponse)) {
+          EList<TextLanguageInput> _inputs_1 = ((HTTPResponse)action).getInputs();
+          for (final TextLanguageInput text2_1 : _inputs_1) {
+            if (((!text.equals(text2_1)) && text.getLanguage().equals(text2_1.getLanguage()))) {
+              this.error("The http response can not have several inputs with the same language", 
+                GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void textLanguage(final Action action) {
+    ArrayList<Language> actionLan = new ArrayList<Language>();
+    EObject bot = action.eContainer();
+    if ((bot instanceof Bot)) {
+      if ((action instanceof Text)) {
+        EList<TextLanguageInput> _inputs = ((Text)action).getInputs();
+        for (final TextLanguageInput input : _inputs) {
+          {
+            Language _language = input.getLanguage();
+            boolean _equals = Objects.equal(_language, Language.EMPTY);
+            if (_equals) {
+              input.setLanguage(((Bot)bot).getLanguages().get(0));
+            }
+            boolean _contains = actionLan.contains(input.getLanguage());
+            boolean _not = (!_contains);
+            if (_not) {
+              actionLan.add(input.getLanguage());
+            }
+          }
+        }
+        EList<Language> _languages = ((Bot)bot).getLanguages();
+        for (final Language lan : _languages) {
+          boolean _contains = actionLan.contains(lan);
+          boolean _not = (!_contains);
+          if (_not) {
+            String _firstUpper = StringExtensions.toFirstUpper(lan.getLiteral().toLowerCase());
+            String _plus = ("The chatbot support the language " + _firstUpper);
+            String _plus_1 = (_plus + 
+              " and this text response does not have a input in this language");
+            this.warning(_plus_1, 
+              GeneratorPackage.Literals.ELEMENT__NAME);
+          }
+        }
+      } else {
+        if ((action instanceof HTTPResponse)) {
+          EList<TextLanguageInput> _inputs_1 = ((HTTPResponse)action).getInputs();
+          for (final TextLanguageInput input_1 : _inputs_1) {
+            {
+              Language _language = input_1.getLanguage();
+              boolean _equals = Objects.equal(_language, Language.EMPTY);
+              if (_equals) {
+                input_1.setLanguage(((Bot)bot).getLanguages().get(0));
+              }
+              boolean _contains_1 = actionLan.contains(input_1.getLanguage());
+              boolean _not_1 = (!_contains_1);
+              if (_not_1) {
+                actionLan.add(input_1.getLanguage());
+              }
+            }
+          }
+          EList<Language> _languages_1 = ((Bot)bot).getLanguages();
+          for (final Language lan_1 : _languages_1) {
+            boolean _contains_1 = actionLan.contains(lan_1);
+            boolean _not_1 = (!_contains_1);
+            if (_not_1) {
+              String _firstUpper_1 = StringExtensions.toFirstUpper(lan_1.getLiteral().toLowerCase());
+              String _plus_2 = ("The chatbot support the language " + _firstUpper_1);
+              String _plus_3 = (_plus_2 + 
+                " and this http response does not have a input in this language");
+              this.warning(_plus_3, 
+                GeneratorPackage.Literals.ELEMENT__NAME);
+            }
+          }
         }
       }
     }

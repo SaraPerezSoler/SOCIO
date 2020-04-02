@@ -88,6 +88,10 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 				return createElementAdapter();
 			}
 			@Override
+			public Adapter caseWithLanguage(WithLanguage object) {
+				return createWithLanguageAdapter();
+			}
+			@Override
 			public Adapter caseEntity(Entity object) {
 				return createEntityAdapter();
 			}
@@ -100,8 +104,16 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 				return createCompositeAdapter();
 			}
 			@Override
+			public Adapter caseSimpleLanguageInput(SimpleLanguageInput object) {
+				return createSimpleLanguageInputAdapter();
+			}
+			@Override
 			public Adapter caseSimpleInput(SimpleInput object) {
 				return createSimpleInputAdapter();
+			}
+			@Override
+			public Adapter caseCompositeLanguageInput(CompositeLanguageInput object) {
+				return createCompositeLanguageInputAdapter();
 			}
 			@Override
 			public Adapter caseCompositeInput(CompositeInput object) {
@@ -136,12 +148,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 				return createIntentAdapter();
 			}
 			@Override
+			public Adapter caseIntentLanguageInputs(IntentLanguageInputs object) {
+				return createIntentLanguageInputsAdapter();
+			}
+			@Override
 			public Adapter caseTrainingPhrase(TrainingPhrase object) {
 				return createTrainingPhraseAdapter();
 			}
 			@Override
 			public Adapter caseParameter(Parameter object) {
 				return createParameterAdapter();
+			}
+			@Override
+			public Adapter casePromptLanguage(PromptLanguage object) {
+				return createPromptLanguageAdapter();
 			}
 			@Override
 			public Adapter caseAction(Action object) {
@@ -154,6 +174,10 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseText(Text object) {
 				return createTextAdapter();
+			}
+			@Override
+			public Adapter caseTextLanguageInput(TextLanguageInput object) {
+				return createTextLanguageInputAdapter();
 			}
 			@Override
 			public Adapter caseTextInput(TextInput object) {
@@ -262,6 +286,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link generator.WithLanguage <em>With Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.WithLanguage
+	 * @generated
+	 */
+	public Adapter createWithLanguageAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link generator.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -304,6 +342,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link generator.SimpleLanguageInput <em>Simple Language Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.SimpleLanguageInput
+	 * @generated
+	 */
+	public Adapter createSimpleLanguageInputAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link generator.SimpleInput <em>Simple Input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -314,6 +366,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimpleInputAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link generator.CompositeLanguageInput <em>Composite Language Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.CompositeLanguageInput
+	 * @generated
+	 */
+	public Adapter createCompositeLanguageInputAdapter() {
 		return null;
 	}
 
@@ -430,6 +496,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link generator.IntentLanguageInputs <em>Intent Language Inputs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.IntentLanguageInputs
+	 * @generated
+	 */
+	public Adapter createIntentLanguageInputsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link generator.TrainingPhrase <em>Training Phrase</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -454,6 +534,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link generator.PromptLanguage <em>Prompt Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.PromptLanguage
+	 * @generated
+	 */
+	public Adapter createPromptLanguageAdapter() {
 		return null;
 	}
 
@@ -496,6 +590,20 @@ public class GeneratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTextAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link generator.TextLanguageInput <em>Text Language Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see generator.TextLanguageInput
+	 * @generated
+	 */
+	public Adapter createTextLanguageInputAdapter() {
 		return null;
 	}
 

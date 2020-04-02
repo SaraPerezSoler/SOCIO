@@ -1,26 +1,32 @@
 package org.xtext.botGenerator.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import generator.Action;
 import generator.Bot;
 import generator.BotInteraction;
 import generator.Composite;
 import generator.CompositeInput;
+import generator.CompositeLanguageInput;
 import generator.DefaultEntity;
 import generator.Entity;
 import generator.EntityToken;
 import generator.HTTPRequest;
 import generator.Image;
+import generator.IntentLanguageInputs;
 import generator.KeyValue;
 import generator.Language;
 import generator.Literal;
 import generator.Parameter;
 import generator.ParameterReferenceToken;
 import generator.ParameterToken;
+import generator.PromptLanguage;
 import generator.Simple;
 import generator.SimpleInput;
+import generator.SimpleLanguageInput;
 import generator.Text;
 import generator.TextInput;
+import generator.TextLanguageInput;
 import generator.Token;
 import generator.TrainingPhrase;
 import generator.UserInteraction;
@@ -60,25 +66,48 @@ public class DialogflowGenerator {
         String _plus_1 = ((this.path + "/entities/") + _name_1);
         String _plus_2 = (_plus_1 + ".json");
         fsa.generateFile(_plus_2, this.entityFile(entity));
-        Language lan = bot.getLanguages().get(0);
         if ((entity instanceof Simple)) {
-          String _name_2 = ((Simple)entity).getName();
-          String _plus_3 = ((this.path + "/entities/") + _name_2);
-          String _plus_4 = (_plus_3 + "_entries_");
-          String _languageAbbreviation = this.languageAbbreviation(lan);
-          String _plus_5 = (_plus_4 + _languageAbbreviation);
-          String _plus_6 = (_plus_5 + 
-            ".json");
-          fsa.generateFile(_plus_6, this.entriesFile(((Simple) entity)));
+          EList<SimpleLanguageInput> _inputs = ((Simple)entity).getInputs();
+          for (final SimpleLanguageInput input : _inputs) {
+            {
+              Language lan = bot.getLanguages().get(0);
+              Language _language = input.getLanguage();
+              boolean _notEquals = (!Objects.equal(_language, Language.EMPTY));
+              if (_notEquals) {
+                lan = input.getLanguage();
+              }
+              String _name_2 = ((Simple)entity).getName();
+              String _plus_3 = ((this.path + "/entities/") + _name_2);
+              String _plus_4 = (_plus_3 + "_entries_");
+              String _languageAbbreviation = this.languageAbbreviation(lan);
+              String _plus_5 = (_plus_4 + _languageAbbreviation);
+              String _plus_6 = (_plus_5 + 
+                ".json");
+              fsa.generateFile(_plus_6, this.entriesFile(input));
+            }
+          }
         } else {
-          String _name_3 = entity.getName();
-          String _plus_7 = ((this.path + "/entities/") + _name_3);
-          String _plus_8 = (_plus_7 + "_entries_");
-          String _languageAbbreviation_1 = this.languageAbbreviation(lan);
-          String _plus_9 = (_plus_8 + _languageAbbreviation_1);
-          String _plus_10 = (_plus_9 + 
-            ".json");
-          fsa.generateFile(_plus_10, this.entriesFile(((Composite) entity)));
+          if ((entity instanceof Composite)) {
+            EList<CompositeLanguageInput> _inputs_1 = ((Composite)entity).getInputs();
+            for (final CompositeLanguageInput input_1 : _inputs_1) {
+              {
+                Language lan = bot.getLanguages().get(0);
+                Language _language = input_1.getLanguage();
+                boolean _notEquals = (!Objects.equal(_language, Language.EMPTY));
+                if (_notEquals) {
+                  lan = input_1.getLanguage();
+                }
+                String _name_2 = ((Composite)entity).getName();
+                String _plus_3 = ((this.path + "/entities/") + _name_2);
+                String _plus_4 = (_plus_3 + "_entries_");
+                String _languageAbbreviation = this.languageAbbreviation(lan);
+                String _plus_5 = (_plus_4 + _languageAbbreviation);
+                String _plus_6 = (_plus_5 + 
+                  ".json");
+                fsa.generateFile(_plus_6, this.entriesFile(input_1));
+              }
+            }
+          }
         }
       }
     }
@@ -89,26 +118,36 @@ public class DialogflowGenerator {
   }
   
   public void createTransitionFiles(final UserInteraction transition, final String prefix, final IFileSystemAccess2 fsa, final Bot bot) {
-    Language lan = bot.getLanguages().get(0);
     String _name = transition.getIntent().getName();
     String _plus = (((this.path + "/intents/") + prefix) + _name);
-    String _plus_1 = (_plus + "_usersays_");
-    String _languageAbbreviation = this.languageAbbreviation(lan);
-    String _plus_2 = (_plus_1 + _languageAbbreviation);
-    String _plus_3 = (_plus_2 + 
-      ".json");
-    fsa.generateFile(_plus_3, this.usersayFile(transition));
-    String _name_1 = transition.getIntent().getName();
-    String _plus_4 = (((this.path + "/intents/") + prefix) + _name_1);
-    String _plus_5 = (_plus_4 + ".json");
-    fsa.generateFile(_plus_5, 
+    String _plus_1 = (_plus + ".json");
+    fsa.generateFile(_plus_1, 
       this.intentFile(transition, prefix, bot));
+    EList<IntentLanguageInputs> _inputs = transition.getIntent().getInputs();
+    for (final IntentLanguageInputs input : _inputs) {
+      {
+        Language lan = bot.getLanguages().get(0);
+        Language _language = input.getLanguage();
+        boolean _notEquals = (!Objects.equal(_language, Language.EMPTY));
+        if (_notEquals) {
+          lan = input.getLanguage();
+        }
+        String _name_1 = transition.getIntent().getName();
+        String _plus_2 = (((this.path + "/intents/") + prefix) + _name_1);
+        String _plus_3 = (_plus_2 + "_usersays_");
+        String _languageAbbreviation = this.languageAbbreviation(lan);
+        String _plus_4 = (_plus_3 + _languageAbbreviation);
+        String _plus_5 = (_plus_4 + 
+          ".json");
+        fsa.generateFile(_plus_5, this.usersayFile(input));
+      }
+    }
     BotInteraction _target = transition.getTarget();
     boolean _tripleNotEquals = (_target != null);
     if (_tripleNotEquals) {
-      String _name_2 = transition.getIntent().getName();
-      String _plus_6 = (prefix + _name_2);
-      String newPrefix = (_plus_6 + " - ");
+      String _name_1 = transition.getIntent().getName();
+      String _plus_2 = (prefix + _name_1);
+      String newPrefix = (_plus_2 + " - ");
       EList<UserInteraction> _outcoming = transition.getTarget().getOutcoming();
       for (final UserInteraction t : _outcoming) {
         this.createTransitionFiles(t, newPrefix, fsa, bot);
@@ -131,7 +170,7 @@ public class DialogflowGenerator {
     return name;
   }
   
-  public String speechText(final Text textAction) {
+  public String speechText(final TextLanguageInput textAction) {
     String ret = "";
     EList<TextInput> _inputs = textAction.getInputs();
     for (final TextInput input : _inputs) {
@@ -320,37 +359,51 @@ public class DialogflowGenerator {
         _builder.append("\"prompts\": [");
         _builder.newLine();
         {
-          EList<String> _prompts = parameter.getPrompts();
-          for(final String prompt : _prompts) {
-            _builder.append("        ");
-            _builder.append("  ");
-            _builder.append("{");
-            _builder.newLine();
-            _builder.append("\t\t        \t \t  ");
-            Language lan = bot.getLanguages().get(0);
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t        \t \t\t        \t \t\t         \t \t\t        \t \t  ");
-            _builder.append("\"lang\": \"");
-            String _languageAbbreviation = this.languageAbbreviation(lan);
-            _builder.append(_languageAbbreviation, "\t\t        \t \t\t        \t \t\t         \t \t\t        \t \t  ");
-            _builder.append("\",");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t\t        \t \t\t        \t  \t  ");
-            _builder.append("\"value\": \"");
-            _builder.append(prompt, "\t\t        \t \t\t        \t  \t  ");
-            _builder.append("\"");
-            _builder.newLineIfNotEmpty();
-            _builder.append("        ");
-            _builder.append("  ");
-            _builder.append("}");
+          EList<PromptLanguage> _prompts = parameter.getPrompts();
+          for(final PromptLanguage prompt : _prompts) {
             {
-              boolean _isTheLast = DialogflowGenerator.isTheLast(parameter.getPrompts(), prompt);
-              boolean _not_1 = (!_isTheLast);
-              if (_not_1) {
-                _builder.append(",");
+              EList<String> _prompts_1 = prompt.getPrompts();
+              for(final String text : _prompts_1) {
+                _builder.append("        ");
+                _builder.append("  ");
+                _builder.append("{");
+                _builder.newLine();
+                {
+                  Language _language = prompt.getLanguage();
+                  boolean _notEquals = (!Objects.equal(_language, Language.EMPTY));
+                  if (_notEquals) {
+                    _builder.append("\t\t        \t   \t  ");
+                    _builder.append("\"lang\": \"");
+                    String _languageAbbreviation = this.languageAbbreviation(prompt.getLanguage());
+                    _builder.append(_languageAbbreviation, "\t\t        \t   \t  ");
+                    _builder.append("\",");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    _builder.append("\"lang\": \"");
+                    String _languageAbbreviation_1 = this.languageAbbreviation(bot.getLanguages().get(0));
+                    _builder.append(_languageAbbreviation_1);
+                    _builder.append("\",");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                _builder.append("        ");
+                _builder.append("  ");
+                _builder.append("  ");
+                _builder.append("\"value\": \"");
+                _builder.append(text, "            ");
+                _builder.append("\"");
+                _builder.newLineIfNotEmpty();
+                _builder.append("        ");
+                _builder.append("  ");
+                _builder.append("}");
+                {
+                  if (((!DialogflowGenerator.isTheLast(parameter.getPrompts(), prompt)) || (!DialogflowGenerator.isTheLast(prompt.getPrompts(), text)))) {
+                    _builder.append(",");
+                  }
+                }
+                _builder.newLineIfNotEmpty();
               }
             }
-            _builder.newLineIfNotEmpty();
           }
         }
         _builder.append("        ");
@@ -367,9 +420,9 @@ public class DialogflowGenerator {
         _builder.append("        ");
         _builder.append("}");
         {
-          boolean _isTheLast_1 = DialogflowGenerator.isTheLast(transition.getIntent().getParameters(), parameter);
-          boolean _not_2 = (!_isTheLast_1);
-          if (_not_2) {
+          boolean _isTheLast = DialogflowGenerator.isTheLast(transition.getIntent().getParameters(), parameter);
+          boolean _not_1 = (!_isTheLast);
+          if (_not_1) {
             _builder.append(",");
           }
         }
@@ -391,40 +444,56 @@ public class DialogflowGenerator {
           for(final Action action : _actions) {
             {
               if ((action instanceof Text)) {
-                _builder.append("\t\t    \t\t\t");
-                _builder.append("{");
-                _builder.newLine();
-                _builder.append("\t\t  \t\t\t");
-                _builder.append("\"type\": 0,");
-                _builder.newLine();
-                _builder.append("\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t");
-                _builder.append("\"lang\": \"");
-                String _languageAbbreviation_1 = this.languageAbbreviation(bot.getLanguages().get(0));
-                _builder.append(_languageAbbreviation_1, "\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t\t\t  \t\t\t");
-                _builder.append("\",");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t  \t\t\t\t\t  \t\t\t");
-                _builder.append("\"condition\": \"\",");
-                _builder.newLine();
-                _builder.append("\t\t  \t\t\t");
-                _builder.append("\"speech\": [");
-                _builder.newLine();
-                _builder.append("\t\t  \t\t\t\t");
-                String _speechText = this.speechText(((Text)action));
-                _builder.append(_speechText, "\t\t  \t\t\t\t");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t  \t\t\t");
-                _builder.append("]");
-                _builder.newLine();
-                _builder.append("}");
                 {
-                  boolean _isTheLast_2 = DialogflowGenerator.isTheLast(transition.getTarget().getActions(), action);
-                  boolean _not_3 = (!_isTheLast_2);
-                  if (_not_3) {
-                    _builder.append(",");
+                  EList<TextLanguageInput> _inputs = ((Text)action).getInputs();
+                  for(final TextLanguageInput texLanguage : _inputs) {
+                    _builder.append("\t\t    \t\t");
+                    _builder.append("{");
+                    _builder.newLine();
+                    _builder.append("\t\t  \t\t\t");
+                    _builder.append("\"type\": 0,");
+                    _builder.newLine();
+                    {
+                      Language _language_1 = texLanguage.getLanguage();
+                      boolean _notEquals_1 = (!Objects.equal(_language_1, Language.EMPTY));
+                      if (_notEquals_1) {
+                        _builder.append("\t\t  \t\t\t");
+                        _builder.append("\"lang\": \"");
+                        String _languageAbbreviation_2 = this.languageAbbreviation(texLanguage.getLanguage());
+                        _builder.append(_languageAbbreviation_2, "\t\t  \t\t\t");
+                        _builder.append("\",");
+                        _builder.newLineIfNotEmpty();
+                      } else {
+                        _builder.append("\t\t  \t\t\t");
+                        _builder.append("\"lang\": \"");
+                        String _languageAbbreviation_3 = this.languageAbbreviation(bot.getLanguages().get(0));
+                        _builder.append(_languageAbbreviation_3, "\t\t  \t\t\t");
+                        _builder.append("\",");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                    _builder.append("\t\t  \t\t\t");
+                    _builder.append("\"condition\": \"\",");
+                    _builder.newLine();
+                    _builder.append("\t\t  \t\t\t");
+                    _builder.append("\"speech\": [");
+                    _builder.newLine();
+                    _builder.append("\t\t  \t\t\t\t");
+                    String _speechText = this.speechText(texLanguage);
+                    _builder.append(_speechText, "\t\t  \t\t\t\t");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t\t  \t\t\t");
+                    _builder.append("]");
+                    _builder.newLine();
+                    _builder.append("}");
+                    {
+                      if (((!DialogflowGenerator.isTheLast(transition.getTarget().getActions(), action)) || (!DialogflowGenerator.isTheLast(((Text)action).getInputs(), texLanguage)))) {
+                        _builder.append(",");
+                      }
+                    }
+                    _builder.newLineIfNotEmpty();
                   }
                 }
-                _builder.newLineIfNotEmpty();
               } else {
                 if ((action instanceof Image)) {
                   _builder.append("{");
@@ -437,15 +506,15 @@ public class DialogflowGenerator {
                   _builder.newLine();
                   _builder.append("  ");
                   _builder.append("\"imageUrl\": \"");
-                  String _uRL = ((Image)action).getURL();
+                  String _uRL = ((Image) action).getURL();
                   _builder.append(_uRL, "  ");
                   _builder.append("\"");
                   _builder.newLineIfNotEmpty();
                   _builder.append("}");
                   {
-                    boolean _isTheLast_3 = DialogflowGenerator.isTheLast(transition.getTarget().getActions(), action);
-                    boolean _not_4 = (!_isTheLast_3);
-                    if (_not_4) {
+                    boolean _isTheLast_1 = DialogflowGenerator.isTheLast(transition.getTarget().getActions(), action);
+                    boolean _not_2 = (!_isTheLast_1);
+                    if (_not_2) {
                       _builder.append(",");
                     }
                   }
@@ -664,12 +733,12 @@ public class DialogflowGenerator {
     return _builder;
   }
   
-  public CharSequence usersayFile(final UserInteraction transition) {
+  public CharSequence usersayFile(final IntentLanguageInputs intent) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("[");
     _builder.newLine();
     {
-      EList<TrainingPhrase> _inputs = transition.getIntent().getInputs();
+      EList<TrainingPhrase> _inputs = intent.getInputs();
       for(final TrainingPhrase phrase : _inputs) {
         _builder.append("{");
         _builder.newLine();
@@ -700,19 +769,19 @@ public class DialogflowGenerator {
                   _builder.newLine();
                   _builder.append("  ");
                   _builder.append("\"text\": \"");
-                  String _textReference = ((ParameterReferenceToken)token).getTextReference();
+                  String _textReference = ((ParameterReferenceToken) token).getTextReference();
                   _builder.append(_textReference, "  ");
                   _builder.append("\",");
                   _builder.newLineIfNotEmpty();
                   _builder.append("  ");
                   _builder.append("\"alias\": \"");
-                  String _name = ((ParameterReferenceToken)token).getParameter().getName();
+                  String _name = ((ParameterReferenceToken) token).getParameter().getName();
                   _builder.append(_name, "  ");
                   _builder.append("\",");
                   _builder.newLineIfNotEmpty();
                   _builder.append("  ");
                   _builder.append("\"meta\": \"");
-                  String _paramType = this.paramType(((ParameterReferenceToken)token).getParameter());
+                  String _paramType = this.paramType(((ParameterReferenceToken) token).getParameter());
                   _builder.append(_paramType, "  ");
                   _builder.append("\",");
                   _builder.newLineIfNotEmpty();
@@ -734,7 +803,7 @@ public class DialogflowGenerator {
             _builder.newLine();
             _builder.append("}");
             {
-              boolean _isTheLast = DialogflowGenerator.isTheLast(transition.getIntent().getInputs(), token);
+              boolean _isTheLast = DialogflowGenerator.isTheLast(intent.getInputs(), token);
               boolean _not = (!_isTheLast);
               if (_not) {
                 _builder.append(",");
@@ -753,7 +822,7 @@ public class DialogflowGenerator {
         _builder.newLine();
         _builder.append("}");
         {
-          boolean _isTheLast_1 = DialogflowGenerator.isTheLast(transition.getIntent().getInputs(), phrase);
+          boolean _isTheLast_1 = DialogflowGenerator.isTheLast(intent.getInputs(), phrase);
           boolean _not_1 = (!_isTheLast_1);
           if (_not_1) {
             _builder.append(",");
@@ -865,7 +934,7 @@ public class DialogflowGenerator {
     return _builder;
   }
   
-  public CharSequence entriesFile(final Simple entity) {
+  public CharSequence entriesFile(final SimpleLanguageInput entity) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("[");
     _builder.newLine();
@@ -939,7 +1008,7 @@ public class DialogflowGenerator {
     return _builder;
   }
   
-  public CharSequence entriesFile(final Composite entity) {
+  public CharSequence entriesFile(final CompositeLanguageInput entity) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("[");
     _builder.newLine();

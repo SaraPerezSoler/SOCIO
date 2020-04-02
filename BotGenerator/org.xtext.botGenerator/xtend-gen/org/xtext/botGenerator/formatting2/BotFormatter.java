@@ -8,8 +8,8 @@ import generator.Action;
 import generator.Bot;
 import generator.Entity;
 import generator.Intent;
+import generator.IntentLanguageInputs;
 import generator.Parameter;
-import generator.TrainingPhrase;
 import generator.UserInteraction;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
@@ -46,9 +46,9 @@ public class BotFormatter extends AbstractFormatter2 {
   }
   
   protected void _format(final Intent intent, @Extension final IFormattableDocument document) {
-    EList<TrainingPhrase> _inputs = intent.getInputs();
-    for (final TrainingPhrase trainingPhrase : _inputs) {
-      document.<TrainingPhrase>format(trainingPhrase);
+    EList<IntentLanguageInputs> _inputs = intent.getInputs();
+    for (final IntentLanguageInputs trainingPhrase : _inputs) {
+      document.<IntentLanguageInputs>format(trainingPhrase);
     }
     EList<Parameter> _parameters = intent.getParameters();
     for (final Parameter parameter : _parameters) {

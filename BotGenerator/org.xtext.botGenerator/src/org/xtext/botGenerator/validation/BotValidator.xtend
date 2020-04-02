@@ -18,9 +18,13 @@ import generator.Simple
 import generator.SimpleInput
 import generator.HTTPResponse
 import generator.BotInteraction
-import generator.Entity
 import generator.Language
+import generator.SimpleLanguageInput
+import generator.IntentLanguageInputs
+import generator.PromptLanguage
+import generator.TextLanguageInput
 import generator.Text
+import generator.Action
 
 /**
  * This class contains custom validation rules. 
@@ -127,7 +131,7 @@ class BotValidator extends AbstractBotValidator {
 	@Check
 	def nameUnique(SimpleInput input) {
 		var container = input.eContainer;
-		if (container instanceof Simple) {
+		if (container instanceof SimpleLanguageInput) {
 			for (SimpleInput i : container.inputs) {
 				if ((!input.equals(i)) && input.name.equals(i.name)) {
 					error("There are several entries with the name " + i.name +
@@ -162,13 +166,46 @@ class BotValidator extends AbstractBotValidator {
 	}
 
 	@Check
-	def entityLanguage(Entity entity) {
-		if (entity.language !== Language.EMPTY) {
-			var container = entity.eContainer
-			if (container instanceof Bot) {
-				if (!container.languages.contains(entity.language)) {
-					error("The entity language must be some of the bot languages",
-						GeneratorPackage.Literals.ENTITY__LANGUAGE)
+	def entityLanguage(Simple entity) {
+		var entityLan = new ArrayList<Language>();
+		var container = entity.eContainer
+		if (container instanceof Bot) {
+			for (SimpleLanguageInput input : entity.inputs) {
+				if (input.language == Language.EMPTY) {
+					input.language = container.languages.get(0);
+				}
+				if (!entityLan.contains(input.language)) {
+					entityLan.add(input.language)
+				}
+			}
+			for (Language lan : container.languages) {
+				if (!entityLan.contains(lan)) {
+					warning("The chatbot support the language " + lan.literal.toLowerCase().toFirstUpper +
+						" and this entity does not have a input in this language",
+						GeneratorPackage.Literals.ELEMENT__NAME)
+				}
+			}
+		}
+	}
+
+	@Check
+	def entityLanguage(SimpleLanguageInput input) {
+		var bot = input.eContainer.eContainer
+		var entity = input.eContainer
+		if (bot instanceof Bot) {
+			if (entity instanceof Simple) {
+				if (input.language == Language.EMPTY) {
+					input.language = bot.languages.get(0);
+				}
+				if (!bot.languages.contains(input.language)) {
+					error("The input languages must be one of the chatbot languages",
+						GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+				}
+				for (SimpleLanguageInput input2 : entity.inputs) {
+					if (!input.equals(input2) && input.language.equals(input2.language)) {
+						error("The intent can not have several inputs with the same language",
+							GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+					}
 				}
 			}
 		}
@@ -176,12 +213,69 @@ class BotValidator extends AbstractBotValidator {
 
 	@Check
 	def intentLanguage(Intent intent) {
-		if (intent.language !== Language.EMPTY) {
-			var container = intent.eContainer
-			if (container instanceof Bot) {
-				if (!container.languages.contains(intent.language)) {
-					error("The intent language must be some of the bot languages",
-						GeneratorPackage.Literals.ENTITY__LANGUAGE)
+		var intentLan = new ArrayList<Language>();
+		var container = intent.eContainer
+		if (container instanceof Bot) {
+			for (IntentLanguageInputs input : intent.inputs) {
+				if (input.language == Language.EMPTY) {
+					input.language = container.languages.get(0);
+				}
+				if (!intentLan.contains(input.language)) {
+					intentLan.add(input.language)
+				}
+			}
+			for (Language lan : container.languages) {
+				if (!intentLan.contains(lan)) {
+					warning("The chatbot support the language " + lan.literal.toLowerCase().toFirstUpper +
+						" and this intent does not have a input in this language",
+						GeneratorPackage.Literals.ELEMENT__NAME)
+				}
+			}
+		}
+	}
+
+	@Check
+	def intentLanguage(IntentLanguageInputs input) {
+		var bot = input.eContainer.eContainer
+		var intent = input.eContainer
+		if (bot instanceof Bot) {
+			if (intent instanceof Intent) {
+				if (input.language == Language.EMPTY) {
+					input.language = bot.languages.get(0);
+				}
+				if (!bot.languages.contains(input.language)) {
+					error("The input languages must be one of the chatbot languages",
+						GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+				}
+				for (IntentLanguageInputs input2 : intent.inputs) {
+					if (!input.equals(input2) && input.language.equals(input2.language)) {
+						error("The intent can not have several inputs with the same language",
+							GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+					}
+				}
+			}
+		}
+	}
+
+	@Check
+	def paramLanguage(PromptLanguage prompt) {
+		var bot = prompt.eContainer.eContainer.eContainer
+		var param = prompt.eContainer
+		if (bot instanceof Bot) {
+			if (param instanceof Parameter) {
+				if (prompt.language == Language.EMPTY) {
+					prompt.language = bot.languages.get(0)
+				}
+				if (!bot.languages.contains(prompt.language)) {
+					error("The prompt language must be some of the chatbot languages",
+						GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+				}
+
+				for (PromptLanguage prompt2 : param.prompts) {
+					if (!prompt.equals(prompt2) && prompt.language.equals(prompt2.language)) {
+						error("The parameter can not have several prompts with the same language",
+							GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+					}
 				}
 			}
 		}
@@ -189,24 +283,97 @@ class BotValidator extends AbstractBotValidator {
 
 	@Check
 	def paramLanguage(Parameter param) {
-		if (param.prompLanguage !== Language.EMPTY) {
-			var container = param.eContainer.eContainer
-			if (container instanceof Bot) {
-				if (!container.languages.contains(param.prompLanguage)) {
-					error("The prompt language must be some of the bot languages",
-						GeneratorPackage.Literals.ENTITY__LANGUAGE)
+		var paramLan = new ArrayList<Language>();
+		var container = param.eContainer.eContainer
+		if (container instanceof Bot) {
+			for (PromptLanguage input : param.prompts) {
+				if (input.language == Language.EMPTY) {
+					input.language = container.languages.get(0);
+				}
+				if (!paramLan.contains(input.language)) {
+					paramLan.add(input.language)
+				}
+			}
+			if (!param.prompts.empty) {
+				for (Language lan : container.languages) {
+					if (!paramLan.contains(lan)) {
+						warning("The chatbot support the language " + lan.literal.toLowerCase().toFirstUpper +
+							" and this parameter does not have a prompt in this language",
+							GeneratorPackage.Literals.ELEMENT__NAME)
+					}
 				}
 			}
 		}
 	}
-		@Check
-	def textLanguage(Text text) {
-		if (text.language !== Language.EMPTY) {
-			var container = text.eContainer
-			if (container instanceof Bot) {
-				if (!container.languages.contains(text.language)) {
-					error("The text language must be some of the bot languages",
-						GeneratorPackage.Literals.ENTITY__LANGUAGE)
+
+	@Check
+	def textLanguage(TextLanguageInput text) {
+		var bot = text.eContainer.eContainer
+		var action = text.eContainer
+		if (bot instanceof Bot) {
+			if (text.language == Language.EMPTY) {
+				text.language = bot.languages.get(0)
+			}
+			if (!bot.languages.contains(text.language)) {
+				error("The text language must be some of the chatbot languages",
+					GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+			}
+			if (action instanceof Text) {
+				for (TextLanguageInput text2 : action.inputs) {
+					if (!text.equals(text2) && text.language.equals(text2.language)) {
+						error("The text response can not have several inputs with the same language",
+							GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+					}
+				}
+			} else if (action instanceof HTTPResponse) {
+				for (TextLanguageInput text2 : action.inputs) {
+					if (!text.equals(text2) && text.language.equals(text2.language)) {
+						error("The http response can not have several inputs with the same language",
+							GeneratorPackage.Literals.WITH_LANGUAGE__LANGUAGE)
+					}
+				}
+			}
+		}
+	}
+
+	@Check
+	def textLanguage(Action action) {
+		var actionLan = new ArrayList<Language>();
+
+		var bot = action.eContainer
+
+		if (bot instanceof Bot) {
+			if (action instanceof Text) {
+				for (TextLanguageInput input : action.inputs) {
+					if (input.language == Language.EMPTY) {
+						input.language = bot.languages.get(0);
+					}
+					if (!actionLan.contains(input.language)) {
+						actionLan.add(input.language)
+					}
+				}
+				for (Language lan : bot.languages) {
+					if (!actionLan.contains(lan)) {
+						warning("The chatbot support the language " + lan.literal.toLowerCase().toFirstUpper +
+							" and this text response does not have a input in this language",
+							GeneratorPackage.Literals.ELEMENT__NAME)
+					}
+				}
+			} else if (action instanceof HTTPResponse) {
+				for (TextLanguageInput input : action.inputs) {
+					if (input.language == Language.EMPTY) {
+						input.language = bot.languages.get(0);
+					}
+					if (!actionLan.contains(input.language)) {
+						actionLan.add(input.language)
+					}
+				}
+				for (Language lan : bot.languages) {
+					if (!actionLan.contains(lan)) {
+						warning("The chatbot support the language " + lan.literal.toLowerCase().toFirstUpper +
+							" and this http response does not have a input in this language",
+							GeneratorPackage.Literals.ELEMENT__NAME)
+					}
 				}
 			}
 		}

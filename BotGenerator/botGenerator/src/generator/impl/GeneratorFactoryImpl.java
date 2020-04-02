@@ -62,7 +62,9 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 			case GeneratorPackage.USER_INTERACTION: return createUserInteraction();
 			case GeneratorPackage.SIMPLE: return createSimple();
 			case GeneratorPackage.COMPOSITE: return createComposite();
+			case GeneratorPackage.SIMPLE_LANGUAGE_INPUT: return createSimpleLanguageInput();
 			case GeneratorPackage.SIMPLE_INPUT: return createSimpleInput();
+			case GeneratorPackage.COMPOSITE_LANGUAGE_INPUT: return createCompositeLanguageInput();
 			case GeneratorPackage.COMPOSITE_INPUT: return createCompositeInput();
 			case GeneratorPackage.LITERAL: return createLiteral();
 			case GeneratorPackage.ENTITY_TOKEN: return createEntityToken();
@@ -70,10 +72,13 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 			case GeneratorPackage.PARAMETER_REFERENCE_TOKEN: return createParameterReferenceToken();
 			case GeneratorPackage.HTTP_REQUEST_TOKE: return createHTTPRequestToke();
 			case GeneratorPackage.INTENT: return createIntent();
+			case GeneratorPackage.INTENT_LANGUAGE_INPUTS: return createIntentLanguageInputs();
 			case GeneratorPackage.TRAINING_PHRASE: return createTrainingPhrase();
 			case GeneratorPackage.PARAMETER: return createParameter();
+			case GeneratorPackage.PROMPT_LANGUAGE: return createPromptLanguage();
 			case GeneratorPackage.IMAGE: return createImage();
 			case GeneratorPackage.TEXT: return createText();
+			case GeneratorPackage.TEXT_LANGUAGE_INPUT: return createTextLanguageInput();
 			case GeneratorPackage.TEXT_INPUT: return createTextInput();
 			case GeneratorPackage.HTTP_REQUEST: return createHTTPRequest();
 			case GeneratorPackage.HTTP_RESPONSE: return createHTTPResponse();
@@ -190,9 +195,31 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 	 * @generated
 	 */
 	@Override
+	public SimpleLanguageInput createSimpleLanguageInput() {
+		SimpleLanguageInputImpl simpleLanguageInput = new SimpleLanguageInputImpl();
+		return simpleLanguageInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public SimpleInput createSimpleInput() {
 		SimpleInputImpl simpleInput = new SimpleInputImpl();
 		return simpleInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CompositeLanguageInput createCompositeLanguageInput() {
+		CompositeLanguageInputImpl compositeLanguageInput = new CompositeLanguageInputImpl();
+		return compositeLanguageInput;
 	}
 
 	/**
@@ -278,6 +305,17 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 	 * @generated
 	 */
 	@Override
+	public IntentLanguageInputs createIntentLanguageInputs() {
+		IntentLanguageInputsImpl intentLanguageInputs = new IntentLanguageInputsImpl();
+		return intentLanguageInputs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public TrainingPhrase createTrainingPhrase() {
 		TrainingPhraseImpl trainingPhrase = new TrainingPhraseImpl();
 		return trainingPhrase;
@@ -300,6 +338,17 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 	 * @generated
 	 */
 	@Override
+	public PromptLanguage createPromptLanguage() {
+		PromptLanguageImpl promptLanguage = new PromptLanguageImpl();
+		return promptLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Image createImage() {
 		ImageImpl image = new ImageImpl();
 		return image;
@@ -314,6 +363,17 @@ public class GeneratorFactoryImpl extends EFactoryImpl implements GeneratorFacto
 	public Text createText() {
 		TextImpl text = new TextImpl();
 		return text;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TextLanguageInput createTextLanguageInput() {
+		TextLanguageInputImpl textLanguageInput = new TextLanguageInputImpl();
+		return textLanguageInput;
 	}
 
 	/**

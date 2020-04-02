@@ -7,6 +7,7 @@ import generator.Bot;
 import generator.BotInteraction;
 import generator.Composite;
 import generator.CompositeInput;
+import generator.CompositeLanguageInput;
 import generator.DataType;
 import generator.DefaultEntity;
 import generator.Element;
@@ -20,6 +21,7 @@ import generator.HTTPResponse;
 import generator.HTTPReturnType;
 import generator.Image;
 import generator.Intent;
+import generator.IntentLanguageInputs;
 import generator.Interaction;
 import generator.KeyValue;
 import generator.Language;
@@ -28,13 +30,17 @@ import generator.Method;
 import generator.Parameter;
 import generator.ParameterReferenceToken;
 import generator.ParameterToken;
+import generator.PromptLanguage;
 import generator.Simple;
 import generator.SimpleInput;
+import generator.SimpleLanguageInput;
 import generator.Text;
 import generator.TextInput;
+import generator.TextLanguageInput;
 import generator.Token;
 import generator.TrainingPhrase;
 import generator.UserInteraction;
+import generator.WithLanguage;
 
 import generator.util.GeneratorValidator;
 
@@ -94,6 +100,13 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass withLanguageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass entityEClass = null;
 
 	/**
@@ -115,7 +128,21 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass simpleLanguageInputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass simpleInputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compositeLanguageInputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -178,6 +205,13 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass intentLanguageInputsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass trainingPhraseEClass = null;
 
 	/**
@@ -186,6 +220,13 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass promptLanguageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -207,6 +248,13 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	private EClass textEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass textLanguageInputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -518,8 +566,8 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EClass getEntity() {
-		return entityEClass;
+	public EClass getWithLanguage() {
+		return withLanguageEClass;
 	}
 
 	/**
@@ -528,8 +576,18 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getEntity_Language() {
-		return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
+	public EAttribute getWithLanguage_Language() {
+		return (EAttribute)withLanguageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getEntity() {
+		return entityEClass;
 	}
 
 	/**
@@ -578,6 +636,26 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
+	public EClass getSimpleLanguageInput() {
+		return simpleLanguageInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSimpleLanguageInput_Inputs() {
+		return (EReference)simpleLanguageInputEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getSimpleInput() {
 		return simpleInputEClass;
 	}
@@ -590,6 +668,26 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	@Override
 	public EAttribute getSimpleInput_Values() {
 		return (EAttribute)simpleInputEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getCompositeLanguageInput() {
+		return compositeLanguageInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCompositeLanguageInput_Inputs() {
+		return (EReference)compositeLanguageInputEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -788,8 +886,18 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIntent_Language() {
-		return (EAttribute)intentEClass.getEStructuralFeatures().get(3);
+	public EClass getIntentLanguageInputs() {
+		return intentLanguageInputsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIntentLanguageInputs_Inputs() {
+		return (EReference)intentLanguageInputsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -858,7 +966,7 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getParameter_Prompts() {
+	public EAttribute getParameter_IsList() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -868,8 +976,8 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getParameter_IsList() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(4);
+	public EReference getParameter_Prompts() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -878,8 +986,18 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getParameter_PrompLanguage() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(5);
+	public EClass getPromptLanguage() {
+		return promptLanguageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPromptLanguage_Prompts() {
+		return (EAttribute)promptLanguageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -948,8 +1066,18 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 * @generated
 	 */
 	@Override
-	public EAttribute getText_Language() {
-		return (EAttribute)textEClass.getEStructuralFeatures().get(1);
+	public EClass getTextLanguageInput() {
+		return textLanguageInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTextLanguageInput_Inputs() {
+		return (EReference)textLanguageInputEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1203,8 +1331,10 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__NAME);
 
+		withLanguageEClass = createEClass(WITH_LANGUAGE);
+		createEAttribute(withLanguageEClass, WITH_LANGUAGE__LANGUAGE);
+
 		entityEClass = createEClass(ENTITY);
-		createEAttribute(entityEClass, ENTITY__LANGUAGE);
 
 		simpleEClass = createEClass(SIMPLE);
 		createEReference(simpleEClass, SIMPLE__INPUTS);
@@ -1212,8 +1342,14 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		compositeEClass = createEClass(COMPOSITE);
 		createEReference(compositeEClass, COMPOSITE__INPUTS);
 
+		simpleLanguageInputEClass = createEClass(SIMPLE_LANGUAGE_INPUT);
+		createEReference(simpleLanguageInputEClass, SIMPLE_LANGUAGE_INPUT__INPUTS);
+
 		simpleInputEClass = createEClass(SIMPLE_INPUT);
 		createEAttribute(simpleInputEClass, SIMPLE_INPUT__VALUES);
+
+		compositeLanguageInputEClass = createEClass(COMPOSITE_LANGUAGE_INPUT);
+		createEReference(compositeLanguageInputEClass, COMPOSITE_LANGUAGE_INPUT__INPUTS);
 
 		compositeInputEClass = createEClass(COMPOSITE_INPUT);
 		createEReference(compositeInputEClass, COMPOSITE_INPUT__TOKENS);
@@ -1241,7 +1377,9 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		createEReference(intentEClass, INTENT__INPUTS);
 		createEReference(intentEClass, INTENT__PARAMETERS);
 		createEAttribute(intentEClass, INTENT__FALLBACK_INTENT);
-		createEAttribute(intentEClass, INTENT__LANGUAGE);
+
+		intentLanguageInputsEClass = createEClass(INTENT_LANGUAGE_INPUTS);
+		createEReference(intentLanguageInputsEClass, INTENT_LANGUAGE_INPUTS__INPUTS);
 
 		trainingPhraseEClass = createEClass(TRAINING_PHRASE);
 		createEReference(trainingPhraseEClass, TRAINING_PHRASE__TOKENS);
@@ -1250,9 +1388,11 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		createEReference(parameterEClass, PARAMETER__ENTITY);
 		createEAttribute(parameterEClass, PARAMETER__DEFAULT_ENTITY);
 		createEAttribute(parameterEClass, PARAMETER__REQUIRED);
-		createEAttribute(parameterEClass, PARAMETER__PROMPTS);
 		createEAttribute(parameterEClass, PARAMETER__IS_LIST);
-		createEAttribute(parameterEClass, PARAMETER__PROMP_LANGUAGE);
+		createEReference(parameterEClass, PARAMETER__PROMPTS);
+
+		promptLanguageEClass = createEClass(PROMPT_LANGUAGE);
+		createEAttribute(promptLanguageEClass, PROMPT_LANGUAGE__PROMPTS);
 
 		actionEClass = createEClass(ACTION);
 
@@ -1262,7 +1402,9 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 
 		textEClass = createEClass(TEXT);
 		createEReference(textEClass, TEXT__INPUTS);
-		createEAttribute(textEClass, TEXT__LANGUAGE);
+
+		textLanguageInputEClass = createEClass(TEXT_LANGUAGE_INPUT);
+		createEReference(textLanguageInputEClass, TEXT_LANGUAGE_INPUT__INPUTS);
 
 		textInputEClass = createEClass(TEXT_INPUT);
 		createEReference(textInputEClass, TEXT_INPUT__TOKENS);
@@ -1325,17 +1467,22 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		entityEClass.getESuperTypes().add(this.getElement());
 		simpleEClass.getESuperTypes().add(this.getEntity());
 		compositeEClass.getESuperTypes().add(this.getEntity());
+		simpleLanguageInputEClass.getESuperTypes().add(this.getWithLanguage());
 		simpleInputEClass.getESuperTypes().add(this.getElement());
+		compositeLanguageInputEClass.getESuperTypes().add(this.getWithLanguage());
 		literalEClass.getESuperTypes().add(this.getToken());
 		entityTokenEClass.getESuperTypes().add(this.getToken());
 		parameterTokenEClass.getESuperTypes().add(this.getToken());
 		parameterReferenceTokenEClass.getESuperTypes().add(this.getToken());
 		httpRequestTokeEClass.getESuperTypes().add(this.getToken());
 		intentEClass.getESuperTypes().add(this.getElement());
+		intentLanguageInputsEClass.getESuperTypes().add(this.getWithLanguage());
 		parameterEClass.getESuperTypes().add(this.getElement());
+		promptLanguageEClass.getESuperTypes().add(this.getWithLanguage());
 		actionEClass.getESuperTypes().add(this.getElement());
 		imageEClass.getESuperTypes().add(this.getAction());
 		textEClass.getESuperTypes().add(this.getAction());
+		textLanguageInputEClass.getESuperTypes().add(this.getWithLanguage());
 		httpRequestEClass.getESuperTypes().add(this.getAction());
 		httpResponseEClass.getESuperTypes().add(this.getAction());
 
@@ -1362,17 +1509,25 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(withLanguageEClass, WithLanguage.class, "WithLanguage", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWithLanguage_Language(), this.getLanguage(), "language", "EMPTY", 0, 1, WithLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(entityEClass, Entity.class, "Entity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEntity_Language(), this.getLanguage(), "language", "EMPTY", 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleEClass, Simple.class, "Simple", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimple_Inputs(), this.getSimpleInput(), null, "inputs", null, 0, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimple_Inputs(), this.getSimpleLanguageInput(), null, "inputs", null, 1, -1, Simple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeEClass, Composite.class, "Composite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComposite_Inputs(), this.getCompositeInput(), null, "inputs", null, 0, -1, Composite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComposite_Inputs(), this.getCompositeLanguageInput(), null, "inputs", null, 1, -1, Composite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simpleLanguageInputEClass, SimpleLanguageInput.class, "SimpleLanguageInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSimpleLanguageInput_Inputs(), this.getSimpleInput(), null, "inputs", null, 0, -1, SimpleLanguageInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleInputEClass, SimpleInput.class, "SimpleInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSimpleInput_Values(), ecorePackage.getEString(), "values", null, 0, -1, SimpleInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compositeLanguageInputEClass, CompositeLanguageInput.class, "CompositeLanguageInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompositeLanguageInput_Inputs(), this.getCompositeInput(), null, "inputs", null, 0, -1, CompositeLanguageInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeInputEClass, CompositeInput.class, "CompositeInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeInput_Tokens(), this.getToken(), null, "tokens", null, 1, -1, CompositeInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1397,10 +1552,12 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		initEAttribute(getHTTPRequestToke_DataKey(), ecorePackage.getEString(), "dataKey", null, 0, 1, HTTPRequestToke.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intentEClass, Intent.class, "Intent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getIntent_Inputs(), this.getTrainingPhrase(), null, "inputs", null, 1, -1, Intent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIntent_Inputs(), this.getIntentLanguageInputs(), null, "inputs", null, 1, -1, Intent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIntent_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Intent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIntent_FallbackIntent(), ecorePackage.getEBoolean(), "fallbackIntent", null, 1, 1, Intent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getIntent_Language(), this.getLanguage(), "language", "EMPTY", 0, 1, Intent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(intentLanguageInputsEClass, IntentLanguageInputs.class, "IntentLanguageInputs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIntentLanguageInputs_Inputs(), this.getTrainingPhrase(), null, "inputs", null, 1, -1, IntentLanguageInputs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(trainingPhraseEClass, TrainingPhrase.class, "TrainingPhrase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTrainingPhrase_Tokens(), this.getToken(), null, "tokens", null, 0, -1, TrainingPhrase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1409,9 +1566,11 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		initEReference(getParameter_Entity(), this.getEntity(), null, "entity", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_DefaultEntity(), this.getDefaultEntity(), "defaultEntity", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Required(), ecorePackage.getEBoolean(), "required", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParameter_Prompts(), ecorePackage.getEString(), "prompts", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_IsList(), ecorePackage.getEBoolean(), "isList", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParameter_PrompLanguage(), this.getLanguage(), "prompLanguage", "EMPTY", 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_Prompts(), this.getPromptLanguage(), null, "prompts", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(promptLanguageEClass, PromptLanguage.class, "PromptLanguage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPromptLanguage_Prompts(), ecorePackage.getEString(), "prompts", null, 1, -1, PromptLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionEClass, Action.class, "Action", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1420,8 +1579,10 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		initEAttribute(getImage_Caption(), ecorePackage.getEString(), "caption", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getText_Inputs(), this.getTextInput(), null, "inputs", null, 1, -1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getText_Language(), this.getLanguage(), "language", "EMPTY", 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getText_Inputs(), this.getTextLanguageInput(), null, "inputs", null, 1, -1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(textLanguageInputEClass, TextLanguageInput.class, "TextLanguageInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTextLanguageInput_Inputs(), this.getTextInput(), null, "inputs", null, 1, -1, TextLanguageInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textInputEClass, TextInput.class, "TextInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTextInput_Tokens(), this.getToken(), null, "tokens", null, 1, -1, TextInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1435,7 +1596,7 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 		initEAttribute(getHTTPRequest_Method(), this.getMethod(), "method", null, 1, 1, HTTPRequest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(httpResponseEClass, HTTPResponse.class, "HTTPResponse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHTTPResponse_Inputs(), this.getTextInput(), null, "inputs", null, 1, 1, HTTPResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHTTPResponse_Inputs(), this.getTextLanguageInput(), null, "inputs", null, 1, -1, HTTPResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getHTTPResponse_HTTPRequest(), this.getHTTPRequest(), null, "HTTPRequest", null, 1, 1, HTTPResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(keyValueEClass, KeyValue.class, "KeyValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1529,14 +1690,6 @@ public class GeneratorPackageImpl extends EPackageImpl implements GeneratorPacka
 	 */
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";
-		addAnnotation
-		  (this,
-		   source,
-		   new String[] {
-			   "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			   "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			   "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });
 		addAnnotation
 		  (compositeInputEClass,
 		   source,

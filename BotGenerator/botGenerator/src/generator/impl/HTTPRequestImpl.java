@@ -6,8 +6,8 @@ import generator.DataType;
 import generator.GeneratorPackage;
 import generator.HTTPRequest;
 import generator.KeyValue;
-
 import generator.Method;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
