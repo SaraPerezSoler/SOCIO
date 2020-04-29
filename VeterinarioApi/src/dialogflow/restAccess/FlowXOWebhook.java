@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 @Path("/FlowXO")
-public class FlowXOWebhook extends Webhook{
+public class FlowXOWebhook implements Webhook{
 	
 	@GET
 	@Path("hello/{name}")

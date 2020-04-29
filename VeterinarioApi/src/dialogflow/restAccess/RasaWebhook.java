@@ -22,7 +22,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 @Path("/Rasa")
-public class RasaWebhook extends Webhook{
+public class RasaWebhook implements Webhook{
 	@GET
 	@Path("hello/{name}")
 	@Produces({ MediaType.TEXT_PLAIN })

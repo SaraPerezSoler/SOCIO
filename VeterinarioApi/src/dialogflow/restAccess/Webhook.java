@@ -14,14 +14,14 @@ import dbmanager.NotAvailable;
 import dbmanager.OutOfOpenRange;
 import dbmanager.PastDate;
 
-public abstract class Webhook {
+public interface Webhook {
 	
-	protected static final String TIME_PARAMETER = "time";
-	protected static final String DATE_PARAMETER = "date";
-	protected static final String PET_PARAMETER = "pet";
-	protected static final String PET_NAME_PARAMETER = "petName";
+	public static final String TIME_PARAMETER = "time";
+	public static final String DATE_PARAMETER = "date";
+	public static final String PET_PARAMETER = "pet";
+	public static final String PET_NAME_PARAMETER = "petName";
 	
-	protected String readIncomingData(InputStream incomingData) {
+	default String readIncomingData(InputStream incomingData) {
 		String text = "";
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
@@ -36,7 +36,7 @@ public abstract class Webhook {
 		return text;
 	}
 	
-	protected String makeAnAppointment(DateTime dateAux, DateTime timeAux, String pet, String petName) throws InstantiationException, IllegalAccessException, SQLException {
+	default String makeAnAppointment(DateTime dateAux, DateTime timeAux, String pet, String petName) throws InstantiationException, IllegalAccessException, SQLException {
 		
 		DateTime date = new DateTime(dateAux.getYear(), dateAux.getMonthOfYear(), dateAux.getDayOfMonth(), timeAux.getHourOfDay(), timeAux.getMinuteOfHour());
 		

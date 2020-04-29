@@ -14,12 +14,4 @@
             genModel="Model/BotGenerator.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RecommenderQuestionnaire -->
-      <package
-            uri="recommenderQuestionnaire"
-            class="recommenderQuestionnaire.RecommenderQuestionnairePackage"
-            genModel="Model/RecommenderQuestionnaire.genmodel"/>
-   </extension>
-
 </plugin>

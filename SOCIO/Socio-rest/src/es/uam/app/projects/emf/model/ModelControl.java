@@ -74,6 +74,7 @@ public class ModelControl implements Controlador {
 	public EObjectControl createEObject(NLClass eclass) throws InternalException {
 		EObject object = model.getModel().getEFactoryInstance().create(eclass.getClass_());
 		resource.getContents().add(object);
+		
 		return new EObjectControl(object, eclass);
 	}
 

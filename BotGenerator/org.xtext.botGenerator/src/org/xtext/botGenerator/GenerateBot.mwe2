@@ -35,6 +35,9 @@ Workflow {
 			referencedResource = "platform:/resource/botGenerator/Model/BotGenerator.genmodel"
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
+			fragment = generator.GeneratorFragment2 auto-inject {
+				generateJavaMain = true
+			}
 
 			formatter = {
 				generateStub = true

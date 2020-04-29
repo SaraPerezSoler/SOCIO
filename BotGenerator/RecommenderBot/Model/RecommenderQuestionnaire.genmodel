@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/RecommenderBot/src" modelPluginID="RecommenderBot"
+    modelName="RecommenderQuestionnaire" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>RecommenderQuestionnaire.ecore</foreignModel>
+  <genPackages prefix="RecommenderQuestionnaire" disposableProviderFactory="true"
+      ecorePackage="RecommenderQuestionnaire.ecore#/">
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Questionnaire">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Questionnaire/tools"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Questionnaire/questions"/>
+    </genClasses>
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Tool">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/acceptedOptions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/unknown"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Tool/refusedOptions"/>
+    </genClasses>
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Question">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Question/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Question/multiresponse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Question/options"/>
+    </genClasses>
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Evaluation"/>
+    <genClasses ecoreClass="RecommenderQuestionnaire.ecore#//Option">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//Option/text"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Option/acceptedTools"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Option/refusedTools"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RecommenderQuestionnaire.ecore#//Option/unknown"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="RecommenderQuestionnaire.ecore#//WithName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RecommenderQuestionnaire.ecore#//WithName/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

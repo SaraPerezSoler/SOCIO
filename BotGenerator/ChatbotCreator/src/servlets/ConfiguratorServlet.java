@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelInfo.NLElement;
-import modelInfo.NLModel;
 
 /**
  * Servlet implementation class ConfiguratorServlet
@@ -21,7 +19,6 @@ import modelInfo.NLModel;
 public class ConfiguratorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static NLModel MODEL = null;
        
     /**
      * @see HttpServlet#HttpServlet()

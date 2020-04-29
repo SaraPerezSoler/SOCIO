@@ -200,11 +200,6 @@ public abstract class AbstractBotRuntimeModule extends DefaultRuntimeModule {
 		binder.bind(IResourceDescriptions.class).annotatedWith(Names.named(ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(ResourceSetBasedResourceDescriptions.class);
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
-	public Class<? extends IGenerator2> bindIGenerator2() {
-		return BotGenerator.class;
-	}
-	
 	// contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
 	public Class<? extends IFormatter2> bindIFormatter2() {
 		return BotFormatter.class;
@@ -218,6 +213,11 @@ public abstract class AbstractBotRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ecore2xtext.Ecore2XtextValueConverterServiceFragment2
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return Ecore2XtextTerminalConverters.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
+	public Class<? extends IGenerator2> bindIGenerator2() {
+		return BotGenerator.class;
 	}
 	
 }

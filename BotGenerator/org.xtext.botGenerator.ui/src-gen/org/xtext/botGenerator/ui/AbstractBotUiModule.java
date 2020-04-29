@@ -177,23 +177,6 @@ public abstract class AbstractBotUiModule extends DefaultUiModule {
 		return PersistentDataAwareDirtyResource.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
-	public Class<? extends IXtextBuilderParticipant> bindIXtextBuilderParticipant() {
-		return BuilderParticipant.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
-	public IWorkspaceRoot bindIWorkspaceRootToInstance() {
-		return ResourcesPlugin.getWorkspace().getRoot();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
-	public void configureBuilderPreferenceStoreInitializer(Binder binder) {
-		binder.bind(IPreferenceStoreInitializer.class)
-			.annotatedWith(Names.named("builderPreferenceInitializer"))
-			.to(BuilderPreferenceAccess.Initializer.class);
-	}
-	
 	// contributed by org.eclipse.xtext.xtext.generator.formatting.Formatter2Fragment2
 	public Class<? extends IContentFormatterFactory> bindIContentFormatterFactory() {
 		return ContentFormatterFactory.class;
@@ -295,6 +278,23 @@ public abstract class AbstractBotUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.compare.CompareFragment2
 	public void configureCompareViewerTitle(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(UIBindings.COMPARE_VIEWER_TITLE)).toInstance("Bot Compare");
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
+	public Class<? extends IXtextBuilderParticipant> bindIXtextBuilderParticipant() {
+		return BuilderParticipant.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
+	public IWorkspaceRoot bindIWorkspaceRootToInstance() {
+		return ResourcesPlugin.getWorkspace().getRoot();
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
+	public void configureBuilderPreferenceStoreInitializer(Binder binder) {
+		binder.bind(IPreferenceStoreInitializer.class)
+			.annotatedWith(Names.named("builderPreferenceInitializer"))
+			.to(BuilderPreferenceAccess.Initializer.class);
 	}
 	
 }

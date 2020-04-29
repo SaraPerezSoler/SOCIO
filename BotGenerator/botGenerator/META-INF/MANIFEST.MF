@@ -10,12 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: generator,
  generator.impl,
- generator.util,
- recommenderQuestionnaire,
- recommenderQuestionnaire.impl,
- recommenderQuestionnaire.util
+ generator.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- botGenerator;visibility:=reexport,
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
