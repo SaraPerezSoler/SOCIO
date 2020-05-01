@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="login-form" method="post" action="">
+		<form class="login-form" method="post" action="EndQuestionnaire">
 			<div class="row justify-content-md-center">
 				<div class="col-lg-9">
 					<%

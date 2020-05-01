@@ -3,10 +3,13 @@ package recommenderQuestionnaire.main;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -15,6 +18,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import answers.UserResponse;
+import answers.QuestionAnswer;
 import answers.QuestionAnswer.RelevanceLevel;
 import generator.Bot;
 import generator.GeneratorPackage;
@@ -24,6 +28,7 @@ import recommenderQuestionnaire.Question;
 import recommenderQuestionnaire.Questionnaire;
 import recommenderQuestionnaire.RecommenderQuestionnaireFactory;
 import recommenderQuestionnaire.RecommenderQuestionnairePackage;
+import recommenderQuestionnaire.Tool;
 import recommenderQuestionnaire.evaluations.Evaluator;
 import org.xtext.botGenerator.generator.BotPlatformStandAlone;
 
@@ -35,6 +40,10 @@ public class RecommenderControl {
 	private Resource resource;
 
 	private Map<Long, UserResponse> questionnaireAnswers = new HashMap<>();
+
+	public static final String ACCEPTED = "Accepted";
+	public static final String REFUSED = "Refused";
+	public static final String UNKNOWN = "Unknown";
 
 	public static RecommenderControl getRecommenderControl(String recomenderModelPath, String jsonPath) {
 		if (recommenderControl == null) {
@@ -122,6 +131,21 @@ public class RecommenderControl {
 		return ret;
 	}
 
+	public Map<String, Map<String, List<String>>> getAllQuestions() {
+		Map<String, Map<String, List<String>>> ret = new HashMap<String, Map<String,List<String>>>();
+		Map<String, List<String>> evaluations = new HashMap<>();
+		for (Question question : questionnaire.getEvaluations()) {
+			List<String> options = new ArrayList<String>();
+			for (Option answer : question.getOptions()) {
+				options.add(answer.getText());
+			}
+			evaluations.put(question.getText(), options);
+		}
+		ret.put("Evaluations", evaluations);
+		ret.put("Questions", getQuestions());
+		return ret;
+	}
+
 	public Map<String, Boolean> getEvaluations() {
 		Map<String, Boolean> ret = new HashMap<>();
 		for (Evaluation question : questionnaire.getEvaluations()) {
@@ -146,12 +170,10 @@ public class RecommenderControl {
 			for (Option ans : actualQuestion.getOptions()) {
 				if (ans.getText().equalsIgnoreCase(answerText)) {
 					actualAnswer.add(ans);
+					break;
 				}
-				break;
+
 			}
-		}
-		if (actualAnswer.isEmpty()) {
-			return false;
 		}
 		UserResponse answers = questionnaireAnswers.get(id);
 		if (answers == null) {
@@ -240,6 +262,63 @@ public class RecommenderControl {
 		UserResponse user = questionnaireAnswers.get(id);
 		user.changeRelevance(q, value);
 
+	}
+
+	public Map<String, Double> getRanking(long id) {
+		Map<String, Double> ret = new HashMap<>();
+		Map<Tool, Double> ranking = questionnaireAnswers.get(id).getRanking();
+		for (Tool t : ranking.keySet()) {
+			ret.put(t.getName(), ranking.get(t));
+		}
+		ret = ret.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+		return ret;
+	}
+
+	public void calculateRanking(long id) {
+
+		questionnaireAnswers.get(id).calculateRanking();
+	}
+
+	public String getRelevantLevel(long id, String questionText) {
+		Question question = getQuestion(questionText);
+		UserResponse responses = questionnaireAnswers.get(id);
+		QuestionAnswer ans = responses.getAnswer(question);
+		if (ans != null) {
+			return ans.getRelevanceLevel().getText();
+		}
+		return "Not information";
+	}
+
+	public Map<String, String> getAnswersTool(long id, String questionText, String toolString) {
+		Map<String, String> ret = new HashMap<>();
+		Question question = getQuestion(questionText);
+		Tool tool = questionnaire.getTool(toolString);
+		UserResponse responses = questionnaireAnswers.get(id);
+		QuestionAnswer ans = responses.getAnswer(question);
+		if (ans != null) {
+			for (Option opt : ans.getSelected()) {
+				if (opt.getAcceptedTools().contains(tool)) {
+					ret.put(opt.getText(), ACCEPTED);
+				} else if (opt.getRefusedTools().contains(tool)) {
+					ret.put(opt.getText(), REFUSED);
+				} else {
+					ret.put(opt.getText(), UNKNOWN);
+				}
+			}
+		}
+		return ret;
+	}
+
+	public double getQuestionScore(long id, String questionText, String toolString) {
+		Question question = getQuestion(questionText);
+		UserResponse responses = questionnaireAnswers.get(id);
+		Tool tool = questionnaire.getTool(toolString);
+		QuestionAnswer ans = responses.getAnswer(question);
+		if (ans != null) {
+			return responses.getToolAnswerScore(tool, ans);
+		}
+		return 0;
 	}
 
 }
