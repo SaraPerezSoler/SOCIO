@@ -1,0 +1,9 @@
+User: saraSocioTest at 14/05/18 04:57:43 in twitter
+Sends: @modCol101 a house is made of walls, doors and windows
+The message cause this actions:
+------------------------
+User: saraSocioTest at 14/05/18 04:59:27 in twitter
+Sends: @modCol101 a door is in a wall
+The message cause this actions:
+------------------------
+

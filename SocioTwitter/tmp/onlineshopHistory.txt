@@ -1,0 +1,55 @@
+User: SaraPTSM at 07/06/18 04:10:57 in telegram
+Sends: /talk Payment method is abstract
+The message caused these actions:
+	 · Update-> Old: class PaymentMethod / New: abstract class PaymentMethod
+------------------------
+User: SaraPTSM at 07/06/18 04:09:07 in telegram
+Sends: /talk The order contains a payment method, which can be paypal, credit card or cash
+The message caused these actions:
+	 · Create-> class PaymentMethod
+	 · Create-> reference paymentMethod
+	 · Update-> Old: reference paymentMethod [1..1], type: null, from Order / New: reference paymentMethod [1..1], type: PaymentMethod, from Order
+	 · Create-> class CreditCard
+	 · Update-> Old: class CreditCard / New: class CreditCard, superTypes: [PaymentMethod]
+	 · Create-> class Cash
+	 · Update-> Old: class Cash / New: class Cash, superTypes: [PaymentMethod]
+	 · Create-> class Paypal
+	 · Update-> Old: class Paypal / New: class Paypal, superTypes: [PaymentMethod]
+------------------------
+User: sarukiTSM at 07/06/18 04:07:55 in twitter
+Sends: @ModellingBot #talk The order, that is associated with a client, may has several products
+The message caused these actions:
+	 · Create-> reference associatedWith
+	 · Update-> Old: reference associatedWith [1..1], type: null, from Order / New: reference associatedWith [1..1], type: Customer, from Order
+	 · Create-> reference products
+	 · Update-> Old: reference products [0..-1], type: null, from Order / New: reference products [0..-1], type: Product, from Order
+------------------------
+User: SaraPTSM at 07/06/18 04:06:09 in telegram
+Sends: A online shop is made of customers, orders and products. The products are identified by a numeric code
+The message caused these actions:
+	 · Create-> class OnlineShop
+	 · Create-> class Customer
+	 · Create-> reference customers
+	 · Update-> Old: reference customers [1..-1], type: null, from OnlineShop / New: reference customers [1..-1], type: Customer, from OnlineShop
+	 · Create-> class Order
+	 · Create-> reference orders
+	 · Update-> Old: reference orders [1..-1], type: null, from OnlineShop / New: reference orders [1..-1], type: Order, from OnlineShop
+	 · Create-> class Product
+	 · Create-> reference products
+	 · Update-> Old: reference products [1..-1], type: null, from OnlineShop / New: reference products [1..-1], type: Product, from OnlineShop
+	 · Create-> attribute code
+	 · Update-> Old: attribute code [1..1], type: null, from Product / New: attribute code [1..1], type: EInt, from Product
+------------------------
+User: sarukiTSM at 07/06/18 04:11:28 in twitter
+Sends: @ModellingBot Product and order have a price
+The message caused these actions:
+	 · Create-> attribute price
+	 · Create-> attribute price
+------------------------
+User: SaraPTSM at 07/06/18 04:18:49 in telegram
+Sends: /talk price in order and product is double
+The message caused these actions:
+	 · Update-> Old: attribute price [1..1], type: null, from Order / New: attribute price [1..1], type: EDouble, from Order
+	 · Update-> Old: attribute price [1..1], type: null, from Product / New: attribute price [1..1], type: EDouble, from Product
+------------------------
+

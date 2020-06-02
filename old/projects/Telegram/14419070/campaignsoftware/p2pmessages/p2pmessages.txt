@@ -1,0 +1,52 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+BackgroundColor<<Old>> #E0E6F8
+BorderColor<<Old>> #0B0B61
+HeaderBackgroundColor<<Mod>> #E0E6F8
+BorderColor<<Mod>> #0B0B61
+}
+skinparam nodeSep 20 
+skinparam rankSep 30 
+hide empty members   
+class CampaignPlanner<<(C, #8181F7)Old>> {
+}
+CampaignPlanner *-[#0B0B61]-"1..*"MarketingCampaign : marketingCampaigns
+CampaignPlanner *-[#0B0B61]-"1..*"Employee : employees
+class MarketingCampaign<<(C, #8181F7)Old>> {
+<b><color:#0B0B61>[1,1] name: String </color></b>
+}
+MarketingCampaign -[#0B0B61]->"1..*"Employee : workTeam
+MarketingCampaign *-[#0B0B61]-"1..*"Task : tasks
+class Employee<<(C, #8181F7)Old>> {
+<b><color:#0B0B61>[1,1] name: String </color></b>
+}
+Employee *-[#458A03]-"1..1"MessageBox : <b><color:#458A03>messageBox</color></b>
+class Director<<(C, #8181F7)Old>> {
+}
+Employee <|-[#0B0B61]- Director
+class Task<<(C, #8181F7)Old>> {
+}
+Task -[#0B0B61]->"1..1"Employee : assignedTo
+class Report<<(C, #8181F7)Old>> {
+}
+Task <|-[#0B0B61]- Report
+class Communication<<(C, #8181F7)Old>> {
+}
+Task <|-[#0B0B61]- Communication
+class Survey<<(C, #8181F7)Old>> {
+}
+Task <|-[#0B0B61]- Survey
+class MessageBox<<(C, #688A08)New>> {
+}
+MessageBox *-[#458A03]-"1..*"Message : <b><color:#458A03>messages</color></b>
+class Message<<(C, #688A08)New>> {
+}
+Message -[#458A03]->"1..1"Employee : <b><color:#458A03>sentBy</color></b>
+Message -[#458A03]->"1..*"Employee : <b><color:#458A03>sentTo</color></b>
+
+@enduml

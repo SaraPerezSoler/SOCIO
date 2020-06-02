@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin id= "es.uam.esp.miso.SocioRest" name ="SocioRest" version ="1.0">
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="socioProjects"
+            class="socioProjects.SocioProjectsPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="projectHistory"
+            class="projectHistory.ProjectHistoryPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="removeLog"
+            class="removeLog.RemoveLogPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SocioDatabase -->
+      <package
+            uri="branchDecision"
+            class="branchDecision.BranchDecisionPackage"
+            genModel="model/SocioDatabase.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated metamodelInfo -->
+      <package
+            uri="modelInfo"
+            class="modelInfo.ModelInfoPackage"
+            genModel="model/metamodelInfo.genmodel"/>
+   </extension>
+
+</plugin>

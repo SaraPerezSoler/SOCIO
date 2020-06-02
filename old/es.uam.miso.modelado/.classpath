@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="libs/libPlantUML/plantuml.jar"/>
+	<classpathentry kind="lib" path="libs/libTelegram/telegrambots-2.4.4.4-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="libs/libTelegram/telegrambots-meta-2.4.4.4-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="libs/libTwitter4J/twitter4j-async-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/libTwitter4J/twitter4j-core-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/libTwitter4J/twitter4j-examples-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/libTwitter4J/twitter4j-media-support-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/libTwitter4J/twitter4j-stream-4.0.4.jar"/>
+	<classpathentry kind="lib" path="libs/libWordNet/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/libWordNet/jwnl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sara/Eclipse/plugins/org.eclipse.emf.ecore_2.12.0.v20160420-0247.jar" sourcepath="C:/Users/Sara/Eclipse/plugins/org.eclipse.emf.ecore.source_2.12.0.v20160420-0247.jar">
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/plugin/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/resource/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/resource/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/util/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/namespace/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/namespace/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/namespace/util/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/type/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/type/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/type/internal/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xml/type/util/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="libs/libStanford/slf4j-simple.jar"/>
+	<classpathentry kind="lib" path="libs/libStanford/stanford-parser-3.6.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/libStanford/stanford-parser-3.6.0-models.jar"/>
+	<classpathentry kind="lib" path="libs/libStanford/stanford-parser-3.6.0-sources.jar"/>
+	<classpathentry kind="lib" path="libs/libStanford/stanford-parser.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/libStanford/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="libs/libClassPathScan/fast-classpath-scanner-2.0.21.jar"/>
+	<classpathentry kind="lib" path="libs/JFreeChart/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="libs/JFreeChart/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
