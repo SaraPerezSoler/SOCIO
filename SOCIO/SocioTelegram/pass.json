@@ -1,8 +1,0 @@
-{
- 
-  "Test":{"Name":"Test", "ID":"286872489:AAFwNGZ7cfebWgK7FV6D38HmrB2uU1hVPFQ"},
-  "MisoTest":{"Name":"Miso", "ID":"480658734:AAEXFl_YI6zLLtapMdvZAZz2q0GwSpMtjWM"},
-  "SOCIO":{"Name":"SOCIO", "ID":"307974624:AAE_sMqNpRTO3gm8LNTf68sc1DSVdbOY9UA"},
-  "host":"http://dimo1.ii.uam.es/Socio-rest/",
-  "DebugHost": "http://localhost:80/Socio-rest/"
-}
