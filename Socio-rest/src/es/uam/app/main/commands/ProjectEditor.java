@@ -18,7 +18,6 @@ import com.socio.client.beans.Message;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.ExceptionControl;
 import es.uam.app.main.exceptions.InternalException;
-import es.uam.app.main.exceptions.NotActionException;
 import projectHistory.Msg;
 import socioProjects.Project;
 import socioProjects.User;
@@ -35,8 +34,6 @@ public class ProjectEditor extends MainCommand {
 		try {
 			Project actual = getProject(context, id);
 			return editProject(context, actual, incomingData);
-		}catch (NotActionException e) {
-			return sendText("Sorry, I don't understand. You can try to make a direct order like '/talk Add A in B.'. Remember, you can put the noun with \" \", if I still couldn't understand. By the way, /help command is always welcome to be used.");
 		} catch (InternalException e) {
 			return sendTextException(e);
 		}catch (Exception e) {
@@ -55,44 +52,6 @@ public class ProjectEditor extends MainCommand {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return editProject(context, actual, incomingData);
-		}catch (NotActionException e) {
-			return sendText("Sorry, I don't understand. You can try to make a direct order like '/talk Add A in B.'. Remember, you can put the noun with \" \", if I still couldn't understand. By the way, /help command is always welcome to be used.");
-		} catch (InternalException e) {
-			return sendTextException(e);
-		}catch (Exception e) {
-			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
-			return sendTextException(e);
-		}
-
-	}
-	
-	@POST
-	@Path("/show/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
-	public Response show(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			{
-		try {
-			Project actual = getProject(context, id);
-			return showProject(context, actual, incomingData);
-		} catch (InternalException e) {
-			return sendTextException(e);
-		}catch (Exception e) {
-			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
-			return sendTextException(e);
-		}
-	}
-
-	@POST
-	@Path("/show/{channel}/{user}/{project}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
-	public Response show(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			{
-		try {
-			Project actual = getProject(context, channel, user, project);
-			return showProject(context, actual, incomingData);
 		} catch (InternalException e) {
 			return sendTextException(e);
 		}catch (Exception e) {
@@ -108,13 +67,7 @@ public class ProjectEditor extends MainCommand {
 		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
 	}
-	private Response showProject(ServletContext context, Project actual, InputStream incomingData) throws Exception {
-		Msg msg = getMsg(context, incomingData, null);
-		msg.setText(null);
-		File png = editProject(context, actual, msg);
-		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
-	}
+	
 	public static File editProject(ServletContext context, Project actual, Msg msg) throws Exception {
 
 		if (msg.hasText()) {

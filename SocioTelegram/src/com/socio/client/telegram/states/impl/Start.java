@@ -43,12 +43,7 @@ public class Start implements CommandState {
 	}
 
 	private static String getStartMsg() {
-		String ret = WELCOME + "\n\n"+getStartCommands();
-		return ret;
-	}
-	
-	public static String getStartCommands() {
-		String ret = "";
+		String ret = WELCOME + "\n\n";
 		SortedSet<String> keys = new TreeSet<String>(TelegramControl.commandState.keySet());
 		for (String key : keys) {
 			ret += "/" + TelegramControl.commandState.get(key).getCommand() + " - "
