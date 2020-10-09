@@ -200,5 +200,9 @@ public abstract class MainCommand implements DataFormat {
 	protected Response sendTextException(Exception e) {
 		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.INTERNAL_SERVER_ERROR).build();
 	}
+	
+	protected Response sendText(String e) {
+		return Response.ok(e, MediaType.TEXT_PLAIN).build();
+	}
 
 }

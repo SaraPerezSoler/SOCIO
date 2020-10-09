@@ -148,36 +148,36 @@ public class SocioData implements DataFormat {
 			throw e;
 		}
 
-		File f = new File(SocioData.PATH + "/Metamodel/");
+		/*File f = new File(SocioData.PATH + "/Metamodel/");
 		if (!f.exists() || !f.isDirectory()) {
 			throw new FatalException("The metamodel directory does not exist");
 		}
 		for (File subfile : f.listFiles()) {
-//			if (subfile.getName().endsWith(".xmi")) {
-//				try {
-//					File ecoreFile = new File(subfile.getPath().replace(".xmi", ".ecore"));
-//					if (ecoreFile.exists()) {
-//						
-//						Resource meta = getResourceSet().getResource(URI.createURI(ecoreFile.getPath()), true);
-//						Resource nlmodel = getResourceSet().getResource(URI.createURI(subfile.getPath()), true);						
-//						
-//						EPackage pack= (EPackage) meta.getContents().get(0);
-//						NLModel model = (NLModel) nlmodel.getContents().get(0);
-//						
-//						modelInfo.put(model.getName(), model);
-//						metamodel.put(model.getName(), pack);						
-//					}
-//				} catch (Exception e) {
-//					System.out.println(e.getStackTrace().toString());
-//				}
-//			}
+			if (subfile.getName().endsWith(".xmi")) {
+				try {
+					File ecoreFile = new File(subfile.getPath().replace(".xmi", ".ecore"));
+					if (ecoreFile.exists()) {
+						
+						Resource meta = getResourceSet().getResource(URI.createURI(ecoreFile.getPath()), true);
+						Resource nlmodel = getResourceSet().getResource(URI.createURI(subfile.getPath()), true);						
+						
+						EPackage pack= (EPackage) meta.getContents().get(0);
+						NLModel model = (NLModel) nlmodel.getContents().get(0);
+						
+						modelInfo.put(model.getName(), model);
+						metamodel.put(model.getName(), pack);						
+					}
+				} catch (Exception e) {
+					System.out.println(e.getStackTrace().toString());
+				}
+			}
 			
 			if (subfile.getName().equalsIgnoreCase("ProjectPlaning.ecore")) {
 				NLModel model = CreateNLModel.getNlModel(subfile);
 				modelInfo.put(model.getName(), model);
 				resourceSet.getPackageRegistry().put(model.getModel().getNsURI(), model.getModel());
 			}
-		}
+		}*/
 
 	}
 
