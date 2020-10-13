@@ -498,10 +498,10 @@ public class SocioData implements DataFormat {
 			}
 		}
 		text = text.substring(0, text.length()-2);
-		msg.setMsg(text);
+		msg.setText(text);
 		File f = p.deleteObjects(msg, objects);
-		save(p);
 		addUpdate(p, msg);
+		save(p);
 		return f;
 }
 

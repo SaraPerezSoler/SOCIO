@@ -41,7 +41,6 @@ import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
-import projectHistory.Msg;
 import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
 
@@ -497,7 +496,6 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	protected Map<String, List<Action>> getSentencesAction(String text) throws Exception {
 		List<String> sentences = SentencesSplitter.sentencesSplitter(text);
 		Map<String, List<Action>> actions = new HashMap<>();
-
 		for (String s : sentences) {
 
 			List<Action> act = parseSentence(s);
@@ -508,15 +506,15 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	}
 
 	@Override
-	protected List<String> getSentenceOrder(Msg msg) throws ParseException {
-		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getMsg());
+	protected List<String> getSentenceOrder(String text) throws ParseException {
+		List<String> sentences = SentencesSplitter.sentencesSplitter(text);
 		Collections.reverse(sentences);
 		return sentences;
 	}
 
 	@Override
-	protected List<String> getSentenceOrder2(Msg msg) throws ParseException {
-		List<String> sentences = SentencesSplitter.sentencesSplitter(msg.getMsg());
+	protected List<String> getSentenceOrder2(String text) throws ParseException {
+		List<String> sentences = SentencesSplitter.sentencesSplitter(text);
 		return sentences;
 	}
 

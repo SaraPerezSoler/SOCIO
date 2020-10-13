@@ -50,7 +50,7 @@ public class RemoveCommandRule {
 			throws FileNotFoundException, JWNLException {
 
 		List<Action> ret = new ArrayList<Action>();
-		String[] split = obj.split(".");
+		String[] split = obj.split("\\.");
 		ClassControl from = null;
 		if (split.length == 2) {
 			from = proj.getClass(split[0]);
