@@ -199,5 +199,42 @@ public class Projects extends MainCommand implements DataFormat {
 	public static JSONObject projectS(ServletContext context, Project p) throws JSONException, Exception {
 		return new JSONObject().put("project", DataFormat.getProjectJSON(context, p));
 	}
+	
+	@GET
+	@Path("/elements/{channel}/{user}/{project}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
+	public Response projectElements(@Context ServletContext context, @PathParam("channel") String channel,
+			@PathParam("user") String userInfo, @PathParam("project") String project) {
+		try {
+			Project p = getProject(context, channel, userInfo, project);
+			JSONObject list = projectElementS(context, p);
+			return Response.ok(list.toString(), MediaType.APPLICATION_JSON).build();
+		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("project: ", e);
+			return sendTextException(e);
+		}
+	}
 
+	public static JSONObject projectElementS(ServletContext context, Project project)
+			throws JSONException, Exception {
+		return SocioData.getSocioData(context).getElementsJSON(project);
+	}
+
+	@GET
+	@Path("/elements/{project}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
+	public Response projectElements(@Context ServletContext context, @PathParam("project") long id) {
+		try {
+			Project p = getProject(context, id);
+			JSONObject project = projectElementS(context, p);
+			return Response.ok(project.toString(), MediaType.APPLICATION_JSON).build();
+		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("project/id: ", e);
+			return sendTextException(e);
+		}
+	}
 }

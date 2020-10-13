@@ -760,6 +760,31 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return getPng(allActions);
 	}
 	protected abstract Map<String, List<Action>> getSentencesAction(String text) throws Exception;
+	
+	@Override
+	public File deleteObjects(Msg msg, Map<String, List<String>> objects) throws Exception {
+		if (!isOpen()) {
+			throw new InternalException("The project can't be edited. It is closed.");
+		}
+		if (isLocked()) {
+			throw new InternalException("The project can't be edited. It is locked.");
+		}
+		List<Action> actions = deleteActions(objects);
+		Map<String, List<Action>> sentAction= new HashMap<>();
+		sentAction.put(msg.getText(), actions);
+		
+		if (actions.isEmpty()) {
+			msg.setUndoable(false);
+		} else {
+			undoMsg.clear();
+			msg.setUndoable(true);
+			msg.setSentences(sentAction);
+			history.getMsg().add(msg);
+		}
+
+		return getPng(actions);
+	}
+	public abstract List<Action> deleteActions(Map<String, List<String>> objects) throws Exception;
 
 	public File getPng(List<Action> actions) {
 		return getPng(actions, false);
@@ -2176,4 +2201,5 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return result.toString();
 	}
 
+	
 } // ProjectImpl

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.json.JSONObject;
 
 import es.uam.app.actions.Add;
 import es.uam.app.actions.AddModel;
@@ -449,6 +450,18 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	@Override
 	protected List<String> getSentenceOrder2(Msg msg) throws ParseException {
 		return getSentenceOrder(msg);
+	}
+
+	@Override
+	public List<Action> deleteActions(Map<String, List<String>> objects) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public JSONObject getElementsJson() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

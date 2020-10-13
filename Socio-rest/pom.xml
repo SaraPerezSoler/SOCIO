@@ -60,9 +60,9 @@
 			<artifactId>jersey-hk2</artifactId>
 			<version>2.27</version>
 		</dependency>
-		
+
 		<!-- Necesary for JAVA 11 -->
-				<!-- API, java.xml.bind module -->
+		<!-- API, java.xml.bind module -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
@@ -111,10 +111,11 @@
 			<artifactId>jwnl</artifactId>
 			<version>1.4_rc3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.plantuml/plantuml -->
 		<dependency>
 			<groupId>net.sourceforge.plantuml</groupId>
 			<artifactId>plantuml</artifactId>
-			<version>8059</version>
+			<version>1.2020.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

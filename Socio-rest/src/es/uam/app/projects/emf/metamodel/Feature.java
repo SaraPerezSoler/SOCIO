@@ -46,4 +46,7 @@ public interface Feature extends MetamodelControlInterface, ControlCopier {
 	
 	public void copyValuesIn(Feature other);
 	public void removeValues();
+	public int getLowerBound();
+	public int getUpperBound();
+	public String getTypeString();
 }

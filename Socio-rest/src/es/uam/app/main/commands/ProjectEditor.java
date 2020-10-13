@@ -2,6 +2,10 @@ package es.uam.app.main.commands;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -12,6 +16,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.socio.client.beans.Message;
 
@@ -220,4 +227,91 @@ public class ProjectEditor extends MainCommand {
 		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
 		return undo(context, actual, msg);
 	}
+	
+	
+	@POST
+	@Path("/delete/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	public Response delete(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
+			throws Exception {
+		try {
+			Project actual = getProject(context, id);
+			return delete(context, incomingData, actual);
+		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
+			return sendTextException(e);
+		}
+
+	}
+
+	@POST
+	@Path("/delete/{channel}/{user}/{project}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	public Response delete(@Context ServletContext context, InputStream incomingData,
+			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
+			{
+		try {
+			Project actual = getProject(context, channel, user, project);
+			return delete(context, incomingData, actual);
+		} catch (InternalException e) {
+			return sendTextException(e);
+		}catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
+			return sendTextException(e);
+		}
+
+	}
+
+	private Response delete(ServletContext context, InputStream incomingData, Project actual) throws Exception {
+
+		Msg msg = getMsg(context, incomingData, null);
+		SocioData.getSocioData(context).addUser(msg.getUser());
+		File png = delete(context, actual,msg);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+	
+	private static Map<String, List<String>> getObjects(Msg msg) {
+		JSONObject object = new JSONObject(msg.getText());
+		if (object.has("elements")) {
+			object = object.getJSONObject("elements");
+		}
+		Map<String, List<String>> ret= new HashMap<String, List<String>>();
+		JSONArray names = object.names();
+		for (int i=0; i< names.length(); i++) {
+			String name = names.getString(i);
+			List<String> features = new ArrayList<String>();
+			JSONArray array = object.getJSONArray(name);
+			for (int j=0; j<array.length(); j++) {
+				features.add(array.getString(j));
+			}
+			ret.put(name, features);
+		}
+		return ret;
+	}
+
+	public static File delete(ServletContext context, Project actual, Msg msg) throws Exception {
+
+		SocioData.getSocioData(context).addUser(msg.getUser());
+		if (!(msg.getUser().canEdit(actual))) {
+			throw new InternalException("You don't have editing permissions in this project.");
+		}
+		Map<String, List<String>> objects = getObjects(msg);
+		File png = SocioData.getSocioData(context).delete(actual, msg, objects);
+		return png;
+		
+	}
+	public static File delete(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
+		
+		return delete(context, actual, msg);
+	}
+
 }

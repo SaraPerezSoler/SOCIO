@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.json.JSONObject;
 
 import branchDecision.Decision;
 import es.uam.app.actions.Add;
@@ -603,5 +604,9 @@ public interface Project extends EObject {
 	void copyModel(Project p);
 
 	void changeBranchGroup(Project actual, String branchGroup) throws InternalException;
+
+	File deleteObjects(Msg msg,Map<String, List<String>> objects) throws Exception;
+
+	JSONObject getElementsJson();
 
 } // Project
