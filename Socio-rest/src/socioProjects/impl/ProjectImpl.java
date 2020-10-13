@@ -832,7 +832,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	private List<String> orderedSentences(Set<String> keys, Msg m) throws Exception {
 		List<String> ret = new ArrayList<>();
-		List<String> sentences = getSentenceOrder(m);
+		List<String> sentences = getSentenceOrder(m.getText());
 		for (String s : sentences) {
 			bucle1: for (String k : keys) {
 				if (s.contains(k)) {
@@ -843,11 +843,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		return ret;
 	}
-	protected abstract List<String> getSentenceOrder(Msg msg) throws ParseException;
-	protected abstract List<String> getSentenceOrder2(Msg msg) throws ParseException;
+	protected abstract List<String> getSentenceOrder(String text) throws ParseException;
+	protected abstract List<String> getSentenceOrder2(String text) throws ParseException;
 	private List<String> orderedSentences2(Set<String> keys, Msg m) throws Exception {
 		List<String> ret = new ArrayList<>();
-		List<String> sentences = getSentenceOrder2(m);
+		List<String> sentences = getSentenceOrder2(m.getText());
 		for (String s : sentences) {
 			bucle1: for (String k : keys) {
 				if (s.contains(k)) {
