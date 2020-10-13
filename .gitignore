@@ -4,9 +4,6 @@ old/es.uam.miso.modelado/.fatjar
 *.class
 *.lst
 SocioTelegram/pass.json
-*/.classpath
-*/.project
-*/.settings/*
 */target/*
 SocioTelegram/history.txt
 SocioTelegram/messege.txt
