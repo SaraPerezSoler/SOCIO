@@ -35,7 +35,6 @@ import modelInfo.NLClass;
 import modelInfo.NLFeature;
 import modelInfo.NLModel;
 import projectHistory.Action;
-import projectHistory.Msg;
 import socioProjects.ModelProject;
 import socioProjects.SocioProjectsPackage;
 
@@ -440,15 +439,15 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	}
 
 	@Override
-	protected List<String> getSentenceOrder(Msg msg) {
+	protected List<String> getSentenceOrder(String text) {
 		List<String> list = new ArrayList<>();
-		list.add(msg.getText());
+		list.add(text);
 		return list;
 	}
 
 	@Override
-	protected List<String> getSentenceOrder2(Msg msg) throws ParseException {
-		return getSentenceOrder(msg);
+	protected List<String> getSentenceOrder2(String text) throws ParseException {
+		return getSentenceOrder(text);
 	}
 
 
