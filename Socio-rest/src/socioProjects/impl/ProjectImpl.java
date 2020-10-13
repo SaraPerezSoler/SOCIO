@@ -45,6 +45,7 @@ import branchDecision.Decision;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
+import es.uam.app.main.exceptions.NotActionException;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.plantUML.*;
 import es.uam.app.projects.emf.Controlador;
@@ -750,6 +751,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		
 		if (allActions.isEmpty()) {
 			msg.setUndoable(false);
+			throw new NotActionException();
 		} else {
 			undoMsg.clear();
 			msg.setUndoable(true);
