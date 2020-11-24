@@ -88,7 +88,7 @@ public class Chat {
 			sendMessage("This action has not been completed: " + e.getMessage(), false);
 			this.state = DEFAULT_STATE;
 		} catch (ResponseError e) {
-			sendMessage("Unexpected error:" + " "+ e.getMessage(), false);
+			sendMessage(e.getMessage(), false);
 		}
 	}
 
