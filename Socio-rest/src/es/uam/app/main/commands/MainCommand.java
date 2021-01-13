@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.Normalizer;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
@@ -200,5 +201,10 @@ public abstract class MainCommand implements DataFormat {
 	protected Response sendTextException(Exception e) {
 		return Response.ok(e.getMessage(), MediaType.TEXT_PLAIN).status(Status.INTERNAL_SERVER_ERROR).build();
 	}
+	protected static String normalizeString(String text) {
+		String stringNormalize = Normalizer.normalize(text, Normalizer.Form.NFD);   
+		stringNormalize = stringNormalize.replaceAll("[^\\p{ASCII}]", "");
+		return stringNormalize;
 
+	}
 }

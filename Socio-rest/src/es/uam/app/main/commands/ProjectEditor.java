@@ -71,6 +71,8 @@ public class ProjectEditor extends MainCommand {
 	public static File editProject(ServletContext context, Project actual, Msg msg) throws Exception {
 
 		if (msg.hasText()) {
+			msg.setText(normalizeString(msg.getText()));
+			msg.setMsg(normalizeString(msg.getMsg()));
 			if (msg.getUser().canEdit(actual)) {
 				File png = SocioData.getSocioData(context).execute(actual, msg);
 				return png;
