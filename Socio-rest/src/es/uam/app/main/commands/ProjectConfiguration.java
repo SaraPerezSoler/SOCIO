@@ -74,7 +74,7 @@ public class ProjectConfiguration extends MainCommand implements DataFormat {
 			getProject(context, user.getChannel(), user.getNick(), project);
 
 		} catch (InternalException e) {
-
+			project = normalizeString(project);
 			Project p = SocioData.getSocioData(context).createProject(project, user, type, mmodel, v, null,
 					"");
 			return new JSONObject().put("project", DataFormat.getProjectJSON(context, p));
