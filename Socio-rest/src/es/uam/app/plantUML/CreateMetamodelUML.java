@@ -61,7 +61,9 @@ public class CreateMetamodelUML implements CreateText{
 			+ "ArrowColor SeaGreen" + ENTR 
 			+ "BorderColor SpringGreen" + ENTR 
 			+ "}" + ENTR
-			+ "skinparam stereotypeCBackgroundColor YellowGreen"+ ENTR;
+			+ "skinparam stereotypeCBackgroundColor YellowGreen"+ ENTR
+			+ "skinparam defaultFontSize 09" + ENTR
+			+ "skinparam defaultFontName Courier" + ENTR;
 	public static final String END = ENTR + "@enduml";
 
 	private static final String CLASS = "Class";
