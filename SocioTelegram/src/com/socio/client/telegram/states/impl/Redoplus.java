@@ -34,7 +34,7 @@ public class Redoplus implements CommandState{
 
 	@Override
 	public String getCommand() {
-		return "redo+";
+		return "redoplus";
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class Undoplus implements CommandState{
 	@Override
 	public String getCommand() {
 		
-		return "undo+";
+		return "undoplus";
 	}
 
 	@Override
