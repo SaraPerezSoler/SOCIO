@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/ModellingBot/assets/css/style.css?v=7c52275dfa8cb50b9b27d23b52fd8311f10c9319" media="screen" type="text/css">
+    <link rel="stylesheet" href="/ModellingBot/assets/css/print.css" media="print" type="text/css">
+    <link rel="stylesheet" type="text/css"	href="bootstrap/css/bootstrap.min.css" />
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
 
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>ModellingBot by SaraPerezSoler</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="https://saraperezsoler.github.io/ModellingBot/">
+          <h1>SOCIO</h1>
+        </a>
+        <h2>Modelling bot</h2>
+          <a href="https://github.com/SaraPerezSoler/ModellingBot" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row justify-content-md-center box">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link page-size" href="/ModellingBot/index.html">English v1.0</a></li>
+            <li class="page-item"><a class="page-link page-size" href="/ModellingBot/v2_0.html">English v2.0</a></li>
+            <li class="page-item active" aria-current="page"><span
+              class="page-link page-size"> Spanish v2.0 <span class="sr-only">(current)</span>
+            </span></li>
+            <li class="page-item"><a class="page-link page-size" href="/ModellingBot/es_v2_0.html">Spanish v2.0</a></li>
+            
+          </ul>
+        </nav>
+      </div>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+         <h2 id="welcome">Welcome</h2>
+
+<p>Bienvenido a la Ayuda de SOCIO. Puedes trabajar con él en <a href="https://t.me/ModellingBot">Telegram</a> y <a href="https://twitter.com/ModellingBot">Twitter</a>. A continuación, encontrarás algunos consejos su para uso</p>
+
+
+
+<h2 id="tool-demo">Demostración de herramienta (SOCIO: Meta-modelado)</h2>
+<p>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/kHf2qNtfNW4" frameborder="0" allowfullscreen=""></iframe>
+</p>
+<h2 id=planner-demo">Demostración de Project Planner (Modelado)</h2>
+<p> Usando nuestro enfoque, hemos generado un chatbot llamado Project Planner para instanciar un modelo de Project usando Lenguaje Natural. En este vídeo, se muestra una breve interacción de dos usuarios con el bot.
+          </p>
+<p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5mKxbCgf4q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
+<h2 id="how-it-works-on-telegram">Cómo funciona SOCIO en Telegram</h2>
+
+<p>Los bots de Telegran funcionan con comandos que empiezan con "/". Se puede enviar solo el comando y SOCIO pedirá los argumentos necesarios (figura 1), o se puede enviar el comando y los argumentos juntos (figura 2).
+   SOCIO se puede usar en un grupo o en un chat individual. 
+</p>
+
+<p>Para usar el chatbot primero es necesario seleccionar un proyecto (<em>/setproject</em>, figura 2) para un chat o crear un nuevo proyecto (<em>/newproject</em>. figura 1). Después ya se pueden enviar las frases para crear el modelo. En el caso de los grupos, las frases de modelado se deben mandar usando el comando (<em>/talk</em>).</p>
+
+ <figure>
+  <img src="img/newproject.png"
+       alt="ejemplo del comando newproject" width="400">
+
+  <figcaption>Figura 1: Ejemplo del comando newproject</figcaption>
+</figure>
+                   
+<figure>
+  <img src="img/setproject.png"
+       alt="ejemplo del comando setproject" width="400">
+
+  <figcaption>Figura 2: Ejemplo del comando setproject</figcaption>
+</figure>
+<p>A continuación, se listan todos los comandos disponibles en SOCIO:</p>
+
+<ul>                                    
+  <li><em>/talk</em>: chatea con el chatbot en lenguaje natural
+  <li><em>/undo</em>: deshace el último mensaje
+  <li><em>/redo</em>: rehace el último deshacer
+  <li><em>/show</em>: muestra el último estado del proyecto
+  <li><em>/setproject</em>: selecciona un proyecto para trabajar
+  <li><em>/get</em>: envia el modelo en formato ecore
+  <li><em>/validate</em>: valida el modelo
+  <li><em>/help</em>: devuelve la página web de ayuda
+  <li><em>/history</em>: muestra el historial de mensajes y las estadisticas del proyecto
+  <li><em>/projects</em>: muestra una lista de los proyectos existentes
+  <li><em>/projectmanager - gestiona los usuarios y la visibilidad de un proyecto.
+  <li><em>/newproject</em>: crea y seleciona un proyecto
+  <li><em>/delproject</em>: elimina un proyecto
+  <li><em>/start</em>: inicializa el chatbot
+</ul>
+ 
+<h2 id "tips">Consejos</h2>
+ <ol>
+  <li>Los tipos de atributos aceptados por el chatbot son: int, double, float, date y string</li>
+  <li>Escribe correctamente: Es posible que SOCIO no te comprenda bien si cometes errores ortográficos.</li>
+  <li>Si SOCIO no entiende algún sustativo, puedes añadir un determinante delante del sustantivo (por ejemplo, "add <u>a</u> door", "add <u>the</u> door", "add <u>some</u> door"...).</li>
+  <li>Por lo general, SOCIO busca sinónimos y si un elemento del modelo coincide con el sustantivo o algunos sinónimos, realiza las acciones sobre ese elemento. Si se quiere añadir un elemento nuevo, se pueden usar las sentencias impertivas de añadir (p.e. "add a door"), que no busca sinónimos.</li>
+  <li>Si SOCIO no te entiende correctamebte, puedes deshacer las acciones e intertar decirlo de otra manera o dividir la frase.</li>
+</ol>
+<h2 id="examples">Ejemplos</h2>
+
+<p>Ahora veremos algunos ejemplos de frases que puedes usar y cómo. Siempre que se referencia algún elemento que no exista en el modelo, la primera acción del chatbot es crear dicho objeto</p>
+
+<h3 id="1-add--create--make-object">1. Add / Create / Make &lt;Object&gt;</h3>
+
+<p>Estás frases añade nuevos elementos en SOCIO sin buscar sinónimos.</p>
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center">Create person.</p></th>
+<th><p style="text-align:center">Add work in person.</p></th>
+<th><p style="text-align:center">Add numeric age in person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_12-57-28.jpg" /></div></th>
+</tr>
+</table>
+
+<h3 id="2-remove--erase-object">2. Remove / Erase &lt;Object&gt;</h3>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Erase numeric age from person.</p></th>
+<th><p style="text-align:center"> Remove work from person.</p></th>
+<th><p style="text-align:center"> Remove person.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_12-57-08.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_12-56-40.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-29_11-56-22.jpg" /></div></th>
+</tr>
+</table>
+
+<h3 id="3-object--to-be-object">3. &lt;Object&gt;  to be &lt;Object&gt;</h3>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Packages can be bulky, heavy or fragile.</p></th>
+<th><p style="text-align:center"> Students and teachers are persons.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-37-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-39-04.jpg" /></div></th>
+</tr>
+<tr>
+<th><p style="text-align:center"> Name of person is a text.<br />Person's name is a text.</p></th>
+<th><p style="text-align:center"> The wife of a man is a woman.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-39-23.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-40-04.jpg" /></div></th>
+</tr>
+</table>
+
+<h3 id="4-object-have--be-characterized-by--be-identified-by--be-recognized-by-object">4. &lt;Object&gt; have / be characterized by / be identified by / be recognized by &lt;Object&gt;</h3>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Bulky packages are characterized by their width, length and height.</p></th>
+<th><p style="text-align:center"> Students have a numeric identifier.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-54-43.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
+</tr>
+<tr>
+<th><p style="text-align:center"> Medicines have an active ingredient.</p></th>
+<th><p style="text-align:center"> Person may has a work</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-55-30.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-56-28.jpg" /></div></th>
+</tr>
+</table>
+
+<h3 id="5-object-contain--be-made-of--be-made-up-of--be-made-from--be-composed--include-object">5. &lt;Object&gt; contain / be made of / be made up of / be made from / be composed / include &lt;Object&gt;</h3>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> The house is made of rooms.</p></th>
+<th><p style="text-align:center"> Students contains a numeric identifier.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_15-14-51.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_13-55-07.jpg" /></div></th>
+</tr>
+</table>
+
+<h3 id="6-object-verb-object">6. &lt;Object&gt; &lt;verb&gt; &lt;Object&gt;</h3>
+
+<table style="width:100%;text-align:center">
+<tr>
+<th><p style="text-align:center"> Carriers can handle deliveries.</p></th>
+<th><p style="text-align:center"> The student passed the exams.</p></th>
+<th><p style="text-align:center"> The cheque is sent to the bank.</p></th>
+</tr>
+<tr>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_15-22-01.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_15-22-29.jpg" /></div></th>
+<th><div style="text-align:center"><img src="img/photo_2017-05-30_15-22-51.jpg" /></div></th>
+</tr>
+</table>
+
+
+        </section>
+      </div>
+    </div>
+</div>
+    
+  </body>
+</html>
