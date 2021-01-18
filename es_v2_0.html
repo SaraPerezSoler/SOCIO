@@ -48,7 +48,7 @@
         <section id="main-content">
          <h2 id="welcome">Welcome</h2>
 
-<p>Bienvenido a la Ayuda de SOCIO. Puedes trabajar con él en <a href="https://t.me/ModellingBot">Telegram</a> y <a href="https://twitter.com/ModellingBot">Twitter</a>. A continuación, encontrarás algunos consejos para usar SOCIO</p>
+<p>Bienvenido a la Ayuda de SOCIO. Puedes trabajar con él en <a href="https://t.me/ModellingBot">Telegram</a> y <a href="https://twitter.com/ModellingBot">Twitter</a>. A continuación, encontrarás algunos consejos su para uso</p>
 
 
 
@@ -65,12 +65,26 @@
 
 <h2 id="how-it-works-on-telegram">Cómo funciona SOCIO en Telegram</h2>
 
-<p>En <a href="https://t.me/SOCIOV2_Bot">Telegram</a> puedes usar SOCIO en un grupo o en un chat individual. 
-Los bots de Telegran funcionan con comandos que empiezan con "/".Puedes enviar solo el comando y SOCIO te pedirá los argumentos si son necesarios, o puede enviar el comando y los argumentos juntos.</p>
+<p>Los bots de Telegran funcionan con comandos que empiezan con "/". Se puede enviar solo el comando y SOCIO pedirá los argumentos necesarios (figura 1), o se puede enviar el comando y los argumentos juntos (figura 2).
+   SOCIO se puede usar en un grupo o en un chat individual. 
+</p>
 
-<p>Primero debes seleccionar un Proyecto (<em>/setproject</em>) para un chat o crear un nuevo proyecto (<em>/newproject</em>). Luego puedes escribir las frases para crear el modelo. En caso de que estés en un grupo, las frases de modelado se deben mandar usando el comando (<em>/talk</em>).</p>
+<p>Para usar el chatbot primero es necesario seleccionar un proyecto (<em>/setproject</em>, figura 2) para un chat o crear un nuevo proyecto (<em>/newproject</em>. figura 1). Después ya se pueden enviar las frases para crear el modelo. En el caso de los grupos, las frases de modelado se deben mandar usando el comando (<em>/talk</em>).</p>
 
-<p>A continuación, se listan todos los comandos de SOCIO:</p>
+ <figure>
+  <img src="img/newproject.png"
+       alt="ejemplo del comando newproject" width="400">
+
+  <figcaption>Figura 1: Ejemplo del comando newproject</figcaption>
+</figure>
+                   
+<figure>
+  <img src="img/setproject.png"
+       alt="ejemplo del comando setproject" width="400">
+
+  <figcaption>Figura 2: Ejemplo del comando setproject</figcaption>
+</figure>
+<p>A continuación, se listan todos los comandos disponibles en SOCIO:</p>
 
 <ul>                                    
   <li><em>/talk</em>: chatea con el chatbot en lenguaje natural
@@ -92,20 +106,21 @@ Los bots de Telegran funcionan con comandos que empiezan con "/".Puedes enviar s
   <li><em>/start</em>: inicializa el chatbot
 </ul>
  
-<h2 id "tips">Tips</h2>
+<h2 id "tips">Consejos</h2>
  <ol>
-  <li>Write correctly: SOCIO may not understand you well if you make mistakes.</li>
-  <li>If SOCIO can’t understand some noun you can add a determinant (p.e. "add <u>a</u> door", "add <u>the</u> door", "add <u>some</u> door"...).</li>
-  <li>Usually SOCIO searchs synonyms and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. If you want add a new element, you can use the add sentence (p.e. "add a door"), that doesn’t search synonyms.</li>
-  <li>If SOCIO didn’t understand well some sentences, you can undo the actions and try to say it with other sentence or divided.</li>
+  <li>Los tipos de atributos aceptados por el chatbot son: int, double, float, date y string</li>
+  <li>Escribe correctamente: Es posible que SOCIO no te comprenda bien si cometes errores ortográficos.</li>
+  <li>Si SOCIO no entiende algún sustativo, puedes añadir un determinante delante del sustantivo (por ejemplo, "add <u>a</u> door", "add <u>the</u> door", "add <u>some</u> door"...).</li>
+  <li>Por lo general, SOCIO busca sinónimos y si un elemento del modelo coincide con el sustantivo o algunos sinónimos, realiza las acciones sobre ese elemento. Si se quiere añadir un elemento nuevo, se pueden usar las sentencias impertivas de añadir (p.e. "add a door"), que no busca sinónimos.</li>
+  <li>Si SOCIO no te entiende correctamebte, puedes deshacer las acciones e intertar decirlo de otra manera o dividir la frase.</li>
 </ol>
-<h2 id="examples">Examples</h2>
+<h2 id="examples">Ejemplos</h2>
 
-<p>Now let’s look the sentences you can use and how.</p>
+<p>Ahora veremos algunos ejemplos de frases que puedes usar y cómo. Siempre que se referencia algún elemento que no exista en el modelo, la primera acción del chatbot es crear dicho objeto</p>
 
 <h3 id="1-add--create--make-object">1. Add / Create / Make &lt;Object&gt;</h3>
 
-<p>These sentences add new objects to the models. In this case, SOCIO doesn’t search synonyms.</p>
+<p>Estás frases añade nuevos elementos en SOCIO sin buscar sinónimos.</p>
 <table style="width:100%;text-align:center">
 <tr>
 <th><p style="text-align:center">Create person.</p></th>
