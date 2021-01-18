@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="recommenderQuestionnaire" nsURI="recommenderQuestionnaire" nsPrefix="recommenderQuestionnaire">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Questionnaire">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tools" lowerBound="1" upperBound="-1"
+        eType="#//Tool" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="questions" lowerBound="1"
+        upperBound="-1" eType="#//Question" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tool" eSuperTypes="#//WithName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acceptedOptions" lowerBound="1"
+        upperBound="-1" eType="#//Option" eOpposite="#//Option/acceptedTools"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unknown" upperBound="-1"
+        eType="#//Option" eOpposite="#//Option/unknown"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refusedOptions" upperBound="-1"
+        eType="#//Option" eOpposite="#//Option/refusedTools"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Question" eSuperTypes="#//WithName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiresponse" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="options" lowerBound="1"
+        upperBound="-1" eType="#//Option" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Evaluation" eSuperTypes="#//Question"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Option">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="allToolsRegister toolInAcceptedAndRefused toolInRefusedAndUnknown toolInAcceptedAndUnkown"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="allToolsRegister" value="Tool.allInstances()->forAll(t |&#xA;&#x9;&#x9;&#x9;&#x9;self.acceptedTools->includes(t) or self.refusedTools->includes(t) or self.unknown->includes(t))"/>
+      <details key="toolInAcceptedAndRefused" value="Tool.allInstances()->forAll(t | self.acceptedTools->includes(t) implies not&#xA;&#x9;&#x9;&#x9;&#x9;self.refusedTools->includes(t))"/>
+      <details key="toolInRefusedAndUnknown" value="Tool.allInstances()->forAll(t | self.refusedTools->includes(t) implies not&#xA;&#x9;&#x9;&#x9;&#x9;self.unknown->includes(t))"/>
+      <details key="toolInAcceptedAndUnkown" value="Tool.allInstances()->forAll(t | self.acceptedTools->includes(t) implies not&#xA;&#x9;&#x9;&#x9;&#x9;self.unknown->includes(t))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acceptedTools" lowerBound="1"
+        upperBound="-1" eType="#//Tool" eOpposite="#//Tool/acceptedOptions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refusedTools" upperBound="-1"
+        eType="#//Tool" eOpposite="#//Tool/refusedOptions"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unknown" upperBound="-1"
+        eType="#//Tool" eOpposite="#//Tool/unknown"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WithName" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
