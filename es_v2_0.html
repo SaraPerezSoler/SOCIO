@@ -70,20 +70,19 @@
 </p>
 
 <p>Para usar el chatbot primero es necesario seleccionar un proyecto (<em>/setproject</em>, figura 2) para un chat o crear un nuevo proyecto (<em>/newproject</em>. figura 1). Después ya se pueden enviar las frases para crear el modelo. En el caso de los grupos, las frases de modelado se deben mandar usando el comando (<em>/talk</em>).</p>
-<figure>
+
+ <figure>
   <img src="img/newproject.png"
-       alt="ejemplo del comando newproject" width="400"
-       height="341">
+       alt="ejemplo del comando newproject" width="400">
 
   <figcaption>Figura 1: Ejemplo del comando newproject</figcaption>
 </figure>
                    
 <figure>
   <img src="img/setproject.png"
-       alt="ejemplo del comando setproject" width="400"
-       height="341">
+       alt="ejemplo del comando setproject" width="400">
 
-  <figcaption>Figura 1: Ejemplo del comando setproject</figcaption>
+  <figcaption>Figura 2: Ejemplo del comando setproject</figcaption>
 </figure>
 <p>A continuación, se listan todos los comandos disponibles en SOCIO:</p>
 
@@ -107,8 +106,9 @@
   <li><em>/start</em>: inicializa el chatbot
 </ul>
  
-<h2 id "tips">Tips</h2>
+<h2 id "tips">Consejos</h2>
  <ol>
+  <li>Los tipos de atributos aceptados por el chatbot son: int, double, float, date y string</li>
   <li>Write correctly: SOCIO may not understand you well if you make mistakes.</li>
   <li>If SOCIO can’t understand some noun you can add a determinant (p.e. "add <u>a</u> door", "add <u>the</u> door", "add <u>some</u> door"...).</li>
   <li>Usually SOCIO searchs synonyms and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. If you want add a new element, you can use the add sentence (p.e. "add a door"), that doesn’t search synonyms.</li>
