@@ -46,48 +46,58 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h2 id="welcome">Welcome</h2>
+         <h2 id="welcome">Welcome</h2>
 
-<p>Welcome to Modelling Bot Help, the bot’s name is Socio and you can work with it in <a href="https://t.me/ModellingBot">Telegram</a> and <a href="https://twitter.com/ModellingBot">Twitter</a>. First some tips to work with Socio:</p>
+<p>Bienvenido a la Ayuda de SOCIO. Puedes trabajar con él en <a href="https://t.me/ModellingBot">Telegram</a> y <a href="https://twitter.com/ModellingBot">Twitter</a>. A continuación, encontrarás algunos consejos para usar SOCIO</p>
 
 
 
-<h2 id="tool-demo">Tool demo (Meta-modelling)</h2>
+<h2 id="tool-demo">Demostración de herramienta (SOCIO: Meta-modelado)</h2>
 <p>
  <iframe width="560" height="315" src="https://www.youtube.com/embed/kHf2qNtfNW4" frameborder="0" allowfullscreen=""></iframe>
 </p>
-<h2 id=planner-demo">Project Planner Demo (Modelling)</h2>
-<p> Using our approach, we generate a Telegram chatbot called Project Planner to instantiate a project model using Natural Language. In this video, we show a brief interaction of two users with the bot.
+<h2 id=planner-demo">Demostración de Project Planner (Modelado)</h2>
+<p> Usando nuestro enfoque, hemos generado un chatbot llamado Project Planner para instanciar un modelo de Project usando Lenguaje Natural. En este vídeo, se muestra una breve interacción de dos usuarios con el bot.
           </p>
 <p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5mKxbCgf4q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-<h2 id="how-it-works-on-telegram">How it works on Telegram</h2>
+<h2 id="how-it-works-on-telegram">Cómo funciona SOCIO en Telegram</h2>
 
-<p>In <a href="https://t.me/ModellingBot">Telegram</a> you can add the bot in a group or talk with it in a single chat. 
-Now let’s see how you must work with Socio. Telegram’s bots work with commands. A command starts with /. You can send only the command and the bot will ask you for the arguments if it is necesary, or you can send the command and arguments together.</p>
+<p>In <a href="https://t.me/SOCIOV2_Bot">Telegram</a> you can add the bot in a group or talk with it in a single chat. 
+Now let’s see how you must work with SOCIO. Telegram’s bots work with commands. A command starts with /. You can send only the command and the bot will ask you for the arguments if it is necesary, or you can send the command and arguments together.</p>
 
 <p>First you must select a Project (<em>/setproject</em>) for a chat or make a new project (<em>/newproject</em>). Then you can write your sentences to create the model. In case you are in a group, the bot only can read mesages with a command, so you have the talk command (<em>/talk</em>) to talk with Socio.</p>
 
-<p>You also have:</p>
+<p>Below is a list with all the commands in telegram:</p>
 
-<ul>
-  <li><em>/projects</em>: send you a photo with a list of all projects.</li>
-  <li><em>/get</em>: send you a file with the model in ecore format.</li>
-  <li><em>/history</em>: show you a picture with the project history</li>
-  <li><em>/undo</em>: undo the last message</li>
-  <li><em>/redo</em>: redo the last undo</li>
-  <li><em>/show</em>: show you the project state in that moment.</li>
-  <li><em>/validate</em>: validate the model.</li>
+<ul>                                    
+  <li><em>/talk</em>: start a conversation with the bot
+  <li><em>/undo</em>: undo the last message
+  <li><em>/undoplus</em>: undo the last N messages
+  <li><em>/redo</em>: redo the last undo
+  <li><em>/redoplus</em>: redo the last N undos
+  <li><em>/remove</em>: remove a concrete element in the model
+  <li><em>/show</em>: show a project
+  <li><em>/setproject</em>: select a project to the chat
+  <li><em>/get</em>: send a file with the model
+  <li><em>/validate</em>: validate the model
+  <li><em>/help</em>: give you a help web page
+  <li><em>/history</em>: show a project's history
+  <li><em>/projects</em>: show a list of projects
+  <li><em>/projectmanager - Project manager: change visibility, add permision to a user.
+  <li><em>/newproject</em>: create and set a new project
+  <li><em>/delproject</em>: delete a project
+  <li><em>/start</em>: starts the bot
 </ul>
  
 <h2 id "tips">Tips</h2>
  <ol>
-  <li>Write correctly: Socio may not understand you well if you make mistakes.</li>
-  <li>If Socio can’t understand some noun you can put it with “” or with determinants.</li>
-  <li>Usually Socio searchs synonyms and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. In most cases, Socio doesn’t do that you want to do for this reason. In these cases, you can use the add command, that doesn’t search synonyms.</li>
-  <li>If Socio didn’t understand well some sentences, you can undo the actions and try to say it with other sentence or divided.</li>
+  <li>Write correctly: SOCIO may not understand you well if you make mistakes.</li>
+  <li>If SOCIO can’t understand some noun you can add a determinant (p.e. "add <u>a</u> door", "add <u>the</u> door", "add <u>some</u> door"...).</li>
+  <li>Usually SOCIO searchs synonyms and if an element of the model matches with the noun or some synonyms, it performs the actions on that element. If you want add a new element, you can use the add sentence (p.e. "add a door"), that doesn’t search synonyms.</li>
+  <li>If SOCIO didn’t understand well some sentences, you can undo the actions and try to say it with other sentence or divided.</li>
 </ol>
 <h2 id="examples">Examples</h2>
 
@@ -95,7 +105,7 @@ Now let’s see how you must work with Socio. Telegram’s bots work with comman
 
 <h3 id="1-add--create--make-object">1. Add / Create / Make &lt;Object&gt;</h3>
 
-<p>These sentences add new objects to the models. In this case, Socio doesn’t search synonyms.</p>
+<p>These sentences add new objects to the models. In this case, SOCIO doesn’t search synonyms.</p>
 <table style="width:100%;text-align:center">
 <tr>
 <th><p style="text-align:center">Create person.</p></th>
