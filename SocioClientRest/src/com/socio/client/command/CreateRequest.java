@@ -173,7 +173,9 @@ public abstract class CreateRequest {
 			return e.getFile();
 		} catch (JSONException e1) {
 			throw UNEXPECTED_ERROR;
-		} catch (JSONResponse | TextResponse e) {
+		} catch (TextResponse e) {
+			throw new ResponseError(e.getText());
+		} catch (JSONResponse e) {
 			throw UNEXPECTED_ERROR;
 		}
 		throw UNEXPECTED_ERROR;

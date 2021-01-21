@@ -28,6 +28,7 @@ import com.socio.client.command.SocioCommands;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.states.State;
+import com.socio.client.telegram.states.impl.Start;
 import com.socio.client.telegram.states.impl.TalkConversation;
 import com.socio.client.telegram.states.impl.management.EndVote;
 import com.socio.client.telegram.states.impl.management.EndVoteAdmin;
@@ -61,7 +62,7 @@ public class Chat {
 			if (State.hasFirstCommand(text)) {
 				State command = TelegramControl.commandState.get(State.getFirstCommand(text));
 				if (command == null) {
-					sendMessage("I don't understand this command", update.getMessageId(), false);
+					sendMessage("I don't understand this command\nYou can use all this commands:\n"+Start.getStartCommands(), update.getMessageId(), false);
 					this.state = DEFAULT_STATE;
 				} else {
 					exeState(command, update);
@@ -87,7 +88,7 @@ public class Chat {
 			sendMessage("This action has not been completed: " + e.getMessage(), false);
 			this.state = DEFAULT_STATE;
 		} catch (ResponseError e) {
-			sendMessage("Unexpected internal error has ocurrred " + e.getCause()+" "+ e.getMessage(), false);
+			sendMessage(e.getMessage(), false);
 		}
 	}
 
