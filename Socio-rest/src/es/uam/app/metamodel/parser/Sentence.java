@@ -25,7 +25,7 @@ public class Sentence<T extends Project> {
 
 		this.sentence = new ArrayList<>();
 		tree = parser.parser(stringSentence);
-		
+
 //		tree = null;
 //		String[] split = stringSentence.split(" ");
 //		boolean splitOption = false;
@@ -67,7 +67,7 @@ public class Sentence<T extends Project> {
 //		
 //		
 //	}
-	
+
 	private TypedDependency getDependency(int pos) {
 		for (TypedDependency dep : dependecies) {
 			if (dep.dep().index() == pos) {
@@ -78,23 +78,27 @@ public class Sentence<T extends Project> {
 	}
 
 	public Word getWord(Tree t) {
-		int i = t.indexLeaves(0, false) - 1;
+		if (t != null) {
+			int i = t.indexLeaves(0, false) - 1;
 
-		for (Word w : sentence) {
-			if (w.getPos() == i) {
-				return w;
+			for (Word w : sentence) {
+				if (w.getPos() == i) {
+					return w;
+				}
 			}
 		}
 		return null;
 	}
 
 	public Tree getTree(Word w) {
-		int i = w.getPos();
-		List<Tree> leaves = tree.getLeaves();
-		for (Tree t : leaves) {
-			int j = t.indexLeaves(0, false) - 1;
-			if (j == i) {
-				return t;
+		if (w != null) {
+			int i = w.getPos();
+			List<Tree> leaves = tree.getLeaves();
+			for (Tree t : leaves) {
+				int j = t.indexLeaves(0, false) - 1;
+				if (j == i) {
+					return t;
+				}
 			}
 		}
 		return null;
@@ -106,30 +110,30 @@ public class Sentence<T extends Project> {
 		List<NP> ret = new ArrayList<NP>();
 
 		for (Tree np : nps) {
-			
-			boolean withcc=false;
+
+			boolean withcc = false;
 			List<Word> words = getListWords(np);
-			
+
 			List<Tree> children = np.getChildrenAsList();
 			for (Tree child : children) {
-				if (child.label().value().equalsIgnoreCase("CC")){
-					withcc=true;
-					List<Tree> leaves=child.getLeaves();
-					Word cc=getWord(leaves.get(0));
-					List<Word> list=new ArrayList<>();
-					for (Word w: words){
-						if (w.equals(cc) && !list.isEmpty()){
+				if (child.label().value().equalsIgnoreCase("CC")) {
+					withcc = true;
+					List<Tree> leaves = child.getLeaves();
+					Word cc = getWord(leaves.get(0));
+					List<Word> list = new ArrayList<>();
+					for (Word w : words) {
+						if (w.equals(cc) && !list.isEmpty()) {
 							ret.add(new NP(np, list));
-							list=new ArrayList<>();
-						}else{
+							list = new ArrayList<>();
+						} else {
 							list.add(w);
 						}
 					}
 					ret.add(new NP(np, list));
-					
+
 				}
 			}
-			if (withcc==false){
+			if (withcc == false) {
 				ret.add(new NP(np, words));
 			}
 		}
@@ -139,6 +143,9 @@ public class Sentence<T extends Project> {
 
 	private List<Tree> getNP(Tree t) {
 		List<Tree> ret = new ArrayList<>();
+		if (t == null) {
+			return ret;
+		}
 		boolean isNP = false;
 		boolean someChildIsNP = false;
 		if (t.label().value().equalsIgnoreCase("NP")) {
@@ -206,6 +213,9 @@ public class Sentence<T extends Project> {
 
 	private List<Tree> getVP(Tree t) {
 		List<Tree> ret = new ArrayList<>();
+		if (t == null) {
+			return ret;
+		}
 		if (t.label().value().equalsIgnoreCase("VP")) {
 			ret.add(t);
 			return ret;
@@ -225,6 +235,9 @@ public class Sentence<T extends Project> {
 
 	private List<Tree> getChildrenVP(Tree t) {
 		List<Tree> ret = new ArrayList<>();
+		if (t == null) {
+			return ret;
+		}
 		boolean isVp = false;
 		boolean hasChildrenVp = false;
 		if (t.label().value().equalsIgnoreCase("VP")) {
@@ -252,9 +265,13 @@ public class Sentence<T extends Project> {
 	}
 
 	public List<Word> getListWords(Tree vp) {
-		List<Tree> trees = vp.getLeaves();
-
 		List<Word> ret = new ArrayList<Word>();
+		if (vp == null) {
+			return ret;
+		}
+		
+		List<Tree> trees = vp.getLeaves();
+		
 		for (Tree t : trees) {
 			ret.add(getWord(t));
 		}
@@ -338,8 +355,12 @@ public class Sentence<T extends Project> {
 	}
 
 	public List<NP> getRootNP(Verb v) {
-		Word w = v.getRoot();
 		List<NP> npList = new ArrayList<NP>();
+		if (v == null) {
+			return npList;
+		}
+		Word w = v.getRoot();
+		
 
 		List<Word> wAsso = getAssociates(w);
 		NP concept = getConcept(w);
@@ -447,6 +468,9 @@ public class Sentence<T extends Project> {
 	}
 
 	public boolean isPassive(Verb v) {
+		if (v == null) {
+			return false;
+		}
 		List<Word> asso = getAssociates(v.getRoot());
 		for (Word w : asso) {
 			if (w.getDependecyTag().equals("auxpass")) {
@@ -485,6 +509,9 @@ public class Sentence<T extends Project> {
 	}
 
 	private Word getAssociatesReverse(Word word) {
+		if (word == null) {
+			return null;
+		}
 		for (Word w : sentence) {
 			if (word.isAssociate(w)) {
 				return w;
