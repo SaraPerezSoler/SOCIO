@@ -418,8 +418,12 @@ public class SocioData implements DataFormat {
 	}
 
 	public List<Project> getProjectsForUserCanWrite(User user) {
-		List<Contribution> contributionProjects = user.getContributions();
 		List<Project> write = new ArrayList<>();
+		if (user == null) {
+			return write;
+		}
+		List<Contribution> contributionProjects = user.getContributions();
+		
 		for (Contribution c : contributionProjects) {
 			if (c.getAccess().equals(Access.EDIT)) {
 				write.add(c.getProject());
@@ -429,8 +433,12 @@ public class SocioData implements DataFormat {
 	}
 
 	public List<Project> getProjectsForUserCanRead(User user) {
-		List<Contribution> contributionProjects = user.getContributions();
 		List<Project> read = new ArrayList<>();
+		if (user == null) {
+			return read;
+		}
+		List<Contribution> contributionProjects = user.getContributions();
+		
 		for (Contribution c : contributionProjects) {
 			if (c.getAccess().equals(Access.READ)) {
 				read.add(c.getProject());
