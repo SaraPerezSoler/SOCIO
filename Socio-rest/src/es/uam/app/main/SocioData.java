@@ -112,8 +112,9 @@ public class SocioData implements DataFormat {
 	 * @param context
 	 *            Contexto de la aplicacion
 	 * @return La instancia de la clase singleton SocioData
+	 * @throws Exception 
 	 */
-	public static SocioData getSocioData(ServletContext context) throws Exception {
+	public static SocioData getSocioData(ServletContext context) throws Exception  {
 		if (socioData == null) {
 			PATH = context.getInitParameter("project.files") + PROJECTS_PATH;
 			ini();
@@ -221,7 +222,7 @@ public class SocioData implements DataFormat {
 
 	}
 
-	public void loadProjects() throws Exception {
+	public void loadProjects() {
 		long lastid = Long.MIN_VALUE;
 		List<Project> remove = new ArrayList<>();
 		for (Project p : socioApp.getProjects()) {
@@ -264,7 +265,7 @@ public class SocioData implements DataFormat {
 		return socioApp.getUsers();
 	}
 
-	public User getUser(String nick, String channel) throws InternalException {
+	public User getUser(String nick, String channel) {
 		List<User> users = socioApp.getUsers();
 		try {
 			Long id = Long.parseLong(nick);
@@ -493,7 +494,7 @@ public class SocioData implements DataFormat {
 
 	/*---------------------------------------------------------------Create users and projects, remove projects------------------------------------------------------------*/
 
-	public User addUser(User u) throws InternalException {
+	public User addUser(User u) {
 		User aux = null;
 		if (u.getId() != -1) {
 			aux = getUser(u.getId(), u.getChannel());
@@ -599,7 +600,7 @@ public class SocioData implements DataFormat {
 		}
 	}
 
-	public void removeProject(Project p) throws Exception {
+	public void removeProject(Project p) {
 
 		List<User> users = socioApp.getUsers();
 		for (User u : users) {
