@@ -55,7 +55,7 @@
 	</context-param>
 	<context-param>
 		<param-name>project.files</param-name>
-		<param-value>/home/Sara/Socio-error-msg</param-value>
+		<param-value>/home/Sara/SOCIO2.0</param-value>
 	</context-param>
 	<context-param>
 		<param-name>wordNet.file</param-name>
