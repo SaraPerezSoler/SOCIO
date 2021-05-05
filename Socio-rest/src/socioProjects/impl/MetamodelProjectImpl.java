@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.json.JSONObject;
 
 import es.uam.app.actions.Add;
 import es.uam.app.actions.AddMetamodel;
@@ -30,6 +31,7 @@ import es.uam.app.metamodel.parser.SentencesSplitter;
 import es.uam.app.metamodel.parser.Verb;
 import es.uam.app.metamodel.parser.WordConfigure;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
+import es.uam.app.metamodel.parser.rules.RemoveCommandRule;
 import es.uam.app.projects.emf.metamodel.AttributeControl;
 import es.uam.app.projects.emf.metamodel.ClassControl;
 import es.uam.app.projects.emf.Controlador;
@@ -100,6 +102,16 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 				act.addAll(actual);
 			}
 
+		}
+		return act;
+	}
+	
+	@Override
+	public List<Action> deleteActions(Map<String, List<String>> objects) throws Exception {
+		RemoveCommandRule remove = new RemoveCommandRule(objects);
+		List<Action> act = remove.evaluete(this);
+		for (Action a : act) {
+			a.doIt();
 		}
 		return act;
 	}
@@ -484,7 +496,6 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	protected Map<String, List<Action>> getSentencesAction(String text) throws Exception {
 		List<String> sentences = SentencesSplitter.sentencesSplitter(text);
 		Map<String, List<Action>> actions = new HashMap<>();
-
 		for (String s : sentences) {
 
 			List<Action> act = parseSentence(s);
@@ -507,9 +518,22 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		return sentences;
 	}
 
-
-
-
-
+	@Override
+	public JSONObject getElementsJson() {
+		List<ClassControl> classes = ec.getClasses();
+		JSONObject model = new JSONObject();
+		for (ClassControl class_: classes) {
+			JSONObject jsonClass = new JSONObject();
+			for (Feature f: class_.getFeatures()) {
+				JSONObject jsonfeature = new JSONObject();
+				jsonfeature.put("type", f.getTypeString());
+				jsonfeature.put("min", f.getUpperBound());
+				jsonfeature.put("max", f.getUpperBound());
+				jsonClass.put(f.getName(), jsonfeature);
+			}
+			model.put(class_.getName(), jsonClass);
+		}
+		return model;
+	}
 
 } // MetamodelProjectImpl

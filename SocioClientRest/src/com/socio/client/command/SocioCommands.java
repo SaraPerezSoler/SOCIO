@@ -28,6 +28,7 @@ public class SocioCommands extends Commands {
 	private static final String EDIT_PATH = EDITOR_PATH + "do/";
 	private static final String UNDO_PATH = EDITOR_PATH + "undo/";
 	private static final String REDO_PATH = EDITOR_PATH + "redo/";
+	private static final String DELETE_EDITOR_PATH = EDITOR_PATH + "delete/";
 	private static final String HELP_PATH = "help/";
 	private static final String CONFIGURATION_PATH = "configuration/";
 	private static final String NEW_PROJECT = CONFIGURATION_PATH + "new_project/";
@@ -43,6 +44,7 @@ public class SocioCommands extends Commands {
 	private static final String HISTORY_PROJECT_PATH = HISTORY_PATH + "project/";
 	private static final String PROJECT_PATH = "projects/";
 	private static final String PROJECT_INFO_PATH = PROJECT_PATH + "info/";
+	private static final String PROJECT_ELEMEMTS_PATH = PROJECT_PATH + "elements/";
 	private static final String PROJECT_EDIT_PATH = PROJECT_PATH + "write/";
 	private static final String PROJECT_READ_PATH = PROJECT_PATH + "read/";
 	private static final String STATISTICS_PATH = "statistics/";
@@ -149,7 +151,7 @@ public class SocioCommands extends Commands {
 		String path = UNDO_PATH + getProjectData(projectName);
 		return editor(path, user, msg, text, date, id);
 	}
-
+	
 	public File undo(Project project, User user, String msg, String text, Date date, String id)
 			throws ResponseError, ForbiddenResponse {
 		return undo(getProjectData(project), user, msg, text, date, id);
@@ -163,6 +165,47 @@ public class SocioCommands extends Commands {
 	public File undo(String channel, String nick, String project, User user, String msg, String text, Date date,
 			String id) throws ResponseError, ForbiddenResponse {
 		return undo(getProjectData(channel, nick, project), user, msg, text, date, id);
+	}
+	
+	public File delete(String projectName, User user, String msg, Date date, String id, List<String> classes,
+			List<String> features, List<String> unkown)
+			throws ResponseError, ForbiddenResponse {
+		String path = DELETE_EDITOR_PATH + getProjectData(projectName);
+		JSONObject object = new JSONObject();
+		JSONArray classesArray = new JSONArray();
+		for (String s: classes) {
+			classesArray.put(s);
+		}
+		object.put("class", classesArray);
+		JSONArray featuresArray = new JSONArray();
+		for (String s: features) {
+			featuresArray.put(s);
+		}
+		object.put("feature", featuresArray);
+		
+		JSONArray unknowArray = new JSONArray();
+		for (String s: unkown) {
+			unknowArray.put(s);
+		}
+		object.put("unknow", unknowArray);
+		
+		String text = object.toString();
+		
+		return editor(path, user, msg,text ,date, id);
+	}
+	public File delete(Project project, User user, String msg, Date date, String id, List<String> classes, List<String> features, List<String> unkown)
+			throws ResponseError, ForbiddenResponse {
+		return delete(getProjectData(project), user, msg, date, id, classes, features, unkown);
+	}
+	
+	public File delete(long project, User user, String msg, Date date, String id, List<String> classes, List<String> features, List<String> unkown)
+			throws ResponseError, ForbiddenResponse {
+		return delete(getProjectData(project), user, msg, date, id, classes, features, unkown);
+	}
+
+	public File delete(String channel, String nick, String project, User user, String msg, Date date,
+			String id, List<String> classes, List<String> features, List<String> unkown) throws ResponseError, ForbiddenResponse {
+		return delete(getProjectData(channel, nick, project), user, msg, date, id, classes, features, unkown);
 	}
 
 	public File redo(String projectName, User user, String msg, String text, Date date, String id)
@@ -535,7 +578,11 @@ public class SocioCommands extends Commands {
 		String path = PROJECT_INFO_PATH + getProjectData(projectName);
 		return responseProject(path, null);
 	}
-
+	public JSONObject elemets(Project project) throws ResponseError, ForbiddenResponse {
+		String path = PROJECT_ELEMEMTS_PATH + getProjectData(project);
+		return responseJSON(path, null);
+	}
+	
 	public Project project(Project project) throws ResponseError, ForbiddenResponse {
 		return project(getProjectData(project));
 	}
