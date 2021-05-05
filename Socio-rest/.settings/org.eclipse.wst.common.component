@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
+                
     
-    <wb-module deploy-name="Socio-rest">
-                        
+    
+    <wb-module deploy-name="Socio-rest-0.0.1-SNAPSHOT">
+                                
+        
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-                        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                                
+        
         
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <dependent-module archiveName="SocioClientRest-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SocioClientRest/SocioClientRest">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
                         
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                                
+        
         
         <property name="context-root" value="Socio-rest"/>
-                        
+                                
+        
         
         <property name="java-output-path" value="/Socio-rest/target/classes"/>
-                    
+                            
+    
     
     </wb-module>
-        
+            
+
 
 </project-modules>

@@ -18,10 +18,13 @@ import com.socio.client.beans.User;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 
+
+
 public class SocioCommands extends Commands {
 
 	private static final String GET_PATH = "get/";
 	private static final String EDITOR_PATH = "editor/";
+	private static final String RECOMMEND_PATH = "recommend/";
 	private static final String EDIT_PATH = EDITOR_PATH + "do/";
 	private static final String UNDO_PATH = EDITOR_PATH + "undo/";
 	private static final String REDO_PATH = EDITOR_PATH + "redo/";
@@ -92,6 +95,23 @@ public class SocioCommands extends Commands {
 
 	public File get(String channel, String nick, String project, User user) throws ResponseError, ForbiddenResponse {
 		return get(getProjectData(channel, nick, project), user);
+	}
+	
+	public JSONObject recommend(String projectName, String className) throws ResponseError, ForbiddenResponse {
+		String path = RECOMMEND_PATH + getProjectData(projectName)+"/"+className;
+		return responseJSON(path, null);
+	}
+
+	public JSONObject recommend(Project project, String className) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(project), className);
+	}
+
+	public JSONObject recommend(long project, String className) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(project), className);
+	}
+
+	public JSONObject recommend(String channel, String nick, String project,String className) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(channel, nick, project), className);
 	}
 
 	private File editor(String path, User user, String msg, String text, Date date, String id)

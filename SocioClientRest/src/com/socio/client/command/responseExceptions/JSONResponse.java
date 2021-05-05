@@ -1,5 +1,6 @@
 package com.socio.client.command.responseExceptions;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JSONResponse extends Exception {
@@ -13,6 +14,12 @@ public class JSONResponse extends Exception {
 	public JSONResponse(JSONObject object) {
 		super();
 		this.object = object;
+	}
+
+	public JSONResponse(JSONArray jsonArray) {
+		super();
+		this.object = new JSONObject();
+		this.object.put("obj", jsonArray);
 	}
 
 	public JSONObject getObject() {

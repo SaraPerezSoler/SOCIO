@@ -60,7 +60,11 @@ import socioProjects.impl.MetamodelProjectImpl;
 import socioProjects.impl.ProjectImpl;
 import socioProjects.impl.SocioProjectsFactoryImpl;
 import socioProjects.impl.SocioProjectsPackageImpl;
-
+/**
+ * @author Sara Pérez-Soler
+ * Main class to handler SOCIO Back-End
+ * 
+ **/
 public class SocioData implements DataFormat {
 
 	private static ResourceSet resourceSet = null;
@@ -87,11 +91,10 @@ public class SocioData implements DataFormat {
 	private static SocioData socioData = null;
 
 	/**
-	 * Genera el resourceSet para despues obtener el resource del ecore.
+	 * Generates the  resourceSet fot all resources in the app. There is only one resourceSet for the entire application
 	 * 
-	 * @return el conjunto de todos los resources
+	 * @return the resourceSet
 	 */
-
 	public static ResourceSet getResourceSet() {
 		if (resourceSet == null) {
 			resourceSet = new ResourceSetImpl();
@@ -106,12 +109,11 @@ public class SocioData implements DataFormat {
 	}
 
 	/**
-	 * Crear la clase singleton SocioData, para ello es necesario usar el contexto
-	 * de la aplicación
-	 * 
+	 * Creates and returns the Singleton class SocioData, it needs the application context
+	 *
 	 * @param context
-	 *            Contexto de la aplicacion
-	 * @return La instancia de la clase singleton SocioData
+	 *            Application Servlert context
+	 * @return returns a the instance of SocioData
 	 * @throws Exception 
 	 */
 	public static SocioData getSocioData(ServletContext context) throws Exception  {

@@ -2,6 +2,7 @@ package com.socio.client.command;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -11,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,19 +26,24 @@ public abstract class CreateRequest {
 	private String URL;
 	private static final Client CLIENT = ClientBuilder.newClient();
 	protected static final ResponseError UNEXPECTED_ERROR = new ResponseError("A error has ocurred with the command");
-	
+
 	public CreateRequest(String URL) {
 		this.URL = URL;
 	}
 
-	protected Response getRequest(String path, String ... mediaType) {
+	protected Response getRequest(String path, String... mediaType) {
 		WebTarget webTarget = getWebTarget(path);
 		return webTarget.request(addMediaTypeText(mediaType)).get();
 	}
-	
-	private String[] addMediaTypeText (String ... mediaType) {
-		String  [] ret = new String[mediaType.length+1];
-		for (int i =0; i<mediaType.length; i++) {
+
+	protected Response getRequest(String path, Map<String, Object> queryParam, String... mediaType) {
+		WebTarget webTarget = getWebTarget(path, queryParam);
+		return webTarget.request(addMediaTypeText(mediaType)).get();
+	}
+
+	private String[] addMediaTypeText(String... mediaType) {
+		String[] ret = new String[mediaType.length + 1];
+		for (int i = 0; i < mediaType.length; i++) {
 			if (mediaType[i].equals(MediaType.TEXT_PLAIN)) {
 				return mediaType;
 			}
@@ -46,18 +53,36 @@ public abstract class CreateRequest {
 		return ret;
 	}
 
-	protected Response postRequest(String path, JSONObject object, String ... mediaTypeAcept) {
+	protected Response postRequest(String path, JSONObject object, String... mediaTypeAcept) {
 		return postRequest(path, object.toString(), MediaType.APPLICATION_JSON, mediaTypeAcept);
 	}
-	
-	protected Response postRequest(String path, Object object, String mediaType,  String ... mediaTypeAcept) {
+
+	protected Response postRequest(String path, Object object, String mediaType, String... mediaTypeAcept) {
 		WebTarget webTarget = getWebTarget(path);
-		return webTarget.request(addMediaTypeText(mediaTypeAcept))
-				.post(Entity.entity(object, mediaType));
+		return webTarget.request(addMediaTypeText(mediaTypeAcept)).post(Entity.entity(object, mediaType));
+	}
+
+	protected Response postRequest(String path, Map<String, Object> queryParam, JSONObject object,
+			String... mediaTypeAcept) {
+		return postRequest(path, queryParam, object.toString(), MediaType.APPLICATION_JSON, mediaTypeAcept);
+	}
+
+	protected Response postRequest(String path, Map<String, Object> queryParam, Object object, String mediaType,
+			String... mediaTypeAcept) {
+		WebTarget webTarget = getWebTarget(path, queryParam);
+		return webTarget.request(addMediaTypeText(mediaTypeAcept)).post(Entity.entity(object, mediaType));
 	}
 
 	protected WebTarget getWebTarget(String path) {
 		return CLIENT.target(URL).path(path);
+	}
+
+	protected WebTarget getWebTarget(String path, Map<String, Object> queyParams) {
+		WebTarget target = CLIENT.target(URL).path(path);
+		for (String key : queyParams.keySet()) {
+			target = target.queryParam(key, queyParams.get(key));
+		}
+		return target;
 	}
 
 	protected void readResponse(Response response)
@@ -68,11 +93,11 @@ public abstract class CreateRequest {
 		// La peticion se ha recibido pero no se ha procesado por algun problema
 		if (response.getStatus() == 403) {
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
-				String output =response.readEntity(String.class);
+				String output = response.readEntity(String.class);
 				throw new ForbiddenResponse(output);
 			}
 			// La peticion es correcta
-		} else if (response.getStatus() == 200) {
+		} else if (response.getStatus() >= 200 && response.getStatus() < 300) {
 
 			if (contentType.contains(MediaType.TEXT_PLAIN)) {
 				String output = response.readEntity(String.class);
@@ -80,7 +105,11 @@ public abstract class CreateRequest {
 			}
 			if (contentType.contains(MediaType.APPLICATION_JSON)) {
 				String output = response.readEntity(String.class);
-				throw new JSONResponse(new JSONObject(output));
+				try {
+					throw new JSONResponse(new JSONObject(output));
+				} catch (JSONException e) {
+					throw new JSONResponse(new JSONArray(output));
+				}
 			}
 			if (contentType.contains(MediaType.APPLICATION_OCTET_STREAM)) {
 				File output = response.readEntity(File.class);
@@ -91,13 +120,13 @@ public abstract class CreateRequest {
 						if (s.contains("filename=")) {
 							name = s.substring(s.indexOf("filename=") + "filename=".length());
 							name = name.split("\"")[1];
-							//System.out.println(name);
+							// System.out.println(name);
 						}
 					}
 				}
 				File f = null;
 				if (name != null) {
-					f = new File(output.getParent()+"/"+name);
+					f = new File(output.getParent() + "/" + name);
 					if (f.exists()) {
 						f.delete();
 					}
@@ -117,7 +146,7 @@ public abstract class CreateRequest {
 	public String getURL() {
 		return URL;
 	}
-	
+
 	protected JSONObject responseJSON(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
 		try {
 			Response response;
@@ -167,6 +196,70 @@ public abstract class CreateRequest {
 				response = getRequest(path, types);
 			} else {
 				response = postRequest(path, object, types);
+			}
+			readResponse(response);
+		} catch (FileResponse e) {
+			return e.getFile();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (JSONResponse | TextResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
+
+	protected JSONObject responseJSON(String path, Map<String, Object> queryParams, JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		try {
+			Response response;
+			String[] types = new String[] { MediaType.APPLICATION_JSON };
+			if (object == null) {
+				response = getRequest(path, queryParams, types);
+
+			} else {
+				response = postRequest(path, queryParams, object, types);
+			}
+			readResponse(response);
+		} catch (JSONResponse e) {
+			return e.getObject();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (TextResponse | FileResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
+
+	protected String responseText(String path, Map<String, Object> queryParams, JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		try {
+			String[] types = new String[] { MediaType.TEXT_PLAIN };
+			Response response;
+			if (object == null) {
+				response = getRequest(path, queryParams, types);
+			} else {
+				response = postRequest(path, queryParams, object, types);
+			}
+			readResponse(response);
+		} catch (TextResponse e) {
+			return e.getText();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (JSONResponse | FileResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
+
+	protected File responseFile(String path, Map<String, Object> queryParams, JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		try {
+			Response response;
+			String[] types = new String[] { MediaType.APPLICATION_OCTET_STREAM };
+			if (object == null) {
+				response = getRequest(path, queryParams, types);
+			} else {
+				response = postRequest(path, queryParams, object, types);
 			}
 			readResponse(response);
 		} catch (FileResponse e) {
