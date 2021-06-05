@@ -12,10 +12,14 @@ import java.util.Map;
 import org.telegram.telegrambots.api.methods.send.SendDocument;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.replykeyboard.ForceReplyKeyboard;
+import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardRemove;
+import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -24,10 +28,10 @@ import com.socio.client.beans.EndConsensus;
 import com.socio.client.beans.Message;
 import com.socio.client.beans.Project;
 import com.socio.client.beans.User;
-import com.socio.client.command.SocioCommands;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.states.State;
+import com.socio.client.telegram.states.impl.RecommenderAddElement;
 import com.socio.client.telegram.states.impl.TalkConversation;
 import com.socio.client.telegram.states.impl.management.EndVote;
 import com.socio.client.telegram.states.impl.management.EndVoteAdmin;
@@ -45,6 +49,7 @@ public class Chat {
 
 	private long id;
 	private State state;
+	public RecommenderAddElement recommender; 
 	private Project project = null;
 
 
@@ -74,6 +79,22 @@ public class Chat {
 			sendMessage("Sorry, but I only understand text", update.getMessageId(), false);
 			this.state = DEFAULT_STATE;
 		}
+	}
+	
+	public void onCallbackQuery(CallbackQuery callbackQuery) throws TelegramApiException {
+		try {
+			recommender.runAndNext(this, callbackQuery);
+		} catch (TelegramApiException e) {
+			sendMessage("Unexpected internal error has ocurrred " + e.getCause()+" "+ e.getMessage(), false);
+			this.state = DEFAULT_STATE;
+		} catch (ForbiddenResponse e) {
+			sendMessage("This action has not been completed: " + e.getMessage(), false);
+			this.state = DEFAULT_STATE;
+		} catch (ResponseError e) {
+			sendMessage("Unexpected internal error has ocurrred " + e.getCause()+" "+ e.getMessage(), false);
+		}
+		
+		
 	}
 
 	private void exeState(State state, org.telegram.telegrambots.api.objects.Message update)
@@ -218,6 +239,7 @@ public class Chat {
 		sendMessage(message, inReply, markdown, keyboardMarkup);
 	}
 
+	
 	public void sendMessage(String message, int inReply, boolean markDown, ReplyKeyboard keyboard)
 			throws TelegramApiException {
 
@@ -260,6 +282,18 @@ public class Chat {
 			}
 			TelegramControl.getTelegramControl().sendMessage(msg);
 		}
+	}
+	
+	public void updateMessage(String message, CallbackQuery inReply, boolean markDown, InlineKeyboardMarkup keyboard)
+			throws TelegramApiException {
+
+			EditMessageText editMessageText = new EditMessageText();
+			editMessageText.setText(message);
+			editMessageText.setInlineMessageId(inReply.getInlineMessageId());
+			editMessageText.setChatId(inReply.getMessage().getChatId());
+			editMessageText.setMessageId(inReply.getMessage().getMessageId());
+			editMessageText.setReplyMarkup(keyboard);
+			TelegramControl.getTelegramControl().editMessageText(editMessageText);
 	}
 
 	/*private int indexMessage(String messager) {
@@ -348,5 +382,7 @@ public class Chat {
 		String[] options = State.projectGroupOptions(project.getOpenBranchs());
 		sendMessageWithKeyboard(msg, inReply, true, options);
 	}
+
+
 
 }

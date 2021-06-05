@@ -206,6 +206,7 @@ public class AttributeControl implements Feature, IsAttribute {
 
 	@Override
 	public String getTypeString() {
-		return getType().getInstanceTypeName();
+		return getType().getInstanceClass().getSimpleName();
 	}
+	
 }

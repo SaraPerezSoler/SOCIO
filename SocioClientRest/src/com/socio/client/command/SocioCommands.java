@@ -29,6 +29,7 @@ public class SocioCommands extends Commands {
 	private static final String UNDO_PATH = EDITOR_PATH + "undo/";
 	private static final String REDO_PATH = EDITOR_PATH + "redo/";
 	private static final String DELETE_EDITOR_PATH = EDITOR_PATH + "delete/";
+	private static final String ADD_EDITOR_PATH = EDITOR_PATH + "add/";
 	private static final String HELP_PATH = "help/";
 	private static final String CONFIGURATION_PATH = "configuration/";
 	private static final String NEW_PROJECT = CONFIGURATION_PATH + "new_project/";
@@ -207,6 +208,31 @@ public class SocioCommands extends Commands {
 			String id, List<String> classes, List<String> features, List<String> unkown) throws ResponseError, ForbiddenResponse {
 		return delete(getProjectData(channel, nick, project), user, msg, date, id, classes, features, unkown);
 	}
+	
+	
+	public File add(String projectName, User user, String msg, Date date, String id, JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		String path = ADD_EDITOR_PATH + getProjectData(projectName);
+		String text = object.toString();
+		
+		return editor(path, user, msg,text ,date, id);
+	}
+	public File add(Project project, User user, String msg, Date date, String id,JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		return add(getProjectData(project), user, msg, date, id, object);
+	}
+	
+	public File add(long project, User user, String msg, Date date, String id, JSONObject object)
+			throws ResponseError, ForbiddenResponse {
+		return add(getProjectData(project), user, msg, date, id, object);
+	}
+
+	public File add(String channel, String nick, String project, User user, String msg, Date date,
+			String id,JSONObject object) throws ResponseError, ForbiddenResponse {
+		return add(getProjectData(channel, nick, project), user, msg, date, id, object);
+	}
+	
+	
 
 	public File redo(String projectName, User user, String msg, String text, Date date, String id)
 			throws ResponseError, ForbiddenResponse {

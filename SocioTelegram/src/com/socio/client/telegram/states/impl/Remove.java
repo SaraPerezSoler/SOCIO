@@ -44,10 +44,13 @@ public class Remove implements CommandState {
 				optionsList.add("C: " + className);
 
 				JSONObject classObject = elements.getJSONObject(className);
-				if (classObject.names() != null) {
-					for (int j = 0; j < classObject.names().length(); j++) {
-						String featreName = className + "." + classObject.names().getString(j);
-						optionsList.add("F: " + featreName);
+				if (classObject.has("features")) {
+					JSONObject features = classObject.getJSONObject("features");
+					if (features.names() != null) {
+						for (int j = 0; j < features.names().length(); j++) {
+							String featreName = className + "." + features.names().getString(j);
+							optionsList.add("F: " + featreName);
+						}
 					}
 				}
 			}

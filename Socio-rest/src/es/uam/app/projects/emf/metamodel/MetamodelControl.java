@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
@@ -31,6 +33,14 @@ import projectHistory.Action;
  */
 public class MetamodelControl implements Controlador, FileProject {
 
+	public static final String ABSTRACT ="abstract";
+	public static final String SUPERCLASSES ="superClasses";
+	public static final String FEATURES ="features";
+	public static final String CONTAINMENT ="containment";
+	public static final String TYPE ="type";
+	public static final String MIN ="min";
+	public static final String MAX ="max";
+	
 	private Resource resource;
 	
 
@@ -300,6 +310,39 @@ public class MetamodelControl implements Controlador, FileProject {
 		}
 		return ret;
 	}
+	
+	public JSONObject getModelJSON() {
+		List<ClassControl> classes = getClasses();
+		JSONObject model = new JSONObject();
+		for (ClassControl class_ : classes) {
+			JSONObject jsonClass = new JSONObject();
+			JSONObject jsonfeatures = new JSONObject();
+			for (Feature f : class_.getFeatures()) {
+				JSONObject jsonfeature = new JSONObject();
+				if (f.getType() != null) {
+					jsonfeature.put(TYPE, f.getTypeString());
+				} else {
+					jsonfeature.put(TYPE,"");
+				}
+				jsonfeature.put(MIN, f.getUpperBound());
+				jsonfeature.put(MAX, f.getUpperBound());
+				if (f instanceof ReferenceControl) {
+					jsonfeature.put(CONTAINMENT, ((ReferenceControl)f).isContainment());
+				}
+				jsonfeatures.put(f.getName(), jsonfeature);
+			}
+			jsonClass.put(FEATURES, jsonfeatures);
+			JSONArray superClases = new JSONArray();
+			for (ClassControl superClass: class_.getSuperTypes()) {
+				superClases.put(superClass.getName());
+			}
+			jsonClass.put(SUPERCLASSES, superClases);
+			jsonClass.put(ABSTRACT, class_.getAbstract());
+			model.put(class_.getName(), jsonClass);
+		}
+		return model;
+	}
+	
 
 	
 }

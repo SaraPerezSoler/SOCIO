@@ -72,7 +72,7 @@
 <!-- 	</context-param> -->
 	<context-param>
 		<param-name>droid.url</param-name>
-		<param-value>http://dimo1.ii.uam.es/DroidREST/xmi</param-value>
+		<param-value>http://dimo1.ii.uam.es/DroidREST</param-value>
 	</context-param>
 
 	<!-- <context-param> -->

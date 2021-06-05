@@ -72,10 +72,9 @@ public class Recommend extends MainCommand {
 				throw new InternalException(
 						"The class " + className + " does not exist in the project " + actual.getCompleteName());
 			}
-			JSONObject object = ContextJson.getJSONContext(class_);
 			String droidURL = context.getInitParameter("droid.url");
 			Droid droid = new Droid(droidURL);
-			JSONObject ret = droid.getRecommendation(object);
+			JSONObject ret = droid.getRecommendation(class_);
 			return ret;
 		} else {
 			throw new InternalException("Droid recommendations only works in metamodel projects");

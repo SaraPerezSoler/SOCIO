@@ -158,6 +158,18 @@ public class TelegramControl extends TelegramLongPollingBot {
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
+		}else if (update.hasCallbackQuery()) {
+			long id = update.getCallbackQuery().getMessage().getChatId();
+			Chat actualChat = chats.get(id);
+			if (actualChat == null) {
+				actualChat = new Chat(id);
+				chats.put(id, actualChat);
+			}
+			try {
+				actualChat.onCallbackQuery(update.getCallbackQuery());
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

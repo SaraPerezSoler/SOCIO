@@ -30,6 +30,7 @@ import es.uam.app.metamodel.parser.Sentence;
 import es.uam.app.metamodel.parser.SentencesSplitter;
 import es.uam.app.metamodel.parser.Verb;
 import es.uam.app.metamodel.parser.WordConfigure;
+import es.uam.app.metamodel.parser.rules.AddCommandRule;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.metamodel.parser.rules.RemoveCommandRule;
 import es.uam.app.projects.emf.metamodel.AttributeControl;
@@ -41,6 +42,7 @@ import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
+import projectHistory.Msg;
 import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
 
@@ -77,6 +79,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +108,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return act;
 	}
-	
+
 	@Override
 	public List<Action> deleteActions(Map<String, List<String>> objects) throws Exception {
 		RemoveCommandRule remove = new RemoveCommandRule(objects);
@@ -115,10 +118,20 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return act;
 	}
+	
+	@Override
+	public List<Action> addActions(JSONObject objects) throws Exception {
+		AddCommandRule remove = new AddCommandRule(objects);
+		List<Action> act = remove.evaluete(this);
+		for (Action a : act) {
+			a.doIt();
+		}
+		return act;
+	}
 
 	@Override
 	protected String createUML(List<Action> actions, List<Action> actual, boolean sort) {
-		if (sort){
+		if (sort) {
 			return ec.createSortUML(actions, actual);
 		}
 		return ec.createUML(actions, actual);
@@ -520,20 +533,11 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 	@Override
 	public JSONObject getElementsJson() {
-		List<ClassControl> classes = ec.getClasses();
-		JSONObject model = new JSONObject();
-		for (ClassControl class_: classes) {
-			JSONObject jsonClass = new JSONObject();
-			for (Feature f: class_.getFeatures()) {
-				JSONObject jsonfeature = new JSONObject();
-				jsonfeature.put("type", f.getTypeString());
-				jsonfeature.put("min", f.getUpperBound());
-				jsonfeature.put("max", f.getUpperBound());
-				jsonClass.put(f.getName(), jsonfeature);
-			}
-			model.put(class_.getName(), jsonClass);
-		}
-		return model;
+		return ec.getModelJSON();
 	}
+
+
+
+
 
 } // MetamodelProjectImpl

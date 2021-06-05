@@ -463,6 +463,12 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 		return null;
 	}
 
+	@Override
+	public List<Action> addActions(JSONObject objects) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 } // ModelProjecImpl

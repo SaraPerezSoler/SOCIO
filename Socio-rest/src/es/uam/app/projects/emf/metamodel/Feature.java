@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
 public interface Feature extends MetamodelControlInterface, ControlCopier {
@@ -49,4 +50,6 @@ public interface Feature extends MetamodelControlInterface, ControlCopier {
 	public int getLowerBound();
 	public int getUpperBound();
 	public String getTypeString();
+
+	public Object getType();
 }

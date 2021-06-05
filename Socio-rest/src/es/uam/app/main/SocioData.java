@@ -516,6 +516,20 @@ public class SocioData implements DataFormat {
 		return f;
 }
 
+	
+	public File add(Project p, Msg msg, JSONObject objects) throws Exception {
+		if (!p.isOpen()) {
+			throw new InternalException("The project " + p.getCompleteName() + " is closed, you can't edit it");
+		} else if (p.isLocked()) {
+			throw new InternalException("The project " + p.getCompleteName()
+					+ " is locked, you can't edit it. Close all branch to unlock the project. Maybe you want edit some branch.");
+		}
+		File f = p.addObjects(msg, objects);
+		addUpdate(p, msg);
+		save(p);
+		return f;
+	}
+
 	/*---------------------------------------------------------------Create users and projects, remove projects------------------------------------------------------------*/
 
 	public User addUser(User u) {
@@ -876,6 +890,7 @@ public class SocioData implements DataFormat {
 	public JSONObject getElementsJSON(Project project) {
 		return project.getElementsJson();
 	}
+
 
 
 

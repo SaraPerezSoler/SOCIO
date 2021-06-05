@@ -36,14 +36,13 @@ public class ProjectEditor extends MainCommand {
 	@Path("/do/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
-	public Response editProject(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			{
+	public Response editProject(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id) {
 		try {
 			Project actual = getProject(context, id);
 			return editProject(context, actual, incomingData);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
 			return sendTextException(e);
 		}
@@ -54,14 +53,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response editProject(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			{
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return editProject(context, actual, incomingData);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("editProject: ", e);
 			return sendTextException(e);
 		}
@@ -74,7 +73,7 @@ public class ProjectEditor extends MainCommand {
 		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
 	}
-	
+
 	public static File editProject(ServletContext context, Project actual, Msg msg) throws Exception {
 
 		if (msg.hasText()) {
@@ -95,11 +94,13 @@ public class ProjectEditor extends MainCommand {
 			}
 		}
 	}
-	
-	public static File editProject(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+	public static File editProject(ServletContext context, String pChannel, String pUser, String pName, Message message)
+			throws Exception {
 
 		Project actual = getProject(context, pChannel, pUser, pName);
-		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(),
+				message.getUser().getId(), message.getUser().getName());
 		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
 		return editProject(context, actual, msg);
 	}
@@ -108,14 +109,13 @@ public class ProjectEditor extends MainCommand {
 	@Path("/redo/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
-	public Response redo(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
-			{
+	public Response redo(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id) {
 		try {
 			Project actual = getProject(context, id);
 			return redo(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("redo: ", e);
 			return sendTextException(e);
 		}
@@ -127,14 +127,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response redo(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			{
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return redo(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("redo: ", e);
 			return sendTextException(e);
 		}
@@ -156,16 +156,19 @@ public class ProjectEditor extends MainCommand {
 
 		File png = SocioData.getSocioData(context).redo(actual, msg);
 		return png;
-		
+
 	}
-	public static File redo(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+	public static File redo(ServletContext context, String pChannel, String pUser, String pName, Message message)
+			throws Exception {
 
 		Project actual = getProject(context, pChannel, pUser, pName);
-		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(),
+				message.getUser().getId(), message.getUser().getName());
 		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
 		return redo(context, actual, msg);
 	}
-	
+
 	@POST
 	@Path("/undo/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -177,7 +180,7 @@ public class ProjectEditor extends MainCommand {
 			return undo(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
 			return sendTextException(e);
 		}
@@ -189,14 +192,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response undo(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			{
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return undo(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
 			return sendTextException(e);
 		}
@@ -211,7 +214,7 @@ public class ProjectEditor extends MainCommand {
 		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
 	}
-	
+
 	public static File undo(ServletContext context, Project actual, Msg msg) throws Exception {
 
 		SocioData.getSocioData(context).addUser(msg.getUser());
@@ -220,17 +223,19 @@ public class ProjectEditor extends MainCommand {
 		}
 		File png = SocioData.getSocioData(context).undo(actual, msg);
 		return png;
-		
+
 	}
-	public static File undo(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+	public static File undo(ServletContext context, String pChannel, String pUser, String pName, Message message)
+			throws Exception {
 
 		Project actual = getProject(context, pChannel, pUser, pName);
-		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(),
+				message.getUser().getId(), message.getUser().getName());
 		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
 		return undo(context, actual, msg);
 	}
-	
-	
+
 	@POST
 	@Path("/delete/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -242,7 +247,7 @@ public class ProjectEditor extends MainCommand {
 			return delete(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
 			return sendTextException(e);
 		}
@@ -254,14 +259,14 @@ public class ProjectEditor extends MainCommand {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
 	public Response delete(@Context ServletContext context, InputStream incomingData,
-			@PathParam("channel") String channel, @PathParam("user") String user, @PathParam("project") String project)
-			{
+			@PathParam("channel") String channel, @PathParam("user") String user,
+			@PathParam("project") String project) {
 		try {
 			Project actual = getProject(context, channel, user, project);
 			return delete(context, incomingData, actual);
 		} catch (InternalException e) {
 			return sendTextException(e);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
 			return sendTextException(e);
 		}
@@ -272,23 +277,23 @@ public class ProjectEditor extends MainCommand {
 
 		Msg msg = getMsg(context, incomingData, null);
 		SocioData.getSocioData(context).addUser(msg.getUser());
-		File png = delete(context, actual,msg);
+		File png = delete(context, actual, msg);
 		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
 				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
 	}
-	
+
 	private static Map<String, List<String>> getObjects(Msg msg) {
 		JSONObject object = new JSONObject(msg.getText());
 		if (object.has("elements")) {
 			object = object.getJSONObject("elements");
 		}
-		Map<String, List<String>> ret= new HashMap<String, List<String>>();
+		Map<String, List<String>> ret = new HashMap<String, List<String>>();
 		JSONArray names = object.names();
-		for (int i=0; i< names.length(); i++) {
+		for (int i = 0; i < names.length(); i++) {
 			String name = names.getString(i);
 			List<String> features = new ArrayList<String>();
 			JSONArray array = object.getJSONArray(name);
-			for (int j=0; j<array.length(); j++) {
+			for (int j = 0; j < array.length(); j++) {
 				features.add(array.getString(j));
 			}
 			ret.put(name, features);
@@ -305,15 +310,92 @@ public class ProjectEditor extends MainCommand {
 		Map<String, List<String>> objects = getObjects(msg);
 		File png = SocioData.getSocioData(context).delete(actual, msg, objects);
 		return png;
-		
+
 	}
-	public static File delete(ServletContext context, String pChannel, String pUser, String pName, Message message) throws Exception {
+
+	public static File delete(ServletContext context, String pChannel, String pUser, String pName, Message message)
+			throws Exception {
 
 		Project actual = getProject(context, pChannel, pUser, pName);
-		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(), message.getUser().getId(), message.getUser().getName());
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(),
+				message.getUser().getId(), message.getUser().getName());
 		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
-		
+
 		return delete(context, actual, msg);
+	}
+
+	@POST
+	@Path("/add/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	public Response add(@Context ServletContext context, InputStream incomingData, @PathParam("id") long id)
+			throws Exception {
+		try {
+			Project actual = getProject(context, id);
+			return add(context, incomingData, actual);
+		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
+			return sendTextException(e);
+		}
+
+	}
+
+	@POST
+	@Path("/add/{channel}/{user}/{project}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({ MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_PLAIN })
+	public Response add(@Context ServletContext context, InputStream incomingData, @PathParam("channel") String channel,
+			@PathParam("user") String user, @PathParam("project") String project) {
+		try {
+			Project actual = getProject(context, channel, user, project);
+			return add(context, incomingData, actual);
+		} catch (InternalException e) {
+			return sendTextException(e);
+		} catch (Exception e) {
+			ExceptionControl.geExceptionControl(context).printLogger("undo: ", e);
+			return sendTextException(e);
+		}
+
+	}
+
+	private Response add(ServletContext context, InputStream incomingData, Project actual) throws Exception {
+
+		Msg msg = getMsg(context, incomingData, null);
+		SocioData.getSocioData(context).addUser(msg.getUser());
+		File png = add(context, actual, msg);
+		return Response.ok(png, MediaType.APPLICATION_OCTET_STREAM)
+				.header("Content-Disposition", "attachment; filename=\"" + png.getName() + "\"").build();
+	}
+
+	public static File add(ServletContext context, Project actual, Msg msg) throws Exception {
+
+		SocioData.getSocioData(context).addUser(msg.getUser());
+		if (!(msg.getUser().canEdit(actual))) {
+			throw new InternalException("You don't have editing permissions in this project.");
+		}
+		JSONObject objects = getJSONObjects(msg);
+		File png = SocioData.getSocioData(context).add(actual, msg, objects);
+		return png;
+//		return null;
+
+	}
+
+	private static JSONObject getJSONObjects(Msg msg) {
+
+		return new JSONObject(msg.getText());
+	}
+
+	public static File add(ServletContext context, String pChannel, String pUser, String pName, Message message)
+			throws Exception {
+
+		Project actual = getProject(context, pChannel, pUser, pName);
+		User user = getUser(context, message.getUser().getChannel(), message.getUser().getNick(),
+				message.getUser().getId(), message.getUser().getName());
+		Msg msg = getMsg(message.getId(), message.getMsg(), user, message.getDate(), message.getText());
+
+		return add(context, actual, msg);
 	}
 
 }

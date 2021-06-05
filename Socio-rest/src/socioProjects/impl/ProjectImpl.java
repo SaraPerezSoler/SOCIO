@@ -40,6 +40,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.Hour;
 import org.jfree.data.time.TimeTableXYDataset;
+import org.json.JSONObject;
 
 import branchDecision.Decision;
 import es.uam.app.main.SocioData;
@@ -863,10 +864,36 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		return getPng(actions);
 	}
+	
+	@Override
+	public File addObjects(Msg msg, JSONObject objects) throws Exception {
+		if (!isOpen()) {
+			throw new InternalException("The project can't be edited. It is closed.");
+		}
+		if (isLocked()) {
+			throw new InternalException("The project can't be edited. It is locked.");
+		}
+		
+		List<Action> actions = addActions(objects);
+		Map<String, List<Action>> sentAction = new HashMap<>();
+		sentAction.put(msg.getText(), actions);
+
+		if (actions.isEmpty()) {
+			msg.setUndoable(false);
+		} else {
+			undoMsg.clear();
+			msg.setUndoable(true);
+			msg.setSentences(sentAction);
+			history.getMsg().add(msg);
+		}
+
+		return getPng(actions);
+	}
 
 	public abstract List<Action> deleteActions(Map<String, List<String>> objects) throws Exception;
-
-	public File getPng(List<Action> actions) {
+	public abstract List<Action> addActions(JSONObject objects) throws Exception;
+	
+	public File getPng(List<Action> actions) throws IOException {
 		return getPng(actions, false);
 	}
 

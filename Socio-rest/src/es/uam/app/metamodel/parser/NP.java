@@ -232,4 +232,22 @@ public class NP {
 		return isAbstract;
 	}
 
+	
+	public static String upperCammelCase(String wordsString) {
+		String cad = "";
+		String [] words = wordsString.split(" ");
+		for (int i = 0; i < words.length; i++) {
+				cad += WordConfigure.startUpperCase(words[i]);
+		}
+		return cad;
+	}
+
+	public static String lowerCammelCase(String wordsString) {
+		String cad = "";
+		String [] words = wordsString.split(" ");
+		for (int i = 0; i < words.length; i++) {
+				cad += WordConfigure.startUpperCase(words[i]);
+		}
+		return WordConfigure.startLowerCase(cad);
+	}
 }

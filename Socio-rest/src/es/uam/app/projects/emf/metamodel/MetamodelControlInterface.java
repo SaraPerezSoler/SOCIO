@@ -56,6 +56,8 @@ public interface MetamodelControlInterface extends Controlador {
 
 		Map<String, EClassifier> options = new HashMap<>();
 		options.put("numeric", ecorePack.getEClassifier("EInt"));
+		options.put("number", ecorePack.getEClassifier("EInt"));
+		options.put("time", ecorePack.getEClassifier("EDate"));
 		options.put("text", ecorePack.getEClassifier("EString"));
 		return options;
 	}

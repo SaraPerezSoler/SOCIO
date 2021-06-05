@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
@@ -178,4 +179,6 @@ public interface State {
 	public static int getMsgId(String messageId) {
 		return Integer.parseInt(messageId.split("/")[1]);
 	}
+
+	
 }

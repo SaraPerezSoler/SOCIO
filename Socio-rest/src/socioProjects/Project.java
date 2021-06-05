@@ -606,7 +606,10 @@ public interface Project extends EObject {
 	void changeBranchGroup(Project actual, String branchGroup) throws InternalException;
 
 	File deleteObjects(Msg msg,Map<String, List<String>> objects) throws Exception;
-
+	File addObjects(Msg msg, JSONObject objects) throws Exception;
+	
 	JSONObject getElementsJson();
+
+	
 
 } // Project
