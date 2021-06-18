@@ -806,6 +806,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/*----------------------------------------------------------do, undo, redo--------------------------------------------------------------------------*/
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @throws Exception
 	 * @generated NOT
 	 */
@@ -864,7 +865,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		return getPng(actions);
 	}
-	
+
 	@Override
 	public File addObjects(Msg msg, JSONObject objects) throws Exception {
 		if (!isOpen()) {
@@ -873,7 +874,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		if (isLocked()) {
 			throw new InternalException("The project can't be edited. It is locked.");
 		}
-		
+
 		List<Action> actions = addActions(objects);
 		Map<String, List<Action>> sentAction = new HashMap<>();
 		sentAction.put(msg.getText(), actions);
@@ -891,8 +892,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	public abstract List<Action> deleteActions(Map<String, List<String>> objects) throws Exception;
+
 	public abstract List<Action> addActions(JSONObject objects) throws Exception;
-	
+
 	public File getPng(List<Action> actions) throws IOException {
 		return getPng(actions, false);
 	}
@@ -1479,18 +1481,49 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return jpg;
 	}
 
-	private Map<Action, User> actionsFromObject(Controlador obj) {
+	private Map<Action, User> actionsFromObject2(Controlador obj) {
+		User user = SocioProjectsFactoryImpl.eINSTANCE.createUser();
+		user.setName("recommender");
+		user.setChannel("");
+		user.setNick("recommender");
+		user.setId(0);
+
 		Map<Action, User> ret = new HashMap<>();
 		List<Msg> logMsg = getHistoryMsg();
 		for (Msg msg : logMsg) {
 			List<Action> actions = msg.getActionsFromObject(obj);
 			for (Action act : actions) {
-				ret.put(act, msg.getUser());
+				if (msg.getMsg().equals("Element added by recommender")) {
+					ret.put(act, user);
+				} else {
+					ret.put(act, msg.getUser());
+				}
 			}
 		}
 		return ret;
 	}
 
+	private Map<Action, User> actionsFromObject(Controlador obj) {
+		User user = SocioProjectsFactoryImpl.eINSTANCE.createUser();
+		user.setName("recommender");
+		user.setChannel("");
+		user.setNick("recommender");
+		user.setId(0);
+
+		Map<Action, User> ret = new HashMap<>();
+		List<Msg> logMsg = getHistoryMsg();
+		for (Msg msg : logMsg) {
+			List<Action> actions = msg.getActionsFromObject(obj);
+			for (Action act : actions) {
+				if (msg.getMsg().equals("Element added by recommender")) {
+					ret.put(act, user);
+				} else {
+					ret.put(act, msg.getUser());
+				}
+			}
+		}
+		return ret;
+	}
 	private Map<User, Double> userRateFromObject(Controlador obj) {
 		Map<Action, User> action_user = actionsFromObject(obj);
 		Map<User, Double> user_rate = new HashMap<User, Double>();
