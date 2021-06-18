@@ -2,8 +2,12 @@ package com.socio.client.telegram.states.impl;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +26,6 @@ import com.socio.client.telegram.states.ConversationalState;
 import com.socio.client.telegram.states.State;
 
 public class RecommenderAddElement implements ConversationalState {
-	private static RecommenderAddElement RECOMMENDER = null;
 
 	private static final String FEATURES = "features";
 	private static final String SUPERCLASSES = "superClasses";
@@ -47,28 +50,62 @@ public class RecommenderAddElement implements ConversationalState {
 				if (classObject.has(FEATURES)) {
 					Map<String, String> featuresMap = new HashMap<String, String>();
 					JSONObject features = classObject.getJSONObject(FEATURES);
+
 					if (features.names() != null) {
 						for (int j = 0; j < features.names().length(); j++) {
 							String featureName = features.names().getString(j);
 							String featureType = features.getJSONObject(featureName).getString(TYPE);
-							featuresMap.put("A:" + className + "." + featureName + ":" + featureType,
+							double value = features.getJSONObject(featureName).getDouble("value");
+//							featuresMap.put("A:" + className + "." + featureName + ":" + featureType,
+//									featureName + ":" + featureType + ":" + value);
+							featuresMap.put("A:" + className + "." + featureName + ":" + featureType + "/" + value,
 									featureName + ":" + featureType);
 						}
+						featuresMap = sortedMap(featuresMap);
 					}
 					elements.put(FEATURES, featuresMap);
 				}
 				if (classObject.has(SUPERCLASSES)) {
 					Map<String, String> superClassMap = new HashMap<String, String>();
-					JSONArray superClass = classObject.getJSONArray(SUPERCLASSES);
-					for (int j = 0; j < superClass.length(); j++) {
-						String superClassName = superClass.getString(j);
-						superClassMap.put("S:" + className + "." + superClassName, superClassName);
+					JSONObject superClass = classObject.getJSONObject(SUPERCLASSES);
+					if (superClass.names() != null) {
+						for (int j = 0; j < superClass.names().length(); j++) {
+							String superClassName = superClass.names().getString(j);
+							double value = superClass.getJSONObject(superClassName).getDouble("value");
+							superClassMap.put("S:" + className + "." + superClassName + "/" + value,
+									superClassName);
+						}
+						superClassMap = sortedMap(superClassMap);
 					}
 					elements.put(SUPERCLASSES, superClassMap);
 				}
 				this.elements.put(className, elements);
 			}
 		}
+	}
+
+	private Map<String, String> sortedMap(Map<String, String> featuresMap) {
+		LinkedHashMap<String, String> ret = new LinkedHashMap<String, String>();
+		List<Map.Entry<String, String>> list = new LinkedList<>(featuresMap.entrySet());
+		Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
+			public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+				String string1 = o1.getKey();
+				String string2 = o2.getKey();
+				String valueString1 = string1.substring(string1.indexOf("/") + 1, string1.length());
+				String valueString2 = string2.substring(string2.indexOf("/") + 1, string2.length());
+				Double value1 = Double.parseDouble(valueString1);
+				Double value2 = Double.parseDouble(valueString2);
+
+				return value2.compareTo(value1);
+			}
+		});
+
+		for (Map.Entry<String, String> entry : list) {
+			String string1 = entry.getKey();
+			String valueString1 = string1.substring(string1.indexOf("/") + 1, string1.length());
+			ret.put(string1.replace("/" + valueString1, ""), entry.getValue());
+		}
+		return ret;
 	}
 
 	@Override
@@ -95,10 +132,10 @@ public class RecommenderAddElement implements ConversationalState {
 				if (classElement.containsKey(FEATURES) && classElement.get(FEATURES).size() > 0
 						&& classElement.containsKey(SUPERCLASSES) && classElement.get(SUPERCLASSES).size() > 0) {
 					sendElementMenu(chat, callbackQuery, back);
-				}else {
+				} else {
 					sendTotalElementMenu(chat, callbackQuery);
 				}
-			}else {
+			} else {
 				sendTotalElementMenu(chat, callbackQuery);
 			}
 			return;
@@ -107,10 +144,10 @@ public class RecommenderAddElement implements ConversationalState {
 			model = getFeatureObject(text2);
 			Map<String, String> featuresMap = elements.get(elementSelected).get(FEATURES);
 			boolean back = false;
-			if (elements.size()>1) {
+			if (elements.size() > 1) {
 				back = true;
-			}else if (elements.get(elementSelected).containsKey(SUPERCLASSES)){
-				if (elements.get(elementSelected).get(SUPERCLASSES).size()>0 && featuresMap.size()>1) {
+			} else if (elements.get(elementSelected).containsKey(SUPERCLASSES)) {
+				if (elements.get(elementSelected).get(SUPERCLASSES).size() > 0 && featuresMap.size() > 1) {
 					back = true;
 				}
 			}
@@ -125,10 +162,10 @@ public class RecommenderAddElement implements ConversationalState {
 			model = getSperClassObject(text2);
 			Map<String, String> superClassesMap = elements.get(elementSelected).get(SUPERCLASSES);
 			boolean back = false;
-			if (elements.size()>1) {
+			if (elements.size() > 1) {
 				back = true;
-			}else if (elements.get(elementSelected).containsKey(FEATURES)){
-				if (elements.get(elementSelected).get(FEATURES).size()>0 && superClassesMap.size()>1) {
+			} else if (elements.get(elementSelected).containsKey(FEATURES)) {
+				if (elements.get(elementSelected).get(FEATURES).size() > 0 && superClassesMap.size() > 1) {
 					back = true;
 				}
 			}
@@ -139,15 +176,15 @@ public class RecommenderAddElement implements ConversationalState {
 				sendElementMenu(chat, callbackQuery, back);
 			}
 		} else {
-			
+
 			if (elements.containsKey(text)) {
 				elementSelected = text;
 				sendElementMenu(chat, callbackQuery, true);
-			}else {
-				chat.sendMessage("ERR: "+ text, false);
+			} else {
+				chat.sendMessage("ERR: " + text, false);
 			}
 			return;
-			
+
 		}
 		File file = State.SOCIO().add(chat.getProject(), State.getUser(callbackQuery.getFrom()),
 				"Element added by recommender", new Date(), getMessageId(callbackQuery.getMessage()), model);
@@ -157,7 +194,7 @@ public class RecommenderAddElement implements ConversationalState {
 	}
 
 	private JSONObject getSperClassObject(String text) {
-		
+
 		String[] split = text.split("\\.");
 		String className = split[0];
 		String superClassName = split[1];
@@ -219,9 +256,9 @@ public class RecommenderAddElement implements ConversationalState {
 		} else {
 			chat.updateMessage(text, callbackQuery, false, createInlineKeyboard(options, values));
 		}
-		
+
 	}
-	
+
 	private void sendElementMenu(Chat chat, CallbackQuery callbackQuery, boolean back) throws TelegramApiException {
 		List<String> optionsList = new ArrayList<>();
 		List<String> valueList = new ArrayList<>();

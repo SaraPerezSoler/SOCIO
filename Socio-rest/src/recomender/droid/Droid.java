@@ -35,6 +35,8 @@ public class Droid extends CreateRequest {
 	private JSONObject getJSONRecommendation(String className, JSONObject attributes, JSONObject superClasses) {
 
 		JSONArray attrArray = attributes.getJSONArray("obj");
+		System.out.println(attributes.toString());
+		System.out.println(superClasses.toString());
 		JSONArray superArray = superClasses.getJSONArray("obj");
 
 		JSONObject classJObject = new JSONObject();
@@ -45,22 +47,28 @@ public class Droid extends CreateRequest {
 			JSONObject feature = new JSONObject();
 
 			JSONObject element = attrArray.getJSONObject(i);
-			element = element.getJSONObject("pk");
-			String attrName = element.getString("attrName");
-			String attrType = element.getString("attrType");
+			JSONObject pks = element.getJSONObject("pk");
+			String attrName = pks.getString("attrName");
+			String attrType = pks.getString("attrType");
+			double value= element.getDouble("value");
 			String simpleType = MetamodelControlInterface.getType(attrType).getInstanceClass().getSimpleName();
 			feature.put("type", simpleType);
+			feature.put("value", value);
 			features.put(attrName, feature);
+			
 		}
 		object.put("features", features);
-		JSONArray superTypes = new JSONArray();
+		JSONObject superTypes = new JSONObject();
 		for (int i = 0; i < superArray.length(); i++) {
 
 			JSONObject element = superArray.getJSONObject(i);
-			element = element.getJSONObject("pk");
-			String name = element.getString("name");
-
-			superTypes.put(name);
+			JSONObject pks = element.getJSONObject("pk");
+			String name = pks.getString("name");
+			double value = element.getDouble("value");
+			JSONObject superType = new JSONObject();
+			superType.put("value", value);
+			
+			superTypes.put(name, superType);
 		}
 		object.put("superClasses", superTypes);
 		classJObject.put(className, object);
