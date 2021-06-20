@@ -1,6 +1,11 @@
 package recomender.droid;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -10,8 +15,14 @@ import com.socio.client.command.CreateRequest;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 
+import droidRecommenderHistory.DroidRecommenderHistoryFactory;
+import droidRecommenderHistory.RecommendationMsg;
+import droidRecommenderHistory.RecommendationResult;
 import es.uam.app.projects.emf.metamodel.ClassControl;
+import es.uam.app.projects.emf.metamodel.MetamodelControl;
 import es.uam.app.projects.emf.metamodel.MetamodelControlInterface;
+import socioProjects.Project;
+import socioProjects.User;
 
 public class Droid extends CreateRequest {
 
@@ -19,7 +30,18 @@ public class Droid extends CreateRequest {
 		super(URL);
 	}
 
-	public JSONObject getRecommendation(ClassControl class_) throws ResponseError, ForbiddenResponse {
+	public RecommendationMsg getRecommendation(ClassControl class_, User user, Project project) throws ResponseError, ForbiddenResponse {
+		
+		
+		
+		RecommendationMsg recommendationMsg = DroidRecommenderHistoryFactory.eINSTANCE.createRecommendationMsg();
+		recommendationMsg.setDate(new Date());
+		recommendationMsg.setUser(user);
+		recommendationMsg.setElement(class_.getObject());
+		recommendationMsg.setElementStatus(class_.copyObject().getObject());
+		recommendationMsg.setId(getLastId(project)+1);
+		
+		
 		JSONObject context = ContextJson.getJSONContext(class_);
 		System.out.println(context.toString());
 		Map<String, Object> queryParam = new HashMap<>();
@@ -29,51 +51,66 @@ public class Droid extends CreateRequest {
 
 		queryParam.put("itemType", "superClasses");
 		JSONObject obj2 = responseJSON("simpleopp/recommend", queryParam, context);
-		return getJSONRecommendation(class_.getName(), obj1, obj2);
+		
+		recommendationMsg.getResults().addAll(getJSONRecommendation(class_.getName(), obj1, obj2));
+		return recommendationMsg;
 	}
 
-	private JSONObject getJSONRecommendation(String className, JSONObject attributes, JSONObject superClasses) {
-
+	private List<RecommendationResult> getJSONRecommendation(String className, JSONObject attributes, JSONObject superClasses) {
+		List<RecommendationResult> ret = new ArrayList<>();
+		
 		JSONArray attrArray = attributes.getJSONArray("obj");
 		System.out.println(attributes.toString());
 		System.out.println(superClasses.toString());
 		JSONArray superArray = superClasses.getJSONArray("obj");
 
-		JSONObject classJObject = new JSONObject();
-
-		JSONObject object = new JSONObject();
-		JSONObject features = new JSONObject();
 		for (int i = 0; i < attrArray.length(); i++) {
-			JSONObject feature = new JSONObject();
-
+			RecommendationResult result = DroidRecommenderHistoryFactory.eINSTANCE.createRecommendationResult();
+			
 			JSONObject element = attrArray.getJSONObject(i);
 			JSONObject pks = element.getJSONObject("pk");
 			String attrName = pks.getString("attrName");
 			String attrType = pks.getString("attrType");
 			double value= element.getDouble("value");
 			String simpleType = MetamodelControlInterface.getType(attrType).getInstanceClass().getSimpleName();
-			feature.put("type", simpleType);
-			feature.put("value", value);
-			features.put(attrName, feature);
 			
+			result.setRaitin(value);
+			result.setType(MetamodelControl.FEATURES);
+			
+			result.getValues().put(MetamodelControl.TYPE, simpleType);
+			result.getValues().put(MetamodelControl.NAME, attrName);
+			ret.add(result);
 		}
-		object.put("features", features);
-		JSONObject superTypes = new JSONObject();
-		for (int i = 0; i < superArray.length(); i++) {
 
+		for (int i = 0; i < superArray.length(); i++) {
+			RecommendationResult result = DroidRecommenderHistoryFactory.eINSTANCE.createRecommendationResult();
+			
 			JSONObject element = superArray.getJSONObject(i);
 			JSONObject pks = element.getJSONObject("pk");
 			String name = pks.getString("name");
 			double value = element.getDouble("value");
-			JSONObject superType = new JSONObject();
-			superType.put("value", value);
 			
-			superTypes.put(name, superType);
+			result.setRaitin(value);
+			result.setType(MetamodelControl.SUPERCLASSES);
+			result.getValues().put(MetamodelControl.NAME, name);
+			ret.add(result);
 		}
-		object.put("superClasses", superTypes);
-		classJObject.put(className, object);
-		return classJObject;
+		return ret;
 
 	}
 
+	private long getLastId(Project project) {
+		List<RecommendationMsg> list =  project.getRecommendationMsg();
+		if (list.isEmpty()) {
+			return -1;
+		}
+		Collections.sort(list, new Comparator<RecommendationMsg>() {
+
+			@Override
+			public int compare(RecommendationMsg o1, RecommendationMsg o2) {
+				return Long.compare(o2.getId(), o1.getId());
+			}
+		});
+		return list.get(0).getId();
+	}
 }

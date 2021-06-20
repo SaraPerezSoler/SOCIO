@@ -91,6 +91,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProjectName() {
 		return projectName;
 	}
@@ -100,6 +101,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProjectName(String newProjectName) {
 		String oldProjectName = projectName;
 		projectName = newProjectName;
@@ -112,6 +114,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPos() {
 		return pos;
 	}
@@ -121,6 +124,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPos(int newPos) {
 		int oldPos = pos;
 		pos = newPos;
@@ -205,7 +209,7 @@ public class OrderImpl extends MinimalEObjectImpl.Container implements Order {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (projectName: ");
 		result.append(projectName);
 		result.append(", pos: ");

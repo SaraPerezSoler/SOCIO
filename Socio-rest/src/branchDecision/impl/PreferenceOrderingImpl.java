@@ -66,6 +66,7 @@ public class PreferenceOrderingImpl extends PreferenceImpl implements Preference
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Order> getOrder() {
 		if (order == null) {
 			order = new EObjectContainmentEList<Order>(Order.class, this, BranchDecisionPackage.PREFERENCE_ORDERING__ORDER);

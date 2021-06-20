@@ -40,6 +40,7 @@ public class MetamodelControl implements Controlador, FileProject {
 	public static final String TYPE ="type";
 	public static final String MIN ="min";
 	public static final String MAX ="max";
+	public static final String NAME = "name";
 	
 	private Resource resource;
 	

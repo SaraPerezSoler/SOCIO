@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import com.socio.client.beans.User;
 import com.socio.client.command.responseExceptions.ForbiddenResponse;
 import com.socio.client.command.responseExceptions.ResponseError;
 import com.socio.client.telegram.Chat;
@@ -28,17 +29,19 @@ public class RecommenderConversation implements ConversationalState {
 		String text = message.getText();
 		text = State.removeFirstCommand(text);
 		JSONObject recomendation;
+		User user = State.getUser(message.getFrom());
 		if (text.equals(Recommender.ALL)) {
 			recomendation = new JSONObject();
 			for (String element : elements) {
-				JSONObject obj = State.SOCIO().recommend(chat.getProject(), element);
+				
+				JSONObject obj = State.SOCIO().recommend(chat.getProject(), element, user);
 				for (int i = 0; i < obj.names().length(); i++) {
 					recomendation.put(obj.names().getString(i), obj.getJSONObject(obj.names().getString(i)));
 				}
 			}
 		} else {
 
-			recomendation = State.SOCIO().recommend(chat.getProject(), text);
+			recomendation = State.SOCIO().recommend(chat.getProject(), text, user);
 		}
 		RecommenderAddElement rae = RecommenderAddElement.getState(recomendation);
 		rae.sendFirstMessage(chat, null);

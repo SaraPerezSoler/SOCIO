@@ -91,6 +91,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSentence() {
 		return sentence;
 	}
@@ -100,6 +101,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSentence(String newSentence) {
 		String oldSentence = sentence;
 		sentence = newSentence;
@@ -112,6 +114,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Action> getCommands() {
 		if (commands == null) {
 			commands = new EObjectContainmentEList<Action>(Action.class, this, ProjectHistoryPackage.SENTENCE__COMMANDS);
@@ -212,7 +215,7 @@ public class SentenceImpl extends MinimalEObjectImpl.Container implements Senten
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (sentence: ");
 		result.append(sentence);
 		result.append(')');

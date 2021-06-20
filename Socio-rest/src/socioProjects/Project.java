@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.json.JSONObject;
 
 import branchDecision.Decision;
+import droidRecommenderHistory.RecommendationEvent;
+import droidRecommenderHistory.RecommendationMsg;
 import es.uam.app.actions.Add;
 import es.uam.app.actions.Delete;
 import es.uam.app.actions.Update;
@@ -22,6 +24,7 @@ import es.uam.app.main.exceptions.InternalException;
 import projectHistory.Action;
 import projectHistory.History;
 import projectHistory.Msg;
+import projectHistory.UserInteraction;
 import removeLog.Root;
 
 /**
@@ -400,6 +403,8 @@ public interface Project extends EObject {
 	 * @generated NOT
 	 */
 	File execute(Msg msg) throws Exception;
+	File execute(RecommendationEvent msg) throws Exception;
+	void execute(RecommendationMsg msg) throws Exception;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -425,9 +430,9 @@ public interface Project extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 * @generated
+	 * @generated NOT
 	 */
-	EList<Msg> getHistoryMsg();
+	EList<UserInteraction> getHistoryMsg();
 	File getProjectHistory() throws IOException;
 	/**
 	 * <!-- begin-user-doc -->
@@ -435,7 +440,7 @@ public interface Project extends EObject {
 	 * @model dateRequired="true" orderRequired="true"
 	 * @generated NOT
 	 */
-	List<Msg> getHistoryMsg(Date date, int order);
+	List<UserInteraction> getHistoryMsg(Date date, int order);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -443,7 +448,7 @@ public interface Project extends EObject {
 	 * @model startRequired="true" endRequired="true" orderRequired="true"
 	 * @generated NOT
 	 */
-	List<Msg> getHistoryMsg(Date start, Date end, int order);
+	List<UserInteraction> getHistoryMsg(Date start, Date end, int order);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -451,7 +456,7 @@ public interface Project extends EObject {
 	 * @model nickRequired="true"
 	 * @generated NOT
 	 */
-	List<Msg> getHistoryForUser(User u);
+	List<UserInteraction> getHistoryForUser(User u);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -459,7 +464,7 @@ public interface Project extends EObject {
 	 * @model elementRequired="true"
 	 * @generated NOT
 	 */
-	List<Msg> getHistoryForElement(String element);
+	List<UserInteraction> getHistoryForElement(String element);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -467,7 +472,7 @@ public interface Project extends EObject {
 	 * @model actionRequired="true"
 	 * @generated NOT
 	 */
-	List<Msg> getHistoryForAction(String action);
+	List<UserInteraction> getHistoryForAction(String action);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -609,6 +614,12 @@ public interface Project extends EObject {
 	File addObjects(Msg msg, JSONObject objects) throws Exception;
 	
 	JSONObject getElementsJson();
+
+	List<RecommendationMsg> getRecommendationMsg();
+
+	
+
+	
 
 	
 

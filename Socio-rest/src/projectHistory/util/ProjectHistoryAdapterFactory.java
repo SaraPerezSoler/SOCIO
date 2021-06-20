@@ -76,6 +76,14 @@ public class ProjectHistoryAdapterFactory extends AdapterFactoryImpl {
 				return createCreateMsgAdapter();
 			}
 			@Override
+			public Adapter caseUserInteraction(UserInteraction object) {
+				return createUserInteractionAdapter();
+			}
+			@Override
+			public Adapter caseInteractionWithActions(InteractionWithActions object) {
+				return createInteractionWithActionsAdapter();
+			}
+			@Override
 			public Adapter caseMsg(Msg object) {
 				return createMsgAdapter();
 			}
@@ -144,6 +152,34 @@ public class ProjectHistoryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCreateMsgAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link projectHistory.UserInteraction <em>User Interaction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see projectHistory.UserInteraction
+	 * @generated
+	 */
+	public Adapter createUserInteractionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link projectHistory.InteractionWithActions <em>Interaction With Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see projectHistory.InteractionWithActions
+	 * @generated
+	 */
+	public Adapter createInteractionWithActionsAdapter() {
 		return null;
 	}
 

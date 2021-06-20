@@ -107,6 +107,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getConsensusRequired() {
 		return consensusRequired;
 	}
@@ -115,6 +116,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConsensusRequired(double newConsensusRequired) {
 		double oldConsensusRequired = consensusRequired;
 		consensusRequired = newConsensusRequired;
@@ -127,6 +129,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Round> getRounds() {
 		if (rounds == null) {
 			rounds = new EObjectContainmentEList<Round>(Round.class, this, BranchDecisionPackage.CONSENSUS__ROUNDS);
@@ -138,6 +141,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<User> getUsers() {
 		if (users == null) {
 			users = new EObjectResolvingEList<User>(User.class, this, BranchDecisionPackage.CONSENSUS__USERS);
@@ -243,7 +247,7 @@ public class ConsensusImpl extends DecisionImpl implements Consensus {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (consensusRequired: ");
 		result.append(consensusRequired);
 		result.append(')');

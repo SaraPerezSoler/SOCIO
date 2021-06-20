@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.json.JSONObject;
 
+import droidRecommenderHistory.RecommendationEvent;
 import es.uam.app.actions.Add;
 import es.uam.app.actions.AddMetamodel;
 import es.uam.app.actions.Delete;
@@ -42,7 +43,6 @@ import es.uam.app.projects.emf.metamodel.ReferenceControl;
 import es.uam.app.words.WordNet;
 import net.didion.jwnl.JWNLException;
 import projectHistory.Action;
-import projectHistory.Msg;
 import socioProjects.MetamodelProject;
 import socioProjects.SocioProjectsPackage;
 
@@ -79,7 +79,6 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,6 +127,16 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		}
 		return act;
 	}
+	@Override
+	public List<Action> addActions(RecommendationEvent objects) throws Exception {
+		AddCommandRule remove = new AddCommandRule(objects);
+		List<Action> act = remove.evaluete(this);
+		for (Action a : act) {
+			a.doIt();
+		}
+		return act;
+	}
+
 
 	@Override
 	protected String createUML(List<Action> actions, List<Action> actual, boolean sort) {
@@ -535,6 +544,7 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 	public JSONObject getElementsJson() {
 		return ec.getModelJSON();
 	}
+
 
 
 

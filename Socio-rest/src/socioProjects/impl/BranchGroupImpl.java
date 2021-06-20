@@ -149,6 +149,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -158,6 +159,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -170,6 +172,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCreateAt() {
 		return createAt;
 	}
@@ -179,6 +182,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateAt(Date newCreateAt) {
 		Date oldCreateAt = createAt;
 		createAt = newCreateAt;
@@ -191,6 +195,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GroupStatus getStatus() {
 		return status;
 	}
@@ -217,6 +222,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getFather() {
 		if (eContainerFeatureID() != SocioProjectsPackage.BRANCH_GROUP__FATHER) return null;
 		return (Project)eInternalContainer();
@@ -237,6 +243,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFather(Project newFather) {
 		if (newFather != eInternalContainer() || (eContainerFeatureID() != SocioProjectsPackage.BRANCH_GROUP__FATHER && newFather != null)) {
 			if (EcoreUtil.isAncestor(this, newFather))
@@ -258,6 +265,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Decision getDecision() {
 		return decision;
 	}
@@ -282,6 +290,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDecision(Decision newDecision) {
 		if (newDecision != decision) {
 			NotificationChain msgs = null;
@@ -301,6 +310,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Project> getBranchs() {
 		if (branchs == null) {
 			branchs = new EObjectWithInverseResolvingEList<Project>(Project.class, this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS, SocioProjectsPackage.PROJECT__BRANCH_GROUP);
@@ -478,7 +488,7 @@ public class BranchGroupImpl extends MinimalEObjectImpl.Container implements Bra
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", createAt: ");

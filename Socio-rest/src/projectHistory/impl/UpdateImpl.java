@@ -79,6 +79,7 @@ public class UpdateImpl extends ActionImpl implements Update {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getOld() {
 		return old;
 	}
@@ -115,6 +116,7 @@ public class UpdateImpl extends ActionImpl implements Update {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOld(EObject newOld) {
 		if (newOld != old) {
 			NotificationChain msgs = null;
@@ -134,6 +136,7 @@ public class UpdateImpl extends ActionImpl implements Update {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject getNew() {
 		return new_;
 	}
@@ -158,6 +161,7 @@ public class UpdateImpl extends ActionImpl implements Update {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNew(EObject newNew) {
 		if (newNew != new_) {
 			NotificationChain msgs = null;

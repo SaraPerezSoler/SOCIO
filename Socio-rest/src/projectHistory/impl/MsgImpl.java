@@ -2,9 +2,9 @@
  */
 package projectHistory.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,27 +12,21 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import es.uam.app.projects.emf.Controlador;
-
-import java.lang.reflect.InvocationTargetException;
 import projectHistory.Action;
 import projectHistory.Msg;
+import projectHistory.ProjectHistoryFactory;
 import projectHistory.ProjectHistoryPackage;
 import projectHistory.Sentence;
+import projectHistory.UserInteraction;
 import socioProjects.Project;
-import socioProjects.User;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -41,27 +35,15 @@ import socioProjects.User;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link projectHistory.impl.MsgImpl#getUser <em>User</em>}</li>
  *   <li>{@link projectHistory.impl.MsgImpl#getMsg <em>Msg</em>}</li>
  *   <li>{@link projectHistory.impl.MsgImpl#getText <em>Text</em>}</li>
- *   <li>{@link projectHistory.impl.MsgImpl#getDate <em>Date</em>}</li>
  *   <li>{@link projectHistory.impl.MsgImpl#getId <em>Id</em>}</li>
  *   <li>{@link projectHistory.impl.MsgImpl#getSentences <em>Sentences</em>}</li>
- *   <li>{@link projectHistory.impl.MsgImpl#isUndoable <em>Undoable</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
-	/**
-	 * The cached value of the '{@link #getUser() <em>User</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getUser()
-	 * @generated
-	 * @ordered
-	 */
-	protected User user;
-
+public class MsgImpl extends InteractionWithActionsImpl implements Msg {
 	/**
 	 * The default value of the '{@link #getMsg() <em>Msg</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -101,24 +83,6 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	protected String text = TEXT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDate() <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date date = DATE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -151,24 +115,6 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	private String userToSearch = null;
 
 	/**
-	 * The default value of the '{@link #isUndoable() <em>Undoable</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isUndoable()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean UNDOABLE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isUndoable() <em>Undoable</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isUndoable()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean undoable = UNDOABLE_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -189,41 +135,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public User getUser() {
-		if (user != null && user.eIsProxy()) {
-			InternalEObject oldUser = (InternalEObject)user;
-			user = (User)eResolveProxy(oldUser);
-			if (user != oldUser) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProjectHistoryPackage.MSG__USER, oldUser, user));
-			}
-		}
-		return user;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public User basicGetUser() {
-		return user;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUser(User newUser) {
-		User oldUser = user;
-		user = newUser;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProjectHistoryPackage.MSG__USER, oldUser, user));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public String getMsg() {
 		return msg;
 	}
@@ -232,6 +144,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMsg(String newMsg) {
 		String oldMsg = msg;
 		msg = newMsg;
@@ -243,6 +156,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText() {
 		return text;
 	}
@@ -251,6 +165,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setText(String newText) {
 		String oldText = text;
 		text = newText;
@@ -262,6 +177,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Sentence> getSentences() {
 		if (sentences == null) {
 			sentences = new EObjectContainmentEList<Sentence>(Sentence.class, this, ProjectHistoryPackage.MSG__SENTENCES);
@@ -273,25 +189,7 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Date getDate() {
-		return date;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDate(Date newDate) {
-		Date oldDate = date;
-		date = newDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProjectHistoryPackage.MSG__DATE, oldDate, date));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -300,30 +198,12 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ProjectHistoryPackage.MSG__ID, oldId, id));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isUndoable() {
-		return undoable;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUndoable(boolean newUndoable) {
-		boolean oldUndoable = undoable;
-		undoable = newUndoable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProjectHistoryPackage.MSG__UNDOABLE, oldUndoable, undoable));
 	}
 
 	/**
@@ -355,21 +235,14 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ProjectHistoryPackage.MSG__USER:
-				if (resolve) return getUser();
-				return basicGetUser();
 			case ProjectHistoryPackage.MSG__MSG:
 				return getMsg();
 			case ProjectHistoryPackage.MSG__TEXT:
 				return getText();
-			case ProjectHistoryPackage.MSG__DATE:
-				return getDate();
 			case ProjectHistoryPackage.MSG__ID:
 				return getId();
 			case ProjectHistoryPackage.MSG__SENTENCES:
 				return getSentences();
-			case ProjectHistoryPackage.MSG__UNDOABLE:
-				return isUndoable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -382,17 +255,11 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ProjectHistoryPackage.MSG__USER:
-				setUser((User)newValue);
-				return;
 			case ProjectHistoryPackage.MSG__MSG:
 				setMsg((String)newValue);
 				return;
 			case ProjectHistoryPackage.MSG__TEXT:
 				setText((String)newValue);
-				return;
-			case ProjectHistoryPackage.MSG__DATE:
-				setDate((Date)newValue);
 				return;
 			case ProjectHistoryPackage.MSG__ID:
 				setId((String)newValue);
@@ -400,9 +267,6 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 			case ProjectHistoryPackage.MSG__SENTENCES:
 				getSentences().clear();
 				getSentences().addAll((Collection<? extends Sentence>)newValue);
-				return;
-			case ProjectHistoryPackage.MSG__UNDOABLE:
-				setUndoable((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -415,26 +279,17 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ProjectHistoryPackage.MSG__USER:
-				setUser((User)null);
-				return;
 			case ProjectHistoryPackage.MSG__MSG:
 				setMsg(MSG_EDEFAULT);
 				return;
 			case ProjectHistoryPackage.MSG__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
-			case ProjectHistoryPackage.MSG__DATE:
-				setDate(DATE_EDEFAULT);
-				return;
 			case ProjectHistoryPackage.MSG__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case ProjectHistoryPackage.MSG__SENTENCES:
 				getSentences().clear();
-				return;
-			case ProjectHistoryPackage.MSG__UNDOABLE:
-				setUndoable(UNDOABLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -447,20 +302,14 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ProjectHistoryPackage.MSG__USER:
-				return user != null;
 			case ProjectHistoryPackage.MSG__MSG:
 				return MSG_EDEFAULT == null ? msg != null : !MSG_EDEFAULT.equals(msg);
 			case ProjectHistoryPackage.MSG__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-			case ProjectHistoryPackage.MSG__DATE:
-				return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 			case ProjectHistoryPackage.MSG__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case ProjectHistoryPackage.MSG__SENTENCES:
 				return sentences != null && !sentences.isEmpty();
-			case ProjectHistoryPackage.MSG__UNDOABLE:
-				return undoable != UNDOABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -486,17 +335,13 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (msg: ");
 		result.append(msg);
 		result.append(", text: ");
 		result.append(text);
-		result.append(", date: ");
-		result.append(date);
 		result.append(", id: ");
 		result.append(id);
-		result.append(", undoable: ");
-		result.append(undoable);
 		result.append(')');
 		return result.toString();
 	}
@@ -692,5 +537,21 @@ public class MsgImpl extends MinimalEObjectImpl.Container implements Msg {
 		}
 		return false;
 	}
+
+	@Override
+	public UserInteraction getACopy() {
+		Msg ret = ProjectHistoryFactory.eINSTANCE.createMsg();
+		ret.setDate(this.getDate());
+		ret.setId(this.getId());
+		ret.setMsg(this.getMsg());
+		ret.setProject(this.getProject());
+		ret.setSentences(this.getSentencesMap());
+		ret.setText(this.getText());
+		ret.setUndoable(this.isUndoable());
+		ret.setUser(this.getUser());
+		ret.setUserToSearch(this.getUserToSearch());
+		return ret;
+	}
+
 
 } // MsgImpl

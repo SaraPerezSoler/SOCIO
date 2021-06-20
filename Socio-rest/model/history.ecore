@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="projectHistory" nsURI="projectHistory" nsPrefix="projectHistory">
   <eClassifiers xsi:type="ecore:EClass" name="History">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="msg" upperBound="-1" eType="#//Msg"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="msg" upperBound="-1" eType="#//UserInteraction"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="createMsg" lowerBound="1"
         eType="#//CreateMsg" containment="true"/>
@@ -11,17 +11,27 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" lowerBound="1" eType="ecore:EClass SocioDatabase.ecore#//User"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Msg">
-    <eOperations name="getChannel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UserInteraction" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" lowerBound="1" eType="ecore:EClass SocioDatabase.ecore#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionWithActions" abstract="true"
+      eSuperTypes="#//UserInteraction">
+    <eOperations name="getAllActions">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="undoable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Msg" eSuperTypes="#//InteractionWithActions">
+    <eOperations name="getChannel" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="msg" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sentences" lowerBound="1"
         upperBound="-1" eType="#//Sentence" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="undoable" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sentence">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sentence" lowerBound="1"

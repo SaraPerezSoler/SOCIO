@@ -85,6 +85,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		if (user != null && user.eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
@@ -111,6 +112,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		User oldUser = user;
 		user = newUser;
@@ -123,6 +125,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getDate() {
 		return date;
 	}
@@ -132,6 +135,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDate(Date newDate) {
 		Date oldDate = date;
 		date = newDate;
@@ -217,7 +221,7 @@ public class CreateMsgImpl extends MinimalEObjectImpl.Container implements Creat
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (date: ");
 		result.append(date);
 		result.append(')');

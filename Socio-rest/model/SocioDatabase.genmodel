@@ -14,12 +14,18 @@
       <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Visibility/PROTECTED"/>
       <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//Visibility/PRIVATE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SocioDatabase.ecore#//GroupStatus">
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//GroupStatus/OPEN"/>
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//GroupStatus/CLOSE"/>
+      <genEnumLiterals ecoreEnumLiteral="SocioDatabase.ecore#//GroupStatus/MERGED"/>
+    </genEnums>
     <genClasses ecoreClass="SocioDatabase.ecore#//SocioApp">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//SocioApp/projects"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//SocioApp/users"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//SocioApp/projects"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SocioDatabase.ecore#//Project">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/open"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/history"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/remove"/>
@@ -27,11 +33,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/visibility"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/admin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/branchIsLocking"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/branchGroup"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Project/branch"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/OpenBranchs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/CloseBranchs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/branchs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Project/branchGroup"/>
       <genOperations ecoreOperation="SocioDatabase.ecore#//Project/getPath"/>
       <genOperations ecoreOperation="SocioDatabase.ecore#//Project/parseSentence">
         <genParameters ecoreParameter="SocioDatabase.ecore#//Project/parseSentence/sentence"/>
@@ -74,9 +78,10 @@
       <genOperations ecoreOperation="SocioDatabase.ecore#//Project/percentOfAuthorship"/>
       <genOperations ecoreOperation="SocioDatabase.ecore#//Project/validate"/>
     </genClasses>
-    <genClasses ecoreClass="SocioDatabase.ecore#//ModelProjec">
-      <genOperations ecoreOperation="SocioDatabase.ecore#//ModelProjec/parseSentence">
-        <genParameters ecoreParameter="SocioDatabase.ecore#//ModelProjec/parseSentence/sentence"/>
+    <genClasses ecoreClass="SocioDatabase.ecore#//ModelProject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//ModelProject/metamodelName"/>
+      <genOperations ecoreOperation="SocioDatabase.ecore#//ModelProject/parseSentence">
+        <genParameters ecoreParameter="SocioDatabase.ecore#//ModelProject/parseSentence/sentence"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="SocioDatabase.ecore#//MetamodelProject">
@@ -119,6 +124,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//Contribution/access"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//Contribution/project"/>
     </genClasses>
+    <genClasses ecoreClass="SocioDatabase.ecore#//BranchGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//BranchGroup/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//BranchGroup/createAt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SocioDatabase.ecore#//BranchGroup/status"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SocioDatabase.ecore#//BranchGroup/father"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//BranchGroup/decision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SocioDatabase.ecore#//BranchGroup/branchs"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="ProjectHistory" disposableProviderFactory="true" ecorePackage="history.ecore#/">
     <genClasses ecoreClass="history.ecore#//History">
@@ -127,20 +140,20 @@
     </genClasses>
     <genClasses ecoreClass="history.ecore#//CreateMsg">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//CreateMsg/user"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/text"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/sentence"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/date"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//CreateMsg/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="history.ecore#//UserInteraction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//UserInteraction/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//UserInteraction/date"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="history.ecore#//InteractionWithActions">
+      <genOperations ecoreOperation="history.ecore#//InteractionWithActions/getAllActions"/>
     </genClasses>
     <genClasses ecoreClass="history.ecore#//Msg">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference history.ecore#//Msg/user"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/msg"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/command"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/text"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/id"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference history.ecore#//Msg/sentences"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute history.ecore#//Msg/undoable"/>
       <genOperations ecoreOperation="history.ecore#//Msg/getChannel"/>
     </genClasses>
     <genClasses ecoreClass="history.ecore#//Sentence">
@@ -172,14 +185,14 @@
   <genPackages prefix="BranchDecision" disposableProviderFactory="true" ecorePackage="BranchDecision.ecore#/">
     <genClasses image="false" ecoreClass="BranchDecision.ecore#//Decision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BranchDecision.ecore#//Decision/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BranchDecision.ecore#//Decision/branchs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BranchDecision.ecore#//Decision/chosenBranch"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BranchDecision.ecore#//Decision/start"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BranchDecision.ecore#//Decision/mergedDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BranchDecision.ecore#//Decision/messageId"/>
     </genClasses>
     <genClasses ecoreClass="BranchDecision.ecore#//Consensus">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BranchDecision.ecore#//Consensus/consensusRequired"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BranchDecision.ecore#//Consensus/preferencesRound"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BranchDecision.ecore#//Consensus/rounds"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BranchDecision.ecore#//Consensus/users"/>
     </genClasses>
     <genClasses ecoreClass="BranchDecision.ecore#//Round">

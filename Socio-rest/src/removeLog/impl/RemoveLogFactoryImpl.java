@@ -67,6 +67,7 @@ public class RemoveLogFactoryImpl extends EFactoryImpl implements RemoveLogFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Root createRoot() {
 		RootImpl root = new RootImpl();
 		return root;
@@ -77,6 +78,7 @@ public class RemoveLogFactoryImpl extends EFactoryImpl implements RemoveLogFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RemoveLogPackage getRemoveLogPackage() {
 		return (RemoveLogPackage)getEPackage();
 	}

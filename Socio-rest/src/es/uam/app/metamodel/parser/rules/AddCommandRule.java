@@ -4,10 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClassifier;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import droidRecommenderHistory.RecommendationEvent;
 import es.uam.app.actions.metamodels.CreateAttribute;
 import es.uam.app.actions.metamodels.CreateClass;
 import es.uam.app.actions.metamodels.CreateReference;
@@ -27,13 +29,89 @@ import socioProjects.MetamodelProject;
 
 public class AddCommandRule {
 
-	private JSONObject objects;
+	private JSONObject objects = null;
+	private RecommendationEvent msg = null;
 
 	public AddCommandRule(JSONObject objects) {
 		this.objects = objects;
 	}
 
+	public AddCommandRule(RecommendationEvent objects2) {
+		this.msg = objects2;
+	}
+
 	public List<Action> evaluete(MetamodelProject proj) throws FileNotFoundException, JWNLException {
+		
+		if (msg != null) {
+			return evalueteMsg(proj);
+		}else {
+			return evalueteJSON(proj);
+		}
+	}
+	
+	private List<Action> evalueteMsg(MetamodelProject proj) throws FileNotFoundException, JWNLException {
+		List<Action> ret = new ArrayList<Action>();
+		String className = msg.getElementName();
+		String elementType = msg.getElementType();
+		if (elementType.equals("Class")) {
+			IsClass keyClass = IsClass.getExactlyClass(NP.upperCammelCase(className), proj);
+			keyClass = addIsClass(keyClass, ret);
+			String selectedType = msg.getSelected().getType();
+			EMap<String, Object> values = msg.getSelected().getValues();
+			String name = (String) values.get(MetamodelControl.NAME);
+			if (selectedType.equals(MetamodelControl.FEATURES)) {
+				
+				String type ="";
+				int min = 1;
+				int max = 1;
+				boolean containment = false;
+				if (values.containsKey(MetamodelControl.TYPE)) {
+					type = (String) values.get(MetamodelControl.TYPE);
+				}
+				if (values.containsKey(MetamodelControl.CONTAINMENT)) {
+					containment = (boolean) values.get(MetamodelControl.CONTAINMENT);
+				}
+				if (values.containsKey(MetamodelControl.MIN)) {
+					min = (int) values.get(MetamodelControl.MIN);
+				}
+				if (values.containsKey(MetamodelControl.MAX)) {
+					max = (int) values.get(MetamodelControl.MAX);
+				}
+				
+				if (type.isEmpty()) {
+					IsAttribute att = IsAttribute.getExactlyAttribute(NP.lowerCammelCase(name), keyClass, min, max, proj);
+					att= addIsAttribute(att, ret);
+				}else {
+					EClassifier primitiveType = MetamodelControlInterface.getType(type);
+					if (primitiveType != null) {
+						IsAttribute att = IsAttribute.getExactlyAttribute(NP.lowerCammelCase(name), keyClass, min, max, proj);
+						att= addIsAttribute(att, ret);
+						UpdateAttrType uat = new UpdateAttrType(proj, att, type, max);
+						ret.add(uat.getAction());
+						
+					}else {
+						IsReference ref = IsReference.getExactlyReference(NP.lowerCammelCase(name), keyClass, min, max, proj, containment);
+						ref = addIsReference(ref, ret);
+						IsClass typeClass = IsClass.getExactlyClass(type, proj);
+						typeClass = addIsClass(typeClass, ret);
+						UpdateRefType urt = new UpdateRefType(proj, ref, typeClass, max);
+						ret.add(urt.getAction());
+					}
+				}
+				
+			}else if (selectedType.equals(MetamodelControl.SUPERCLASSES)) {
+				IsClass superClassClass = IsClass.getExactlyClass(NP.upperCammelCase(name), proj);
+				superClassClass = addIsClass(superClassClass, ret);
+				UpdateClassSuperType ucst = new UpdateClassSuperType(proj, keyClass, superClassClass);
+				ret.add(ucst.getAction());
+			}
+				
+		}
+		
+		return ret;
+	}
+	
+	private List<Action> evalueteJSON(MetamodelProject proj) throws FileNotFoundException, JWNLException {
 		List<Action> ret = new ArrayList<Action>();
 		for (int i = 0; i < objects.names().length(); i++) {
 			String key = objects.names().getString(i);
@@ -106,7 +184,6 @@ public class AddCommandRule {
 				
 			}
 		}
-
 		return ret;
 	}
 

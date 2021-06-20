@@ -2,15 +2,11 @@
  */
 package projectHistory;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import es.uam.app.projects.emf.Controlador;
-import socioProjects.User;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,46 +17,17 @@ import socioProjects.User;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link projectHistory.Msg#getUser <em>User</em>}</li>
  *   <li>{@link projectHistory.Msg#getMsg <em>Msg</em>}</li>
  *   <li>{@link projectHistory.Msg#getText <em>Text</em>}</li>
- *   <li>{@link projectHistory.Msg#getDate <em>Date</em>}</li>
  *   <li>{@link projectHistory.Msg#getId <em>Id</em>}</li>
  *   <li>{@link projectHistory.Msg#getSentences <em>Sentences</em>}</li>
- *   <li>{@link projectHistory.Msg#isUndoable <em>Undoable</em>}</li>
  * </ul>
  *
  * @see projectHistory.ProjectHistoryPackage#getMsg()
  * @model
  * @generated
  */
-public interface Msg extends EObject {
-	/**
-	 * Returns the value of the '<em><b>User</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>User</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>User</em>' reference.
-	 * @see #setUser(User)
-	 * @see projectHistory.ProjectHistoryPackage#getMsg_User()
-	 * @model required="true"
-	 * @generated
-	 */
-	User getUser();
-
-	/**
-	 * Sets the value of the '{@link projectHistory.Msg#getUser <em>User</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>User</em>' reference.
-	 * @see #getUser()
-	 * @generated
-	 */
-	void setUser(User value);
-
+public interface Msg extends InteractionWithActions {
 	/**
 	 * Returns the value of the '<em><b>Msg</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -130,32 +97,6 @@ public interface Msg extends EObject {
 	EList<Sentence> getSentences();
 
 	/**
-	 * Returns the value of the '<em><b>Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Date</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Date</em>' attribute.
-	 * @see #setDate(Date)
-	 * @see projectHistory.ProjectHistoryPackage#getMsg_Date()
-	 * @model required="true"
-	 * @generated
-	 */
-	Date getDate();
-
-	/**
-	 * Sets the value of the '{@link projectHistory.Msg#getDate <em>Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Date</em>' attribute.
-	 * @see #getDate()
-	 * @generated
-	 */
-	void setDate(Date value);
-
-	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -180,32 +121,6 @@ public interface Msg extends EObject {
 	 * @generated
 	 */
 	void setId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Undoable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Undoable</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Undoable</em>' attribute.
-	 * @see #setUndoable(boolean)
-	 * @see projectHistory.ProjectHistoryPackage#getMsg_Undoable()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isUndoable();
-
-	/**
-	 * Sets the value of the '{@link projectHistory.Msg#isUndoable <em>Undoable</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Undoable</em>' attribute.
-	 * @see #isUndoable()
-	 * @generated
-	 */
-	void setUndoable(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

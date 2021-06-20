@@ -73,6 +73,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public History createHistory() {
 		HistoryImpl history = new HistoryImpl();
 		return history;
@@ -83,6 +84,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CreateMsg createCreateMsg() {
 		CreateMsgImpl createMsg = new CreateMsgImpl();
 		return createMsg;
@@ -93,6 +95,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Msg createMsg() {
 		MsgImpl msg = new MsgImpl();
 		return msg;
@@ -103,6 +106,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Sentence createSentence() {
 		SentenceImpl sentence = new SentenceImpl();
 		return sentence;
@@ -113,6 +117,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Add createAdd() {
 		AddImpl add = new AddImpl();
 		return add;
@@ -123,6 +128,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Delete createDelete() {
 		DeleteImpl delete = new DeleteImpl();
 		return delete;
@@ -133,6 +139,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Update createUpdate() {
 		UpdateImpl update = new UpdateImpl();
 		return update;
@@ -143,6 +150,7 @@ public class ProjectHistoryFactoryImpl extends EFactoryImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProjectHistoryPackage getProjectHistoryPackage() {
 		return (ProjectHistoryPackage)getEPackage();
 	}

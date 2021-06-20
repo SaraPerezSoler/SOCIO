@@ -17,23 +17,23 @@
     </eOperations>
     <eOperations name="undo" lowerBound="1"/>
     <eOperations name="redo" lowerBound="1"/>
-    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg"/>
-    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction"/>
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction">
       <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eParameters name="order" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
-    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+    <eOperations name="getHistoryMsg" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction">
       <eParameters name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eParameters name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       <eParameters name="order" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eOperations>
-    <eOperations name="getHistoryForUser" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+    <eOperations name="getHistoryForUser" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction">
       <eParameters name="user" lowerBound="1" eType="#//User"/>
     </eOperations>
-    <eOperations name="getHistoryForElement" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+    <eOperations name="getHistoryForElement" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction">
       <eParameters name="element" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="getHistoryForAction" upperBound="-1" eType="ecore:EClass history.ecore#//Msg">
+    <eOperations name="getHistoryForAction" upperBound="-1" eType="ecore:EClass history.ecore#//UserInteraction">
       <eParameters name="action" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="getStatisticsUserMsg" lowerBound="1"/>
