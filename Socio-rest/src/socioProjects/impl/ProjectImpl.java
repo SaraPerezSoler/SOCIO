@@ -805,7 +805,6 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/*----------------------------------------------------------do, undo, redo--------------------------------------------------------------------------*/
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @throws Exception
 	 * @generated NOT
 	 */
@@ -841,6 +840,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	protected abstract Map<String, List<Action>> getSentencesAction(String text) throws Exception;
 
+
 	@Override
 	public File deleteObjects(Msg msg, Map<String, List<String>> objects) throws Exception {
 		if (!isOpen()) {
@@ -867,11 +867,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	public abstract List<Action> deleteActions(Map<String, List<String>> objects) throws Exception;
 
-	public File getPng(List<Action> actions) {
+	public File getPng(List<Action> actions) throws IOException {
 		return getPng(actions, false);
 	}
 
-	public File getPng(List<Action> actions, boolean sort) {
+	public File getPng(List<Action> actions, boolean sort) throws IOException {
 		if (actions == null) {
 			actions = new ArrayList<>();
 		}
@@ -970,6 +970,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				}
 			}
 		}
+		for (String k : keys) {
+			if (!ret.contains(k)) {
+				ret.add(k);
+			}
+		}
 		return ret;
 	}
 
@@ -992,6 +997,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			Msg m = undoMsg.pop();
 
 			Map<String, List<Action>> sentences = m.getSentencesMap();
+			System.out.println(sentences.keySet());
 			List<String> keys = orderedSentences2(sentences.keySet(), m);
 			for (String k : keys) {
 				List<Action> actions = sentences.get(k);
@@ -1015,7 +1021,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		return history.getMsg();
 	}
 
-	public File getProjectHistory() {
+	public File getProjectHistory() throws IOException {
 
 		File txt = UML.write(getPath() + "/History" + name + ".txt", new CreateProjectHistory().createHistory(this));
 		File png = UML.getUML(txt);
