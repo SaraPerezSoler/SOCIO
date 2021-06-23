@@ -999,6 +999,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				}
 			}
 		}
+		for (String k : keys) {
+			if (!ret.contains(k)) {
+				ret.add(k);
+			}
+		}
 		return ret;
 	}
 
@@ -1018,6 +1023,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		List<Action> all = new ArrayList<Action>();
 		if (!undoMsg.isEmpty()) {
+
 			InteractionWithActions iwa = undoMsg.pop();
 			if (iwa instanceof Msg) {
 				Msg m = (Msg) iwa;
@@ -1033,6 +1039,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				history.getMsg().add(m);
 			} else {
 				List<Action> actions = iwa.getAllActions();
+
 				for (Action a : actions) {
 					a.redoIt();
 				}
