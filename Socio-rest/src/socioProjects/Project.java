@@ -427,7 +427,7 @@ public interface Project extends EObject {
 	 * @generated
 	 */
 	EList<Msg> getHistoryMsg();
-	File getProjectHistory();
+	File getProjectHistory() throws IOException;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -575,8 +575,8 @@ public interface Project extends EObject {
 
 	String getCompleteName();
 
-	File getPng(List<Action> arrayList, boolean sort);
-	File getPng(List<Action> actions);
+	File getPng(List<Action> arrayList, boolean sort) throws IOException;
+	File getPng(List<Action> actions) throws IOException;
 
 	List<BranchGroup> getOpenBranchs();
 

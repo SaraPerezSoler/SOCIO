@@ -6,8 +6,8 @@ public interface WordConfigure {
 	
 	
 	public static String startUpperCase(String cad) {
-		if (cad == null) {
-			return null;
+		if (cad == null || cad.isEmpty()) {
+			return cad;
 		}
 		char[] cadChar = cad.toCharArray();
 		cadChar[0] = Character.toUpperCase(cadChar[0]);
@@ -15,8 +15,8 @@ public interface WordConfigure {
 	}
 	
 	public static String startLowerCase(String cad) {
-		if (cad == null) {
-			return null;
+		if (cad == null || cad.isEmpty()) {
+			return cad;
 		}
 		char[] cadChar = cad.toCharArray();
 		cadChar[0] = Character.toLowerCase(cadChar[0]);
