@@ -840,6 +840,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 				}
 			}
 		}
+		for (String k : keys) {
+			if (!ret.contains(k)) {
+				ret.add(k);
+			}
+		}
 		return ret;
 	}
 	protected abstract List<String> getSentenceOrder(String text) throws ParseException;
@@ -853,6 +858,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 					ret.add(k);
 					break bucle1;
 				}
+			}
+		}
+		for (String k : keys) {
+			if (!ret.contains(k)) {
+				ret.add(k);
 			}
 		}
 		return ret;
@@ -877,6 +887,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 			Msg m = undoMsg.pop();
 
 			Map<String, List<Action>> sentences = m.getSentencesMap();
+			System.out.println(sentences.keySet());
 			List<String> keys = orderedSentences2(sentences.keySet(), m);
 			for (String k : keys) {
 				List<Action> actions = sentences.get(k);
