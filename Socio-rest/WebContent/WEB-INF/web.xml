@@ -29,47 +29,47 @@
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	<!-- Windows Configuration -->
-	<context-param>
-		<param-name>project.files</param-name>
-		<param-value>/Socio</param-value>
-	</context-param>
-	<context-param>
-		<param-name>log.file</param-name>
-		<param-value>log.txt</param-value>
-	</context-param>
-	<context-param>
-		<param-name>wordNet.file</param-name>
-		<param-value>/Socio/file_properties.xml</param-value>
-	</context-param>
-	<context-param>
-		<param-name>wordNet.dict</param-name>
-		<param-value>/Socio/dict</param-value>
-	</context-param>
-
-
-
-	<!-- Linux Configuration -->
+<!-- 	<context-param> -->
+<!-- 		<param-name>project.files</param-name> -->
+<!-- 		<param-value>/Socio</param-value> -->
+<!-- 	</context-param> -->
 <!-- 	<context-param> -->
 <!-- 		<param-name>log.file</param-name> -->
 <!-- 		<param-value>log.txt</param-value> -->
 <!-- 	</context-param> -->
 <!-- 	<context-param> -->
-<!-- 		<param-name>project.files</param-name> -->
-<!-- 		<param-value>/home/Sara/Socio-undo-redo+</param-value> -->
-<!-- 	</context-param> -->
-<!-- 	<context-param> -->
 <!-- 		<param-name>wordNet.file</param-name> -->
-<!-- 		<param-value>/home/Sara/Socio/file_properties.xml</param-value> -->
+<!-- 		<param-value>/Socio/file_properties.xml</param-value> -->
 <!-- 	</context-param> -->
 <!-- 	<context-param> -->
 <!-- 		<param-name>wordNet.dict</param-name> -->
-<!-- 		<param-value>/home/Sara/Socio/dict</param-value> -->
+<!-- 		<param-value>/Socio/dict</param-value> -->
 <!-- 	</context-param> -->
 
-<!-- 	<context-param> -->
-<!-- 		<param-name>fileServer.url</param-name> -->
-<!-- 		<param-value>http://dimo1.ii.uam.es:8080/FileServer/file/</param-value> -->
-<!-- 	</context-param> -->
+
+
+	<!-- Linux Configuration -->
+	<context-param>
+		<param-name>log.file</param-name>
+		<param-value>log.txt</param-value>
+	</context-param>
+	<context-param>
+		<param-name>project.files</param-name>
+		<param-value>/home/Sara/SOCIO/ProjectFolders/SOCIOv2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>wordNet.file</param-name>
+		<param-value>/home/Sara/SOCIO/file_properties.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>wordNet.dict</param-name>
+		<param-value>/home/Sara/SOCIO/dict</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>fileServer.url</param-name>
+		<param-value>http://dimo1.ii.uam.es:8080/FileServer/file/</param-value>
+	</context-param>
 
 	<!-- <context-param> -->
 	<!-- <param-name>fileServer.url</param-name> -->

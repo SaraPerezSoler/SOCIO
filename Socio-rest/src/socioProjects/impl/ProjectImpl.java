@@ -70,18 +70,21 @@ import socioProjects.Visibility;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link socioProjects.impl.ProjectImpl#getName <em>Name</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getId <em>Id</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#isOpen <em>Open</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getHistory <em>History</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getRemove <em>Remove</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getModel <em>Model</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getAdmin <em>Admin</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#isBranchIsLocking <em>Branch Is Locking</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#isBranch <em>Branch</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getBranchs <em>Branchs</em>}</li>
- *   <li>{@link socioProjects.impl.ProjectImpl#getBranchGroup <em>Branch Group</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getName <em>Name</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getId <em>Id</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#isOpen <em>Open</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getHistory <em>History</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getRemove <em>Remove</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getModel <em>Model</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getVisibility
+ * <em>Visibility</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getAdmin <em>Admin</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#isBranchIsLocking <em>Branch Is
+ * Locking</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#isBranch <em>Branch</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getBranchs <em>Branchs</em>}</li>
+ * <li>{@link socioProjects.impl.ProjectImpl#getBranchGroup <em>Branch
+ * Group</em>}</li>
  * </ul>
  *
  * @generated
@@ -148,8 +151,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected boolean open = OPEN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getHistory() <em>History</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getHistory() <em>History</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getHistory()
 	 * @generated
 	 * @ordered
@@ -157,8 +161,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected History history;
 
 	/**
-	 * The cached value of the '{@link #getRemove() <em>Remove</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRemove() <em>Remove</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRemove()
 	 * @generated
 	 * @ordered
@@ -176,8 +181,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected EObject model;
 
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -185,8 +191,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PUBLIC;
 
 	/**
-	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -204,8 +211,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected User admin;
 
 	/**
-	 * The default value of the '{@link #isBranchIsLocking() <em>Branch Is Locking</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isBranchIsLocking() <em>Branch Is
+	 * Locking</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isBranchIsLocking()
 	 * @generated
 	 * @ordered
@@ -213,8 +221,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected static final boolean BRANCH_IS_LOCKING_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isBranchIsLocking() <em>Branch Is Locking</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #isBranchIsLocking() <em>Branch Is
+	 * Locking</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isBranchIsLocking()
 	 * @generated
 	 * @ordered
@@ -224,6 +233,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * The default value of the '{@link #isBranch() <em>Branch</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isBranch()
 	 * @generated
 	 * @ordered
@@ -241,8 +251,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected boolean branch = BRANCH_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBranchs() <em>Branchs</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBranchs() <em>Branchs</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBranchs()
 	 * @generated
 	 * @ordered
@@ -251,8 +262,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	protected Map<GroupStatus, List<WeakReference<BranchGroup>>> branchs_status = new HashMap<>();
 
 	/**
-	 * The cached value of the '{@link #getBranchGroup() <em>Branch Group</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBranchGroup() <em>Branch Group</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getBranchGroup()
 	 * @generated
 	 * @ordered
@@ -298,6 +310,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProjectImpl() {
@@ -306,6 +319,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -315,6 +329,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -323,6 +338,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -334,6 +350,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public long getId() {
@@ -342,6 +359,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(long newId) {
@@ -353,6 +371,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isOpen() {
@@ -361,6 +380,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOpen(boolean newOpen) {
@@ -372,6 +392,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public History getHistory() {
@@ -380,38 +401,48 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetHistory(History newHistory, NotificationChain msgs) {
 		History oldHistory = history;
 		history = newHistory;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, oldHistory, newHistory);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__HISTORY, oldHistory, newHistory);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHistory(History newHistory) {
 		if (newHistory != history) {
 			NotificationChain msgs = null;
 			if (history != null)
-				msgs = ((InternalEObject)history).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
+				msgs = ((InternalEObject) history).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
 			if (newHistory != null)
-				msgs = ((InternalEObject)newHistory).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
+				msgs = ((InternalEObject) newHistory).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__HISTORY, null, msgs);
 			msgs = basicSetHistory(newHistory, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, newHistory, newHistory));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__HISTORY, newHistory,
+					newHistory));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Root getRemove() {
@@ -420,47 +451,58 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRemove(Root newRemove, NotificationChain msgs) {
 		Root oldRemove = remove;
 		remove = newRemove;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, oldRemove, newRemove);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__REMOVE, oldRemove, newRemove);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRemove(Root newRemove) {
 		if (newRemove != remove) {
 			NotificationChain msgs = null;
 			if (remove != null)
-				msgs = ((InternalEObject)remove).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
+				msgs = ((InternalEObject) remove).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
 			if (newRemove != null)
-				msgs = ((InternalEObject)newRemove).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
+				msgs = ((InternalEObject) newRemove).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - SocioProjectsPackage.PROJECT__REMOVE, null, msgs);
 			msgs = basicSetRemove(newRemove, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, newRemove, newRemove));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__REMOVE, newRemove,
+					newRemove));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject getModel() {
 		if (model != null && model.eIsProxy()) {
-			InternalEObject oldModel = (InternalEObject)model;
+			InternalEObject oldModel = (InternalEObject) model;
 			model = eResolveProxy(oldModel);
 			if (model != oldModel) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__MODEL, oldModel, model));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__MODEL,
+							oldModel, model));
 			}
 		}
 		return model;
@@ -468,6 +510,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EObject basicGetModel() {
@@ -476,17 +519,20 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModel(EObject newModel) {
 		EObject oldModel = model;
 		model = newModel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__MODEL, oldModel, model));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__MODEL, oldModel,
+					model));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Visibility getVisibility() {
@@ -495,26 +541,30 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setVisibility(Visibility newVisibility) {
 		Visibility oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__VISIBILITY, oldVisibility, visibility));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__VISIBILITY,
+					oldVisibility, visibility));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getAdmin() {
 		if (admin != null && admin.eIsProxy()) {
-			InternalEObject oldAdmin = (InternalEObject)admin;
-			admin = (User)eResolveProxy(oldAdmin);
+			InternalEObject oldAdmin = (InternalEObject) admin;
+			admin = (User) eResolveProxy(oldAdmin);
 			if (admin != oldAdmin) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, admin));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__ADMIN,
+							oldAdmin, admin));
 			}
 		}
 		return admin;
@@ -522,6 +572,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetAdmin() {
@@ -530,38 +581,48 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAdmin(User newAdmin, NotificationChain msgs) {
 		User oldAdmin = admin;
 		admin = newAdmin;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, newAdmin);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__ADMIN, oldAdmin, newAdmin);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAdmin(User newAdmin) {
 		if (newAdmin != admin) {
 			NotificationChain msgs = null;
 			if (admin != null)
-				msgs = ((InternalEObject)admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
+				msgs = ((InternalEObject) admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
 			if (newAdmin != null)
-				msgs = ((InternalEObject)newAdmin).eInverseAdd(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
+				msgs = ((InternalEObject) newAdmin).eInverseAdd(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
 			msgs = basicSetAdmin(newAdmin, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, newAdmin, newAdmin));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__ADMIN, newAdmin,
+					newAdmin));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isBranchIsLocking() {
@@ -570,26 +631,30 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBranchIsLocking(boolean newBranchIsLocking) {
 		boolean oldBranchIsLocking = branchIsLocking;
 		branchIsLocking = newBranchIsLocking;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING, oldBranchIsLocking, branchIsLocking));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING,
+					oldBranchIsLocking, branchIsLocking));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BranchGroup getBranchGroup() {
 		if (branchGroup != null && branchGroup.eIsProxy()) {
-			InternalEObject oldBranchGroup = (InternalEObject)branchGroup;
-			branchGroup = (BranchGroup)eResolveProxy(oldBranchGroup);
+			InternalEObject oldBranchGroup = (InternalEObject) branchGroup;
+			branchGroup = (BranchGroup) eResolveProxy(oldBranchGroup);
 			if (branchGroup != oldBranchGroup) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SocioProjectsPackage.PROJECT__BRANCH_GROUP, oldBranchGroup, branchGroup));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							SocioProjectsPackage.PROJECT__BRANCH_GROUP, oldBranchGroup, branchGroup));
 			}
 		}
 		return branchGroup;
@@ -597,6 +662,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public BranchGroup basicGetBranchGroup() {
@@ -605,38 +671,48 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetBranchGroup(BranchGroup newBranchGroup, NotificationChain msgs) {
 		BranchGroup oldBranchGroup = branchGroup;
 		branchGroup = newBranchGroup;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_GROUP, oldBranchGroup, newBranchGroup);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					SocioProjectsPackage.PROJECT__BRANCH_GROUP, oldBranchGroup, newBranchGroup);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBranchGroup(BranchGroup newBranchGroup) {
 		if (newBranchGroup != branchGroup) {
 			NotificationChain msgs = null;
 			if (branchGroup != null)
-				msgs = ((InternalEObject)branchGroup).eInverseRemove(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS, BranchGroup.class, msgs);
+				msgs = ((InternalEObject) branchGroup).eInverseRemove(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS,
+						BranchGroup.class, msgs);
 			if (newBranchGroup != null)
-				msgs = ((InternalEObject)newBranchGroup).eInverseAdd(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS, BranchGroup.class, msgs);
+				msgs = ((InternalEObject) newBranchGroup).eInverseAdd(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS,
+						BranchGroup.class, msgs);
 			msgs = basicSetBranchGroup(newBranchGroup, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_GROUP, newBranchGroup, newBranchGroup));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH_GROUP,
+					newBranchGroup, newBranchGroup));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isBranch() {
@@ -645,22 +721,26 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBranch(boolean newBranch) {
 		boolean oldBranch = branch;
 		branch = newBranch;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH, oldBranch, branch));
+			eNotify(new ENotificationImpl(this, Notification.SET, SocioProjectsPackage.PROJECT__BRANCH, oldBranch,
+					branch));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<BranchGroup> getBranchs() {
 		if (branchs == null) {
-			branchs = new EObjectContainmentWithInverseEList<BranchGroup>(BranchGroup.class, this, SocioProjectsPackage.PROJECT__BRANCHS, SocioProjectsPackage.BRANCH_GROUP__FATHER);
+			branchs = new EObjectContainmentWithInverseEList<BranchGroup>(BranchGroup.class, this,
+					SocioProjectsPackage.PROJECT__BRANCHS, SocioProjectsPackage.BRANCH_GROUP__FATHER);
 		}
 		return branchs;
 	}
@@ -699,8 +779,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	 * Recives a list of lists of rules and selects a list of rules with the highest
 	 * priority
 	 * 
-	 * @param allRules
-	 *            is list of lists of rules
+	 * @param allRules is list of lists of rules
 	 * @return a list of rules with the highest priority
 	 */
 	protected <T extends Project> List<ExtractionRule<T>> decide(List<List<ExtractionRule<T>>> allRules) {
@@ -746,7 +825,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		for (String s : actions.keySet()) {
 			allActions.addAll(actions.get(s));
 		}
-		
+
 		if (allActions.isEmpty()) {
 			msg.setUndoable(false);
 		} else {
@@ -758,7 +837,35 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		return getPng(allActions);
 	}
+
 	protected abstract Map<String, List<Action>> getSentencesAction(String text) throws Exception;
+
+
+	@Override
+	public File deleteObjects(Msg msg, Map<String, List<String>> objects) throws Exception {
+		if (!isOpen()) {
+			throw new InternalException("The project can't be edited. It is closed.");
+		}
+		if (isLocked()) {
+			throw new InternalException("The project can't be edited. It is locked.");
+		}
+		List<Action> actions = deleteActions(objects);
+		Map<String, List<Action>> sentAction = new HashMap<>();
+		sentAction.put(msg.getText(), actions);
+
+		if (actions.isEmpty()) {
+			msg.setUndoable(false);
+		} else {
+			undoMsg.clear();
+			msg.setUndoable(true);
+			msg.setSentences(sentAction);
+			history.getMsg().add(msg);
+		}
+
+		return getPng(actions);
+	}
+
+	public abstract List<Action> deleteActions(Map<String, List<String>> objects) throws Exception;
 
 	public File getPng(List<Action> actions) throws IOException {
 		return getPng(actions, false);
@@ -847,8 +954,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		return ret;
 	}
+
 	protected abstract List<String> getSentenceOrder(String text) throws ParseException;
+
 	protected abstract List<String> getSentenceOrder2(String text) throws ParseException;
+
 	private List<String> orderedSentences2(Set<String> keys, Msg m) throws Exception {
 		List<String> ret = new ArrayList<>();
 		List<String> sentences = getSentenceOrder2(m.getText());
@@ -1550,10 +1660,12 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	public abstract void removeFiles();
+
 	public void removeFromLists(SocioData socioData) {
 		getAdmin().getOwnProjects().remove(this);
 		socioData.getProjects().remove(this);
 	}
+
 	/*--------------------------------------------------------get some extra properties----------------------------------------------------------*/
 	public File getLastModify() {
 		return lastModify;
@@ -1665,7 +1777,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		if (b == null) {
 			throw new InternalException("not branch group");
 		}
-		if (b.getStatus() == GroupStatus.MERGED ) {
+		if (b.getStatus() == GroupStatus.MERGED) {
 			throw new InternalException("branch group merged");
 		}
 		if (b.getStatus() == GroupStatus.OPEN) {
@@ -1676,11 +1788,11 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 	}
 
 	private BranchGroup closeBranchGroup(String branchsGroup) throws InternalException {
-		BranchGroup b =getOpenBranchGroup(branchsGroup);
-		if (b==null) {
+		BranchGroup b = getOpenBranchGroup(branchsGroup);
+		if (b == null) {
 			throw new InternalException("not open branch group");
 		}
-		
+
 		WeakReference<BranchGroup> weakRef = null;
 		List<WeakReference<BranchGroup>> open = branchs_status.get(GroupStatus.OPEN);
 		for (WeakReference<BranchGroup> wr : open) {
@@ -1698,15 +1810,15 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		close.add(new WeakReference<BranchGroup>(b));
 		return b;
-		
+
 	}
-	
+
 	private BranchGroup mergedBranchGroup(String branchsGroup) throws InternalException {
-		BranchGroup b =getCloseBranchGroup(branchsGroup);
-		if (b==null) {
+		BranchGroup b = getCloseBranchGroup(branchsGroup);
+		if (b == null) {
 			throw new InternalException("not close branch group");
 		}
-		
+
 		WeakReference<BranchGroup> weakRef = null;
 		List<WeakReference<BranchGroup>> close = branchs_status.get(GroupStatus.CLOSE);
 		for (WeakReference<BranchGroup> wr : close) {
@@ -1724,8 +1836,9 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 		}
 		merged.add(new WeakReference<BranchGroup>(b));
 		return b;
-		
+
 	}
+
 	public List<Action> makeDecision(Decision d, Project branch) throws Exception {
 
 		if (d.getBranchs().contains(branch)) {
@@ -1752,7 +1865,7 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 		});
 
-		//this.setBranchIsLocking(false);
+		// this.setBranchIsLocking(false);
 		for (Msg m : msgs) {
 			Msg m2 = ProjectHistoryFactoryImpl.eINSTANCE.createMsg();
 			m2.setId(m.getId());
@@ -1840,212 +1953,223 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				if (admin != null)
-					msgs = ((InternalEObject)admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS, User.class, msgs);
-				return basicSetAdmin((User)otherEnd, msgs);
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getBranchs()).basicAdd(otherEnd, msgs);
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				if (branchGroup != null)
-					msgs = ((InternalEObject)branchGroup).eInverseRemove(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS, BranchGroup.class, msgs);
-				return basicSetBranchGroup((BranchGroup)otherEnd, msgs);
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			if (admin != null)
+				msgs = ((InternalEObject) admin).eInverseRemove(this, SocioProjectsPackage.USER__OWN_PROJECTS,
+						User.class, msgs);
+			return basicSetAdmin((User) otherEnd, msgs);
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getBranchs()).basicAdd(otherEnd, msgs);
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			if (branchGroup != null)
+				msgs = ((InternalEObject) branchGroup).eInverseRemove(this, SocioProjectsPackage.BRANCH_GROUP__BRANCHS,
+						BranchGroup.class, msgs);
+			return basicSetBranchGroup((BranchGroup) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return basicSetHistory(null, msgs);
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return basicSetRemove(null, msgs);
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				return basicSetAdmin(null, msgs);
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				return ((InternalEList<?>)getBranchs()).basicRemove(otherEnd, msgs);
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				return basicSetBranchGroup(null, msgs);
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return basicSetHistory(null, msgs);
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return basicSetRemove(null, msgs);
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			return basicSetAdmin(null, msgs);
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			return ((InternalEList<?>) getBranchs()).basicRemove(otherEnd, msgs);
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			return basicSetBranchGroup(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				return getName();
-			case SocioProjectsPackage.PROJECT__ID:
-				return getId();
-			case SocioProjectsPackage.PROJECT__OPEN:
-				return isOpen();
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return getHistory();
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return getRemove();
-			case SocioProjectsPackage.PROJECT__MODEL:
-				if (resolve) return getModel();
-				return basicGetModel();
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				return getVisibility();
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				if (resolve) return getAdmin();
-				return basicGetAdmin();
-			case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
-				return isBranchIsLocking();
-			case SocioProjectsPackage.PROJECT__BRANCH:
-				return isBranch();
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				return getBranchs();
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				if (resolve) return getBranchGroup();
-				return basicGetBranchGroup();
+		case SocioProjectsPackage.PROJECT__NAME:
+			return getName();
+		case SocioProjectsPackage.PROJECT__ID:
+			return getId();
+		case SocioProjectsPackage.PROJECT__OPEN:
+			return isOpen();
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return getHistory();
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return getRemove();
+		case SocioProjectsPackage.PROJECT__MODEL:
+			if (resolve)
+				return getModel();
+			return basicGetModel();
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			return getVisibility();
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			if (resolve)
+				return getAdmin();
+			return basicGetAdmin();
+		case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
+			return isBranchIsLocking();
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			return isBranch();
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			return getBranchs();
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			if (resolve)
+				return getBranchGroup();
+			return basicGetBranchGroup();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				setName((String)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__ID:
-				setId((Long)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__OPEN:
-				setOpen((Boolean)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				setHistory((History)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				setRemove((Root)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				setModel((EObject)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				setVisibility((Visibility)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				setAdmin((User)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
-				setBranchIsLocking((Boolean)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH:
-				setBranch((Boolean)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				getBranchs().clear();
-				getBranchs().addAll((Collection<? extends BranchGroup>)newValue);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				setBranchGroup((BranchGroup)newValue);
-				return;
+		case SocioProjectsPackage.PROJECT__NAME:
+			setName((String) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__ID:
+			setId((Long) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN:
+			setOpen((Boolean) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			setHistory((History) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			setRemove((Root) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			setModel((EObject) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			setVisibility((Visibility) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			setAdmin((User) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
+			setBranchIsLocking((Boolean) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			setBranch((Boolean) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			getBranchs().clear();
+			getBranchs().addAll((Collection<? extends BranchGroup>) newValue);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			setBranchGroup((BranchGroup) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__ID:
-				setId(ID_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__OPEN:
-				setOpen(OPEN_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				setHistory((History)null);
-				return;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				setRemove((Root)null);
-				return;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				setModel((EObject)null);
-				return;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				setAdmin((User)null);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
-				setBranchIsLocking(BRANCH_IS_LOCKING_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH:
-				setBranch(BRANCH_EDEFAULT);
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				getBranchs().clear();
-				return;
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				setBranchGroup((BranchGroup)null);
-				return;
+		case SocioProjectsPackage.PROJECT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__ID:
+			setId(ID_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__OPEN:
+			setOpen(OPEN_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			setHistory((History) null);
+			return;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			setRemove((Root) null);
+			return;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			setModel((EObject) null);
+			return;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			setVisibility(VISIBILITY_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			setAdmin((User) null);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
+			setBranchIsLocking(BRANCH_IS_LOCKING_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			setBranch(BRANCH_EDEFAULT);
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			getBranchs().clear();
+			return;
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			setBranchGroup((BranchGroup) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SocioProjectsPackage.PROJECT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SocioProjectsPackage.PROJECT__ID:
-				return id != ID_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__OPEN:
-				return open != OPEN_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__HISTORY:
-				return history != null;
-			case SocioProjectsPackage.PROJECT__REMOVE:
-				return remove != null;
-			case SocioProjectsPackage.PROJECT__MODEL:
-				return model != null;
-			case SocioProjectsPackage.PROJECT__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__ADMIN:
-				return admin != null;
-			case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
-				return branchIsLocking != BRANCH_IS_LOCKING_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__BRANCH:
-				return branch != BRANCH_EDEFAULT;
-			case SocioProjectsPackage.PROJECT__BRANCHS:
-				return branchs != null && !branchs.isEmpty();
-			case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
-				return branchGroup != null;
+		case SocioProjectsPackage.PROJECT__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case SocioProjectsPackage.PROJECT__ID:
+			return id != ID_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__OPEN:
+			return open != OPEN_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__HISTORY:
+			return history != null;
+		case SocioProjectsPackage.PROJECT__REMOVE:
+			return remove != null;
+		case SocioProjectsPackage.PROJECT__MODEL:
+			return model != null;
+		case SocioProjectsPackage.PROJECT__VISIBILITY:
+			return visibility != VISIBILITY_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__ADMIN:
+			return admin != null;
+		case SocioProjectsPackage.PROJECT__BRANCH_IS_LOCKING:
+			return branchIsLocking != BRANCH_IS_LOCKING_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__BRANCH:
+			return branch != BRANCH_EDEFAULT;
+		case SocioProjectsPackage.PROJECT__BRANCHS:
+			return branchs != null && !branchs.isEmpty();
+		case SocioProjectsPackage.PROJECT__BRANCH_GROUP:
+			return branchGroup != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2163,11 +2287,13 @@ public abstract class ProjectImpl extends MinimalEObjectImpl.Container implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

@@ -223,6 +223,17 @@ public class ClassControl implements MetamodelControlInterface, IsClass, Control
 		}
 		return ret;
 	}
+	public List<Feature> getFeatures() {
+		List<Feature> ret = new ArrayList<>();
+		for (EStructuralFeature esf : eClass.getEStructuralFeatures()) {
+			if (esf instanceof EReference) {
+				ret.add(new ReferenceControl((EReference) esf));
+			}else if (esf instanceof EAttribute) {
+				ret.add(new AttributeControl((EAttribute) esf));
+			}
+		}
+		return ret;
+	}
 
 	@Override
 	public EObject getObject() {
