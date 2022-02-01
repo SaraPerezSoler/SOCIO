@@ -1,0 +1,13 @@
+
+old/es.uam.miso.modelado/.fatjar
+*.prefs
+*.class
+*.lst
+SocioTelegram/pass.json
+*/target/*
+SocioTelegram/history.txt
+SocioTelegram/messege.txt
+SocioTelegram/tmp.txt
+SocioTwitter/tmp/houseHistory.txt
+SocioTwitter/tmp/onlineshopHistory.txt
+SocioTwitter/tmp/textUpdatesHistory.txt
