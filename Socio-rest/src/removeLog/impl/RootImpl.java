@@ -68,6 +68,7 @@ public class RootImpl extends MinimalEObjectImpl.Container implements Root {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EObject> getElementsDeletes() {
 		if (elementsDeletes == null) {
 			elementsDeletes = new EObjectContainmentEList<EObject>(EObject.class, this, RemoveLogPackage.ROOT__ELEMENTS_DELETES);

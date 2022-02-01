@@ -191,6 +191,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -200,6 +201,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -212,6 +214,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNick() {
 		return nick;
 	}
@@ -221,6 +224,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNick(String newNick) {
 		String oldNick = nick;
 		nick = newNick;
@@ -233,6 +237,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -242,6 +247,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(long newId) {
 		long oldId = id;
 		id = newId;
@@ -254,6 +260,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getChannel() {
 		return channel;
 	}
@@ -263,6 +270,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChannel(String newChannel) {
 		String oldChannel = channel;
 		channel = newChannel;
@@ -275,6 +283,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Project> getOwnProjects() {
 		if (ownProjects == null) {
 			ownProjects = new EObjectWithInverseResolvingEList<Project>(Project.class, this, SocioProjectsPackage.USER__OWN_PROJECTS, SocioProjectsPackage.PROJECT__ADMIN);
@@ -287,6 +296,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Contribution> getContributions() {
 		if (contributions == null) {
 			contributions = new EObjectContainmentEList<Contribution>(Contribution.class, this, SocioProjectsPackage.USER__CONTRIBUTIONS);
@@ -598,7 +608,7 @@ public class UserImpl extends MinimalEObjectImpl.Container implements User {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", nick: ");

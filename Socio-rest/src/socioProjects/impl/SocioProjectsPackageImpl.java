@@ -4,6 +4,8 @@ package socioProjects.impl;
 
 import branchDecision.BranchDecisionPackage;
 import branchDecision.impl.BranchDecisionPackageImpl;
+import droidRecommenderHistory.DroidRecommenderHistoryPackage;
+import droidRecommenderHistory.impl.DroidRecommenderHistoryPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -136,7 +138,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SocioProjectsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -150,23 +152,31 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		if (isInited) return (SocioProjectsPackage)EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SocioProjectsPackageImpl());
+		Object registeredSocioProjectsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SocioProjectsPackageImpl theSocioProjectsPackage = registeredSocioProjectsPackage instanceof SocioProjectsPackageImpl ? (SocioProjectsPackageImpl)registeredSocioProjectsPackage : new SocioProjectsPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) instanceof ProjectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) : ProjectHistoryPackage.eINSTANCE);
-		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) : RemoveLogPackage.eINSTANCE);
-		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) : BranchDecisionPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(DroidRecommenderHistoryPackage.eNS_URI);
+		DroidRecommenderHistoryPackageImpl theDroidRecommenderHistoryPackage = (DroidRecommenderHistoryPackageImpl)(registeredPackage instanceof DroidRecommenderHistoryPackageImpl ? registeredPackage : DroidRecommenderHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI);
+		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(registeredPackage instanceof ProjectHistoryPackageImpl ? registeredPackage : ProjectHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
+		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(registeredPackage instanceof RemoveLogPackageImpl ? registeredPackage : RemoveLogPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI);
+		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(registeredPackage instanceof BranchDecisionPackageImpl ? registeredPackage : BranchDecisionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theSocioProjectsPackage.createPackageContents();
+		theDroidRecommenderHistoryPackage.createPackageContents();
 		theProjectHistoryPackage.createPackageContents();
 		theRemoveLogPackage.createPackageContents();
 		theBranchDecisionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theSocioProjectsPackage.initializePackageContents();
+		theDroidRecommenderHistoryPackage.initializePackageContents();
 		theProjectHistoryPackage.initializePackageContents();
 		theRemoveLogPackage.initializePackageContents();
 		theBranchDecisionPackage.initializePackageContents();
@@ -174,7 +184,6 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 		// Mark meta-data to indicate it can't be changed
 		theSocioProjectsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(SocioProjectsPackage.eNS_URI, theSocioProjectsPackage);
 		return theSocioProjectsPackage;
@@ -185,6 +194,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSocioApp() {
 		return socioAppEClass;
 	}
@@ -194,6 +204,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSocioApp_Users() {
 		return (EReference)socioAppEClass.getEStructuralFeatures().get(0);
 	}
@@ -203,6 +214,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSocioApp_Projects() {
 		return (EReference)socioAppEClass.getEStructuralFeatures().get(1);
 	}
@@ -212,6 +224,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProject() {
 		return projectEClass;
 	}
@@ -221,6 +234,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_Name() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(0);
 	}
@@ -230,6 +244,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_Id() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(1);
 	}
@@ -239,6 +254,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_Open() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(2);
 	}
@@ -248,6 +264,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_History() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(3);
 	}
@@ -257,6 +274,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_Remove() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(4);
 	}
@@ -266,6 +284,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_Model() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(5);
 	}
@@ -275,6 +294,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_Visibility() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(6);
 	}
@@ -284,6 +304,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_Admin() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(7);
 	}
@@ -293,6 +314,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_BranchIsLocking() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(8);
 	}
@@ -302,6 +324,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_BranchGroup() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(11);
 	}
@@ -311,6 +334,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProject_Branch() {
 		return (EAttribute)projectEClass.getEStructuralFeatures().get(9);
 	}
@@ -320,6 +344,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProject_Branchs() {
 		return (EReference)projectEClass.getEStructuralFeatures().get(10);
 	}
@@ -329,6 +354,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetPath() {
 		return projectEClass.getEOperations().get(0);
 	}
@@ -338,6 +364,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__ParseSentence__String() {
 		return projectEClass.getEOperations().get(1);
 	}
@@ -347,6 +374,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__Execute__Msg() {
 		return projectEClass.getEOperations().get(2);
 	}
@@ -356,6 +384,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__Undo() {
 		return projectEClass.getEOperations().get(3);
 	}
@@ -365,6 +394,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__Redo() {
 		return projectEClass.getEOperations().get(4);
 	}
@@ -374,6 +404,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryMsg() {
 		return projectEClass.getEOperations().get(5);
 	}
@@ -383,6 +414,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryMsg__Date_int() {
 		return projectEClass.getEOperations().get(6);
 	}
@@ -392,6 +424,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryMsg__Date_Date_int() {
 		return projectEClass.getEOperations().get(7);
 	}
@@ -401,6 +434,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryForUser__User() {
 		return projectEClass.getEOperations().get(8);
 	}
@@ -410,6 +444,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryForElement__String() {
 		return projectEClass.getEOperations().get(9);
 	}
@@ -419,6 +454,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetHistoryForAction__String() {
 		return projectEClass.getEOperations().get(10);
 	}
@@ -428,6 +464,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserMsg() {
 		return projectEClass.getEOperations().get(11);
 	}
@@ -437,6 +474,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserMsg__User() {
 		return projectEClass.getEOperations().get(12);
 	}
@@ -446,6 +484,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserAction() {
 		return projectEClass.getEOperations().get(13);
 	}
@@ -455,6 +494,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserAction__User() {
 		return projectEClass.getEOperations().get(14);
 	}
@@ -464,6 +504,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserMsgAbs() {
 		return projectEClass.getEOperations().get(15);
 	}
@@ -473,6 +514,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsUserActionAbs() {
 		return projectEClass.getEOperations().get(16);
 	}
@@ -482,6 +524,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__GetStatisticsActions() {
 		return projectEClass.getEOperations().get(17);
 	}
@@ -491,6 +534,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__PercentOfAuthorship() {
 		return projectEClass.getEOperations().get(18);
 	}
@@ -500,6 +544,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getProject__Validate() {
 		return projectEClass.getEOperations().get(19);
 	}
@@ -509,6 +554,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModelProject() {
 		return modelProjectEClass;
 	}
@@ -518,6 +564,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModelProject_MetamodelName() {
 		return (EAttribute)modelProjectEClass.getEStructuralFeatures().get(0);
 	}
@@ -527,6 +574,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getModelProject__ParseSentence__String() {
 		return modelProjectEClass.getEOperations().get(0);
 	}
@@ -536,6 +584,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMetamodelProject() {
 		return metamodelProjectEClass;
 	}
@@ -545,6 +594,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getMetamodelProject__ParseSentence__String() {
 		return metamodelProjectEClass.getEOperations().get(0);
 	}
@@ -554,6 +604,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUser() {
 		return userEClass;
 	}
@@ -563,6 +614,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Name() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(0);
 	}
@@ -572,6 +624,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Nick() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(1);
 	}
@@ -581,6 +634,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Id() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(2);
 	}
@@ -590,6 +644,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getUser_Channel() {
 		return (EAttribute)userEClass.getEStructuralFeatures().get(3);
 	}
@@ -599,6 +654,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUser_OwnProjects() {
 		return (EReference)userEClass.getEStructuralFeatures().get(4);
 	}
@@ -608,6 +664,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUser_Contributions() {
 		return (EReference)userEClass.getEStructuralFeatures().get(5);
 	}
@@ -617,6 +674,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__CanEdit__Project() {
 		return userEClass.getEOperations().get(0);
 	}
@@ -626,6 +684,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__CanRead__Project() {
 		return userEClass.getEOperations().get(1);
 	}
@@ -635,6 +694,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__IsAdmin__Project() {
 		return userEClass.getEOperations().get(2);
 	}
@@ -644,6 +704,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__RemoveContribution__Project() {
 		return userEClass.getEOperations().get(3);
 	}
@@ -653,6 +714,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__AddContribution__Project_Access() {
 		return userEClass.getEOperations().get(4);
 	}
@@ -662,6 +724,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__AddProject__Project() {
 		return userEClass.getEOperations().get(5);
 	}
@@ -671,6 +734,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__GetContribution__Project() {
 		return userEClass.getEOperations().get(6);
 	}
@@ -680,6 +744,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getUser__IsRoot() {
 		return userEClass.getEOperations().get(7);
 	}
@@ -689,6 +754,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getContribution() {
 		return contributionEClass;
 	}
@@ -698,6 +764,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getContribution_Access() {
 		return (EAttribute)contributionEClass.getEStructuralFeatures().get(0);
 	}
@@ -707,6 +774,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getContribution_Project() {
 		return (EReference)contributionEClass.getEStructuralFeatures().get(1);
 	}
@@ -716,6 +784,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBranchGroup() {
 		return branchGroupEClass;
 	}
@@ -725,6 +794,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBranchGroup_Name() {
 		return (EAttribute)branchGroupEClass.getEStructuralFeatures().get(0);
 	}
@@ -734,6 +804,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBranchGroup_CreateAt() {
 		return (EAttribute)branchGroupEClass.getEStructuralFeatures().get(1);
 	}
@@ -743,6 +814,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBranchGroup_Status() {
 		return (EAttribute)branchGroupEClass.getEStructuralFeatures().get(2);
 	}
@@ -752,6 +824,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBranchGroup_Father() {
 		return (EReference)branchGroupEClass.getEStructuralFeatures().get(3);
 	}
@@ -761,6 +834,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBranchGroup_Decision() {
 		return (EReference)branchGroupEClass.getEStructuralFeatures().get(4);
 	}
@@ -770,6 +844,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBranchGroup_Branchs() {
 		return (EReference)branchGroupEClass.getEStructuralFeatures().get(5);
 	}
@@ -779,6 +854,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAccess() {
 		return accessEEnum;
 	}
@@ -788,6 +864,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getVisibility() {
 		return visibilityEEnum;
 	}
@@ -797,6 +874,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getGroupStatus() {
 		return groupStatusEEnum;
 	}
@@ -806,6 +884,7 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SocioProjectsFactory getSocioProjectsFactory() {
 		return (SocioProjectsFactory)getEFactoryInstance();
 	}
@@ -975,24 +1054,24 @@ public class SocioProjectsPackageImpl extends EPackageImpl implements SocioProje
 
 		initEOperation(getProject__Redo(), null, "redo", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getProject__GetHistoryMsg(), theProjectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getProject__GetHistoryMsg(), theProjectHistoryPackage.getUserInteraction(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryMsg__Date_int(), theProjectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryMsg__Date_int(), theProjectHistoryPackage.getUserInteraction(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "date", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "order", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryMsg__Date_Date_int(), theProjectHistoryPackage.getMsg(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryMsg__Date_Date_int(), theProjectHistoryPackage.getUserInteraction(), "getHistoryMsg", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "start", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "end", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEInt(), "order", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForUser__User(), theProjectHistoryPackage.getMsg(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForUser__User(), theProjectHistoryPackage.getUserInteraction(), "getHistoryForUser", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getUser(), "user", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForElement__String(), theProjectHistoryPackage.getMsg(), "getHistoryForElement", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForElement__String(), theProjectHistoryPackage.getUserInteraction(), "getHistoryForElement", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "element", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getProject__GetHistoryForAction__String(), theProjectHistoryPackage.getMsg(), "getHistoryForAction", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getProject__GetHistoryForAction__String(), theProjectHistoryPackage.getUserInteraction(), "getHistoryForAction", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "action", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getProject__GetStatisticsUserMsg(), null, "getStatisticsUserMsg", 1, 1, IS_UNIQUE, IS_ORDERED);

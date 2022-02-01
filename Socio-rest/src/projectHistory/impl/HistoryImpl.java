@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import projectHistory.CreateMsg;
 import projectHistory.History;
-import projectHistory.Msg;
 import projectHistory.ProjectHistoryPackage;
+import projectHistory.UserInteraction;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Msg> msg;
+	protected EList<UserInteraction> msg;
 
 	/**
 	 * The cached value of the '{@link #getCreateMsg() <em>Create Msg</em>}' containment reference.
@@ -82,9 +82,10 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Msg> getMsg() {
+	@Override
+	public EList<UserInteraction> getMsg() {
 		if (msg == null) {
-			msg = new EObjectContainmentEList<Msg>(Msg.class, this, ProjectHistoryPackage.HISTORY__MSG);
+			msg = new EObjectContainmentEList<UserInteraction>(UserInteraction.class, this, ProjectHistoryPackage.HISTORY__MSG);
 		}
 		return msg;
 	}
@@ -94,6 +95,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CreateMsg getCreateMsg() {
 		return createMsg;
 	}
@@ -118,6 +120,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreateMsg(CreateMsg newCreateMsg) {
 		if (newCreateMsg != createMsg) {
 			NotificationChain msgs = null;
@@ -175,7 +178,7 @@ public class HistoryImpl extends MinimalEObjectImpl.Container implements History
 		switch (featureID) {
 			case ProjectHistoryPackage.HISTORY__MSG:
 				getMsg().clear();
-				getMsg().addAll((Collection<? extends Msg>)newValue);
+				getMsg().addAll((Collection<? extends UserInteraction>)newValue);
 				return;
 			case ProjectHistoryPackage.HISTORY__CREATE_MSG:
 				setCreateMsg((CreateMsg)newValue);

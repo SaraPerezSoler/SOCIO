@@ -152,6 +152,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getRoundId() {
 		return roundId;
 	}
@@ -161,6 +162,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoundId(int newRoundId) {
 		int oldRoundId = roundId;
 		roundId = newRoundId;
@@ -173,6 +175,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getConsensusMeasure() {
 		return consensusMeasure;
 	}
@@ -182,6 +185,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConsensusMeasure(double newConsensusMeasure) {
 		double oldConsensusMeasure = consensusMeasure;
 		consensusMeasure = newConsensusMeasure;
@@ -194,6 +198,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Preference> getUserPreferences() {
 		if (userPreferences == null) {
 			userPreferences = new EObjectContainmentEList<Preference>(Preference.class, this, BranchDecisionPackage.ROUND__USER_PREFERENCES);
@@ -206,6 +211,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Order> getConsensusOrder() {
 		if (consensusOrder == null) {
 			consensusOrder = new EObjectContainmentEList<Order>(Order.class, this, BranchDecisionPackage.ROUND__CONSENSUS_ORDER);
@@ -218,6 +224,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getRoundDate() {
 		return roundDate;
 	}
@@ -227,6 +234,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoundDate(Date newRoundDate) {
 		Date oldRoundDate = roundDate;
 		roundDate = newRoundDate;
@@ -360,7 +368,7 @@ public class RoundImpl extends MinimalEObjectImpl.Container implements Round {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (roundId: ");
 		result.append(roundId);
 		result.append(", consensusMeasure: ");

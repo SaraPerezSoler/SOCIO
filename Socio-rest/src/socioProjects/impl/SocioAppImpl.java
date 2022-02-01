@@ -90,6 +90,7 @@ public class SocioAppImpl extends MinimalEObjectImpl.Container implements SocioA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<User> getUsers() {
 		if (users == null) {
 			users = new EObjectContainmentEList<User>(User.class, this, SocioProjectsPackage.SOCIO_APP__USERS);
@@ -102,6 +103,7 @@ public class SocioAppImpl extends MinimalEObjectImpl.Container implements SocioA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Project> getProjects() {
 		if (projects == null) {
 			projects = new EObjectContainmentEList<Project>(Project.class, this, SocioProjectsPackage.SOCIO_APP__PROJECTS);

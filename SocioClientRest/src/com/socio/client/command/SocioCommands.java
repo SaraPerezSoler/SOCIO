@@ -3,6 +3,7 @@ package com.socio.client.command;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,21 +101,25 @@ public class SocioCommands extends Commands {
 		return get(getProjectData(channel, nick, project), user);
 	}
 	
-	public JSONObject recommend(String projectName, String className) throws ResponseError, ForbiddenResponse {
+	public JSONObject recommend(String projectName, String className, User user) throws ResponseError, ForbiddenResponse {
 		String path = RECOMMEND_PATH + getProjectData(projectName)+"/"+className;
-		return responseJSON(path, null);
+		Map<String, Object> queryParams = new HashMap<String, Object>();
+		queryParams.put("userChannel", user.getChannel());
+		queryParams.put("userNick", user.getNick());
+		queryParams.put("userId", user.getId());
+		return responseJSON(path, null, queryParams);
 	}
 
-	public JSONObject recommend(Project project, String className) throws ResponseError, ForbiddenResponse {
-		return recommend(getProjectData(project), className);
+	public JSONObject recommend(Project project, String className, User user) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(project), className, user);
 	}
 
-	public JSONObject recommend(long project, String className) throws ResponseError, ForbiddenResponse {
-		return recommend(getProjectData(project), className);
+	public JSONObject recommend(long project, String className, User user) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(project), className, user);
 	}
 
-	public JSONObject recommend(String channel, String nick, String project,String className) throws ResponseError, ForbiddenResponse {
-		return recommend(getProjectData(channel, nick, project), className);
+	public JSONObject recommend(String channel, String nick, String project,String className, User user) throws ResponseError, ForbiddenResponse {
+		return recommend(getProjectData(channel, nick, project), className, user);
 	}
 
 	private File editor(String path, User user, String msg, String text, Date date, String id)

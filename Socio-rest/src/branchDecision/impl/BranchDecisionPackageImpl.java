@@ -12,6 +12,8 @@ import branchDecision.Preference;
 import branchDecision.PreferenceOrdering;
 import branchDecision.Round;
 
+import droidRecommenderHistory.DroidRecommenderHistoryPackage;
+import droidRecommenderHistory.impl.DroidRecommenderHistoryPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -113,7 +115,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link BranchDecisionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -127,31 +129,38 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 		if (isInited) return (BranchDecisionPackage)EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BranchDecisionPackageImpl());
+		Object registeredBranchDecisionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BranchDecisionPackageImpl theBranchDecisionPackage = registeredBranchDecisionPackage instanceof BranchDecisionPackageImpl ? (BranchDecisionPackageImpl)registeredBranchDecisionPackage : new BranchDecisionPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) : SocioProjectsPackage.eINSTANCE);
-		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) instanceof ProjectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) : ProjectHistoryPackage.eINSTANCE);
-		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) : RemoveLogPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(DroidRecommenderHistoryPackage.eNS_URI);
+		DroidRecommenderHistoryPackageImpl theDroidRecommenderHistoryPackage = (DroidRecommenderHistoryPackageImpl)(registeredPackage instanceof DroidRecommenderHistoryPackageImpl ? registeredPackage : DroidRecommenderHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI);
+		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(registeredPackage instanceof ProjectHistoryPackageImpl ? registeredPackage : ProjectHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI);
+		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(registeredPackage instanceof SocioProjectsPackageImpl ? registeredPackage : SocioProjectsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
+		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(registeredPackage instanceof RemoveLogPackageImpl ? registeredPackage : RemoveLogPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBranchDecisionPackage.createPackageContents();
-		theSocioProjectsPackage.createPackageContents();
+		theDroidRecommenderHistoryPackage.createPackageContents();
 		theProjectHistoryPackage.createPackageContents();
+		theSocioProjectsPackage.createPackageContents();
 		theRemoveLogPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theBranchDecisionPackage.initializePackageContents();
-		theSocioProjectsPackage.initializePackageContents();
+		theDroidRecommenderHistoryPackage.initializePackageContents();
 		theProjectHistoryPackage.initializePackageContents();
+		theSocioProjectsPackage.initializePackageContents();
 		theRemoveLogPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theBranchDecisionPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BranchDecisionPackage.eNS_URI, theBranchDecisionPackage);
 		return theBranchDecisionPackage;
@@ -162,6 +171,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDecision() {
 		return decisionEClass;
 	}
@@ -171,6 +181,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDecision_Name() {
 		return (EAttribute)decisionEClass.getEStructuralFeatures().get(0);
 	}
@@ -180,6 +191,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDecision_ChosenBranch() {
 		return (EReference)decisionEClass.getEStructuralFeatures().get(1);
 	}
@@ -189,6 +201,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDecision_Start() {
 		return (EAttribute)decisionEClass.getEStructuralFeatures().get(2);
 	}
@@ -198,6 +211,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDecision_MergedDate() {
 		return (EAttribute)decisionEClass.getEStructuralFeatures().get(3);
 	}
@@ -207,6 +221,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDecision_MessageId() {
 		return (EAttribute)decisionEClass.getEStructuralFeatures().get(4);
 	}
@@ -216,6 +231,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConsensus() {
 		return consensusEClass;
 	}
@@ -225,6 +241,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getConsensus_ConsensusRequired() {
 		return (EAttribute)consensusEClass.getEStructuralFeatures().get(0);
 	}
@@ -234,6 +251,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConsensus_Rounds() {
 		return (EReference)consensusEClass.getEStructuralFeatures().get(1);
 	}
@@ -243,6 +261,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConsensus_Users() {
 		return (EReference)consensusEClass.getEStructuralFeatures().get(2);
 	}
@@ -252,6 +271,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRound() {
 		return roundEClass;
 	}
@@ -261,6 +281,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRound_RoundId() {
 		return (EAttribute)roundEClass.getEStructuralFeatures().get(0);
 	}
@@ -270,6 +291,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRound_ConsensusMeasure() {
 		return (EAttribute)roundEClass.getEStructuralFeatures().get(1);
 	}
@@ -279,6 +301,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRound_UserPreferences() {
 		return (EReference)roundEClass.getEStructuralFeatures().get(2);
 	}
@@ -288,6 +311,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRound_ConsensusOrder() {
 		return (EReference)roundEClass.getEStructuralFeatures().get(3);
 	}
@@ -297,6 +321,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRound_RoundDate() {
 		return (EAttribute)roundEClass.getEStructuralFeatures().get(4);
 	}
@@ -306,6 +331,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPreference() {
 		return preferenceEClass;
 	}
@@ -315,6 +341,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreference_User() {
 		return (EReference)preferenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -324,6 +351,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPreferenceOrdering() {
 		return preferenceOrderingEClass;
 	}
@@ -333,6 +361,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPreferenceOrdering_Order() {
 		return (EReference)preferenceOrderingEClass.getEStructuralFeatures().get(0);
 	}
@@ -342,6 +371,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrder() {
 		return orderEClass;
 	}
@@ -351,6 +381,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOrder_ProjectName() {
 		return (EAttribute)orderEClass.getEStructuralFeatures().get(0);
 	}
@@ -360,6 +391,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOrder_Pos() {
 		return (EAttribute)orderEClass.getEStructuralFeatures().get(1);
 	}
@@ -369,6 +401,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAdminChoice() {
 		return adminChoiceEClass;
 	}
@@ -378,6 +411,7 @@ public class BranchDecisionPackageImpl extends EPackageImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BranchDecisionFactory getBranchDecisionFactory() {
 		return (BranchDecisionFactory)getEFactoryInstance();
 	}

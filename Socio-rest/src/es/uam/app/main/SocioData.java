@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.json.JSONObject;
 
 import com.socio.client.command.SaveFileServer;
+import com.socio.client.command.responseExceptions.ForbiddenResponse;
+import com.socio.client.command.responseExceptions.ResponseError;
 
 import branchDecision.AdminChoice;
 import branchDecision.Consensus;
@@ -30,6 +32,8 @@ import branchDecision.Order;
 import branchDecision.PreferenceOrdering;
 import branchDecision.Round;
 import branchDecision.impl.BranchDecisionFactoryImpl;
+import droidRecommenderHistory.DroidRecommenderHistoryFactory;
+import droidRecommenderHistory.RecommendationMsg;
 import es.uam.app.consensus.ConsensusTimeOut;
 import es.uam.app.main.commands.DataFormat;
 import es.uam.app.main.exceptions.ExceptionControl;
@@ -37,6 +41,7 @@ import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
 import es.uam.app.metamodel.parser.rules.ExtractionRule;
 import es.uam.app.metamodel.parser.rules.MetamodelRule;
+import es.uam.app.projects.emf.metamodel.ClassControl;
 import es.uam.app.words.WordNet;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
 import modelInfo.ModelInfoPackage;
@@ -46,6 +51,7 @@ import projectHistory.Action;
 import projectHistory.CreateMsg;
 import projectHistory.Msg;
 import projectHistory.impl.ProjectHistoryFactoryImpl;
+import recomender.droid.Droid;
 import removeLog.impl.RemoveLogFactoryImpl;
 import socioProjects.Access;
 import socioProjects.BranchGroup;
@@ -54,6 +60,7 @@ import socioProjects.MetamodelProject;
 import socioProjects.ModelProject;
 import socioProjects.Project;
 import socioProjects.SocioApp;
+import socioProjects.SocioProjectsFactory;
 import socioProjects.SocioProjectsPackage;
 import socioProjects.User;
 import socioProjects.Visibility;
@@ -82,7 +89,9 @@ public class SocioData implements DataFormat {
 	private Map<String, List<Consensus>> pollEnd = new HashMap<>();
 	private static Map<String, NLModel> modelInfo = new HashMap<>();
 	private static Map<String, EPackage> metamodel = new HashMap<>();
-
+	private static String droidUrl ="";
+	private static Droid droid= null;
+	
 	private static SaveFileServer server = null;
 
 	public enum ProjectType {
@@ -127,6 +136,10 @@ public class SocioData implements DataFormat {
 		if (server == null) {
 			String url = context.getInitParameter("fileServer.url");
 			server = new SaveFileServer(url);
+		}
+		if (droid == null) {
+			droidUrl = context.getInitParameter("droid.url");
+			droid = new Droid(droidUrl);
 		}
 		return socioData;
 	}
@@ -889,6 +902,14 @@ public class SocioData implements DataFormat {
 
 	public JSONObject getElementsJSON(Project project) {
 		return project.getElementsJson();
+	}
+
+	public JSONObject getRecommendation(Project p, ClassControl class_, User user) throws Exception {
+		
+		RecommendationMsg msg = droid.getRecommendation(class_, user, p);
+		p.execute(msg);
+		save(p);
+		return msg.getJSON();
 	}
 
 

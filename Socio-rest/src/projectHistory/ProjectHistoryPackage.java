@@ -150,14 +150,14 @@ public interface ProjectHistoryPackage extends EPackage {
 	int CREATE_MSG_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link projectHistory.impl.MsgImpl <em>Msg</em>}' class.
+	 * The meta object id for the '{@link projectHistory.impl.UserInteractionImpl <em>User Interaction</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see projectHistory.impl.MsgImpl
-	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getMsg()
+	 * @see projectHistory.impl.UserInteractionImpl
+	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getUserInteraction()
 	 * @generated
 	 */
-	int MSG = 2;
+	int USER_INTERACTION = 2;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' reference.
@@ -166,25 +166,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG__USER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Msg</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MSG__MSG = 1;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MSG__TEXT = 2;
+	int USER_INTERACTION__USER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Date</b></em>' attribute.
@@ -193,25 +175,53 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG__DATE = 3;
+	int USER_INTERACTION__DATE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * The number of structural features of the '<em>User Interaction</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSG__ID = 4;
+	int USER_INTERACTION_FEATURE_COUNT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Sentences</b></em>' containment reference list.
+	 * The number of operations of the '<em>User Interaction</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSG__SENTENCES = 5;
+	int USER_INTERACTION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link projectHistory.impl.InteractionWithActionsImpl <em>Interaction With Actions</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see projectHistory.impl.InteractionWithActionsImpl
+	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getInteractionWithActions()
+	 * @generated
+	 */
+	int INTERACTION_WITH_ACTIONS = 3;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_WITH_ACTIONS__USER = USER_INTERACTION__USER;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_WITH_ACTIONS__DATE = USER_INTERACTION__DATE;
 
 	/**
 	 * The feature id for the '<em><b>Undoable</b></em>' attribute.
@@ -220,7 +230,107 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG__UNDOABLE = 6;
+	int INTERACTION_WITH_ACTIONS__UNDOABLE = USER_INTERACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Interaction With Actions</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_WITH_ACTIONS_FEATURE_COUNT = USER_INTERACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get All Actions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_WITH_ACTIONS___GET_ALL_ACTIONS = USER_INTERACTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Interaction With Actions</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERACTION_WITH_ACTIONS_OPERATION_COUNT = USER_INTERACTION_OPERATION_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link projectHistory.impl.MsgImpl <em>Msg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see projectHistory.impl.MsgImpl
+	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getMsg()
+	 * @generated
+	 */
+	int MSG = 4;
+
+	/**
+	 * The feature id for the '<em><b>User</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__USER = INTERACTION_WITH_ACTIONS__USER;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__DATE = INTERACTION_WITH_ACTIONS__DATE;
+
+	/**
+	 * The feature id for the '<em><b>Undoable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__UNDOABLE = INTERACTION_WITH_ACTIONS__UNDOABLE;
+
+	/**
+	 * The feature id for the '<em><b>Msg</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__MSG = INTERACTION_WITH_ACTIONS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__TEXT = INTERACTION_WITH_ACTIONS_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__ID = INTERACTION_WITH_ACTIONS_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Sentences</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG__SENTENCES = INTERACTION_WITH_ACTIONS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Msg</em>' class.
@@ -229,7 +339,16 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG_FEATURE_COUNT = 7;
+	int MSG_FEATURE_COUNT = INTERACTION_WITH_ACTIONS_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Get All Actions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSG___GET_ALL_ACTIONS = INTERACTION_WITH_ACTIONS___GET_ALL_ACTIONS;
 
 	/**
 	 * The operation id for the '<em>Get Channel</em>' operation.
@@ -238,7 +357,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG___GET_CHANNEL = 0;
+	int MSG___GET_CHANNEL = INTERACTION_WITH_ACTIONS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Msg</em>' class.
@@ -247,7 +366,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MSG_OPERATION_COUNT = 1;
+	int MSG_OPERATION_COUNT = INTERACTION_WITH_ACTIONS_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link projectHistory.impl.SentenceImpl <em>Sentence</em>}' class.
@@ -257,7 +376,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getSentence()
 	 * @generated
 	 */
-	int SENTENCE = 3;
+	int SENTENCE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Sentence</b></em>' attribute.
@@ -303,7 +422,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 4;
+	int ACTION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -403,7 +522,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getAdd()
 	 * @generated
 	 */
-	int ADD = 5;
+	int ADD = 7;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -503,7 +622,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getDelete()
 	 * @generated
 	 */
-	int DELETE = 6;
+	int DELETE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -603,7 +722,7 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @see projectHistory.impl.ProjectHistoryPackageImpl#getUpdate()
 	 * @generated
 	 */
-	int UPDATE = 7;
+	int UPDATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference.
@@ -779,6 +898,69 @@ public interface ProjectHistoryPackage extends EPackage {
 	EAttribute getCreateMsg_Date();
 
 	/**
+	 * Returns the meta object for class '{@link projectHistory.UserInteraction <em>User Interaction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Interaction</em>'.
+	 * @see projectHistory.UserInteraction
+	 * @generated
+	 */
+	EClass getUserInteraction();
+
+	/**
+	 * Returns the meta object for the reference '{@link projectHistory.UserInteraction#getUser <em>User</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>User</em>'.
+	 * @see projectHistory.UserInteraction#getUser()
+	 * @see #getUserInteraction()
+	 * @generated
+	 */
+	EReference getUserInteraction_User();
+
+	/**
+	 * Returns the meta object for the attribute '{@link projectHistory.UserInteraction#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see projectHistory.UserInteraction#getDate()
+	 * @see #getUserInteraction()
+	 * @generated
+	 */
+	EAttribute getUserInteraction_Date();
+
+	/**
+	 * Returns the meta object for class '{@link projectHistory.InteractionWithActions <em>Interaction With Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Interaction With Actions</em>'.
+	 * @see projectHistory.InteractionWithActions
+	 * @generated
+	 */
+	EClass getInteractionWithActions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link projectHistory.InteractionWithActions#isUndoable <em>Undoable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Undoable</em>'.
+	 * @see projectHistory.InteractionWithActions#isUndoable()
+	 * @see #getInteractionWithActions()
+	 * @generated
+	 */
+	EAttribute getInteractionWithActions_Undoable();
+
+	/**
+	 * Returns the meta object for the '{@link projectHistory.InteractionWithActions#getAllActions() <em>Get All Actions</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get All Actions</em>' operation.
+	 * @see projectHistory.InteractionWithActions#getAllActions()
+	 * @generated
+	 */
+	EOperation getInteractionWithActions__GetAllActions();
+
+	/**
 	 * Returns the meta object for class '{@link projectHistory.Msg <em>Msg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -787,17 +969,6 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getMsg();
-
-	/**
-	 * Returns the meta object for the reference '{@link projectHistory.Msg#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>User</em>'.
-	 * @see projectHistory.Msg#getUser()
-	 * @see #getMsg()
-	 * @generated
-	 */
-	EReference getMsg_User();
 
 	/**
 	 * Returns the meta object for the attribute '{@link projectHistory.Msg#getMsg <em>Msg</em>}'.
@@ -822,17 +993,6 @@ public interface ProjectHistoryPackage extends EPackage {
 	EAttribute getMsg_Text();
 
 	/**
-	 * Returns the meta object for the attribute '{@link projectHistory.Msg#getDate <em>Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Date</em>'.
-	 * @see projectHistory.Msg#getDate()
-	 * @see #getMsg()
-	 * @generated
-	 */
-	EAttribute getMsg_Date();
-
-	/**
 	 * Returns the meta object for the attribute '{@link projectHistory.Msg#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -853,17 +1013,6 @@ public interface ProjectHistoryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMsg_Sentences();
-
-	/**
-	 * Returns the meta object for the attribute '{@link projectHistory.Msg#isUndoable <em>Undoable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Undoable</em>'.
-	 * @see projectHistory.Msg#isUndoable()
-	 * @see #getMsg()
-	 * @generated
-	 */
-	EAttribute getMsg_Undoable();
 
 	/**
 	 * Returns the meta object for the '{@link projectHistory.Msg#getChannel() <em>Get Channel</em>}' operation.
@@ -1126,6 +1275,58 @@ public interface ProjectHistoryPackage extends EPackage {
 		EAttribute CREATE_MSG__DATE = eINSTANCE.getCreateMsg_Date();
 
 		/**
+		 * The meta object literal for the '{@link projectHistory.impl.UserInteractionImpl <em>User Interaction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see projectHistory.impl.UserInteractionImpl
+		 * @see projectHistory.impl.ProjectHistoryPackageImpl#getUserInteraction()
+		 * @generated
+		 */
+		EClass USER_INTERACTION = eINSTANCE.getUserInteraction();
+
+		/**
+		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_INTERACTION__USER = eINSTANCE.getUserInteraction_User();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_INTERACTION__DATE = eINSTANCE.getUserInteraction_Date();
+
+		/**
+		 * The meta object literal for the '{@link projectHistory.impl.InteractionWithActionsImpl <em>Interaction With Actions</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see projectHistory.impl.InteractionWithActionsImpl
+		 * @see projectHistory.impl.ProjectHistoryPackageImpl#getInteractionWithActions()
+		 * @generated
+		 */
+		EClass INTERACTION_WITH_ACTIONS = eINSTANCE.getInteractionWithActions();
+
+		/**
+		 * The meta object literal for the '<em><b>Undoable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERACTION_WITH_ACTIONS__UNDOABLE = eINSTANCE.getInteractionWithActions_Undoable();
+
+		/**
+		 * The meta object literal for the '<em><b>Get All Actions</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation INTERACTION_WITH_ACTIONS___GET_ALL_ACTIONS = eINSTANCE.getInteractionWithActions__GetAllActions();
+
+		/**
 		 * The meta object literal for the '{@link projectHistory.impl.MsgImpl <em>Msg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1134,14 +1335,6 @@ public interface ProjectHistoryPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MSG = eINSTANCE.getMsg();
-
-		/**
-		 * The meta object literal for the '<em><b>User</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MSG__USER = eINSTANCE.getMsg_User();
 
 		/**
 		 * The meta object literal for the '<em><b>Msg</b></em>' attribute feature.
@@ -1160,14 +1353,6 @@ public interface ProjectHistoryPackage extends EPackage {
 		EAttribute MSG__TEXT = eINSTANCE.getMsg_Text();
 
 		/**
-		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MSG__DATE = eINSTANCE.getMsg_Date();
-
-		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1182,14 +1367,6 @@ public interface ProjectHistoryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MSG__SENTENCES = eINSTANCE.getMsg_Sentences();
-
-		/**
-		 * The meta object literal for the '<em><b>Undoable</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MSG__UNDOABLE = eINSTANCE.getMsg_Undoable();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Channel</b></em>' operation.

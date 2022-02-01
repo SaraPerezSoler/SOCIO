@@ -15,6 +15,14 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DroidRecommender -->
+      <package
+            uri="droidRecommenderHistory"
+            class="droidRecommenderHistory.DroidRecommenderHistoryPackage"
+            genModel="model/DroidRecommender.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SocioDatabase -->
       <package
             uri="projectHistory"

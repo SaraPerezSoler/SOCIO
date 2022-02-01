@@ -167,6 +167,27 @@ public abstract class CreateRequest {
 		}
 		throw UNEXPECTED_ERROR;
 	}
+	
+	protected JSONObject responseJSON(String path, JSONObject object, Map<String, Object>queryParams) throws ResponseError, ForbiddenResponse {
+		try {
+			Response response;
+			String[] types = new String[] { MediaType.APPLICATION_JSON };
+			if (object == null) {
+				response = getRequest(path, queryParams, types);
+
+			} else {
+				response = postRequest(path, queryParams, object, types);
+			}
+			readResponse(response);
+		} catch (JSONResponse e) {
+			return e.getObject();
+		} catch (JSONException e1) {
+			throw UNEXPECTED_ERROR;
+		} catch (TextResponse | FileResponse e) {
+			throw UNEXPECTED_ERROR;
+		}
+		throw UNEXPECTED_ERROR;
+	}
 
 	protected String responseText(String path, JSONObject object) throws ResponseError, ForbiddenResponse {
 		try {

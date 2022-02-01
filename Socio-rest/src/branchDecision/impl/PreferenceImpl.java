@@ -63,6 +63,7 @@ public abstract class PreferenceImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		if (user != null && user.eIsProxy()) {
 			InternalEObject oldUser = (InternalEObject)user;
@@ -89,6 +90,7 @@ public abstract class PreferenceImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		User oldUser = user;
 		user = newUser;

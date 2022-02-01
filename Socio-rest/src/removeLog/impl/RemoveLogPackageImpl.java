@@ -4,6 +4,8 @@ package removeLog.impl;
 
 import branchDecision.BranchDecisionPackage;
 import branchDecision.impl.BranchDecisionPackageImpl;
+import droidRecommenderHistory.DroidRecommenderHistoryPackage;
+import droidRecommenderHistory.impl.DroidRecommenderHistoryPackageImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -61,7 +63,7 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link RemoveLogPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -75,31 +77,38 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 		if (isInited) return (RemoveLogPackage)EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RemoveLogPackageImpl());
+		Object registeredRemoveLogPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		RemoveLogPackageImpl theRemoveLogPackage = registeredRemoveLogPackage instanceof RemoveLogPackageImpl ? (RemoveLogPackageImpl)registeredRemoveLogPackage : new RemoveLogPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) : SocioProjectsPackage.eINSTANCE);
-		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) instanceof ProjectHistoryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI) : ProjectHistoryPackage.eINSTANCE);
-		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) : BranchDecisionPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(DroidRecommenderHistoryPackage.eNS_URI);
+		DroidRecommenderHistoryPackageImpl theDroidRecommenderHistoryPackage = (DroidRecommenderHistoryPackageImpl)(registeredPackage instanceof DroidRecommenderHistoryPackageImpl ? registeredPackage : DroidRecommenderHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI);
+		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(registeredPackage instanceof ProjectHistoryPackageImpl ? registeredPackage : ProjectHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI);
+		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(registeredPackage instanceof SocioProjectsPackageImpl ? registeredPackage : SocioProjectsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI);
+		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(registeredPackage instanceof BranchDecisionPackageImpl ? registeredPackage : BranchDecisionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theRemoveLogPackage.createPackageContents();
-		theSocioProjectsPackage.createPackageContents();
+		theDroidRecommenderHistoryPackage.createPackageContents();
 		theProjectHistoryPackage.createPackageContents();
+		theSocioProjectsPackage.createPackageContents();
 		theBranchDecisionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRemoveLogPackage.initializePackageContents();
-		theSocioProjectsPackage.initializePackageContents();
+		theDroidRecommenderHistoryPackage.initializePackageContents();
 		theProjectHistoryPackage.initializePackageContents();
+		theSocioProjectsPackage.initializePackageContents();
 		theBranchDecisionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRemoveLogPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RemoveLogPackage.eNS_URI, theRemoveLogPackage);
 		return theRemoveLogPackage;
@@ -110,6 +119,7 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRoot() {
 		return rootEClass;
 	}
@@ -119,6 +129,7 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRoot_ElementsDeletes() {
 		return (EReference)rootEClass.getEStructuralFeatures().get(0);
 	}
@@ -128,6 +139,7 @@ public class RemoveLogPackageImpl extends EPackageImpl implements RemoveLogPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RemoveLogFactory getRemoveLogFactory() {
 		return (RemoveLogFactory)getEFactoryInstance();
 	}

@@ -4,8 +4,11 @@ package projectHistory.impl;
 
 import branchDecision.BranchDecisionPackage;
 import branchDecision.impl.BranchDecisionPackageImpl;
+import droidRecommenderHistory.DroidRecommenderHistoryPackage;
+import droidRecommenderHistory.impl.DroidRecommenderHistoryPackageImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -17,11 +20,13 @@ import projectHistory.Add;
 import projectHistory.CreateMsg;
 import projectHistory.Delete;
 import projectHistory.History;
+import projectHistory.InteractionWithActions;
 import projectHistory.Msg;
 import projectHistory.ProjectHistoryFactory;
 import projectHistory.ProjectHistoryPackage;
 import projectHistory.Sentence;
 import projectHistory.Update;
+import projectHistory.UserInteraction;
 import removeLog.RemoveLogPackage;
 
 import removeLog.impl.RemoveLogPackageImpl;
@@ -50,6 +55,20 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * @generated
 	 */
 	private EClass createMsgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userInteractionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass interactionWithActionsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,7 +140,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ProjectHistoryPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -135,23 +154,31 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 		if (isInited) return (ProjectHistoryPackage)EPackage.Registry.INSTANCE.getEPackage(ProjectHistoryPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ProjectHistoryPackageImpl theProjectHistoryPackage = (ProjectHistoryPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProjectHistoryPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ProjectHistoryPackageImpl());
+		Object registeredProjectHistoryPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ProjectHistoryPackageImpl theProjectHistoryPackage = registeredProjectHistoryPackage instanceof ProjectHistoryPackageImpl ? (ProjectHistoryPackageImpl)registeredProjectHistoryPackage : new ProjectHistoryPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) instanceof SocioProjectsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI) : SocioProjectsPackage.eINSTANCE);
-		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) instanceof RemoveLogPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI) : RemoveLogPackage.eINSTANCE);
-		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) instanceof BranchDecisionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI) : BranchDecisionPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(DroidRecommenderHistoryPackage.eNS_URI);
+		DroidRecommenderHistoryPackageImpl theDroidRecommenderHistoryPackage = (DroidRecommenderHistoryPackageImpl)(registeredPackage instanceof DroidRecommenderHistoryPackageImpl ? registeredPackage : DroidRecommenderHistoryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SocioProjectsPackage.eNS_URI);
+		SocioProjectsPackageImpl theSocioProjectsPackage = (SocioProjectsPackageImpl)(registeredPackage instanceof SocioProjectsPackageImpl ? registeredPackage : SocioProjectsPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RemoveLogPackage.eNS_URI);
+		RemoveLogPackageImpl theRemoveLogPackage = (RemoveLogPackageImpl)(registeredPackage instanceof RemoveLogPackageImpl ? registeredPackage : RemoveLogPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(BranchDecisionPackage.eNS_URI);
+		BranchDecisionPackageImpl theBranchDecisionPackage = (BranchDecisionPackageImpl)(registeredPackage instanceof BranchDecisionPackageImpl ? registeredPackage : BranchDecisionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theProjectHistoryPackage.createPackageContents();
+		theDroidRecommenderHistoryPackage.createPackageContents();
 		theSocioProjectsPackage.createPackageContents();
 		theRemoveLogPackage.createPackageContents();
 		theBranchDecisionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theProjectHistoryPackage.initializePackageContents();
+		theDroidRecommenderHistoryPackage.initializePackageContents();
 		theSocioProjectsPackage.initializePackageContents();
 		theRemoveLogPackage.initializePackageContents();
 		theBranchDecisionPackage.initializePackageContents();
@@ -159,7 +186,6 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 		// Mark meta-data to indicate it can't be changed
 		theProjectHistoryPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ProjectHistoryPackage.eNS_URI, theProjectHistoryPackage);
 		return theProjectHistoryPackage;
@@ -170,6 +196,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHistory() {
 		return historyEClass;
 	}
@@ -179,6 +206,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHistory_Msg() {
 		return (EReference)historyEClass.getEStructuralFeatures().get(0);
 	}
@@ -188,6 +216,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getHistory_CreateMsg() {
 		return (EReference)historyEClass.getEStructuralFeatures().get(1);
 	}
@@ -197,6 +226,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCreateMsg() {
 		return createMsgEClass;
 	}
@@ -206,6 +236,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCreateMsg_User() {
 		return (EReference)createMsgEClass.getEStructuralFeatures().get(0);
 	}
@@ -215,6 +246,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCreateMsg_Date() {
 		return (EAttribute)createMsgEClass.getEStructuralFeatures().get(1);
 	}
@@ -224,6 +256,67 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EClass getUserInteraction() {
+		return userInteractionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getUserInteraction_User() {
+		return (EReference)userInteractionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUserInteraction_Date() {
+		return (EAttribute)userInteractionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getInteractionWithActions() {
+		return interactionWithActionsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getInteractionWithActions_Undoable() {
+		return (EAttribute)interactionWithActionsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getInteractionWithActions__GetAllActions() {
+		return interactionWithActionsEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getMsg() {
 		return msgEClass;
 	}
@@ -233,8 +326,9 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMsg_User() {
-		return (EReference)msgEClass.getEStructuralFeatures().get(0);
+	@Override
+	public EAttribute getMsg_Msg() {
+		return (EAttribute)msgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -242,7 +336,8 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMsg_Msg() {
+	@Override
+	public EAttribute getMsg_Text() {
 		return (EAttribute)msgEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -251,7 +346,8 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMsg_Text() {
+	@Override
+	public EAttribute getMsg_Id() {
 		return (EAttribute)msgEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -260,26 +356,9 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMsg_Date() {
-		return (EAttribute)msgEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMsg_Id() {
-		return (EAttribute)msgEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EReference getMsg_Sentences() {
-		return (EReference)msgEClass.getEStructuralFeatures().get(5);
+		return (EReference)msgEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -287,15 +366,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMsg_Undoable() {
-		return (EAttribute)msgEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EOperation getMsg__GetChannel() {
 		return msgEClass.getEOperations().get(0);
 	}
@@ -305,6 +376,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSentence() {
 		return sentenceEClass;
 	}
@@ -314,6 +386,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getSentence_Sentence() {
 		return (EAttribute)sentenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -323,6 +396,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSentence_Commands() {
 		return (EReference)sentenceEClass.getEStructuralFeatures().get(1);
 	}
@@ -332,6 +406,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAction() {
 		return actionEClass;
 	}
@@ -341,6 +416,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAction_Element() {
 		return (EReference)actionEClass.getEStructuralFeatures().get(0);
 	}
@@ -350,6 +426,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__DoIt() {
 		return actionEClass.getEOperations().get(0);
 	}
@@ -359,6 +436,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__UndoIt() {
 		return actionEClass.getEOperations().get(1);
 	}
@@ -368,6 +446,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__RedoIt() {
 		return actionEClass.getEOperations().get(2);
 	}
@@ -377,6 +456,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__IsUndo() {
 		return actionEClass.getEOperations().get(3);
 	}
@@ -386,6 +466,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__IsExecute() {
 		return actionEClass.getEOperations().get(4);
 	}
@@ -395,6 +476,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__GetActionName() {
 		return actionEClass.getEOperations().get(5);
 	}
@@ -404,6 +486,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAction__GetObject() {
 		return actionEClass.getEOperations().get(6);
 	}
@@ -413,6 +496,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAdd() {
 		return addEClass;
 	}
@@ -422,6 +506,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDelete() {
 		return deleteEClass;
 	}
@@ -431,6 +516,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUpdate() {
 		return updateEClass;
 	}
@@ -440,6 +526,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUpdate_Old() {
 		return (EReference)updateEClass.getEStructuralFeatures().get(0);
 	}
@@ -449,6 +536,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUpdate_New() {
 		return (EReference)updateEClass.getEStructuralFeatures().get(1);
 	}
@@ -458,6 +546,7 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ProjectHistoryFactory getProjectHistoryFactory() {
 		return (ProjectHistoryFactory)getEFactoryInstance();
 	}
@@ -489,14 +578,19 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 		createEReference(createMsgEClass, CREATE_MSG__USER);
 		createEAttribute(createMsgEClass, CREATE_MSG__DATE);
 
+		userInteractionEClass = createEClass(USER_INTERACTION);
+		createEReference(userInteractionEClass, USER_INTERACTION__USER);
+		createEAttribute(userInteractionEClass, USER_INTERACTION__DATE);
+
+		interactionWithActionsEClass = createEClass(INTERACTION_WITH_ACTIONS);
+		createEAttribute(interactionWithActionsEClass, INTERACTION_WITH_ACTIONS__UNDOABLE);
+		createEOperation(interactionWithActionsEClass, INTERACTION_WITH_ACTIONS___GET_ALL_ACTIONS);
+
 		msgEClass = createEClass(MSG);
-		createEReference(msgEClass, MSG__USER);
 		createEAttribute(msgEClass, MSG__MSG);
 		createEAttribute(msgEClass, MSG__TEXT);
-		createEAttribute(msgEClass, MSG__DATE);
 		createEAttribute(msgEClass, MSG__ID);
 		createEReference(msgEClass, MSG__SENTENCES);
-		createEAttribute(msgEClass, MSG__UNDOABLE);
 		createEOperation(msgEClass, MSG___GET_CHANNEL);
 
 		sentenceEClass = createEClass(SENTENCE);
@@ -553,27 +647,39 @@ public class ProjectHistoryPackageImpl extends EPackageImpl implements ProjectHi
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		interactionWithActionsEClass.getESuperTypes().add(this.getUserInteraction());
+		msgEClass.getESuperTypes().add(this.getInteractionWithActions());
 		addEClass.getESuperTypes().add(this.getAction());
 		deleteEClass.getESuperTypes().add(this.getAction());
 		updateEClass.getESuperTypes().add(this.getAction());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(historyEClass, History.class, "History", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getHistory_Msg(), this.getMsg(), null, "msg", null, 0, -1, History.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHistory_Msg(), this.getUserInteraction(), null, "msg", null, 0, -1, History.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getHistory_CreateMsg(), this.getCreateMsg(), null, "createMsg", null, 1, 1, History.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(createMsgEClass, CreateMsg.class, "CreateMsg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCreateMsg_User(), theSocioProjectsPackage.getUser(), null, "user", null, 1, 1, CreateMsg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCreateMsg_Date(), ecorePackage.getEDate(), "date", null, 1, 1, CreateMsg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(userInteractionEClass, UserInteraction.class, "UserInteraction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUserInteraction_User(), theSocioProjectsPackage.getUser(), null, "user", null, 1, 1, UserInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUserInteraction_Date(), ecorePackage.getEDate(), "date", null, 1, 1, UserInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(interactionWithActionsEClass, InteractionWithActions.class, "InteractionWithActions", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInteractionWithActions_Undoable(), ecorePackage.getEBoolean(), "undoable", null, 1, 1, InteractionWithActions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = initEOperation(getInteractionWithActions__GetAllActions(), null, "getAllActions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(msgEClass, Msg.class, "Msg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMsg_User(), theSocioProjectsPackage.getUser(), null, "user", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMsg_Msg(), ecorePackage.getEString(), "msg", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMsg_Text(), ecorePackage.getEString(), "text", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMsg_Date(), ecorePackage.getEDate(), "date", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMsg_Id(), ecorePackage.getEString(), "id", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMsg_Sentences(), this.getSentence(), null, "sentences", null, 1, -1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMsg_Undoable(), ecorePackage.getEBoolean(), "undoable", null, 1, 1, Msg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMsg__GetChannel(), ecorePackage.getEString(), "getChannel", 1, 1, IS_UNIQUE, IS_ORDERED);
 

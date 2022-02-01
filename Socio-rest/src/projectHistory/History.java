@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface History extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Msg</b></em>' containment reference list.
-	 * The list contents are of type {@link projectHistory.Msg}.
+	 * The list contents are of type {@link projectHistory.UserInteraction}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Msg</em>' containment reference list isn't clear,
@@ -38,7 +38,7 @@ public interface History extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Msg> getMsg();
+	EList<UserInteraction> getMsg();
 
 	/**
 	 * Returns the value of the '<em><b>Create Msg</b></em>' containment reference.

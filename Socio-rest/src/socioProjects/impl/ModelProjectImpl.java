@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.json.JSONObject;
 
+import droidRecommenderHistory.RecommendationEvent;
 import es.uam.app.actions.Add;
 import es.uam.app.actions.AddModel;
 import es.uam.app.actions.Delete;
@@ -342,6 +343,7 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMetamodelName() {
 		return metamodelName;
 	}
@@ -351,6 +353,7 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetamodelName(String newMetamodelName) {
 		String oldMetamodelName = metamodelName;
 		metamodelName = newMetamodelName;
@@ -425,7 +428,7 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (metamodelName: ");
 		result.append(metamodelName);
 		result.append(')');
@@ -465,6 +468,12 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 
 	@Override
 	public List<Action> addActions(JSONObject objects) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Action> addActions(RecommendationEvent objects) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

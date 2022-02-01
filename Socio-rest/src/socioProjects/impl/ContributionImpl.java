@@ -84,6 +84,7 @@ public class ContributionImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Access getAccess() {
 		return access;
 	}
@@ -93,6 +94,7 @@ public class ContributionImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAccess(Access newAccess) {
 		Access oldAccess = access;
 		access = newAccess == null ? ACCESS_EDEFAULT : newAccess;
@@ -105,6 +107,7 @@ public class ContributionImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		if (project != null && project.eIsProxy()) {
 			InternalEObject oldProject = (InternalEObject)project;
@@ -131,6 +134,7 @@ public class ContributionImpl extends MinimalEObjectImpl.Container implements Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		Project oldProject = project;
 		project = newProject;
@@ -216,7 +220,7 @@ public class ContributionImpl extends MinimalEObjectImpl.Container implements Co
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (access: ");
 		result.append(access);
 		result.append(')');

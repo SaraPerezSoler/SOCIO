@@ -111,6 +111,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SocioApp createSocioApp() {
 		SocioAppImpl socioApp = new SocioAppImpl();
 		return socioApp;
@@ -121,6 +122,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModelProject createModelProject() {
 		ModelProjectImpl modelProject = new ModelProjectImpl();
 		return modelProject;
@@ -141,6 +143,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User createUser() {
 		UserImpl user = new UserImpl();
 		return user;
@@ -151,6 +154,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Contribution createContribution() {
 		ContributionImpl contribution = new ContributionImpl();
 		return contribution;
@@ -161,6 +165,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BranchGroup createBranchGroup() {
 		BranchGroupImpl branchGroup = new BranchGroupImpl();
 		return branchGroup;
@@ -231,6 +236,7 @@ public class SocioProjectsFactoryImpl extends EFactoryImpl implements SocioProje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SocioProjectsPackage getSocioProjectsPackage() {
 		return (SocioProjectsPackage)getEPackage();
 	}

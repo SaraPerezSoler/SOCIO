@@ -71,6 +71,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Consensus createConsensus() {
 		ConsensusImpl consensus = new ConsensusImpl();
 		return consensus;
@@ -81,6 +82,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Round createRound() {
 		RoundImpl round = new RoundImpl();
 		return round;
@@ -91,6 +93,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PreferenceOrdering createPreferenceOrdering() {
 		PreferenceOrderingImpl preferenceOrdering = new PreferenceOrderingImpl();
 		return preferenceOrdering;
@@ -101,6 +104,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Order createOrder() {
 		OrderImpl order = new OrderImpl();
 		return order;
@@ -111,6 +115,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AdminChoice createAdminChoice() {
 		AdminChoiceImpl adminChoice = new AdminChoiceImpl();
 		return adminChoice;
@@ -121,6 +126,7 @@ public class BranchDecisionFactoryImpl extends EFactoryImpl implements BranchDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BranchDecisionPackage getBranchDecisionPackage() {
 		return (BranchDecisionPackage)getEPackage();
 	}

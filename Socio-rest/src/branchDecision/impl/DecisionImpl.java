@@ -143,6 +143,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -151,6 +152,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -162,6 +164,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getChosenBranch() {
 		if (chosenBranch != null && chosenBranch.eIsProxy()) {
 			InternalEObject oldChosenBranch = (InternalEObject)chosenBranch;
@@ -186,6 +189,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setChosenBranch(Project newChosenBranch) {
 		Project oldChosenBranch = chosenBranch;
 		chosenBranch = newChosenBranch;
@@ -198,6 +202,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStart() {
 		return start;
 	}
@@ -207,6 +212,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStart(Date newStart) {
 		Date oldStart = start;
 		start = newStart;
@@ -219,6 +225,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getMergedDate() {
 		return mergedDate;
 	}
@@ -228,6 +235,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMergedDate(Date newMergedDate) {
 		Date oldMergedDate = mergedDate;
 		mergedDate = newMergedDate;
@@ -240,6 +248,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMessageId() {
 		return messageId;
 	}
@@ -249,6 +258,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMessageId(String newMessageId) {
 		String oldMessageId = messageId;
 		messageId = newMessageId;
@@ -360,7 +370,7 @@ public abstract class DecisionImpl extends MinimalEObjectImpl.Container implemen
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", start: ");
