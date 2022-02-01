@@ -60,9 +60,9 @@
 			<artifactId>jersey-hk2</artifactId>
 			<version>2.27</version>
 		</dependency>
-		
+
 		<!-- Necesary for JAVA 11 -->
-				<!-- API, java.xml.bind module -->
+		<!-- API, java.xml.bind module -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
