@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.json.JSONObject;
 
 import com.socio.client.command.SaveFileServer;
 
@@ -491,6 +492,27 @@ public class SocioData implements DataFormat {
 		addUpdate(p, msg);
 		return f;
 	}
+	
+	public File delete(Project p, Msg msg, Map<String, List<String>> objects) throws Exception {
+		if (!p.isOpen()) {
+			throw new InternalException("The project " + p.getCompleteName() + " is closed, you can't edit it");
+		} else if (p.isLocked()) {
+			throw new InternalException("The project " + p.getCompleteName()
+					+ " is locked, you can't edit it. Close all branch to unlock the project. Maybe you want edit some branch.");
+		}
+		String text = "delete ";
+		for (String key: objects.keySet()) {
+			for (String obj: objects.get(key)) {
+				text+=obj+", ";
+			}
+		}
+		text = text.substring(0, text.length()-2);
+		msg.setText(text);
+		File f = p.deleteObjects(msg, objects);
+		addUpdate(p, msg);
+		save(p);
+		return f;
+}
 
 	/*---------------------------------------------------------------Create users and projects, remove projects------------------------------------------------------------*/
 
@@ -848,5 +870,11 @@ public class SocioData implements DataFormat {
 	public File getLastPng(Project p) {
 		return p.getLastModify();
 	}
+
+	public JSONObject getElementsJSON(Project project) {
+		return project.getElementsJson();
+	}
+
+
 
 }

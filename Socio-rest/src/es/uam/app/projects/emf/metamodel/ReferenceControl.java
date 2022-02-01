@@ -240,4 +240,9 @@ public class ReferenceControl implements Feature, IsReference {
 	public int getMax() {
 		return this.getUpperBound();
 	}
+
+	@Override
+	public String getTypeString() {
+		return getType().getName();
+	}
 }

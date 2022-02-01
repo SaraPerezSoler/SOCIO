@@ -203,4 +203,12 @@ public class AttributeControl implements Feature, IsAttribute {
 
 		return this.getUpperBound();
 	}
+
+	@Override
+	public String getTypeString() {
+		if (getType() == null) {
+			return "";
+		}
+		return getType().getInstanceTypeName();
+	}
 }
