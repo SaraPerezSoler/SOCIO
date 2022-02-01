@@ -1,0 +1,50 @@
+@startuml
+
+skinparam class {
+BackgroundColor<<New>> #D7F7BA
+BorderColor<<New>> #458A03
+BackgroundColor<<???>> #FFFFFF
+BorderColor<<???>> #BDBDBD
+BackgroundColor<<Old>> #E0E6F8
+BorderColor<<Old>> #0B0B61
+HeaderBackgroundColor<<Mod>> #E0E6F8
+BorderColor<<Mod>> #0B0B61
+}
+skinparam nodeSep 20 
+skinparam rankSep 30 
+hide empty members   
+class Garage<<(C, #F7BE81)>> {
+}
+Garage *--"1..*"Employee : employees
+class Employee<<(C, #F7BE81)>> {
+[1,1] id: int 
+}
+class Ticket<<(C, #F7BE81)>> {
+[1,1] description: String 
+[1,1] price: double 
+}
+Ticket -->"1..1"Employee : employee
+Ticket -->"1..*"RepairAction : requiere
+class RepairAction<<(C, #F7BE81)>> {
+}
+class Motorbike<<(C, #F7BE81)>> {
+}
+Vehicle <|-- Motorbike
+class Vehicle<<(C, #F7BE81)>> {
+[1,1] model: String 
+[1,1] brand: String 
+[1,1] color: String 
+[1,1] registration: int 
+}
+class Truck<<(C, #F7BE81)>> {
+}
+Vehicle <|-- Truck
+class Car<<(C, #F7BE81)>> {
+}
+Vehicle <|-- Car
+class Client<<(C, #F7BE81)>> {
+[1,1] name: String 
+[1,1] number: int 
+}
+
+@enduml

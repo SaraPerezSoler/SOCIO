@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="branchDecision" nsURI="branchDecision" nsPrefix="branchDecision">
+  <eClassifiers xsi:type="ecore:EClass" name="Decision" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branchs" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass SocioDatabase.ecore#//Project" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chosenBranch" eType="ecore:EClass SocioDatabase.ecore#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mergedDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Consensus" eSuperTypes="#//Decision">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="consensusRequired" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" defaultValueLiteral="0.75"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferencesRound" lowerBound="1"
+        upperBound="-1" eType="#//Round" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users" lowerBound="2" upperBound="-1"
+        eType="ecore:EClass SocioDatabase.ecore#//User"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Round">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roundId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="consensusMeasure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userPreferences" upperBound="-1"
+        eType="#//Preference" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consensusOrder" lowerBound="1"
+        upperBound="-1" eType="#//Order" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roundDate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Preference" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user" lowerBound="1" eType="ecore:EClass SocioDatabase.ecore#//User"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreferenceOrdering" eSuperTypes="#//Preference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order" lowerBound="1" upperBound="-1"
+        eType="#//Order" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Order">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pos" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdminChoice" eSuperTypes="#//Decision"/>
+</ecore:EPackage>
