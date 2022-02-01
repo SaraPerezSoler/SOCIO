@@ -17,21 +17,21 @@ import projectHistory.Update;
 
 public class CreateMetamodelUML implements CreateText{
 
-	public static final String NEW_BACKGROUND = "#D7F7BA";
-	public static final String NEW_LINES = "#458A03";
+	//public static final String NEW_BACKGROUND = "#D7F7BA";
+	//public static final String NEW_LINES = "";
 	
 	public static final String REMOVE_BACKGROUND = "#F59D9D";
 	public static final String UPDATE_BACKGROUND = "#F7BE81";
 
-	private static final String NULL_BACKGROUND = "#FFFFFF";
-	private static final String NULL_LINES = "#BDBDBD";
+	//private static final String NULL_BACKGROUND = "#FFFFFF";
+	private static final String NULL_LINES = "";
 	
-	private static final String OLD_BACKGROUND = "#E0E6F8";
-	private static final String OLD_LINES = "#0B0B61";
+	//private static final String OLD_BACKGROUND = "#E0E6F8";
+	//private static final String OLD_LINES = "";
 	
-	private static final String NEW_TAG_COLOR="#688A08";
-	private static final String OLD_TAG_COLOR="#8181F7";
-	private static final String STANDAR_TAG_COLOR="#F7BE81";
+	private static final String NEW_TAG_COLOR="";
+	private static final String OLD_TAG_COLOR="";
+	private static final String STANDAR_TAG_COLOR="";
 	
 
 
@@ -41,11 +41,11 @@ public class CreateMetamodelUML implements CreateText{
 	public static final String CLASS_NEW = "New";
 	public static final String CLASS_OLD = "Old";
 
-	public static final String ATTR_NEW_INI = "<b><color:" + NEW_LINES + ">";
-	public static final String ATTR_NEW_FIN = "</color></b>";
+	//public static final String ATTR_NEW_INI = "<b><color:" + NEW_LINES + ">";
+	//public static final String ATTR_NEW_FIN = "</color></b>";
 
-	public static final String ATTR_OLD_INI = "<b><color:" + OLD_LINES + ">";
-	public static final String ATTR_OLD_FIN = "</color></b>";
+	//public static final String ATTR_OLD_INI = "<b><color:" + OLD_LINES + ">";
+	//public static final String ATTR_OLD_FIN = "</color></b>";
 
 	public static final String DELETE_NOTE_INI = "note as Delete " + REMOVE_BACKGROUND + ENTR
 			+ "This elements have been deleted:" + ENTR;
@@ -56,14 +56,14 @@ public class CreateMetamodelUML implements CreateText{
 	public static final String START = "@startuml" + ENTR + ENTR;
 	private static final String CLASS_NULL = "<<???>>";
 
-	public static final String START_CLASS_DIAGRAM = START + "skinparam class {" + ENTR + "BackgroundColor" + TAG_START+ CLASS_NEW + TAG_END
-			+ " " + NEW_BACKGROUND + ENTR + "BorderColor" + TAG_START+ CLASS_NEW + TAG_END + " " + NEW_LINES + ENTR + "BackgroundColor"
-			+ CLASS_NULL + " " + NULL_BACKGROUND + ENTR + "BorderColor" + CLASS_NULL + " " + NULL_LINES + ENTR
-			+ "BackgroundColor" + TAG_START+ CLASS_OLD+ TAG_END + " " + OLD_BACKGROUND + ENTR + "BorderColor" + TAG_START+ CLASS_OLD+ TAG_END + " "
-			+ OLD_LINES + ENTR + "}" + ENTR
-			+ "skinparam nodeSep 30 "+ ENTR /////// configura espacio horizontal
-			+ "skinparam rankSep 30 "+ ENTR /////// configura espacio vertical
-			+ "hide empty members   "+ ENTR; /////// oculta la cajita de atributos si está vacía
+	public static final String START_CLASS_DIAGRAM = START + "skinparam class {" + ENTR 
+			+ "BackgroundColor PaleGreen" + ENTR 
+			+ "ArrowColor SeaGreen" + ENTR 
+			+ "BorderColor SpringGreen" + ENTR 
+			+ "}" + ENTR
+			+ "skinparam stereotypeCBackgroundColor YellowGreen"+ ENTR
+			+ "skinparam defaultFontSize 09" + ENTR
+			+ "skinparam defaultFontName Courier" + ENTR;
 	public static final String END = ENTR + "@enduml";
 
 	private static final String CLASS = "Class";
@@ -266,11 +266,11 @@ public class CreateMetamodelUML implements CreateText{
 
 		for (ClassControl superType : cc.getSuperTypes()) {
 			if (superTypeisNew(cc, superType)){
-				cad += superType.getName() + " <|-["+NEW_LINES+"]- " + name + ENTR;
+				cad += superType.getName() + " <|-- " + name + ENTR;
 			}else if (superTypeisActual(cc, superType)){
 				cad += superType.getName() + " <|-- " + name + ENTR;
 			}else{
-				cad += superType.getName() + " <|-["+OLD_LINES+"]- " + name + ENTR;
+				cad += superType.getName() + " <|-- " + name + ENTR;
 			}
 		}
 		
@@ -335,9 +335,9 @@ public class CreateMetamodelUML implements CreateText{
 		List<Controlador> addNewClass = addControl.get(CLASS);
 		List<Controlador> addActualClass = addActualElements.get(CLASS);
 		if (addNewClass.contains(cc)) {
-			return CLASS_NEW;
+			return TAG_START+CLASS_NEW+TAG_END;
 		}else if (!addActualClass.contains(cc)){
-			return CLASS_OLD;
+			return TAG_START+CLASS_OLD+TAG_END;
 		}else{
 			return "";
 		}
@@ -354,7 +354,7 @@ public class CreateMetamodelUML implements CreateText{
 	
 	private String createClassHead(ClassControl cc){		
 			
-		return  getClassName(cc) + TAG_START+tag(cc)+ selectClassColor(cc)+ TAG_END;
+		return  getClassName(cc) + selectClassColor(cc) ;
 	}
 	
 	
@@ -402,11 +402,11 @@ public class CreateMetamodelUML implements CreateText{
 		String cadFin = ENTR;
 
 		if (attr.contains(ac) || attrUpd.contains(ac)) {
-			cad = ATTR_NEW_INI;
-			cadFin = ATTR_NEW_FIN + ENTR;
+			//cad = ATTR_NEW_INI;
+			//cadFin = ATTR_NEW_FIN + ENTR;
 		} else if (!addActualAttributes.contains(ac) && !updateActualAttributes.contains(ac)) {
-			cad = ATTR_OLD_INI;
-			cadFin = ATTR_OLD_FIN + ENTR;
+			//cad = ATTR_OLD_INI;
+			//cadFin = ATTR_OLD_FIN + ENTR;
 		}
 
 		String type;
@@ -440,19 +440,19 @@ public class CreateMetamodelUML implements CreateText{
 
 		for (Controlador c : ref) {
 			if (rc.equals(c)) {
-				nameStart=ATTR_NEW_INI;
-				nameEnd=ATTR_NEW_FIN+ENTR;
-				line = "-[" + NEW_LINES + "]-";
+				//nameStart=ATTR_NEW_INI;
+				//nameEnd=ATTR_NEW_FIN+ENTR;
+				line = "--";
 			}
 		}
 		if (ref.contains(rc) || updateRef.contains(rc)){
-			nameStart=ATTR_NEW_INI;
-			nameEnd=ATTR_NEW_FIN+ENTR;
-			line = "-[" + NEW_LINES + "]-";
+			//nameStart=ATTR_NEW_INI;
+			//nameEnd=ATTR_NEW_FIN+ENTR;
+			line = "--";
 		}
 		
 		if (!addActualRef.contains(rc) && !updateActualRef.contains(rc)) {
-			line = "-[" + OLD_LINES + "]-";
+			line = "--";
 		}
 
 		String parentName = "";
