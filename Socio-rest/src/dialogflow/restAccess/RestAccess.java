@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -29,7 +28,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -88,9 +86,9 @@ public class RestAccess {
 	private static String REDO = "Redo";
 	private static String SETPROJECT = "SetProject";
 	private static String SHOW = "Show";
-	private static String TALK = "Talk";
+//	private static String TALK = "Talk";
 	private static String UNDO = "Undo";
-	private static String VALIDATE = "Validate";
+//	private static String VALIDATE = "Validate";
 	private static String CREATE = "Create ";
 	private static String REMOVE = "Remove ";
 	private static String UPDATE = "Update ";

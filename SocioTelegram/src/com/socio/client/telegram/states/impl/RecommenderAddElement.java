@@ -189,7 +189,7 @@ public class RecommenderAddElement implements ConversationalState {
 		File file = State.SOCIO().add(chat.getProject(), State.getUser(callbackQuery.getFrom()),
 				"Element added by recommender", new Date(), getMessageId(callbackQuery.getMessage()), model);
 		chat.sendPhoto(file, callbackQuery.getMessage().getMessageId());
-		chat.sendMessage("Element " + text + " added", false);
+		//chat.sendMessage("Element " + text + " added", false);
 		return;
 	}
 
