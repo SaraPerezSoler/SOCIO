@@ -39,6 +39,7 @@ public class SocioCommands extends Commands {
 	private static final String HISTORY_PATH = "history/";
 	private static final String HISTORY_PROJECT_PATH = HISTORY_PATH + "project/";
 	private static final String PROJECT_PATH = "projects/";
+	private static final String APP_PATH = "app/";
 	private static final String PROJECT_INFO_PATH = PROJECT_PATH + "info/";
 	private static final String PROJECT_EDIT_PATH = PROJECT_PATH + "write/";
 	private static final String PROJECT_READ_PATH = PROJECT_PATH + "read/";
@@ -61,6 +62,7 @@ public class SocioCommands extends Commands {
 	private static final String GET_POLL = DECISION+ "getPoll/";
 	private static final String SET_POLL = DECISION+ "addPoll/";
 	private static final String GET_END_POLL = DECISION+ "getEndPoll/";
+	
 	
 	
 	private static SocioCommands SOCIO = null;
@@ -93,6 +95,24 @@ public class SocioCommands extends Commands {
 	public File get(String channel, String nick, String project, User user) throws ResponseError, ForbiddenResponse {
 		return get(getProjectData(channel, nick, project), user);
 	}
+	//////////////////////
+	public File app(String projectName) throws ResponseError, ForbiddenResponse {
+		String path = APP_PATH + getProjectData(projectName);
+		return responseFile(path, null);
+	}
+
+	public File app(Project project) throws ResponseError, ForbiddenResponse {
+		return app(getProjectData(project));
+	}
+
+	public File app(long project) throws ResponseError, ForbiddenResponse {
+		return app(getProjectData(project));
+	}
+
+	public File app(String channel, String nick, String project, User user) throws ResponseError, ForbiddenResponse {
+		return app(getProjectData(channel, nick, project));
+	}
+	///////////////////////////////
 
 	private File editor(String path, User user, String msg, String text, Date date, String id)
 			throws ResponseError, ForbiddenResponse {

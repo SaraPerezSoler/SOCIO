@@ -1,0 +1,51 @@
+package com.socio.client.telegram.states.impl;
+
+import java.io.File;
+
+import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
+
+import com.socio.client.command.responseExceptions.ForbiddenResponse;
+import com.socio.client.command.responseExceptions.ResponseError;
+import com.socio.client.telegram.Chat;
+import com.socio.client.telegram.NotProjectException;
+import com.socio.client.telegram.states.CommandState;
+import com.socio.client.telegram.states.State;
+
+public class Download implements CommandState {
+	
+	private static final String SUCCESSFUL = "Validation completed successfully";
+	private static Download DOWNLOAD =new Download();
+
+	public static Download getState() {
+		return DOWNLOAD;
+	}
+	
+	private Download() {
+	}
+	@Override
+	public State runAndNext(Chat chat, Message message) throws TelegramApiException, ResponseError, ForbiddenResponse {
+		
+		if (!chat.hasProject()) {
+			throw new NotProjectException();
+		}
+		String response = State.SOCIO().validate(chat.getProject(), State.getUser(message.getFrom()));
+		if (!response.equals(SUCCESSFUL)) {
+			chat.sendMessage(response, message.getMessageId(), false);
+			return Chat.getDefaultState();
+		}
+		File file = State.SOCIO().app(chat.getProject());
+		chat.sendDocument(file, message.getMessageId());
+		return Chat.getDefaultState();
+	}
+
+	@Override
+	public String getCommand() {
+		return "download";
+	}
+
+	@Override
+	public String getDescription() {
+		return "send a zip file with a information sistem generated from the model";
+	}
+}

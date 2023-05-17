@@ -450,6 +450,11 @@ public class ModelProjectImpl extends ProjectImpl implements ModelProject {
 		return getSentenceOrder(text);
 	}
 
+	@Override
+	public Controlador getControlador() {
+		return mc;
+	}
+
 
 
 } // ModelProjecImpl

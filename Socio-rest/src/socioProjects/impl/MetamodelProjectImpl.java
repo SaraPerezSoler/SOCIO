@@ -507,6 +507,11 @@ public class MetamodelProjectImpl extends ProjectImpl implements MetamodelProjec
 		return sentences;
 	}
 
+	@Override
+	public Controlador getControlador() {
+		return ec;
+	}
+
 
 
 

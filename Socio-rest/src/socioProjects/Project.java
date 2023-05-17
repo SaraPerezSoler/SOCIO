@@ -18,6 +18,7 @@ import es.uam.app.actions.Update;
 import es.uam.app.main.SocioData;
 import es.uam.app.main.exceptions.FatalException;
 import es.uam.app.main.exceptions.InternalException;
+import es.uam.app.projects.emf.Controlador;
 import projectHistory.Action;
 import projectHistory.History;
 import projectHistory.Msg;
@@ -603,5 +604,7 @@ public interface Project extends EObject {
 	void copyModel(Project p);
 
 	void changeBranchGroup(Project actual, String branchGroup) throws InternalException;
+	
+	Controlador getControlador ();
 
 } // Project
